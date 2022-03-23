@@ -38,6 +38,8 @@ namespace Test_Loopguy
         float playerSpeed;
         float diagonalMultiplier;
 
+        Target target;
+
 
         public Game1()
         {
@@ -55,8 +57,7 @@ namespace Test_Loopguy
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            blueArc = Content.Load<Texture2D>("blueArc");
-            redPixel = Content.Load<Texture2D>("redPixel");
+            TexMGR.LoadTextures(Content);
 
             //Resolution and window stuff
             windowX = 480;
@@ -77,6 +78,8 @@ namespace Test_Loopguy
             playerSpeed = 100;
             diagonalMultiplier = 0.707f;
             playerPosition = new Vector2(200, 200);
+
+            target = new Target(new Vector2(300, 300));
         }
 
         protected override void Update(GameTime gameTime)
@@ -97,6 +100,8 @@ namespace Test_Loopguy
 
             PlayerMovement(deltaTime);
 
+            target.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -109,20 +114,31 @@ namespace Test_Loopguy
 
             playerSprite.Render(spriteBatch);
 
-            spriteBatch.End();
+            target.Draw(spriteBatch);
 
-            base.Draw(gameTime);
+            spriteBatch.End();
 
             GraphicsDevice.SetRenderTarget(null);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             spriteBatch.Draw(renderTarget, screenRect, Color.White);
             spriteBatch.End();
 
+            base.Draw(gameTime);
+
+            //Shows player position
+            Point playerPosRounded = new Point((int)Math.Round(playerPosition.X, 0), (int)Math.Round(playerPosition.Y, 0));
+
             //Shows angle between player and cursor in window title
-            double piRad = MouseAngle(playerCenterPosition) / Math.PI;
-            float piRadShort = (float)Math.Round(piRad, 2);
-            int degShort = (int)MathHelper.ToDegrees((float)MouseAngle(playerCenterPosition));
-            Window.Title = "Mouse Angle: " + piRadShort.ToString() + "π rad - " + degShort.ToString() + " degrees";
+            double piRadM = MouseAngle(playerCenterPosition) / Math.PI;
+            float piRadShortM = (float)Math.Round(piRadM, 2);
+            int degShortM = (int)MathHelper.ToDegrees((float)MouseAngle(playerCenterPosition));
+
+            double piRadT = AngleToPlayer(playerCenterPosition, target.centerPosition) / Math.PI;
+            float piRadShortT = (float)Math.Round(piRadT, 2);
+            int degShortT = (int)MathHelper.ToDegrees((float)AngleToPlayer(playerCenterPosition, target.centerPosition));
+
+            //Show
+            Window.Title = "Mouse Angle: " + piRadShortM.ToString() + "π rad - " + degShortM.ToString() + " degrees || " + "Target Angle: " + piRadShortT.ToString() + "π rad - " + degShortT.ToString() + " degrees || " + "Player position: " + playerPosRounded;
         }
 
         protected void PlayerMovement(float deltaTime)
@@ -228,6 +244,18 @@ namespace Test_Loopguy
             double v = Math.Atan2(mousePos.X - playerPos.X, mousePos.Y - playerPos.Y);
 
             //Adjust this according to where the angle is measured from
+            v -= Math.PI / 2;
+
+            if (v < 0.0)
+                v += Math.PI * 2;
+
+            return v;
+        }
+
+        protected double AngleToPlayer(Vector2 playerPos, Vector2 otherPos)
+        {
+            double v = Math.Atan2(otherPos.X - playerPos.X, otherPos.Y - playerPos.Y);
+
             v -= Math.PI / 2;
 
             if (v < 0.0)
