@@ -61,7 +61,7 @@ namespace Test_Loopguy
             //Resolution and window stuff
             windowX = 480;
             windowY = 270;
-            windowScale = 2;
+            windowScale = 3;
             screenRect = new Rectangle(0, 0, windowScale * windowX, windowScale * windowY);
             renderTarget = new RenderTarget2D(GraphicsDevice, windowX, windowY);
             graphics.PreferredBackBufferWidth = screenRect.Width;
@@ -220,10 +220,14 @@ namespace Test_Loopguy
 
         protected double MouseAngle(Vector2 playerPos)
         {
+            //Adds mouse position to camera position
             Vector2 mousePos = new Vector2(InputReader.mouseState.X / windowScale, InputReader.mouseState.Y / windowScale);
+            Vector2 cameraCenterPos = new Vector2(camera.position.X - windowX / 2, camera.position.Y - windowY / 2);
+            mousePos = new Vector2(cameraCenterPos.X + mousePos.X, cameraCenterPos.Y + mousePos.Y);
+
             double v = Math.Atan2(mousePos.X - playerPos.X, mousePos.Y - playerPos.Y);
 
-            //Adjust according to where the angle is measured from
+            //Adjust this according to where the angle is measured from
             v -= Math.PI / 2;
 
             if (v < 0.0)

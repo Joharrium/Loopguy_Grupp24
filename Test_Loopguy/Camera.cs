@@ -6,7 +6,7 @@ namespace Test_Loopguy
     class Camera
     {
         private Matrix transform;
-        private Vector2 position;
+        public Vector2 position;
         private Viewport view;
 
         public Matrix Transform
