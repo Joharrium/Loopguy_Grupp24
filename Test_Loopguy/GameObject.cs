@@ -13,11 +13,13 @@ namespace Test_Loopguy
         public Vector2 centerPosition;
         public Rectangle hitBox;
 
-        public GameObject()
+        public GameObject(Vector2 position)
         {
-        }
+            this.position = position;
+            texture = TexMGR.notex;
 
-        public abstract void Update(GameTime gameTime);
+            centerPosition = new Vector2(position.X - texture.Width / 2, position.Y - texture.Height / 2);
+        }
 
         public abstract void Draw(SpriteBatch spriteBatch);
     }

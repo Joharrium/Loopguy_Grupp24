@@ -10,7 +10,7 @@
 
 #-------------------------------- References --------------------------------#
 
-/reference:..\..\..\..\..\.nuget\packages\monogame.aseprite\2.0.4.1\contentFiles\netstandard2.0\MonoGame.Aseprite.ContentPipeline.dll
+/reference:..\..\..\..\..\..\.nuget\packages\monogame.aseprite\2.0.4.1\contentFiles\netstandard2.0\MonoGame.Aseprite.ContentPipeline.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -38,6 +38,42 @@
 /processorParam:InnerPadding=0
 /build:HLD.aseprite
 
+#begin HLD.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:HLD.png
+
+#begin Loopy.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Loopy.png
+
+#begin notex.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:notex.png
+
 #begin redPixel.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -49,6 +85,13 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:redPixel.png
+
+#begin smallFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:smallFont.spritefont
 
 #begin target.png
 /importer:TextureImporter

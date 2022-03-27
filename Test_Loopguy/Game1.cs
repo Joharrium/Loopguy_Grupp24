@@ -4,8 +4,6 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Aseprite.Documents;
-using MonoGame.Aseprite.Graphics;
 
 namespace Test_Loopguy
 {
@@ -14,10 +12,11 @@ namespace Test_Loopguy
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
-        AsepriteDocument aseDoc;
-        AnimatedSprite playerSprite;
+        SpriteFont smallFont;
 
         Camera camera;
+
+        Player player;
 
         Texture2D blueArc, redPixel;
 
@@ -25,20 +24,7 @@ namespace Test_Loopguy
         public static Rectangle screenRect;
         public static int windowX, windowY, windowScale;
 
-        Vector2 playerSpriteSize;
-        Vector2 playerDirection;
-        Vector2 playerPosition;
-        Vector2 playerCenterPosition;
-
-        Vector2 attackTopDirection, attackBottomDirection, attackTop, attackBottom;
-
-        int dirint;
-        float attackRange;
-
-        float playerSpeed;
-        float diagonalMultiplier;
-
-        Target target;
+        string infoString;
 
 
         public Game1()
@@ -58,6 +44,7 @@ namespace Test_Loopguy
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             TexMGR.LoadTextures(Content);
+            smallFont = Content.Load<SpriteFont>("smallFont");
 
             //Resolution and window stuff
             windowX = 480;
@@ -71,15 +58,8 @@ namespace Test_Loopguy
 
             camera = new Camera(GraphicsDevice.Viewport);
 
-            aseDoc = Content.Load<AsepriteDocument>("HLD");
-            playerSprite = new AnimatedSprite(aseDoc);
+            player = new Player(new Vector2(200, 200));
 
-            playerSpriteSize = new Vector2(32, 32);
-            playerSpeed = 100;
-            diagonalMultiplier = 0.707f;
-            playerPosition = new Vector2(200, 200);
-
-            target = new Target(new Vector2(300, 300));
         }
 
         protected override void Update(GameTime gameTime)
@@ -87,20 +67,42 @@ namespace Test_Loopguy
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             InputReader.Update();
 
-            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //Update player position
+            player.Movement(deltaTime);
+            player.Update(gameTime);
 
-            playerCenterPosition = new Vector2(playerPosition.X + playerSpriteSize.X / 2, playerPosition.Y + playerSpriteSize.Y / 2);
+            //Update camera position
+            camera.SetPosition(player.centerPosition);
 
-            camera.SetPosition(new Vector2(playerCenterPosition.X, playerCenterPosition.Y));
+            //Gets mouse position from window and camera position
+            Vector2 mousePos = new Vector2(InputReader.mouseState.X / windowScale, InputReader.mouseState.Y / windowScale);
+            Vector2 cameraTopLeft = new Vector2(camera.position.X - windowX / 2, camera.position.Y - windowY / 2);
+            mousePos = new Vector2(cameraTopLeft.X + mousePos.X, cameraTopLeft.Y + mousePos.Y);
 
-            playerSprite.Position = playerPosition;
-            playerSprite.Update(deltaTime);
+            //Get angles between player and stuff
+            double mouseAngle = Helper.GetAngle(player.centerPosition, mousePos);
+            double targetAngle = Helper.GetAngle(player.centerPosition, Vector2.Zero); //change zero vector to target
 
-            PlayerMovement(deltaTime);
+            //Converts angles from radians double to more readable stuff
+            double piRadM = mouseAngle / Math.PI;
+            float piRadShortM = (float)Math.Round(piRadM, 2);
+            int degShortM = (int)MathHelper.ToDegrees((float)mouseAngle);
 
-            target.Update(gameTime);
+            double piRadT = targetAngle / Math.PI;
+            float piRadShortT = (float)Math.Round(piRadT, 2);
+            int degShortT = (int)MathHelper.ToDegrees((float)targetAngle);
+
+            //Shows player position
+            Point playerPosRounded = new Point((int)Math.Round(player.position.X, 0), (int)Math.Round(player.position.Y, 0));
+
+            infoString = "Mouse Angle: " + piRadShortM.ToString() + "pi rad - " + degShortM.ToString() + " degrees \n"
+                + "Target Angle: " + piRadShortT.ToString() + "pi rad - " + degShortT.ToString() + " degrees \n"
+                + "Player position: " + playerPosRounded;
+
+            Window.Title = player.playerInfoString;
 
             base.Update(gameTime);
         }
@@ -112,9 +114,10 @@ namespace Test_Loopguy
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, camera.Transform);
 
-            playerSprite.Render(spriteBatch);
+            //Draw game stuff here!
 
-            target.Draw(spriteBatch);
+            spriteBatch.DrawString(smallFont, infoString, new Vector2(camera.position.X - windowX / 2, camera.position.Y - windowY / 2), Color.White);
+            player.Draw(spriteBatch);
 
             spriteBatch.End();
 
@@ -125,143 +128,9 @@ namespace Test_Loopguy
 
             base.Draw(gameTime);
 
-            //Shows player position
-            Point playerPosRounded = new Point((int)Math.Round(playerPosition.X, 0), (int)Math.Round(playerPosition.Y, 0));
-
-            //Shows angle between player and cursor in window title
-            double piRadM = MouseAngle(playerCenterPosition) / Math.PI;
-            float piRadShortM = (float)Math.Round(piRadM, 2);
-            int degShortM = (int)MathHelper.ToDegrees((float)MouseAngle(playerCenterPosition));
-
-            double piRadT = AngleToPlayer(playerCenterPosition, target.centerPosition) / Math.PI;
-            float piRadShortT = (float)Math.Round(piRadT, 2);
-            int degShortT = (int)MathHelper.ToDegrees((float)AngleToPlayer(playerCenterPosition, target.centerPosition));
-
-            //Show
-            Window.Title = "Mouse Angle: " + piRadShortM.ToString() + "π rad - " + degShortM.ToString() + " degrees || " + "Target Angle: " + piRadShortT.ToString() + "π rad - " + degShortT.ToString() + " degrees || " + "Player position: " + playerPosRounded;
+            //Show Angles
+            //Window.Title = infoString;
         }
 
-        protected void PlayerMovement(float deltaTime)
-        {
-
-            if (InputReader.MovementLeft())
-            {
-                if (InputReader.MovementUp())
-                {//LEFT + UP
-                    playerDirection.Y = -1 * diagonalMultiplier;
-                    playerDirection.X = -1 * diagonalMultiplier;
-                }
-                else if (InputReader.MovementDown())
-                {//LEFT + DOWN
-                    playerDirection.Y = 1 * diagonalMultiplier;
-                    playerDirection.X = -1 * diagonalMultiplier;
-                }
-                else
-                {//LEFT
-                    playerDirection.Y = 0;
-                    playerDirection.X = -1;
-                }
-            }
-            else if (InputReader.MovementRight())
-            {
-                if (InputReader.MovementUp())
-                {//RIGHT + UP
-                    playerDirection.Y = -1 * diagonalMultiplier;
-                    playerDirection.X = 1 * diagonalMultiplier;
-                }
-                else if (InputReader.MovementDown())
-                {//RIGHT + DOWN
-                    playerDirection.Y = 1 * diagonalMultiplier;
-                    playerDirection.X = 1 * diagonalMultiplier;
-                }
-                else
-                {//RIGHT
-                    playerDirection.Y = 0;
-                    playerDirection.X = 1;
-                }
-            }
-            else if (InputReader.MovementUp())
-            {//UP
-                playerDirection.Y = -1;
-                playerDirection.X = 0;
-            }
-            else if (InputReader.MovementDown())
-            {//DOWN
-                playerDirection.Y = 1;
-                playerDirection.X = 0;
-            }
-            else
-            {//Analog Stick movement
-                playerDirection.X = InputReader.padState.ThumbSticks.Left.X;
-                playerDirection.Y = -InputReader.padState.ThumbSticks.Left.Y;
-            }
-
-
-
-            //Visual changes depending on direction
-            if (playerDirection.Y < 0 && (float)Math.Abs(playerDirection.X) < (float)Math.Abs(playerDirection.Y))
-            {
-                playerSprite.Play("up");
-                dirint = 3;
-            }
-            else if (playerDirection.Y > 0 && (float)Math.Abs(playerDirection.X) < (float)Math.Abs(playerDirection.Y))
-            {
-                playerSprite.Play("down");
-                dirint = 4;
-            }
-            else if (playerDirection.X < 0)
-            {
-                playerSprite.Play("left");
-                dirint = 1;
-            }
-            else if (playerDirection.X > 0)
-            {
-                playerSprite.Play("right");
-                dirint = 2;
-            }
-            else
-            {
-                if (dirint == 1)
-                    playerSprite.Play("leftidle");
-                else if (dirint == 2)
-                    playerSprite.Play("rightidle");
-                else if (dirint == 3)
-                    playerSprite.Play("upidle");
-                else
-                    playerSprite.Play("downidle");
-            }
-
-            playerPosition += playerDirection * playerSpeed * deltaTime;
-        }
-
-        protected double MouseAngle(Vector2 playerPos)
-        {
-            //Adds mouse position to camera position
-            Vector2 mousePos = new Vector2(InputReader.mouseState.X / windowScale, InputReader.mouseState.Y / windowScale);
-            Vector2 cameraCenterPos = new Vector2(camera.position.X - windowX / 2, camera.position.Y - windowY / 2);
-            mousePos = new Vector2(cameraCenterPos.X + mousePos.X, cameraCenterPos.Y + mousePos.Y);
-
-            double v = Math.Atan2(mousePos.X - playerPos.X, mousePos.Y - playerPos.Y);
-
-            //Adjust this according to where the angle is measured from
-            v -= Math.PI / 2;
-
-            if (v < 0.0)
-                v += Math.PI * 2;
-
-            return v;
-        }
-
-        protected double AngleToPlayer(Vector2 playerPos, Vector2 otherPos)
-        {
-            double v = Math.Atan2(otherPos.X - playerPos.X, otherPos.Y - playerPos.Y);
-
-            v -= Math.PI / 2;
-
-            if (v < 0.0)
-                v += Math.PI * 2;
-
-            return v;
-        }
     }
 }

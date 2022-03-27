@@ -12,7 +12,7 @@ static class InputReader
 	public static MouseState mouseState, oldMouseState = Mouse.GetState();
 	public static GamePadState padState, oldPadState = GamePad.GetState(PlayerIndex.One);
 
-
+	
 	public static bool KeyPressed(Keys key)
 	{
 		return keyState.IsKeyDown(key) && oldKeyState.IsKeyUp(key);
