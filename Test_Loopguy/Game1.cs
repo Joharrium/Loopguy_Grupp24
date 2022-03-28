@@ -21,6 +21,8 @@ namespace Test_Loopguy
         Texture2D blueArc, redPixel;
 
         RenderTarget2D renderTarget;
+
+        public static Vector2 mousePos;
         public static Rectangle screenRect;
         public static int windowX, windowY, windowScale;
 
@@ -66,21 +68,24 @@ namespace Test_Loopguy
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            else if (InputReader.KeyPressed(Keys.PageUp) && windowScale <= 5)
+                ScaleWindow(1);
+            else if (InputReader.KeyPressed(Keys.PageDown) && windowScale >= 2)
+                ScaleWindow(-1);
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             InputReader.Update();
 
             //Update player position
-            player.Movement(deltaTime);
             player.Update(gameTime);
 
             //Update camera position
             camera.SetPosition(player.centerPosition);
 
             //Gets mouse position from window and camera position
-            Vector2 mousePos = new Vector2(InputReader.mouseState.X / windowScale, InputReader.mouseState.Y / windowScale);
+            Vector2 windowMousePos = new Vector2(InputReader.mouseState.X / windowScale, InputReader.mouseState.Y / windowScale);
             Vector2 cameraTopLeft = new Vector2(camera.position.X - windowX / 2, camera.position.Y - windowY / 2);
-            mousePos = new Vector2(cameraTopLeft.X + mousePos.X, cameraTopLeft.Y + mousePos.Y);
+            mousePos = new Vector2(cameraTopLeft.X + windowMousePos.X, cameraTopLeft.Y + windowMousePos.Y);
 
             //Get angles between player and stuff
             double mouseAngle = Helper.GetAngle(player.centerPosition, mousePos);
@@ -110,7 +115,7 @@ namespace Test_Loopguy
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.SetRenderTarget(renderTarget);
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.SlateGray);
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, camera.Transform);
 
@@ -130,6 +135,16 @@ namespace Test_Loopguy
 
             //Show Angles
             //Window.Title = infoString;
+        }
+
+        void ScaleWindow(int i)
+        {
+            windowScale += i;
+            screenRect.Width = windowScale * windowX;
+            screenRect.Height = windowScale * windowY;
+            graphics.PreferredBackBufferWidth = screenRect.Width;
+            graphics.PreferredBackBufferHeight = screenRect.Height;
+            graphics.ApplyChanges();
         }
 
     }

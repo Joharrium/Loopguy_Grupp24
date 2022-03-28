@@ -47,6 +47,32 @@ static class InputReader
 		return keyState.IsKeyDown(Keys.Down) || keyState.IsKeyDown(Keys.S) || padState.IsButtonDown(Buttons.DPadDown);
 	}
 
+	public static bool Aim()
+    {
+		return keyState.IsKeyDown(Keys.LeftShift) || padState.IsButtonDown(Buttons.LeftTrigger);
+	}
+
+	public static bool Shoot()
+    { // Subject to change, might be better to do this in the Player class
+		if (Aim())
+			return mouseState.LeftButton == ButtonState.Pressed || padState.IsButtonDown(Buttons.RightTrigger);
+		else
+			return false;
+    }
+
+	public static bool MovingLeftStick()
+    {
+		return padState.ThumbSticks.Left != Vector2.Zero;
+    }
+	public static Vector2 LeftStickDirection()
+    {
+		return padState.ThumbSticks.Left;
+    }
+	public static Vector2 RigthStickDirection()
+	{
+		return padState.ThumbSticks.Right;
+	}
+
 	//Should be called at beginning of Update in Game
 	public static void Update()
 	{
