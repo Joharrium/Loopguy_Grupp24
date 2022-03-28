@@ -68,9 +68,17 @@ static class InputReader
     {
 		return padState.ThumbSticks.Left;
     }
-	public static Vector2 RigthStickDirection()
+	public static Vector2 RightStickDirection()
 	{
 		return padState.ThumbSticks.Right;
+	}
+	public static float LeftStickAngle()
+    {
+		return (float)Math.Atan2(LeftStickDirection().Y, LeftStickDirection().X) + (float)(Math.PI / 2);
+	}
+	public static float RightStickAngle()
+    {
+		return (float)Math.Atan2(RightStickDirection().Y, RightStickDirection().X) + (float)(Math.PI / 2);
 	}
 
 	//Should be called at beginning of Update in Game

@@ -61,12 +61,12 @@ namespace Test_Loopguy
             }
             else
             {
-                angle = (float)Math.Atan2(InputReader.LeftStickDirection().Y, InputReader.LeftStickDirection().X) + (float)(Math.PI / 2);
+                angle = InputReader.LeftStickAngle();
             }
 
             Vector2 gunDirection = new Vector2((float)Math.Sin(angle), (float)Math.Cos(angle));
 
-            for (int i = 0; i < 500; i++)
+            for (int i = 0; i < 560; i++)
             {
                 Vector2 aimPoint = new Vector2(centerPosition.X + i * gunDirection.X, centerPosition.Y + i * gunDirection.Y);
                 spriteBatch.Draw(TexMGR.cyanPixel, aimPoint, Helper.RandomTransparency(random));
