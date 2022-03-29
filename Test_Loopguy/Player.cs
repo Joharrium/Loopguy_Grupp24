@@ -190,11 +190,11 @@ namespace Test_Loopguy
             //    position += direction * speed * deltaTime;
             //}
 
-            if (WallManager.CheckCollision(centerPosition + direction * speed * deltaTime + new Vector2(0, 12)))
+            //if (WallManager.CheckCollision(centerPosition + direction * speed * deltaTime + new Vector2(0, 12)))
             {
                 
             }
-            else
+            //else
             {
                 position += direction * speed * deltaTime;
             }

@@ -10,12 +10,22 @@ namespace Test_Loopguy
     {
         int id;
         Rectangle cameraBounds;
-        //array of tiles
-        //list of game objects
+        Tile[,] tiles;
+        List<LevelObject> levelObjects;
         //list of enemies
         //list of corresponding entrances from different ids and their position
 
-        public void Update()
+
+        public Level (int id, Rectangle cameraBounds, List<LevelObject> levelObjects, Tile[,] tiles/*, List<Entrance> entrances*/)
+        {
+            this.id = id;
+            this.cameraBounds = cameraBounds;
+            this.levelObjects = levelObjects;
+            this.tiles = tiles;
+            
+        }
+
+        public void Update(GameTime gameTime)
         {
             //update game objects
             //update enemy ai
@@ -24,11 +34,20 @@ namespace Test_Loopguy
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            foreach (Tile t in tiles)
+            {
+                t.Draw(spriteBatch);
+            }
+            foreach (LevelObject lo in levelObjects)
+            {
+                lo.Draw(spriteBatch);
+            }
             //draw tiles and objects and enemies, in the correct order
         }
     }
     public class Entrance
     {
+        int id;
         Vector2 position;
         int idFrom;
         int idTo;

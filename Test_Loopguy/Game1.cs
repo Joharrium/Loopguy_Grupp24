@@ -62,9 +62,9 @@ namespace Test_Loopguy
             camera = new Camera(GraphicsDevice.Viewport);
 
             player = new Player(new Vector2(64, 64));
-            TileManager.Initialization();
-            WallManager.Initialization();
-
+            //TileManager.Initialization();
+            //WallManager.Initialization();
+            LevelManager.LoadLevel(1);
         }
 
         protected override void Update(GameTime gameTime)
@@ -81,7 +81,7 @@ namespace Test_Loopguy
 
             //Update player position
             player.Update(gameTime);
-
+            LevelManager.Update(gameTime);
             //Update camera position
             camera.SetPosition(player.centerPosition);
 
@@ -125,8 +125,9 @@ namespace Test_Loopguy
             //Draw game stuff here!
 
             spriteBatch.DrawString(smallFont, infoString, new Vector2(camera.position.X - windowX / 2, camera.position.Y - windowY / 2), Color.White);
-            TileManager.Draw(spriteBatch);
-            WallManager.Draw(spriteBatch);
+            //TileManager.Draw(spriteBatch);
+            //WallManager.Draw(spriteBatch);
+            LevelManager.Draw(spriteBatch);
             player.Draw(spriteBatch);
             
 
