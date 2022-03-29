@@ -85,9 +85,38 @@ namespace Test_Loopguy
             List<LevelObject> levelObjects = new List<LevelObject>();
             levelObjects.Add(new Box(new Vector2(56, 56)));
 
+            List<string> lines = new List<string>();
+            foreach (string line in System.IO.File.ReadLines(string.Format(@"maps\level{0}\objectmap.txt", id)))
+            {
+                lines.Add(line);
+            }
+
+            for (int i = 0; i<lines.Count; i++)
+            {
+                string[] splitter = lines[i].Split(',');
+                string objectToFind = splitter[0];
+                Vector2 objectPosition = new Vector2(0,0);
+                objectPosition.X = Int32.Parse(splitter[1]);
+                objectPosition.Y = Int32.Parse(splitter[2]);
+                levelObjects.Add(ObjectCreator(objectToFind, objectPosition));
+            }
+            
+
             return levelObjects;
         }
         
+        private static LevelObject ObjectCreator(string name, Vector2 pos)
+        {
+            switch (name)
+            {
+                case "Box":
+                    return new Box(pos);
+                    break;
+                default:
+                    return null;
+                    break;
+            }
+        }
 
         /*
         private static List<Enemy> EnemyLoad(int id)

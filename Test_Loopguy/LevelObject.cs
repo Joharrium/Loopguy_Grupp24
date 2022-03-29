@@ -14,11 +14,13 @@ namespace Test_Loopguy
         public LevelObject(Vector2 position) : base(position)
         {
             this.position = position;
-            texture = TexMGR.testAlt;
+            texture = TexMGR.box;
             hitBox.X = (int)position.X;
             hitBox.Y = (int)position.Y;
             hitBox.Width = texture.Width;
             hitBox.Height = texture.Height;
+            sourceRectangle.Width = 16;
+            sourceRectangle.Height = 24;
 
             centerPosition = new Vector2(position.X - texture.Width / 2, position.Y - texture.Height / 2);
         }

@@ -61,10 +61,6 @@ namespace Test_Loopguy
 
     public class Wall : Tile
     {
-        public Texture2D texture;
-        public Vector2 position;
-        public Vector2 centerPosition;
-        public Rectangle hitBox;
 
         public Wall(Vector2 position) : base(position)
         {
