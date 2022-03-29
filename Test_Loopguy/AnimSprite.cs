@@ -12,7 +12,6 @@ namespace Test_Loopguy
         Texture2D sheet;
 
         public Point size;
-
         Point currentFrame;
 
         Rectangle frame;
@@ -55,6 +54,11 @@ namespace Test_Loopguy
                     }
                 }
             }
+        }
+        public void Frame(int X, int Y)
+        {
+            currentFrame.X = X;
+            currentFrame.Y = Y;
         }
 
         public void Draw(SpriteBatch spriteBatch)

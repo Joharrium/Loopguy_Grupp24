@@ -10,7 +10,8 @@ namespace Test_Loopguy
     {
         Random random = new Random();
 
-        const float diagonalMultiplier = 0.707f;
+        float aimAngle;
+        const float pi = (float)Math.PI;
 
         int dirint;
 
@@ -28,6 +29,7 @@ namespace Test_Loopguy
         {
             base.Update(gameTime);
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
 
             if (InputReader.Aim())
             {
@@ -53,80 +55,97 @@ namespace Test_Loopguy
 
         public void DrawShot(SpriteBatch spriteBatch)
         {
-            float angle;
+            if (aimAngle > pi * 1.75f || aimAngle < pi * 0.25f)
+                sprite.Frame(1, 4);
+            else if (aimAngle < pi * 0.75f)
+                sprite.Frame(3, 4);
+            else if (aimAngle < pi * 1.25f)
+                sprite.Frame(0, 4);
+            else
+                sprite.Frame(2, 4);
 
             if (!InputReader.MovingLeftStick())
             {
-                angle = (float)Helper.GetAngle(centerPosition, Game1.mousePos);
+                aimAngle = (float)Helper.GetAngle(centerPosition, Game1.mousePos);
             }
             else
             {
-                angle = InputReader.LeftStickAngle();
+                aimAngle = InputReader.LeftStickAngle();
             }
 
-            Vector2 gunDirection = new Vector2((float)Math.Sin(angle), (float)Math.Cos(angle));
+            Vector2 gunDirection = new Vector2((float)Math.Sin(aimAngle), (float)Math.Cos(aimAngle));
 
             for (int i = 0; i < 560; i++)
             {
                 Vector2 aimPoint = new Vector2(centerPosition.X + i * gunDirection.X, centerPosition.Y + i * gunDirection.Y);
-                spriteBatch.Draw(TexMGR.cyanPixel, aimPoint, Helper.RandomTransparency(random));
+                spriteBatch.Draw(TexMGR.cyanPixel, aimPoint, Helper.RandomTransparency(random, 0, 90));
             }
         }
 
         public override void Movement(float deltaTime)
         {
-
-            if (InputReader.MovementLeft())
+            if (InputReader.MovingLeftStick())
             {
-                if (InputReader.MovementUp())
-                {//LEFT + UP
-                    direction.Y = -1;
-                    direction.X = -1;
-                }
-                else if (InputReader.MovementDown())
-                {//LEFT + DOWN
-                    direction.Y = 1;
-                    direction.X = -1;
-                }
-                else
-                {//LEFT
-                    direction.Y = 0;
-                    direction.X = -1;
-                }
-            }
-            else if (InputReader.MovementRight())
-            {
-                if (InputReader.MovementUp())
-                {//RIGHT + UP
-                    direction.Y = -1;
-                    direction.X = 1;
-                }
-                else if (InputReader.MovementDown())
-                {//RIGHT + DOWN
-                    direction.Y = 1;
-                    direction.X = 1;
-                }
-                else
-                {//RIGHT
-                    direction.Y = 0;
-                    direction.X = 1;
-                }
-            }
-            else if (InputReader.MovementUp())
-            {//UP
-                direction.Y = -1;
-                direction.X = 0;
-            }
-            else if (InputReader.MovementDown())
-            {//DOWN
-                direction.Y = 1;
-                direction.X = 0;
-            }
-            else
-            {//Analog Stick movement
+                speed = InputReader.LeftStickLength() * 100;
                 direction.X = InputReader.padState.ThumbSticks.Left.X;
                 direction.Y = -InputReader.padState.ThumbSticks.Left.Y;
             }
+            else
+            {
+                speed = 100;
+                if (InputReader.MovementLeft())
+                {
+                    if (InputReader.MovementUp())
+                    {//LEFT + UP
+                        direction.Y = -1;
+                        direction.X = -1;
+                    }
+                    else if (InputReader.MovementDown())
+                    {//LEFT + DOWN
+                        direction.Y = 1;
+                        direction.X = -1;
+                    }
+                    else
+                    {//LEFT
+                        direction.Y = 0;
+                        direction.X = -1;
+                    }
+                }
+                else if (InputReader.MovementRight())
+                {
+                    if (InputReader.MovementUp())
+                    {//RIGHT + UP
+                        direction.Y = -1;
+                        direction.X = 1;
+                    }
+                    else if (InputReader.MovementDown())
+                    {//RIGHT + DOWN
+                        direction.Y = 1;
+                        direction.X = 1;
+                    }
+                    else
+                    {//RIGHT
+                        direction.Y = 0;
+                        direction.X = 1;
+                    }
+                }
+                else if (InputReader.MovementUp())
+                {//UP
+                    direction.Y = -1;
+                    direction.X = 0;
+                }
+                else if (InputReader.MovementDown())
+                {//DOWN
+                    direction.Y = 1;
+                    direction.X = 0;
+                }
+                else
+                {
+                    direction.Y = 0;
+                    direction.X = 0;
+                }
+            }
+            
 
             float absDirection = Math.Abs(direction.X) + Math.Abs(direction.Y);
             float absDirectionX = Math.Abs(direction.X);
@@ -146,7 +165,6 @@ namespace Test_Loopguy
             {
                 frameRate = (int)(50 / absDirection);
             }
-
 
             //Visual changes depending on direction
             if (direction.Y < 0 && absDirectionX < absDirectionY)
@@ -172,17 +190,17 @@ namespace Test_Loopguy
             else
             {
                 if (dirint == 1)
-                    sprite.Play(4, 0, 0);
+                    sprite.Frame(0, 4);
                 else if (dirint == 2)
-                    sprite.Play(5, 0, 0);
+                    sprite.Frame(1, 4);
                 else if (dirint == 3)
-                    sprite.Play(6, 0, 0);
+                    sprite.Frame(2, 4);
                 else
-                    sprite.Play(7, 0, 0);
+                    sprite.Frame(3, 4);
             }
 
             //This normalizes the direction Vector so that movement is consistent in all directions. If it normalizes a Vector of 0,0 it gets fucky though
-            if(direction != Vector2.Zero)
+            if (direction != Vector2.Zero)
                 direction.Normalize();
 
             position += direction * speed * deltaTime;

@@ -46,6 +46,7 @@ static class InputReader
 	{
 		return keyState.IsKeyDown(Keys.Down) || keyState.IsKeyDown(Keys.S) || padState.IsButtonDown(Buttons.DPadDown);
 	}
+	
 
 	public static bool Aim()
     {
@@ -71,6 +72,15 @@ static class InputReader
 	public static Vector2 RightStickDirection()
 	{
 		return padState.ThumbSticks.Right;
+	}
+	public static float LeftStickLength()
+	{
+		//vectors lenght is to low!!!
+		float length = padState.ThumbSticks.Left.Length();
+		if (length > 0)
+			return length;
+		else
+			return 0;
 	}
 	public static float LeftStickAngle()
     {

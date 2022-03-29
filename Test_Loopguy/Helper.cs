@@ -23,7 +23,7 @@ namespace Test_Loopguy
             return v;
         }
 
-        public static Color RandomTransparency(Random rnd)
+        public static Color RandomTransparency(Random rnd, int minAlpha, int maxAlpha)
         {
             //Below doesn't work for some reason
 
@@ -32,7 +32,7 @@ namespace Test_Loopguy
 
             //So I have to do this stupid thing
 
-            int rndInt = rnd.Next(20, 90);
+            int rndInt = rnd.Next(minAlpha, maxAlpha);
             return new Color(rndInt, rndInt, rndInt, rndInt);
         }
     }
