@@ -60,8 +60,9 @@ namespace Test_Loopguy
 
             camera = new Camera(GraphicsDevice.Viewport);
 
-            player = new Player(new Vector2(16, 16));
+            player = new Player(new Vector2(64, 64));
             TileManager.Initialization();
+            WallManager.Initialization();
 
         }
 
@@ -124,6 +125,7 @@ namespace Test_Loopguy
 
             spriteBatch.DrawString(smallFont, infoString, new Vector2(camera.position.X - windowX / 2, camera.position.Y - windowY / 2), Color.White);
             TileManager.Draw(spriteBatch);
+            WallManager.Draw(spriteBatch);
             player.Draw(spriteBatch);
             
 

@@ -53,4 +53,42 @@ namespace Test_Loopguy
             return false;
         }
     }
+    public static class WallManager
+    {
+        public static List<Wall> walls;
+        public static void Initialization()
+        {
+            walls = new List<Wall>();
+            for (int i = 0; i < 6; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    walls.Add(new Wall(new Vector2(i * 48, j * 0)));
+                }
+            }
+
+        }
+
+        public static void Draw(SpriteBatch spriteBatch)
+        {
+            foreach (Wall w in walls)
+            {
+                w.Draw(spriteBatch);
+            }
+
+        }
+
+        public static bool CheckCollision(Vector2 position)
+        {
+            foreach (Wall w in walls)
+            {
+                if (w.hitBox.Contains(position))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    }
 }

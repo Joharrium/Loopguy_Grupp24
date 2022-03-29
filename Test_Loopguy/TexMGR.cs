@@ -5,7 +5,7 @@ namespace Test_Loopguy
 {
     static class TexMGR
     {
-        public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, testTile, testAlt;
+        public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, testTile, testAlt, box;
 
         public static void LoadTextures(ContentManager c)
         {
@@ -17,6 +17,7 @@ namespace Test_Loopguy
             cyanPixel = c.Load<Texture2D>("cyanPixel");
             testTile = c.Load<Texture2D>("testtile");
             testAlt = c.Load<Texture2D>("testtilealt");
+            box = c.Load<Texture2D>("boxe");
         }
     }
 }

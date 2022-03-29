@@ -30,4 +30,28 @@ namespace Test_Loopguy
             spriteBatch.Draw(texture, position, Color.White);
         }
     }
+    public class Wall : GameObject
+    {
+        public Texture2D texture;
+        public Vector2 position;
+        public Vector2 centerPosition;
+        public Rectangle hitBox;
+
+        public Wall(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TexMGR.box;
+            hitBox.X = (int)position.X;
+            hitBox.Y = (int)position.Y;
+            hitBox.Width = texture.Width;
+            hitBox.Height = texture.Height;
+
+            centerPosition = new Vector2(position.X - texture.Width / 2, position.Y - texture.Height / 2);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(texture, position, Color.White);
+        }
+    }
 }
