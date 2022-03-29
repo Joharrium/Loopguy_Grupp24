@@ -185,7 +185,13 @@ namespace Test_Loopguy
             if(direction != Vector2.Zero)
                 direction.Normalize();
 
-            position += direction * speed * deltaTime;
+            if(TileManager.CheckCollision(centerPosition + direction * speed * deltaTime + new Vector2(0, 12)))
+            {
+                position += direction * speed * deltaTime;
+            }
+            
+
+            
 
             float playerVelocityShort = (float)Math.Round((Math.Abs(direction.X) * speed) + (Math.Abs(direction.Y) * speed));
 
