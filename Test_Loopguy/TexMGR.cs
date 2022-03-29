@@ -6,9 +6,13 @@ namespace Test_Loopguy
     static class TexMGR
     {
         public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, testTile, testAlt, box;
+        public static Texture2D grassBasic, grassAlt;
 
         public static void LoadTextures(ContentManager c)
         {
+            grassBasic = c.Load<Texture2D>("gfx/terrain/grass_basic");
+            grassAlt = c.Load<Texture2D>("gfx/terrain/grass_variation");
+
             notex = c.Load<Texture2D>("notex");
             playerSheet = c.Load<Texture2D>("Loopy");
             target = c.Load<Texture2D>("target");

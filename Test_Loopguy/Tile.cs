@@ -8,11 +8,9 @@ namespace Test_Loopguy
 {
     public class Tile : GameObject
     {
-        public Texture2D texture;
-        public Vector2 position;
-        public Vector2 centerPosition;
-        public Rectangle hitBox;
-
+        public Rectangle sourceRectangle;
+        float rotation;
+        SpriteEffects spriteEffects;
         public Tile(Vector2 position) : base(position)
         {
             this.position = position;
@@ -27,10 +25,41 @@ namespace Test_Loopguy
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, Color.White);
+            spriteBatch.Draw(texture, position + new Vector2(hitBox.Width/2, hitBox.Height/2), sourceRectangle, Color.White, rotation, new Vector2(hitBox.Width / 2, hitBox.Height / 2), 1, spriteEffects, 1);
         }
     }
-    public class Wall : GameObject
+
+    public class Floor : Tile
+    {
+        public Floor(Vector2 position) : base(position)
+        {
+            this.position = position;
+        }
+    }
+
+    public class GrassTile : Floor
+    {
+        int variation;
+        public GrassTile(Vector2 position) : base(position)
+        {
+            this.position = position;
+
+            int randomizer = Game1.rnd.Next(10);
+            if (randomizer < 8)
+            {
+                texture = TexMGR.grassBasic;
+                variation = Game1.rnd.Next(2);
+            }
+            else
+            {
+                texture = TexMGR.grassAlt;
+                variation = Game1.rnd.Next(4);
+            }
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
+        }
+    }
+
+    public class Wall : Tile
     {
         public Texture2D texture;
         public Vector2 position;

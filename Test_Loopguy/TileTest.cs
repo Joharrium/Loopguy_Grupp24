@@ -12,20 +12,20 @@ namespace Test_Loopguy
         public static void Initialization() 
         {
             tiles = new List<Tile>();
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 12; i++)
             {
-                for (int j = 0; j < 6; j++)
+                for (int j = 0; j < 12; j++)
                 {
-                    tiles.Add(new Tile(new Vector2(i*36, j*36)));
+                    tiles.Add(new GrassTile(new Vector2(i*16, j*16)));
                 }
             }
 
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 12; i++)
             {
                 for (int j = 0; j < 6; j++)
                 {
-                    tiles.Add(new Tile(new Vector2(i * 36 + 256, j * 36 + 0)));
+                    tiles.Add(new GrassTile(new Vector2(i * 16 + 256, j * 16 + 0)));
                 }
             }
 

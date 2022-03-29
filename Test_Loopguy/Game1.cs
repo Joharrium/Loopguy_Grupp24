@@ -9,6 +9,7 @@ namespace Test_Loopguy
 {
     public class Game1 : Game
     {
+        public static Random rnd = new Random();
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
