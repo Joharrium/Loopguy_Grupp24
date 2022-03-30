@@ -7,8 +7,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Test_Loopguy
 {
+    public enum ObjectSelection
+    {
+        Box, Barrel, Pot, ShrubSmall, TreeSmall
+    }
     static public class LevelEditor
     {
+        public static ObjectSelection selectedObject;
         private static Level currentLevel;
 
         //have list of levels?
