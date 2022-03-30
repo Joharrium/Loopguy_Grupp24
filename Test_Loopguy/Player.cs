@@ -84,6 +84,9 @@ namespace Test_Loopguy
 
         public override void Movement(float deltaTime)
         {
+            direction.Y = 0;
+            direction.X = 0;
+
             if (InputReader.MovingLeftStick())
             {
                 speed = InputReader.LeftStickLength() * 100;
@@ -94,56 +97,13 @@ namespace Test_Loopguy
             {
                 speed = 100;
                 if (InputReader.MovementLeft())
-                {
-                    if (InputReader.MovementUp())
-                    {//LEFT + UP
-                        direction.Y = -1;
-                        direction.X = -1;
-                    }
-                    else if (InputReader.MovementDown())
-                    {//LEFT + DOWN
-                        direction.Y = 1;
-                        direction.X = -1;
-                    }
-                    else
-                    {//LEFT
-                        direction.Y = 0;
-                        direction.X = -1;
-                    }
-                }
-                else if (InputReader.MovementRight())
-                {
-                    if (InputReader.MovementUp())
-                    {//RIGHT + UP
-                        direction.Y = -1;
-                        direction.X = 1;
-                    }
-                    else if (InputReader.MovementDown())
-                    {//RIGHT + DOWN
-                        direction.Y = 1;
-                        direction.X = 1;
-                    }
-                    else
-                    {//RIGHT
-                        direction.Y = 0;
-                        direction.X = 1;
-                    }
-                }
-                else if (InputReader.MovementUp())
-                {//UP
-                    direction.Y = -1;
-                    direction.X = 0;
-                }
-                else if (InputReader.MovementDown())
-                {//DOWN
-                    direction.Y = 1;
-                    direction.X = 0;
-                }
-                else
-                {
-                    direction.Y = 0;
-                    direction.X = 0;
-                }
+                    direction.X -= 1;
+                if (InputReader.MovementRight())
+                    direction.X += 1;
+                if (InputReader.MovementUp())
+                    direction.Y -= 1;
+                if (InputReader.MovementDown())
+                    direction.Y += 1;
             }
             
 
@@ -205,7 +165,8 @@ namespace Test_Loopguy
 
             position += direction * speed * deltaTime;
 
-            float playerVelocityShort = (float)Math.Round((Math.Abs(direction.X) * speed) + (Math.Abs(direction.Y) * speed));
+            Vector2 velocity = direction * speed;
+            float playerVelocityShort = velocity.Length();
 
             float absDirShort = (float)Math.Round((double)absDirection, 2);
             playerInfoString = absDirShort.ToString() + " || " + frameRate.ToString() + " || " + playerVelocityShort.ToString();
