@@ -22,7 +22,8 @@ namespace Test_Loopguy
         public void SetPosition(Vector2 position)
         {
             this.position = position;
-            transform = Matrix.CreateTranslation(-position.X + Game1.windowX / 2, -position.Y + Game1.windowY / 2, 0);
+            
+            transform = Matrix.CreateTranslation(MathHelper.Clamp(-position.X + Game1.windowX / 2, -LevelManager.GetBounds().Width, 0), MathHelper.Clamp(-position.Y + Game1.windowY / 2, -LevelManager.GetBounds().Height, 0), 0);
         }
     }
 }

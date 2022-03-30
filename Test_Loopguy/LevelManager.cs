@@ -21,6 +21,11 @@ namespace Test_Loopguy
             currentLevel.Draw(spriteBatch);
         }
 
+        public static Rectangle GetBounds()
+        {
+            return currentLevel.GetBounds();
+        }
+
         public static Level LoadLevel(int id)
         {
 

@@ -57,6 +57,11 @@ namespace Test_Loopguy
             return false;
         }
 
+        public Rectangle GetBounds()
+        {
+            return cameraBounds;
+        }
+
         public bool WallCollision(Vector2 check)
         {
             foreach (Tile w in tiles)
