@@ -47,7 +47,6 @@ static class InputReader
 		return keyState.IsKeyDown(Keys.Down) || keyState.IsKeyDown(Keys.S) || padState.IsButtonDown(Buttons.DPadDown);
 	}
 	
-
 	public static bool Aim()
     {
 		return keyState.IsKeyDown(Keys.LeftShift) || padState.IsButtonDown(Buttons.LeftTrigger);
@@ -75,7 +74,7 @@ static class InputReader
 	}
 	public static float LeftStickLength()
 	{
-		//vectors lenght is to low!!!
+		//vectors length is to low!!! About 83% of what it should be when diagonal for some reason
 		float length = padState.ThumbSticks.Left.Length();
 		if (length > 0)
 			return length;
