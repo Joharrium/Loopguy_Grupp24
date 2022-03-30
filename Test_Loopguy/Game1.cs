@@ -80,7 +80,7 @@ namespace Test_Loopguy
             player.Update(gameTime);
 
             //Update camera position
-            camera.SetPosition(player.centerPosition);
+            camera.SetPosition(player.cameraPosition);
 
             //Gets mouse position from window and camera position
             Vector2 windowMousePos = new Vector2(InputReader.mouseState.X / windowScale, InputReader.mouseState.Y / windowScale);
@@ -121,6 +121,7 @@ namespace Test_Loopguy
 
             //Draw game stuff here!
 
+            spriteBatch.Draw(TexMGR.bigcheckers, new Vector2(-2000, -2000), Color.White);
             spriteBatch.DrawString(smallFont, infoString, new Vector2(camera.position.X - windowX / 2, camera.position.Y - windowY / 2), Color.White);
             player.Draw(spriteBatch);
 

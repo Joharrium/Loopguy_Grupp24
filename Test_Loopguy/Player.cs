@@ -10,6 +10,10 @@ namespace Test_Loopguy
     {
         Random random = new Random();
 
+        //Wtf
+        public Vector2 cameraPosition;
+        Vector2 gunDirection;
+
         float aimAngle;
         const float pi = (float)Math.PI;
 
@@ -33,10 +37,12 @@ namespace Test_Loopguy
 
             if (InputReader.Aim())
             {
-
+                cameraPosition = centerPosition + gunDirection * 50;
             }
             else
             {
+                cameraPosition = centerPosition;
+                gunDirection = Vector2.Zero;
                 Movement(deltaTime);
             }
 
@@ -73,7 +79,7 @@ namespace Test_Loopguy
                 aimAngle = InputReader.LeftStickAngle();
             }
 
-            Vector2 gunDirection = new Vector2((float)Math.Sin(aimAngle), (float)Math.Cos(aimAngle));
+            gunDirection = new Vector2((float)Math.Sin(aimAngle), (float)Math.Cos(aimAngle));
 
             for (int i = 0; i < 560; i++)
             {
