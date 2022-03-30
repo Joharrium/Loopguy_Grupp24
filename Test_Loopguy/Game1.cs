@@ -121,7 +121,7 @@ namespace Test_Loopguy
 
             //Draw game stuff here!
 
-            spriteBatch.Draw(TexMGR.bigcheckers, new Vector2(-2000, -2000), Color.White);
+            spriteBatch.Draw(TexMGR.checkers, new Vector2(-2000, -2000), Color.White);
             //spriteBatch.DrawString(smallFont, infoString, new Vector2(camera.position.X - windowX / 2, camera.position.Y - windowY / 2), Color.White);
             player.Draw(spriteBatch);
 
