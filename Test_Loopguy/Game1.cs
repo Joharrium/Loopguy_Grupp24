@@ -59,6 +59,7 @@ namespace Test_Loopguy
             graphics.ApplyChanges();
 
             camera = new Camera(GraphicsDevice.Viewport);
+            camera.SetPosition(new Vector2(200, 200));
 
             player = new Player(new Vector2(200, 200));
 
@@ -80,7 +81,7 @@ namespace Test_Loopguy
             player.Update(gameTime);
 
             //Update camera position
-            camera.SmoothPosition(player.cameraPosition);
+            camera.SmoothPosition(player.cameraPosition, deltaTime);
 
             //Gets mouse position from window and camera position
             Vector2 windowMousePos = new Vector2(InputReader.mouseState.X / windowScale, InputReader.mouseState.Y / windowScale);
@@ -118,13 +119,12 @@ namespace Test_Loopguy
             GraphicsDevice.Clear(Color.SlateGray);
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, camera.Transform);
-
             //Draw game stuff here!
 
             spriteBatch.Draw(TexMGR.checkers, new Vector2(-2000, -2000), Color.White);
-            //spriteBatch.DrawString(smallFont, infoString, new Vector2(camera.position.X - windowX / 2, camera.position.Y - windowY / 2), Color.White);
             player.Draw(spriteBatch);
 
+            //Stop drawing game stuff here!
             spriteBatch.End();
 
             GraphicsDevice.SetRenderTarget(null);

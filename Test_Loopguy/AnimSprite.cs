@@ -65,7 +65,10 @@ namespace Test_Loopguy
         public void Draw(SpriteBatch spriteBatch)
         {
             frame = new Rectangle(currentFrame.X * size.X, currentFrame.Y * size.Y, size.X, size.Y);
-            spriteBatch.Draw(sheet, Position, frame, Color.White);
+
+            position.X = (int)Math.Round(Position.X);
+            position.Y = (int)Math.Round(Position.Y);
+            spriteBatch.Draw(sheet, position, frame, Color.White);
         }
     }
 }
