@@ -80,7 +80,7 @@ namespace Test_Loopguy
             player.Update(gameTime);
 
             //Update camera position
-            camera.SetPosition(player.cameraPosition);
+            camera.SmoothPosition(player.cameraPosition);
 
             //Gets mouse position from window and camera position
             Vector2 windowMousePos = new Vector2(InputReader.mouseState.X / windowScale, InputReader.mouseState.Y / windowScale);
