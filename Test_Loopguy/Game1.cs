@@ -122,14 +122,16 @@ namespace Test_Loopguy
             //Draw game stuff here!
 
             spriteBatch.Draw(TexMGR.bigcheckers, new Vector2(-2000, -2000), Color.White);
-            spriteBatch.DrawString(smallFont, infoString, new Vector2(camera.position.X - windowX / 2, camera.position.Y - windowY / 2), Color.White);
+            //spriteBatch.DrawString(smallFont, infoString, new Vector2(camera.position.X - windowX / 2, camera.position.Y - windowY / 2), Color.White);
             player.Draw(spriteBatch);
 
             spriteBatch.End();
 
             GraphicsDevice.SetRenderTarget(null);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            
             spriteBatch.Draw(renderTarget, screenRect, Color.White);
+            spriteBatch.DrawString(smallFont, infoString, Vector2.Zero, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);

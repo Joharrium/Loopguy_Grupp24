@@ -13,6 +13,7 @@ namespace Test_Loopguy
         //Wtf
         public Vector2 cameraPosition;
         Vector2 gunDirection;
+        Vector2 prevDirection;
 
         float aimAngle;
         const float pi = (float)Math.PI;
@@ -41,7 +42,7 @@ namespace Test_Loopguy
             }
             else
             {
-                cameraPosition = centerPosition;
+                cameraPosition = centerPosition + prevDirection * 30;
                 gunDirection = Vector2.Zero;
                 Movement(deltaTime);
             }
@@ -167,7 +168,10 @@ namespace Test_Loopguy
 
             //This normalizes the direction Vector so that movement is consistent in all directions. If it normalizes a Vector of 0,0 it gets fucky though
             if (direction != Vector2.Zero)
+            {
                 direction.Normalize();
+                prevDirection = direction;
+            }
 
             position += direction * speed * deltaTime;
 
