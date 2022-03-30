@@ -11,6 +11,7 @@ namespace Test_Loopguy
         public Rectangle sourceRectangle;
         float rotation;
         SpriteEffects spriteEffects;
+        protected int variation = 0;
         public LevelObject(Vector2 position) : base(position)
         {
             this.position = position;
@@ -33,6 +34,7 @@ namespace Test_Loopguy
 
     public class Destructible : LevelObject
     {
+        int health;
         public Destructible(Vector2 position) : base(position)
         {
             this.position = position;
@@ -41,7 +43,6 @@ namespace Test_Loopguy
 
     public class Box : LevelObject
     {
-        int variation;
         public Box(Vector2 position) : base(position)
         {
             this.position = position;
@@ -49,5 +50,13 @@ namespace Test_Loopguy
         }
     }
 
-    
+    public class BoxOpen : LevelObject
+    {
+        public BoxOpen(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TexMGR.box;
+        }
+    }
+
 }
