@@ -7,6 +7,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Test_Loopguy
 {
+    public enum Selection
+    {
+        Object, Tile, Enemy
+    }
     public enum ObjectSelection
     {
         Box, Barrel, Pot, ShrubSmall, TreeSmall, BoxOpen, TreeBig, ShrubBig
@@ -17,6 +21,7 @@ namespace Test_Loopguy
     }
     static public class LevelEditor
     {
+        public static Selection currentSelection;
         public static ObjectSelection selectedObject;
         public static TileSelection selectedTile;
         private static Level currentLevel;

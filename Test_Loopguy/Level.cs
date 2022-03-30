@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -81,6 +82,9 @@ namespace Test_Loopguy
         public void AddObject(LevelObject levelObject)
         {
             levelObjects.Add(levelObject);
+            //sorts by Y level so objects automatically are drawn in order but its kinda wonky and maybe not good
+            //List<LevelObject> sortedList = levelObjects.OrderBy(o => o.position.Y + o.texture.Height).ToList();
+            //levelObjects = sortedList;
         }
     }
     public class Entrance
