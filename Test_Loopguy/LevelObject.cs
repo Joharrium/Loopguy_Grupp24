@@ -55,8 +55,33 @@ namespace Test_Loopguy
         public BoxOpen(Vector2 position) : base(position)
         {
             this.position = position;
-            texture = TexMGR.box;
+            variation = Game1.rnd.Next(12);
+            texture = TexMGR.boxOpen;
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
         }
     }
 
+    public class TreeBig : LevelObject
+    {
+        public TreeBig(Vector2 position) : base(position)
+        {
+            this.position = position;
+            variation = Game1.rnd.Next(4);
+            texture = TexMGR.tree_big;
+            hitBox.Width = 48;
+            hitBox.Height = 48;
+            sourceRectangle = new Rectangle(48 * variation, 0, 48, 48);
+        }
+    }
+
+    public class ShrubSmall : LevelObject
+    {
+        public ShrubSmall(Vector2 position) : base(position)
+        {
+            this.position = position;
+            variation = Game1.rnd.Next(4);
+            texture = TexMGR.shrub_small;
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
+        }
+    }
 }

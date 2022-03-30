@@ -24,7 +24,6 @@ namespace Test_Loopguy
             cyanPixel = c.Load<Texture2D>("cyanPixel");
             testTile = c.Load<Texture2D>("testtile");
             testAlt = c.Load<Texture2D>("testtilealt");
-            box = c.Load<Texture2D>("boxe");
         }
 
         private static void LoadTerrain(ContentManager c)

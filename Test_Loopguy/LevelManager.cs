@@ -105,6 +105,11 @@ namespace Test_Loopguy
             return levelObjects;
         }
         
+        public static bool LevelObjectCollision(Vector2 position)
+        {
+            return currentLevel.LevelObjectCollision(position);
+        }
+
         private static LevelObject ObjectCreator(string name, Vector2 pos)
         {
             switch (name)
@@ -112,6 +117,19 @@ namespace Test_Loopguy
                 case "Box":
                     return new Box(pos);
                     break;
+
+                case "ShrubSmall":
+                    return new ShrubSmall(pos);
+                    break;
+
+                case "TreeBig":
+                    return new TreeBig(pos);
+                    break;
+
+                case "BoxOpen":
+                    return new BoxOpen(pos);
+                    break;
+
                 default:
                     return null;
                     break;

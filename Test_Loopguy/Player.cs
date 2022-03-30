@@ -185,10 +185,14 @@ namespace Test_Loopguy
             if(direction != Vector2.Zero)
                 direction.Normalize();
 
-            //if(TileManager.CheckCollision(centerPosition + direction * speed * deltaTime + new Vector2(0, 12)))
-            //{
-            //    position += direction * speed * deltaTime;
-            //}
+            if(LevelManager.LevelObjectCollision(centerPosition + direction * speed * deltaTime + new Vector2(0, 12)))
+            {
+                
+            }
+            else
+            {
+                position += direction * speed * deltaTime;
+            }
 
             //if (WallManager.CheckCollision(centerPosition + direction * speed * deltaTime + new Vector2(0, 12)))
             {
@@ -196,7 +200,7 @@ namespace Test_Loopguy
             }
             //else
             {
-                position += direction * speed * deltaTime;
+                //position += direction * speed * deltaTime;
             }
 
 

@@ -45,7 +45,17 @@ namespace Test_Loopguy
             //draw tiles and objects and enemies, in the correct order
         }
 
-        
+        public bool LevelObjectCollision(Vector2 check)
+        {
+            foreach(LevelObject lo in levelObjects)
+            {
+                if(lo.hitBox.Contains(check))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
     public class Entrance
     {
