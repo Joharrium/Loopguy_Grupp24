@@ -184,8 +184,8 @@ namespace Test_Loopguy
             //This normalizes the direction Vector so that movement is consistent in all directions. If it normalizes a Vector of 0,0 it gets fucky though
             if(direction != Vector2.Zero)
                 direction.Normalize();
-
-            if(LevelManager.LevelObjectCollision(centerPosition + direction * speed * deltaTime + new Vector2(0, 12)))
+            Vector2 futurepos = centerPosition + direction * speed * deltaTime + new Vector2(0, 12);
+            if (LevelManager.LevelObjectCollision(futurepos) || LevelManager.WallCollision(futurepos))
             {
                 
             }

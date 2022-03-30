@@ -72,6 +72,10 @@ namespace Test_Loopguy
                     {
                         tiles[i, j] = new GrassTile(tempPos);
                     }
+                    if (terrainStrings[j][i] == 'w')
+                    {
+                        tiles[i, j] = new BrickWall(tempPos);
+                    }
                 }
             }
 
@@ -108,6 +112,11 @@ namespace Test_Loopguy
         public static bool LevelObjectCollision(Vector2 position)
         {
             return currentLevel.LevelObjectCollision(position);
+        }
+
+        public static bool WallCollision(Vector2 position)
+        {
+            return currentLevel.WallCollision(position);
         }
 
         private static LevelObject ObjectCreator(string name, Vector2 pos)

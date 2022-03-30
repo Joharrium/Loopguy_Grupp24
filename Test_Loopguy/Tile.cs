@@ -79,4 +79,15 @@ namespace Test_Loopguy
             spriteBatch.Draw(texture, position, Color.White);
         }
     }
+
+    public class BrickWall : Wall
+    {
+        public BrickWall(Vector2 position) : base(position)
+        {
+            this.position = position - new Vector2(0,16);
+            texture = TexMGR.grayBrickWall;
+            hitBox.Width = 16;
+            hitBox.Height = 16;
+        }
+    }
 }

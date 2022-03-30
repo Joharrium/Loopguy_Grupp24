@@ -7,7 +7,7 @@ namespace Test_Loopguy
     {
         public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, testTile, testAlt, box;
         // terrain files
-        public static Texture2D grassBasic, grassAlt;
+        public static Texture2D grassBasic, grassAlt, grayBrickWall;
         // object files
         public static Texture2D boxOpen, barrel, pot, shrub, shrub_small, tree_big, tree_small;
 
@@ -30,6 +30,7 @@ namespace Test_Loopguy
         {
             grassBasic = c.Load<Texture2D>("gfx/terrain/grass_basic");
             grassAlt = c.Load<Texture2D>("gfx/terrain/grass_variation");
+            grayBrickWall = c.Load<Texture2D>("gfx/terrain/wall_small");
         }
 
         private static void LoadObjects(ContentManager c)

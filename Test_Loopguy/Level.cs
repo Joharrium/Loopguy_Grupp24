@@ -56,6 +56,22 @@ namespace Test_Loopguy
             }
             return false;
         }
+
+        public bool WallCollision(Vector2 check)
+        {
+            foreach (Tile w in tiles)
+            {
+                if(w is Wall)
+                {
+                    if (w.hitBox.Contains(check))
+                    {
+                        return true;
+                    }
+                }
+                
+            }
+            return false;
+        }
     }
     public class Entrance
     {
