@@ -9,7 +9,7 @@ namespace Test_Loopguy
 {
     public enum ObjectSelection
     {
-        Box, Barrel, Pot, ShrubSmall, TreeSmall
+        Box, Barrel, Pot, ShrubSmall, TreeSmall, BoxOpen, TreeBig, ShrubBig
     }
     public enum TileSelection
     {
@@ -24,12 +24,40 @@ namespace Test_Loopguy
         //have list of levels?
         public static void Update(GameTime gameTime)
         {
-            if(InputReader.mouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+            if(InputReader.LeftClick())
             {
                 switch (selectedObject)
                 {
                     case ObjectSelection.ShrubSmall:
-                        LevelManager.ObjectAdd(new ShrubSmall(Game1.mousePos));
+                        LevelManager.ObjectAdd(new ShrubSmall(Game1.mousePos - new Vector2(8, 8)));
+                        break;
+
+                    case ObjectSelection.Barrel:
+                        LevelManager.ObjectAdd(new Barrel(Game1.mousePos - new Vector2(8, 8)));
+                        break;
+
+                    case ObjectSelection.Box:
+                        LevelManager.ObjectAdd(new Box(Game1.mousePos - new Vector2(8, 8)));
+                        break;
+
+                    case ObjectSelection.BoxOpen:
+                        LevelManager.ObjectAdd(new BoxOpen(Game1.mousePos - new Vector2(8, 8)));
+                        break;
+
+                    case ObjectSelection.ShrubBig:
+                        LevelManager.ObjectAdd(new ShrubBig(Game1.mousePos - new Vector2(8, 8)));
+                        break;
+
+                    case ObjectSelection.TreeBig:
+                        LevelManager.ObjectAdd(new TreeBig(Game1.mousePos - new Vector2(24, 24)));
+                        break;
+
+                    case ObjectSelection.TreeSmall:
+                        LevelManager.ObjectAdd(new TreeSmall(Game1.mousePos - new Vector2(8, 16)));
+                        break;
+
+                    case ObjectSelection.Pot:
+                        LevelManager.ObjectAdd(new Pot(Game1.mousePos - new Vector2(8, 8)));
                         break;
 
                     default:
@@ -43,11 +71,39 @@ namespace Test_Loopguy
             switch(selectedObject)
             {
                 case ObjectSelection.ShrubSmall:
-                    spriteBatch.Draw(TexMGR.shrub_small, Game1.mousePos, Color.White);
+                    spriteBatch.Draw(TexMGR.shrub_small, Game1.mousePos - new Vector2(8,8), Color.White);
+                    break;
+
+                case ObjectSelection.Barrel:
+                    spriteBatch.Draw(TexMGR.barrel, Game1.mousePos - new Vector2(8, 8), Color.White);
+                    break;
+
+                case ObjectSelection.Box:
+                    spriteBatch.Draw(TexMGR.box, Game1.mousePos - new Vector2(8, 8), Color.White);
+                    break;
+
+                case ObjectSelection.BoxOpen:
+                    spriteBatch.Draw(TexMGR.boxOpen, Game1.mousePos - new Vector2(8, 8), Color.White);
+                    break;
+
+                case ObjectSelection.TreeSmall:
+                    spriteBatch.Draw(TexMGR.tree_small, Game1.mousePos - new Vector2(8, 16), Color.White);
+                    break;
+
+                case ObjectSelection.TreeBig:
+                    spriteBatch.Draw(TexMGR.tree_big, Game1.mousePos - new Vector2(24, 24), Color.White);
+                    break;
+
+                case ObjectSelection.ShrubBig:
+                    spriteBatch.Draw(TexMGR.shrub_big, Game1.mousePos - new Vector2(8, 8), Color.White);
+                    break;
+
+                case ObjectSelection.Pot:
+                    spriteBatch.Draw(TexMGR.pot, Game1.mousePos - new Vector2(8, 8), Color.White);
                     break;
 
                 default:
-
+                    
                     break;
             }
         }

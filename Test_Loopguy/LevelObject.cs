@@ -74,6 +74,19 @@ namespace Test_Loopguy
         }
     }
 
+    public class TreeSmall : LevelObject
+    {
+        public TreeSmall(Vector2 position) : base(position)
+        {
+            this.position = position;
+            variation = Game1.rnd.Next(4);
+            texture = TexMGR.tree_small;
+            hitBox.Width = 16;
+            hitBox.Height = 24;
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 32);
+        }
+    }
+
     public class ShrubSmall : LevelObject
     {
         public ShrubSmall(Vector2 position) : base(position)
@@ -81,7 +94,42 @@ namespace Test_Loopguy
             this.position = position;
             variation = Game1.rnd.Next(4);
             texture = TexMGR.shrub_small;
+            hitBox.Width = 0;
+            hitBox.Height = 0;
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
+        }
+    }
+
+    public class Barrel : LevelObject
+    {
+        public Barrel(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TexMGR.barrel;
+            sourceRectangle.Height = 16;
+        }
+    }
+
+    public class ShrubBig : LevelObject
+    {
+        public ShrubBig(Vector2 position) : base(position)
+        {
+            this.position = position;
+            variation = Game1.rnd.Next(4);
+            texture = TexMGR.shrub_big;
+            hitBox.Width = 16;
+            hitBox.Height = 12;
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
+        }
+    }
+
+    public class Pot : LevelObject
+    {
+        public Pot(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TexMGR.pot;
+            sourceRectangle.Height = 16;
         }
     }
 }

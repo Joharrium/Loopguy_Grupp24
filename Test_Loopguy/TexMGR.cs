@@ -9,7 +9,7 @@ namespace Test_Loopguy
         // terrain files
         public static Texture2D grassBasic, grassAlt, grayBrickWall;
         // object files
-        public static Texture2D boxOpen, barrel, pot, shrub, shrub_small, tree_big, tree_small;
+        public static Texture2D boxOpen, barrel, pot, shrub_big, shrub_small, tree_big, tree_small;
 
         public static void LoadTextures(ContentManager c)
         {
@@ -39,7 +39,7 @@ namespace Test_Loopguy
             boxOpen = c.Load<Texture2D>("gfx/objects/box_open");
             barrel = c.Load<Texture2D>("gfx/objects/barrel");
             pot = c.Load<Texture2D>("gfx/objects/pot");
-            shrub = c.Load<Texture2D>("gfx/objects/shrub");
+            shrub_big = c.Load<Texture2D>("gfx/objects/shrub");
             shrub_small = c.Load<Texture2D>("gfx/objects/shrub_small");
             tree_big = c.Load<Texture2D>("gfx/objects/tree_big");
             tree_small = c.Load<Texture2D>("gfx/objects/tree_small");

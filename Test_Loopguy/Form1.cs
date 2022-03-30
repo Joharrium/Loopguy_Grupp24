@@ -44,5 +44,25 @@ namespace Test_Loopguy
         {
             LevelEditor.selectedTile = TileSelection.Dirt;
         }
+
+        private void boxSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.selectedObject = ObjectSelection.Box;
+        }
+
+        private void boxOpenSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.selectedObject = ObjectSelection.BoxOpen;
+        }
+
+        private void shrubBigSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.selectedObject = ObjectSelection.ShrubBig;
+        }
+
+        private void treeBigSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.selectedObject = ObjectSelection.TreeBig;
+        }
     }
 }
