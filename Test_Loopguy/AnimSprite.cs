@@ -13,6 +13,7 @@ namespace Test_Loopguy
 
         public Point size;
         Point currentFrame;
+        Vector2 position;
 
         Rectangle frame;
 

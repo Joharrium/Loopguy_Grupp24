@@ -14,7 +14,7 @@ namespace Test_Loopguy
 
         SpriteFont smallFont;
 
-        Camera camera;
+        public static Camera camera;
 
         Player player;
 

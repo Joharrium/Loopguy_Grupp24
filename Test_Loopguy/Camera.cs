@@ -1,13 +1,16 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Test_Loopguy
 {
-    class Camera
+    public class Camera
     {
         private Matrix transform;
         public Vector2 position;
         private Viewport view;
+
+        public float speedFactor;
 
         public Matrix Transform
         {
@@ -17,6 +20,8 @@ namespace Test_Loopguy
         public Camera(Viewport view)
         {
             this.view = view;
+
+            speedFactor = 0.05f;
         }
 
         public void SetPosition(Vector2 position)
@@ -28,7 +33,11 @@ namespace Test_Loopguy
         public void SmoothPosition(Vector2 newPos)
         {
             float distance = Vector2.Distance(newPos, position);
-            float speedFactor = 0.05f;
+
+            //if (distance < 2)
+            //{
+            //    speedFactor = 0.5f;
+            //}
 
             Vector2 direction;
             direction.X = newPos.X - position.X;
@@ -36,8 +45,10 @@ namespace Test_Loopguy
 
             position += direction * speedFactor;
 
-
-            transform = Matrix.CreateTranslation(-(int)position.X + Game1.windowX / 2, -(int)position.Y + Game1.windowY / 2, 0);
+            //position.X = (int)Math.Round(position.X);
+            //position.Y = (int)Math.Round(position.Y);
+            //casting position float to int fixes weird moving of background in relation to player sprite, but causes camera shake :(
+            transform = Matrix.CreateTranslation(-position.X + Game1.windowX / 2, -position.Y + Game1.windowY / 2, 0);
         }
     }
 }

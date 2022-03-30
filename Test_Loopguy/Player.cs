@@ -39,6 +39,7 @@ namespace Test_Loopguy
             if (InputReader.Aim())
             {
                 cameraPosition = centerPosition + gunDirection * 50;
+                Game1.camera.speedFactor = 0.05f;
             }
             else
             {
@@ -174,11 +175,13 @@ namespace Test_Loopguy
             }
 
             position += direction * speed * deltaTime;
+            //position.X = (int)Math.Round(position.X);
+            //position.Y = (int)Math.Round(position.Y);
 
             Vector2 velocity = direction * speed;
             float playerVelocityShort = velocity.Length();
 
-            float absDirShort = (float)Math.Round((double)absDirection, 2);
+            float absDirShort = (float)Math.Round(absDirection, 2);
             playerInfoString = absDirShort.ToString() + " || " + frameRate.ToString() + " || " + playerVelocityShort.ToString();
         }
     }
