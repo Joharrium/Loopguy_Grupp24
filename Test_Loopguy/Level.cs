@@ -77,6 +77,11 @@ namespace Test_Loopguy
             }
             return false;
         }
+
+        public void AddObject(LevelObject levelObject)
+        {
+            levelObjects.Add(levelObject);
+        }
     }
     public class Entrance
     {

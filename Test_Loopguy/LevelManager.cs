@@ -124,7 +124,11 @@ namespace Test_Loopguy
             return currentLevel.WallCollision(position);
         }
 
-        private static LevelObject ObjectCreator(string name, Vector2 pos)
+        public static void ObjectAdd(LevelObject levelObject)
+        {
+            currentLevel.AddObject(levelObject);
+        }
+        public static LevelObject ObjectCreator(string name, Vector2 pos)
         {
             switch (name)
             {

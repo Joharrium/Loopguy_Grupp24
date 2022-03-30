@@ -14,5 +14,35 @@ namespace Test_Loopguy
         {
             InitializeComponent();
         }
+
+        private void barrelSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.selectedObject = ObjectSelection.Barrel;
+        }
+
+        private void potSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.selectedObject = ObjectSelection.Pot;
+        }
+
+        private void shrubSmallSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.selectedObject = ObjectSelection.ShrubSmall;
+        }
+
+        private void treeSmallSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.selectedObject = ObjectSelection.TreeSmall;
+        }
+
+        private void grassSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.selectedTile = TileSelection.Grass;
+        }
+
+        private void dirtSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.selectedTile = TileSelection.Dirt;
+        }
     }
 }

@@ -11,22 +11,49 @@ namespace Test_Loopguy
     {
         Box, Barrel, Pot, ShrubSmall, TreeSmall
     }
+    public enum TileSelection
+    {
+        Grass, Dirt
+    }
     static public class LevelEditor
     {
         public static ObjectSelection selectedObject;
+        public static TileSelection selectedTile;
         private static Level currentLevel;
 
         //have list of levels?
         public static void Update(GameTime gameTime)
         {
-            currentLevel.Update(gameTime);
+            if(InputReader.mouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+            {
+                switch (selectedObject)
+                {
+                    case ObjectSelection.ShrubSmall:
+                        LevelManager.ObjectAdd(new ShrubSmall(Game1.mousePos));
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            
         }
         public static void Draw(SpriteBatch spriteBatch)
         {
-            currentLevel.Draw(spriteBatch);
+            switch(selectedObject)
+            {
+                case ObjectSelection.ShrubSmall:
+                    spriteBatch.Draw(TexMGR.shrub_small, Game1.mousePos, Color.White);
+                    break;
+
+                default:
+
+                    break;
+            }
         }
 
-        public static Rectangle GetBounds()
+        /*
+        public static Rectangle SetBounds()
         {
             return currentLevel.GetBounds();
         }
@@ -92,7 +119,7 @@ namespace Test_Loopguy
             return tiles;
         }
         
-
+        */
         
         private static List<LevelObject> ObjectLoad(int id)
         {
@@ -135,23 +162,18 @@ namespace Test_Loopguy
             {
                 case "Box":
                     return new Box(pos);
-                    break;
 
                 case "ShrubSmall":
                     return new ShrubSmall(pos);
-                    break;
 
                 case "TreeBig":
                     return new TreeBig(pos);
-                    break;
 
                 case "BoxOpen":
                     return new BoxOpen(pos);
-                    break;
 
                 default:
                     return null;
-                    break;
             }
         }
 

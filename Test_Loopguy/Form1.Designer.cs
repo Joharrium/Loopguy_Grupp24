@@ -179,6 +179,7 @@ namespace Test_Loopguy
             this.dirtSelect.Size = new System.Drawing.Size(64, 64);
             this.dirtSelect.TabIndex = 1;
             this.dirtSelect.TabStop = false;
+            this.dirtSelect.Click += new System.EventHandler(this.dirtSelect_Click);
             // 
             // grassSelect
             // 
@@ -188,6 +189,7 @@ namespace Test_Loopguy
             this.grassSelect.Size = new System.Drawing.Size(64, 64);
             this.grassSelect.TabIndex = 0;
             this.grassSelect.TabStop = false;
+            this.grassSelect.Click += new System.EventHandler(this.grassSelect_Click);
             // 
             // label4
             // 
@@ -434,6 +436,7 @@ namespace Test_Loopguy
             this.treeSmallSelect.Size = new System.Drawing.Size(64, 64);
             this.treeSmallSelect.TabIndex = 3;
             this.treeSmallSelect.TabStop = false;
+            this.treeSmallSelect.Click += new System.EventHandler(this.treeSmallSelect_Click);
             // 
             // shrubSmallSelect
             // 
@@ -443,6 +446,7 @@ namespace Test_Loopguy
             this.shrubSmallSelect.Size = new System.Drawing.Size(64, 64);
             this.shrubSmallSelect.TabIndex = 2;
             this.shrubSmallSelect.TabStop = false;
+            this.shrubSmallSelect.Click += new System.EventHandler(this.shrubSmallSelect_Click);
             // 
             // potSelect
             // 
@@ -452,6 +456,7 @@ namespace Test_Loopguy
             this.potSelect.Size = new System.Drawing.Size(64, 64);
             this.potSelect.TabIndex = 1;
             this.potSelect.TabStop = false;
+            this.potSelect.Click += new System.EventHandler(this.potSelect_Click);
             // 
             // barrelSelect
             // 
@@ -461,12 +466,13 @@ namespace Test_Loopguy
             this.barrelSelect.Size = new System.Drawing.Size(64, 64);
             this.barrelSelect.TabIndex = 0;
             this.barrelSelect.TabStop = false;
+            this.barrelSelect.Click += new System.EventHandler(this.barrelSelect_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 449);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox4);

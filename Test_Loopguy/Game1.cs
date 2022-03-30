@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -65,15 +66,26 @@ namespace Test_Loopguy
             //TileManager.Initialization();
             //WallManager.Initialization();
             LevelManager.LoadLevel(1);
+
+            var frmNewForm = new Form1();
+            var newThread = new System.Threading.Thread(frmNewFormThread);
+
+            newThread.SetApartmentState(System.Threading.ApartmentState.STA);
+            newThread.Start();
+
+            void frmNewFormThread()
+            {
+                Application.Run(frmNewForm);
+            }
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == Microsoft.Xna.Framework.Input.ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
                 Exit();
-            else if (InputReader.KeyPressed(Keys.PageUp) && windowScale <= 5)
+            else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.PageUp) && windowScale <= 5)
                 ScaleWindow(1);
-            else if (InputReader.KeyPressed(Keys.PageDown) && windowScale >= 2)
+            else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.PageDown) && windowScale >= 2)
                 ScaleWindow(-1);
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -111,6 +123,7 @@ namespace Test_Loopguy
                 + "Player position: " + playerPosRounded;
 
             Window.Title = player.playerInfoString;
+            LevelEditor.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -128,13 +141,16 @@ namespace Test_Loopguy
             //TileManager.Draw(spriteBatch);
             //WallManager.Draw(spriteBatch);
             LevelManager.Draw(spriteBatch);
+            LevelEditor.Draw(spriteBatch);
             player.Draw(spriteBatch);
+            
             
 
             spriteBatch.End();
 
             GraphicsDevice.SetRenderTarget(null);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            
             spriteBatch.Draw(renderTarget, screenRect, Color.White);
             spriteBatch.End();
 
