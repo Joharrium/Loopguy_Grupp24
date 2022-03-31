@@ -129,7 +129,7 @@ namespace Test_Loopguy
                         tiles[coordinates.X, coordinates.Y] = new GrassTile(gameLocation);
                         break;
                     case TileSelection.Dirt:
-
+                        tiles[coordinates.X, coordinates.Y] = new DirtTile(gameLocation);
                         break;
                 }
             }

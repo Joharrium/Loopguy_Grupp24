@@ -79,18 +79,7 @@ namespace Test_Loopguy
                         break;
 
                     case Selection.Tile:
-                        switch (selectedTile)
-                        {
-                            case TileSelection.Grass:
-
-                                break;
-
-                            case TileSelection.Dirt:
-
-                                break;
-
-
-                        }
+                        LevelManager.TileEdit(selectedTile, Game1.mousePos);
                         break;
                 }
                 
