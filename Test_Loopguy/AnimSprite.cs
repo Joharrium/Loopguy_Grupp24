@@ -56,6 +56,10 @@ namespace Test_Loopguy
                 }
             }
         }
+        public void PlayOnce(int row, int stopX, int frameRate)
+        {
+
+        }
         public void Frame(int X, int Y)
         {
             currentFrame.X = X;
@@ -69,6 +73,15 @@ namespace Test_Loopguy
             position.X = (int)Math.Round(Position.X);
             position.Y = (int)Math.Round(Position.Y);
             spriteBatch.Draw(sheet, position, frame, Color.White);
+        }
+        public void DrawRotation(SpriteBatch spriteBatch, float angle)
+        {
+            frame = new Rectangle(currentFrame.X * size.X, currentFrame.Y * size.Y, size.X, size.Y);
+            Vector2 origin = new Vector2(size.X / 2, size.Y / 2);
+
+            position.X = (int)Math.Round(Position.X + size.X / 2);
+            position.Y = (int)Math.Round(Position.Y + size.Y / 2);
+            spriteBatch.Draw(sheet, position, frame, Color.White, -angle, origin, 1, SpriteEffects.None, 0);
         }
     }
 }

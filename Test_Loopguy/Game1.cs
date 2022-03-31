@@ -89,8 +89,8 @@ namespace Test_Loopguy
             mousePos = new Vector2(cameraTopLeft.X + windowMousePos.X, cameraTopLeft.Y + windowMousePos.Y);
 
             //Get angles between player and stuff
-            double mouseAngle = Helper.GetAngle(player.centerPosition, mousePos);
-            double targetAngle = Helper.GetAngle(player.centerPosition, Vector2.Zero); //change zero vector to target
+            double mouseAngle = Helper.GetAngle(player.centerPosition, mousePos, 0);
+            double targetAngle = Helper.GetAngle(player.centerPosition, Vector2.Zero , 0); //change zero vector to target
 
             //Converts angles from radians double to more readable stuff
             double piRadM = mouseAngle / Math.PI;

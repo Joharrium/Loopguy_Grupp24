@@ -8,6 +8,8 @@ namespace Test_Loopguy
 {
     internal class Player : AnimatedMovingObject
     {
+        AnimSprite gunSprite;
+
         Random random = new Random();
 
         //Wtf
@@ -19,6 +21,7 @@ namespace Test_Loopguy
         const float pi = (float)Math.PI;
 
         int dirint;
+        int gunDirInt;
 
         public string playerInfoString;
 
@@ -26,6 +29,7 @@ namespace Test_Loopguy
             : base(position)
         {
             sprite = new AnimSprite(TexMGR.playerSheet, new Point(32, 32));
+            gunSprite = new AnimSprite(TexMGR.gunSheet, new Point(32, 32));
 
             speed = 100;
         }
@@ -39,6 +43,7 @@ namespace Test_Loopguy
             if (InputReader.Aim())
             {
                 cameraPosition = centerPosition + gunDirection * 50;
+
             }
             else
             {
@@ -52,32 +57,60 @@ namespace Test_Loopguy
             }
 
             sprite.Position = position;
+            gunSprite.Position = position;
             sprite.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            if (gunDirInt != 3)
+            { //if aiming down, draw player sprite on top
+                sprite.Draw(spriteBatch);
+            }
+
             if (InputReader.Aim())
             {
-                DrawShot(spriteBatch);
+                DrawAim(spriteBatch);
+                DrawGun(spriteBatch);
+
             }
-            sprite.Draw(spriteBatch);
+
+            if (gunDirInt == 3)
+            { //if not aiming down, draw gun sprite on top
+                sprite.Draw(spriteBatch);
+            }
         }
 
-        public void DrawShot(SpriteBatch spriteBatch)
+        public void DrawAim(SpriteBatch spriteBatch)
         {
             if (aimAngle > pi * 1.75f || aimAngle < pi * 0.25f)
-                sprite.Frame(1, 4);
+            {//DOWN
+                sprite.Frame(1, 5);
+                gunSprite.Frame(1, 0);
+                gunDirInt = 1;
+            }
             else if (aimAngle < pi * 0.75f)
-                sprite.Frame(3, 4);
+            {//LEFT
+                sprite.Frame(3, 5);
+                gunSprite.Frame(3, 0);
+                gunDirInt = 2;
+            }
             else if (aimAngle < pi * 1.25f)
-                sprite.Frame(0, 4);
+            {//UP
+                sprite.Frame(0, 5);
+                gunSprite.Frame(0, 0);
+                gunDirInt = 3;
+            }
             else
-                sprite.Frame(2, 4);
+            {//RIGHT
+                sprite.Frame(2, 5);
+                gunSprite.Frame(2, 0);
+                gunDirInt = 4;
+            }
 
             if (!InputReader.MovingLeftStick())
             {
-                aimAngle = (float)Helper.GetAngle(centerPosition, Game1.mousePos);
+                aimAngle = (float)Helper.GetAngle(centerPosition, Game1.mousePos, 0);
             }
             else
             {
@@ -86,11 +119,35 @@ namespace Test_Loopguy
 
             gunDirection = new Vector2((float)Math.Sin(aimAngle), (float)Math.Cos(aimAngle));
 
-            for (int i = 0; i < 560; i++)
+            for (int i = 16; i < 580; i++)
             {
                 Vector2 aimPoint = new Vector2(centerPosition.X + i * gunDirection.X, centerPosition.Y + i * gunDirection.Y);
                 spriteBatch.Draw(TexMGR.pinkPixel, aimPoint, Helper.RandomTransparency(random, 0, 90));
             }
+        }
+
+        public void DrawGun(SpriteBatch spriteBatch)
+        {
+            float gunRotation;
+
+            if (gunDirInt == 1)
+            {//down
+                gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, 0);
+            }
+            else if (gunDirInt == 2)
+            {//left
+                gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, pi * -0.5);
+            }
+            else if (gunDirInt == 3)
+            {//up
+                gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, pi * -1);
+            }
+            else
+            {//right
+                gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, pi * -1.5);
+            }
+
+            gunSprite.DrawRotation(spriteBatch, gunRotation);
         }
 
         public override void Movement(float deltaTime)

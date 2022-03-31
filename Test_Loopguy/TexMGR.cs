@@ -5,12 +5,13 @@ namespace Test_Loopguy
 {
     static class TexMGR
     {
-        public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, pinkPixel, checkers;
+        public static Texture2D notex, playerSheet, gunSheet, target, blueArc, redPixel, cyanPixel, pinkPixel, checkers;
 
         public static void LoadTextures(ContentManager c)
         {
             notex = c.Load<Texture2D>("notex");
             playerSheet = c.Load<Texture2D>("Loopy3");
+            gunSheet = c.Load<Texture2D>("guns");
             target = c.Load<Texture2D>("target");
             blueArc = c.Load<Texture2D>("blueArc");
             redPixel = c.Load<Texture2D>("redPixel");
