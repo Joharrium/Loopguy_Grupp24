@@ -189,6 +189,9 @@ namespace Test_Loopguy
                 case "ShrubBig":
                     return new ShrubBig(pos);
 
+                case "Pot":
+                    return new Pot(pos);
+
                 default:
                     return null;
                     break;

@@ -51,6 +51,12 @@ namespace Test_Loopguy
             LevelEditor.currentSelection = Selection.Tile;
         }
 
+        private void grayBrickSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.selectedTile = TileSelection.GrayBrick;
+            LevelEditor.currentSelection = Selection.Tile;
+        }
+
         private void boxSelect_Click(object sender, EventArgs e)
         {
             LevelEditor.selectedObject = ObjectSelection.Box;
@@ -91,5 +97,7 @@ namespace Test_Loopguy
             int y = Int32.Parse(mapHeight.Text);
             LevelManager.SetMapSize(x, y);
         }
+
+        
     }
 }

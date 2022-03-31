@@ -36,7 +36,7 @@ namespace Test_Loopguy
             this.pictureBox35 = new System.Windows.Forms.PictureBox();
             this.pictureBox36 = new System.Windows.Forms.PictureBox();
             this.pictureBox37 = new System.Windows.Forms.PictureBox();
-            this.pictureBox38 = new System.Windows.Forms.PictureBox();
+            this.grayBrickSelect = new System.Windows.Forms.PictureBox();
             this.dirtSelect = new System.Windows.Forms.PictureBox();
             this.grassSelect = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -78,7 +78,7 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox35)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox37)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox38)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grayBrickSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dirtSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grassSelect)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -111,7 +111,7 @@ namespace Test_Loopguy
             this.groupBox2.Controls.Add(this.pictureBox35);
             this.groupBox2.Controls.Add(this.pictureBox36);
             this.groupBox2.Controls.Add(this.pictureBox37);
-            this.groupBox2.Controls.Add(this.pictureBox38);
+            this.groupBox2.Controls.Add(this.grayBrickSelect);
             this.groupBox2.Controls.Add(this.dirtSelect);
             this.groupBox2.Controls.Add(this.grassSelect);
             this.groupBox2.Location = new System.Drawing.Point(306, 17);
@@ -166,14 +166,15 @@ namespace Test_Loopguy
             this.pictureBox37.TabIndex = 3;
             this.pictureBox37.TabStop = false;
             // 
-            // pictureBox38
+            // grayBrickSelect
             // 
-            this.pictureBox38.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox38.Image")));
-            this.pictureBox38.Location = new System.Drawing.Point(146, 27);
-            this.pictureBox38.Name = "pictureBox38";
-            this.pictureBox38.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox38.TabIndex = 2;
-            this.pictureBox38.TabStop = false;
+            this.grayBrickSelect.Image = ((System.Drawing.Image)(resources.GetObject("grayBrickSelect.Image")));
+            this.grayBrickSelect.Location = new System.Drawing.Point(146, 27);
+            this.grayBrickSelect.Name = "grayBrickSelect";
+            this.grayBrickSelect.Size = new System.Drawing.Size(64, 64);
+            this.grayBrickSelect.TabIndex = 2;
+            this.grayBrickSelect.TabStop = false;
+            this.grayBrickSelect.Click += new System.EventHandler(this.grayBrickSelect_Click);
             // 
             // dirtSelect
             // 
@@ -541,7 +542,7 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox35)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox37)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox38)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grayBrickSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dirtSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grassSelect)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -578,7 +579,7 @@ namespace Test_Loopguy
         private System.Windows.Forms.PictureBox pictureBox35;
         private System.Windows.Forms.PictureBox pictureBox36;
         private System.Windows.Forms.PictureBox pictureBox37;
-        private System.Windows.Forms.PictureBox pictureBox38;
+        private System.Windows.Forms.PictureBox grayBrickSelect;
         private System.Windows.Forms.PictureBox dirtSelect;
         private System.Windows.Forms.PictureBox grassSelect;
         private System.Windows.Forms.Label label4;
