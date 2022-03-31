@@ -29,45 +29,71 @@ namespace Test_Loopguy
         //have list of levels?
         public static void Update(GameTime gameTime)
         {
+            if(InputReader.RightClick())
+            {
+                //remove object
+            }
+
             if(InputReader.LeftClick())
             {
-                switch (selectedObject)
+                switch (currentSelection)
                 {
-                    case ObjectSelection.ShrubSmall:
-                        LevelManager.ObjectAdd(new ShrubSmall(Game1.mousePos - new Vector2(8, 8)));
+                    case Selection.Object:
+                        switch (selectedObject)
+                        {
+                            case ObjectSelection.ShrubSmall:
+                                LevelManager.ObjectAdd(new ShrubSmall(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            case ObjectSelection.Barrel:
+                                LevelManager.ObjectAdd(new Barrel(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            case ObjectSelection.Box:
+                                LevelManager.ObjectAdd(new Box(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            case ObjectSelection.BoxOpen:
+                                LevelManager.ObjectAdd(new BoxOpen(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            case ObjectSelection.ShrubBig:
+                                LevelManager.ObjectAdd(new ShrubBig(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            case ObjectSelection.TreeBig:
+                                LevelManager.ObjectAdd(new TreeBig(Game1.mousePos - new Vector2(24, 24)));
+                                break;
+
+                            case ObjectSelection.TreeSmall:
+                                LevelManager.ObjectAdd(new TreeSmall(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.Pot:
+                                LevelManager.ObjectAdd(new Pot(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            default:
+                                break;
+                        }
                         break;
 
-                    case ObjectSelection.Barrel:
-                        LevelManager.ObjectAdd(new Barrel(Game1.mousePos - new Vector2(8, 8)));
-                        break;
+                    case Selection.Tile:
+                        switch (selectedTile)
+                        {
+                            case TileSelection.Grass:
 
-                    case ObjectSelection.Box:
-                        LevelManager.ObjectAdd(new Box(Game1.mousePos - new Vector2(8, 8)));
-                        break;
+                                break;
 
-                    case ObjectSelection.BoxOpen:
-                        LevelManager.ObjectAdd(new BoxOpen(Game1.mousePos - new Vector2(8, 8)));
-                        break;
+                            case TileSelection.Dirt:
 
-                    case ObjectSelection.ShrubBig:
-                        LevelManager.ObjectAdd(new ShrubBig(Game1.mousePos - new Vector2(8, 8)));
-                        break;
+                                break;
 
-                    case ObjectSelection.TreeBig:
-                        LevelManager.ObjectAdd(new TreeBig(Game1.mousePos - new Vector2(24, 24)));
-                        break;
 
-                    case ObjectSelection.TreeSmall:
-                        LevelManager.ObjectAdd(new TreeSmall(Game1.mousePos - new Vector2(8, 16)));
-                        break;
-
-                    case ObjectSelection.Pot:
-                        LevelManager.ObjectAdd(new Pot(Game1.mousePos - new Vector2(8, 8)));
-                        break;
-
-                    default:
+                        }
                         break;
                 }
+                
             }
             
         }

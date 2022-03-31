@@ -86,6 +86,73 @@ namespace Test_Loopguy
             //List<LevelObject> sortedList = levelObjects.OrderBy(o => o.position.Y + o.texture.Height).ToList();
             //levelObjects = sortedList;
         }
+
+        public void SetMapSize(int x, int y)
+        {
+            Tile[,] newMap = new Tile[x, y];
+            for (int i = 0; i < newMap.GetLength(0); i++)
+            {
+                for (int j = 0; j < newMap.GetLength(1); j++)
+                {
+                    newMap[i, j] = tiles[i, j];
+                }
+            }
+            tiles = newMap;
+        }
+
+        public void TileEdit(TileSelection tile, Vector2 position)
+        {
+            Tile editedTile = null;
+            foreach(Tile t in tiles)
+            {
+                if(t.hitBox.Contains(position))
+                {
+                    editedTile = t;
+                }
+            }
+
+            if(editedTile != null)
+            {
+                Point coordinates = GetTileCoordinate(editedTile);
+                Vector2 gameLocation = new Vector2(coordinates.X * 16, coordinates.Y * 16);
+                switch (tile)
+                {
+                    case TileSelection.Grass:
+                        tiles[coordinates.X, coordinates.Y] = new GrassTile(gameLocation);
+                        break;
+                    case TileSelection.Dirt:
+
+                        break;
+                }
+            }
+            
+            
+        }
+
+        public Point GetTileCoordinate(Tile tile)
+        {
+            
+                int xCoordinate = 0;
+                int yCoordinate = 0;
+
+                int w = tiles.GetLength(0);
+                int h = tiles.GetLength(1);
+
+                for (int x = 0; x < w; ++x)
+                {
+                    for (int y = 0; y < h; ++y)
+                    {
+                        if (tiles[x, y].Equals(tile))
+                        {
+                            xCoordinate = x;
+                            yCoordinate = y;
+                        }
+                    }
+                }
+
+            return new Point(xCoordinate, yCoordinate);
+            
+        }
     }
     public class Entrance
     {

@@ -74,5 +74,12 @@ namespace Test_Loopguy
             //save to maps/levelID/ bla bla bla
             LevelEditor.SaveLevelToFile(id, LevelManager.ExportObjectList(id));
         }
+
+        private void saveMapSize_Click(object sender, EventArgs e)
+        {
+            int x = Int32.Parse(mapWidth.Text);
+            int y = Int32.Parse(mapHeight.Text);
+            LevelManager.SetMapSize(x, y);
+        }
     }
 }

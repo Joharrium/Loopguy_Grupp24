@@ -127,8 +127,18 @@ namespace Test_Loopguy
         public static void ObjectAdd(LevelObject levelObject)
         {
             currentLevel.AddObject(levelObject);
-            
         }
+
+        public static void TileEdit(TileSelection tile, Vector2 position)
+        {
+            currentLevel.TileEdit(tile, position);
+        }
+
+        public static void SetMapSize(int x, int y)
+        {
+            currentLevel.SetMapSize(x, y);
+        }
+
         public static LevelObject ObjectCreator(string name, Vector2 pos)
         {
             switch (name)

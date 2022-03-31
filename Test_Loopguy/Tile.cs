@@ -59,6 +59,20 @@ namespace Test_Loopguy
         }
     }
 
+    public class DirtTile : Floor
+    {
+        int variation;
+        public DirtTile(Vector2 position) : base(position)
+        {
+            this.position = position;
+
+            texture = TexMGR.dirt;
+            variation = Game1.rnd.Next(4);
+            
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
+        }
+    }
+
     public class Wall : Tile
     {
 
