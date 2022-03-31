@@ -135,19 +135,24 @@ namespace Test_Loopguy
             {
                 case "Box":
                     return new Box(pos);
-                    break;
 
                 case "ShrubSmall":
                     return new ShrubSmall(pos);
-                    break;
 
                 case "TreeBig":
                     return new TreeBig(pos);
-                    break;
 
                 case "BoxOpen":
                     return new BoxOpen(pos);
-                    break;
+
+                case "Barrel":
+                    return new Barrel(pos);
+
+                case "TreeSmall":
+                    return new TreeSmall(pos);
+
+                case "ShrubBig":
+                    return new ShrubBig(pos);
 
                 default:
                     return null;
@@ -155,6 +160,19 @@ namespace Test_Loopguy
             }
         }
 
+        public static List<string> ExportObjectList(int id)
+        {
+            List<string> objects = new List<string>();
+
+            foreach (LevelObject lo in currentLevel.levelObjects)
+            {
+                objects.Add(lo.GetType().Name + "," + ((int)lo.position.X) + "," + ((int)lo.position.Y));
+            }
+
+            return objects;
+
+
+        }
         /*
         private static List<Enemy> EnemyLoad(int id)
         {

@@ -11,8 +11,8 @@ namespace Test_Loopguy
     {
         int id;
         Rectangle cameraBounds;
-        Tile[,] tiles;
-        List<LevelObject> levelObjects;
+        public Tile[,] tiles;
+        public List<LevelObject> levelObjects;
         //list of enemies
         //list of corresponding entrances from different ids and their position
 

@@ -181,7 +181,21 @@ namespace Test_Loopguy
         }
         
         */
-        
+
+        public static void SaveLevelToFile(int id, List<string> objects)
+        {
+            string path = string.Format(@"maps\level{0}\objectmap.txt", id);
+            System.IO.Directory.CreateDirectory(string.Format(@"maps\level{0}\", id));
+            /*
+            if(!File.Exists(path))
+            {
+                File.Create(path);
+                File.Create(path).Close();
+            }
+            */
+            File.WriteAllLines(path, objects);
+        }
+
         private static List<LevelObject> ObjectLoad(int id)
         {
             List<LevelObject> levelObjects = new List<LevelObject>();

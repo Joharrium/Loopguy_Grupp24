@@ -67,9 +67,12 @@ namespace Test_Loopguy
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            int id = Int32.Parse(mapIdBox.Text);
+            //LevelManager.ExportObjectList(id);
             //for each object in list, write a line bla bla bla
             //for each tile in array, write a char bla bla bla
             //save to maps/levelID/ bla bla bla
+            LevelEditor.SaveLevelToFile(id, LevelManager.ExportObjectList(id));
         }
     }
 }
