@@ -48,8 +48,8 @@ namespace Test_Loopguy
             velocity = direction * speedFactor * deltaTime;
             position += velocity;
 
-            position.X = (int)Math.Round(position.X);
-            position.Y = (int)Math.Round(position.Y);
+            //position.X = (int)Math.Round(position.X);
+            //position.Y = (int)Math.Round(position.Y);
             //casting position float to int fixes weird moving of background in relation to player sprite,
             //but causes player to shake when runnin :( 
             transform = Matrix.CreateTranslation(-position.X + Game1.windowX / 2, -position.Y + Game1.windowY / 2, 0);

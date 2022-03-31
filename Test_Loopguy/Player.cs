@@ -62,10 +62,12 @@ namespace Test_Loopguy
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (dirInt != 1)
-            { //if aiming up, draw player sprite on top
-                sprite.Draw(spriteBatch);
-            }
+            sprite.Draw(spriteBatch);
+
+            //if (dirInt != 1)
+            //{ //if aiming up, draw player sprite on top
+            //    sprite.Draw(spriteBatch);
+            //}
 
             if (InputReader.Aim())
             {
@@ -74,10 +76,10 @@ namespace Test_Loopguy
 
             }
 
-            if (dirInt == 1)
-            { //if not aiming up, draw gun sprite on top
-                sprite.Draw(spriteBatch);
-            }
+            //if (dirInt == 1)
+            //{ //if not aiming up, draw gun sprite on top
+            //    sprite.Draw(spriteBatch);
+            //}
         }
 
         public void DrawAim(SpriteBatch spriteBatch)
