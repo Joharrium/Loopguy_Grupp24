@@ -145,6 +145,9 @@ namespace Test_Loopguy
                     case TileSelection.Dirt:
                         tiles[coordinates.X, coordinates.Y] = new DirtTile(gameLocation);
                         break;
+                    case TileSelection.GrayBrick:
+                        tiles[coordinates.X, coordinates.Y] = new BrickWall(gameLocation);
+                        break;
                 }
             }
             

@@ -11,7 +11,7 @@ namespace Test_Loopguy
         // object files
         public static Texture2D boxOpen, barrel, pot, shrub_big, shrub_small, tree_big, tree_small;
         // ui files
-        public static Texture2D UI_dirt, UI_grass;
+        public static Texture2D UI_dirt, UI_grass, UI_graybrick;
 
         public static void LoadTextures(ContentManager c)
         {
@@ -53,6 +53,7 @@ namespace Test_Loopguy
         {
             UI_grass = c.Load<Texture2D>("gfx/interface/editor_icons/grass_small");
             UI_dirt = c.Load<Texture2D>("gfx/interface/editor_icons/dirt_small");
+            UI_graybrick = c.Load<Texture2D>("gfx/interface/editor_icons/graybrick_small");
         }
     }
 }

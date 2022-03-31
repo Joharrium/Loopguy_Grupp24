@@ -17,7 +17,7 @@ namespace Test_Loopguy
     }
     public enum TileSelection
     {
-        Grass, Dirt
+        Grass, Dirt, GrayBrick
     }
     static public class LevelEditor
     {
@@ -148,7 +148,7 @@ namespace Test_Loopguy
                         break;
 
                     default:
-
+                        spriteBatch.Draw(TexMGR.UI_graybrick, Game1.mousePos, Color.White);
                         break;
                 }
             }
