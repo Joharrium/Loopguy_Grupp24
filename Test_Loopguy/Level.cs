@@ -94,7 +94,15 @@ namespace Test_Loopguy
             {
                 for (int j = 0; j < newMap.GetLength(1); j++)
                 {
-                    newMap[i, j] = tiles[i, j];
+                    if(tiles.GetLength(0) <= i || tiles.GetLength(1) <= j)
+                    {
+                        newMap[i, j] = new GrassTile(new Vector2(i * 16, j * 16));
+                    }
+                    else
+                    {
+                        newMap[i, j] = tiles[i, j];
+                    }
+                    
                 }
             }
             tiles = newMap;
