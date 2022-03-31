@@ -62,8 +62,8 @@ namespace Test_Loopguy
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (dirInt != 2)
-            { //if aiming down, draw player sprite on top
+            if (dirInt != 1)
+            { //if aiming up, draw player sprite on top
                 sprite.Draw(spriteBatch);
             }
 
@@ -74,8 +74,8 @@ namespace Test_Loopguy
 
             }
 
-            if (dirInt == 2)
-            { //if not aiming down, draw gun sprite on top
+            if (dirInt == 1)
+            { //if not aiming up, draw gun sprite on top
                 sprite.Draw(spriteBatch);
             }
         }
@@ -89,10 +89,10 @@ namespace Test_Loopguy
                 dirInt = 2;
             }
             else if (aimAngle < pi * 0.75f)
-            {//LEFT
+            {//RIGHT
                 sprite.Frame(3, 5);
                 gunSprite.Frame(3, 0);
-                dirInt = 3;
+                dirInt = 4;
             }
             else if (aimAngle < pi * 1.25f)
             {//UP
@@ -101,10 +101,10 @@ namespace Test_Loopguy
                 dirInt = 1;
             }
             else
-            {//RIGHT
+            {//LEFT
                 sprite.Frame(2, 5);
                 gunSprite.Frame(2, 0);
-                dirInt = 4;
+                dirInt = 3;
             }
 
             if (!InputReader.MovingLeftStick())
@@ -135,16 +135,16 @@ namespace Test_Loopguy
                 gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, 0);
             }
             else if (dirInt == 3)
-            {//left
-                gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, pi * -0.5);
+            {//right
+                gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, pi * -1.5);
             }
             else if (dirInt == 1)
             {//up
                 gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, pi * -1);
             }
             else
-            {//right
-                gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, pi * -1.5);
+            {//left
+                gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, pi * -0.5);
             }
 
             gunSprite.DrawRotation(spriteBatch, gunRotation);
