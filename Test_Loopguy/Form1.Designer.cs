@@ -68,6 +68,9 @@ namespace Test_Loopguy
             this.shrubSmallSelect = new System.Windows.Forms.PictureBox();
             this.potSelect = new System.Windows.Forms.PictureBox();
             this.barrelSelect = new System.Windows.Forms.PictureBox();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.mapIdBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).BeginInit();
@@ -204,7 +207,7 @@ namespace Test_Loopguy
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(579, 164);
+            this.label4.Location = new System.Drawing.Point(671, 66);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(101, 15);
             this.label4.TabIndex = 29;
@@ -212,7 +215,7 @@ namespace Test_Loopguy
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(579, 181);
+            this.textBox4.Location = new System.Drawing.Point(671, 85);
             this.textBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(110, 23);
@@ -221,7 +224,7 @@ namespace Test_Loopguy
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(579, 115);
+            this.label3.Location = new System.Drawing.Point(536, 66);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 15);
             this.label3.TabIndex = 27;
@@ -229,7 +232,7 @@ namespace Test_Loopguy
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(579, 132);
+            this.textBox3.Location = new System.Drawing.Point(536, 85);
             this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(110, 23);
@@ -238,7 +241,7 @@ namespace Test_Loopguy
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(579, 50);
+            this.label2.Location = new System.Drawing.Point(671, 11);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 15);
             this.label2.TabIndex = 25;
@@ -246,7 +249,7 @@ namespace Test_Loopguy
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(579, 68);
+            this.textBox2.Location = new System.Drawing.Point(671, 30);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(110, 23);
@@ -255,7 +258,7 @@ namespace Test_Loopguy
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(579, 6);
+            this.label1.Location = new System.Drawing.Point(536, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 15);
             this.label1.TabIndex = 23;
@@ -263,7 +266,7 @@ namespace Test_Loopguy
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(579, 23);
+            this.textBox1.Location = new System.Drawing.Point(536, 30);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(110, 23);
@@ -508,11 +511,40 @@ namespace Test_Loopguy
             this.barrelSelect.TabStop = false;
             this.barrelSelect.Click += new System.EventHandler(this.barrelSelect_Click);
             // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(671, 137);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 31;
+            this.saveButton.Text = "Save Map";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // mapIdBox
+            // 
+            this.mapIdBox.Location = new System.Drawing.Point(536, 138);
+            this.mapIdBox.Name = "mapIdBox";
+            this.mapIdBox.Size = new System.Drawing.Size(110, 23);
+            this.mapIdBox.TabIndex = 32;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(536, 118);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(48, 15);
+            this.label5.TabIndex = 33;
+            this.label5.Text = "Level ID";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(810, 410);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.mapIdBox);
+            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox4);
@@ -601,5 +633,8 @@ namespace Test_Loopguy
         private System.Windows.Forms.PictureBox shrubSmallSelect;
         private System.Windows.Forms.PictureBox potSelect;
         private System.Windows.Forms.PictureBox barrelSelect;
+        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.TextBox mapIdBox;
+        private System.Windows.Forms.Label label5;
     }
 }

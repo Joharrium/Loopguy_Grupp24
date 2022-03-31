@@ -64,5 +64,12 @@ namespace Test_Loopguy
         {
             LevelEditor.selectedObject = ObjectSelection.TreeBig;
         }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            //for each object in list, write a line bla bla bla
+            //for each tile in array, write a char bla bla bla
+            //save to maps/levelID/ bla bla bla
+        }
     }
 }
