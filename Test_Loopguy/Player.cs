@@ -113,7 +113,7 @@ namespace Test_Loopguy
             }
             else
             {
-                aimAngle = InputReader.LeftStickAngle();
+                aimAngle = InputReader.LeftStickAngle(0);
             }
 
             gunDirection = new Vector2((float)Math.Sin(aimAngle), (float)Math.Cos(aimAngle));
@@ -128,24 +128,22 @@ namespace Test_Loopguy
         public void DrawGun(SpriteBatch spriteBatch)
         {
             float gunRotation;
+            double angleOffset;
 
             //These are ordered in a way that makes perfect sense, shut up
-            if (dirInt == 2)
-            {//down
-                gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, 0);
-            }
-            else if (dirInt == 3)
-            {//right
-                gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, pi * -1.5);
-            }
-            else if (dirInt == 1)
-            {//up
-                gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, pi * -1);
-            }
+            if (dirInt == 2)//down
+                angleOffset = 0;
+            else if (dirInt == 3)//right
+                angleOffset = -1.5 * pi;
+            else if (dirInt == 1)//up
+                angleOffset = -1 * pi;
+            else//left
+                angleOffset = -0.5 * pi;
+
+            if (!InputReader.MovingLeftStick())
+                gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, angleOffset);
             else
-            {//left
-                gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, pi * -0.5);
-            }
+                gunRotation = InputReader.LeftStickAngle((float)angleOffset);
 
             gunSprite.DrawRotation(spriteBatch, gunRotation);
         }

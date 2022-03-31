@@ -74,20 +74,30 @@ static class InputReader
 	}
 	public static float LeftStickLength()
 	{
-		//vectors length is to low!!! About 83% of what it should be when diagonal for some reason
+		//vectors length is too low!!! About 83% of what it should be when diagonal for some reason
 		float length = padState.ThumbSticks.Left.Length();
-		if (length > 0)
+		if (length > 0) //for some reason the vector seems to be missing (not zero) when thumbstick is not moved. Fucks everything up
 			return length;
 		else
 			return 0;
 	}
-	public static float LeftStickAngle()
+	public static float LeftStickAngle(float offset)
     {
-		return (float)Math.Atan2(LeftStickDirection().Y, LeftStickDirection().X) + (float)(Math.PI / 2);
+		float v = (float)Math.Atan2(LeftStickDirection().Y, LeftStickDirection().X) + (float)(Math.PI / 2) + offset;
+
+		if (v < 0.0)
+			v += (float)Math.PI * 2;
+
+		return v;
 	}
-	public static float RightStickAngle()
+	public static float RightStickAngle(float offset)
     {
-		return (float)Math.Atan2(RightStickDirection().Y, RightStickDirection().X) + (float)(Math.PI / 2);
+		float v = (float)Math.Atan2(RightStickDirection().Y, RightStickDirection().X) + (float)(Math.PI / 2) + offset;
+
+		if (v < 0.0)
+			v += (float)Math.PI * 2;
+
+		return v;
 	}
 
 	//Should be called at beginning of Update in Game
