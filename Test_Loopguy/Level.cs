@@ -87,6 +87,20 @@ namespace Test_Loopguy
             //levelObjects = sortedList;
         }
 
+        public void RemoveObject(Vector2 pos)
+        {
+            LevelObject objectToRemove = null;
+            foreach(LevelObject lo in levelObjects)
+            {
+                if(lo.hitBox.Contains(pos))
+                {
+                    objectToRemove = lo;
+                    break;
+                }
+            }
+            levelObjects.Remove(objectToRemove);
+        }
+
         public void SetMapSize(int x, int y)
         {
             Tile[,] newMap = new Tile[x, y];

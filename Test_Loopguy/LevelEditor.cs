@@ -31,7 +31,7 @@ namespace Test_Loopguy
         {
             if(InputReader.RightClick())
             {
-                //remove object
+                LevelManager.ObjectRemove(Game1.mousePos);
             }
 
             if(InputReader.mouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && currentSelection == Selection.Tile)
@@ -224,7 +224,7 @@ namespace Test_Loopguy
         
         */
 
-        public static void SaveLevelToFile(int id, List<string> objects, Tile[,] tiles)
+        public static void SaveLevelToFile(int id, List<string> objects, List<string> tiles)
         {
             string path = string.Format(@"maps\level{0}\", id);
 
@@ -232,8 +232,10 @@ namespace Test_Loopguy
 
             File.WriteAllLines(path + "bounds.txt", objects);
             File.WriteAllLines(path + "objectmap.txt", objects);
-            File.WriteAllLines(path + "tilemap.txt", objects);
+            File.WriteAllLines(path + "tilemap.txt", tiles);
         }
+
+        
 
         private static List<LevelObject> ObjectLoad(int id)
         {

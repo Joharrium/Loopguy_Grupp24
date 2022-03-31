@@ -129,6 +129,11 @@ namespace Test_Loopguy
             currentLevel.AddObject(levelObject);
         }
 
+        public static void ObjectRemove(Vector2 pos)
+        {
+            currentLevel.RemoveObject(pos);
+        }
+
         public static void TileEdit(TileSelection tile, Vector2 position)
         {
             currentLevel.TileEdit(tile, position);
@@ -138,6 +143,7 @@ namespace Test_Loopguy
         {
             currentLevel.SetMapSize(x, y);
         }
+
 
         public static LevelObject ObjectCreator(string name, Vector2 pos)
         {
@@ -180,7 +186,43 @@ namespace Test_Loopguy
             }
 
             return objects;
+        }
 
+        public static List<string> ExportTileList(int id)
+        {
+            StringBuilder stringToAdd = new StringBuilder(currentLevel.tiles.GetLength(0));
+            char[,] types = new char[currentLevel.tiles.GetLength(0), currentLevel.tiles.GetLength(1)];
+            for (int i = 0; i < currentLevel.tiles.GetLength(1); i++)
+            {
+                for (int j = 0; j < currentLevel.tiles.GetLength(0); j++)
+                {
+                    if (currentLevel.tiles[j, i] is GrassTile)
+                    {
+                        types[j, i] = 'g';
+                    }
+                    if (currentLevel.tiles[j, i] is DirtTile)
+                    {
+                        types[j, i] = 'd';
+                    }
+                    if (currentLevel.tiles[j, i] is BrickWall)
+                    {
+                        types[j, i] = 'w';
+                    }
+                }
+            }
+            List<string> listToWrite = new List<string>();
+            for (int j = 0; j < types.GetLength(1); j++)
+            {
+                for (int i = 0; i < types.GetLength(0); i++)
+                {
+                    if (types[i, j] != null)
+                    { stringToAdd.Append(types[i, j]); }
+                } //this won't work probably but I'm too tired
+                listToWrite.Add(stringToAdd.ToString());
+                stringToAdd.Clear();
+            }
+
+            return listToWrite;
 
         }
         /*

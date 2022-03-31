@@ -82,7 +82,7 @@ namespace Test_Loopguy
             //for each object in list, write a line bla bla bla
             //for each tile in array, write a char bla bla bla
             //save to maps/levelID/ bla bla bla
-            LevelEditor.SaveLevelToFile(id, LevelManager.ExportObjectList(id));
+            LevelEditor.SaveLevelToFile(id, LevelManager.ExportObjectList(id), LevelManager.ExportTileList(id));
         }
 
         private void saveMapSize_Click(object sender, EventArgs e)
