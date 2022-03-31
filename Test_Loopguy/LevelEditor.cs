@@ -224,18 +224,15 @@ namespace Test_Loopguy
         
         */
 
-        public static void SaveLevelToFile(int id, List<string> objects)
+        public static void SaveLevelToFile(int id, List<string> objects, Tile[,] tiles)
         {
-            string path = string.Format(@"maps\level{0}\objectmap.txt", id);
+            string path = string.Format(@"maps\level{0}\", id);
+
             System.IO.Directory.CreateDirectory(string.Format(@"maps\level{0}\", id));
-            /*
-            if(!File.Exists(path))
-            {
-                File.Create(path);
-                File.Create(path).Close();
-            }
-            */
-            File.WriteAllLines(path, objects);
+
+            File.WriteAllLines(path + "bounds.txt", objects);
+            File.WriteAllLines(path + "objectmap.txt", objects);
+            File.WriteAllLines(path + "tilemap.txt", objects);
         }
 
         private static List<LevelObject> ObjectLoad(int id)
