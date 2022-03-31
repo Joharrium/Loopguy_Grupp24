@@ -34,6 +34,11 @@ namespace Test_Loopguy
                 //remove object
             }
 
+            if(InputReader.mouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && currentSelection == Selection.Tile)
+            {
+                LevelManager.TileEdit(selectedTile, Game1.mousePos);
+            }
+
             if(InputReader.LeftClick())
             {
                 switch (currentSelection)
@@ -79,7 +84,7 @@ namespace Test_Loopguy
                         break;
 
                     case Selection.Tile:
-                        LevelManager.TileEdit(selectedTile, Game1.mousePos);
+                        //LevelManager.TileEdit(selectedTile, Game1.mousePos);
                         break;
                 }
                 
@@ -88,44 +93,66 @@ namespace Test_Loopguy
         }
         public static void Draw(SpriteBatch spriteBatch)
         {
-            switch(selectedObject)
+            if(currentSelection == Selection.Object)
             {
-                case ObjectSelection.ShrubSmall:
-                    spriteBatch.Draw(TexMGR.shrub_small, Game1.mousePos - new Vector2(8,8), Color.White);
-                    break;
+                switch (selectedObject)
+                {
+                    case ObjectSelection.ShrubSmall:
+                        spriteBatch.Draw(TexMGR.shrub_small, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        break;
 
-                case ObjectSelection.Barrel:
-                    spriteBatch.Draw(TexMGR.barrel, Game1.mousePos - new Vector2(8, 8), Color.White);
-                    break;
+                    case ObjectSelection.Barrel:
+                        spriteBatch.Draw(TexMGR.barrel, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        break;
 
-                case ObjectSelection.Box:
-                    spriteBatch.Draw(TexMGR.box, Game1.mousePos - new Vector2(8, 8), Color.White);
-                    break;
+                    case ObjectSelection.Box:
+                        spriteBatch.Draw(TexMGR.box, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        break;
 
-                case ObjectSelection.BoxOpen:
-                    spriteBatch.Draw(TexMGR.boxOpen, Game1.mousePos - new Vector2(8, 8), Color.White);
-                    break;
+                    case ObjectSelection.BoxOpen:
+                        spriteBatch.Draw(TexMGR.boxOpen, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        break;
 
-                case ObjectSelection.TreeSmall:
-                    spriteBatch.Draw(TexMGR.tree_small, Game1.mousePos - new Vector2(8, 16), Color.White);
-                    break;
+                    case ObjectSelection.TreeSmall:
+                        spriteBatch.Draw(TexMGR.tree_small, Game1.mousePos - new Vector2(8, 16), Color.White);
+                        break;
 
-                case ObjectSelection.TreeBig:
-                    spriteBatch.Draw(TexMGR.tree_big, Game1.mousePos - new Vector2(24, 24), Color.White);
-                    break;
+                    case ObjectSelection.TreeBig:
+                        spriteBatch.Draw(TexMGR.tree_big, Game1.mousePos - new Vector2(24, 24), Color.White);
+                        break;
 
-                case ObjectSelection.ShrubBig:
-                    spriteBatch.Draw(TexMGR.shrub_big, Game1.mousePos - new Vector2(8, 8), Color.White);
-                    break;
+                    case ObjectSelection.ShrubBig:
+                        spriteBatch.Draw(TexMGR.shrub_big, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        break;
 
-                case ObjectSelection.Pot:
-                    spriteBatch.Draw(TexMGR.pot, Game1.mousePos - new Vector2(8, 8), Color.White);
-                    break;
+                    case ObjectSelection.Pot:
+                        spriteBatch.Draw(TexMGR.pot, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        break;
 
-                default:
-                    
-                    break;
+                    default:
+
+                        break;
+                }
             }
+
+            if(currentSelection == Selection.Tile)
+            {
+                switch(selectedTile)
+                {
+                    case TileSelection.Grass:
+                        spriteBatch.Draw(TexMGR.UI_grass, Game1.mousePos, Color.White);
+                        break;
+
+                    case TileSelection.Dirt:
+                        spriteBatch.Draw(TexMGR.UI_dirt, Game1.mousePos, Color.White);
+                        break;
+
+                    default:
+
+                        break;
+                }
+            }
+            
         }
 
         /*

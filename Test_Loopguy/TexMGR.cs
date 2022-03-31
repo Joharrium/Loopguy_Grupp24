@@ -10,11 +10,14 @@ namespace Test_Loopguy
         public static Texture2D grassBasic, grassAlt, grayBrickWall, dirt;
         // object files
         public static Texture2D boxOpen, barrel, pot, shrub_big, shrub_small, tree_big, tree_small;
+        // ui files
+        public static Texture2D UI_dirt, UI_grass;
 
         public static void LoadTextures(ContentManager c)
         {
             LoadTerrain(c);
             LoadObjects(c);
+            LoadUI(c);
 
             notex = c.Load<Texture2D>("notex");
             playerSheet = c.Load<Texture2D>("Loopy");
@@ -44,6 +47,12 @@ namespace Test_Loopguy
             shrub_small = c.Load<Texture2D>("gfx/objects/shrub_small");
             tree_big = c.Load<Texture2D>("gfx/objects/tree_big");
             tree_small = c.Load<Texture2D>("gfx/objects/tree_small");
+        }
+
+        private static void LoadUI(ContentManager c)
+        {
+            UI_grass = c.Load<Texture2D>("gfx/interface/editor_icons/grass_small");
+            UI_dirt = c.Load<Texture2D>("gfx/interface/editor_icons/dirt_small");
         }
     }
 }
