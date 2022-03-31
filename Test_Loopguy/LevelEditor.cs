@@ -230,7 +230,10 @@ namespace Test_Loopguy
 
             System.IO.Directory.CreateDirectory(string.Format(@"maps\level{0}\", id));
 
-            File.WriteAllLines(path + "bounds.txt", objects);
+            List<string> bounds = new List<string>();
+            bounds.Add(LevelManager.GetBounds().Width + "," + LevelManager.GetBounds().Height);
+
+            File.WriteAllLines(path + "bounds.txt", bounds);
             File.WriteAllLines(path + "objectmap.txt", objects);
             File.WriteAllLines(path + "tilemap.txt", tiles);
         }

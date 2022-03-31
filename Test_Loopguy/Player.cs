@@ -194,6 +194,9 @@ namespace Test_Loopguy
                 position += direction * speed * deltaTime;
             }
 
+            LevelManager.CheckGate(this);
+            
+
             //if (WallManager.CheckCollision(centerPosition + direction * speed * deltaTime + new Vector2(0, 12)))
             {
                 

@@ -10,16 +10,26 @@ namespace Test_Loopguy
     static public class LevelManager
     {
         private static Level currentLevel;
-
+        public static List<Entrance> gates = new List<Entrance>();
         //have list of levels?
         public static void Update(GameTime gameTime)
         {
+            
             currentLevel.Update(gameTime);
         }
         public static void Draw(SpriteBatch spriteBatch)
         {
             currentLevel.Draw(spriteBatch);
         }
+
+        internal static void CheckGate(Player player)
+        {
+            foreach(Entrance g in gates)
+            {
+                g.CheckGate(player);
+            }
+        }
+
 
         public static Rectangle GetBounds()
         {
@@ -35,6 +45,11 @@ namespace Test_Loopguy
 
             currentLevel = level;
             return level;
+        }
+
+        public static int GetCurrentId()
+        {
+            return currentLevel.id;
         }
 
         private static Rectangle BoundsLoad(int id)
@@ -76,6 +91,10 @@ namespace Test_Loopguy
                     if (terrainStrings[j][i] == 'g')
                     {
                         tiles[i, j] = new GrassTile(tempPos);
+                    }
+                    if (terrainStrings[j][i] == 'd')
+                    {
+                        tiles[i, j] = new DirtTile(tempPos);
                     }
                     if (terrainStrings[j][i] == 'w')
                     {
@@ -217,7 +236,7 @@ namespace Test_Loopguy
                 {
                     if (types[i, j] != null)
                     { stringToAdd.Append(types[i, j]); }
-                } //this won't work probably but I'm too tired
+                }
                 listToWrite.Add(stringToAdd.ToString());
                 stringToAdd.Clear();
             }
@@ -225,11 +244,33 @@ namespace Test_Loopguy
             return listToWrite;
 
         }
-        /*
-        private static List<Enemy> EnemyLoad(int id)
+        
+        public static List<Entrance> EntranceLoad()
         {
+            List<Entrance> entrances = new List<Entrance>();
+            for (int i = 0; i<999; i++)
+            {
+                if(File.Exists(string.Format(@"maps\gates\{0}.txt", i)))
+                {
+                    List<string> lines = new List<string>();
+                    foreach (string line in System.IO.File.ReadLines(string.Format(@"maps\gates\{0}.txt", i)))
+                    {
+                        lines.Add(line);
+                    }
+
+                    int map1 = Int32.Parse(lines[0]);
+                    int map2 = Int32.Parse(lines[1]);
+
+                    string[] splitter = lines[2].Split(',');
+                    Rectangle entrance1 = new Rectangle(Int32.Parse(splitter[0]), Int32.Parse(splitter[1]), Int32.Parse(splitter[2]), Int32.Parse(splitter[3]));
+                    string[] splitter2 = lines[3].Split(',');
+                    Rectangle entrance2 = new Rectangle(Int32.Parse(splitter2[0]), Int32.Parse(splitter2[1]), Int32.Parse(splitter2[2]), Int32.Parse(splitter2[3]));
+                    gates.Add(new Entrance(i, map1, map2, entrance1, entrance2));
+                }
+            }
             
+            return entrances;
         }
-        */
+        
     }
 }

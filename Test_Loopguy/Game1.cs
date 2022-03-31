@@ -62,10 +62,12 @@ namespace Test_Loopguy
 
             camera = new Camera(GraphicsDevice.Viewport);
 
-            player = new Player(new Vector2(64, 64));
+            player = new Player(new Vector2(96, 96));
             //TileManager.Initialization();
             //WallManager.Initialization();
             LevelManager.LoadLevel(1);
+            LevelManager.EntranceLoad();
+
 
             var frmNewForm = new Form1();
             var newThread = new System.Threading.Thread(frmNewFormThread);

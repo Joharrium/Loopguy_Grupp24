@@ -9,7 +9,7 @@ namespace Test_Loopguy
 {
     public class Level
     {
-        int id;
+        public int id;
         Rectangle cameraBounds;
         public Tile[,] tiles;
         public List<LevelObject> levelObjects;
@@ -179,8 +179,32 @@ namespace Test_Loopguy
     public class Entrance
     {
         int id;
-        Vector2 position;
-        int idFrom;
-        int idTo;
+        int level1;
+        int level2;
+        Rectangle hitbox1;
+        Rectangle hitbox2;
+        public Entrance(int id, int lvl1, int lvl2, Rectangle gate1, Rectangle gate2)
+        {
+            this.id = id;
+            level1 = lvl1;
+            level2 = lvl2;
+            hitbox1 = gate1;
+            hitbox2 = gate2;
+        }
+
+        internal void CheckGate(Player player)
+        {
+            if(hitbox1.Contains(player.centerPosition) && LevelManager.GetCurrentId() == level1)
+            {
+                player.position = hitbox2.Location.ToVector2() + hitbox2.Size.ToVector2();
+                LevelManager.LoadLevel(level2);
+            }
+
+            if (hitbox2.Contains(player.centerPosition) && LevelManager.GetCurrentId() == level2)
+            {
+                player.position = hitbox1.Location.ToVector2() + hitbox1.Size.ToVector2();
+                LevelManager.LoadLevel(level1);
+            }
+        }
     }
 }
