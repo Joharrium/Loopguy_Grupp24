@@ -20,8 +20,7 @@ namespace Test_Loopguy
         float aimAngle;
         const float pi = (float)Math.PI;
 
-        int dirint;
-        int gunDirInt;
+        int dirInt;
 
         public string playerInfoString;
 
@@ -63,7 +62,7 @@ namespace Test_Loopguy
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (gunDirInt != 3)
+            if (dirInt != 2)
             { //if aiming down, draw player sprite on top
                 sprite.Draw(spriteBatch);
             }
@@ -75,7 +74,7 @@ namespace Test_Loopguy
 
             }
 
-            if (gunDirInt == 3)
+            if (dirInt == 2)
             { //if not aiming down, draw gun sprite on top
                 sprite.Draw(spriteBatch);
             }
@@ -87,25 +86,25 @@ namespace Test_Loopguy
             {//DOWN
                 sprite.Frame(1, 5);
                 gunSprite.Frame(1, 0);
-                gunDirInt = 1;
+                dirInt = 2;
             }
             else if (aimAngle < pi * 0.75f)
             {//LEFT
                 sprite.Frame(3, 5);
                 gunSprite.Frame(3, 0);
-                gunDirInt = 2;
+                dirInt = 3;
             }
             else if (aimAngle < pi * 1.25f)
             {//UP
                 sprite.Frame(0, 5);
                 gunSprite.Frame(0, 0);
-                gunDirInt = 3;
+                dirInt = 1;
             }
             else
             {//RIGHT
                 sprite.Frame(2, 5);
                 gunSprite.Frame(2, 0);
-                gunDirInt = 4;
+                dirInt = 4;
             }
 
             if (!InputReader.MovingLeftStick())
@@ -130,15 +129,16 @@ namespace Test_Loopguy
         {
             float gunRotation;
 
-            if (gunDirInt == 1)
+            //These are ordered in a way that makes perfect sense, shut up
+            if (dirInt == 2)
             {//down
                 gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, 0);
             }
-            else if (gunDirInt == 2)
+            else if (dirInt == 3)
             {//left
                 gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, pi * -0.5);
             }
-            else if (gunDirInt == 3)
+            else if (dirInt == 1)
             {//up
                 gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, pi * -1);
             }
@@ -196,32 +196,32 @@ namespace Test_Loopguy
 
             //Visual changes depending on direction
             if (direction.Y < 0 && absDirectionX < absDirectionY)
-            {
+            {//UP
                 sprite.Play(0, 12, frameRate);
-                dirint = 1;
+                dirInt = 1;
             }
             else if (direction.Y > 0 && absDirectionX < absDirectionY)
-            {
+            {//DOWN
                 sprite.Play(1, 11, frameRate);
-                dirint = 2;
+                dirInt = 2;
             }
             else if (direction.X < 0)
-            {
+            {//LEFT
                 sprite.Play(2, 11, frameRate);
-                dirint = 3;
+                dirInt = 3;
             }
             else if (direction.X > 0)
-            {
+            {//RIGHT
                 sprite.Play(3, 11, frameRate);
-                dirint = 4;
+                dirInt = 4;
             }
             else
             {
-                if (dirint == 1)
+                if (dirInt == 1)
                     sprite.Frame(0, 4);
-                else if (dirint == 2)
+                else if (dirInt == 2)
                     sprite.Frame(1, 4);
-                else if (dirint == 3)
+                else if (dirInt == 3)
                     sprite.Frame(2, 4);
                 else
                     sprite.Frame(3, 4);
