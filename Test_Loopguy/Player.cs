@@ -233,8 +233,15 @@ namespace Test_Loopguy
                 direction.Normalize();
                 prevDirection = direction;
             }
+            Vector2 futurepos = centerPosition + direction * speed * deltaTime + new Vector2(0, 12);
+            if (LevelManager.LevelObjectCollision(futurepos) || LevelManager.WallCollision(futurepos))
+            {
 
-            position += direction * speed * deltaTime;
+            }
+            else
+            {
+                position += direction * speed * deltaTime;
+            }
 
             Vector2 velocity = direction * speed;
             float playerVelocityShort = velocity.Length();

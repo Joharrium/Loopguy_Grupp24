@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -9,6 +10,7 @@ namespace Test_Loopguy
 {
     public class Game1 : Game
     {
+        public static Random rnd = new Random();
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
@@ -61,17 +63,30 @@ namespace Test_Loopguy
             camera = new Camera(GraphicsDevice.Viewport);
             camera.SetPosition(new Vector2(200, 200));
 
-            player = new Player(new Vector2(200, 200));
+            player = new Player(new Vector2(64, 64));
+            //TileManager.Initialization();
+            //WallManager.Initialization();
+            LevelManager.LoadLevel(1);
 
+            var frmNewForm = new Form1();
+            var newThread = new System.Threading.Thread(frmNewFormThread);
+
+            newThread.SetApartmentState(System.Threading.ApartmentState.STA);
+            newThread.Start();
+
+            void frmNewFormThread()
+            {
+                Application.Run(frmNewForm);
+            }
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == Microsoft.Xna.Framework.Input.ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
                 Exit();
-            else if (InputReader.KeyPressed(Keys.PageUp) && windowScale <= 5)
+            else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.PageUp) && windowScale <= 5)
                 ScaleWindow(1);
-            else if (InputReader.KeyPressed(Keys.PageDown) && windowScale >= 2)
+            else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.PageDown) && windowScale >= 2)
                 ScaleWindow(-1);
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -79,7 +94,7 @@ namespace Test_Loopguy
 
             //Update player position
             player.Update(gameTime);
-
+            LevelManager.Update(gameTime);
             //Update camera position
             camera.SmoothPosition(player.cameraPosition, deltaTime);
 
@@ -109,6 +124,7 @@ namespace Test_Loopguy
                 + "Player position: " + playerPosRounded;
 
             Window.Title = player.playerInfoString;
+            LevelEditor.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -121,10 +137,11 @@ namespace Test_Loopguy
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, camera.Transform);
             //Draw game stuff here!
 
-            spriteBatch.Draw(TexMGR.checkers, new Vector2(-2000, -2000), Color.White);
+            spriteBatch.DrawString(smallFont, infoString, new Vector2(camera.position.X - windowX / 2, camera.position.Y - windowY / 2), Color.White);
+            LevelManager.Draw(spriteBatch);
+            LevelEditor.Draw(spriteBatch);
             player.Draw(spriteBatch);
 
-            //Stop drawing game stuff here!
             spriteBatch.End();
 
             GraphicsDevice.SetRenderTarget(null);
