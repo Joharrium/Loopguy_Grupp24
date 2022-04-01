@@ -28,6 +28,8 @@ namespace Test_Loopguy
         public static Rectangle screenRect;
         public static int windowX, windowY, windowScale;
 
+        bool editLevel = false;
+
         string infoString;
 
 
@@ -93,6 +95,8 @@ namespace Test_Loopguy
                 ScaleWindow(1);
             else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.PageDown) && windowScale >= 2)
                 ScaleWindow(-1);
+            else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.F1))
+                editLevel = !editLevel;
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             InputReader.Update();
@@ -129,7 +133,11 @@ namespace Test_Loopguy
                 + "Player position: " + playerPosRounded;
 
             Window.Title = player.playerInfoString;
-            LevelEditor.Update(gameTime);
+
+            if (editLevel)
+            {
+                LevelEditor.Update(gameTime);
+            }
 
             base.Update(gameTime);
         }
@@ -143,7 +151,12 @@ namespace Test_Loopguy
             //Draw game stuff here!
 
             LevelManager.Draw(spriteBatch);
-            LevelEditor.Draw(spriteBatch);
+
+            if (editLevel)
+            {
+                LevelEditor.Draw(spriteBatch);
+            }
+
             player.Draw(spriteBatch);
 
             spriteBatch.End();

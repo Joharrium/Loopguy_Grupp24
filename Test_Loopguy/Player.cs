@@ -62,24 +62,27 @@ namespace Test_Loopguy
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            sprite.Draw(spriteBatch);
+            if (dirInt == 1)
+            { //if aiming up, draw player sprite on top
 
-            //if (dirInt != 1)
-            //{ //if aiming up, draw player sprite on top
-            //    sprite.Draw(spriteBatch);
-            //}
+                if (InputReader.Aim())
+                {
+                    DrawAim(spriteBatch);
+                    DrawGun(spriteBatch);
+                }
 
-            if (InputReader.Aim())
-            {
-                DrawAim(spriteBatch);
-                DrawGun(spriteBatch);
-
+                sprite.Draw(spriteBatch);
             }
+            else
+            { //if not aiming up, draw gun sprite on top
+                sprite.Draw(spriteBatch);
 
-            //if (dirInt == 1)
-            //{ //if not aiming up, draw gun sprite on top
-            //    sprite.Draw(spriteBatch);
-            //}
+                if (InputReader.Aim())
+                {
+                    DrawAim(spriteBatch);
+                    DrawGun(spriteBatch);
+                }
+            }
         }
 
         public void DrawAim(SpriteBatch spriteBatch)
@@ -123,7 +126,7 @@ namespace Test_Loopguy
             for (int i = 16; i < 580; i++)
             {
                 Vector2 aimPoint = new Vector2(centerPosition.X + i * gunDirection.X, centerPosition.Y + i * gunDirection.Y);
-                spriteBatch.Draw(TexMGR.pinkPixel, aimPoint, Helper.RandomTransparency(random, 0, 90));
+                spriteBatch.Draw(TexMGR.cyanPixel, aimPoint, Helper.RandomTransparency(random, 0, 90));
             }
         }
 
