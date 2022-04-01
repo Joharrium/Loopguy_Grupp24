@@ -20,6 +20,8 @@ namespace Test_Loopguy
             LoadUI(c);
 
             notex = c.Load<Texture2D>("notex");
+            pinkPixel = c.Load<Texture2D>("pinkPixel");
+            checkers = c.Load<Texture2D>("checkers");
             playerSheet = c.Load<Texture2D>("Loopy3");
             gunSheet = c.Load<Texture2D>("guns");
             target = c.Load<Texture2D>("target");

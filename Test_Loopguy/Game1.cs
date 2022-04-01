@@ -60,13 +60,15 @@ namespace Test_Loopguy
             graphics.PreferredBackBufferHeight = screenRect.Height;
             graphics.ApplyChanges();
 
+            LevelManager.LoadLevel(1);
+
             camera = new Camera(GraphicsDevice.Viewport);
             camera.SetPosition(new Vector2(200, 200));
 
             player = new Player(new Vector2(64, 64));
             //TileManager.Initialization();
             //WallManager.Initialization();
-            LevelManager.LoadLevel(1);
+            
 
             var frmNewForm = new Form1();
             var newThread = new System.Threading.Thread(frmNewFormThread);
