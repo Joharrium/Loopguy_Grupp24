@@ -85,7 +85,10 @@ namespace Test_Loopguy
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == Microsoft.Xna.Framework.Input.ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
+            {
                 Exit();
+                Application.Exit();
+            }
             else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.PageUp) && windowScale <= 5)
                 ScaleWindow(1);
             else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.PageDown) && windowScale >= 2)
@@ -139,7 +142,6 @@ namespace Test_Loopguy
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, camera.Transform);
             //Draw game stuff here!
 
-            spriteBatch.DrawString(smallFont, infoString, new Vector2(camera.position.X - windowX / 2, camera.position.Y - windowY / 2), Color.White);
             LevelManager.Draw(spriteBatch);
             LevelEditor.Draw(spriteBatch);
             player.Draw(spriteBatch);
