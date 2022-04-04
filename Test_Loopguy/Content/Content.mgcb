@@ -374,6 +374,18 @@
 /processorParam:TextureFormat=Color
 /build:Loopy3.png
 
+#begin meleefx.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:meleefx.png
+
 #begin notex.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -385,18 +397,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:notex.png
-
-#begin pinkPixel.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:pinkPixel.png
 
 #begin pinkPixel.png
 /importer:TextureImporter

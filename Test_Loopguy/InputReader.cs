@@ -47,11 +47,14 @@ static class InputReader
 		return keyState.IsKeyDown(Keys.Down) || keyState.IsKeyDown(Keys.S) || padState.IsButtonDown(Buttons.DPadDown);
 	}
 	
+	public static bool Melee()
+    {
+		return LeftClick() || ButtonPressed(Buttons.X);
+    }
 	public static bool Aim()
     {
 		return keyState.IsKeyDown(Keys.LeftShift) || padState.IsButtonDown(Buttons.LeftTrigger);
 	}
-
 	public static bool Shoot()
     { // Subject to change, might be better to do this in the Player class
 		if (Aim())

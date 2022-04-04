@@ -34,31 +34,36 @@ namespace Test_Loopguy
             timeSinceLastFrame += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
         }
 
-        public void Play(int row, int stopX, int frameRate)
+        public void Play(int row, int stopX, int frameTime)
         {
             currentFrame.Y = row;
 
-            if (frameRate == 0)
+            if (timeSinceLastFrame >= frameTime)
             {
-                currentFrame.X = stopX;
-            }
-            else
-            {
-
-                if (timeSinceLastFrame >= frameRate)
+                timeSinceLastFrame = 0;
+                currentFrame.X++;
+                if (currentFrame.X >= stopX)
                 {
-                    timeSinceLastFrame = 0;
-                    currentFrame.X++;
-                    if (currentFrame.X >= stopX)
-                    {
-                        currentFrame.X = 0;
-                    }
+                    currentFrame.X = 0;
                 }
             }
         }
-        public void PlayOnce(int row, int stopX, int frameRate)
+        public bool PlayOnce(int row, int stopX, int frameTime)
         {
+            currentFrame.Y = row;
 
+            if (timeSinceLastFrame >= frameTime)
+            {
+                timeSinceLastFrame = 0;
+                currentFrame.X++;
+                if (currentFrame.X >= stopX)
+                {
+                    currentFrame.X = 0;
+                    return false;
+                }
+            }
+
+            return true;
         }
         public void Frame(int X, int Y)
         {
