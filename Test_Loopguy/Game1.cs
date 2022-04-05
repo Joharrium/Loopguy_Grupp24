@@ -28,7 +28,7 @@ namespace Test_Loopguy
         public static Rectangle screenRect;
         public static int windowX, windowY, windowScale;
 
-        bool editLevel = false;
+        bool editLevel = true;
 
         string infoString;
 
@@ -70,7 +70,6 @@ namespace Test_Loopguy
             player = new Player(new Vector2(96, 96));
             //TileManager.Initialization();
             //WallManager.Initialization();
-            LevelManager.LoadLevel(1);
             LevelManager.EntranceLoad();
 
 
@@ -102,6 +101,7 @@ namespace Test_Loopguy
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             InputReader.Update();
+            Fadeout.Update(gameTime);
 
             //Update player position
             player.Update(gameTime);
@@ -167,6 +167,7 @@ namespace Test_Loopguy
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             
             spriteBatch.Draw(renderTarget, screenRect, Color.White);
+            Fadeout.Draw(spriteBatch);
             spriteBatch.DrawString(smallFont, infoString, Vector2.Zero, Color.White);
             spriteBatch.End();
 

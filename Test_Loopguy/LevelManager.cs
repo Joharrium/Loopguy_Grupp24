@@ -10,10 +10,40 @@ namespace Test_Loopguy
     static public class LevelManager
     {
         private static Level currentLevel;
+        private static int queuedLevel;
         public static List<Entrance> gates = new List<Entrance>();
+        private static double loadTimer = 80;
+        public static bool loadStarted = false;
+        const double LOADTIMER = 80;
+
+        private static Player player;
+        private static Vector2 target;
+
         //have list of levels?
+        internal static void StartLevelTransition(int levelToLoad, Player player, Vector2 target)
+        {
+            loadTimer = LOADTIMER;
+            loadStarted = true;
+            queuedLevel = levelToLoad;
+            LevelManager.player = player;
+            LevelManager.target = target;
+        }
+        private static void LevelTransition(GameTime gameTime)
+        {
+            loadTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+            if(loadTimer < 0)
+            {
+                LoadLevel(queuedLevel);
+                player.position = target;
+                loadStarted = false;
+            }
+        }
         public static void Update(GameTime gameTime)
         {
+            if(loadStarted)
+            {
+                LevelTransition(gameTime);
+            }
             
             currentLevel.Update(gameTime);
         }
@@ -267,7 +297,7 @@ namespace Test_Loopguy
                     string[] splitter = lines[2].Split(',');
                     Rectangle entrance1 = new Rectangle(Int32.Parse(splitter[0]), Int32.Parse(splitter[1]), Int32.Parse(splitter[2]), Int32.Parse(splitter[3]));
                     string[] splitter2 = lines[3].Split(',');
-                    Rectangle entrance2 = new Rectangle(Int32.Parse(splitter2[0]), Int32.Parse(splitter2[1]), Int32.Parse(splitter2[2]), Int32.Parse(splitter2[3]));
+                    Vector2 entrance2 = new Vector2(Int32.Parse(splitter2[0]), Int32.Parse(splitter2[1]));
                     gates.Add(new Entrance(i, map1, map2, entrance1, entrance2));
                 }
             }

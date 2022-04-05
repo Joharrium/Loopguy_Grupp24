@@ -184,55 +184,25 @@ namespace Test_Loopguy
         int id;
         int level1;
         int level2;
-        Rectangle hitbox1;
-        Rectangle hitbox2;
-        public Entrance(int id, int lvl1, int lvl2, Rectangle gate1, Rectangle gate2)
+        Rectangle hitbox;
+        Vector2 target;
+        public Entrance(int id, int lvl1, int lvl2, Rectangle gate, Vector2 target)
         {
             this.id = id;
             level1 = lvl1;
             level2 = lvl2;
-            hitbox1 = gate1;
-            hitbox2 = gate2;
+            hitbox = gate;
+            this.target = target;
         }
 
         internal void CheckGate(Player player)
         {
-            int outsideBothGates = 0;
-            if(hitbox1.Contains(player.centerPosition) && LevelManager.GetCurrentId() == level1)
+            if(hitbox.Contains(player.centerPosition) && LevelManager.GetCurrentId() == level1 && LevelManager.loadStarted == false)
             {
-                if(!player.usedGate)
-                {
-                    player.centerPosition = hitbox2.Center.ToVector2();
-                    LevelManager.LoadLevel(level2);
-                    player.usedGate = true;
-                }
-            }
-
-            if (hitbox2.Contains(player.centerPosition) && LevelManager.GetCurrentId() == level2)
-            {
-                if (!player.usedGate)
-                {
-                    player.centerPosition = hitbox1.Center.ToVector2();
-                    LevelManager.LoadLevel(level1);
-                    player.usedGate = true;
-                }
-            }
-
-            foreach(Entrance g in LevelManager.gates)
-            {
-                if(g.hitbox1.Contains(player.centerPosition))
-                {
-                    outsideBothGates++;
-                }
-                if (g.hitbox2.Contains(player.centerPosition))
-                {
-                    outsideBothGates++;
-                }
-            }
-
-            if(outsideBothGates >= LevelManager.gates.Count*2 && player.usedGate)
-            {
-                player.usedGate = false;
+                
+                Fadeout.LevelTransitionFade();
+                LevelManager.StartLevelTransition(level2, player, target);
+                
             }
         }
     }
