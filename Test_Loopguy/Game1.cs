@@ -16,7 +16,7 @@ namespace Test_Loopguy
 
         SpriteFont smallFont;
 
-        Camera camera;
+        public static Camera camera;
 
         Player player;
 
@@ -27,6 +27,8 @@ namespace Test_Loopguy
         public static Vector2 mousePos;
         public static Rectangle screenRect;
         public static int windowX, windowY, windowScale;
+
+        bool editLevel = false;
 
         string infoString;
 
@@ -60,7 +62,10 @@ namespace Test_Loopguy
             graphics.PreferredBackBufferHeight = screenRect.Height;
             graphics.ApplyChanges();
 
+            LevelManager.LoadLevel(1);
+
             camera = new Camera(GraphicsDevice.Viewport);
+            camera.SetPosition(new Vector2(200, 200));
 
             player = new Player(new Vector2(96, 96));
             //TileManager.Initialization();
@@ -84,11 +89,16 @@ namespace Test_Loopguy
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == Microsoft.Xna.Framework.Input.ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
+            {
                 Exit();
+                Application.Exit();
+            }
             else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.PageUp) && windowScale <= 5)
                 ScaleWindow(1);
             else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.PageDown) && windowScale >= 2)
                 ScaleWindow(-1);
+            else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.F1))
+                editLevel = !editLevel;
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             InputReader.Update();
@@ -97,7 +107,7 @@ namespace Test_Loopguy
             player.Update(gameTime);
             LevelManager.Update(gameTime);
             //Update camera position
-            camera.SetPosition(player.centerPosition);
+            camera.SmoothPosition(player.cameraPosition, deltaTime);
 
             //Gets mouse position from window and camera position
             Vector2 windowMousePos = new Vector2(InputReader.mouseState.X / windowScale, InputReader.mouseState.Y / windowScale);
@@ -105,8 +115,8 @@ namespace Test_Loopguy
             mousePos = new Vector2(cameraTopLeft.X + windowMousePos.X, cameraTopLeft.Y + windowMousePos.Y);
 
             //Get angles between player and stuff
-            double mouseAngle = Helper.GetAngle(player.centerPosition, mousePos);
-            double targetAngle = Helper.GetAngle(player.centerPosition, Vector2.Zero); //change zero vector to target
+            double mouseAngle = Helper.GetAngle(player.centerPosition, mousePos, 0);
+            double targetAngle = Helper.GetAngle(player.centerPosition, Vector2.Zero , 0); //change zero vector to target
 
             //Converts angles from radians double to more readable stuff
             double piRadM = mouseAngle / Math.PI;
@@ -125,7 +135,11 @@ namespace Test_Loopguy
                 + "Player position: " + playerPosRounded;
 
             Window.Title = player.playerInfoString;
-            LevelEditor.Update(gameTime);
+
+            if (editLevel)
+            {
+                LevelEditor.Update(gameTime);
+            }
 
             base.Update(gameTime);
         }
@@ -136,17 +150,16 @@ namespace Test_Loopguy
             GraphicsDevice.Clear(Color.SlateGray);
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, camera.Transform);
-
             //Draw game stuff here!
 
-            spriteBatch.DrawString(smallFont, infoString, new Vector2(camera.position.X - windowX / 2, camera.position.Y - windowY / 2), Color.White);
-            //TileManager.Draw(spriteBatch);
-            //WallManager.Draw(spriteBatch);
             LevelManager.Draw(spriteBatch);
-            LevelEditor.Draw(spriteBatch);
+
+            if (editLevel)
+            {
+                LevelEditor.Draw(spriteBatch);
+            }
+
             player.Draw(spriteBatch);
-            
-            
 
             spriteBatch.End();
 
@@ -154,6 +167,7 @@ namespace Test_Loopguy
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             
             spriteBatch.Draw(renderTarget, screenRect, Color.White);
+            spriteBatch.DrawString(smallFont, infoString, Vector2.Zero, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);

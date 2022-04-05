@@ -5,7 +5,7 @@ namespace Test_Loopguy
 {
     static class TexMGR
     {
-        public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, testTile, testAlt, box;
+        public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, gunSheet, testTile, testAlt, box, pinkPixel, checkers;
         // terrain files
         public static Texture2D grassBasic, grassAlt, grayBrickWall, dirt;
         // object files
@@ -20,7 +20,10 @@ namespace Test_Loopguy
             LoadUI(c);
 
             notex = c.Load<Texture2D>("notex");
-            playerSheet = c.Load<Texture2D>("Loopy");
+            pinkPixel = c.Load<Texture2D>("pinkPixel");
+            checkers = c.Load<Texture2D>("checkers");
+            playerSheet = c.Load<Texture2D>("Loopy3");
+            gunSheet = c.Load<Texture2D>("guns");
             target = c.Load<Texture2D>("target");
             blueArc = c.Load<Texture2D>("blueArc");
             redPixel = c.Load<Texture2D>("redPixel");
