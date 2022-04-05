@@ -207,10 +207,6 @@ namespace Test_Loopguy
                     player.usedGate = true;
                 }
             }
-            else
-            {
-                outsideBothGates++;
-            }
 
             if (hitbox2.Contains(player.centerPosition) && LevelManager.GetCurrentId() == level2)
             {
@@ -221,12 +217,20 @@ namespace Test_Loopguy
                     player.usedGate = true;
                 }
             }
-            else
+
+            foreach(Entrance g in LevelManager.gates)
             {
-                outsideBothGates++;
+                if(g.hitbox1.Contains(player.centerPosition))
+                {
+                    outsideBothGates++;
+                }
+                if (g.hitbox2.Contains(player.centerPosition))
+                {
+                    outsideBothGates++;
+                }
             }
 
-            if(outsideBothGates >= 2 && player.usedGate)
+            if(outsideBothGates >= LevelManager.gates.Count*2 && player.usedGate)
             {
                 player.usedGate = false;
             }
