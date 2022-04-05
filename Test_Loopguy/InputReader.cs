@@ -49,7 +49,7 @@ static class InputReader
 	
 	public static bool Melee()
     {
-		return LeftClick() || ButtonPressed(Buttons.X);
+		return LeftClick() || KeyPressed(Keys.RightControl) ||ButtonPressed(Buttons.X);
     }
 	public static bool Aim()
     {

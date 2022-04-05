@@ -36,6 +36,8 @@ namespace Test_Loopguy
 
             speed = 100;
 
+            dirInt = 2;
+
             attacking = false;
         }
 
@@ -50,7 +52,6 @@ namespace Test_Loopguy
             if (attacking)
             {
                 Melee(deltaTime);
-                meleeSprite.Update(gameTime);
             }
             else
             {
@@ -60,9 +61,6 @@ namespace Test_Loopguy
                 }
                 else
                 {
-                    if (InputReader.Melee())
-                        attacking = true;
-
                     if (direction == Vector2.Zero)
                         cameraPosition = centerPosition + prevDirection * 30;
                     else
@@ -70,12 +68,23 @@ namespace Test_Loopguy
 
                     gunDirection = Vector2.Zero;
                     Movement(deltaTime);
+
+                    if (InputReader.Melee() && !attacking)
+                    {
+                        meleeSprite.currentFrame.X = 0;
+                        meleeSprite.timeSinceLastFrame = 0;
+                        sprite.currentFrame.X = 0;
+                        sprite.timeSinceLastFrame = 0;
+
+                        attacking = true;
+                    }
                 }
             }
 
             sprite.Position = position;
             gunSprite.Position = position;
             meleeSprite.Position = new Vector2(position.X - 8, position.Y - 8);
+            meleeSprite.Update(gameTime);
             sprite.Update(gameTime);
         }
 

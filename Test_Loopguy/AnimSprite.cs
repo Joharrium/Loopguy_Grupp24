@@ -12,19 +12,19 @@ namespace Test_Loopguy
         Texture2D sheet;
 
         public Point size;
-        Point currentFrame;
+        public Point currentFrame;
         Vector2 position;
 
         Rectangle frame;
 
-        int timeSinceLastFrame;
+        public int timeSinceLastFrame;
 
         public AnimSprite(Texture2D sheet, Point size)
         {
             this.sheet = sheet;
             this.size = size;
 
-            currentFrame = new Point();
+            currentFrame = new Point(0, 0);
         }
 
         public Vector2 Position { get; set; }
