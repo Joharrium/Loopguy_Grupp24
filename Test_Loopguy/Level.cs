@@ -197,16 +197,38 @@ namespace Test_Loopguy
 
         internal void CheckGate(Player player)
         {
+            int outsideBothGates = 0;
             if(hitbox1.Contains(player.centerPosition) && LevelManager.GetCurrentId() == level1)
             {
-                player.position = hitbox2.Location.ToVector2() + hitbox2.Size.ToVector2();
-                LevelManager.LoadLevel(level2);
+                if(!player.usedGate)
+                {
+                    player.centerPosition = hitbox2.Center.ToVector2();
+                    LevelManager.LoadLevel(level2);
+                    player.usedGate = true;
+                }
+            }
+            else
+            {
+                outsideBothGates++;
             }
 
             if (hitbox2.Contains(player.centerPosition) && LevelManager.GetCurrentId() == level2)
             {
-                player.position = hitbox1.Location.ToVector2() + hitbox1.Size.ToVector2();
-                LevelManager.LoadLevel(level1);
+                if (!player.usedGate)
+                {
+                    player.centerPosition = hitbox1.Center.ToVector2();
+                    LevelManager.LoadLevel(level1);
+                    player.usedGate = true;
+                }
+            }
+            else
+            {
+                outsideBothGates++;
+            }
+
+            if(outsideBothGates >= 2 && player.usedGate)
+            {
+                player.usedGate = false;
             }
         }
     }

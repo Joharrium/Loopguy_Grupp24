@@ -17,6 +17,8 @@ namespace Test_Loopguy
         Vector2 gunDirection;
         Vector2 prevDirection;
 
+        public bool usedGate;
+
         float aimAngle;
         const float pi = (float)Math.PI;
 
