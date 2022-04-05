@@ -13,6 +13,8 @@ namespace Test_Loopguy
 
         public float speedFactor;
 
+        public bool stabilize;
+
         public Matrix Transform
         {
             get { return transform; }
@@ -53,7 +55,7 @@ namespace Test_Loopguy
             //position.X = MathHelper.Clamp(-position.X + Game1.windowX / 2, -LevelManager.GetBounds().Width, 0);
             //position.Y = MathHelper.Clamp(-position.Y + Game1.windowY / 2, -LevelManager.GetBounds().Height, 0);
 
-            if (newPos == oldNewPos)
+            if (newPos == oldNewPos || stabilize)
             {
                 position.X = (int)Math.Round(position.X);
                 position.Y = (int)Math.Round(position.Y);
