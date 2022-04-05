@@ -13,6 +13,7 @@ namespace Test_Loopguy
 
         public Point size;
         public Point currentFrame;
+
         Vector2 position;
 
         Rectangle frame;
@@ -75,8 +76,8 @@ namespace Test_Loopguy
         {
             frame = new Rectangle(currentFrame.X * size.X, currentFrame.Y * size.Y, size.X, size.Y);
 
-            //position.X = (int)Math.Round(Position.X);
-            //position.Y = (int)Math.Round(Position.Y);
+            position.X = (int)Math.Round(Position.X);
+            position.Y = (int)Math.Round(Position.Y);
 
             position = Position;
 

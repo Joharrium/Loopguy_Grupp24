@@ -221,7 +221,17 @@ namespace Test_Loopguy
                 direction.Y = 0;
             }
 
-            position += direction * speed/2 * deltaTime;
+            Vector2 futurepos = centerPosition + direction * speed * deltaTime + new Vector2(0, 12);
+
+            if (LevelManager.LevelObjectCollision(futurepos) || LevelManager.WallCollision(futurepos))
+            {
+
+            }
+            else
+            {
+                position += direction * speed / 2 * deltaTime;
+            }
+            
 
             attacking = meleeSprite.PlayOnce(rowInt, 4, frameTime);
 
