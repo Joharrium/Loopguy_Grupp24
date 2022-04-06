@@ -9,6 +9,7 @@ namespace Test_Loopguy
     internal class Player : AnimatedMovingObject
     {
         AnimSprite gunSprite;
+        AnimSprite meleeSprite;
 
         Random random = new Random();
 
@@ -26,13 +27,20 @@ namespace Test_Loopguy
 
         public string playerInfoString;
 
+        bool attacking;
+
         public Player(Vector2 position)
             : base(position)
         {
             sprite = new AnimSprite(TexMGR.playerSheet, new Point(32, 32));
             gunSprite = new AnimSprite(TexMGR.gunSheet, new Point(32, 32));
+            meleeSprite = new AnimSprite(TexMGR.meleeFx, new Point(48, 48));
 
             speed = 100;
+
+            dirInt = 2;
+
+            attacking = false;
         }
 
         public override void Update(GameTime gameTime)
@@ -40,49 +48,82 @@ namespace Test_Loopguy
             base.Update(gameTime);
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-
-            if (InputReader.Aim())
+            //Melee needs to be reworked, this is temporary
+            //Also animation is scuffed, lower frameTime in Melee method to observe
+            //Idfk why btw, AnimSprite class seems to work fine for walking animation
+            if (attacking)
             {
-                cameraPosition = centerPosition + gunDirection * 50;
-
+                Melee(deltaTime);
             }
             else
             {
-                if (direction == Vector2.Zero)
-                    cameraPosition = centerPosition + prevDirection * 30;
+                if (InputReader.Aim())
+                {
+                    cameraPosition = centerPosition + gunDirection * 50;
+                    Game1.camera.stabilize = true;
+                }
                 else
-                    cameraPosition = centerPosition + direction * 30;
+                {
+                    Game1.camera.stabilize = false;
 
-                gunDirection = Vector2.Zero;
-                Movement(deltaTime);
+                    if (direction == Vector2.Zero)
+                        cameraPosition = centerPosition + prevDirection * 30;
+                    else
+                        cameraPosition = centerPosition + direction * 30;
+
+                    gunDirection = Vector2.Zero;
+                    Movement(deltaTime);
+
+                    if (InputReader.Melee() && !attacking)
+                    {
+                        meleeSprite.currentFrame.X = 0;
+                        meleeSprite.timeSinceLastFrame = 0;
+                        sprite.currentFrame.X = 0;
+                        sprite.timeSinceLastFrame = 0;
+
+                        attacking = true;
+                    }
+                }
             }
 
             sprite.Position = position;
             gunSprite.Position = position;
+            meleeSprite.Position = new Vector2(position.X - 8, position.Y - 8);
+            meleeSprite.Update(gameTime);
             sprite.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (dirInt == 1)
-            { //if aiming up, draw player sprite on top
-
-                if (InputReader.Aim())
-                {
-                    DrawAim(spriteBatch);
-                    DrawGun(spriteBatch);
-                }
-
+            if (attacking)
+            {
                 sprite.Draw(spriteBatch);
+                meleeSprite.Draw(spriteBatch);
             }
             else
-            { //if not aiming up, draw gun sprite on top
-                sprite.Draw(spriteBatch);
+            {
+                if (dirInt == 1)
+                { //if aiming up, draw player sprite on top
 
-                if (InputReader.Aim())
-                {
-                    DrawAim(spriteBatch);
-                    DrawGun(spriteBatch);
+                    if (InputReader.Aim())
+                    {
+                        DrawAim(spriteBatch);
+                        DrawGun(spriteBatch);
+                    }
+
+                    sprite.Draw(spriteBatch);
+                }
+                else
+                { //if not aiming up, draw gun sprite on top
+                    if (attacking)
+                        meleeSprite.Draw(spriteBatch);
+                    sprite.Draw(spriteBatch);
+
+                    if (InputReader.Aim())
+                    {
+                        DrawAim(spriteBatch);
+                        DrawGun(spriteBatch);
+                    }
                 }
             }
         }
@@ -155,6 +196,52 @@ namespace Test_Loopguy
             gunSprite.DrawRotation(spriteBatch, gunRotation);
         }
 
+        public void Melee(float deltaTime)
+        {
+            int rowInt = dirInt - 1; //Wow dude??
+            int frameTime = 50;
+
+            if (dirInt == 1)
+            {//UP
+                sprite.Play(6, 4, frameTime);
+                direction.X = 0;
+                direction.Y = -1;
+            }
+            else if (dirInt == 2)
+            {//DOWN
+                sprite.Play(7, 4, frameTime);
+                direction.X = 0;
+                direction.Y = 1;
+            }
+            else if (dirInt == 3)
+            {//LEFT
+                sprite.Play(8, 4, frameTime);
+                direction.X = -1;
+                direction.Y = 0;
+            }
+            else
+            {//RIGHT
+                sprite.Play(9, 4, frameTime);
+                direction.X = 1;
+                direction.Y = 0;
+            }
+
+            Vector2 futurepos = centerPosition + direction * speed * deltaTime + new Vector2(0, 12);
+
+            if (LevelManager.LevelObjectCollision(futurepos) || LevelManager.WallCollision(futurepos))
+            {
+
+            }
+            else
+            {
+                position += direction * speed / 2 * deltaTime;
+            }
+            
+
+            attacking = meleeSprite.PlayOnce(rowInt, 4, frameTime);
+
+        }
+
         public override void Movement(float deltaTime)
         {
             direction.Y = 0;
@@ -192,32 +279,32 @@ namespace Test_Loopguy
             else if (absDirection != 0 && absDirection < 0.2f)
                 absDirection = 0.2f;
 
-            int frameRate = 0;
+            int frameTime = 0;
 
             if (absDirection != 0)
             {
-                frameRate = (int)(50 / absDirection);
+                frameTime = (int)(50 / absDirection);
             }
 
             //Visual changes depending on direction
             if (direction.Y < 0 && absDirectionX < absDirectionY)
             {//UP
-                sprite.Play(0, 12, frameRate);
+                sprite.Play(0, 12, frameTime);
                 dirInt = 1;
             }
             else if (direction.Y > 0 && absDirectionX < absDirectionY)
             {//DOWN
-                sprite.Play(1, 11, frameRate);
+                sprite.Play(1, 12, frameTime);
                 dirInt = 2;
             }
             else if (direction.X < 0)
             {//LEFT
-                sprite.Play(2, 11, frameRate);
+                sprite.Play(2, 12, frameTime);
                 dirInt = 3;
             }
             else if (direction.X > 0)
             {//RIGHT
-                sprite.Play(3, 11, frameRate);
+                sprite.Play(3, 12, frameTime);
                 dirInt = 4;
             }
             else
@@ -264,7 +351,7 @@ namespace Test_Loopguy
             float playerVelocityShort = velocity.Length();
 
             float absDirShort = (float)Math.Round(absDirection, 2);
-            playerInfoString = absDirShort.ToString() + " || " + frameRate.ToString() + " || " + playerVelocityShort.ToString();
+            playerInfoString = absDirShort.ToString() + " || " + frameTime.ToString() + " || " + playerVelocityShort.ToString();
         }
     }
 }

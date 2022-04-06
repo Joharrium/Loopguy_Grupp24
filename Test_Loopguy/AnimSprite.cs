@@ -12,19 +12,20 @@ namespace Test_Loopguy
         Texture2D sheet;
 
         public Point size;
-        Point currentFrame;
+        public Point currentFrame;
+
         Vector2 position;
 
         Rectangle frame;
 
-        int timeSinceLastFrame;
+        public int timeSinceLastFrame;
 
         public AnimSprite(Texture2D sheet, Point size)
         {
             this.sheet = sheet;
             this.size = size;
 
-            currentFrame = new Point();
+            currentFrame = new Point(0, 0);
         }
 
         public Vector2 Position { get; set; }
@@ -34,31 +35,36 @@ namespace Test_Loopguy
             timeSinceLastFrame += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
         }
 
-        public void Play(int row, int stopX, int frameRate)
+        public void Play(int row, int stopX, int frameTime)
         {
             currentFrame.Y = row;
 
-            if (frameRate == 0)
+            if (timeSinceLastFrame >= frameTime)
             {
-                currentFrame.X = stopX;
-            }
-            else
-            {
-
-                if (timeSinceLastFrame >= frameRate)
+                timeSinceLastFrame = 0;
+                currentFrame.X++;
+                if (currentFrame.X >= stopX)
                 {
-                    timeSinceLastFrame = 0;
-                    currentFrame.X++;
-                    if (currentFrame.X >= stopX)
-                    {
-                        currentFrame.X = 0;
-                    }
+                    currentFrame.X = 0;
                 }
             }
         }
-        public void PlayOnce(int row, int stopX, int frameRate)
+        public bool PlayOnce(int row, int stopX, int frameTime)
         {
+            currentFrame.Y = row;
 
+            if (timeSinceLastFrame >= frameTime)
+            {
+                timeSinceLastFrame = 0;
+                currentFrame.X++;
+                if (currentFrame.X >= stopX)
+                {
+                    currentFrame.X = 0;
+                    return false;
+                }
+            }
+
+            return true;
         }
         public void Frame(int X, int Y)
         {
@@ -70,8 +76,8 @@ namespace Test_Loopguy
         {
             frame = new Rectangle(currentFrame.X * size.X, currentFrame.Y * size.Y, size.X, size.Y);
 
-            //position.X = (int)Math.Round(Position.X);
-            //position.Y = (int)Math.Round(Position.Y);
+            position.X = (int)Math.Round(Position.X);
+            position.Y = (int)Math.Round(Position.Y);
 
             position = Position;
 
