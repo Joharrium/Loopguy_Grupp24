@@ -118,7 +118,7 @@ namespace Test_Loopguy
             }
             if (!camera.xClamped)
             {
-                cameraTopLeft.X = camera.position.X;
+                cameraTopLeft.X = camera.position.X - windowX/2;
             }
 
             mousePos = new Vector2(cameraTopLeft.X + windowMousePos.X, cameraTopLeft.Y + windowMousePos.Y);
