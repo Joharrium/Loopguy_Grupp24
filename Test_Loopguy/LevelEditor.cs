@@ -17,7 +17,7 @@ namespace Test_Loopguy
     }
     public enum TileSelection
     {
-        Grass, Dirt, GrayBrick
+        Grass, Dirt, GrayBrick, TilesCheckeredGray, TilesCheckeredBrown
     }
     static public class LevelEditor
     {

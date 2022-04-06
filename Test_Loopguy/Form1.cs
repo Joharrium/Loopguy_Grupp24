@@ -98,6 +98,16 @@ namespace Test_Loopguy
             LevelManager.SetMapSize(x, y);
         }
 
-        
+        private void tilesCheckeredGraySelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.currentSelection = Selection.Tile;
+            LevelEditor.selectedTile = TileSelection.TilesCheckeredGray;
+        }
+
+        private void tilesCheckeredBrownSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.currentSelection = Selection.Tile;
+            LevelEditor.selectedTile = TileSelection.TilesCheckeredBrown;
+        }
     }
 }

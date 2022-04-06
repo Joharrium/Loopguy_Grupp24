@@ -130,6 +130,14 @@ namespace Test_Loopguy
                     {
                         tiles[i, j] = new BrickWall(tempPos);
                     }
+                    if (terrainStrings[j][i] == 'a')
+                    {
+                        tiles[i, j] = new CheckeredTileGray(tempPos);
+                    }
+                    if (terrainStrings[j][i] == 'b')
+                    {
+                        tiles[i, j] = new CheckeredTileBrown(tempPos);
+                    }
                 }
             }
 
@@ -259,6 +267,14 @@ namespace Test_Loopguy
                     if (currentLevel.tiles[j, i] is BrickWall)
                     {
                         types[j, i] = 'w';
+                    }
+                    if (currentLevel.tiles[j, i] is CheckeredTileGray)
+                    {
+                        types[j, i] = 'a';
+                    }
+                    if (currentLevel.tiles[j, i] is CheckeredTileBrown)
+                    {
+                        types[j, i] = 'b';
                     }
                 }
             }

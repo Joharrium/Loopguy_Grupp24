@@ -33,8 +33,8 @@ namespace Test_Loopguy
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pictureBox33 = new System.Windows.Forms.PictureBox();
             this.pictureBox34 = new System.Windows.Forms.PictureBox();
-            this.pictureBox35 = new System.Windows.Forms.PictureBox();
-            this.pictureBox36 = new System.Windows.Forms.PictureBox();
+            this.tilesCheckeredBrownSelect = new System.Windows.Forms.PictureBox();
+            this.tilesCheckeredGraySelect = new System.Windows.Forms.PictureBox();
             this.pictureBox37 = new System.Windows.Forms.PictureBox();
             this.grayBrickSelect = new System.Windows.Forms.PictureBox();
             this.dirtSelect = new System.Windows.Forms.PictureBox();
@@ -75,8 +75,8 @@ namespace Test_Loopguy
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox35)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tilesCheckeredBrownSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tilesCheckeredGraySelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox37)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grayBrickSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dirtSelect)).BeginInit();
@@ -108,8 +108,8 @@ namespace Test_Loopguy
             // 
             this.groupBox2.Controls.Add(this.pictureBox33);
             this.groupBox2.Controls.Add(this.pictureBox34);
-            this.groupBox2.Controls.Add(this.pictureBox35);
-            this.groupBox2.Controls.Add(this.pictureBox36);
+            this.groupBox2.Controls.Add(this.tilesCheckeredBrownSelect);
+            this.groupBox2.Controls.Add(this.tilesCheckeredGraySelect);
             this.groupBox2.Controls.Add(this.pictureBox37);
             this.groupBox2.Controls.Add(this.grayBrickSelect);
             this.groupBox2.Controls.Add(this.dirtSelect);
@@ -139,23 +139,25 @@ namespace Test_Loopguy
             this.pictureBox34.TabIndex = 6;
             this.pictureBox34.TabStop = false;
             // 
-            // pictureBox35
+            // tilesCheckeredBrownSelect
             // 
-            this.pictureBox35.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox35.Image")));
-            this.pictureBox35.Location = new System.Drawing.Point(75, 96);
-            this.pictureBox35.Name = "pictureBox35";
-            this.pictureBox35.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox35.TabIndex = 5;
-            this.pictureBox35.TabStop = false;
+            this.tilesCheckeredBrownSelect.Image = ((System.Drawing.Image)(resources.GetObject("tilesCheckeredBrownSelect.Image")));
+            this.tilesCheckeredBrownSelect.Location = new System.Drawing.Point(75, 96);
+            this.tilesCheckeredBrownSelect.Name = "tilesCheckeredBrownSelect";
+            this.tilesCheckeredBrownSelect.Size = new System.Drawing.Size(64, 64);
+            this.tilesCheckeredBrownSelect.TabIndex = 5;
+            this.tilesCheckeredBrownSelect.TabStop = false;
+            this.tilesCheckeredBrownSelect.Click += new System.EventHandler(this.tilesCheckeredBrownSelect_Click);
             // 
-            // pictureBox36
+            // tilesCheckeredGraySelect
             // 
-            this.pictureBox36.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox36.Image")));
-            this.pictureBox36.Location = new System.Drawing.Point(6, 96);
-            this.pictureBox36.Name = "pictureBox36";
-            this.pictureBox36.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox36.TabIndex = 4;
-            this.pictureBox36.TabStop = false;
+            this.tilesCheckeredGraySelect.Image = ((System.Drawing.Image)(resources.GetObject("tilesCheckeredGraySelect.Image")));
+            this.tilesCheckeredGraySelect.Location = new System.Drawing.Point(6, 96);
+            this.tilesCheckeredGraySelect.Name = "tilesCheckeredGraySelect";
+            this.tilesCheckeredGraySelect.Size = new System.Drawing.Size(64, 64);
+            this.tilesCheckeredGraySelect.TabIndex = 4;
+            this.tilesCheckeredGraySelect.TabStop = false;
+            this.tilesCheckeredGraySelect.Click += new System.EventHandler(this.tilesCheckeredGraySelect_Click);
             // 
             // pictureBox37
             // 
@@ -539,8 +541,8 @@ namespace Test_Loopguy
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox35)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tilesCheckeredBrownSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tilesCheckeredGraySelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox37)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grayBrickSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dirtSelect)).EndInit();
@@ -576,8 +578,8 @@ namespace Test_Loopguy
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox pictureBox33;
         private System.Windows.Forms.PictureBox pictureBox34;
-        private System.Windows.Forms.PictureBox pictureBox35;
-        private System.Windows.Forms.PictureBox pictureBox36;
+        private System.Windows.Forms.PictureBox tilesCheckeredBrownSelect;
+        private System.Windows.Forms.PictureBox tilesCheckeredGraySelect;
         private System.Windows.Forms.PictureBox pictureBox37;
         private System.Windows.Forms.PictureBox grayBrickSelect;
         private System.Windows.Forms.PictureBox dirtSelect;

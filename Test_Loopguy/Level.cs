@@ -148,6 +148,12 @@ namespace Test_Loopguy
                     case TileSelection.GrayBrick:
                         tiles[coordinates.X, coordinates.Y] = new BrickWall(gameLocation);
                         break;
+                    case TileSelection.TilesCheckeredGray:
+                        tiles[coordinates.X, coordinates.Y] = new CheckeredTileGray(gameLocation);
+                        break;
+                    case TileSelection.TilesCheckeredBrown:
+                        tiles[coordinates.X, coordinates.Y] = new CheckeredTileBrown(gameLocation);
+                        break;
                 }
             }
             
