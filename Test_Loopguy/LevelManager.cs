@@ -11,6 +11,7 @@ namespace Test_Loopguy
     {
         private static Level currentLevel;
         private static int queuedLevel;
+        private static List<Level> loadedLevels = new List<Level>();
         public static List<Entrance> gates = new List<Entrance>();
         private static double loadTimer = 80;
         public static bool loadStarted = false;
@@ -33,7 +34,7 @@ namespace Test_Loopguy
             loadTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
             if(loadTimer < 0)
             {
-                LoadLevel(queuedLevel);
+                TryLoad(queuedLevel);
                 player.position = target;
                 loadStarted = false;
             }
@@ -66,6 +67,21 @@ namespace Test_Loopguy
             return currentLevel.GetBounds();
         }
 
+        public static void TryLoad(int id)
+        {
+            foreach (Level l in loadedLevels)
+            {
+                if(l.id == id)
+                {
+                    currentLevel = l;
+                    return;
+                }
+            }
+
+            currentLevel = LoadLevel(id);
+
+        }
+
         public static Level LoadLevel(int id)
         {
 
@@ -73,6 +89,7 @@ namespace Test_Loopguy
             Level level = new Level(id, BoundsLoad(id), ObjectLoad(id), TileLoad(id));
             //obviously shouldn't return null when done
 
+            loadedLevels.Add(level);
             currentLevel = level;
             return level;
         }
