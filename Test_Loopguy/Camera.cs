@@ -12,6 +12,9 @@ namespace Test_Loopguy
         public Vector2 oldNewPos;
         private Viewport view;
 
+        public bool xClamped;
+        public bool yClamped;
+
         public float speedFactor;
 
         public bool stabilize;
@@ -69,8 +72,28 @@ namespace Test_Loopguy
             //transform = Matrix.CreateTranslation(-position.X + Game1.windowX / 2, -position.Y + Game1.windowY / 2, 0);
 
             //OBS This clamping stuff messes up calculating the mouse postition in Game1 very badly. How to fix???
+            if(clampedPosition.X == MathHelper.Clamp(-position.X + Game1.windowX / 2, -LevelManager.GetBounds().Width, 0))
+            {
+                xClamped = true;
+            }
+            else
+            {
+                xClamped = false;
+            }
+
+            if (clampedPosition.Y == MathHelper.Clamp(-position.Y + Game1.windowX / 2, -LevelManager.GetBounds().Height, 0))
+            {
+                yClamped = true;
+            }
+            else
+            {
+                yClamped = false;
+            }
+
             clampedPosition.X = MathHelper.Clamp(-position.X + Game1.windowX / 2, -LevelManager.GetBounds().Width, 0);
             clampedPosition.Y = MathHelper.Clamp(-position.Y + Game1.windowY / 2, -LevelManager.GetBounds().Height, 0);
+
+            
 
             transform = Matrix.CreateTranslation(clampedPosition.X, clampedPosition.Y, 0);
 
