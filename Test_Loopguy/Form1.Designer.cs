@@ -31,8 +31,8 @@ namespace Test_Loopguy
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.pictureBox33 = new System.Windows.Forms.PictureBox();
-            this.pictureBox34 = new System.Windows.Forms.PictureBox();
+            this.tileBigDarkSelect = new System.Windows.Forms.PictureBox();
+            this.tileBigLightSelect = new System.Windows.Forms.PictureBox();
             this.tilesCheckeredBrownSelect = new System.Windows.Forms.PictureBox();
             this.tilesCheckeredGraySelect = new System.Windows.Forms.PictureBox();
             this.pictureBox37 = new System.Windows.Forms.PictureBox();
@@ -73,8 +73,8 @@ namespace Test_Loopguy
             this.label5 = new System.Windows.Forms.Label();
             this.saveMapSize = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tileBigDarkSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tileBigLightSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tilesCheckeredBrownSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tilesCheckeredGraySelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox37)).BeginInit();
@@ -106,8 +106,8 @@ namespace Test_Loopguy
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.pictureBox33);
-            this.groupBox2.Controls.Add(this.pictureBox34);
+            this.groupBox2.Controls.Add(this.tileBigDarkSelect);
+            this.groupBox2.Controls.Add(this.tileBigLightSelect);
             this.groupBox2.Controls.Add(this.tilesCheckeredBrownSelect);
             this.groupBox2.Controls.Add(this.tilesCheckeredGraySelect);
             this.groupBox2.Controls.Add(this.pictureBox37);
@@ -121,23 +121,25 @@ namespace Test_Loopguy
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tiles";
             // 
-            // pictureBox33
+            // tileBigDarkSelect
             // 
-            this.pictureBox33.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox33.Image")));
-            this.pictureBox33.Location = new System.Drawing.Point(216, 96);
-            this.pictureBox33.Name = "pictureBox33";
-            this.pictureBox33.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox33.TabIndex = 7;
-            this.pictureBox33.TabStop = false;
+            this.tileBigDarkSelect.Image = ((System.Drawing.Image)(resources.GetObject("tileBigDarkSelect.Image")));
+            this.tileBigDarkSelect.Location = new System.Drawing.Point(216, 96);
+            this.tileBigDarkSelect.Name = "tileBigDarkSelect";
+            this.tileBigDarkSelect.Size = new System.Drawing.Size(64, 64);
+            this.tileBigDarkSelect.TabIndex = 7;
+            this.tileBigDarkSelect.TabStop = false;
+            this.tileBigDarkSelect.Click += new System.EventHandler(this.tileBigDarkSelect_Click);
             // 
-            // pictureBox34
+            // tileBigLightSelect
             // 
-            this.pictureBox34.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox34.Image")));
-            this.pictureBox34.Location = new System.Drawing.Point(146, 96);
-            this.pictureBox34.Name = "pictureBox34";
-            this.pictureBox34.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox34.TabIndex = 6;
-            this.pictureBox34.TabStop = false;
+            this.tileBigLightSelect.Image = ((System.Drawing.Image)(resources.GetObject("tileBigLightSelect.Image")));
+            this.tileBigLightSelect.Location = new System.Drawing.Point(146, 96);
+            this.tileBigLightSelect.Name = "tileBigLightSelect";
+            this.tileBigLightSelect.Size = new System.Drawing.Size(64, 64);
+            this.tileBigLightSelect.TabIndex = 6;
+            this.tileBigLightSelect.TabStop = false;
+            this.tileBigLightSelect.Click += new System.EventHandler(this.tileBigLightSelect_Click);
             // 
             // tilesCheckeredBrownSelect
             // 
@@ -539,8 +541,8 @@ namespace Test_Loopguy
             this.Name = "Form1";
             this.Text = "Form1";
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tileBigDarkSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tileBigLightSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tilesCheckeredBrownSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tilesCheckeredGraySelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox37)).EndInit();
@@ -576,8 +578,8 @@ namespace Test_Loopguy
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.PictureBox pictureBox33;
-        private System.Windows.Forms.PictureBox pictureBox34;
+        private System.Windows.Forms.PictureBox tileBigDarkSelect;
+        private System.Windows.Forms.PictureBox tileBigLightSelect;
         private System.Windows.Forms.PictureBox tilesCheckeredBrownSelect;
         private System.Windows.Forms.PictureBox tilesCheckeredGraySelect;
         private System.Windows.Forms.PictureBox pictureBox37;

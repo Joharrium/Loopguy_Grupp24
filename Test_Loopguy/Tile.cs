@@ -73,6 +73,34 @@ namespace Test_Loopguy
         }
     }
 
+    public class TileBigLight : Floor
+    {
+        int variation;
+        public TileBigLight(Vector2 position) : base(position)
+        {
+            this.position = position;
+
+            texture = TexMGR.tiles_big_light;
+            variation = Game1.rnd.Next(2);
+
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
+        }
+    }
+
+    public class TileBigDark : Floor
+    {
+        int variation;
+        public TileBigDark(Vector2 position) : base(position)
+        {
+            this.position = position;
+
+            texture = TexMGR.tiles_big_dark;
+            variation = Game1.rnd.Next(2);
+
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
+        }
+    }
+
     public class CheckeredTileGray : Floor
     {
         int variation;

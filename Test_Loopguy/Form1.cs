@@ -109,5 +109,17 @@ namespace Test_Loopguy
             LevelEditor.currentSelection = Selection.Tile;
             LevelEditor.selectedTile = TileSelection.TilesCheckeredBrown;
         }
+
+        private void tileBigLightSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.currentSelection = Selection.Tile;
+            LevelEditor.selectedTile = TileSelection.TilesBigLight;
+        }
+
+        private void tileBigDarkSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.currentSelection = Selection.Tile;
+            LevelEditor.selectedTile = TileSelection.TilesBigDark;
+        }
     }
 }

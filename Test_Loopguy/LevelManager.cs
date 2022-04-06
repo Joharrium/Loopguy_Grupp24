@@ -138,6 +138,14 @@ namespace Test_Loopguy
                     {
                         tiles[i, j] = new CheckeredTileBrown(tempPos);
                     }
+                    if (terrainStrings[j][i] == 'c')
+                    {
+                        tiles[i, j] = new TileBigDark(tempPos);
+                    }
+                    if (terrainStrings[j][i] == 'e')
+                    {
+                        tiles[i, j] = new TileBigLight(tempPos);
+                    }
                 }
             }
 
@@ -275,6 +283,14 @@ namespace Test_Loopguy
                     if (currentLevel.tiles[j, i] is CheckeredTileBrown)
                     {
                         types[j, i] = 'b';
+                    }
+                    if (currentLevel.tiles[j, i] is TileBigDark)
+                    {
+                        types[j, i] = 'c';
+                    }
+                    if (currentLevel.tiles[j, i] is TileBigLight)
+                    {
+                        types[j, i] = 'e';
                     }
                 }
             }
