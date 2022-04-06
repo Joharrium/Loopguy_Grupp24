@@ -63,6 +63,12 @@ namespace Test_Loopguy
             return cameraBounds;
         }
 
+        public void SetBounds(int x, int y)
+        {
+            cameraBounds.Width = x;
+            cameraBounds.Height = y;
+        }
+
         public bool WallCollision(Vector2 check)
         {
             foreach (Tile w in tiles)

@@ -73,8 +73,9 @@ namespace Test_Loopguy
 
             //OBS This clamping stuff messes up calculating the mouse postition in Game1 very badly. How to fix???
 
-            if (position.X < Game1.windowX/2 || position.X > LevelManager.GetBounds().Width)
+            if (position.X < Game1.windowX/2 || position.X > LevelManager.GetBounds().Width * 1 + Game1.windowX/2)
             {
+                int debug1111 = LevelManager.GetBounds().Width;
                 xClamped = true;
             }
             else
@@ -82,7 +83,7 @@ namespace Test_Loopguy
                 xClamped = false;
             }
 
-            if (position.Y < Game1.windowY/2 || position.Y > LevelManager.GetBounds().Height)
+            if (position.Y < Game1.windowY/2 || position.Y > LevelManager.GetBounds().Height * 1 + Game1.windowY/2)
             {
                 yClamped = true;
             }

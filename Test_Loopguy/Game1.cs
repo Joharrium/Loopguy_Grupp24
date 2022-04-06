@@ -116,9 +116,18 @@ namespace Test_Loopguy
             {
                 cameraTopLeft.Y = camera.position.Y - windowY/2;
             }
+            else if (cameraTopLeft.Y != 0)
+            {
+                cameraTopLeft.Y *= -1;
+            }
+
             if (!camera.xClamped)
             {
                 cameraTopLeft.X = camera.position.X - windowX/2;
+            }
+            else if(cameraTopLeft.X != 0)
+            {
+                cameraTopLeft.X *= -1;
             }
 
             mousePos = new Vector2(cameraTopLeft.X + windowMousePos.X, cameraTopLeft.Y + windowMousePos.Y);

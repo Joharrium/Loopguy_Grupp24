@@ -121,5 +121,10 @@ namespace Test_Loopguy
             LevelEditor.currentSelection = Selection.Tile;
             LevelEditor.selectedTile = TileSelection.TilesBigDark;
         }
+
+        private void setCameraSize_Click(object sender, EventArgs e)
+        {
+            LevelManager.SetBounds(Int32.Parse(cameraX.Text), Int32.Parse(cameraY.Text));
+        }
     }
 }
