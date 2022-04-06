@@ -74,6 +74,13 @@
 /processorParam:TextureFormat=Color
 /build:gfx/characters/placeholder so git finds the folder.PNG
 
+#begin gfx/fonts/menuFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:gfx/fonts/menuFont.spritefont
+
 #begin gfx/interface/editor_icons/dirt_small.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -97,6 +104,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/interface/editor_icons/grass_small.png
+
+#begin gfx/interface/menu_items/selectedMenuBox.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/interface/menu_items/selectedMenuBox.png
 
 #begin gfx/interface/placeholder so git finds the folder.PNG
 /importer:TextureImporter
@@ -385,18 +404,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:notex.png
-
-#begin pinkPixel.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:pinkPixel.png
 
 #begin pinkPixel.png
 /importer:TextureImporter
