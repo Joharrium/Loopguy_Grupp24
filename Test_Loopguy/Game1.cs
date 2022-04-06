@@ -28,7 +28,7 @@ namespace Test_Loopguy
         public static Rectangle screenRect;
         public static int windowX, windowY, windowScale;
 
-        bool editLevel = true;
+        public static bool editLevel = true;
 
         string infoString;
 
@@ -51,6 +51,8 @@ namespace Test_Loopguy
 
             TexMGR.LoadTextures(Content);
             smallFont = Content.Load<SpriteFont>("smallFont");
+
+            InputReader.editMode = editLevel;
 
             //Resolution and window stuff
             windowX = 480;
@@ -97,7 +99,10 @@ namespace Test_Loopguy
             else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.PageDown) && windowScale >= 2)
                 ScaleWindow(-1);
             else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.F1))
+            {
                 editLevel = !editLevel;
+                InputReader.editMode = editLevel;
+            }
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             InputReader.Update();
