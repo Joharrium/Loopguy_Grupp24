@@ -8,6 +8,7 @@ namespace Test_Loopguy
     {
         private Matrix transform;
         public Vector2 position;
+        public Vector2 clampedPosition;
         public Vector2 oldNewPos;
         private Viewport view;
 
@@ -65,9 +66,13 @@ namespace Test_Loopguy
             //casting position float to int fixes weird moving of background in relation to player sprite,
             //but causes player to shake when runnin :( 
 
-            transform = Matrix.CreateTranslation(-position.X + Game1.windowX / 2, -position.Y + Game1.windowY / 2, 0);
+            //transform = Matrix.CreateTranslation(-position.X + Game1.windowX / 2, -position.Y + Game1.windowY / 2, 0);
 
             //OBS This clamping stuff messes up calculating the mouse postition in Game1 very badly. How to fix???
+            clampedPosition.X = MathHelper.Clamp(-position.X + Game1.windowX / 2, -LevelManager.GetBounds().Width, 0);
+            clampedPosition.Y = MathHelper.Clamp(-position.Y + Game1.windowY / 2, -LevelManager.GetBounds().Height, 0);
+
+            transform = Matrix.CreateTranslation(clampedPosition.X, clampedPosition.Y, 0);
 
             //transform = Matrix.CreateTranslation(MathHelper.Clamp(-position.X + Game1.windowX / 2, -LevelManager.GetBounds().Width, 0), MathHelper.Clamp(-position.Y + Game1.windowY / 2, -LevelManager.GetBounds().Height, 0), 0);
 

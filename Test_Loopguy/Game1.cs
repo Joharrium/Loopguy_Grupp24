@@ -111,7 +111,7 @@ namespace Test_Loopguy
 
             //Gets mouse position from window and camera position
             Vector2 windowMousePos = new Vector2(InputReader.mouseState.X / windowScale, InputReader.mouseState.Y / windowScale);
-            Vector2 cameraTopLeft = new Vector2(camera.position.X - windowX / 2, camera.position.Y - windowY / 2);
+            Vector2 cameraTopLeft = new Vector2(camera.clampedPosition.X, camera.clampedPosition.Y);
             mousePos = new Vector2(cameraTopLeft.X + windowMousePos.X, cameraTopLeft.Y + windowMousePos.Y);
 
             //Get angles between player and stuff
