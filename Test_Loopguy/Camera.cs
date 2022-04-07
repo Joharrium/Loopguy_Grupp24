@@ -11,6 +11,9 @@ namespace Test_Loopguy
 
         public float speedFactor;
 
+        public bool xClamped;
+        public bool yClamped;
+
         public Matrix Transform
         {
             get { return transform; }
