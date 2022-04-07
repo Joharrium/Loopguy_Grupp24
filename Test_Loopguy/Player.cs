@@ -173,7 +173,7 @@ namespace Test_Loopguy
 
         public void Dash(float deltaTime)
         {
-            for
+
         }
 
         public override void Movement(float deltaTime)
