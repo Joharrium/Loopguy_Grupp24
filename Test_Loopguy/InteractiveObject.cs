@@ -9,6 +9,8 @@ namespace Test_Loopguy
     public class Destructible : LevelObject
     {
         protected int health;
+        //for objects that would leave something behind e.g. a tree would leave a stump behind.
+        protected LevelObject spawnObject;
         internal AnimSprite animation;
         internal bool destroyed = false;
         internal bool actuallyDestroyed = false;
@@ -32,8 +34,9 @@ namespace Test_Loopguy
                 hitBox.X = -100000;
                 destroyed = true;
                 animation.PlayOnce(0, 200, 70);
-                if(animation.currentFrame.X > 5)
+                if(animation.currentFrame.X > 10)
                 {
+                    
                     animation.Position = new Vector2(-10000, -10000);
                     actuallyDestroyed = true;
                 }
