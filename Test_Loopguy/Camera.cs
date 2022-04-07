@@ -8,11 +8,16 @@ namespace Test_Loopguy
     {
         private Matrix transform;
         public Vector2 position;
-
-        public float speedFactor;
+        public Vector2 clampedPosition;
+        public Vector2 oldNewPos;
+        private Viewport view;
 
         public bool xClamped;
         public bool yClamped;
+
+        public float speedFactor;
+
+        public bool stabilize;
 
         public Matrix Transform
         {
