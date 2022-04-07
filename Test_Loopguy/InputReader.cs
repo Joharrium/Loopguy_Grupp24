@@ -12,7 +12,8 @@ static class InputReader
 	public static MouseState mouseState, oldMouseState = Mouse.GetState();
 	public static GamePadState padState, oldPadState = GamePad.GetState(PlayerIndex.One);
 
-	
+	public static bool editMode;
+
 	public static bool KeyPressed(Keys key)
 	{
 		return keyState.IsKeyDown(key) && oldKeyState.IsKeyUp(key);
@@ -49,7 +50,10 @@ static class InputReader
 	
 	public static bool Melee()
     {
-		return LeftClick() || KeyPressed(Keys.RightControl) ||ButtonPressed(Buttons.X);
+		if (editMode)
+			return false;
+		else
+			return LeftClick() || KeyPressed(Keys.RightControl) || ButtonPressed(Buttons.X);
     }
 	public static bool Aim()
     {

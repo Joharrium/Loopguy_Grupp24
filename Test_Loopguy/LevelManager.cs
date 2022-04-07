@@ -67,6 +67,11 @@ namespace Test_Loopguy
             return currentLevel.GetBounds();
         }
 
+        public static void SetBounds(int x, int y)
+        {
+            currentLevel.SetBounds(x, y);
+        }
+
         public static void TryLoad(int id)
         {
             foreach (Level l in loadedLevels)
