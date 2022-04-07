@@ -64,7 +64,7 @@ namespace Test_Loopguy
 
             LevelManager.LoadLevel(1);
 
-            camera = new Camera(GraphicsDevice.Viewport);
+            camera = new Camera();
             camera.SetPosition(new Vector2(200, 200));
 
             player = new Player(new Vector2(96, 96));

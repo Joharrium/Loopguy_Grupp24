@@ -9,7 +9,6 @@ namespace Test_Loopguy
         private Matrix transform;
         public Vector2 position;
         public Vector2 oldNewPos;
-        private Viewport view;
 
         public float speedFactor;
 
@@ -20,10 +19,8 @@ namespace Test_Loopguy
             get { return transform; }
         }
 
-        public Camera(Viewport view)
+        public Camera()
         {
-            this.view = view;
-
             speedFactor = 5;
         }
 
