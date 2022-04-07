@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Test_Loopguy
@@ -12,7 +12,8 @@ namespace Test_Loopguy
         // object files
         public static Texture2D boxOpen, barrel, pot, shrub_big, shrub_small, tree_big, tree_small;
         // ui files
-        public static Texture2D UI_dirt, UI_grass, UI_graybrick, black_screen;
+        public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen;
+        public static SpriteFont UI_menuFont;
 
         public static void LoadTextures(ContentManager c)
         {
@@ -61,6 +62,8 @@ namespace Test_Loopguy
         {
             UI_grass = c.Load<Texture2D>("gfx/interface/editor_icons/grass_small");
             UI_dirt = c.Load<Texture2D>("gfx/interface/editor_icons/dirt_small");
+            UI_selectedMenuBox = c.Load<Texture2D>("gfx/interface/menu_items/selectedMenuBox");
+            UI_menuFont = c.Load<SpriteFont>("gfx/fonts/menuFont");
             UI_graybrick = c.Load<Texture2D>("gfx/interface/editor_icons/graybrick_small");
             black_screen = c.Load<Texture2D>("gfx/interface/black_screenlol");
         }

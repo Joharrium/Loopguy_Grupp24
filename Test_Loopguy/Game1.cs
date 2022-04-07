@@ -50,6 +50,7 @@ namespace Test_Loopguy
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             TexMGR.LoadTextures(Content);
+            MenuManager.LoadMenuButtons();
             smallFont = Content.Load<SpriteFont>("smallFont");
 
             //Resolution and window stuff
@@ -150,6 +151,8 @@ namespace Test_Loopguy
                 LevelEditor.Update(gameTime);
             }
 
+            StateManager.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -167,6 +170,8 @@ namespace Test_Loopguy
             {
                 LevelEditor.Draw(spriteBatch);
             }
+
+            StateManager.Draw(spriteBatch); //Flytta denna samt kör allt via StateManager
 
             player.Draw(spriteBatch);
 
