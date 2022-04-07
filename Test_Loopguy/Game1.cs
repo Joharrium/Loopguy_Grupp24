@@ -28,7 +28,7 @@ namespace Test_Loopguy
         public static Rectangle screenRect;
         public static int windowX, windowY, windowScale;
 
-        bool editLevel = false;
+        bool editLevel = true;
 
         string infoString;
 
@@ -105,6 +105,7 @@ namespace Test_Loopguy
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             InputReader.Update();
+            Fadeout.Update(gameTime);
 
             //Update player position
             //player.Update(gameTime);
@@ -114,7 +115,16 @@ namespace Test_Loopguy
 
             //Gets mouse position from window and camera position
             Vector2 windowMousePos = new Vector2(InputReader.mouseState.X / windowScale, InputReader.mouseState.Y / windowScale);
-            Vector2 cameraTopLeft = new Vector2(camera.position.X - windowX / 2, camera.position.Y - windowY / 2);
+            Vector2 cameraTopLeft = new Vector2(camera.clampedPosition.X, camera.clampedPosition.Y);
+            if(!camera.yClamped)
+            {
+                cameraTopLeft.Y = camera.position.Y - windowY/2;
+            }
+            if (!camera.xClamped)
+            {
+                cameraTopLeft.X = camera.position.X - windowX/2;
+            }
+
             mousePos = new Vector2(cameraTopLeft.X + windowMousePos.X, cameraTopLeft.Y + windowMousePos.Y);
 
             //Get angles between player and stuff
@@ -174,7 +184,10 @@ namespace Test_Loopguy
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             
             spriteBatch.Draw(renderTarget, screenRect, Color.White);
+            Fadeout.Draw(spriteBatch);
             spriteBatch.DrawString(smallFont, infoString, Vector2.Zero, Color.White);
+            spriteBatch.DrawString(smallFont, camera.xClamped.ToString(), new Vector2(0, 80), Color.White);
+            spriteBatch.DrawString(smallFont, camera.yClamped.ToString(), new Vector2(0, 92), Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);

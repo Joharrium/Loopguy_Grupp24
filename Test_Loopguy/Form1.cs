@@ -51,6 +51,12 @@ namespace Test_Loopguy
             LevelEditor.currentSelection = Selection.Tile;
         }
 
+        private void grayBrickSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.selectedTile = TileSelection.GrayBrick;
+            LevelEditor.currentSelection = Selection.Tile;
+        }
+
         private void boxSelect_Click(object sender, EventArgs e)
         {
             LevelEditor.selectedObject = ObjectSelection.Box;
@@ -82,7 +88,7 @@ namespace Test_Loopguy
             //for each object in list, write a line bla bla bla
             //for each tile in array, write a char bla bla bla
             //save to maps/levelID/ bla bla bla
-            //LevelEditor.SaveLevelToFile(id, LevelManager.ExportObjectList(id));
+            LevelEditor.SaveLevelToFile(id, LevelManager.ExportObjectList(id), LevelManager.ExportTileList(id));
         }
 
         private void saveMapSize_Click(object sender, EventArgs e)
@@ -90,6 +96,30 @@ namespace Test_Loopguy
             int x = Int32.Parse(mapWidth.Text);
             int y = Int32.Parse(mapHeight.Text);
             LevelManager.SetMapSize(x, y);
+        }
+
+        private void tilesCheckeredGraySelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.currentSelection = Selection.Tile;
+            LevelEditor.selectedTile = TileSelection.TilesCheckeredGray;
+        }
+
+        private void tilesCheckeredBrownSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.currentSelection = Selection.Tile;
+            LevelEditor.selectedTile = TileSelection.TilesCheckeredBrown;
+        }
+
+        private void tileBigLightSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.currentSelection = Selection.Tile;
+            LevelEditor.selectedTile = TileSelection.TilesBigLight;
+        }
+
+        private void tileBigDarkSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.currentSelection = Selection.Tile;
+            LevelEditor.selectedTile = TileSelection.TilesBigDark;
         }
     }
 }

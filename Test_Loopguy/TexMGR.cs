@@ -1,17 +1,18 @@
-﻿using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Test_Loopguy
 {
     static class TexMGR
     {
-        public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, gunSheet, testTile, testAlt, box, pinkPixel, checkers;
+        public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, gunSheet, testTile, testAlt, box, checkers;
+        public static Texture2D meleeFx;
         // terrain files
-        public static Texture2D grassBasic, grassAlt, grayBrickWall, dirt;
+        public static Texture2D grassBasic, grassAlt, grayBrickWall, dirt, tiles_checkered_gray, tiles_checkered_brown, tiles_big_light, tiles_big_dark;
         // object files
         public static Texture2D boxOpen, barrel, pot, shrub_big, shrub_small, tree_big, tree_small;
         // ui files
-        public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox;
+        public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen;
         public static SpriteFont UI_menuFont;
 
         public static void LoadTextures(ContentManager c)
@@ -21,7 +22,6 @@ namespace Test_Loopguy
             LoadUI(c);
 
             notex = c.Load<Texture2D>("notex");
-            pinkPixel = c.Load<Texture2D>("pinkPixel");
             checkers = c.Load<Texture2D>("checkers");
             playerSheet = c.Load<Texture2D>("Loopy3");
             gunSheet = c.Load<Texture2D>("guns");
@@ -31,6 +31,7 @@ namespace Test_Loopguy
             cyanPixel = c.Load<Texture2D>("cyanPixel");
             testTile = c.Load<Texture2D>("testtile");
             testAlt = c.Load<Texture2D>("testtilealt");
+            meleeFx = c.Load<Texture2D>("meleefx");
         }
 
         private static void LoadTerrain(ContentManager c)
@@ -39,6 +40,10 @@ namespace Test_Loopguy
             grassBasic = c.Load<Texture2D>("gfx/terrain/grass_basic");
             grassAlt = c.Load<Texture2D>("gfx/terrain/grass_variation");
             grayBrickWall = c.Load<Texture2D>("gfx/terrain/wall_small");
+            tiles_checkered_brown = c.Load<Texture2D>("gfx/terrain/tiles_checkered_brown");
+            tiles_checkered_gray = c.Load<Texture2D>("gfx/terrain/tiles_checkered_gray");
+            tiles_big_light = c.Load<Texture2D>("gfx/terrain/tiles_big_light");
+            tiles_big_dark = c.Load<Texture2D>("gfx/terrain/tiles_big_dark");
         }
 
         private static void LoadObjects(ContentManager c)
@@ -58,9 +63,9 @@ namespace Test_Loopguy
             UI_grass = c.Load<Texture2D>("gfx/interface/editor_icons/grass_small");
             UI_dirt = c.Load<Texture2D>("gfx/interface/editor_icons/dirt_small");
             UI_selectedMenuBox = c.Load<Texture2D>("gfx/interface/menu_items/selectedMenuBox");
-
-
             UI_menuFont = c.Load<SpriteFont>("gfx/fonts/menuFont");
+            UI_graybrick = c.Load<Texture2D>("gfx/interface/editor_icons/graybrick_small");
+            black_screen = c.Load<Texture2D>("gfx/interface/black_screenlol");
         }
     }
 }

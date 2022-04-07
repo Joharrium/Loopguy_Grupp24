@@ -9,7 +9,7 @@ namespace Test_Loopguy
 {
     public class Level
     {
-        int id;
+        public int id;
         Rectangle cameraBounds;
         public Tile[,] tiles;
         public List<LevelObject> levelObjects;
@@ -87,6 +87,20 @@ namespace Test_Loopguy
             //levelObjects = sortedList;
         }
 
+        public void RemoveObject(Vector2 pos)
+        {
+            LevelObject objectToRemove = null;
+            foreach(LevelObject lo in levelObjects)
+            {
+                if(lo.hitBox.Contains(pos))
+                {
+                    objectToRemove = lo;
+                    break;
+                }
+            }
+            levelObjects.Remove(objectToRemove);
+        }
+
         public void SetMapSize(int x, int y)
         {
             Tile[,] newMap = new Tile[x, y];
@@ -131,6 +145,21 @@ namespace Test_Loopguy
                     case TileSelection.Dirt:
                         tiles[coordinates.X, coordinates.Y] = new DirtTile(gameLocation);
                         break;
+                    case TileSelection.GrayBrick:
+                        tiles[coordinates.X, coordinates.Y] = new BrickWall(gameLocation);
+                        break;
+                    case TileSelection.TilesCheckeredGray:
+                        tiles[coordinates.X, coordinates.Y] = new CheckeredTileGray(gameLocation);
+                        break;
+                    case TileSelection.TilesCheckeredBrown:
+                        tiles[coordinates.X, coordinates.Y] = new CheckeredTileBrown(gameLocation);
+                        break;
+                    case TileSelection.TilesBigLight:
+                        tiles[coordinates.X, coordinates.Y] = new TileBigLight(gameLocation);
+                        break;
+                    case TileSelection.TilesBigDark:
+                        tiles[coordinates.X, coordinates.Y] = new TileBigDark(gameLocation);
+                        break;
                 }
             }
             
@@ -165,8 +194,28 @@ namespace Test_Loopguy
     public class Entrance
     {
         int id;
-        Vector2 position;
-        int idFrom;
-        int idTo;
+        int level1;
+        int level2;
+        Rectangle hitbox;
+        Vector2 target;
+        public Entrance(int id, int lvl1, int lvl2, Rectangle gate, Vector2 target)
+        {
+            this.id = id;
+            level1 = lvl1;
+            level2 = lvl2;
+            hitbox = gate;
+            this.target = target;
+        }
+
+        internal void CheckGate(Player player)
+        {
+            if(hitbox.Contains(player.centerPosition) && LevelManager.GetCurrentId() == level1 && LevelManager.loadStarted == false)
+            {
+                
+                Fadeout.LevelTransitionFade();
+                LevelManager.StartLevelTransition(level2, player, target);
+                
+            }
+        }
     }
 }

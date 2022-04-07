@@ -17,7 +17,7 @@ namespace Test_Loopguy
     }
     public enum TileSelection
     {
-        Grass, Dirt
+        Grass, Dirt, GrayBrick, TilesCheckeredGray, TilesCheckeredBrown, TilesBigDark, TilesBigLight
     }
     static public class LevelEditor
     {
@@ -31,7 +31,7 @@ namespace Test_Loopguy
         {
             if(InputReader.RightClick())
             {
-                //remove object
+                LevelManager.ObjectRemove(Game1.mousePos);
             }
 
             if(InputReader.mouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && currentSelection == Selection.Tile)
@@ -148,7 +148,7 @@ namespace Test_Loopguy
                         break;
 
                     default:
-
+                        spriteBatch.Draw(TexMGR.UI_graybrick, Game1.mousePos, Color.White);
                         break;
                 }
             }
@@ -224,16 +224,21 @@ namespace Test_Loopguy
         
         */
 
-        public static void SaveLevelToFile(int id, List<string> objects, Tile[,] tiles)
+        public static void SaveLevelToFile(int id, List<string> objects, List<string> tiles)
         {
             string path = string.Format(@"maps\level{0}\", id);
 
             System.IO.Directory.CreateDirectory(string.Format(@"maps\level{0}\", id));
 
-            File.WriteAllLines(path + "bounds.txt", objects);
+            List<string> bounds = new List<string>();
+            bounds.Add(LevelManager.GetBounds().Width + "," + LevelManager.GetBounds().Height);
+
+            File.WriteAllLines(path + "bounds.txt", bounds);
             File.WriteAllLines(path + "objectmap.txt", objects);
-            File.WriteAllLines(path + "tilemap.txt", objects);
+            File.WriteAllLines(path + "tilemap.txt", tiles);
         }
+
+        
 
         private static List<LevelObject> ObjectLoad(int id)
         {
