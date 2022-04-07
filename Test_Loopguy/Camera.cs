@@ -24,9 +24,9 @@ namespace Test_Loopguy
             get { return transform; }
         }
 
-        public Camera(Viewport view)
+        public Camera()
         {
-            this.view = view;
+            
 
             speedFactor = 5;
         }
@@ -59,19 +59,15 @@ namespace Test_Loopguy
             //position.X = MathHelper.Clamp(-position.X + Game1.windowX / 2, -LevelManager.GetBounds().Width, 0);
             //position.Y = MathHelper.Clamp(-position.Y + Game1.windowY / 2, -LevelManager.GetBounds().Height, 0);
 
-            if (newPos == oldNewPos || stabilize)
-            {
-                position.X = (int)Math.Round(position.X);
-                position.Y = (int)Math.Round(position.Y);
-            }
-            //position.X = (int)Math.Round(position.X);
-            //position.Y = (int)Math.Round(position.Y);
+            position.X = (int)Math.Round(position.X);
+            position.Y = (int)Math.Round(position.Y);
             //casting position float to int fixes weird moving of background in relation to player sprite,
             //but causes player to shake when runnin :( 
 
-            //transform = Matrix.CreateTranslation(-position.X + Game1.windowX / 2, -position.Y + Game1.windowY / 2, 0);
+            transform = Matrix.CreateTranslation(-position.X + Game1.windowX / 2, -position.Y + Game1.windowY / 2, 0);
 
             //OBS This clamping stuff messes up calculating the mouse postition in Game1 very badly. How to fix???
+
 
             if (position.X < Game1.windowX/2 || position.X > LevelManager.GetBounds().Width * 1 + Game1.windowX/2)
             {
@@ -120,9 +116,8 @@ namespace Test_Loopguy
 
             transform = Matrix.CreateTranslation(clampedPosition.X, clampedPosition.Y, 0);
 
-            //transform = Matrix.CreateTranslation(MathHelper.Clamp(-position.X + Game1.windowX / 2, -LevelManager.GetBounds().Width, 0), MathHelper.Clamp(-position.Y + Game1.windowY / 2, -LevelManager.GetBounds().Height, 0), 0);
 
-            oldNewPos = newPos;
+            //transform = Matrix.CreateTranslation(MathHelper.Clamp(-position.X + Game1.windowX / 2, -LevelManager.GetBounds().Width, 0), MathHelper.Clamp(-position.Y + Game1.windowY / 2, -LevelManager.GetBounds().Height, 0), 0);
         }
     }
 }
