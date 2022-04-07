@@ -48,9 +48,6 @@ namespace Test_Loopguy
             base.Update(gameTime);
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            //Melee needs to be reworked, this is temporary
-            //Also animation is scuffed, lower frameTime in Melee method to observe
-            //Idfk why btw, AnimSprite class seems to work fine for walking animation
             if (attacking)
             {
                 Melee(deltaTime);

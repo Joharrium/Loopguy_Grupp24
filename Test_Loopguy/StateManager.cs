@@ -33,7 +33,9 @@ namespace Test_Loopguy
                 case GameState.InGame:
 
                     LevelManager.Update(gameTime);
-                    LevelEditor.Update(gameTime);
+
+                    if(Game1.editLevel)
+                        LevelEditor.Update(gameTime);
 
                     EntityManager.Update(gameTime);
                     CameraManager.Update(gameTime);
@@ -62,6 +64,10 @@ namespace Test_Loopguy
                 case GameState.InGame:
 
                     LevelManager.Draw(spriteBatch);
+
+                    if(Game1.editLevel)
+                        LevelEditor.Draw(spriteBatch);
+
                     EntityManager.Draw(spriteBatch);
 
                     break;
