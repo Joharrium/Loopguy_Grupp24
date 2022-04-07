@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -10,7 +10,6 @@ namespace Test_Loopguy
         public Vector2 position;
         public Vector2 clampedPosition;
         public Vector2 oldNewPos;
-        private Viewport view;
 
         public bool xClamped;
         public bool yClamped;
@@ -26,8 +25,6 @@ namespace Test_Loopguy
 
         public Camera()
         {
-            
-
             speedFactor = 5;
         }
 
