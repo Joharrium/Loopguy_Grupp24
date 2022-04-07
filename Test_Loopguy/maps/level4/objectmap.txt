@@ -1,3 +1,4 @@
+Box,56,56
 ShrubSmall,32,15
 ShrubSmall,190,50
 ShrubSmall,238,90

@@ -18,7 +18,7 @@ namespace Test_Loopguy
 
         public static Camera camera;
 
-        Player player;
+        //Player player;
 
         Texture2D blueArc, redPixel;
 
@@ -28,7 +28,7 @@ namespace Test_Loopguy
         public static Rectangle screenRect;
         public static int windowX, windowY, windowScale;
 
-        bool editLevel = true;
+        public static bool editLevel = true;
 
         string infoString;
 
@@ -50,7 +50,12 @@ namespace Test_Loopguy
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             TexMGR.LoadTextures(Content);
+            MenuManager.LoadMenuButtons();
+            EntityManager.PlayerInitialization();
+
             smallFont = Content.Load<SpriteFont>("smallFont");
+
+            InputReader.editMode = editLevel;
 
             //Resolution and window stuff
             windowX = 480;
@@ -67,11 +72,12 @@ namespace Test_Loopguy
             camera = new Camera();
             camera.SetPosition(new Vector2(200, 200));
 
-            player = new Player(new Vector2(96, 96));
+            //player = new Player(new Vector2(64, 64));
             //TileManager.Initialization();
             //WallManager.Initialization();
-            LevelManager.EntranceLoad();
 
+            
+            
 
             var frmNewForm = new Form1();
             var newThread = new System.Threading.Thread(frmNewFormThread);
@@ -97,26 +103,47 @@ namespace Test_Loopguy
             else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.PageDown) && windowScale >= 2)
                 ScaleWindow(-1);
             else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.F1))
+            {
                 editLevel = !editLevel;
+                InputReader.editMode = editLevel;
+            }
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             InputReader.Update();
             Fadeout.Update(gameTime);
 
             //Update player position
-            player.Update(gameTime);
-            LevelManager.Update(gameTime);
+            //player.Update(gameTime);
+            //LevelManager.Update(gameTime);
             //Update camera position
-            camera.SmoothPosition(player.cameraPosition, deltaTime);
+            camera.SmoothPosition(EntityManager.player.cameraPosition, deltaTime);
 
             //Gets mouse position from window and camera position
             Vector2 windowMousePos = new Vector2(InputReader.mouseState.X / windowScale, InputReader.mouseState.Y / windowScale);
-            Vector2 cameraTopLeft = new Vector2(camera.position.X - windowX / 2, camera.position.Y - windowY / 2);
+            Vector2 cameraTopLeft = new Vector2(camera.clampedPosition.X, camera.clampedPosition.Y);
+            if(!camera.yClamped)
+            {
+                cameraTopLeft.Y = camera.position.Y - windowY/2;
+            }
+            else if (cameraTopLeft.Y != 0)
+            {
+                cameraTopLeft.Y *= -1;
+            }
+
+            if (!camera.xClamped)
+            {
+                cameraTopLeft.X = camera.position.X - windowX/2;
+            }
+            else if(cameraTopLeft.X != 0)
+            {
+                cameraTopLeft.X *= -1;
+            }
+
             mousePos = new Vector2(cameraTopLeft.X + windowMousePos.X, cameraTopLeft.Y + windowMousePos.Y);
 
             //Get angles between player and stuff
-            double mouseAngle = Helper.GetAngle(player.centerPosition, mousePos, 0);
-            double targetAngle = Helper.GetAngle(player.centerPosition, Vector2.Zero , 0); //change zero vector to target
+            double mouseAngle = Helper.GetAngle(EntityManager.player.centerPosition, mousePos, 0);
+            double targetAngle = Helper.GetAngle(EntityManager.player.centerPosition, Vector2.Zero , 0); //change zero vector to target
 
             //Converts angles from radians double to more readable stuff
             double piRadM = mouseAngle / Math.PI;
@@ -128,18 +155,20 @@ namespace Test_Loopguy
             int degShortT = (int)MathHelper.ToDegrees((float)targetAngle);
 
             //Shows player position
-            Point playerPosRounded = new Point((int)Math.Round(player.position.X, 0), (int)Math.Round(player.position.Y, 0));
+            Point playerPosRounded = new Point((int)Math.Round(EntityManager.player.position.X, 0), (int)Math.Round(EntityManager.player.position.Y, 0));
 
             infoString = "Mouse Angle: " + piRadShortM.ToString() + "pi rad - " + degShortM.ToString() + " degrees \n"
                 + "Target Angle: " + piRadShortT.ToString() + "pi rad - " + degShortT.ToString() + " degrees \n"
                 + "Player position: " + playerPosRounded;
 
-            Window.Title = player.playerInfoString;
+            Window.Title = EntityManager.player.playerInfoString;
 
-            if (editLevel)
-            {
-                LevelEditor.Update(gameTime);
-            }
+            //if (editLevel)
+            //{
+            //    LevelEditor.Update(gameTime);
+            //}
+
+            StateManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -152,14 +181,16 @@ namespace Test_Loopguy
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, camera.Transform);
             //Draw game stuff here!
 
-            LevelManager.Draw(spriteBatch);
+            //LevelManager.Draw(spriteBatch);
 
-            if (editLevel)
-            {
-                LevelEditor.Draw(spriteBatch);
-            }
+            //if (editLevel)
+            //{
+            //    LevelEditor.Draw(spriteBatch);
+            //}
 
-            player.Draw(spriteBatch);
+            StateManager.Draw(spriteBatch); //Flytta denna samt kör allt via StateManager
+
+            //player.Draw(spriteBatch);
 
             spriteBatch.End();
 
@@ -169,6 +200,8 @@ namespace Test_Loopguy
             spriteBatch.Draw(renderTarget, screenRect, Color.White);
             Fadeout.Draw(spriteBatch);
             spriteBatch.DrawString(smallFont, infoString, Vector2.Zero, Color.White);
+            spriteBatch.DrawString(smallFont, camera.xClamped.ToString(), new Vector2(0, 80), Color.White);
+            spriteBatch.DrawString(smallFont, camera.yClamped.ToString(), new Vector2(0, 92), Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
