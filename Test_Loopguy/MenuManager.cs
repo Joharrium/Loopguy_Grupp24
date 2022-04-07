@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -91,7 +91,7 @@ namespace Test_Loopguy
 
         private static void QuitGameButton_Click(object sender, EventArgs e)
         {
-            
+            throw new NotImplementedException();
         }
 
         public static void Update(GameTime gameTime)

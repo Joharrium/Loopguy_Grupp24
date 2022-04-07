@@ -10,10 +10,42 @@ namespace Test_Loopguy
     static public class LevelManager
     {
         private static Level currentLevel;
+        private static int queuedLevel;
+        private static List<Level> loadedLevels = new List<Level>();
+        public static List<Entrance> gates = new List<Entrance>();
+        private static double loadTimer = 80;
+        public static bool loadStarted = false;
+        const double LOADTIMER = 80;
+
+        private static Player player;
+        private static Vector2 target;
 
         //have list of levels?
+        internal static void StartLevelTransition(int levelToLoad, Player player, Vector2 target)
+        {
+            loadTimer = LOADTIMER;
+            loadStarted = true;
+            queuedLevel = levelToLoad;
+            LevelManager.player = player;
+            LevelManager.target = target;
+        }
+        private static void LevelTransition(GameTime gameTime)
+        {
+            loadTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+            if(loadTimer < 0)
+            {
+                TryLoad(queuedLevel);
+                player.position = target;
+                loadStarted = false;
+            }
+        }
         public static void Update(GameTime gameTime)
         {
+            if(loadStarted)
+            {
+                LevelTransition(gameTime);
+            }
+            
             currentLevel.Update(gameTime);
         }
         public static void Draw(SpriteBatch spriteBatch)
@@ -21,9 +53,33 @@ namespace Test_Loopguy
             currentLevel.Draw(spriteBatch);
         }
 
+        internal static void CheckGate(Player player)
+        {
+            foreach(Entrance g in gates)
+            {
+                g.CheckGate(player);
+            }
+        }
+
+
         public static Rectangle GetBounds()
         {
             return currentLevel.GetBounds();
+        }
+
+        public static void TryLoad(int id)
+        {
+            foreach (Level l in loadedLevels)
+            {
+                if(l.id == id)
+                {
+                    currentLevel = l;
+                    return;
+                }
+            }
+
+            currentLevel = LoadLevel(id);
+
         }
 
         public static Level LoadLevel(int id)
@@ -33,8 +89,14 @@ namespace Test_Loopguy
             Level level = new Level(id, BoundsLoad(id), ObjectLoad(id), TileLoad(id));
             //obviously shouldn't return null when done
 
+            loadedLevels.Add(level);
             currentLevel = level;
             return level;
+        }
+
+        public static int GetCurrentId()
+        {
+            return currentLevel.id;
         }
 
         private static Rectangle BoundsLoad(int id)
@@ -77,9 +139,29 @@ namespace Test_Loopguy
                     {
                         tiles[i, j] = new GrassTile(tempPos);
                     }
+                    if (terrainStrings[j][i] == 'd')
+                    {
+                        tiles[i, j] = new DirtTile(tempPos);
+                    }
                     if (terrainStrings[j][i] == 'w')
                     {
                         tiles[i, j] = new BrickWall(tempPos);
+                    }
+                    if (terrainStrings[j][i] == 'a')
+                    {
+                        tiles[i, j] = new CheckeredTileGray(tempPos);
+                    }
+                    if (terrainStrings[j][i] == 'b')
+                    {
+                        tiles[i, j] = new CheckeredTileBrown(tempPos);
+                    }
+                    if (terrainStrings[j][i] == 'c')
+                    {
+                        tiles[i, j] = new TileBigDark(tempPos);
+                    }
+                    if (terrainStrings[j][i] == 'e')
+                    {
+                        tiles[i, j] = new TileBigLight(tempPos);
                     }
                 }
             }
@@ -129,6 +211,11 @@ namespace Test_Loopguy
             currentLevel.AddObject(levelObject);
         }
 
+        public static void ObjectRemove(Vector2 pos)
+        {
+            currentLevel.RemoveObject(pos);
+        }
+
         public static void TileEdit(TileSelection tile, Vector2 position)
         {
             currentLevel.TileEdit(tile, position);
@@ -138,6 +225,7 @@ namespace Test_Loopguy
         {
             currentLevel.SetMapSize(x, y);
         }
+
 
         public static LevelObject ObjectCreator(string name, Vector2 pos)
         {
@@ -164,6 +252,9 @@ namespace Test_Loopguy
                 case "ShrubBig":
                     return new ShrubBig(pos);
 
+                case "Pot":
+                    return new Pot(pos);
+
                 default:
                     return null;
                     break;
@@ -180,14 +271,88 @@ namespace Test_Loopguy
             }
 
             return objects;
-
-
         }
-        /*
-        private static List<Enemy> EnemyLoad(int id)
+
+        public static List<string> ExportTileList(int id)
         {
-            
+            StringBuilder stringToAdd = new StringBuilder(currentLevel.tiles.GetLength(0));
+            char[,] types = new char[currentLevel.tiles.GetLength(0), currentLevel.tiles.GetLength(1)];
+            for (int i = 0; i < currentLevel.tiles.GetLength(1); i++)
+            {
+                for (int j = 0; j < currentLevel.tiles.GetLength(0); j++)
+                {
+                    if (currentLevel.tiles[j, i] is GrassTile)
+                    {
+                        types[j, i] = 'g';
+                    }
+                    if (currentLevel.tiles[j, i] is DirtTile)
+                    {
+                        types[j, i] = 'd';
+                    }
+                    if (currentLevel.tiles[j, i] is BrickWall)
+                    {
+                        types[j, i] = 'w';
+                    }
+                    if (currentLevel.tiles[j, i] is CheckeredTileGray)
+                    {
+                        types[j, i] = 'a';
+                    }
+                    if (currentLevel.tiles[j, i] is CheckeredTileBrown)
+                    {
+                        types[j, i] = 'b';
+                    }
+                    if (currentLevel.tiles[j, i] is TileBigDark)
+                    {
+                        types[j, i] = 'c';
+                    }
+                    if (currentLevel.tiles[j, i] is TileBigLight)
+                    {
+                        types[j, i] = 'e';
+                    }
+                }
+            }
+            List<string> listToWrite = new List<string>();
+            for (int j = 0; j < types.GetLength(1); j++)
+            {
+                for (int i = 0; i < types.GetLength(0); i++)
+                {
+                    if (types[i, j] != null)
+                    { stringToAdd.Append(types[i, j]); }
+                }
+                listToWrite.Add(stringToAdd.ToString());
+                stringToAdd.Clear();
+            }
+
+            return listToWrite;
+
         }
-        */
+        
+        public static List<Entrance> EntranceLoad()
+        {
+            List<Entrance> entrances = new List<Entrance>();
+            for (int i = 0; i<999; i++)
+            {
+                if(File.Exists(string.Format(@"maps\gates\{0}.txt", i)))
+                {
+                    List<string> lines = new List<string>();
+                    foreach (string line in System.IO.File.ReadLines(string.Format(@"maps\gates\{0}.txt", i)))
+                    {
+                        lines.Add(line);
+                    }
+
+                    int map1 = Int32.Parse(lines[0]);
+                    int map2 = Int32.Parse(lines[1]);
+
+                    string[] splitter = lines[2].Split(',');
+                    Rectangle entrance1 = new Rectangle(Int32.Parse(splitter[0]), Int32.Parse(splitter[1]), Int32.Parse(splitter[2]), Int32.Parse(splitter[3]));
+                    string[] splitter2 = lines[3].Split(',');
+                    Vector2 entrance2 = new Vector2(Int32.Parse(splitter2[0]), Int32.Parse(splitter2[1]));
+                    gates.Add(new Entrance(i, map1, map2, entrance1, entrance2));
+                }
+            }
+            
+            return entrances;
+        }
+        
     }
 }

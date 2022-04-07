@@ -1,0 +1,11 @@
+ShrubSmall,32,15
+TreeBig,200,60
+ShrubSmall,190,50
+ShrubSmall,238,90
+BoxOpen,256,120
+BoxOpen,272,123
+BoxOpen,288,128
+Box,365,51
+BoxOpen,381,59
+BoxOpen,372,70
+BoxOpen,414,59
