@@ -24,10 +24,12 @@ namespace Test_Loopguy
         const float pi = (float)Math.PI;
 
         int dirInt;
+        const int dashRange = 40;
 
         public string playerInfoString;
 
         bool attacking;
+        bool dashing;
 
         public Player(Vector2 position)
             : base(position)
@@ -39,8 +41,6 @@ namespace Test_Loopguy
             speed = 100;
 
             dirInt = 2;
-
-            attacking = false;
         }
 
         public override void Update(GameTime gameTime)
@@ -51,6 +51,10 @@ namespace Test_Loopguy
             if (attacking)
             {
                 Melee(deltaTime);
+            }
+            else if (dashing)
+            {
+                dashing = false;
             }
             else
             {
@@ -80,6 +84,10 @@ namespace Test_Loopguy
 
                         attacking = true;
                     }
+                    else if (InputReader.Dash())
+                    {
+                        dashing = true;
+                    }
                 }
             }
 
@@ -107,19 +115,26 @@ namespace Test_Loopguy
                         DrawAim(spriteBatch);
                         DrawGun(spriteBatch);
                     }
+                    else if (dashing)
+                    {
+                        Dash(spriteBatch);
+                    }
 
                     sprite.Draw(spriteBatch);
                 }
                 else
                 { //if not aiming up, draw gun sprite on top
-                    if (attacking)
-                        meleeSprite.Draw(spriteBatch);
+
                     sprite.Draw(spriteBatch);
 
                     if (InputReader.Aim())
                     {
                         DrawAim(spriteBatch);
                         DrawGun(spriteBatch);
+                    }
+                    else if (dashing)
+                    {
+                        Dash(spriteBatch);
                     }
                 }
             }
@@ -171,9 +186,42 @@ namespace Test_Loopguy
 
         }
 
-        public void Dash(float deltaTime)
+        public void Dash(SpriteBatch spriteBatch)
         {
+            Vector2 viablePos = centerPosition + new Vector2(0, 12);
 
+            List<Vector2> dashPosList = new List<Vector2>();
+
+            if(direction == Vector2.Zero)
+            {
+                if (dirInt == 1)
+                    direction.Y = -1;
+                else if (dirInt == 2)
+                    direction.Y = 1;
+                else if (dirInt == 3)
+                    direction.X = -1;
+                else
+                    direction.X = 1;
+            }
+
+            for (int i = 1; i < dashRange + 1; i++)
+            {
+                Vector2 dashPos = new Vector2(centerPosition.X + i * direction.X, centerPosition.Y + i * direction.Y) + new Vector2(0, 12);
+
+                if (LevelManager.LevelObjectCollision(dashPos) || LevelManager.WallCollision(dashPos))
+                {
+                    break;
+                }
+                else
+                {
+                    sprite.DrawElsewhere(spriteBatch, new Vector2(dashPos.X - sprite.size.X / 2, dashPos.Y - sprite.size.Y / 2 - 12));
+                    viablePos = dashPos;
+                }
+            }
+
+            viablePos += new Vector2(0, - 12);
+            viablePos = new Vector2(viablePos.X - sprite.size.X / 2, viablePos.Y - sprite.size.Y / 2);
+            position = viablePos;
         }
 
         public override void Movement(float deltaTime)
