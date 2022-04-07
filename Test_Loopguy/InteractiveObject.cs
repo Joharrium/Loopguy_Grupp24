@@ -11,6 +11,7 @@ namespace Test_Loopguy
         protected int health;
         internal AnimSprite animation;
         internal bool destroyed = false;
+        internal bool actuallyDestroyed = false;
 
         public Destructible(Vector2 position) : base(position)
         {
@@ -34,6 +35,7 @@ namespace Test_Loopguy
                 if(animation.currentFrame.X > 5)
                 {
                     animation.Position = new Vector2(-10000, -10000);
+                    actuallyDestroyed = true;
                 }
                 
             }

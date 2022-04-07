@@ -28,14 +28,24 @@ namespace Test_Loopguy
 
         internal void Update(GameTime gameTime, Player player)
         {
+            List<Destructible> destructiblesToRemove = new List<Destructible>();
             foreach(Destructible lo in levelObjects.OfType<Destructible>())
             {
                 if(lo is Destructible && lo.hitBox.Intersects(player.hitBox))
                 {
-                    lo.Damage(5);
+                    lo.Damage(1);
                 }
 
                 lo.Update(gameTime);
+                if(lo.actuallyDestroyed)
+                {
+                    destructiblesToRemove.Add(lo);
+                }
+            }
+
+            foreach(Destructible d in destructiblesToRemove)
+            {
+                levelObjects.Remove(d);
             }
             //update game objects
             //update enemy ai
