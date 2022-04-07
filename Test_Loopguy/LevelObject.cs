@@ -80,7 +80,7 @@ namespace Test_Loopguy
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 32);
         }
     }
-
+    /*
     public class ShrubSmall : LevelObject
     {
         public ShrubSmall(Vector2 position) : base(position)
@@ -92,7 +92,7 @@ namespace Test_Loopguy
             hitBox.Height = 0;
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
         }
-    }
+    }*/
 
     public class Barrel : LevelObject
     {

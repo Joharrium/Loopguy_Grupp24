@@ -26,8 +26,17 @@ namespace Test_Loopguy
             
         }
 
-        public void Update(GameTime gameTime)
+        internal void Update(GameTime gameTime, Player player)
         {
+            foreach(Destructible lo in levelObjects.OfType<Destructible>())
+            {
+                if(lo is Destructible && lo.hitBox.Intersects(player.hitBox))
+                {
+                    lo.Damage(5);
+                }
+
+                lo.Update(gameTime);
+            }
             //update game objects
             //update enemy ai
 

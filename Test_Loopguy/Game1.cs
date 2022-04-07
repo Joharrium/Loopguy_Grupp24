@@ -105,7 +105,7 @@ namespace Test_Loopguy
 
             //Update player position
             player.Update(gameTime);
-            LevelManager.Update(gameTime);
+            LevelManager.Update(gameTime, player);
             //Update camera position
             camera.SmoothPosition(player.cameraPosition, deltaTime);
 

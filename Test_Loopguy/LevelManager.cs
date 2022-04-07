@@ -39,14 +39,14 @@ namespace Test_Loopguy
                 loadStarted = false;
             }
         }
-        public static void Update(GameTime gameTime)
+        internal static void Update(GameTime gameTime, Player player)
         {
             if(loadStarted)
             {
                 LevelTransition(gameTime);
             }
             
-            currentLevel.Update(gameTime);
+            currentLevel.Update(gameTime, player);
         }
         public static void Draw(SpriteBatch spriteBatch)
         {
