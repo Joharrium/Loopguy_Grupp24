@@ -18,7 +18,7 @@ namespace Test_Loopguy
 
         public static Camera camera;
 
-        Player player;
+        //Player player;
 
         Texture2D blueArc, redPixel;
 
@@ -51,6 +51,8 @@ namespace Test_Loopguy
 
             TexMGR.LoadTextures(Content);
             MenuManager.LoadMenuButtons();
+            EntityManager.PlayerInitialization();
+
             smallFont = Content.Load<SpriteFont>("smallFont");
 
             //Resolution and window stuff
@@ -68,9 +70,11 @@ namespace Test_Loopguy
             camera = new Camera(GraphicsDevice.Viewport);
             camera.SetPosition(new Vector2(200, 200));
 
-            player = new Player(new Vector2(64, 64));
+            //player = new Player(new Vector2(64, 64));
             //TileManager.Initialization();
             //WallManager.Initialization();
+
+            
             
 
             var frmNewForm = new Form1();
@@ -103,10 +107,10 @@ namespace Test_Loopguy
             InputReader.Update();
 
             //Update player position
-            player.Update(gameTime);
-            LevelManager.Update(gameTime);
+            //player.Update(gameTime);
+            //LevelManager.Update(gameTime);
             //Update camera position
-            camera.SmoothPosition(player.cameraPosition, deltaTime);
+            camera.SmoothPosition(EntityManager.player.cameraPosition, deltaTime);
 
             //Gets mouse position from window and camera position
             Vector2 windowMousePos = new Vector2(InputReader.mouseState.X / windowScale, InputReader.mouseState.Y / windowScale);
@@ -114,8 +118,8 @@ namespace Test_Loopguy
             mousePos = new Vector2(cameraTopLeft.X + windowMousePos.X, cameraTopLeft.Y + windowMousePos.Y);
 
             //Get angles between player and stuff
-            double mouseAngle = Helper.GetAngle(player.centerPosition, mousePos, 0);
-            double targetAngle = Helper.GetAngle(player.centerPosition, Vector2.Zero , 0); //change zero vector to target
+            double mouseAngle = Helper.GetAngle(EntityManager.player.centerPosition, mousePos, 0);
+            double targetAngle = Helper.GetAngle(EntityManager.player.centerPosition, Vector2.Zero , 0); //change zero vector to target
 
             //Converts angles from radians double to more readable stuff
             double piRadM = mouseAngle / Math.PI;
@@ -127,18 +131,18 @@ namespace Test_Loopguy
             int degShortT = (int)MathHelper.ToDegrees((float)targetAngle);
 
             //Shows player position
-            Point playerPosRounded = new Point((int)Math.Round(player.position.X, 0), (int)Math.Round(player.position.Y, 0));
+            Point playerPosRounded = new Point((int)Math.Round(EntityManager.player.position.X, 0), (int)Math.Round(EntityManager.player.position.Y, 0));
 
             infoString = "Mouse Angle: " + piRadShortM.ToString() + "pi rad - " + degShortM.ToString() + " degrees \n"
                 + "Target Angle: " + piRadShortT.ToString() + "pi rad - " + degShortT.ToString() + " degrees \n"
                 + "Player position: " + playerPosRounded;
 
-            Window.Title = player.playerInfoString;
+            Window.Title = EntityManager.player.playerInfoString;
 
-            if (editLevel)
-            {
-                LevelEditor.Update(gameTime);
-            }
+            //if (editLevel)
+            //{
+            //    LevelEditor.Update(gameTime);
+            //}
 
             StateManager.Update(gameTime);
 
@@ -153,16 +157,16 @@ namespace Test_Loopguy
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, camera.Transform);
             //Draw game stuff here!
 
-            LevelManager.Draw(spriteBatch);
+            //LevelManager.Draw(spriteBatch);
 
-            if (editLevel)
-            {
-                LevelEditor.Draw(spriteBatch);
-            }
+            //if (editLevel)
+            //{
+            //    LevelEditor.Draw(spriteBatch);
+            //}
 
             StateManager.Draw(spriteBatch); //Flytta denna samt kör allt via StateManager
 
-            player.Draw(spriteBatch);
+            //player.Draw(spriteBatch);
 
             spriteBatch.End();
 

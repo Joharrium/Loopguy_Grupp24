@@ -9,6 +9,8 @@ namespace Test_Loopguy
 {
     class StateManager
     {
+        
+
 
         public enum GameState
         {
@@ -30,6 +32,15 @@ namespace Test_Loopguy
 
                     break;
                 case GameState.InGame:
+
+                    LevelManager.Update(gameTime);
+                    LevelEditor.Update(gameTime);
+
+                    EntityManager.Update(gameTime);
+                    CameraManager.Update(gameTime);
+
+
+
                     break;
                 case GameState.InEditor:
                     break;
@@ -50,6 +61,11 @@ namespace Test_Loopguy
 
                     break;
                 case GameState.InGame:
+
+                    LevelManager.Draw(spriteBatch);
+
+                    EntityManager.Draw(spriteBatch);
+
                     break;
                 case GameState.InEditor:
                     break;
