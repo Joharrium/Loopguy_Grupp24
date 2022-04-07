@@ -9,8 +9,7 @@ namespace Test_Loopguy
 {
     class StateManager
     {
-        
-
+       
 
         public enum GameState
         {
@@ -20,7 +19,7 @@ namespace Test_Loopguy
             Load,
         }
 
-        public static GameState currentState = GameState.Menu;
+        public static GameState currentState = GameState.InGame;
 
         public static void Update(GameTime gameTime)
         {
@@ -63,7 +62,6 @@ namespace Test_Loopguy
                 case GameState.InGame:
 
                     LevelManager.Draw(spriteBatch);
-
                     EntityManager.Draw(spriteBatch);
 
                     break;

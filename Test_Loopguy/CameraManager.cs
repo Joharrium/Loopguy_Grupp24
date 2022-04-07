@@ -37,12 +37,12 @@ namespace Test_Loopguy
 
         public static void Update(GameTime gameTime)
         {
-            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            camera.SmoothPosition(EntityManager.player.cameraPosition, deltaTime);
+            //camera.SmoothPosition(EntityManager.player.cameraPosition, deltaTime);
 
-            Vector2 windowMousePos = new Vector2(InputReader.mouseState.X / Game1.windowScale, InputReader.mouseState.Y / Game1.windowScale);
-            Vector2 cameraTopLeft = new Vector2(camera.position.X - Game1.windowX / 2, camera.position.Y - Game1.windowY / 2);
+            //Vector2 windowMousePos = new Vector2(InputReader.mouseState.X / Game1.windowScale, InputReader.mouseState.Y / Game1.windowScale);
+            //Vector2 cameraTopLeft = new Vector2(camera.position.X - Game1.windowX / 2, camera.position.Y - Game1.windowY / 2);
 
 
         }

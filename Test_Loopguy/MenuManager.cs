@@ -16,7 +16,7 @@ namespace Test_Loopguy
         {
             float menuSpacing = Game1.windowY / 10;
 
-            Vector2 menuSlot1 = new Vector2(Game1.camera.position.X / 2, Game1.camera.position.Y / 2);
+            Vector2 menuSlot1 = new Vector2(Game1.windowX / 2, Game1.windowY / 2);
             Vector2 menuSlot2 = new Vector2(Game1.windowX / 2, Game1.windowY / 2 + menuSpacing);
             Vector2 menuSlot3 = new Vector2(Game1.windowX / 2, Game1.windowY / 2 + menuSpacing * 2);
             Vector2 menuSlot4 = new Vector2(Game1.windowX / 2, Game1.windowY / 2 + menuSpacing * 3);
