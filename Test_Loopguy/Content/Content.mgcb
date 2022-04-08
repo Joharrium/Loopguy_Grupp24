@@ -193,6 +193,18 @@
 /processorParam:TextureFormat=Color
 /build:gfx/objects/box_open.png
 
+#begin gfx/objects/fern_destructible.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/fern_destructible.png
+
 #begin gfx/objects/placeholder so git finds the folder.PNG
 /importer:TextureImporter
 /processor:TextureProcessor

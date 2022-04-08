@@ -26,8 +26,27 @@ namespace Test_Loopguy
             
         }
 
-        public void Update(GameTime gameTime)
+        internal void Update(GameTime gameTime, Player player)
         {
+            List<Destructible> destructiblesToRemove = new List<Destructible>();
+            foreach(Destructible lo in levelObjects.OfType<Destructible>())
+            {
+                if(lo is Destructible && lo.hitBox.Intersects(player.hitBox))
+                {
+                    lo.Damage(1);
+                }
+
+                lo.Update(gameTime);
+                if(lo.actuallyDestroyed)
+                {
+                    destructiblesToRemove.Add(lo);
+                }
+            }
+
+            foreach(Destructible d in destructiblesToRemove)
+            {
+                levelObjects.Remove(d);
+            }
             //update game objects
             //update enemy ai
 
@@ -89,8 +108,8 @@ namespace Test_Loopguy
         {
             levelObjects.Add(levelObject);
             //sorts by Y level so objects automatically are drawn in order but its kinda wonky and maybe not good
-            //List<LevelObject> sortedList = levelObjects.OrderBy(o => o.position.Y + o.texture.Height).ToList();
-            //levelObjects = sortedList;
+            List<LevelObject> sortedList = levelObjects.OrderBy(o => o.position.Y + o.texture.Height).ToList();
+            levelObjects = sortedList;
         }
 
         public void RemoveObject(Vector2 pos)
