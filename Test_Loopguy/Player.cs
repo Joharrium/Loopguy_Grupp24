@@ -24,6 +24,7 @@ namespace Test_Loopguy
         const float pi = (float)Math.PI;
 
         int dirInt;
+        const int meleeRange = 30;
         const int dashRange = 40;
 
         public string playerInfoString;
@@ -51,6 +52,13 @@ namespace Test_Loopguy
             if (attacking)
             {
                 Melee(deltaTime);
+                //Here is where you would use the MeleeHit method, I think
+                //However, keep in mind that the this will run as long as the attack animation runs,
+                //which is 200 ms right now (multiple hits will occur)
+
+                //Another way to do it is that the MeleeHit method only runs once per attack,
+                //although that would prevent an enemy walking in to the attack animation from taking damage
+                //Idk mang
             }
             else if (dashing)
             {
@@ -181,9 +189,7 @@ namespace Test_Loopguy
                 position += direction * speed / 2 * deltaTime;
             }
             
-
             attacking = meleeSprite.PlayOnce(rowInt, 4, frameTime);
-
         }
 
         public void Dash(SpriteBatch spriteBatch)
@@ -402,6 +408,37 @@ namespace Test_Loopguy
                 gunRotation = InputReader.LeftStickAngle((float)angleOffset);
 
             gunSprite.DrawRotation(spriteBatch, gunRotation);
+        }
+
+        public bool MeleeHit(GameObject obj)
+        {
+            if (Vector2.Distance(centerPosition, obj.centerPosition) <= meleeRange)
+            {
+                float angle = (float)Helper.GetAngle(centerPosition, obj.centerPosition, 0);
+
+                if (dirInt == 2)
+                { //DOWN
+                    if (angle >= pi * 1.75f || angle < pi * 0.25f)
+                        return true;
+                }
+                else if (dirInt == 4)
+                { //RIGHT
+                    if (angle >= pi * 0.25f && angle < pi * 0.75f)
+                        return true;
+                }
+                else if (dirInt == 1)
+                { //UP
+                    if (angle >= pi * 0.75f && angle < pi * 1.25f)
+                        return true;
+                }
+                else
+                { //LEFT
+                    if (angle >= pi * 1.25f && angle < pi * 1.75f)
+                        return true;
+                }
+            }
+
+            return false;
         }
     }
 }
