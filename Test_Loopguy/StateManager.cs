@@ -32,7 +32,7 @@ namespace Test_Loopguy
                     break;
                 case GameState.InGame:
 
-                    LevelManager.Update(gameTime);
+                    LevelManager.Update(gameTime, EntityManager.player);
 
                     if(Game1.editLevel)
                         LevelEditor.Update(gameTime);
