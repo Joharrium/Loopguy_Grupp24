@@ -31,7 +31,7 @@ namespace Test_Loopguy
             List<Destructible> destructiblesToRemove = new List<Destructible>();
             foreach(Destructible lo in levelObjects.OfType<Destructible>())
             {
-                if(lo is Destructible && lo.hitBox.Intersects(player.hitBox))
+                if(lo is Destructible && player.MeleeHit(lo) && player.attacking)
                 {
                     lo.Damage(1);
                 }
@@ -52,6 +52,8 @@ namespace Test_Loopguy
 
             //do any animations
         }
+
+        
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (Tile t in tiles)

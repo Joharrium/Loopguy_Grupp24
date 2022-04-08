@@ -29,7 +29,7 @@ namespace Test_Loopguy
 
         public string playerInfoString;
 
-        bool attacking;
+        internal bool attacking;
         bool dashing;
 
         public Player(Vector2 position)
@@ -52,6 +52,8 @@ namespace Test_Loopguy
             if (attacking)
             {
                 Melee(deltaTime);
+
+                
                 //Here is where you would use the MeleeHit method, I think
                 //However, keep in mind that the this will run as long as the attack animation runs,
                 //which is 200 ms right now (multiple hits will occur)
@@ -59,6 +61,8 @@ namespace Test_Loopguy
                 //Another way to do it is that the MeleeHit method only runs once per attack,
                 //although that would prevent an enemy walking in to the attack animation from taking damage
                 //Idk mang
+
+                
             }
             else if (dashing)
             {
@@ -413,31 +417,37 @@ namespace Test_Loopguy
 
         public bool MeleeHit(GameObject obj)
         {
-            if (Vector2.Distance(centerPosition, obj.centerPosition) <= meleeRange)
+            foreach(Vector2 v in LevelManager.GetPointsOfObject((LevelObject)obj))
             {
-                float angle = (float)Helper.GetAngle(centerPosition, obj.centerPosition, 0);
+                if (Vector2.Distance(centerPosition, v) <= meleeRange)
+                {
 
-                if (dirInt == 2)
-                { //DOWN
-                    if (angle >= pi * 1.75f || angle < pi * 0.25f)
-                        return true;
-                }
-                else if (dirInt == 4)
-                { //RIGHT
-                    if (angle >= pi * 0.25f && angle < pi * 0.75f)
-                        return true;
-                }
-                else if (dirInt == 1)
-                { //UP
-                    if (angle >= pi * 0.75f && angle < pi * 1.25f)
-                        return true;
-                }
-                else
-                { //LEFT
-                    if (angle >= pi * 1.25f && angle < pi * 1.75f)
-                        return true;
+                    float angle = (float)Helper.GetAngle(centerPosition, v, 0);
+
+                    if (dirInt == 2)
+                    { //DOWN
+                        if (angle >= pi * 1.75f || angle < pi * 0.25f)
+                            return true;
+                    }
+                    else if (dirInt == 4)
+                    { //RIGHT
+                        if (angle >= pi * 0.25f && angle < pi * 0.75f)
+                            return true;
+                    }
+                    else if (dirInt == 1)
+                    { //UP
+                        if (angle >= pi * 0.75f && angle < pi * 1.25f)
+                            return true;
+                    }
+                    else
+                    { //LEFT
+                        if (angle >= pi * 1.25f && angle < pi * 1.75f)
+                            return true;
+                    }
                 }
             }
+
+            
 
             return false;
         }

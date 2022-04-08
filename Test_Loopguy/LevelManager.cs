@@ -39,6 +39,18 @@ namespace Test_Loopguy
                 loadStarted = false;
             }
         }
+
+        internal static List<Vector2> GetPointsOfObject(LevelObject lo)
+        {
+            List<Vector2> points = new List<Vector2>();
+            points.Add(lo.position);
+            points.Add(lo.position + new Vector2(lo.hitBox.Width, 0));
+            points.Add(lo.position + new Vector2(0, lo.hitBox.Height));
+            points.Add(lo.position + new Vector2(lo.hitBox.Width, lo.hitBox.Height));
+            points.Add(lo.centerPosition);
+            return points;
+        }
+
         internal static void Update(GameTime gameTime, Player player)
         {
             if(loadStarted)
@@ -87,6 +99,24 @@ namespace Test_Loopguy
 
         }
 
+        public static int GetCurrentId()
+        {
+            return currentLevel.id;
+        }
+        
+        
+        public static bool LevelObjectCollision(Vector2 position)
+        {
+            return currentLevel.LevelObjectCollision(position);
+        }
+
+        public static bool WallCollision(Vector2 position)
+        {
+            return currentLevel.WallCollision(position);
+        }
+
+        //below are editor and load methods
+
         public static Level LoadLevel(int id)
         {
 
@@ -97,11 +127,6 @@ namespace Test_Loopguy
             loadedLevels.Add(level);
             currentLevel = level;
             return level;
-        }
-
-        public static int GetCurrentId()
-        {
-            return currentLevel.id;
         }
 
         private static Rectangle BoundsLoad(int id)
@@ -119,13 +144,12 @@ namespace Test_Loopguy
             return bounds;
         }
 
-        
         private static Tile[,] TileLoad(int id)
         {
             List<string> terrainStrings = new List<string>();
             StreamReader terrainReader = new StreamReader(String.Format(@"maps\level{0}\tilemap.txt", id));
 
-            
+
 
             while (!terrainReader.EndOfStream)
             {
@@ -173,9 +197,7 @@ namespace Test_Loopguy
 
             return tiles;
         }
-        
 
-        
         private static List<LevelObject> ObjectLoad(int id)
         {
             List<LevelObject> levelObjects = new List<LevelObject>();
@@ -187,28 +209,18 @@ namespace Test_Loopguy
                 lines.Add(line);
             }
 
-            for (int i = 0; i<lines.Count; i++)
+            for (int i = 0; i < lines.Count; i++)
             {
                 string[] splitter = lines[i].Split(',');
                 string objectToFind = splitter[0];
-                Vector2 objectPosition = new Vector2(0,0);
+                Vector2 objectPosition = new Vector2(0, 0);
                 objectPosition.X = Int32.Parse(splitter[1]);
                 objectPosition.Y = Int32.Parse(splitter[2]);
                 levelObjects.Add(ObjectCreator(objectToFind, objectPosition));
             }
-            
+
 
             return levelObjects;
-        }
-        
-        public static bool LevelObjectCollision(Vector2 position)
-        {
-            return currentLevel.LevelObjectCollision(position);
-        }
-
-        public static bool WallCollision(Vector2 position)
-        {
-            return currentLevel.WallCollision(position);
         }
 
         public static void ObjectAdd(LevelObject levelObject)
