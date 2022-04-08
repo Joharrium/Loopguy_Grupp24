@@ -68,6 +68,7 @@ namespace Test_Loopguy
             graphics.ApplyChanges();
 
             LevelManager.LoadLevel(1);
+            LevelManager.EntranceLoad();
 
             camera = new Camera();
             camera.SetPosition(new Vector2(200, 200));
