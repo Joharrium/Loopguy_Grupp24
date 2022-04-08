@@ -189,6 +189,7 @@ namespace Test_Loopguy
                 position += direction * speed / 2 * deltaTime;
             }
             
+            //The PlayOnce method returns false when the animation is done playing!!!
             attacking = meleeSprite.PlayOnce(rowInt, 4, frameTime);
         }
 
