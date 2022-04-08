@@ -76,8 +76,8 @@ namespace Test_Loopguy
         {
             frame = new Rectangle(currentFrame.X * size.X, currentFrame.Y * size.Y, size.X, size.Y);
 
-            position.X = (int)Math.Round(Position.X);
-            position.Y = (int)Math.Round(Position.Y);
+            //position.X = (int)Math.Round(Position.X);
+            //position.Y = (int)Math.Round(Position.Y);
 
             position = Position;
 
@@ -95,6 +95,12 @@ namespace Test_Loopguy
             position.Y = Position.Y + size.Y / 2;
 
             spriteBatch.Draw(sheet, position, frame, Color.White, -angle, origin, 1, SpriteEffects.None, 0);
+        }
+        public void DrawElsewhere(SpriteBatch spriteBatch, Vector2 otherPos)
+        {
+            frame = new Rectangle(currentFrame.X * size.X, currentFrame.Y * size.Y, size.X, size.Y);
+
+            spriteBatch.Draw(sheet, otherPos, frame, Color.White);
         }
     }
 }

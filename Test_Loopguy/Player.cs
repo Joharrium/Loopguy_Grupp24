@@ -24,10 +24,13 @@ namespace Test_Loopguy
         const float pi = (float)Math.PI;
 
         int dirInt;
+        const int meleeRange = 30;
+        const int dashRange = 40;
 
         public string playerInfoString;
 
         bool attacking;
+        bool dashing;
 
         public Player(Vector2 position)
             : base(position)
@@ -39,8 +42,6 @@ namespace Test_Loopguy
             speed = 100;
 
             dirInt = 2;
-
-            attacking = false;
         }
 
         public override void Update(GameTime gameTime)
@@ -48,12 +49,20 @@ namespace Test_Loopguy
             base.Update(gameTime);
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            //Melee needs to be reworked, this is temporary
-            //Also animation is scuffed, lower frameTime in Melee method to observe
-            //Idfk why btw, AnimSprite class seems to work fine for walking animation
             if (attacking)
             {
                 Melee(deltaTime);
+                //Here is where you would use the MeleeHit method, I think
+                //However, keep in mind that the this will run as long as the attack animation runs,
+                //which is 200 ms right now (multiple hits will occur)
+
+                //Another way to do it is that the MeleeHit method only runs once per attack,
+                //although that would prevent an enemy walking in to the attack animation from taking damage
+                //Idk mang
+            }
+            else if (dashing)
+            {
+                dashing = false;
             }
             else
             {
@@ -83,6 +92,10 @@ namespace Test_Loopguy
 
                         attacking = true;
                     }
+                    else if (InputReader.Dash())
+                    {
+                        dashing = true;
+                    }
                 }
             }
 
@@ -110,13 +123,16 @@ namespace Test_Loopguy
                         DrawAim(spriteBatch);
                         DrawGun(spriteBatch);
                     }
+                    else if (dashing)
+                    {
+                        Dash(spriteBatch);
+                    }
 
                     sprite.Draw(spriteBatch);
                 }
                 else
                 { //if not aiming up, draw gun sprite on top
-                    if (attacking)
-                        meleeSprite.Draw(spriteBatch);
+
                     sprite.Draw(spriteBatch);
 
                     if (InputReader.Aim())
@@ -124,76 +140,12 @@ namespace Test_Loopguy
                         DrawAim(spriteBatch);
                         DrawGun(spriteBatch);
                     }
+                    else if (dashing)
+                    {
+                        Dash(spriteBatch);
+                    }
                 }
             }
-        }
-
-        public void DrawAim(SpriteBatch spriteBatch)
-        {
-            if (aimAngle > pi * 1.75f || aimAngle < pi * 0.25f)
-            {//DOWN
-                sprite.Frame(1, 5);
-                gunSprite.Frame(1, 0);
-                dirInt = 2;
-            }
-            else if (aimAngle < pi * 0.75f)
-            {//RIGHT
-                sprite.Frame(3, 5);
-                gunSprite.Frame(3, 0);
-                dirInt = 4;
-            }
-            else if (aimAngle < pi * 1.25f)
-            {//UP
-                sprite.Frame(0, 5);
-                gunSprite.Frame(0, 0);
-                dirInt = 1;
-            }
-            else
-            {//LEFT
-                sprite.Frame(2, 5);
-                gunSprite.Frame(2, 0);
-                dirInt = 3;
-            }
-
-            if (!InputReader.MovingLeftStick())
-            {
-                aimAngle = (float)Helper.GetAngle(centerPosition, Game1.mousePos, 0);
-            }
-            else
-            {
-                aimAngle = InputReader.LeftStickAngle(0);
-            }
-
-            gunDirection = new Vector2((float)Math.Sin(aimAngle), (float)Math.Cos(aimAngle));
-
-            for (int i = 16; i < 580; i++)
-            {
-                Vector2 aimPoint = new Vector2(centerPosition.X + i * gunDirection.X, centerPosition.Y + i * gunDirection.Y);
-                spriteBatch.Draw(TexMGR.cyanPixel, aimPoint, Helper.RandomTransparency(random, 0, 90));
-            }
-        }
-
-        public void DrawGun(SpriteBatch spriteBatch)
-        {
-            float gunRotation;
-            double angleOffset;
-
-            //These are ordered in a way that makes perfect sense, shut up
-            if (dirInt == 2)//down
-                angleOffset = 0;
-            else if (dirInt == 3)//right
-                angleOffset = -1.5 * pi;
-            else if (dirInt == 1)//up
-                angleOffset = -1 * pi;
-            else//left
-                angleOffset = -0.5 * pi;
-
-            if (!InputReader.MovingLeftStick())
-                gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, angleOffset);
-            else
-                gunRotation = InputReader.LeftStickAngle((float)angleOffset);
-
-            gunSprite.DrawRotation(spriteBatch, gunRotation);
         }
 
         public void Melee(float deltaTime)
@@ -237,9 +189,45 @@ namespace Test_Loopguy
                 position += direction * speed / 2 * deltaTime;
             }
             
-
             attacking = meleeSprite.PlayOnce(rowInt, 4, frameTime);
+        }
 
+        public void Dash(SpriteBatch spriteBatch)
+        {
+            Vector2 viablePos = centerPosition + new Vector2(0, 12);
+
+            List<Vector2> dashPosList = new List<Vector2>();
+
+            if(direction == Vector2.Zero)
+            {
+                if (dirInt == 1)
+                    direction.Y = -1;
+                else if (dirInt == 2)
+                    direction.Y = 1;
+                else if (dirInt == 3)
+                    direction.X = -1;
+                else
+                    direction.X = 1;
+            }
+
+            for (int i = 1; i < dashRange + 1; i++)
+            {
+                Vector2 dashPos = new Vector2(centerPosition.X + i * direction.X, centerPosition.Y + i * direction.Y) + new Vector2(0, 12);
+
+                if (LevelManager.LevelObjectCollision(dashPos) || LevelManager.WallCollision(dashPos))
+                {
+                    break;
+                }
+                else
+                {
+                    sprite.DrawElsewhere(spriteBatch, new Vector2(dashPos.X - sprite.size.X / 2, dashPos.Y - sprite.size.Y / 2 - 12));
+                    viablePos = dashPos;
+                }
+            }
+
+            viablePos += new Vector2(0, - 12);
+            viablePos = new Vector2(viablePos.X - sprite.size.X / 2, viablePos.Y - sprite.size.Y / 2);
+            position = viablePos;
         }
 
         public override void Movement(float deltaTime)
@@ -352,6 +340,105 @@ namespace Test_Loopguy
 
             float absDirShort = (float)Math.Round(absDirection, 2);
             playerInfoString = absDirShort.ToString() + " || " + frameTime.ToString() + " || " + playerVelocityShort.ToString();
+        }
+
+        public void DrawAim(SpriteBatch spriteBatch)
+        {
+            if (aimAngle > pi * 1.75f || aimAngle < pi * 0.25f)
+            {//DOWN
+                sprite.Frame(1, 5);
+                gunSprite.Frame(1, 0);
+                dirInt = 2;
+            }
+            else if (aimAngle < pi * 0.75f)
+            {//RIGHT
+                sprite.Frame(3, 5);
+                gunSprite.Frame(3, 0);
+                dirInt = 4;
+            }
+            else if (aimAngle < pi * 1.25f)
+            {//UP
+                sprite.Frame(0, 5);
+                gunSprite.Frame(0, 0);
+                dirInt = 1;
+            }
+            else
+            {//LEFT
+                sprite.Frame(2, 5);
+                gunSprite.Frame(2, 0);
+                dirInt = 3;
+            }
+
+            if (!InputReader.MovingLeftStick())
+            {
+                aimAngle = (float)Helper.GetAngle(centerPosition, Game1.mousePos, 0);
+            }
+            else
+            {
+                aimAngle = InputReader.LeftStickAngle(0);
+            }
+
+            gunDirection = new Vector2((float)Math.Sin(aimAngle), (float)Math.Cos(aimAngle));
+
+            for (int i = 16; i < 580; i++)
+            {
+                Vector2 aimPoint = new Vector2(centerPosition.X + i * gunDirection.X, centerPosition.Y + i * gunDirection.Y);
+                spriteBatch.Draw(TexMGR.cyanPixel, aimPoint, Helper.RandomTransparency(random, 0, 90));
+            }
+        }
+
+        public void DrawGun(SpriteBatch spriteBatch)
+        {
+            float gunRotation;
+            double angleOffset;
+
+            //These are ordered in a way that makes perfect sense, shut up
+            if (dirInt == 2)//down
+                angleOffset = 0;
+            else if (dirInt == 3)//right
+                angleOffset = -1.5 * pi;
+            else if (dirInt == 1)//up
+                angleOffset = -1 * pi;
+            else//left
+                angleOffset = -0.5 * pi;
+
+            if (!InputReader.MovingLeftStick())
+                gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, angleOffset);
+            else
+                gunRotation = InputReader.LeftStickAngle((float)angleOffset);
+
+            gunSprite.DrawRotation(spriteBatch, gunRotation);
+        }
+
+        public bool MeleeHit(GameObject obj)
+        {
+            if (Vector2.Distance(centerPosition, obj.centerPosition) <= meleeRange)
+            {
+                float angle = (float)Helper.GetAngle(centerPosition, obj.centerPosition, 0);
+
+                if (dirInt == 2)
+                { //DOWN
+                    if (angle >= pi * 1.75f || angle < pi * 0.25f)
+                        return true;
+                }
+                else if (dirInt == 4)
+                { //RIGHT
+                    if (angle >= pi * 0.25f && angle < pi * 0.75f)
+                        return true;
+                }
+                else if (dirInt == 1)
+                { //UP
+                    if (angle >= pi * 0.75f && angle < pi * 1.25f)
+                        return true;
+                }
+                else
+                { //LEFT
+                    if (angle >= pi * 1.25f && angle < pi * 1.75f)
+                        return true;
+                }
+            }
+
+            return false;
         }
     }
 }

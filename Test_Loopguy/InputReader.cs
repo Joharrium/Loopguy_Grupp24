@@ -48,6 +48,10 @@ static class InputReader
 		return keyState.IsKeyDown(Keys.Down) || keyState.IsKeyDown(Keys.S) || padState.IsButtonDown(Buttons.DPadDown);
 	}
 	
+	public static bool Dash()
+    {
+		return KeyPressed(Keys.Space) || ButtonPressed(Buttons.A);
+    }
 	public static bool Melee()
     {
 		if (editMode)
