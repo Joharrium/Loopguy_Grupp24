@@ -119,6 +119,7 @@ namespace Test_Loopguy
 
             //transform = Matrix.CreateTranslation(MathHelper.Clamp(-position.X + Game1.windowX / 2, -LevelManager.GetBounds().Width, 0), MathHelper.Clamp(-position.Y + Game1.windowY / 2, -LevelManager.GetBounds().Height, 0), 0);
 
+            oldNewPos = newPos;
         }
     }
 }
