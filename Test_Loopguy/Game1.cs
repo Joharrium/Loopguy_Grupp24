@@ -203,7 +203,7 @@ namespace Test_Loopguy
             spriteBatch.DrawString(smallFont, infoString, Vector2.Zero, Color.White);
             spriteBatch.DrawString(smallFont, ("current level = " + LevelManager.GetCurrentId().ToString()), new Vector2(0, 64), Color.White);
             spriteBatch.DrawString(smallFont, camera.xClamped.ToString(), new Vector2(0, 80), Color.White);
-            spriteBatch.DrawString(smallFont, camera.yClamped.ToString(), new Vector2(0, 96), Color.White);
+            spriteBatch.DrawString(smallFont, camera.yClamped.ToString(), new Vector2(0, 96 ), Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);

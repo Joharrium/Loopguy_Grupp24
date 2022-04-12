@@ -126,5 +126,10 @@ namespace Test_Loopguy
         {
             LevelManager.SetBounds(Int32.Parse(cameraX.Text), Int32.Parse(cameraY.Text));
         }
+
+        private void goToLevelButton_Click(object sender, EventArgs e)
+        {
+            LevelManager.StartLevelTransition(Int32.Parse(goToLevelWithID.Text), EntityManager.player, new Microsoft.Xna.Framework.Vector2(64, 64));
+        }
     }
 }
