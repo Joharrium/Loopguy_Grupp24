@@ -6,6 +6,46 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Test_Loopguy
 {
+    public enum TileEdge
+    {
+        North, East, South, West
+
+    }
+    public class Edges
+    {
+        public bool north;
+        public bool east;
+        public bool south;
+        public bool west;
+
+        public bool northeast;
+        public bool southeast;
+        public bool southwest;
+        public bool northwest;
+
+        public Rectangle RefreshEdges(Tile[] tiles, Tile self)
+        {
+            Rectangle sourceRectangle = new Rectangle(0, 0, 0, 0);
+            //checks neighboring tiles, assigns cardinal direction bools if self type is same as neighbor
+            //make a standard for tiles with edge overlaps which creates correct source rectangle
+            //0,0 edges to west and north
+            //16,0 edges to north
+            //32,0 deges to east and north
+            //48,0 edges only northeast
+            //64,0 edges only northwest 
+            //80,0 edges to west
+
+            //0,16 edges to west and south
+            //16,16 edges to south
+            //32,16 deges to right and south
+            //48,16 edges only southeast
+            //64,16 edges only southwest
+            //80,16 edges to east
+
+            return sourceRectangle;
+        }
+    }
+
     public class Tile : GameObject
     {
         public Rectangle sourceRectangle;
@@ -32,6 +72,14 @@ namespace Test_Loopguy
     public class Floor : Tile
     {
         public Floor(Vector2 position) : base(position)
+        {
+            this.position = position;
+        }
+    }
+
+    public class Cliff : Tile
+    {
+        public Cliff(Vector2 position) : base(position)
         {
             this.position = position;
         }
