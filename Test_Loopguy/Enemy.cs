@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Test_Loopguy
 {
-    class Enemy : AnimatedMovingObject
+    class Enemy : MovingObject
     {
         public Enemy(Vector2 position) : base(position)
         {
