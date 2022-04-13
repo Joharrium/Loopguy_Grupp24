@@ -231,6 +231,28 @@ namespace Test_Loopguy
             position = viablePos;
         }
 
+        private void CheckMovement(float deltaTime)
+        {
+            //test method so player can move diagonally over a wall but its kinda weird so not used currently
+            Vector2 futurepos = centerPosition + direction * speed * deltaTime + new Vector2(0, 12);
+            if (LevelManager.LevelObjectCollision(new Vector2(futurepos.X, centerPosition.Y)) || LevelManager.WallCollision(new Vector2(futurepos.X, centerPosition.Y)))
+            {
+
+            }
+            else
+            {
+                position.X += direction.X * speed * deltaTime;
+            }
+            if (LevelManager.LevelObjectCollision(new Vector2(centerPosition.X, futurepos.Y)) || LevelManager.WallCollision(new Vector2(centerPosition.X, futurepos.Y)))
+            {
+
+            }
+            else
+            {
+                position.Y += direction.Y * speed * deltaTime;
+            }
+        }
+
         public override void Movement(float deltaTime)
         {
             direction.Y = 0;
@@ -314,6 +336,8 @@ namespace Test_Loopguy
                 direction.Normalize();
                 prevDirection = direction;
             }
+
+
             Vector2 futurepos = centerPosition + direction * speed * deltaTime + new Vector2(0, 12);
             if (LevelManager.LevelObjectCollision(futurepos) || LevelManager.WallCollision(futurepos))
             {
