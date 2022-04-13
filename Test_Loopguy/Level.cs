@@ -18,12 +18,14 @@ namespace Test_Loopguy
         //list of corresponding entrances from different ids and their position
 
 
-        public Level (int id, Rectangle cameraBounds, List<LevelObject> levelObjects, Tile[,] tiles/*, List<Entrance> entrances*/)
+        public Level (int id, Rectangle cameraBounds, List<LevelObject> levelObjects, Tile[,] tiles/*, List<Entrance> entrances*/, int[,] height)
         {
             this.id = id;
             this.cameraBounds = cameraBounds;
             this.levelObjects = levelObjects;
             this.tiles = tiles;
+            heightMap = height;
+            /*
             heightMap = new int[tiles.GetLength(0),tiles.GetLength(1)];
             for (int i = 0; i < tiles.GetLength(0); i++)
             {
@@ -32,7 +34,7 @@ namespace Test_Loopguy
                     heightMap[i, j] = 1;
 
                 }
-            }
+            }*/
         }
 
         internal void Update(GameTime gameTime, Player player)

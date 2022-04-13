@@ -91,7 +91,7 @@ namespace Test_Loopguy
         {
 
 
-            Level level = new Level(id, BoundsLoad(id), ObjectLoad(id), TileLoad(id));
+            Level level = new Level(id, BoundsLoad(id), ObjectLoad(id), TileLoad(id), HeightMapLoad(id));
             //obviously shouldn't return null when done
 
             loadedLevels.Add(level);
@@ -119,6 +119,34 @@ namespace Test_Loopguy
             return bounds;
         }
 
+        private static int[,] HeightMapLoad(int id)
+        {
+            List<string> heightStrings = new List<string>();
+            StreamReader heightReader = new StreamReader(String.Format(@"maps\level{0}\heightmap.txt", id));
+
+
+
+            while (!heightReader.EndOfStream)
+            {
+                heightStrings.Add(heightReader.ReadLine());
+            }
+            heightReader.Close();
+
+            int[,] tiles = new int[heightStrings[0].Length, heightStrings.Count];
+
+            for (int i = 0; i < tiles.GetLength(0); i++)
+            {
+                for (int j = 0; j < tiles.GetLength(1); j++)
+                {
+                    
+                    
+                    tiles[i, j] = (int)heightStrings[j][i] - 48;
+                    
+                }
+            }
+
+            return tiles;
+        }
         
         private static Tile[,] TileLoad(int id)
         {
