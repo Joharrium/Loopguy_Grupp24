@@ -28,6 +28,7 @@ namespace Test_Loopguy
 
         internal void Update(GameTime gameTime, Player player)
         {
+            RefreshTileEdges();
             List<Destructible> destructiblesToRemove = new List<Destructible>();
             foreach(Destructible lo in levelObjects.OfType<Destructible>())
             {
@@ -185,10 +186,22 @@ namespace Test_Loopguy
                     case TileSelection.TilesBigDark:
                         tiles[coordinates.X, coordinates.Y] = new TileBigDark(gameLocation);
                         break;
+                    case TileSelection.CliffGray:
+                        tiles[coordinates.X, coordinates.Y] = new CliffGray(gameLocation);
+                        break;
                 }
             }
+
+            RefreshTileEdges();
             
-            
+        }
+
+        public void RefreshTileEdges()
+        {
+            foreach(CliffGray cliff in tiles.OfType<CliffGray>())
+            {
+                cliff.RefreshEdges(tiles);
+            }
         }
 
         public Point GetTileCoordinate(Tile tile)

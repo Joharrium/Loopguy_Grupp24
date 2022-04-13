@@ -126,5 +126,11 @@ namespace Test_Loopguy
         {
             LevelManager.SetBounds(Int32.Parse(cameraX.Text), Int32.Parse(cameraY.Text));
         }
+
+        private void cliffGraySelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.currentSelection = Selection.Tile;
+            LevelEditor.selectedTile = TileSelection.CliffGray;
+        }
     }
 }

@@ -168,6 +168,10 @@ namespace Test_Loopguy
                     {
                         tiles[i, j] = new TileBigLight(tempPos);
                     }
+                    if (terrainStrings[j][i] == 'f')
+                    {
+                        tiles[i, j] = new CliffGray(tempPos);
+                    }
                 }
             }
 
@@ -224,6 +228,7 @@ namespace Test_Loopguy
         public static void TileEdit(TileSelection tile, Vector2 position)
         {
             currentLevel.TileEdit(tile, position);
+            //currentLevel.
         }
 
         public static void SetMapSize(int x, int y)
@@ -313,6 +318,10 @@ namespace Test_Loopguy
                     if (currentLevel.tiles[j, i] is TileBigLight)
                     {
                         types[j, i] = 'e';
+                    }
+                    if (currentLevel.tiles[j, i] is CliffGray)
+                    {
+                        types[j, i] = 'f';
                     }
                 }
             }

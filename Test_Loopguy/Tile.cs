@@ -23,9 +23,158 @@ namespace Test_Loopguy
         public bool southwest;
         public bool northwest;
 
-        public Rectangle RefreshEdges(Tile[] tiles, Tile self)
+        public Rectangle RefreshEdges(Tile[,] tiles, Tile self)
         {
-            Rectangle sourceRectangle = new Rectangle(0, 0, 0, 0);
+            Rectangle sourceRectangle = new Rectangle(0, 0, 16, 16);
+
+            int xPos = 0;
+            int yPos = 0;
+
+            int w = tiles.GetLength(0);
+            int h = tiles.GetLength(1);
+
+            for (int x = 0; x < w; ++x)
+            {
+                for (int y = 0; y < h; ++y)
+                {
+                    if (tiles[x, y].Equals(self))
+                    {
+                        xPos = x;
+                        yPos = y;
+                    }
+                }
+            }
+
+            //ok so fuck all of this
+            //new idea:
+            //a separate heightmap document with different numbers indicating different heights
+            //at the edge of different heights, cliffs will be generated
+
+            //checks neighboring tiles
+            {
+                if (tiles[xPos - 1, yPos - 1].GetType().Equals(self.GetType()))
+                {
+                    northwest = true;
+                }
+                if (tiles[xPos, yPos - 1].GetType().Equals(self.GetType()))
+                {
+                    north = true;
+                }
+                if (tiles[xPos + 1, yPos - 1].GetType().Equals(self.GetType()))
+                {
+                    northeast = true;
+                }
+                if (tiles[xPos - 1, yPos].GetType().Equals(self.GetType()))
+                {
+                    west = true;
+                }
+                if (tiles[xPos + 1, yPos].GetType().Equals(self.GetType()))
+                {
+                    east = true;
+                }
+                if (tiles[xPos - 1, yPos + 1].GetType().Equals(self.GetType()))
+                {
+                    southwest = true;
+                }
+                if (tiles[xPos, yPos + 1].GetType().Equals(self.GetType()))
+                {
+                    south = true;
+                }
+                if (tiles[xPos + 1, yPos + 1].GetType().Equals(self.GetType()))
+                {
+                    southeast = true;
+                }
+            }
+
+            //sets source rectangle
+            {
+                
+                if(!south)
+                {
+                    sourceRectangle.Y = 0;
+                    //outer corner NW, NE and straight wall N
+                    if (!east && north && west && northwest)
+                    {
+                        sourceRectangle.X = 0;
+                    }
+                    if (!east && !west && north)
+                    {
+                        sourceRectangle.X = 16;
+                    }
+                    if (!west && north && east)
+                    {
+                        sourceRectangle.X = 32;
+                    }
+                }
+
+                if(!south && !north && west && east)
+                {
+                    sourceRectangle.X = 16;
+                    sourceRectangle.Y = 16;
+                }
+
+                if (south && north && !west && !east)
+                {
+                    sourceRectangle.X = 80;
+                    sourceRectangle.Y = 0;
+                }
+
+                //outer corner SW, SE and straight wall S
+                if (!north)
+                {
+                    sourceRectangle.Y = 16;
+                    if(!east && south && west)
+                    {
+                        sourceRectangle.X = 0;
+                    }
+                    if(!east && south && !west)
+                    {
+                        sourceRectangle.X = 16;
+                    }
+                    if(east && south && !west)
+                    {
+                        sourceRectangle.X = 32;
+                    }
+                }
+                
+
+
+                
+                //straight walls to east and west
+                if (!south && !north && !east && west)
+                {
+                    sourceRectangle.X = 80;
+                    sourceRectangle.Y = 0;
+                }
+                if (!south && !north && east && !west)
+                {
+                    sourceRectangle.X = 80;
+                    sourceRectangle.Y = 16;
+                }
+
+
+                //inner corner walls
+                if (!south && !west && !north && !east)
+                {
+                    if(northeast || southeast)
+                    {
+                        sourceRectangle.X = 48;
+                    }
+                    if(northwest || southwest)
+                    {
+                        sourceRectangle.X = 64;
+                    }
+                    if(southeast || southwest)
+                    {
+                        sourceRectangle.Y = 16;
+                    }
+                    if(northeast || northwest)
+                    {
+                        sourceRectangle.Y = 0;
+                    }
+                }
+            }
+
             //checks neighboring tiles, assigns cardinal direction bools if self type is same as neighbor
             //make a standard for tiles with edge overlaps which creates correct source rectangle
             //0,0 edges to west and north
@@ -79,9 +228,15 @@ namespace Test_Loopguy
 
     public class Cliff : Tile
     {
+        protected Edges edges = new Edges();
         public Cliff(Vector2 position) : base(position)
         {
             this.position = position;
+        }
+
+        public void RefreshEdges(Tile[,] tiles)
+        {
+            sourceRectangle = edges.RefreshEdges(tiles, this);
         }
     }
 
