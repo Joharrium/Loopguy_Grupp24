@@ -9,7 +9,7 @@ namespace Test_Loopguy
 {
     public enum Selection
     {
-        Object, Tile, Enemy
+        Object, Tile, Enemy, Heightmap
     }
     public enum ObjectSelection
     {
@@ -24,6 +24,7 @@ namespace Test_Loopguy
         public static Selection currentSelection;
         public static ObjectSelection selectedObject;
         public static TileSelection selectedTile;
+        public static int height;
         private static Level currentLevel;
 
         //have list of levels?
@@ -36,10 +37,20 @@ namespace Test_Loopguy
 
             if(InputReader.mouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && currentSelection == Selection.Tile)
             {
+                
                 LevelManager.TileEdit(selectedTile, Game1.mousePos);
             }
 
-            if(InputReader.LeftClick())
+            if (InputReader.mouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && currentSelection == Selection.Heightmap)
+            {
+                if (height != null)
+                {
+                    LevelManager.HeightEdit(Game1.mousePos, height);
+                }
+                
+            }
+
+            if (InputReader.LeftClick())
             {
                 switch (currentSelection)
                 {
@@ -154,75 +165,6 @@ namespace Test_Loopguy
             }
             
         }
-
-        /*
-        public static Rectangle SetBounds()
-        {
-            return currentLevel.GetBounds();
-        }
-
-        public static Level LoadLevel(int id)
-        {
-
-
-            Level level = new Level(id, BoundsLoad(id), ObjectLoad(id), TileLoad(id));
-            //obviously shouldn't return null when done
-
-            currentLevel = level;
-            return level;
-        }
-
-        private static Rectangle BoundsLoad(int id)
-        {
-            Rectangle bounds = new Rectangle(0, 0, 0, 0);
-            List<string> lines = new List<string>();
-            foreach (string line in System.IO.File.ReadLines(string.Format(@"maps\level{0}\bounds.txt", id)))
-            {
-                lines.Add(line);
-            }
-
-            string[] splitter = lines[0].Split(',');
-            bounds.Width = Int32.Parse(splitter[0]);
-            bounds.Height = Int32.Parse(splitter[1]);
-            return bounds;
-        }
-
-        
-        private static Tile[,] TileLoad(int id)
-        {
-            List<string> terrainStrings = new List<string>();
-            StreamReader terrainReader = new StreamReader(String.Format(@"maps\level{0}\tilemap.txt", id));
-
-            
-
-            while (!terrainReader.EndOfStream)
-            {
-                terrainStrings.Add(terrainReader.ReadLine());
-            }
-            terrainReader.Close();
-
-            Tile[,] tiles = new Tile[terrainStrings[0].Length, terrainStrings.Count];
-
-            for (int i = 0; i < tiles.GetLength(0); i++)
-            {
-                for (int j = 0; j < tiles.GetLength(1); j++)
-                {
-                    Vector2 tempPos = new Vector2((i * 16), (j * 16));
-                    if (terrainStrings[j][i] == 'g')
-                    {
-                        tiles[i, j] = new GrassTile(tempPos);
-                    }
-                    if (terrainStrings[j][i] == 'w')
-                    {
-                        tiles[i, j] = new BrickWall(tempPos);
-                    }
-                }
-            }
-
-            return tiles;
-        }
-        
-        */
 
         public static void SaveLevelToFile(int id, List<string> objects, List<string> tiles)
         {

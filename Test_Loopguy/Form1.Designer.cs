@@ -31,6 +31,7 @@ namespace Test_Loopguy
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cliffGraySelect = new System.Windows.Forms.PictureBox();
             this.tileBigDarkSelect = new System.Windows.Forms.PictureBox();
             this.tileBigLightSelect = new System.Windows.Forms.PictureBox();
             this.tilesCheckeredBrownSelect = new System.Windows.Forms.PictureBox();
@@ -73,8 +74,10 @@ namespace Test_Loopguy
             this.label5 = new System.Windows.Forms.Label();
             this.saveMapSize = new System.Windows.Forms.Button();
             this.setCameraSize = new System.Windows.Forms.Button();
-            this.cliffGraySelect = new System.Windows.Forms.PictureBox();
+            this.editHeightMap = new System.Windows.Forms.CheckBox();
+            this.setHeight = new System.Windows.Forms.NumericUpDown();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cliffGraySelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileBigDarkSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileBigLightSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tilesCheckeredBrownSelect)).BeginInit();
@@ -104,7 +107,7 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.shrubSmallSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.potSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barrelSelect)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cliffGraySelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.setHeight)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -124,6 +127,16 @@ namespace Test_Loopguy
             this.groupBox2.TabIndex = 30;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tiles";
+            // 
+            // cliffGraySelect
+            // 
+            this.cliffGraySelect.Image = ((System.Drawing.Image)(resources.GetObject("cliffGraySelect.Image")));
+            this.cliffGraySelect.Location = new System.Drawing.Point(6, 167);
+            this.cliffGraySelect.Name = "cliffGraySelect";
+            this.cliffGraySelect.Size = new System.Drawing.Size(64, 64);
+            this.cliffGraySelect.TabIndex = 8;
+            this.cliffGraySelect.TabStop = false;
+            this.cliffGraySelect.Click += new System.EventHandler(this.cliffGraySelect_Click);
             // 
             // tileBigDarkSelect
             // 
@@ -533,21 +546,37 @@ namespace Test_Loopguy
             this.setCameraSize.UseVisualStyleBackColor = true;
             this.setCameraSize.Click += new System.EventHandler(this.setCameraSize_Click);
             // 
-            // cliffGraySelect
+            // editHeightMap
             // 
-            this.cliffGraySelect.Image = ((System.Drawing.Image)(resources.GetObject("cliffGraySelect.Image")));
-            this.cliffGraySelect.Location = new System.Drawing.Point(6, 167);
-            this.cliffGraySelect.Name = "cliffGraySelect";
-            this.cliffGraySelect.Size = new System.Drawing.Size(64, 64);
-            this.cliffGraySelect.TabIndex = 8;
-            this.cliffGraySelect.TabStop = false;
-            this.cliffGraySelect.Click += new System.EventHandler(this.cliffGraySelect_Click);
+            this.editHeightMap.AutoSize = true;
+            this.editHeightMap.Location = new System.Drawing.Point(613, 336);
+            this.editHeightMap.Name = "editHeightMap";
+            this.editHeightMap.Size = new System.Drawing.Size(136, 24);
+            this.editHeightMap.TabIndex = 36;
+            this.editHeightMap.Text = "Edit Heightmap";
+            this.editHeightMap.UseVisualStyleBackColor = true;
+            this.editHeightMap.CheckedChanged += new System.EventHandler(this.editHeightMap_CheckedChanged);
+            // 
+            // setHeight
+            // 
+            this.setHeight.Location = new System.Drawing.Point(613, 367);
+            this.setHeight.Maximum = new decimal(new int[] {
+            9,
+            0,
+            0,
+            0});
+            this.setHeight.Name = "setHeight";
+            this.setHeight.Size = new System.Drawing.Size(150, 27);
+            this.setHeight.TabIndex = 37;
+            this.setHeight.ValueChanged += new System.EventHandler(this.setHeight_ValueChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(926, 547);
+            this.Controls.Add(this.setHeight);
+            this.Controls.Add(this.editHeightMap);
             this.Controls.Add(this.setCameraSize);
             this.Controls.Add(this.saveMapSize);
             this.Controls.Add(this.label5);
@@ -566,6 +595,7 @@ namespace Test_Loopguy
             this.Name = "Form1";
             this.Text = "Form1";
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cliffGraySelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileBigDarkSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileBigLightSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tilesCheckeredBrownSelect)).EndInit();
@@ -595,7 +625,7 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.shrubSmallSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.potSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barrelSelect)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cliffGraySelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.setHeight)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -647,5 +677,7 @@ namespace Test_Loopguy
         private System.Windows.Forms.Button saveMapSize;
         private System.Windows.Forms.Button setCameraSize;
         private System.Windows.Forms.PictureBox cliffGraySelect;
+        private System.Windows.Forms.CheckBox editHeightMap;
+        private System.Windows.Forms.NumericUpDown setHeight;
     }
 }

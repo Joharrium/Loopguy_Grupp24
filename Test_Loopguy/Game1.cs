@@ -14,7 +14,7 @@ namespace Test_Loopguy
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
-        SpriteFont smallFont;
+        public static SpriteFont smallFont;
 
         public static Camera camera;
 

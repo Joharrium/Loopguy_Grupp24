@@ -178,7 +178,10 @@ namespace Test_Loopguy
             return tiles;
         }
         
-
+        public static void HeightEdit(Vector2 pos, int height)
+        {
+            currentLevel.HeightEdit(pos, height);
+        }
         
         private static List<LevelObject> ObjectLoad(int id)
         {

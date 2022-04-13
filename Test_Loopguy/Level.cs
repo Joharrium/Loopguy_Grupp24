@@ -12,6 +12,7 @@ namespace Test_Loopguy
         public int id;
         Rectangle cameraBounds;
         public Tile[,] tiles;
+        public int[,] heightMap;
         public List<LevelObject> levelObjects;
         //list of enemies
         //list of corresponding entrances from different ids and their position
@@ -23,7 +24,15 @@ namespace Test_Loopguy
             this.cameraBounds = cameraBounds;
             this.levelObjects = levelObjects;
             this.tiles = tiles;
-            
+            heightMap = new int[tiles.GetLength(0),tiles.GetLength(1)];
+            for (int i = 0; i < tiles.GetLength(0); i++)
+            {
+                for (int j = 0; j < tiles.GetLength(1); j++)
+                {
+                    heightMap[i, j] = 1;
+
+                }
+            }
         }
 
         internal void Update(GameTime gameTime, Player player)
@@ -63,7 +72,19 @@ namespace Test_Loopguy
             {
                 lo.Draw(spriteBatch);
             }
-            //draw tiles and objects and enemies, in the correct order
+
+            if(Game1.editLevel)
+            {
+                for(int i = 0; i<tiles.GetLength(0); i++)
+                {
+                    for(int j = 0; j<tiles.GetLength(1); j++)
+                    {
+                        spriteBatch.DrawString(Game1.smallFont, heightMap[i, j].ToString(), new Vector2(i * 16, j * 16), Color.White);
+                        
+                    }
+                }
+            }
+            //dra1w tiles and objects and enemies, in the correct order
         }
 
         public bool LevelObjectCollision(Vector2 check)
@@ -148,6 +169,23 @@ namespace Test_Loopguy
             tiles = newMap;
         }
 
+        public void HeightEdit(Vector2 position, int height)
+        {
+            Tile editedTile = null;
+            foreach (Tile t in tiles)
+            {
+                if (t.hitBox.Contains(position))
+                {
+                    editedTile = t;
+                }
+            }
+
+            if (editedTile != null)
+            {
+                Point coordinates = GetTileCoordinate(editedTile);
+                heightMap[coordinates.X, coordinates.Y] = height;
+            }
+        }
         public void TileEdit(TileSelection tile, Vector2 position)
         {
             Tile editedTile = null;

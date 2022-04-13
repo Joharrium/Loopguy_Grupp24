@@ -132,5 +132,22 @@ namespace Test_Loopguy
             LevelEditor.currentSelection = Selection.Tile;
             LevelEditor.selectedTile = TileSelection.CliffGray;
         }
+
+        private void editHeightMap_CheckedChanged(object sender, EventArgs e)
+        {
+            if(editHeightMap.Checked)
+            {
+                LevelEditor.currentSelection = Selection.Heightmap;
+            }
+            else
+            {
+                LevelEditor.currentSelection = Selection.Tile;
+            }
+        }
+
+        private void setHeight_ValueChanged(object sender, EventArgs e)
+        {
+            LevelEditor.height = (int)setHeight.Value;
+        }
     }
 }
