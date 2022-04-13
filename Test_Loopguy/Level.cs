@@ -151,6 +151,7 @@ namespace Test_Loopguy
         public void SetMapSize(int x, int y)
         {
             Tile[,] newMap = new Tile[x, y];
+            int[,] newHeight = new int[x, y];
             for (int i = 0; i < newMap.GetLength(0); i++)
             {
                 for (int j = 0; j < newMap.GetLength(1); j++)
@@ -158,14 +159,17 @@ namespace Test_Loopguy
                     if(tiles.GetLength(0) <= i || tiles.GetLength(1) <= j)
                     {
                         newMap[i, j] = new GrassTile(new Vector2(i * 16, j * 16));
+                        newHeight[i, j] = 1;
                     }
                     else
                     {
                         newMap[i, j] = tiles[i, j];
+                        newHeight[i, j] = heightMap[i, j];
                     }
                     
                 }
             }
+            heightMap = newHeight;
             tiles = newMap;
         }
 

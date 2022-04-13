@@ -286,6 +286,32 @@ namespace Test_Loopguy
             return objects;
         }
 
+        public static List<string> ExportHeightMapList()
+        {
+            StringBuilder stringToAdd = new StringBuilder(currentLevel.tiles.GetLength(0));
+            char[,] types = new char[currentLevel.tiles.GetLength(0), currentLevel.tiles.GetLength(1)];
+            for (int i = 0; i < currentLevel.tiles.GetLength(1); i++)
+            {
+                for (int j = 0; j < currentLevel.tiles.GetLength(0); j++)
+                {
+                    types[j, i] = (char)('0' + currentLevel.heightMap[j, i]);
+                }
+            }
+            List<string> listToWrite = new List<string>();
+            for (int j = 0; j < types.GetLength(1); j++)
+            {
+                for (int i = 0; i < types.GetLength(0); i++)
+                {
+                    if (types[i, j] != null)
+                    { stringToAdd.Append(types[i, j]); }
+                }
+                listToWrite.Add(stringToAdd.ToString());
+                stringToAdd.Clear();
+            }
+
+            return listToWrite;
+        }
+
         public static List<string> ExportTileList(int id)
         {
             StringBuilder stringToAdd = new StringBuilder(currentLevel.tiles.GetLength(0));
