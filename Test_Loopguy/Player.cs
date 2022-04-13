@@ -6,8 +6,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Test_Loopguy
 {
-    internal class Player : AnimatedMovingObject
+    internal class Player : MovingObject
     {
+        AnimSprite sprite;
         AnimSprite gunSprite;
         AnimSprite meleeSprite;
 
@@ -46,7 +47,9 @@ namespace Test_Loopguy
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            hitBox = new Rectangle((int)position.X, (int)position.Y, sprite.size.X, sprite.size.Y);
+            centerPosition = new Vector2(position.X + sprite.size.X / 2, position.Y + sprite.size.Y / 2);
+
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (attacking)
@@ -196,8 +199,6 @@ namespace Test_Loopguy
         public void Dash(SpriteBatch spriteBatch)
         {
             Vector2 viablePos = centerPosition + new Vector2(0, 12);
-
-            List<Vector2> dashPosList = new List<Vector2>();
 
             if(direction == Vector2.Zero)
             {

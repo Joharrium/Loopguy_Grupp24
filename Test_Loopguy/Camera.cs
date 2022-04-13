@@ -56,8 +56,11 @@ namespace Test_Loopguy
             //position.X = MathHelper.Clamp(-position.X + Game1.windowX / 2, -LevelManager.GetBounds().Width, 0);
             //position.Y = MathHelper.Clamp(-position.Y + Game1.windowY / 2, -LevelManager.GetBounds().Height, 0);
 
-            position.X = (int)Math.Round(position.X);
-            position.Y = (int)Math.Round(position.Y);
+            if (newPos == oldNewPos || stabilize)
+            {
+                position.X = (int)Math.Round(position.X);
+                position.Y = (int)Math.Round(position.Y);
+            }
             //casting position float to int fixes weird moving of background in relation to player sprite,
             //but causes player to shake when runnin :( 
 
@@ -115,6 +118,8 @@ namespace Test_Loopguy
 
 
             //transform = Matrix.CreateTranslation(MathHelper.Clamp(-position.X + Game1.windowX / 2, -LevelManager.GetBounds().Width, 0), MathHelper.Clamp(-position.Y + Game1.windowY / 2, -LevelManager.GetBounds().Height, 0), 0);
+
+            oldNewPos = newPos;
         }
     }
 }
