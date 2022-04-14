@@ -341,6 +341,18 @@ namespace Test_Loopguy
                         cliffMap[i + 1, j].sourceRectangle = new Rectangle(16, 0, 16, 16);
                     }
 
+                    if(W&&!S&&NW&&SW)
+                    {
+                        cliffMap[i, j + 1] = new CliffGray(new Vector2((i * 16) - 8, ((j + 1) * 16) - 8));
+                        cliffMap[i, j + 1].sourceRectangle = new Rectangle(80, 0, 16, 16);
+                    }
+
+                    if (E && !S && NE && SE)
+                    {
+                        cliffMap[i, j + 1] = new CliffGray(new Vector2(((i+1) * 16) - 8, ((j + 1) * 16) - 8));
+                        cliffMap[i, j + 1].sourceRectangle = new Rectangle(80, 16, 16, 16);
+                    }
+
                     if (S && !E && SW && SE)
                     {
                         cliffMap[i + 1, j + 1] = new CliffGray(new Vector2(((i + 1) * 16) - 8, ((j + 1) * 16) - 8));
@@ -348,19 +360,10 @@ namespace Test_Loopguy
                     }
 
                     /*
-                    if(NW&&N&&NE&&E&&SE&&S&&SW&&W)
+                    if(!N&&!NE&&!E&&!SE&&!S&&!SW&&!W&&!NW)
                     {
-                        cliffMap[i, j] = new CliffGray(new Vector2((i * 16) - 8, (j * 16) - 8));
-                        cliffMap[i, j].sourceRectangle = new Rectangle(0, 0, 16, 16);
-                        cliffMap[i + 1, j] = new CliffGray(new Vector2(((i + 1) * 16) - 8, (j * 16) - 8));
-                        cliffMap[i + 1, j].sourceRectangle = new Rectangle(32, 0, 16, 16);
-                        cliffMap[i, j + 1] = new CliffGray(new Vector2((i * 16) - 8, ((j + 1) * 16) - 8));
-                        cliffMap[i, j + 1].sourceRectangle = new Rectangle(0, 16, 16, 16);
-                        cliffMap[i + 1, j + 1] = new CliffGray(new Vector2(((i + 1) * 16) - 8, ((j + 1) * 16) - 8));
-                        cliffMap[i + 1, j + 1].sourceRectangle = new Rectangle(32, 16, 16, 16);
-                    }
-                    */
-
+                        cliffMap[i, j] = null;
+                    }*/
                 }
             }
         }
