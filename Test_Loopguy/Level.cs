@@ -378,8 +378,8 @@ namespace Test_Loopguy
                     }
                     if(SW && !W && !S)
                     {
-                        cliffMap[i +1 , j ] = new CliffGray(new Vector2(((i + 1) * 16) - 8, (j * 16) - 8));
-                        cliffMap[i + 1, j].sourceRectangle = new Rectangle(64, 16, 16, 16);
+                        cliffMap[i , j + 1 ] = new CliffGray(new Vector2(((i) * 16) - 8, ((j + 1) * 16) - 8));
+                        cliffMap[i, j + 1].sourceRectangle = new Rectangle(64, 16, 16, 16);
                     }
 
                     /*
