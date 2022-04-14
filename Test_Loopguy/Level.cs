@@ -347,7 +347,7 @@ namespace Test_Loopguy
                         cliffMap[i, j + 1].sourceRectangle = new Rectangle(80, 0, 16, 16);
                     }
 
-                    if (E && !S && NE && SE)
+                    if (E && !S && SE)
                     {
                         cliffMap[i, j + 1] = new CliffGray(new Vector2(((i+1) * 16) - 8, ((j + 1) * 16) - 8));
                         cliffMap[i, j + 1].sourceRectangle = new Rectangle(80, 16, 16, 16);
@@ -359,11 +359,35 @@ namespace Test_Loopguy
                         cliffMap[i + 1, j+1].sourceRectangle = new Rectangle(16, 16, 16, 16);
                     }
 
+                    if(NW && !W && !N)
+                    {
+                        cliffMap[i, j] = new CliffGray(new Vector2((i * 16) - 8, (j * 16) - 8));
+                        cliffMap[i, j].sourceRectangle = new Rectangle(64, 0, 16, 16);
+                    }
+
+                    if(NE && !E && !N)
+                    {
+                        cliffMap[i + 1, j] = new CliffGray(new Vector2(((i+1) * 16) - 8, (j * 16) - 8));
+                        cliffMap[i + 1, j].sourceRectangle = new Rectangle(48, 0, 16, 16);
+                    }
+
+                    if(SE && !E && !S)
+                    {
+                        cliffMap[i + 1, j + 1] = new CliffGray(new Vector2(((i + 1) * 16) - 8, ((j + 1) * 16) - 8));
+                        cliffMap[i + 1, j + 1].sourceRectangle = new Rectangle(48, 16, 16, 16);
+                    }
+                    if(SW && !W && !S)
+                    {
+                        cliffMap[i +1 , j ] = new CliffGray(new Vector2(((i + 1) * 16) - 8, (j * 16) - 8));
+                        cliffMap[i + 1, j].sourceRectangle = new Rectangle(64, 16, 16, 16);
+                    }
+
                     /*
                     if(!N&&!NE&&!E&&!SE&&!S&&!SW&&!W&&!NW)
                     {
                         cliffMap[i, j] = null;
-                    }*/
+                    }
+                    */
                 }
             }
         }
