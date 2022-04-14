@@ -1,5 +1,10 @@
 Box,56,56
 Box,56,56
+Box,56,56
+Box,56,56
+Box,56,56
+Box,56,56
+Box,56,56
 Box,64,96
 Box,80,96
 Box,96,96
@@ -17,8 +22,8 @@ Box,176,134
 Box,176,136
 ShrubSmall,32,15
 TreeBig,200,60
-ShrubSmall,190,50
-ShrubSmall,238,90
 BoxOpen,256,120
 BoxOpen,272,123
 BoxOpen,288,128
+Door,300,300,1
+Door,332,300,2
