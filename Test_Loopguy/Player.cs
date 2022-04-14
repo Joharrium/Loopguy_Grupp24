@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.IO;
 
 namespace Test_Loopguy
 {
@@ -12,6 +13,7 @@ namespace Test_Loopguy
         AnimSprite meleeSprite;
 
         Random random = new Random();
+        public List<int> keys = new List<int>();
 
         //Wtf
         public Vector2 cameraPosition;
@@ -24,7 +26,7 @@ namespace Test_Loopguy
         const float pi = (float)Math.PI;
 
         int dirInt;
-        const int meleeRange = 30;
+        const int meleeRange = 22;
         const int dashRange = 40;
 
         public string playerInfoString;
@@ -42,6 +44,24 @@ namespace Test_Loopguy
             speed = 100;
 
             dirInt = 2;
+            LoadKeys();
+        }
+        private void LoadKeys()
+        {
+            if (File.Exists(@"save\keys.txt"))
+            {
+                List<string> lines = new List<string>();
+                foreach (string line in System.IO.File.ReadLines(@"save\keys.txt"))
+                {
+                    lines.Add(line);
+                }
+
+                List<int> keysToAdd = new List<int>();
+                keysToAdd.Add(Int32.Parse(lines[0]));
+
+
+                keys = keysToAdd;
+            }
         }
 
         public override void Update(GameTime gameTime)

@@ -74,43 +74,12 @@
 /processorParam:TextureFormat=Color
 /build:gfx/characters/placeholder so git finds the folder.PNG
 
-#begin gfx/characters/placeholder so git finds the folder.PNG
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/characters/placeholder so git finds the folder.PNG
-
 #begin gfx/fonts/menuFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:gfx/fonts/menuFont.spritefont
-
-#begin gfx/fonts/menuFont.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:gfx/fonts/menuFont.spritefont
-
-#begin gfx/interface/black_screenlol.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/interface/black_screenlol.png
 
 #begin gfx/interface/black_screenlol.png
 /importer:TextureImporter
@@ -184,18 +153,6 @@
 /processorParam:TextureFormat=Color
 /build:gfx/interface/editor_icons/dirt_small.png
 
-#begin gfx/interface/editor_icons/dirt_small.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/interface/editor_icons/dirt_small.png
-
 #begin gfx/interface/editor_icons/grass.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -220,18 +177,6 @@
 /processorParam:TextureFormat=Color
 /build:gfx/interface/editor_icons/grass_small.png
 
-#begin gfx/interface/editor_icons/grass_small.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/interface/editor_icons/grass_small.png
-
 #begin gfx/interface/editor_icons/graybrick.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -243,30 +188,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/interface/editor_icons/graybrick.png
-
-#begin gfx/interface/editor_icons/graybrick.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/interface/editor_icons/graybrick.png
-
-#begin gfx/interface/editor_icons/graybrick_small.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/interface/editor_icons/graybrick_small.png
 
 #begin gfx/interface/editor_icons/graybrick_small.png
 /importer:TextureImporter
@@ -448,18 +369,6 @@
 /processorParam:TextureFormat=Color
 /build:gfx/interface/menu_items/selectedMenuBox.png
 
-#begin gfx/interface/menu_items/selectedMenuBox.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/interface/menu_items/selectedMenuBox.png
-
 #begin gfx/interface/placeholder so git finds the folder.PNG
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -471,30 +380,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/interface/placeholder so git finds the folder.PNG
-
-#begin gfx/interface/placeholder so git finds the folder.PNG
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/interface/placeholder so git finds the folder.PNG
-
-#begin gfx/objects/barrel.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/objects/barrel.png
 
 #begin gfx/objects/barrel.png
 /importer:TextureImporter
@@ -520,18 +405,6 @@
 /processorParam:TextureFormat=Color
 /build:gfx/objects/box.png
 
-#begin gfx/objects/box.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/objects/box.png
-
 #begin gfx/objects/box_open.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -544,7 +417,7 @@
 /processorParam:TextureFormat=Color
 /build:gfx/objects/box_open.png
 
-#begin gfx/objects/box_open.png
+#begin gfx/objects/door_big.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -554,19 +427,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:gfx/objects/box_open.png
-
-#begin gfx/objects/fern_destructible.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/objects/fern_destructible.png
+/build:gfx/objects/door_big.png
 
 #begin gfx/objects/fern_destructible.png
 /importer:TextureImporter
@@ -592,30 +453,6 @@
 /processorParam:TextureFormat=Color
 /build:gfx/objects/placeholder so git finds the folder.PNG
 
-#begin gfx/objects/placeholder so git finds the folder.PNG
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/objects/placeholder so git finds the folder.PNG
-
-#begin gfx/objects/pot.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/objects/pot.png
-
 #begin gfx/objects/pot.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -639,30 +476,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/objects/shrub.png
-
-#begin gfx/objects/shrub.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/objects/shrub.png
-
-#begin gfx/objects/shrub_small.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/objects/shrub_small.png
 
 #begin gfx/objects/shrub_small.png
 /importer:TextureImporter
@@ -700,18 +513,6 @@
 /processorParam:TextureFormat=Color
 /build:gfx/objects/tree_big.png
 
-#begin gfx/objects/tree_big.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/objects/tree_big.png
-
 #begin gfx/objects/tree_small.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -723,30 +524,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/objects/tree_small.png
-
-#begin gfx/objects/tree_small.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/objects/tree_small.png
-
-#begin gfx/particles/placeholder so git finds the folder.PNG
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/particles/placeholder so git finds the folder.PNG
 
 #begin gfx/particles/placeholder so git finds the folder.PNG
 /importer:TextureImporter
@@ -772,18 +549,6 @@
 /processorParam:TextureFormat=Color
 /build:gfx/terrain/dirt.png
 
-#begin gfx/terrain/dirt.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/terrain/dirt.png
-
 #begin gfx/terrain/dirt_corners.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -795,30 +560,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/terrain/dirt_corners.png
-
-#begin gfx/terrain/dirt_corners.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/terrain/dirt_corners.png
-
-#begin gfx/terrain/grass_basic.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/terrain/grass_basic.png
 
 #begin gfx/terrain/grass_basic.png
 /importer:TextureImporter
@@ -856,18 +597,6 @@
 /processorParam:TextureFormat=Color
 /build:gfx/terrain/grass_variation.png
 
-#begin gfx/terrain/grass_variation.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/terrain/grass_variation.png
-
 #begin gfx/terrain/placeholder so git finds the folder.PNG
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -879,30 +608,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/terrain/placeholder so git finds the folder.PNG
-
-#begin gfx/terrain/placeholder so git finds the folder.PNG
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/terrain/placeholder so git finds the folder.PNG
-
-#begin gfx/terrain/tiles_big_dark.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/terrain/tiles_big_dark.png
 
 #begin gfx/terrain/tiles_big_dark.png
 /importer:TextureImporter
@@ -928,18 +633,6 @@
 /processorParam:TextureFormat=Color
 /build:gfx/terrain/tiles_big_light.png
 
-#begin gfx/terrain/tiles_big_light.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/terrain/tiles_big_light.png
-
 #begin gfx/terrain/tiles_checkered_brown.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -951,30 +644,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/terrain/tiles_checkered_brown.png
-
-#begin gfx/terrain/tiles_checkered_brown.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/terrain/tiles_checkered_brown.png
-
-#begin gfx/terrain/tiles_checkered_gray.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/terrain/tiles_checkered_gray.png
 
 #begin gfx/terrain/tiles_checkered_gray.png
 /importer:TextureImporter
@@ -999,18 +668,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/terrain/wall.png
-
-#begin gfx/terrain/wall_small.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/terrain/wall_small.png
 
 #begin gfx/terrain/wall_small.png
 /importer:TextureImporter

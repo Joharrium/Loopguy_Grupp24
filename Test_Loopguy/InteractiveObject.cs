@@ -86,36 +86,7 @@ namespace Test_Loopguy
         }
     }
 
-    public class Door : LevelObject
-    {
-        int requiredKey;
-        bool open = false;
-        Rectangle unlockArea;
-        public Door(Vector2 position, int requiredKey) : base(position)
-        {
-            this.position = position;
-            this.requiredKey = requiredKey;
-            unlockArea = new Rectangle((int)(position.X - 32), (int)(position.Y - 32), 128, 96);
-        }
-
-        public void Update()
-        {
-            if(unlockArea.Contains(EntityManager.player.centerPosition))
-            {
-                //foreach key k in player 
-                //CheckIfKey(k)
-            }
-            
-        }
-
-        public void CheckIfKey(int key)
-        {
-            if(key == requiredKey)
-            {
-                open = true;
-            }
-        }
-    }
+    
 
     
 }

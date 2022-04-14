@@ -80,19 +80,6 @@ namespace Test_Loopguy
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 32);
         }
     }
-    /*
-    public class ShrubSmall : LevelObject
-    {
-        public ShrubSmall(Vector2 position) : base(position)
-        {
-            this.position = position;
-            variation = Game1.rnd.Next(4);
-            texture = TexMGR.shrub_small;
-            hitBox.Width = 0;
-            hitBox.Height = 0;
-            sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
-        }
-    }*/
 
     public class Barrel : LevelObject
     {

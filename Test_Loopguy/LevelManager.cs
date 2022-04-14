@@ -216,7 +216,12 @@ namespace Test_Loopguy
                 Vector2 objectPosition = new Vector2(0, 0);
                 objectPosition.X = Int32.Parse(splitter[1]);
                 objectPosition.Y = Int32.Parse(splitter[2]);
-                //int requiredKey = Int32.Parse(splitter[3]);
+                if(splitter.Length > 3)
+                {
+                    int requiredKey = Int32.Parse(splitter[3]);
+                }
+                //fix this shit sooner or later
+                
                 levelObjects.Add(ObjectCreator(objectToFind, objectPosition));
             }
 
