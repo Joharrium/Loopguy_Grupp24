@@ -13,6 +13,7 @@ namespace Test_Loopguy
         Rectangle cameraBounds;
         public Tile[,] tiles;
         public int[,] heightMap;
+        public Cliff[,] cliffMap;
         public List<LevelObject> levelObjects;
         //list of enemies
         //list of corresponding entrances from different ids and their position
@@ -25,6 +26,8 @@ namespace Test_Loopguy
             this.levelObjects = levelObjects;
             this.tiles = tiles;
             heightMap = height;
+            cliffMap = new Cliff[tiles.GetLength(0),tiles.GetLength(1)];
+            GenerateCliffMap();
             /*
             heightMap = new int[tiles.GetLength(0),tiles.GetLength(1)];
             for (int i = 0; i < tiles.GetLength(0); i++)
@@ -39,7 +42,7 @@ namespace Test_Loopguy
 
         internal void Update(GameTime gameTime, Player player)
         {
-            RefreshTileEdges();
+            //RefreshTileEdges();
             List<Destructible> destructiblesToRemove = new List<Destructible>();
             foreach(Destructible lo in levelObjects.OfType<Destructible>())
             {
@@ -69,6 +72,13 @@ namespace Test_Loopguy
             foreach (Tile t in tiles)
             {
                 t.Draw(spriteBatch);
+            }
+            foreach (Cliff c in cliffMap)
+            {
+                if(c != null)
+                {
+                    c.Draw(spriteBatch);
+                }
             }
             foreach (LevelObject lo in levelObjects)
             {
@@ -191,6 +201,7 @@ namespace Test_Loopguy
                 Point coordinates = GetTileCoordinate(editedTile);
                 heightMap[coordinates.X, coordinates.Y] = height;
             }
+            GenerateCliffMap();
         }
         public void TileEdit(TileSelection tile, Vector2 position)
         {
@@ -245,6 +256,75 @@ namespace Test_Loopguy
             foreach(CliffGray cliff in tiles.OfType<CliffGray>())
             {
                 cliff.RefreshEdges(tiles);
+            }
+        }
+
+        private void GenerateCliffMap()
+        {
+            for(int i = 1; i<heightMap.GetLength(0) - 1; i++)
+            {
+                for(int j = 1; j<heightMap.GetLength(1) - 1; j++)
+                {
+                    bool NW = false;
+                    bool N = false;
+                    bool NE = false;
+                    bool E = false;
+                    bool SE = false;
+                    bool S = false;
+                    bool SW = false;
+                    bool W = false;
+
+                    
+                    //not sure any of this is actually needed...
+                    //will get back to later
+                    if(heightMap[i,j] > heightMap[i-1,j-1])
+                    {
+                        NW = true;
+                    }
+                    if (heightMap[i, j] > heightMap[i, j - 1])
+                    {
+                        N = true;
+                    }
+                    if (heightMap[i, j] > heightMap[i + 1, j - 1])
+                    {
+                        NE = true;
+                    }
+
+                    if (heightMap[i, j] > heightMap[i - 1, j])
+                    {
+                        W = true;
+                    }
+                    if (heightMap[i, j] > heightMap[i + 1, j])
+                    {
+                        E = true;
+                    }
+
+                    if (heightMap[i, j] > heightMap[i - 1, j + 1])
+                    {
+                        SW = true;
+                    }
+                    if (heightMap[i, j] > heightMap[i, j + 1])
+                    {
+                        S = true;
+                    }
+                    if (heightMap[i, j] > heightMap[i + 1, j + 1])
+                    {
+                        SE = true;
+                    }
+
+                    if(NW&&N&&NE&&E&&SE&&S&&SW&&W)
+                    {
+                        cliffMap[i, j] = new CliffGray(new Vector2((i * 16) - 8, (j * 16) - 8));
+                        cliffMap[i, j].sourceRectangle = new Rectangle(0, 0, 16, 16);
+                        cliffMap[i + 1, j] = new CliffGray(new Vector2(((i + 1) * 16) - 8, (j * 16) - 8));
+                        cliffMap[i + 1, j].sourceRectangle = new Rectangle(32, 0, 16, 16);
+                        cliffMap[i, j + 1] = new CliffGray(new Vector2((i * 16) - 8, ((j + 1) * 16) - 8));
+                        cliffMap[i, j + 1].sourceRectangle = new Rectangle(0, 16, 16, 16);
+                        cliffMap[i + 1, j + 1] = new CliffGray(new Vector2(((i + 1) * 16) - 8, ((j + 1) * 16) - 8));
+                        cliffMap[i + 1, j + 1].sourceRectangle = new Rectangle(32, 16, 16, 16);
+                    }
+
+                }
             }
         }
 
