@@ -275,8 +275,7 @@ namespace Test_Loopguy
                     bool W = false;
 
                     
-                    //not sure any of this is actually needed...
-                    //will get back to later
+                    //okay now just to figure out a way to do this more dynamically and modularly (that's a word)
                     if(heightMap[i,j] > heightMap[i-1,j-1])
                     {
                         NW = true;
@@ -312,6 +311,43 @@ namespace Test_Loopguy
                         SE = true;
                     }
 
+                    if(W&&NW&&N)
+                    {
+                        cliffMap[i, j] = new CliffGray(new Vector2((i * 16) - 8, (j * 16) - 8));
+                        cliffMap[i, j].sourceRectangle = new Rectangle(0, 0, 16, 16);
+                    }
+
+                    if(N&&NE&&E)
+                    {
+                        cliffMap[i + 1, j] = new CliffGray(new Vector2(((i + 1) * 16) - 8, (j * 16) - 8));
+                        cliffMap[i + 1, j].sourceRectangle = new Rectangle(32, 0, 16, 16);
+                    }
+
+                    if(E&&SE&&S)
+                    {
+                        cliffMap[i + 1, j + 1] = new CliffGray(new Vector2(((i + 1) * 16) - 8, ((j + 1) * 16) - 8));
+                        cliffMap[i + 1, j + 1].sourceRectangle = new Rectangle(32, 16, 16, 16);
+                    }
+
+                    if(S&&SW&&W)
+                    {
+                        cliffMap[i, j + 1] = new CliffGray(new Vector2((i * 16) - 8, ((j + 1) * 16) - 8));
+                        cliffMap[i, j + 1].sourceRectangle = new Rectangle(0, 16, 16, 16);
+                    }
+
+                    if(N&&!E&&NW&&NE)
+                    {
+                        cliffMap[i + 1, j] = new CliffGray(new Vector2(((i + 1) * 16) - 8, (j * 16) - 8));
+                        cliffMap[i + 1, j].sourceRectangle = new Rectangle(16, 0, 16, 16);
+                    }
+
+                    if (S && !E && SW && SE)
+                    {
+                        cliffMap[i + 1, j + 1] = new CliffGray(new Vector2(((i + 1) * 16) - 8, ((j + 1) * 16) - 8));
+                        cliffMap[i + 1, j+1].sourceRectangle = new Rectangle(16, 16, 16, 16);
+                    }
+
+                    /*
                     if(NW&&N&&NE&&E&&SE&&S&&SW&&W)
                     {
                         cliffMap[i, j] = new CliffGray(new Vector2((i * 16) - 8, (j * 16) - 8));
@@ -323,6 +359,7 @@ namespace Test_Loopguy
                         cliffMap[i + 1, j + 1] = new CliffGray(new Vector2(((i + 1) * 16) - 8, ((j + 1) * 16) - 8));
                         cliffMap[i + 1, j + 1].sourceRectangle = new Rectangle(32, 16, 16, 16);
                     }
+                    */
 
                 }
             }
