@@ -42,8 +42,11 @@ namespace Test_Loopguy
                     destructiblesToRemove.Add(lo);
                 }
             }
-
-            foreach(Destructible d in destructiblesToRemove)
+            foreach (Door d in levelObjects.OfType<Door>())
+            {
+                d.Update(gameTime);
+            }
+                foreach (Destructible d in destructiblesToRemove)
             {
                 levelObjects.Remove(d);
             }

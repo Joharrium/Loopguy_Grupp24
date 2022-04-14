@@ -211,6 +211,8 @@ namespace Test_Loopguy
 
             for (int i = 0; i < lines.Count; i++)
             {
+                int? requiredKey = null;
+
                 string[] splitter = lines[i].Split(',');
                 string objectToFind = splitter[0];
                 Vector2 objectPosition = new Vector2(0, 0);
@@ -218,11 +220,18 @@ namespace Test_Loopguy
                 objectPosition.Y = Int32.Parse(splitter[2]);
                 if(splitter.Length > 3)
                 {
-                    int requiredKey = Int32.Parse(splitter[3]);
+                    requiredKey = Int32.Parse(splitter[3]);
                 }
                 //fix this shit sooner or later
+                if(requiredKey != null)
+                {
+                    levelObjects.Add(DoorCreator(objectToFind, objectPosition, (int)requiredKey));
+                }
+                else
+                {
+                    levelObjects.Add(ObjectCreator(objectToFind, objectPosition));
+                }
                 
-                levelObjects.Add(ObjectCreator(objectToFind, objectPosition));
             }
 
 
@@ -249,6 +258,10 @@ namespace Test_Loopguy
             currentLevel.SetMapSize(x, y);
         }
 
+        public static Door DoorCreator(string name, Vector2 pos, int key)
+        {
+            return new Door(pos, key);
+        }
 
         public static LevelObject ObjectCreator(string name, Vector2 pos)
         {
