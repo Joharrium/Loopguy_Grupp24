@@ -211,7 +211,10 @@ namespace Test_Loopguy
 
             for (int i = 0; i < lines.Count; i++)
             {
+                //parameter3
                 int? requiredKey = null;
+                //parameter4
+                bool? keyPermanent = null;
 
                 string[] splitter = lines[i].Split(',');
                 string objectToFind = splitter[0];
@@ -222,10 +225,18 @@ namespace Test_Loopguy
                 {
                     requiredKey = Int32.Parse(splitter[3]);
                 }
-                //fix this shit sooner or later
+                if(splitter.Length > 4)
+                {
+                    keyPermanent = Boolean.Parse(splitter[3]);
+                }
+                
                 if(requiredKey != null)
                 {
                     levelObjects.Add(DoorCreator(objectToFind, objectPosition, (int)requiredKey));
+                }
+                if(keyPermanent != null)
+                {
+                    //levelObjects.Add(KeyCreator(objectToFind, objectPosition, (int)requiredKey, keyPermanent));
                 }
                 else
                 {

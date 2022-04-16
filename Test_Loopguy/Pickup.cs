@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -41,6 +42,7 @@ namespace Test_Loopguy
             this.position = position;
             this.id = id;
             this.permanent = permanent;
+            texture = TexMGR.keycard;
             this.hitBox = new Rectangle((int)position.X, (int)position.Y, 16, 16);
         }
         protected override void Effect()
@@ -59,6 +61,13 @@ namespace Test_Loopguy
 
         private void SaveKeyToFile()
         {
+            string path = @"saves\keys.txt";
+
+            using (StreamWriter sw = File.AppendText(path))
+            {
+                sw.WriteLine(id.ToString());
+            }
+
             //add to save it to the savefile
         }
     }
