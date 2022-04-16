@@ -65,7 +65,11 @@ namespace Test_Loopguy
             }
             foreach (LevelObject lo in levelObjects)
             {
-                lo.Draw(spriteBatch);
+                if(lo != null)
+                {
+                    lo.Draw(spriteBatch);
+                }
+                
             }
             //draw tiles and objects and enemies, in the correct order
         }
@@ -74,10 +78,14 @@ namespace Test_Loopguy
         {
             foreach(LevelObject lo in levelObjects)
             {
-                if(lo.hitBox.Contains(check))
+                if(lo != null)
                 {
-                    return true;
+                    if (lo.hitBox.Contains(check))
+                    {
+                        return true;
+                    }
                 }
+                
             }
             return false;
         }

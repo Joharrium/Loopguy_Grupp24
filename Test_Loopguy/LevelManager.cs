@@ -225,10 +225,10 @@ namespace Test_Loopguy
                 {
                     requiredKey = Int32.Parse(splitter[3]);
                 }
-                if(splitter.Length > 4)
-                {
-                    keyPermanent = Boolean.Parse(splitter[3]);
-                }
+                //if(splitter.Length > 4)
+                //{
+                //    keyPermanent = Boolean.Parse(splitter[3]);
+                //}
                 
                 if(requiredKey != null)
                 {

@@ -48,16 +48,20 @@ namespace Test_Loopguy
         }
         private void LoadKeys()
         {
-            if (File.Exists(@"save\keys.txt"))
+            if (File.Exists(@"saves\keys.txt"))
             {
                 List<string> lines = new List<string>();
-                foreach (string line in System.IO.File.ReadLines(@"save\keys.txt"))
+                foreach (string line in System.IO.File.ReadLines(@"saves\keys.txt"))
                 {
                     lines.Add(line);
                 }
 
                 List<int> keysToAdd = new List<int>();
-                keysToAdd.Add(Int32.Parse(lines[0]));
+                foreach(string l in lines)
+                {
+                    keysToAdd.Add(Int32.Parse(l));
+                }
+                
 
 
                 keys = keysToAdd;
