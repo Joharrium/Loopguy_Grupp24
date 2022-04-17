@@ -8,7 +8,7 @@ namespace Test_Loopguy
 {
     public class Door : LevelObject
     {
-        int requiredKey;
+        public int requiredKey;
         bool open = false;
         Rectangle unlockArea;
         AnimSprite animation;

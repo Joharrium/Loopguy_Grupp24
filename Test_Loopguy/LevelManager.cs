@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -318,7 +319,29 @@ namespace Test_Loopguy
 
             foreach (LevelObject lo in currentLevel.levelObjects)
             {
-                objects.Add(lo.GetType().Name + "," + ((int)lo.position.X) + "," + ((int)lo.position.Y));
+                if(lo is Door)
+                {
+                    
+                }
+                else if(lo is KeyPickup)
+                {
+
+                }
+                else
+                {
+                    objects.Add(lo.GetType().Name + "," + ((int)lo.position.X) + "," + ((int)lo.position.Y));
+                }
+                
+            }
+
+            foreach (Door d in currentLevel.levelObjects.OfType<Door>())
+            {
+                objects.Add(d.GetType().Name + "," + ((int)d.position.X) + "," + ((int)d.position.Y) + "," + d.requiredKey);
+            }
+
+            foreach (KeyPickup k in currentLevel.levelObjects.OfType<KeyPickup>())
+            {
+                objects.Add(k.GetType().Name + "," + ((int)k.position.X) + "," + ((int)k.position.Y) + "," + k.GetStringOfParams());
             }
 
             return objects;

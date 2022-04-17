@@ -54,6 +54,11 @@ namespace Test_Loopguy
     {
         int id;
         bool permanent;
+
+        public string GetStringOfParams()
+        {
+            return id.ToString() + "," + permanent.ToString();
+        }
         public KeyPickup(Vector2 position, int id, bool permanent) : base(position)
         {
             this.position = position;

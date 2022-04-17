@@ -51,6 +51,7 @@ namespace Test_Loopguy
             0,
             0,
             0});
+            this.doorID.ValueChanged += new System.EventHandler(this.doorID_ValueChanged);
             // 
             // createButton
             // 
@@ -70,6 +71,7 @@ namespace Test_Loopguy
             this.requiredKey.Size = new System.Drawing.Size(76, 15);
             this.requiredKey.TabIndex = 3;
             this.requiredKey.Text = "Required Key";
+            this.requiredKey.Click += new System.EventHandler(this.requiredKey_Click);
             // 
             // PlaceDoor
             // 

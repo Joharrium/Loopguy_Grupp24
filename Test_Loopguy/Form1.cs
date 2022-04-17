@@ -137,5 +137,11 @@ namespace Test_Loopguy
             PlaceDoor placeDoorDialog = new PlaceDoor();
             placeDoorDialog.ShowDialog();
         }
+
+        private void keycardRedSelect_Click(object sender, EventArgs e)
+        {
+            PlaceKeys placeKeyDialod = new PlaceKeys();
+            placeKeyDialod.ShowDialog();
+        }
     }
 }

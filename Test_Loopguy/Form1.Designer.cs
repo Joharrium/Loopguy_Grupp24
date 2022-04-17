@@ -58,7 +58,7 @@ namespace Test_Loopguy
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.keycardRedSelect = new System.Windows.Forms.PictureBox();
             this.doorSelect = new System.Windows.Forms.PictureBox();
             this.treeBigSelect = new System.Windows.Forms.PictureBox();
             this.shrubBigSelect = new System.Windows.Forms.PictureBox();
@@ -96,7 +96,7 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.keycardRedSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.doorSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeBigSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shrubBigSelect)).BeginInit();
@@ -294,7 +294,7 @@ namespace Test_Loopguy
             this.groupBox1.Controls.Add(this.pictureBox16);
             this.groupBox1.Controls.Add(this.pictureBox9);
             this.groupBox1.Controls.Add(this.pictureBox10);
-            this.groupBox1.Controls.Add(this.pictureBox11);
+            this.groupBox1.Controls.Add(this.keycardRedSelect);
             this.groupBox1.Controls.Add(this.doorSelect);
             this.groupBox1.Controls.Add(this.treeBigSelect);
             this.groupBox1.Controls.Add(this.shrubBigSelect);
@@ -413,15 +413,16 @@ namespace Test_Loopguy
             this.pictureBox10.TabIndex = 10;
             this.pictureBox10.TabStop = false;
             // 
-            // pictureBox11
+            // keycardRedSelect
             // 
-            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
-            this.pictureBox11.Location = new System.Drawing.Point(66, 124);
-            this.pictureBox11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(56, 48);
-            this.pictureBox11.TabIndex = 9;
-            this.pictureBox11.TabStop = false;
+            this.keycardRedSelect.Image = ((System.Drawing.Image)(resources.GetObject("keycardRedSelect.Image")));
+            this.keycardRedSelect.Location = new System.Drawing.Point(66, 124);
+            this.keycardRedSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.keycardRedSelect.Name = "keycardRedSelect";
+            this.keycardRedSelect.Size = new System.Drawing.Size(56, 48);
+            this.keycardRedSelect.TabIndex = 9;
+            this.keycardRedSelect.TabStop = false;
+            this.keycardRedSelect.Click += new System.EventHandler(this.keycardRedSelect_Click);
             // 
             // doorSelect
             // 
@@ -642,7 +643,7 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.keycardRedSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.doorSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeBigSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.shrubBigSelect)).EndInit();
@@ -687,7 +688,7 @@ namespace Test_Loopguy
         private System.Windows.Forms.PictureBox pictureBox16;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.PictureBox pictureBox10;
-        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.PictureBox keycardRedSelect;
         private System.Windows.Forms.PictureBox doorSelect;
         private System.Windows.Forms.PictureBox treeBigSelect;
         private System.Windows.Forms.PictureBox shrubBigSelect;

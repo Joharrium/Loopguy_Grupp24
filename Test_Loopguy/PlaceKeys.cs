@@ -8,29 +8,19 @@ using System.Windows.Forms;
 
 namespace Test_Loopguy
 {
-    public partial class PlaceDoor : Form
+    public partial class PlaceKeys : Form
     {
-        public PlaceDoor()
+        public PlaceKeys()
         {
             InitializeComponent();
         }
 
         private void createButton_Click(object sender, EventArgs e)
         {
-            LevelEditor.SetDoorParams((int)doorID.Value);
-            LevelEditor.selectedObject = ObjectSelection.DoorWood;
+            LevelEditor.SetKeyParams((int)doorID.Value, permanentCheck.Checked);
+            LevelEditor.selectedObject = ObjectSelection.KeycardRed;
             LevelEditor.currentSelection = Selection.Object;
             this.Close();
-        }
-
-        private void requiredKey_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void doorID_ValueChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

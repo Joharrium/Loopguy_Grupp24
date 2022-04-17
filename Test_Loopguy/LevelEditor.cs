@@ -96,6 +96,10 @@ namespace Test_Loopguy
                                 LevelManager.ObjectAdd(new Door(Game1.mousePos - new Vector2(16, 16), doorRequiredKey));
                                 break;
 
+                            case ObjectSelection.KeycardRed:
+                                LevelManager.ObjectAdd(new KeyPickup(Game1.mousePos - new Vector2(16, 16), doorRequiredKey, keyPermanent));
+                                break;
+
                             default:
                                 break;
                         }
