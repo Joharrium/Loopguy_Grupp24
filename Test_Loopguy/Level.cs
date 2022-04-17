@@ -42,6 +42,10 @@ namespace Test_Loopguy
                     destructiblesToRemove.Add(lo);
                 }
             }
+            foreach (Pickup p in levelObjects.OfType<Pickup>())
+            {
+                p.Update();
+            }
             foreach (Door d in levelObjects.OfType<Door>())
             {
                 d.Update(gameTime);

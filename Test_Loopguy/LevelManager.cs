@@ -225,18 +225,18 @@ namespace Test_Loopguy
                 {
                     requiredKey = Int32.Parse(splitter[3]);
                 }
-                //if(splitter.Length > 4)
-                //{
-                //    keyPermanent = Boolean.Parse(splitter[3]);
-                //}
-                
-                if(requiredKey != null)
+                if(splitter.Length > 4)
+                {
+                    keyPermanent = Boolean.Parse(splitter[4]);
+                }
+
+                if (keyPermanent != null)
+                {
+                    levelObjects.Add(KeyCreator(objectPosition, (int)requiredKey, (bool)keyPermanent));
+                }
+                else if (requiredKey != null)
                 {
                     levelObjects.Add(DoorCreator(objectToFind, objectPosition, (int)requiredKey));
-                }
-                if(keyPermanent != null)
-                {
-                    //levelObjects.Add(KeyCreator(objectToFind, objectPosition, (int)requiredKey, keyPermanent));
                 }
                 else
                 {
@@ -274,6 +274,10 @@ namespace Test_Loopguy
             return new Door(pos, key);
         }
 
+        public static KeyPickup KeyCreator(Vector2 pos, int id, bool permanent)
+        {
+            return new KeyPickup(pos, id, permanent);
+        }
         public static LevelObject ObjectCreator(string name, Vector2 pos)
         {
             switch (name)

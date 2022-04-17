@@ -10,15 +10,32 @@ namespace Test_Loopguy
     public class Pickup : LevelObject
     {
         public bool pickedUp = false;
+        private Rectangle pickupBox;
+        private float wave = 0;
+        private float waveadjust = 0;
         public Pickup(Vector2 position) : base(position)
         {
             this.position = position;
-            this.hitBox = new Rectangle((int)position.X, (int)position.Y, 16, 16);
+            pickupBox = new Rectangle((int)position.X - 4, (int)position.Y - 4, 24, 24);
         }
 
-        public void PickUp()
+        public void Update()
         {
-            if(hitBox.Contains(EntityManager.player.centerPosition))
+            PickUp();
+            Wave();
+        }
+
+        private void Wave()
+        {
+            wave += 0.15F;
+            waveadjust = (float)(Math.Sin(wave)) / 2;
+            position.Y += waveadjust;
+        }
+
+
+        private void PickUp()
+        {
+            if(pickupBox.Contains(EntityManager.player.centerPosition) && !pickedUp )
             {
                 position.X = -10000;
                 position.Y = -10000;
@@ -65,6 +82,7 @@ namespace Test_Loopguy
 
             using (StreamWriter sw = File.AppendText(path))
             {
+                sw.WriteLine();
                 sw.WriteLine(id.ToString());
             }
 

@@ -26,4 +26,5 @@ BoxOpen,256,120
 BoxOpen,272,123
 BoxOpen,288,128
 Door,300,300,1
-Door,332,300,2
+Door,272,0,2
+Key,200,200,2,False
