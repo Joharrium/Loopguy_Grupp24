@@ -131,5 +131,11 @@ namespace Test_Loopguy
         {
             LevelManager.StartLevelTransition(Int32.Parse(goToLevelWithID.Text), EntityManager.player, new Microsoft.Xna.Framework.Vector2(64, 64));
         }
+
+        private void doorSelect_Click(object sender, EventArgs e)
+        {
+            PlaceDoor placeDoorDialog = new PlaceDoor();
+            placeDoorDialog.ShowDialog();
+        }
     }
 }

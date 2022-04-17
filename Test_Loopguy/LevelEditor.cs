@@ -13,7 +13,7 @@ namespace Test_Loopguy
     }
     public enum ObjectSelection
     {
-        Box, Barrel, Pot, ShrubSmall, TreeSmall, BoxOpen, TreeBig, ShrubBig
+        Box, Barrel, Pot, ShrubSmall, TreeSmall, BoxOpen, TreeBig, ShrubBig, DoorWood, KeycardRed
     }
     public enum TileSelection
     {
@@ -24,7 +24,21 @@ namespace Test_Loopguy
         public static Selection currentSelection;
         public static ObjectSelection selectedObject;
         public static TileSelection selectedTile;
+        private static int doorRequiredKey;
+        private static int keyID;
+        private static bool keyPermanent;
         private static Level currentLevel;
+
+        public static void SetDoorParams(int key)
+        {
+            doorRequiredKey = key;
+        }
+
+        public static void SetKeyParams(int id, bool permanent)
+        {
+            keyID = id;
+            keyPermanent = permanent;
+        }
 
         //have list of levels?
         public static void Update(GameTime gameTime)
@@ -76,6 +90,10 @@ namespace Test_Loopguy
 
                             case ObjectSelection.Pot:
                                 LevelManager.ObjectAdd(new Pot(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            case ObjectSelection.DoorWood:
+                                LevelManager.ObjectAdd(new Door(Game1.mousePos - new Vector2(16, 16), doorRequiredKey));
                                 break;
 
                             default:
