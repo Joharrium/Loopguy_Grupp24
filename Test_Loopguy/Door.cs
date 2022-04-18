@@ -9,12 +9,14 @@ namespace Test_Loopguy
     public class Door : LevelObject
     {
         public int requiredKey;
-        bool open = false;
-        Rectangle unlockArea;
-        AnimSprite animation;
+        protected bool open = false;
+        protected Rectangle unlockArea;
+        internal AnimSprite animation;
+        protected Texture2D openTex;
         public Door(Vector2 position, int requiredKey) : base(position)
         {
             this.texture = TexMGR.door;
+            openTex = TexMGR.door_open;
             sourceRectangle = new Rectangle(0, 0, 32, 32);
             this.position = position;
             hitBox = new Rectangle((int)position.X, (int)position.Y, 32, 32);
@@ -42,10 +44,10 @@ namespace Test_Loopguy
                     {
                         animation.Position = new Vector2(-1000, -1000);
                     }
-                    texture = TexMGR.door_open;
+                    texture = openTex;
                 }
 
-                texture = TexMGR.door_open;
+                texture = openTex;
             }
             animation.Update(gameTime);
 
@@ -69,6 +71,21 @@ namespace Test_Loopguy
         {
             base.Draw(spriteBatch);
             animation.Draw(spriteBatch);
+        }
+    }
+
+    public class DoorSliding : Door
+    {
+        public DoorSliding(Vector2 position, int requiredKey) : base(position, requiredKey)
+        {
+            this.texture = TexMGR.door_sliding;
+            openTex = TexMGR.door_sliding_open;
+            sourceRectangle = new Rectangle(0, 0, 32, 32);
+            this.position = position;
+            hitBox = new Rectangle((int)position.X, (int)position.Y, 32, 32);
+            this.requiredKey = requiredKey;
+            unlockArea = new Rectangle((int)(position.X - 16), (int)(position.Y - 16), 64, 64);
+            animation = new AnimSprite(TexMGR.door_sliding, new Point(32, 32));
         }
     }
 }

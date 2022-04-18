@@ -10,15 +10,17 @@ namespace Test_Loopguy
 {
     public partial class PlaceDoor : Form
     {
-        public PlaceDoor()
+        ObjectSelection type;
+        public PlaceDoor(ObjectSelection type)
         {
             InitializeComponent();
+            this.type = type;
         }
 
         private void createButton_Click(object sender, EventArgs e)
         {
             LevelEditor.SetDoorParams((int)doorID.Value);
-            LevelEditor.selectedObject = ObjectSelection.DoorWood;
+            LevelEditor.selectedObject = type;
             LevelEditor.currentSelection = Selection.Object;
             this.Close();
         }

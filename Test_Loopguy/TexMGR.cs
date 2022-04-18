@@ -10,7 +10,7 @@ namespace Test_Loopguy
         // terrain files
         public static Texture2D grassBasic, grassAlt, grayBrickWall, dirt, tiles_checkered_gray, tiles_checkered_brown, tiles_big_light, tiles_big_dark;
         // object files
-        public static Texture2D boxOpen, barrel, pot, shrub_big, shrub_small, tree_big, tree_small, fernDestroyed, door, door_open, keycard;
+        public static Texture2D boxOpen, barrel, pot, shrub_big, shrub_small, tree_big, tree_small, fernDestroyed, door, door_open, keycard, door_sliding, door_sliding_open;
         // ui files
         public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door;
         public static SpriteFont UI_menuFont;
@@ -60,6 +60,8 @@ namespace Test_Loopguy
             door = c.Load<Texture2D>("gfx/objects/door_big");
             door_open = c.Load<Texture2D>("gfx/objects/door_big_open");
             keycard = c.Load<Texture2D>("gfx/objects/keycard");
+            door_sliding = c.Load<Texture2D>("gfx/objects/door_sliding");
+            door_sliding_open = c.Load<Texture2D>("gfx/objects/door_sliding_open");
         }
 
         private static void LoadUI(ContentManager c)

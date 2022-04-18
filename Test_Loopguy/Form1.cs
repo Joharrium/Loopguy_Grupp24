@@ -134,7 +134,7 @@ namespace Test_Loopguy
 
         private void doorSelect_Click(object sender, EventArgs e)
         {
-            PlaceDoor placeDoorDialog = new PlaceDoor();
+            PlaceDoor placeDoorDialog = new PlaceDoor(ObjectSelection.DoorWood);
             placeDoorDialog.ShowDialog();
         }
 
@@ -142,6 +142,12 @@ namespace Test_Loopguy
         {
             PlaceKeys placeKeyDialod = new PlaceKeys();
             placeKeyDialod.ShowDialog();
+        }
+
+        private void doorSlidingSelect_Click(object sender, EventArgs e)
+        {
+            PlaceDoor placeDoorDialog = new PlaceDoor(ObjectSelection.DoorSliding);
+            placeDoorDialog.ShowDialog();
         }
     }
 }

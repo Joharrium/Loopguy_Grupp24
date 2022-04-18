@@ -153,6 +153,18 @@
 /processorParam:TextureFormat=Color
 /build:gfx/interface/editor_icons/dirt_small.png
 
+#begin gfx/interface/editor_icons/door_sliding_small.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/interface/editor_icons/door_sliding_small.png
+
 #begin gfx/interface/editor_icons/door_small.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -452,6 +464,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/objects/door_big_open.png
+
+#begin gfx/objects/door_sliding.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/door_sliding.png
+
+#begin gfx/objects/door_sliding_open.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/door_sliding_open.png
 
 #begin gfx/objects/fern_destructible.png
 /importer:TextureImporter

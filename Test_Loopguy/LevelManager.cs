@@ -272,7 +272,20 @@ namespace Test_Loopguy
 
         public static Door DoorCreator(string name, Vector2 pos, int key)
         {
-            return new Door(pos, key);
+            switch (name)
+            {
+                case "Door":
+                    return new Door(pos, key);
+
+                case "DoorSliding":
+                    return new DoorSliding(pos, key);
+                    
+                default:
+                    return null;
+                    
+
+            }
+            
         }
 
         public static KeyPickup KeyCreator(Vector2 pos, int id, bool permanent)
@@ -309,7 +322,7 @@ namespace Test_Loopguy
 
                 default:
                     return null;
-                    break;
+                    
             }
         }
 
