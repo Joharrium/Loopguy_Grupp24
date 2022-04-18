@@ -151,6 +151,14 @@ namespace Test_Loopguy
                         spriteBatch.Draw(TexMGR.pot, Game1.mousePos - new Vector2(8, 8), Color.White);
                         break;
 
+                    case ObjectSelection.DoorWood:
+                        spriteBatch.Draw(TexMGR.UI_door, Game1.mousePos - new Vector2(16, 16), Color.White);
+                        break;
+
+                    case ObjectSelection.KeycardRed:
+                        spriteBatch.Draw(TexMGR.keycard, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        break;
+
                     default:
 
                         break;
