@@ -13,7 +13,7 @@ namespace Test_Loopguy
         public static Texture2D boxOpen, barrel, pot, shrub_big, shrub_small, tree_big, tree_small, fernDestroyed;
         // ui files
         public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen;
-        public static SpriteFont UI_menuFont;
+        public static SpriteFont UI_menuFont, UI_smallFont;
 
         public static void LoadTextures(ContentManager c)
         {
@@ -67,6 +67,8 @@ namespace Test_Loopguy
             UI_menuFont = c.Load<SpriteFont>("gfx/fonts/menuFont");
             UI_graybrick = c.Load<Texture2D>("gfx/interface/editor_icons/graybrick_small");
             black_screen = c.Load<Texture2D>("gfx/interface/black_screenlol");
+
+            UI_smallFont = c.Load<SpriteFont>("smallFont");
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Test_Loopguy
 {
     class StateManager
     {
-       
+        RenderTarget2D renderTarget;
 
         public enum GameState
         {
@@ -19,7 +19,7 @@ namespace Test_Loopguy
             Load,
         }
 
-        public static GameState currentState = GameState.InGame;
+        public static GameState currentState = GameState.Menu;
 
         public static void Update(GameTime gameTime)
         {
@@ -27,10 +27,17 @@ namespace Test_Loopguy
             {
                 case GameState.Menu:
 
+                    //CameraManager.camera.xClamped = false;
+                    //CameraManager.camera.yClamped = false;
+
+                    CameraManager.Update(gameTime);
+
                     MenuManager.Update(gameTime);
 
                     break;
                 case GameState.InGame:
+
+                    //GraphicsDevice.SetRenderTarget(Game1.renderTarget);
 
                     LevelManager.Update(gameTime, EntityManager.player);
 
@@ -63,12 +70,15 @@ namespace Test_Loopguy
                     break;
                 case GameState.InGame:
 
+
                     LevelManager.Draw(spriteBatch);
 
                     if(Game1.editLevel)
                         LevelEditor.Draw(spriteBatch);
 
                     EntityManager.Draw(spriteBatch);
+
+
 
                     break;
                 case GameState.InEditor:

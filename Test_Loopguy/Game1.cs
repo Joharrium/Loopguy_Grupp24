@@ -11,18 +11,19 @@ namespace Test_Loopguy
     public class Game1 : Game
     {
         public static Random rnd = new Random();
+        public static Game1 game1;
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
         SpriteFont smallFont;
 
-        public static Camera camera;
+        //public static Camera camera;
 
         //Player player;
 
         Texture2D blueArc, redPixel;
 
-        RenderTarget2D renderTarget;
+        public static RenderTarget2D renderTarget;
 
         public static Vector2 mousePos;
         public static Rectangle screenRect;
@@ -38,6 +39,7 @@ namespace Test_Loopguy
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            game1 = this;
         }
 
         protected override void Initialize()
@@ -50,7 +52,7 @@ namespace Test_Loopguy
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             TexMGR.LoadTextures(Content);
-            MenuManager.LoadMenuButtons();
+          
             EntityManager.PlayerInitialization();
 
             smallFont = Content.Load<SpriteFont>("smallFont");
@@ -69,16 +71,18 @@ namespace Test_Loopguy
 
             LevelManager.LoadLevel(1);
             LevelManager.EntranceLoad();
+            CameraManager.LoadCamera();
+            MenuManager.LoadMenuButtons();
 
-            camera = new Camera();
-            camera.SetPosition(new Vector2(200, 200));
+            //camera = new Camera();
+            //camera.SetPosition(new Vector2(200, 200));
 
             //player = new Player(new Vector2(64, 64));
             //TileManager.Initialization();
             //WallManager.Initialization();
 
-            
-            
+
+
 
             var frmNewForm = new Form1();
             var newThread = new System.Threading.Thread(frmNewFormThread);
@@ -116,31 +120,31 @@ namespace Test_Loopguy
             //Update player position
             //player.Update(gameTime);
             //LevelManager.Update(gameTime);
-            //Update camera position
-            camera.SmoothPosition(EntityManager.player.cameraPosition, deltaTime);
+            ////Update camera position
+            //camera.SmoothPosition(EntityManager.player.cameraPosition, deltaTime);
 
-            //Gets mouse position from window and camera position
-            Vector2 windowMousePos = new Vector2(InputReader.mouseState.X / windowScale, InputReader.mouseState.Y / windowScale);
-            Vector2 cameraTopLeft = new Vector2(camera.clampedPosition.X, camera.clampedPosition.Y);
-            if(!camera.yClamped)
-            {
-                cameraTopLeft.Y = camera.position.Y - windowY/2;
-            }
-            else if (cameraTopLeft.Y != 0)
-            {
-                cameraTopLeft.Y *= -1;
-            }
+            ////Gets mouse position from window and camera position
+            //Vector2 windowMousePos = new Vector2(InputReader.mouseState.X / windowScale, InputReader.mouseState.Y / windowScale);
+            //Vector2 cameraTopLeft = new Vector2(camera.clampedPosition.X, camera.clampedPosition.Y);
+            //if (!camera.yClamped)
+            //{
+            //    cameraTopLeft.Y = camera.position.Y - windowY / 2;
+            //}
+            //else if (cameraTopLeft.Y != 0)
+            //{
+            //    cameraTopLeft.Y *= -1;
+            //}
 
-            if (!camera.xClamped)
-            {
-                cameraTopLeft.X = camera.position.X - windowX/2;
-            }
-            else if(cameraTopLeft.X != 0)
-            {
-                cameraTopLeft.X *= -1;
-            }
+            //if (!camera.xClamped)
+            //{
+            //    cameraTopLeft.X = camera.position.X - windowX / 2;
+            //}
+            //else if (cameraTopLeft.X != 0)
+            //{
+            //    cameraTopLeft.X *= -1;
+            //}
 
-            mousePos = new Vector2(cameraTopLeft.X + windowMousePos.X, cameraTopLeft.Y + windowMousePos.Y);
+            //mousePos = new Vector2(cameraTopLeft.X + windowMousePos.X, cameraTopLeft.Y + windowMousePos.Y);
 
             //Get angles between player and stuff
             double mouseAngle = Helper.GetAngle(EntityManager.player.centerPosition, mousePos, 0);
@@ -179,7 +183,7 @@ namespace Test_Loopguy
             GraphicsDevice.SetRenderTarget(renderTarget);
             GraphicsDevice.Clear(Color.SlateGray);
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, camera.Transform);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, CameraManager.camera.Transform);
             //Draw game stuff here!
 
             //LevelManager.Draw(spriteBatch);
@@ -201,8 +205,8 @@ namespace Test_Loopguy
             spriteBatch.Draw(renderTarget, screenRect, Color.White);
             Fadeout.Draw(spriteBatch);
             spriteBatch.DrawString(smallFont, infoString, Vector2.Zero, Color.White);
-            spriteBatch.DrawString(smallFont, camera.xClamped.ToString(), new Vector2(0, 80), Color.White);
-            spriteBatch.DrawString(smallFont, camera.yClamped.ToString(), new Vector2(0, 92), Color.White);
+            //spriteBatch.DrawString(smallFont, camera.xClamped.ToString(), new Vector2(0, 80), Color.White);
+            //spriteBatch.DrawString(smallFont, camera.yClamped.ToString(), new Vector2(0, 92), Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -220,6 +224,7 @@ namespace Test_Loopguy
             graphics.PreferredBackBufferHeight = screenRect.Height;
             graphics.ApplyChanges();
         }
+
 
     }
 }

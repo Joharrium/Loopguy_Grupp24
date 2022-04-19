@@ -72,11 +72,11 @@ namespace Test_Loopguy
                 if (InputReader.Aim())
                 {
                     cameraPosition = centerPosition + gunDirection * 50;
-                    Game1.camera.stabilize = true;
+                    CameraManager.camera.stabilize = true;
                 }
                 else
                 {
-                    Game1.camera.stabilize = false;
+                    CameraManager.camera.stabilize = false;
 
                     if (direction == Vector2.Zero)
                         cameraPosition = centerPosition + prevDirection * 30;

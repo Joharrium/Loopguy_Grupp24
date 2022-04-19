@@ -17,7 +17,7 @@ namespace Test_Loopguy
             float menuSpacing = Game1.windowY / 10;
 
             Vector2 menuSlot1 = new Vector2(Game1.windowX / 2, Game1.windowY / 2);
-            Vector2 menuSlot2 = new Vector2(Game1.windowX / 2, Game1.windowY / 2 + menuSpacing);
+            Vector2 menuSlot2 = new Vector2(Game1.windowX/ 2, Game1.windowY / 2 + menuSpacing);
             Vector2 menuSlot3 = new Vector2(Game1.windowX / 2, Game1.windowY / 2 + menuSpacing * 2);
             Vector2 menuSlot4 = new Vector2(Game1.windowX / 2, Game1.windowY / 2 + menuSpacing * 3);
             Vector2 menuSlot5 = new Vector2(Game1.windowX / 2, Game1.windowY / 2 + menuSpacing * 4);
@@ -91,7 +91,7 @@ namespace Test_Loopguy
 
         private static void QuitGameButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Game1.game1.Exit();
         }
 
         public static void Update(GameTime gameTime)
