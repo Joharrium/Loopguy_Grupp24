@@ -320,6 +320,9 @@ namespace Test_Loopguy
                 case "Pot":
                     return new Pot(pos);
 
+                case "BarrelDestructible":
+                    return new BarrelDestructible(pos);
+
                 default:
                     return null;
                     

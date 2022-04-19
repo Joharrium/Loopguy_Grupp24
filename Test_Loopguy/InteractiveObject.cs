@@ -14,6 +14,10 @@ namespace Test_Loopguy
         internal AnimSprite animation;
         internal bool destroyed = false;
         internal bool actuallyDestroyed = false;
+        public bool hitDuringCurrentAttack = false;
+        private float wave = 0;
+        private float waveadjust = 0;
+        private bool wobbling = false;
 
         public Destructible(Vector2 position) : base(position)
         {
@@ -23,11 +27,28 @@ namespace Test_Loopguy
 
         public void Damage(int damage)
         {
-            health -= damage;
+            if(!hitDuringCurrentAttack)
+            {
+                health -= damage;
+                wobbling = true;
+            }
+            
+        }
+
+        private void Wobble()
+        {
+            wave += 0.5F;
+            waveadjust = (float)(Math.Sin(wave)) / 2;
+            position.X += waveadjust;
+            if(wave % 5.5 == 0)
+            {
+                wobbling = false;
+            }
         }
 
         public void Update(GameTime gameTime)
         {
+            
             if(health <= 0)
             {
                 position = new Vector2(-99999, -99999);
@@ -41,6 +62,13 @@ namespace Test_Loopguy
                     actuallyDestroyed = true;
                 }
                 
+            }
+            else
+            {
+                if (wobbling)
+                {
+                    Wobble();
+                }
             }
             animation.Update(gameTime);
         }

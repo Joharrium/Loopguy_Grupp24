@@ -34,6 +34,11 @@ namespace Test_Loopguy
                 if(lo is Destructible && player.MeleeHit(lo) && player.attacking)
                 {
                     lo.Damage(1);
+                    lo.hitDuringCurrentAttack = true;
+                }
+                if(!player.attacking)
+                {
+                    lo.hitDuringCurrentAttack = false;
                 }
 
                 lo.Update(gameTime);
