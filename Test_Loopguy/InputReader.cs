@@ -66,7 +66,7 @@ static class InputReader
 	public static bool Shoot()
     { // Subject to change, might be better to do this in the Player class
 		if (Aim())
-			return Attack();
+			return mouseState.LeftButton == ButtonState.Pressed || padState.IsButtonDown(Buttons.RightTrigger);
 		else
 			return false;
     }
