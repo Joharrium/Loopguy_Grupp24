@@ -9,17 +9,19 @@ namespace Test_Loopguy
     internal class Shot : MovingObject
     {
         AnimSprite sprite;
+        float rotation;
 
-        public Shot(Vector2 position, Vector2 direction) :
+        public Shot(Vector2 position, Vector2 direction, float angle) :
             base(position)
         {
             this.position = position;
             this.direction = direction;
+            this.rotation = angle;
 
             sprite = new AnimSprite(TexMGR.shot, new Point(8, 8));
             sprite.Position = position;
 
-            speed = 500;
+            speed = 50;
         }
 
         public override void Update(GameTime gameTime)
@@ -39,7 +41,7 @@ namespace Test_Loopguy
             sprite.Draw(spriteBatch);
         }
 
-        public void DrawRotation(SpriteBatch spriteBatch, float rotation)
+        public void DrawRotation(SpriteBatch spriteBatch)
         {
             sprite.DrawRotation(spriteBatch, rotation);
         }

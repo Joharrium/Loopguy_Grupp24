@@ -22,6 +22,7 @@ namespace Test_Loopguy
         public bool usedGate;
 
         float aimAngle;
+        float shotAngle;
         const float pi = (float)Math.PI;
 
         int dirInt;
@@ -80,7 +81,9 @@ namespace Test_Loopguy
 
                     if (InputReader.Shoot())
                     {
-                        Shot shot = new Shot(centerPosition, gunDirection);
+                        Vector2 shotPosition = new Vector2(centerPosition.X + gunDirection.X * 15 - 4, centerPosition.Y + gunDirection.Y * 15 - 4);
+                        shotAngle = aimAngle + pi;
+                        Shot shot = new Shot(shotPosition, gunDirection, shotAngle);
                         shots.Add(shot);
                     }
                 }
@@ -167,7 +170,7 @@ namespace Test_Loopguy
 
             foreach(Shot shot in shots)
             {
-                shot.Draw(spriteBatch);
+                shot.DrawRotation(spriteBatch);
             }
         }
 
