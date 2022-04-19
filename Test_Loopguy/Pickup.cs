@@ -65,7 +65,7 @@ namespace Test_Loopguy
             this.id = id;
             this.permanent = permanent;
             texture = TexMGR.keycard;
-            this.hitBox = new Rectangle((int)position.X, (int)position.Y, 16, 16);
+            this.hitBox = new Rectangle(0, 0, 0, 0);
         }
         protected override void Effect()
         {

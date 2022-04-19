@@ -14,12 +14,15 @@ namespace Test_Loopguy
         // ui files
         public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door;
         public static SpriteFont UI_menuFont;
+        //particles
+        public static Texture2D spark_small;
 
         public static void LoadTextures(ContentManager c)
         {
             LoadTerrain(c);
             LoadObjects(c);
             LoadUI(c);
+            LoadParticles(c);
 
             notex = c.Load<Texture2D>("notex");
             checkers = c.Load<Texture2D>("checkers");
@@ -73,6 +76,11 @@ namespace Test_Loopguy
             UI_graybrick = c.Load<Texture2D>("gfx/interface/editor_icons/graybrick_small");
             black_screen = c.Load<Texture2D>("gfx/interface/black_screenlol");
             UI_door = c.Load<Texture2D>("gfx/interface/editor_icons/door_small");
+        }
+
+        private static void LoadParticles(ContentManager c)
+        {
+            spark_small = c.Load<Texture2D>("gfx/particles/spark_small");
         }
     }
 }
