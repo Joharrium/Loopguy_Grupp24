@@ -64,13 +64,8 @@ static class InputReader
 		return keyState.IsKeyDown(Keys.LeftShift) || padState.IsButtonDown(Buttons.LeftTrigger);
 	}
 	public static bool Shoot()
-    { // Subject to change, might be better to do this in the Player class
-
-		return LeftClick() || padState.IsButtonDown(Buttons.RightTrigger);
-		//if (Aim())
-		//	return mouseState.LeftButton == ButtonState.Pressed || padState.IsButtonDown(Buttons.RightTrigger);
-		//else
-		//	return false;
+    { //This is same as Attack so should probs just remove
+		return LeftClick() || KeyPressed(Keys.RightControl) || padState.IsButtonDown(Buttons.RightTrigger);
 	}
 
 	public static bool MovingLeftStick()

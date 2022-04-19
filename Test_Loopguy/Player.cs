@@ -81,7 +81,7 @@ namespace Test_Loopguy
                     Game1.camera.stabilize = true;
 
                     //SHOOTING
-                    if (InputReader.Shoot())
+                    if (InputReader.Attack())
                     {
                         Vector2 shotPosition = new Vector2(centerPosition.X + gunDirection.X * 20 - 4, centerPosition.Y + gunDirection.Y * 20 - 6);
                         shotAngle = aimAngle + pi;
