@@ -37,7 +37,7 @@ namespace Test_Loopguy
             : base(position)
         {
             sprite = new AnimSprite(TexMGR.playerSheet, new Point(32, 32));
-            gunSprite = new AnimSprite(TexMGR.gunSheet, new Point(32, 32));
+            gunSprite = new AnimSprite(TexMGR.gunSheet, new Point(64, 64));
             meleeSprite = new AnimSprite(TexMGR.meleeFx, new Point(48, 48));
 
             speed = 100;
@@ -103,7 +103,7 @@ namespace Test_Loopguy
             }
 
             sprite.Position = position;
-            gunSprite.Position = position;
+            gunSprite.Position = new Vector2(position.X - 16, position.Y - 16);
             meleeSprite.Position = new Vector2(position.X - 8, position.Y - 8);
             meleeSprite.Update(gameTime);
             sprite.Update(gameTime);
