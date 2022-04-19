@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Test_Loopguy
@@ -13,6 +14,8 @@ namespace Test_Loopguy
         protected Rectangle unlockArea;
         internal AnimSprite animation;
         protected Texture2D openTex;
+        protected bool playerInArea;
+        protected SoundEffect openSound;
         public Door(Vector2 position, int requiredKey) : base(position)
         {
             this.texture = TexMGR.door;
@@ -34,6 +37,10 @@ namespace Test_Loopguy
                     CheckIfKey(key);
                 }
                 //CheckIfKey(k)
+            }
+            else
+            {
+                playerInArea = false;
             }
             if (open)
             {
@@ -63,7 +70,14 @@ namespace Test_Loopguy
                 hitBox.Height = 0;
                 open = true;
                 animation.Position = position;
-                
+                Audio.PlaySound(Audio.open);
+                Audio.PlaySound(openSound);
+            }
+            else
+            if(!playerInArea && !open)
+            {
+                playerInArea = true;
+                Audio.PlaySound(Audio.deny);
             }
         }
 
@@ -78,6 +92,7 @@ namespace Test_Loopguy
     {
         public DoorSliding(Vector2 position, int requiredKey) : base(position, requiredKey)
         {
+            openSound = Audio.door_hiss_sound;
             this.texture = TexMGR.door_sliding;
             openTex = TexMGR.door_sliding_open;
             sourceRectangle = new Rectangle(0, 0, 32, 32);

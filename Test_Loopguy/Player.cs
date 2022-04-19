@@ -119,9 +119,11 @@ namespace Test_Loopguy
                         sprite.timeSinceLastFrame = 0;
 
                         attacking = true;
+                        Audio.PlaySound(Audio.swing);
                     }
                     else if (InputReader.Dash())
                     {
+                        Audio.PlaySound(Audio.dash);
                         dashing = true;
                     }
                 }

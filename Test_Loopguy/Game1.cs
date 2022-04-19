@@ -52,7 +52,7 @@ namespace Test_Loopguy
             TexMGR.LoadTextures(Content);
             MenuManager.LoadMenuButtons();
             EntityManager.PlayerInitialization();
-
+            Audio.Load(Content);
             smallFont = Content.Load<SpriteFont>("smallFont");
 
             InputReader.editMode = editLevel;
