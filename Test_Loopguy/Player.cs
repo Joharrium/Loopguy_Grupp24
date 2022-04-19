@@ -34,6 +34,7 @@ namespace Test_Loopguy
         bool attacking;
         bool dashing;
 
+        //Right now all shots are handled in this class, might not be appropriate... unless? JK it's not... unless?
         List<Shot> shots;
 
         public Player(Vector2 position)
@@ -79,9 +80,10 @@ namespace Test_Loopguy
                     cameraPosition = centerPosition + gunDirection * 50;
                     Game1.camera.stabilize = true;
 
+                    //SHOOTING
                     if (InputReader.Shoot())
                     {
-                        Vector2 shotPosition = new Vector2(centerPosition.X + gunDirection.X * 15 - 4, centerPosition.Y + gunDirection.Y * 15 - 4);
+                        Vector2 shotPosition = new Vector2(centerPosition.X + gunDirection.X * 20 - 4, centerPosition.Y + gunDirection.Y * 20 - 6);
                         shotAngle = aimAngle + pi;
                         Shot shot = new Shot(shotPosition, gunDirection, shotAngle);
                         shots.Add(shot);

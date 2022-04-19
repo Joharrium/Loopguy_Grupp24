@@ -16,12 +16,13 @@ namespace Test_Loopguy
         {
             this.position = position;
             this.direction = direction;
-            this.rotation = angle;
+            
+            rotation = angle;
 
             sprite = new AnimSprite(TexMGR.shot, new Point(8, 8));
             sprite.Position = position;
 
-            speed = 50;
+            speed = 200;
         }
 
         public override void Update(GameTime gameTime)
