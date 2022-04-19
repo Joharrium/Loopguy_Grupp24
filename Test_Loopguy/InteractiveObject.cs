@@ -75,6 +75,21 @@ namespace Test_Loopguy
         }
     }
 
+    public class BarrelDestructible : Destructible
+    {
+        public BarrelDestructible(Vector2 position) : base(position)
+        {
+            animation = new AnimSprite(TexMGR.barrelDestroyed, new Point(24, 24));
+            animation.Position = position - new Vector2(4, 4);
+            this.position = position;
+            health = 3;
+            texture = TexMGR.barrel;
+            hitBox.Width = 16;
+            hitBox.Height = 16;
+
+        }
+    }
+
     
 
     public class Switch : LevelObject
