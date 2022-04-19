@@ -11,7 +11,7 @@ namespace Test_Loopguy.Content
     {
         internal AnimSprite animation;
         bool repeating;
-        bool donePlaying = false;
+        public bool donePlaying = false;
 
         public Particle(Vector2 position) : base(position)
         {
@@ -19,8 +19,9 @@ namespace Test_Loopguy.Content
             
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
+            animation.Update(gameTime);
             if(repeating)
             {
                 animation.Play(0, 1000, 60);
@@ -29,8 +30,12 @@ namespace Test_Loopguy.Content
             {
                 if (animation.PlayOnce(0, 1000, 60))
                 {
-                    position = new Vector2(-1000, -1000);
-                    donePlaying = true;
+                    if(animation.currentFrame.X > 64)
+                    {
+                        position = new Vector2(-1000, -1000);
+                        donePlaying = true;
+                    }
+                    
                 }
             }
         }
@@ -47,6 +52,8 @@ namespace Test_Loopguy.Content
         {
             this.position = position;
             animation = new AnimSprite(TexMGR.spark_small, new Point(16, 16));
+            animation.size = new Point(16, 16);
+            animation.Position = position;
         }
     }
 }

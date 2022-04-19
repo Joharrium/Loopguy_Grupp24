@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Test_Loopguy.Content;
 
 namespace Test_Loopguy
 {
@@ -37,16 +38,18 @@ namespace Test_Loopguy
         {
             if(pickupBox.Contains(EntityManager.player.centerPosition) && !pickedUp )
             {
+                ParticleManager.NewParticle(ParticleSelection.SparkSmall, position);
                 position.X = -10000;
                 position.Y = -10000;
                 pickedUp = true;
                 Effect();
+                
             }
         }
 
         protected virtual void Effect()
         {
-
+            
         }
     }
 
