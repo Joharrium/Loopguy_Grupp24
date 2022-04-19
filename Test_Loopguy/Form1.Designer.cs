@@ -76,6 +76,10 @@ namespace Test_Loopguy
             this.label6 = new System.Windows.Forms.Label();
             this.goToLevelWithID = new System.Windows.Forms.TextBox();
             this.goToLevelButton = new System.Windows.Forms.Button();
+            this.carpetSelect = new System.Windows.Forms.PictureBox();
+            this.metalTileSelect = new System.Windows.Forms.PictureBox();
+            this.wornWallSelect = new System.Windows.Forms.PictureBox();
+            this.wallMetalSelect = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tileBigDarkSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileBigLightSelect)).BeginInit();
@@ -106,10 +110,18 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.shrubSmallSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.potSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barrelSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carpetSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metalTileSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wornWallSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wallMetalSelect)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.wallMetalSelect);
+            this.groupBox2.Controls.Add(this.wornWallSelect);
+            this.groupBox2.Controls.Add(this.metalTileSelect);
+            this.groupBox2.Controls.Add(this.carpetSelect);
             this.groupBox2.Controls.Add(this.tileBigDarkSelect);
             this.groupBox2.Controls.Add(this.tileBigLightSelect);
             this.groupBox2.Controls.Add(this.tilesCheckeredBrownSelect);
@@ -122,7 +134,7 @@ namespace Test_Loopguy
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(252, 128);
+            this.groupBox2.Size = new System.Drawing.Size(252, 280);
             this.groupBox2.TabIndex = 30;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tiles";
@@ -599,6 +611,50 @@ namespace Test_Loopguy
             this.goToLevelButton.UseVisualStyleBackColor = true;
             this.goToLevelButton.Click += new System.EventHandler(this.goToLevelButton_Click);
             // 
+            // carpetSelect
+            // 
+            this.carpetSelect.Image = ((System.Drawing.Image)(resources.GetObject("carpetSelect.Image")));
+            this.carpetSelect.Location = new System.Drawing.Point(5, 125);
+            this.carpetSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.carpetSelect.Name = "carpetSelect";
+            this.carpetSelect.Size = new System.Drawing.Size(56, 48);
+            this.carpetSelect.TabIndex = 8;
+            this.carpetSelect.TabStop = false;
+            this.carpetSelect.Click += new System.EventHandler(this.carpetSelect_Click);
+            // 
+            // metalTileSelect
+            // 
+            this.metalTileSelect.Image = ((System.Drawing.Image)(resources.GetObject("metalTileSelect.Image")));
+            this.metalTileSelect.Location = new System.Drawing.Point(66, 125);
+            this.metalTileSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.metalTileSelect.Name = "metalTileSelect";
+            this.metalTileSelect.Size = new System.Drawing.Size(56, 48);
+            this.metalTileSelect.TabIndex = 9;
+            this.metalTileSelect.TabStop = false;
+            this.metalTileSelect.Click += new System.EventHandler(this.metalTileSelect_Click);
+            // 
+            // wornWallSelect
+            // 
+            this.wornWallSelect.Image = ((System.Drawing.Image)(resources.GetObject("wornWallSelect.Image")));
+            this.wornWallSelect.Location = new System.Drawing.Point(128, 125);
+            this.wornWallSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.wornWallSelect.Name = "wornWallSelect";
+            this.wornWallSelect.Size = new System.Drawing.Size(56, 48);
+            this.wornWallSelect.TabIndex = 10;
+            this.wornWallSelect.TabStop = false;
+            this.wornWallSelect.Click += new System.EventHandler(this.wornWallSelect_Click);
+            // 
+            // wallMetalSelect
+            // 
+            this.wallMetalSelect.Image = ((System.Drawing.Image)(resources.GetObject("wallMetalSelect.Image")));
+            this.wallMetalSelect.Location = new System.Drawing.Point(189, 125);
+            this.wallMetalSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.wallMetalSelect.Name = "wallMetalSelect";
+            this.wallMetalSelect.Size = new System.Drawing.Size(56, 48);
+            this.wallMetalSelect.TabIndex = 11;
+            this.wallMetalSelect.TabStop = false;
+            this.wallMetalSelect.Click += new System.EventHandler(this.wallMetalSelect_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -655,6 +711,10 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.shrubSmallSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.potSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barrelSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carpetSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metalTileSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wornWallSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wallMetalSelect)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -708,5 +768,9 @@ namespace Test_Loopguy
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox goToLevelWithID;
         private System.Windows.Forms.Button goToLevelButton;
+        private System.Windows.Forms.PictureBox wallMetalSelect;
+        private System.Windows.Forms.PictureBox wornWallSelect;
+        private System.Windows.Forms.PictureBox metalTileSelect;
+        private System.Windows.Forms.PictureBox carpetSelect;
     }
 }

@@ -77,9 +77,6 @@ namespace Test_Loopguy
             //TileManager.Initialization();
             //WallManager.Initialization();
 
-            
-            
-
             var frmNewForm = new Form1();
             var newThread = new System.Threading.Thread(frmNewFormThread);
 
@@ -90,6 +87,9 @@ namespace Test_Loopguy
             {
                 Application.Run(frmNewForm);
             }
+
+
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -107,6 +107,10 @@ namespace Test_Loopguy
             {
                 editLevel = !editLevel;
                 InputReader.editMode = editLevel;
+                if(editLevel)
+                {
+
+                }
             }
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;

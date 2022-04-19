@@ -155,5 +155,29 @@ namespace Test_Loopguy
             LevelEditor.selectedObject = ObjectSelection.BarrelDestructible;
             LevelEditor.currentSelection = Selection.Object;
         }
+
+        private void carpetSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.currentSelection = Selection.Tile;
+            LevelEditor.selectedTile = TileSelection.CarpetWorn;
+        }
+
+        private void metalTileSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.currentSelection = Selection.Tile;
+            LevelEditor.selectedTile = TileSelection.TileMetal;
+        }
+
+        private void wornWallSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.currentSelection = Selection.Tile;
+            LevelEditor.selectedTile = TileSelection.DrywallWorn;
+        }
+
+        private void wallMetalSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.currentSelection = Selection.Tile;
+            LevelEditor.selectedTile = TileSelection.WallMetal;
+        }
     }
 }

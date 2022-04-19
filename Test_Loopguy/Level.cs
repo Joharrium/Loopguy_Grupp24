@@ -207,6 +207,19 @@ namespace Test_Loopguy
                     case TileSelection.TilesBigDark:
                         tiles[coordinates.X, coordinates.Y] = new TileBigDark(gameLocation);
                         break;
+                    case TileSelection.TileMetal:
+                        tiles[coordinates.X, coordinates.Y] = new TileMetal(gameLocation);
+                        break;
+                    case TileSelection.WallMetal:
+                        tiles[coordinates.X, coordinates.Y] = new MetalWall(gameLocation);
+                        break;
+                    case TileSelection.CarpetWorn:
+                        tiles[coordinates.X, coordinates.Y] = new CarpetWorn(gameLocation);
+                        break;
+                    case TileSelection.DrywallWorn:
+                        tiles[coordinates.X, coordinates.Y] = new WornWall(gameLocation);
+
+                        break;
                 }
             }
             
