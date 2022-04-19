@@ -22,7 +22,7 @@ namespace Test_Loopguy
             sprite = new AnimSprite(TexMGR.shot, new Point(8, 8));
             sprite.Position = position;
 
-            speed = 200;
+            speed = 300;
         }
 
         public override void Update(GameTime gameTime)
