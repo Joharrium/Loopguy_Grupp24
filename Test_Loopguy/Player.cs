@@ -86,7 +86,7 @@ namespace Test_Loopguy
                     gunDirection = Vector2.Zero;
                     Movement(deltaTime);
 
-                    if (InputReader.Melee() && !attacking)
+                    if (InputReader.Attack() && !attacking)
                     {
                         meleeSprite.currentFrame.X = 0;
                         meleeSprite.timeSinceLastFrame = 0;

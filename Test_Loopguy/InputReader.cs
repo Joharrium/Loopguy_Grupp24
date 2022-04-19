@@ -52,7 +52,7 @@ static class InputReader
     {
 		return KeyPressed(Keys.Space) || ButtonPressed(Buttons.A);
     }
-	public static bool Melee()
+	public static bool Attack()
     {
 		if (editMode)
 			return false;
@@ -66,7 +66,7 @@ static class InputReader
 	public static bool Shoot()
     { // Subject to change, might be better to do this in the Player class
 		if (Aim())
-			return mouseState.LeftButton == ButtonState.Pressed || padState.IsButtonDown(Buttons.RightTrigger);
+			return Attack();
 		else
 			return false;
     }
