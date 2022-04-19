@@ -22,7 +22,6 @@ namespace Test_Loopguy
         public bool usedGate;
 
         float aimAngle;
-        float shotAngle;
         const float pi = (float)Math.PI;
 
         int dirInt;
@@ -84,7 +83,7 @@ namespace Test_Loopguy
                     if (InputReader.Attack())
                     {
                         Vector2 shotPosition = new Vector2(centerPosition.X + gunDirection.X * 20 - 4, centerPosition.Y + gunDirection.Y * 20 - 6);
-                        shotAngle = aimAngle + pi;
+                        float shotAngle = aimAngle + pi;
                         Shot shot = new Shot(shotPosition, gunDirection, shotAngle);
                         shots.Add(shot);
                     }
