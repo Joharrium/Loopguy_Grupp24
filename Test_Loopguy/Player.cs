@@ -33,6 +33,8 @@ namespace Test_Loopguy
         bool attacking;
         bool dashing;
 
+        List<Shot> shots;
+
         public Player(Vector2 position)
             : base(position)
         {
@@ -43,6 +45,8 @@ namespace Test_Loopguy
             speed = 100;
 
             dirInt = 2;
+
+            shots = new List<Shot>();
         }
 
         public override void Update(GameTime gameTime)
@@ -73,6 +77,12 @@ namespace Test_Loopguy
                 {
                     cameraPosition = centerPosition + gunDirection * 50;
                     Game1.camera.stabilize = true;
+
+                    if (InputReader.Shoot())
+                    {
+                        Shot shot = new Shot(centerPosition, gunDirection);
+                        shots.Add(shot);
+                    }
                 }
                 else
                 {
@@ -100,6 +110,11 @@ namespace Test_Loopguy
                         dashing = true;
                     }
                 }
+            }
+
+            foreach (Shot shot in shots)
+            {
+                shot.Update(gameTime);
             }
 
             sprite.Position = position;
@@ -148,6 +163,11 @@ namespace Test_Loopguy
                         Dash(spriteBatch);
                     }
                 }
+            }
+
+            foreach(Shot shot in shots)
+            {
+                shot.Draw(spriteBatch);
             }
         }
 
