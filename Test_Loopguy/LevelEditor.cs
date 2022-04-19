@@ -13,7 +13,7 @@ namespace Test_Loopguy
     }
     public enum ObjectSelection
     {
-        Box, Barrel, Pot, ShrubSmall, TreeSmall, BoxOpen, TreeBig, ShrubBig, DoorWood, KeycardRed, DoorSliding
+        Box, Barrel, Pot, ShrubSmall, TreeSmall, BoxOpen, TreeBig, ShrubBig, DoorWood, KeycardRed, DoorSliding, BarrelDestructible
     }
     public enum TileSelection
     {
@@ -104,6 +104,10 @@ namespace Test_Loopguy
                                 LevelManager.ObjectAdd(new KeyPickup(Game1.mousePos - new Vector2(16, 16), doorRequiredKey, keyPermanent));
                                 break;
 
+                            case ObjectSelection.BarrelDestructible:
+                                LevelManager.ObjectAdd(new BarrelDestructible(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
                             default:
                                 break;
                         }
@@ -128,6 +132,10 @@ namespace Test_Loopguy
                         break;
 
                     case ObjectSelection.Barrel:
+                        spriteBatch.Draw(TexMGR.barrel, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        break;
+
+                    case ObjectSelection.BarrelDestructible:
                         spriteBatch.Draw(TexMGR.barrel, Game1.mousePos - new Vector2(8, 8), Color.White);
                         break;
 

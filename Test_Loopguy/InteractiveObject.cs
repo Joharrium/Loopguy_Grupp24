@@ -86,7 +86,7 @@ namespace Test_Loopguy
             texture = TexMGR.barrel;
             hitBox.Width = 16;
             hitBox.Height = 16;
-
+            sourceRectangle = new Rectangle(0, 0, 16, 16);
         }
     }
 

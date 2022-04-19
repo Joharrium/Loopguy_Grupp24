@@ -56,7 +56,7 @@ namespace Test_Loopguy
             this.pictureBox14 = new System.Windows.Forms.PictureBox();
             this.pictureBox15 = new System.Windows.Forms.PictureBox();
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.barrelDestructibleSelect = new System.Windows.Forms.PictureBox();
             this.doorSlidingSelect = new System.Windows.Forms.PictureBox();
             this.keycardRedSelect = new System.Windows.Forms.PictureBox();
             this.doorSelect = new System.Windows.Forms.PictureBox();
@@ -94,7 +94,7 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barrelDestructibleSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.doorSlidingSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.keycardRedSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.doorSelect)).BeginInit();
@@ -292,7 +292,7 @@ namespace Test_Loopguy
             this.groupBox1.Controls.Add(this.pictureBox14);
             this.groupBox1.Controls.Add(this.pictureBox15);
             this.groupBox1.Controls.Add(this.pictureBox16);
-            this.groupBox1.Controls.Add(this.pictureBox9);
+            this.groupBox1.Controls.Add(this.barrelDestructibleSelect);
             this.groupBox1.Controls.Add(this.doorSlidingSelect);
             this.groupBox1.Controls.Add(this.keycardRedSelect);
             this.groupBox1.Controls.Add(this.doorSelect);
@@ -393,15 +393,16 @@ namespace Test_Loopguy
             this.pictureBox16.TabIndex = 12;
             this.pictureBox16.TabStop = false;
             // 
-            // pictureBox9
+            // barrelDestructibleSelect
             // 
-            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(189, 124);
-            this.pictureBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(56, 48);
-            this.pictureBox9.TabIndex = 11;
-            this.pictureBox9.TabStop = false;
+            this.barrelDestructibleSelect.Image = ((System.Drawing.Image)(resources.GetObject("barrelDestructibleSelect.Image")));
+            this.barrelDestructibleSelect.Location = new System.Drawing.Point(189, 124);
+            this.barrelDestructibleSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.barrelDestructibleSelect.Name = "barrelDestructibleSelect";
+            this.barrelDestructibleSelect.Size = new System.Drawing.Size(56, 48);
+            this.barrelDestructibleSelect.TabIndex = 11;
+            this.barrelDestructibleSelect.TabStop = false;
+            this.barrelDestructibleSelect.Click += new System.EventHandler(this.barrelDestructibleSelect_Click);
             // 
             // doorSlidingSelect
             // 
@@ -642,7 +643,7 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barrelDestructibleSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.doorSlidingSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.keycardRedSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.doorSelect)).EndInit();
@@ -687,7 +688,7 @@ namespace Test_Loopguy
         private System.Windows.Forms.PictureBox pictureBox14;
         private System.Windows.Forms.PictureBox pictureBox15;
         private System.Windows.Forms.PictureBox pictureBox16;
-        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.PictureBox barrelDestructibleSelect;
         private System.Windows.Forms.PictureBox doorSlidingSelect;
         private System.Windows.Forms.PictureBox keycardRedSelect;
         private System.Windows.Forms.PictureBox doorSelect;

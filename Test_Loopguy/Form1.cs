@@ -149,5 +149,11 @@ namespace Test_Loopguy
             PlaceDoor placeDoorDialog = new PlaceDoor(ObjectSelection.DoorSliding);
             placeDoorDialog.ShowDialog();
         }
+
+        private void barrelDestructibleSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.selectedObject = ObjectSelection.BarrelDestructible;
+            LevelEditor.currentSelection = Selection.Object;
+        }
     }
 }
