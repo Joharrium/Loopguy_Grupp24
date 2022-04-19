@@ -13,7 +13,8 @@ namespace Test_Loopguy
         public static Texture2D boxOpen, barrel, pot, shrub_big, shrub_small, tree_big, tree_small, fernDestroyed, door, door_open, 
             keycard, door_sliding, door_sliding_open, barrelDestroyed;
         // ui files
-        public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door;
+        public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door, 
+            healthbar_small_outline, healthbar_small_fill_bg, healthbar_small_fill;
         public static SpriteFont UI_menuFont;
         //particles
         public static Texture2D spark_small;
@@ -78,6 +79,9 @@ namespace Test_Loopguy
             UI_graybrick = c.Load<Texture2D>("gfx/interface/editor_icons/graybrick_small");
             black_screen = c.Load<Texture2D>("gfx/interface/black_screenlol");
             UI_door = c.Load<Texture2D>("gfx/interface/editor_icons/door_small");
+            healthbar_small_fill = c.Load<Texture2D>("gfx/interface/healthbar_small_fill");
+            healthbar_small_fill_bg = c.Load<Texture2D>("gfx/interface/healthbar_small_fill_bg");
+            healthbar_small_outline = c.Load<Texture2D>("gfx/interface/healthbar_small_outline");
         }
 
         private static void LoadParticles(ContentManager c)

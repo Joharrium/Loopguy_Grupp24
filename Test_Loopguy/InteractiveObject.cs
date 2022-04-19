@@ -9,9 +9,11 @@ namespace Test_Loopguy
     public class Destructible : LevelObject
     {
         protected int health;
+        protected int maxHealth;
         //for objects that would leave something behind e.g. a tree would leave a stump behind.
         protected LevelObject spawnObject;
         internal AnimSprite animation;
+        protected HealthBar healthBar;
         internal bool destroyed = false;
         internal bool actuallyDestroyed = false;
         public bool hitDuringCurrentAttack = false;
@@ -48,6 +50,10 @@ namespace Test_Loopguy
 
         public void Update(GameTime gameTime)
         {
+            if(health < maxHealth)
+            {
+                healthBar.SetCurrentValue(position + new Vector2(2, hitBox.Height), health);
+            }
             
             if(health <= 0)
             {
@@ -80,7 +86,10 @@ namespace Test_Loopguy
             {
                 animation.Draw(spriteBatch);
             }
-            
+            if (health < maxHealth)
+            {
+                healthBar.Draw(spriteBatch);
+            }
         }
 
 
@@ -94,12 +103,13 @@ namespace Test_Loopguy
             animation.Position = position - new Vector2(4, 4);
             this.position = position;
             health = 1;
+            maxHealth = 1;
             variation = Game1.rnd.Next(4);
             texture = TexMGR.shrub_small;
             hitBox.Width = 16;
             hitBox.Height = 16;
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
-
+            healthBar = new HealthBar(maxHealth);
         }
     }
 
@@ -111,10 +121,12 @@ namespace Test_Loopguy
             animation.Position = position - new Vector2(4, 4);
             this.position = position;
             health = 3;
+            maxHealth = 3;
             texture = TexMGR.barrel;
             hitBox.Width = 16;
             hitBox.Height = 16;
             sourceRectangle = new Rectangle(0, 0, 16, 16);
+            healthBar = new HealthBar(maxHealth);
         }
     }
 
