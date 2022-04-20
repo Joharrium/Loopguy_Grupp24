@@ -7,8 +7,9 @@ using System.IO;
 
 namespace Test_Loopguy
 {
-    internal class Player : AnimatedMovingObject
+    internal class Player : MovingObject
     {
+        AnimSprite sprite;
         AnimSprite gunSprite;
         AnimSprite meleeSprite;
 
@@ -22,6 +23,7 @@ namespace Test_Loopguy
 
         public bool usedGate;
 
+        float gunAngle;
         float aimAngle;
         const float pi = (float)Math.PI;
 
@@ -32,13 +34,18 @@ namespace Test_Loopguy
         public string playerInfoString;
 
         internal bool attacking;
+        bool attacking;
+        bool shooting;
         bool dashing;
+
+        //Right now all shots are handled in this class, might not be appropriate... unless? JK it's not... unless?
+        List<Shot> shots;
 
         public Player(Vector2 position)
             : base(position)
         {
             sprite = new AnimSprite(TexMGR.playerSheet, new Point(32, 32));
-            gunSprite = new AnimSprite(TexMGR.gunSheet, new Point(32, 32));
+            gunSprite = new AnimSprite(TexMGR.gunSheet, new Point(64, 64));
             meleeSprite = new AnimSprite(TexMGR.meleeFx, new Point(48, 48));
 
             speed = 100;
@@ -46,6 +53,7 @@ namespace Test_Loopguy
             dirInt = 2;
             LoadKeys();
         }
+        
         private void LoadKeys()
         {
             if (File.Exists(@"saves\keys.txt"))
@@ -66,11 +74,15 @@ namespace Test_Loopguy
 
                 keys = keysToAdd;
             }
+
+            shots = new List<Shot>();
         }
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            hitBox = new Rectangle((int)position.X, (int)position.Y, sprite.size.X, sprite.size.Y);
+            centerPosition = new Vector2(position.X + sprite.size.X / 2, position.Y + sprite.size.Y / 2);
+
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (attacking)
@@ -94,10 +106,29 @@ namespace Test_Loopguy
             }
             else
             {
-                if (InputReader.Aim())
+                if (InputReader.Aim() || shooting)
                 {
                     cameraPosition = centerPosition + gunDirection * 50;
                     Game1.camera.stabilize = true;
+
+                    //SHOOTING
+                    if (InputReader.Shoot() && !shooting)
+                    {
+                        gunSprite.currentFrame.X = 0;
+                        gunSprite.timeSinceLastFrame = 0;
+
+                        Vector2 shotPosition = new Vector2(centerPosition.X + gunDirection.X * 20 - 4, centerPosition.Y + gunDirection.Y * 20 - 6);
+                        float shotAngle = aimAngle + pi;
+                        Shot shot = new Shot(shotPosition, gunDirection, shotAngle);
+                        shots.Add(shot);
+
+                        shooting = true;
+                    }
+
+                    if (shooting)
+                    {
+                        Shoot(50);
+                    }
                 }
                 else
                 {
@@ -111,7 +142,7 @@ namespace Test_Loopguy
                     gunDirection = Vector2.Zero;
                     Movement(deltaTime);
 
-                    if (InputReader.Melee() && !attacking)
+                    if (InputReader.Attack() && !attacking)
                     {
                         meleeSprite.currentFrame.X = 0;
                         meleeSprite.timeSinceLastFrame = 0;
@@ -129,9 +160,16 @@ namespace Test_Loopguy
                 }
             }
 
+            foreach (Shot shot in shots)
+            {
+                shot.Update(gameTime);
+            }
+
             sprite.Position = position;
-            gunSprite.Position = position;
+            gunSprite.Position = new Vector2(position.X - 16, position.Y - 16);
             meleeSprite.Position = new Vector2(position.X - 8, position.Y - 8);
+
+            gunSprite.Update(gameTime);
             meleeSprite.Update(gameTime);
             sprite.Update(gameTime);
         }
@@ -148,7 +186,7 @@ namespace Test_Loopguy
                 if (dirInt == 1)
                 { //if aiming up, draw player sprite on top
 
-                    if (InputReader.Aim())
+                    if (InputReader.Aim() || shooting)
                     {
                         DrawAim(spriteBatch);
                         DrawGun(spriteBatch);
@@ -165,7 +203,7 @@ namespace Test_Loopguy
 
                     sprite.Draw(spriteBatch);
 
-                    if (InputReader.Aim())
+                    if (InputReader.Aim() || shooting)
                     {
                         DrawAim(spriteBatch);
                         DrawGun(spriteBatch);
@@ -175,6 +213,11 @@ namespace Test_Loopguy
                         Dash(spriteBatch);
                     }
                 }
+            }
+
+            foreach(Shot shot in shots)
+            {
+                shot.DrawRotation(spriteBatch);
             }
         }
 
@@ -227,8 +270,6 @@ namespace Test_Loopguy
         {
             Vector2 viablePos = centerPosition + new Vector2(0, 12);
 
-            List<Vector2> dashPosList = new List<Vector2>();
-
             if(direction == Vector2.Zero)
             {
                 if (dirInt == 1)
@@ -259,6 +300,28 @@ namespace Test_Loopguy
             viablePos += new Vector2(0, - 12);
             viablePos = new Vector2(viablePos.X - sprite.size.X / 2, viablePos.Y - sprite.size.Y / 2);
             position = viablePos;
+        }
+
+        private void CheckMovement(float deltaTime)
+        {
+            //test method so player can move diagonally over a wall but its kinda weird so not used currently
+            Vector2 futurepos = centerPosition + direction * speed * deltaTime + new Vector2(0, 12);
+            if (LevelManager.LevelObjectCollision(new Vector2(futurepos.X, centerPosition.Y)) || LevelManager.WallCollision(new Vector2(futurepos.X, centerPosition.Y)))
+            {
+
+            }
+            else
+            {
+                position.X += direction.X * speed * deltaTime;
+            }
+            if (LevelManager.LevelObjectCollision(new Vector2(centerPosition.X, futurepos.Y)) || LevelManager.WallCollision(new Vector2(centerPosition.X, futurepos.Y)))
+            {
+
+            }
+            else
+            {
+                position.Y += direction.Y * speed * deltaTime;
+            }
         }
 
         public override void Movement(float deltaTime)
@@ -344,6 +407,8 @@ namespace Test_Loopguy
                 direction.Normalize();
                 prevDirection = direction;
             }
+
+
             Vector2 futurepos = centerPosition + direction * speed * deltaTime + new Vector2(0, 12);
             if (LevelManager.LevelObjectCollision(futurepos) || LevelManager.WallCollision(futurepos))
             {
@@ -375,30 +440,28 @@ namespace Test_Loopguy
 
         public void DrawAim(SpriteBatch spriteBatch)
         {
+
             if (aimAngle > pi * 1.75f || aimAngle < pi * 0.25f)
             {//DOWN
-                sprite.Frame(1, 5);
-                gunSprite.Frame(1, 0);
                 dirInt = 2;
             }
             else if (aimAngle < pi * 0.75f)
             {//RIGHT
-                sprite.Frame(3, 5);
-                gunSprite.Frame(3, 0);
                 dirInt = 4;
             }
             else if (aimAngle < pi * 1.25f)
             {//UP
-                sprite.Frame(0, 5);
-                gunSprite.Frame(0, 0);
                 dirInt = 1;
             }
             else
             {//LEFT
-                sprite.Frame(2, 5);
-                gunSprite.Frame(2, 0);
                 dirInt = 3;
             }
+
+            if (!shooting)
+                gunSprite.Frame(dirInt - 1, 0);
+
+            sprite.Frame(dirInt - 1, 5);
 
             if (!InputReader.MovingLeftStick())
             {
@@ -416,11 +479,25 @@ namespace Test_Loopguy
                 Vector2 aimPoint = new Vector2(centerPosition.X + i * gunDirection.X, centerPosition.Y + i * gunDirection.Y);
                 spriteBatch.Draw(TexMGR.cyanPixel, aimPoint, Helper.RandomTransparency(random, 0, 90));
             }
+
+        }
+
+        public void Shoot(int frameTime)
+        {
+            if (aimAngle > pi * 1.75f || aimAngle < pi * 0.25f)
+                dirInt = 2;
+            else if (aimAngle < pi * 0.75f)
+                dirInt = 4;
+            else if (aimAngle < pi * 1.25f)
+                dirInt = 1;
+            else
+                dirInt = 3;
+
+            shooting = gunSprite.PlayOnce(dirInt, 5, frameTime);
         }
 
         public void DrawGun(SpriteBatch spriteBatch)
         {
-            float gunRotation;
             double angleOffset;
 
             //These are ordered in a way that makes perfect sense, shut up
@@ -434,11 +511,12 @@ namespace Test_Loopguy
                 angleOffset = -0.5 * pi;
 
             if (!InputReader.MovingLeftStick())
-                gunRotation = (float)Helper.GetAngle(centerPosition, Game1.mousePos, angleOffset);
+                gunAngle = (float)Helper.GetAngle(centerPosition, Game1.mousePos, angleOffset);
             else
-                gunRotation = InputReader.LeftStickAngle((float)angleOffset);
+                gunAngle = InputReader.LeftStickAngle((float)angleOffset);
 
-            gunSprite.DrawRotation(spriteBatch, gunRotation);
+
+            gunSprite.DrawRotation(spriteBatch, gunAngle);
         }
 
         public bool MeleeHit(GameObject obj)
