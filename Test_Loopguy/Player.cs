@@ -33,8 +33,7 @@ namespace Test_Loopguy
 
         public string playerInfoString;
 
-        internal bool attacking;
-        bool attacking;
+        public bool attacking;
         bool shooting;
         bool dashing;
 
