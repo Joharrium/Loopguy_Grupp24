@@ -20,13 +20,16 @@ namespace Test_Loopguy
         //music
         static SoundEffect musicTitle, musicBattle1, musicEnemyTurn, musicOverworld1, musicOverworld2, musicOverworld3, musicMystery;
 
+        public static SoundCollection lasergun;
         //sound
         public static SoundEffect meepmerp, swing, open, deny, dash, door_hiss_sound, box_destroy, shrub_destroy, keypickup;
+
+        public static SoundEffect EnergyGun_Shoot1A, EnergyGun_Shoot1B, EnergyGun_Shoot1C, EnergyGun_Shoot1D, EnergyGun_Shoot2A, EnergyGun_Shoot2B, EnergyGun_Shoot2C, EnergyGun_Shoot2D;
         static public void Load(ContentManager Content)
         {
             LoadMusic(Content);
             LoadSound(Content);
-
+            CreateCollections();
             /*
             foreach (SoundEffectInstance s in sound)
             {
@@ -41,11 +44,24 @@ namespace Test_Loopguy
             }
             */
         }
-
+        static void CreateCollections()
+        {
+            lasergun = new SoundCollection();
+            lasergun.AddSound(EnergyGun_Shoot1A);
+            lasergun.AddSound(EnergyGun_Shoot1B);
+            lasergun.AddSound(EnergyGun_Shoot1C);
+            lasergun.AddSound(EnergyGun_Shoot1D);
+            lasergun.AddSound(EnergyGun_Shoot2A);
+            lasergun.AddSound(EnergyGun_Shoot2B);
+            lasergun.AddSound(EnergyGun_Shoot2C);
+            lasergun.AddSound(EnergyGun_Shoot2D);
+        }
         static void LoadMusic(ContentManager c)
         {
 
         }
+
+        
 
         static void LoadSound(ContentManager c)
         {
@@ -58,6 +74,17 @@ namespace Test_Loopguy
             shrub_destroy = c.Load<SoundEffect>("audio/sound/shrub_destroy");
             door_hiss_sound = c.Load<SoundEffect>("audio/sound/door_hiss_sound");
             keypickup = c.Load<SoundEffect>("audio/sound/keypickup");
+
+            {
+                EnergyGun_Shoot1A = c.Load<SoundEffect>("audio/sound/gun/EnergyGun_Shoot1A");
+                EnergyGun_Shoot1B = c.Load<SoundEffect>("audio/sound/gun/EnergyGun_Shoot1B");
+                EnergyGun_Shoot1C = c.Load<SoundEffect>("audio/sound/gun/EnergyGun_Shoot1C");
+                EnergyGun_Shoot1D = c.Load<SoundEffect>("audio/sound/gun/EnergyGun_Shoot1D");
+                EnergyGun_Shoot2A = c.Load<SoundEffect>("audio/sound/gun/EnergyGun_Shoot2A");
+                EnergyGun_Shoot2B = c.Load<SoundEffect>("audio/sound/gun/EnergyGun_Shoot2B");
+                EnergyGun_Shoot2C = c.Load<SoundEffect>("audio/sound/gun/EnergyGun_Shoot2C");
+                EnergyGun_Shoot2D = c.Load<SoundEffect>("audio/sound/gun/EnergyGun_Shoot2D");
+            }
         }
 
         public static void PlaySound(SoundEffect sound)
@@ -69,145 +96,25 @@ namespace Test_Loopguy
                 instance.Play();
             }
         }
+    }
+    public class SoundCollection
+    {
+        List<SoundEffect> sounds = new List<SoundEffect>();
 
-        /*
-
-        static void FadeOut(SoundEffectInstance sound)
+        public SoundCollection()
         {
-            if (sound.Volume > 0)
-            {
-                sound.Volume = Math.Clamp(sound.Volume - 0.01F, 0, 0.35F);
-            }
-            if (sound.Volume == 0)
-            {
-                sound.Pause();
-            }
-        }
-
-        static void FadeIn(SoundEffectInstance sound)
-        {
-            if (sound.Volume < 0.35)
-            {
-                sound.Volume = Math.Clamp(sound.Volume + 0.01F, 0, 0.35F);
-            }
-        }
-        */
-        /*
-        public static void Music(GameState gamestate, int level)
-        {
-            if (gamestate == GameState.Title)
-            {
-                musicTitleInst.Play();
-                FadeIn(musicTitleInst);
-
-            }
-            else { FadeOut(musicTitleInst); }
-
-            if (gamestate == GameState.Conversation)
-            {
-                musicMysteryInst.Play();
-                FadeIn(musicMysteryInst);
-            }
-
-            else { FadeOut(musicMysteryInst); }
-
-
-            int battleSong = -1;
-            if (gamestate == GameState.Battle)
-            {
-                if (battleSong == -1)
-                {
-                    battleSong = rnd.Next(0, 2);
-                }
-
-                if (battleSong == 0)
-                {
-                    musicBattle1Inst.Play();
-                    FadeIn(musicBattle1Inst);
-                }
-                //change so one is for enemy turn instead
-
-            }
-            else
-            {
-                battleSong = -1;
-                FadeOut(musicBattle1Inst);
-            }
-
-            if (gamestate == GameState.Map)
-            {
-                if (TurnHandler.playerTurn)
-                {
-                    FadeOut(musicEnemyTurnInst);
-                    if (level == 1)
-                    {
-                        musicOverworld1Inst.Play();
-                        FadeIn(musicOverworld1Inst);
-                    }
-                    else { FadeOut(musicOverworld1Inst); }
-
-                    if (level == 2)
-                    {
-                        musicOverworld2Inst.Play();
-                        FadeIn(musicOverworld2Inst);
-                    }
-                    else { FadeOut(musicOverworld2Inst); }
-
-                    if (level == 3)
-                    {
-                        musicOverworld3Inst.Play();
-                        FadeIn(musicOverworld3Inst);
-                    }
-                    else { FadeOut(musicOverworld3Inst); }
-                }
-                else
-                {
-                    musicEnemyTurnInst.Play();
-                    FadeIn(musicEnemyTurnInst);
-                }
-            }
-            else
-            {
-                FadeOut(musicOverworld1Inst);
-                FadeOut(musicOverworld2Inst);
-                FadeOut(musicOverworld3Inst);
-                FadeOut(musicEnemyTurnInst);
-            }
-
 
         }
 
-        /*
-        public void Reset()
+        public void AddSound(SoundEffect sound)
         {
-            foreach (SoundEffectInstance m in music)
-            {
-                m.Volume = 0;
-                m.Play();
-                m.Stop();
-                m.Volume = musicVolume;
-            }
+            sounds.Add(sound);
         }
-        
 
-        public void Update(Vector2 mousePos, bool mousePressed)
+        public void PlayRandomSound()
         {
-            if(mousePressed)
-            {
-                musicSlider.Move(mousePos);
-                soundSlider.Move(mousePos);
-            }
-            musicVolume = (float)musicSlider.value;
-            soundVolume = (float)soundSlider.value;
-            foreach (SoundEffectInstance s in sound)
-            {
-                s.Volume = soundVolume;
-            }
-            foreach (SoundEffectInstance m in music)
-            {
-                m.Volume = musicVolume;
-            }
+            int randomizer = Game1.rnd.Next(sounds.Count);
+            Audio.PlaySound(sounds[randomizer]);
         }
-        */
     }
 }

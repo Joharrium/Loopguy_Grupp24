@@ -38,6 +38,102 @@
 /processorParam:Quality=Best
 /build:audio/sound/door_hiss_sound.wav
 
+#begin audio/sound/gun/EnergyGun_Shoot1A.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/gun/EnergyGun_Shoot1A.wav
+
+#begin audio/sound/gun/EnergyGun_Shoot1A.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/gun/EnergyGun_Shoot1A.wav
+
+#begin audio/sound/gun/EnergyGun_Shoot1B.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/gun/EnergyGun_Shoot1B.wav
+
+#begin audio/sound/gun/EnergyGun_Shoot1B.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/gun/EnergyGun_Shoot1B.wav
+
+#begin audio/sound/gun/EnergyGun_Shoot1C.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/gun/EnergyGun_Shoot1C.wav
+
+#begin audio/sound/gun/EnergyGun_Shoot1C.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/gun/EnergyGun_Shoot1C.wav
+
+#begin audio/sound/gun/EnergyGun_Shoot1D.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/gun/EnergyGun_Shoot1D.wav
+
+#begin audio/sound/gun/EnergyGun_Shoot1D.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/gun/EnergyGun_Shoot1D.wav
+
+#begin audio/sound/gun/EnergyGun_Shoot2A.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/gun/EnergyGun_Shoot2A.wav
+
+#begin audio/sound/gun/EnergyGun_Shoot2A.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/gun/EnergyGun_Shoot2A.wav
+
+#begin audio/sound/gun/EnergyGun_Shoot2B.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/gun/EnergyGun_Shoot2B.wav
+
+#begin audio/sound/gun/EnergyGun_Shoot2B.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/gun/EnergyGun_Shoot2B.wav
+
+#begin audio/sound/gun/EnergyGun_Shoot2C.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/gun/EnergyGun_Shoot2C.wav
+
+#begin audio/sound/gun/EnergyGun_Shoot2C.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/gun/EnergyGun_Shoot2C.wav
+
+#begin audio/sound/gun/EnergyGun_Shoot2D.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/gun/EnergyGun_Shoot2D.wav
+
+#begin audio/sound/gun/EnergyGun_Shoot2D.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/gun/EnergyGun_Shoot2D.wav
+
 #begin audio/sound/keypickup.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -290,7 +386,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/interface/editor_icons/pot.png
-/build:gfx/interface/editor_icons/graybrick.png
 
 #begin gfx/interface/editor_icons/shrub_big.png
 /importer:TextureImporter
@@ -471,18 +566,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/interface/healthbar_small_outline.png
-
-#begin gfx/interface/menu_items/selectedMenuBox.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/interface/menu_items/selectedMenuBox.png
 
 #begin gfx/interface/menu_items/selectedMenuBox.png
 /importer:TextureImporter

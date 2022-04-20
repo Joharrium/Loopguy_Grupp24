@@ -39,6 +39,7 @@ namespace Test_Loopguy
 
         //Right now all shots are handled in this class, might not be appropriate... unless? JK it's not... unless?
         List<Shot> shots;
+        //its not, should probably be sent to level but i cba to fix it right now
 
         public Player(Vector2 position)
             : base(position)
@@ -121,6 +122,7 @@ namespace Test_Loopguy
                         Shot shot = new Shot(shotPosition, gunDirection, shotAngle);
                         shots.Add(shot);
 
+                        Audio.lasergun.PlayRandomSound();
                         shooting = true;
                     }
 
