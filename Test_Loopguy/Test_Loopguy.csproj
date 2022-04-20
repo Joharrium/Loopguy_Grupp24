@@ -11,6 +11,17 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Content\gfx\interface\wip\**" />
+    <Compile Remove="Content\gfx\objects\wip\**" />
+    <Compile Remove="Content\gfx\terrain\wip\**" />
+    <EmbeddedResource Remove="Content\gfx\interface\wip\**" />
+    <EmbeddedResource Remove="Content\gfx\objects\wip\**" />
+    <EmbeddedResource Remove="Content\gfx\terrain\wip\**" />
+    <None Remove="Content\gfx\interface\wip\**" />
+    <None Remove="Content\gfx\objects\wip\**" />
+    <None Remove="Content\gfx\terrain\wip\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
   </ItemGroup>
@@ -36,6 +47,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="PlaceDoor - Copy.resx">
+      <DependentUpon>PlaceDoor.resx</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

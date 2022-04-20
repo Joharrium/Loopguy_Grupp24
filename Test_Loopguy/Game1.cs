@@ -52,7 +52,7 @@ namespace Test_Loopguy
             TexMGR.LoadTextures(Content);
             MenuManager.LoadMenuButtons();
             EntityManager.PlayerInitialization();
-
+            Audio.Load(Content);
             smallFont = Content.Load<SpriteFont>("smallFont");
 
             InputReader.editMode = editLevel;
@@ -77,9 +77,6 @@ namespace Test_Loopguy
             //TileManager.Initialization();
             //WallManager.Initialization();
 
-            
-            
-
             var frmNewForm = new Form1();
             var newThread = new System.Threading.Thread(frmNewFormThread);
 
@@ -90,6 +87,9 @@ namespace Test_Loopguy
             {
                 Application.Run(frmNewForm);
             }
+
+
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -107,6 +107,10 @@ namespace Test_Loopguy
             {
                 editLevel = !editLevel;
                 InputReader.editMode = editLevel;
+                if(editLevel)
+                {
+
+                }
             }
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -201,8 +205,9 @@ namespace Test_Loopguy
             spriteBatch.Draw(renderTarget, screenRect, Color.White);
             Fadeout.Draw(spriteBatch);
             spriteBatch.DrawString(smallFont, infoString, Vector2.Zero, Color.White);
-            spriteBatch.DrawString(smallFont, camera.xClamped.ToString(), new Vector2(0, 80), Color.White);
-            spriteBatch.DrawString(smallFont, camera.yClamped.ToString(), new Vector2(0, 92), Color.White);
+            spriteBatch.DrawString(smallFont, "current level = " + LevelManager.GetCurrentId().ToString(), new Vector2(0, 64), Color.White);
+            spriteBatch.DrawString(smallFont, "x clamp = " + camera.xClamped.ToString(), new Vector2(0, 80), Color.White);
+            spriteBatch.DrawString(smallFont, "y clamp = " + camera.yClamped.ToString(), new Vector2(0, 96 ), Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);

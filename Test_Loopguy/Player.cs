@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.IO;
 
 namespace Test_Loopguy
 {
@@ -13,6 +14,7 @@ namespace Test_Loopguy
         AnimSprite meleeSprite;
 
         Random random = new Random();
+        public List<int> keys = new List<int>();
 
         //Wtf
         public Vector2 cameraPosition;
@@ -26,12 +28,12 @@ namespace Test_Loopguy
         const float pi = (float)Math.PI;
 
         int dirInt;
-        const int meleeRange = 30;
+        const int meleeRange = 22;
         const int dashRange = 40;
 
         public string playerInfoString;
 
-        bool attacking;
+        public bool attacking;
         bool shooting;
         bool dashing;
 
@@ -48,6 +50,29 @@ namespace Test_Loopguy
             speed = 100;
 
             dirInt = 2;
+            LoadKeys();
+        }
+        
+        private void LoadKeys()
+        {
+            if (File.Exists(@"saves\keys.txt"))
+            {
+                List<string> lines = new List<string>();
+                foreach (string line in System.IO.File.ReadLines(@"saves\keys.txt"))
+                {
+                    lines.Add(line);
+                }
+
+                List<int> keysToAdd = new List<int>();
+                foreach(string l in lines)
+                {
+                    keysToAdd.Add(Int32.Parse(l));
+                }
+                
+
+
+                keys = keysToAdd;
+            }
 
             shots = new List<Shot>();
         }
@@ -62,6 +87,8 @@ namespace Test_Loopguy
             if (attacking)
             {
                 Melee(deltaTime);
+
+                
                 //Here is where you would use the MeleeHit method, I think
                 //However, keep in mind that the this will run as long as the attack animation runs,
                 //which is 200 ms right now (multiple hits will occur)
@@ -69,6 +96,8 @@ namespace Test_Loopguy
                 //Another way to do it is that the MeleeHit method only runs once per attack,
                 //although that would prevent an enemy walking in to the attack animation from taking damage
                 //Idk mang
+
+                
             }
             else if (dashing)
             {
@@ -120,9 +149,11 @@ namespace Test_Loopguy
                         sprite.timeSinceLastFrame = 0;
 
                         attacking = true;
+                        Audio.PlaySound(Audio.swing);
                     }
                     else if (InputReader.Dash())
                     {
+                        Audio.PlaySound(Audio.dash);
                         dashing = true;
                     }
                 }
@@ -489,31 +520,37 @@ namespace Test_Loopguy
 
         public bool MeleeHit(GameObject obj)
         {
-            if (Vector2.Distance(centerPosition, obj.centerPosition) <= meleeRange)
+            foreach(Vector2 v in LevelManager.GetPointsOfObject((LevelObject)obj))
             {
-                float angle = (float)Helper.GetAngle(centerPosition, obj.centerPosition, 0);
+                if (Vector2.Distance(centerPosition, v) <= meleeRange)
+                {
 
-                if (dirInt == 2)
-                { //DOWN
-                    if (angle >= pi * 1.75f || angle < pi * 0.25f)
-                        return true;
-                }
-                else if (dirInt == 4)
-                { //RIGHT
-                    if (angle >= pi * 0.25f && angle < pi * 0.75f)
-                        return true;
-                }
-                else if (dirInt == 1)
-                { //UP
-                    if (angle >= pi * 0.75f && angle < pi * 1.25f)
-                        return true;
-                }
-                else
-                { //LEFT
-                    if (angle >= pi * 1.25f && angle < pi * 1.75f)
-                        return true;
+                    float angle = (float)Helper.GetAngle(centerPosition, v, 0);
+
+                    if (dirInt == 2)
+                    { //DOWN
+                        if (angle >= pi * 1.75f || angle < pi * 0.25f)
+                            return true;
+                    }
+                    else if (dirInt == 4)
+                    { //RIGHT
+                        if (angle >= pi * 0.25f && angle < pi * 0.75f)
+                            return true;
+                    }
+                    else if (dirInt == 1)
+                    { //UP
+                        if (angle >= pi * 0.75f && angle < pi * 1.25f)
+                            return true;
+                    }
+                    else
+                    { //LEFT
+                        if (angle >= pi * 1.25f && angle < pi * 1.75f)
+                            return true;
+                    }
                 }
             }
+
+            
 
             return false;
         }

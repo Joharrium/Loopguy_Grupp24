@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Test_Loopguy.Content;
 
 namespace Test_Loopguy
 {
@@ -33,7 +34,7 @@ namespace Test_Loopguy
                 case GameState.InGame:
 
                     LevelManager.Update(gameTime, EntityManager.player);
-
+                    ParticleManager.Update(gameTime);
                     if(Game1.editLevel)
                         LevelEditor.Update(gameTime);
 
@@ -64,12 +65,13 @@ namespace Test_Loopguy
                 case GameState.InGame:
 
                     LevelManager.Draw(spriteBatch);
+                    
 
                     if(Game1.editLevel)
                         LevelEditor.Draw(spriteBatch);
 
                     EntityManager.Draw(spriteBatch);
-
+                    ParticleManager.Draw(spriteBatch);
                     break;
                 case GameState.InEditor:
                     break;

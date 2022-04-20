@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Test_Loopguy
@@ -9,11 +10,18 @@ namespace Test_Loopguy
     public class Destructible : LevelObject
     {
         protected int health;
+        protected int maxHealth;
         //for objects that would leave something behind e.g. a tree would leave a stump behind.
         protected LevelObject spawnObject;
         internal AnimSprite animation;
+        protected HealthBar healthBar;
         internal bool destroyed = false;
         internal bool actuallyDestroyed = false;
+        public bool hitDuringCurrentAttack = false;
+        protected SoundEffect hitSound;
+        private float wave = 0;
+        private float waveadjust = 0;
+        private bool wobbling = false;
 
         public Destructible(Vector2 position) : base(position)
         {
@@ -23,11 +31,38 @@ namespace Test_Loopguy
 
         public void Damage(int damage)
         {
-            health -= damage;
+            if(!hitDuringCurrentAttack)
+            {
+                
+                health -= damage;
+                wobbling = true;
+
+                if(hitSound != null)
+                {
+                    Audio.PlaySound(hitSound);
+                }
+            }
+            
+        }
+
+        private void Wobble()
+        {
+            wave += 0.5F;
+            waveadjust = (float)(Math.Sin(wave)) / 2;
+            position.X += waveadjust;
+            if(wave % 5.5 == 0)
+            {
+                wobbling = false;
+            }
         }
 
         public void Update(GameTime gameTime)
         {
+            if(health < maxHealth)
+            {
+                healthBar.SetCurrentValue(position + new Vector2(2, hitBox.Height), health);
+            }
+            
             if(health <= 0)
             {
                 position = new Vector2(-99999, -99999);
@@ -42,6 +77,13 @@ namespace Test_Loopguy
                 }
                 
             }
+            else
+            {
+                if (wobbling)
+                {
+                    Wobble();
+                }
+            }
             animation.Update(gameTime);
         }
 
@@ -52,7 +94,10 @@ namespace Test_Loopguy
             {
                 animation.Draw(spriteBatch);
             }
-            
+            if (health < maxHealth)
+            {
+                healthBar.Draw(spriteBatch);
+            }
         }
 
 
@@ -66,12 +111,32 @@ namespace Test_Loopguy
             animation.Position = position - new Vector2(4, 4);
             this.position = position;
             health = 1;
+            maxHealth = 1;
             variation = Game1.rnd.Next(4);
             texture = TexMGR.shrub_small;
             hitBox.Width = 16;
             hitBox.Height = 16;
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
+            healthBar = new HealthBar(maxHealth);
+            hitSound = Audio.shrub_destroy;
+        }
+    }
 
+    public class BarrelDestructible : Destructible
+    {
+        public BarrelDestructible(Vector2 position) : base(position)
+        {
+            animation = new AnimSprite(TexMGR.barrelDestroyed, new Point(24, 24));
+            animation.Position = position - new Vector2(4, 4);
+            this.position = position;
+            health = 3;
+            maxHealth = 3;
+            texture = TexMGR.barrel;
+            hitBox.Width = 16;
+            hitBox.Height = 16;
+            sourceRectangle = new Rectangle(0, 0, 16, 16);
+            healthBar = new HealthBar(maxHealth);
+            hitSound = Audio.box_destroy;
         }
     }
 
@@ -85,6 +150,8 @@ namespace Test_Loopguy
             this.position = position;
         }
     }
+
+    
 
     
 }

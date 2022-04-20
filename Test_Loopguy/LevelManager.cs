@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -39,6 +40,18 @@ namespace Test_Loopguy
                 loadStarted = false;
             }
         }
+
+        internal static List<Vector2> GetPointsOfObject(LevelObject lo)
+        {
+            List<Vector2> points = new List<Vector2>();
+            points.Add(lo.position);
+            points.Add(lo.position + new Vector2(lo.hitBox.Width, 0));
+            points.Add(lo.position + new Vector2(0, lo.hitBox.Height));
+            points.Add(lo.position + new Vector2(lo.hitBox.Width, lo.hitBox.Height));
+            points.Add(lo.centerPosition);
+            return points;
+        }
+
         internal static void Update(GameTime gameTime, Player player)
         {
             if(loadStarted)
@@ -87,6 +100,24 @@ namespace Test_Loopguy
 
         }
 
+        public static int GetCurrentId()
+        {
+            return currentLevel.id;
+        }
+        
+        
+        public static bool LevelObjectCollision(Vector2 position)
+        {
+            return currentLevel.LevelObjectCollision(position);
+        }
+
+        public static bool WallCollision(Vector2 position)
+        {
+            return currentLevel.WallCollision(position);
+        }
+
+        //below are editor and load methods
+
         public static Level LoadLevel(int id)
         {
 
@@ -97,11 +128,6 @@ namespace Test_Loopguy
             loadedLevels.Add(level);
             currentLevel = level;
             return level;
-        }
-
-        public static int GetCurrentId()
-        {
-            return currentLevel.id;
         }
 
         private static Rectangle BoundsLoad(int id)
@@ -119,13 +145,12 @@ namespace Test_Loopguy
             return bounds;
         }
 
-        
         private static Tile[,] TileLoad(int id)
         {
             List<string> terrainStrings = new List<string>();
             StreamReader terrainReader = new StreamReader(String.Format(@"maps\level{0}\tilemap.txt", id));
 
-            
+
 
             while (!terrainReader.EndOfStream)
             {
@@ -173,9 +198,7 @@ namespace Test_Loopguy
 
             return tiles;
         }
-        
 
-        
         private static List<LevelObject> ObjectLoad(int id)
         {
             List<LevelObject> levelObjects = new List<LevelObject>();
@@ -187,28 +210,44 @@ namespace Test_Loopguy
                 lines.Add(line);
             }
 
-            for (int i = 0; i<lines.Count; i++)
+            for (int i = 0; i < lines.Count; i++)
             {
+                //parameter3
+                int? requiredKey = null;
+                //parameter4
+                bool? keyPermanent = null;
+
                 string[] splitter = lines[i].Split(',');
                 string objectToFind = splitter[0];
-                Vector2 objectPosition = new Vector2(0,0);
+                Vector2 objectPosition = new Vector2(0, 0);
                 objectPosition.X = Int32.Parse(splitter[1]);
                 objectPosition.Y = Int32.Parse(splitter[2]);
-                levelObjects.Add(ObjectCreator(objectToFind, objectPosition));
+                if(splitter.Length > 3)
+                {
+                    requiredKey = Int32.Parse(splitter[3]);
+                }
+                if(splitter.Length > 4)
+                {
+                    keyPermanent = Boolean.Parse(splitter[4]);
+                }
+
+                if (keyPermanent != null)
+                {
+                    levelObjects.Add(KeyCreator(objectPosition, (int)requiredKey, (bool)keyPermanent));
+                }
+                else if (requiredKey != null)
+                {
+                    levelObjects.Add(DoorCreator(objectToFind, objectPosition, (int)requiredKey));
+                }
+                else
+                {
+                    levelObjects.Add(ObjectCreator(objectToFind, objectPosition));
+                }
+                
             }
-            
+
 
             return levelObjects;
-        }
-        
-        public static bool LevelObjectCollision(Vector2 position)
-        {
-            return currentLevel.LevelObjectCollision(position);
-        }
-
-        public static bool WallCollision(Vector2 position)
-        {
-            return currentLevel.WallCollision(position);
         }
 
         public static void ObjectAdd(LevelObject levelObject)
@@ -231,7 +270,28 @@ namespace Test_Loopguy
             currentLevel.SetMapSize(x, y);
         }
 
+        public static Door DoorCreator(string name, Vector2 pos, int key)
+        {
+            switch (name)
+            {
+                case "Door":
+                    return new Door(pos, key);
 
+                case "DoorSliding":
+                    return new DoorSliding(pos, key);
+                    
+                default:
+                    return null;
+                    
+
+            }
+            
+        }
+
+        public static KeyPickup KeyCreator(Vector2 pos, int id, bool permanent)
+        {
+            return new KeyPickup(pos, id, permanent);
+        }
         public static LevelObject ObjectCreator(string name, Vector2 pos)
         {
             switch (name)
@@ -260,9 +320,12 @@ namespace Test_Loopguy
                 case "Pot":
                     return new Pot(pos);
 
+                case "BarrelDestructible":
+                    return new BarrelDestructible(pos);
+
                 default:
                     return null;
-                    break;
+                    
             }
         }
 
@@ -272,7 +335,29 @@ namespace Test_Loopguy
 
             foreach (LevelObject lo in currentLevel.levelObjects)
             {
-                objects.Add(lo.GetType().Name + "," + ((int)lo.position.X) + "," + ((int)lo.position.Y));
+                if(lo is Door)
+                {
+                    
+                }
+                else if(lo is KeyPickup)
+                {
+
+                }
+                else
+                {
+                    objects.Add(lo.GetType().Name + "," + ((int)lo.position.X) + "," + ((int)lo.position.Y));
+                }
+                
+            }
+
+            foreach (Door d in currentLevel.levelObjects.OfType<Door>())
+            {
+                objects.Add(d.GetType().Name + "," + ((int)d.position.X) + "," + ((int)d.position.Y) + "," + d.requiredKey);
+            }
+
+            foreach (KeyPickup k in currentLevel.levelObjects.OfType<KeyPickup>())
+            {
+                objects.Add(k.GetType().Name + "," + ((int)k.position.X) + "," + ((int)k.position.Y) + "," + k.GetStringOfParams());
             }
 
             return objects;

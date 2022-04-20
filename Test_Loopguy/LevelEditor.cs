@@ -13,18 +13,32 @@ namespace Test_Loopguy
     }
     public enum ObjectSelection
     {
-        Box, Barrel, Pot, ShrubSmall, TreeSmall, BoxOpen, TreeBig, ShrubBig
+        Box, Barrel, Pot, ShrubSmall, TreeSmall, BoxOpen, TreeBig, ShrubBig, DoorWood, KeycardRed, DoorSliding, BarrelDestructible
     }
     public enum TileSelection
     {
-        Grass, Dirt, GrayBrick, TilesCheckeredGray, TilesCheckeredBrown, TilesBigDark, TilesBigLight
+        Grass, Dirt, GrayBrick, TilesCheckeredGray, TilesCheckeredBrown, TilesBigDark, TilesBigLight, TileMetal, WallMetal, CarpetWorn, DrywallWorn
     }
     static public class LevelEditor
     {
         public static Selection currentSelection;
         public static ObjectSelection selectedObject;
         public static TileSelection selectedTile;
+        private static int doorRequiredKey;
+        private static int keyID;
+        private static bool keyPermanent;
         private static Level currentLevel;
+
+        public static void SetDoorParams(int key)
+        {
+            doorRequiredKey = key;
+        }
+
+        public static void SetKeyParams(int id, bool permanent)
+        {
+            keyID = id;
+            keyPermanent = permanent;
+        }
 
         //have list of levels?
         public static void Update(GameTime gameTime)
@@ -78,6 +92,22 @@ namespace Test_Loopguy
                                 LevelManager.ObjectAdd(new Pot(Game1.mousePos - new Vector2(8, 8)));
                                 break;
 
+                            case ObjectSelection.DoorWood:
+                                LevelManager.ObjectAdd(new Door(Game1.mousePos - new Vector2(16, 16), doorRequiredKey));
+                                break;
+
+                            case ObjectSelection.DoorSliding:
+                                LevelManager.ObjectAdd(new DoorSliding(Game1.mousePos - new Vector2(16, 16), doorRequiredKey));
+                                break;
+
+                            case ObjectSelection.KeycardRed:
+                                LevelManager.ObjectAdd(new KeyPickup(Game1.mousePos - new Vector2(16, 16), doorRequiredKey, keyPermanent));
+                                break;
+
+                            case ObjectSelection.BarrelDestructible:
+                                LevelManager.ObjectAdd(new BarrelDestructible(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
                             default:
                                 break;
                         }
@@ -105,6 +135,10 @@ namespace Test_Loopguy
                         spriteBatch.Draw(TexMGR.barrel, Game1.mousePos - new Vector2(8, 8), Color.White);
                         break;
 
+                    case ObjectSelection.BarrelDestructible:
+                        spriteBatch.Draw(TexMGR.barrel, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        break;
+
                     case ObjectSelection.Box:
                         spriteBatch.Draw(TexMGR.box, Game1.mousePos - new Vector2(8, 8), Color.White);
                         break;
@@ -127,6 +161,18 @@ namespace Test_Loopguy
 
                     case ObjectSelection.Pot:
                         spriteBatch.Draw(TexMGR.pot, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        break;
+
+                    case ObjectSelection.DoorWood:
+                        spriteBatch.Draw(TexMGR.UI_door, Game1.mousePos - new Vector2(16, 16), Color.White);
+                        break;
+
+                    case ObjectSelection.DoorSliding:
+                        spriteBatch.Draw(TexMGR.UI_door, Game1.mousePos - new Vector2(16, 16), Color.White);
+                        break;
+
+                    case ObjectSelection.KeycardRed:
+                        spriteBatch.Draw(TexMGR.keycard, Game1.mousePos - new Vector2(8, 8), Color.White);
                         break;
 
                     default:
@@ -155,75 +201,6 @@ namespace Test_Loopguy
             
         }
 
-        /*
-        public static Rectangle SetBounds()
-        {
-            return currentLevel.GetBounds();
-        }
-
-        public static Level LoadLevel(int id)
-        {
-
-
-            Level level = new Level(id, BoundsLoad(id), ObjectLoad(id), TileLoad(id));
-            //obviously shouldn't return null when done
-
-            currentLevel = level;
-            return level;
-        }
-
-        private static Rectangle BoundsLoad(int id)
-        {
-            Rectangle bounds = new Rectangle(0, 0, 0, 0);
-            List<string> lines = new List<string>();
-            foreach (string line in System.IO.File.ReadLines(string.Format(@"maps\level{0}\bounds.txt", id)))
-            {
-                lines.Add(line);
-            }
-
-            string[] splitter = lines[0].Split(',');
-            bounds.Width = Int32.Parse(splitter[0]);
-            bounds.Height = Int32.Parse(splitter[1]);
-            return bounds;
-        }
-
-        
-        private static Tile[,] TileLoad(int id)
-        {
-            List<string> terrainStrings = new List<string>();
-            StreamReader terrainReader = new StreamReader(String.Format(@"maps\level{0}\tilemap.txt", id));
-
-            
-
-            while (!terrainReader.EndOfStream)
-            {
-                terrainStrings.Add(terrainReader.ReadLine());
-            }
-            terrainReader.Close();
-
-            Tile[,] tiles = new Tile[terrainStrings[0].Length, terrainStrings.Count];
-
-            for (int i = 0; i < tiles.GetLength(0); i++)
-            {
-                for (int j = 0; j < tiles.GetLength(1); j++)
-                {
-                    Vector2 tempPos = new Vector2((i * 16), (j * 16));
-                    if (terrainStrings[j][i] == 'g')
-                    {
-                        tiles[i, j] = new GrassTile(tempPos);
-                    }
-                    if (terrainStrings[j][i] == 'w')
-                    {
-                        tiles[i, j] = new BrickWall(tempPos);
-                    }
-                }
-            }
-
-            return tiles;
-        }
-        
-        */
-
         public static void SaveLevelToFile(int id, List<string> objects, List<string> tiles)
         {
             string path = string.Format(@"maps\level{0}\", id);
@@ -237,8 +214,6 @@ namespace Test_Loopguy
             File.WriteAllLines(path + "objectmap.txt", objects);
             File.WriteAllLines(path + "tilemap.txt", tiles);
         }
-
-        
 
         private static List<LevelObject> ObjectLoad(int id)
         {

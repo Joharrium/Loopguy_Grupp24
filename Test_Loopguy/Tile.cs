@@ -146,6 +146,35 @@ namespace Test_Loopguy
         }
     }
 
+    public class TileMetal : Floor
+    {
+        int variation;
+        public TileMetal(Vector2 position) : base(position)
+        {
+            this.position = position;
+
+            texture = TexMGR.tile_metal;
+            variation = Game1.rnd.Next(1);
+
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
+        }
+    }
+
+    public class CarpetWorn : Floor
+    {
+        int variation;
+        public CarpetWorn(Vector2 position) : base(position)
+        {
+            this.position = position;
+
+            texture = TexMGR.carpet_worn;
+            variation = Game1.rnd.Next(3);
+
+
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
+        }
+    }
+
     public class Wall : Tile
     {
 
@@ -175,6 +204,34 @@ namespace Test_Loopguy
             texture = TexMGR.grayBrickWall;
             hitBox.Width = 16;
             hitBox.Height = 16;
+        }
+    }
+
+    public class MetalWall : Wall
+    {
+        int variation;
+        public MetalWall(Vector2 position) : base(position)
+        {
+            this.position = position - new Vector2(0, 16);
+            texture = TexMGR.wall_metal;
+            hitBox.Width = 16;
+            hitBox.Height = 16;
+            int variation = Game1.rnd.Next(3);
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 32);
+        }
+    }
+
+    public class WornWall : Wall
+    {
+        int variation;
+        public WornWall(Vector2 position) : base(position)
+        {
+            this.position = position - new Vector2(0, 16);
+            texture = TexMGR.wall_worn;
+            hitBox.Width = 16;
+            hitBox.Height = 16;
+            variation = Game1.rnd.Next(4);
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 32);
         }
     }
 }
