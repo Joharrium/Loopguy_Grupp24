@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Test_Loopguy
@@ -17,6 +18,7 @@ namespace Test_Loopguy
         internal bool destroyed = false;
         internal bool actuallyDestroyed = false;
         public bool hitDuringCurrentAttack = false;
+        protected SoundEffect hitSound;
         private float wave = 0;
         private float waveadjust = 0;
         private bool wobbling = false;
@@ -31,8 +33,14 @@ namespace Test_Loopguy
         {
             if(!hitDuringCurrentAttack)
             {
+                
                 health -= damage;
                 wobbling = true;
+
+                if(hitSound != null)
+                {
+                    Audio.PlaySound(hitSound);
+                }
             }
             
         }
@@ -110,6 +118,7 @@ namespace Test_Loopguy
             hitBox.Height = 16;
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
             healthBar = new HealthBar(maxHealth);
+            hitSound = Audio.shrub_destroy;
         }
     }
 
@@ -127,6 +136,7 @@ namespace Test_Loopguy
             hitBox.Height = 16;
             sourceRectangle = new Rectangle(0, 0, 16, 16);
             healthBar = new HealthBar(maxHealth);
+            hitSound = Audio.box_destroy;
         }
     }
 

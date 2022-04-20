@@ -70,14 +70,14 @@ namespace Test_Loopguy
                 hitBox.Height = 0;
                 open = true;
                 animation.Position = position;
-                Audio.PlaySound(Audio.open);
+                //Audio.PlaySound(Audio.open);
                 Audio.PlaySound(openSound);
             }
             else
             if(!playerInArea && !open)
             {
                 playerInArea = true;
-                Audio.PlaySound(Audio.deny);
+                //Audio.PlaySound(Audio.deny);
             }
         }
 

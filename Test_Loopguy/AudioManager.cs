@@ -15,13 +15,13 @@ namespace Test_Loopguy
 {
     public static class Audio
     {
-        static float musicVolume = 0.0F;
-        static float soundVolume = 0.8F;
+        static float musicVolume = 0.3F;
+        static float soundVolume = 0.5F;
         //music
         static SoundEffect musicTitle, musicBattle1, musicEnemyTurn, musicOverworld1, musicOverworld2, musicOverworld3, musicMystery;
 
         //sound
-        public static SoundEffect meepmerp, swing, open, deny, dash, door_hiss_sound;
+        public static SoundEffect meepmerp, swing, open, deny, dash, door_hiss_sound, box_destroy, shrub_destroy, keypickup;
         static public void Load(ContentManager Content)
         {
             LoadMusic(Content);
@@ -54,7 +54,10 @@ namespace Test_Loopguy
             open = c.Load<SoundEffect>("audio/sound/open");
             deny = c.Load<SoundEffect>("audio/sound/deny");
             dash = c.Load<SoundEffect>("audio/sound/dash");
+            box_destroy = c.Load<SoundEffect>("audio/sound/box_destroy");
+            shrub_destroy = c.Load<SoundEffect>("audio/sound/shrub_destroy");
             door_hiss_sound = c.Load<SoundEffect>("audio/sound/door_hiss_sound");
+            keypickup = c.Load<SoundEffect>("audio/sound/keypickup");
         }
 
         public static void PlaySound(SoundEffect sound)
@@ -62,6 +65,7 @@ namespace Test_Loopguy
             if(sound != null)
             {
                 SoundEffectInstance instance = sound.CreateInstance();
+                instance.Volume = soundVolume;
                 instance.Play();
             }
         }

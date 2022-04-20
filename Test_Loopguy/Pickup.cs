@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Test_Loopguy.Content;
 
@@ -14,6 +15,7 @@ namespace Test_Loopguy
         private Rectangle pickupBox;
         private float wave = 0;
         private float waveadjust = 0;
+        protected SoundEffect pickupSound;
         public Pickup(Vector2 position) : base(position)
         {
             this.position = position;
@@ -43,6 +45,11 @@ namespace Test_Loopguy
                 position.Y = -10000;
                 pickedUp = true;
                 Effect();
+                if(pickupSound != null)
+                {
+                    Audio.PlaySound(pickupSound);
+                }
+                
                 
             }
         }
@@ -69,10 +76,12 @@ namespace Test_Loopguy
             this.permanent = permanent;
             texture = TexMGR.keycard;
             this.hitBox = new Rectangle(0, 0, 0, 0);
+            pickupSound = Audio.keypickup;
         }
         protected override void Effect()
         {
             GiveKey();
+            
         }
 
         private void GiveKey()
