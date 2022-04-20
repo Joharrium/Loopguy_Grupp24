@@ -66,7 +66,7 @@ static class InputReader
 	public static bool Shoot()
     { //This is same as Attack so should probs just remove
 		//No it's not
-		return LeftClick() || KeyPressed(Keys.RightControl) || padState.IsButtonDown(Buttons.RightTrigger);
+		return LeftClick() || KeyPressed(Keys.RightControl) || ButtonPressed(Buttons.RightTrigger);
 	}
 
 	public static bool MovingLeftStick()
