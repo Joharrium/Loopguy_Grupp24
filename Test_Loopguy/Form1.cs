@@ -126,5 +126,58 @@ namespace Test_Loopguy
         {
             LevelManager.SetBounds(Int32.Parse(cameraX.Text), Int32.Parse(cameraY.Text));
         }
+
+        private void goToLevelButton_Click(object sender, EventArgs e)
+        {
+            LevelManager.StartLevelTransition(Int32.Parse(goToLevelWithID.Text), EntityManager.player, new Microsoft.Xna.Framework.Vector2(64, 64));
+        }
+
+        private void doorSelect_Click(object sender, EventArgs e)
+        {
+            PlaceDoor placeDoorDialog = new PlaceDoor(ObjectSelection.DoorWood);
+            placeDoorDialog.ShowDialog();
+        }
+
+        private void keycardRedSelect_Click(object sender, EventArgs e)
+        {
+            PlaceKeys placeKeyDialod = new PlaceKeys();
+            placeKeyDialod.ShowDialog();
+        }
+
+        private void doorSlidingSelect_Click(object sender, EventArgs e)
+        {
+            PlaceDoor placeDoorDialog = new PlaceDoor(ObjectSelection.DoorSliding);
+            placeDoorDialog.ShowDialog();
+        }
+
+        private void barrelDestructibleSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.selectedObject = ObjectSelection.BarrelDestructible;
+            LevelEditor.currentSelection = Selection.Object;
+        }
+
+        private void carpetSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.currentSelection = Selection.Tile;
+            LevelEditor.selectedTile = TileSelection.CarpetWorn;
+        }
+
+        private void metalTileSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.currentSelection = Selection.Tile;
+            LevelEditor.selectedTile = TileSelection.TileMetal;
+        }
+
+        private void wornWallSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.currentSelection = Selection.Tile;
+            LevelEditor.selectedTile = TileSelection.DrywallWorn;
+        }
+
+        private void wallMetalSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.currentSelection = Selection.Tile;
+            LevelEditor.selectedTile = TileSelection.WallMetal;
+        }
     }
 }

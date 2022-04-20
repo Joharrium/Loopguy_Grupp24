@@ -31,9 +31,14 @@ namespace Test_Loopguy
             List<Destructible> destructiblesToRemove = new List<Destructible>();
             foreach(Destructible lo in levelObjects.OfType<Destructible>())
             {
-                if(lo is Destructible && lo.hitBox.Intersects(player.hitBox))
+                if(lo is Destructible && player.MeleeHit(lo) && player.attacking)
                 {
                     lo.Damage(1);
+                    lo.hitDuringCurrentAttack = true;
+                }
+                if(!player.attacking)
+                {
+                    lo.hitDuringCurrentAttack = false;
                 }
 
                 lo.Update(gameTime);
@@ -42,8 +47,15 @@ namespace Test_Loopguy
                     destructiblesToRemove.Add(lo);
                 }
             }
-
-            foreach(Destructible d in destructiblesToRemove)
+            foreach (Pickup p in levelObjects.OfType<Pickup>())
+            {
+                p.Update();
+            }
+            foreach (Door d in levelObjects.OfType<Door>())
+            {
+                d.Update(gameTime);
+            }
+                foreach (Destructible d in destructiblesToRemove)
             {
                 levelObjects.Remove(d);
             }
@@ -52,6 +64,8 @@ namespace Test_Loopguy
 
             //do any animations
         }
+
+        
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (Tile t in tiles)
@@ -60,7 +74,11 @@ namespace Test_Loopguy
             }
             foreach (LevelObject lo in levelObjects)
             {
-                lo.Draw(spriteBatch);
+                if(lo != null)
+                {
+                    lo.Draw(spriteBatch);
+                }
+                
             }
             //draw tiles and objects and enemies, in the correct order
         }
@@ -69,10 +87,14 @@ namespace Test_Loopguy
         {
             foreach(LevelObject lo in levelObjects)
             {
-                if(lo.hitBox.Contains(check))
+                if(lo != null)
                 {
-                    return true;
+                    if (lo.hitBox.Contains(check))
+                    {
+                        return true;
+                    }
                 }
+                
             }
             return false;
         }
@@ -184,6 +206,19 @@ namespace Test_Loopguy
                         break;
                     case TileSelection.TilesBigDark:
                         tiles[coordinates.X, coordinates.Y] = new TileBigDark(gameLocation);
+                        break;
+                    case TileSelection.TileMetal:
+                        tiles[coordinates.X, coordinates.Y] = new TileMetal(gameLocation);
+                        break;
+                    case TileSelection.WallMetal:
+                        tiles[coordinates.X, coordinates.Y] = new MetalWall(gameLocation);
+                        break;
+                    case TileSelection.CarpetWorn:
+                        tiles[coordinates.X, coordinates.Y] = new CarpetWorn(gameLocation);
+                        break;
+                    case TileSelection.DrywallWorn:
+                        tiles[coordinates.X, coordinates.Y] = new WornWall(gameLocation);
+
                         break;
                 }
             }
