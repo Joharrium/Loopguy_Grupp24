@@ -23,6 +23,8 @@ namespace Test_Loopguy
         protected float knockBackDuration;
         protected float knockBackRemaining;
         protected Vector2 knockBackDirection;
+        protected float attackCooldown;
+        protected float attackCooldownRemaining;
         public Enemy(Vector2 position) : base(position)
         {
             this.position = position;
@@ -58,6 +60,7 @@ namespace Test_Loopguy
             {
                 Movement(deltaTime);
             }
+            attackCooldownRemaining -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
         }
 
         public virtual void Movement(float deltaTime)
@@ -153,23 +156,48 @@ namespace Test_Loopguy
         protected int fleeRange;
         protected bool fleeing;
 
+        //0 accuracy is fully accurate, 100 will go everywhere
+        protected int accuracy;
+
         //protected projectile 
-        protected float cooldown;
+        
         //shit idk
+        List<Shot> projectiles = new List<Shot>();
 
         public RangedEnemy(Vector2 position) : base(position)
         {
 
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            foreach(Shot p in projectiles)
+            {
+                p.Update(gameTime);
+            }
+        }
+
         protected virtual void AttackBehavior()
         {
-
+            if(attackCooldownRemaining <= 0)
+            {
+                Attack();
+            }
         }
 
         protected virtual void Attack()
         {
+            attackCooldownRemaining = attackCooldown;
+            Vector2 direction = centerPosition - EntityManager.player.centerPosition;
+            direction.X *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
+            direction.Y *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
+            direction.Normalize();
+            direction *= -1;
 
+            
+
+            projectiles.Add(new Shot(centerPosition, direction, (float)((float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0) + Math.PI)));
         }
 
         protected override void AggroBehavior()
@@ -180,7 +208,7 @@ namespace Test_Loopguy
                 if (thing.Length() < maxRange && thing.Length() > minRange)
                 {
                     speed = 0;
-                    //Attack
+                    AttackBehavior();
                 }
                 else if(thing.Length() > maxRange)
                 {
@@ -211,8 +239,16 @@ namespace Test_Loopguy
                 direction = thing;
                 speed = maxSpeed;
             }
+        }
 
-
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+            foreach (Shot p in projectiles)
+            {
+                p.Draw(spriteBatch);
+                p.DrawRotation(spriteBatch);
+            }
         }
     }
 
@@ -234,6 +270,9 @@ namespace Test_Loopguy
             knockBackDuration = 160;
             Init();
             aggro = false;
+            attackCooldown = 620;
+            attackCooldownRemaining = 320;
+            accuracy = 50;
         }
     }
 
