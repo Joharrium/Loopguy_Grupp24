@@ -153,7 +153,21 @@ namespace Test_Loopguy
         protected int fleeRange;
         protected bool fleeing;
 
+        //protected projectile 
+        protected float cooldown;
+        //shit idk
+
         public RangedEnemy(Vector2 position) : base(position)
+        {
+
+        }
+
+        protected virtual void AttackBehavior()
+        {
+
+        }
+
+        protected virtual void Attack()
         {
 
         }
