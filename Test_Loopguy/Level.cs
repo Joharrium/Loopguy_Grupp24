@@ -13,6 +13,7 @@ namespace Test_Loopguy
         Rectangle cameraBounds;
         public Tile[,] tiles;
         public List<LevelObject> levelObjects;
+        internal List<Enemy> enemies;
         //list of enemies
         //list of corresponding entrances from different ids and their position
 
@@ -23,12 +24,14 @@ namespace Test_Loopguy
             this.cameraBounds = cameraBounds;
             this.levelObjects = levelObjects;
             this.tiles = tiles;
-            
+            this.enemies = new List<Enemy>();
+            enemies.Add(new TestEnemy(new Vector2(400, 400)));
         }
 
         internal void Update(GameTime gameTime, Player player)
         {
             List<Destructible> destructiblesToRemove = new List<Destructible>();
+            List<Enemy> enemiesToRemove = new List<Enemy>();
             foreach(Destructible lo in levelObjects.OfType<Destructible>())
             {
                 if(lo is Destructible && player.MeleeHit(lo) && player.attacking)
@@ -47,6 +50,24 @@ namespace Test_Loopguy
                     destructiblesToRemove.Add(lo);
                 }
             }
+
+            foreach(Enemy e in enemies)
+            {
+                e.Update(gameTime);
+                if(player.MeleeHit(e) && player.attacking)
+                {
+                    e.TakeDamage(1);
+                    e.hitDuringCurrentAttack = true;
+                }
+                if (!player.attacking)
+                {
+                    e.hitDuringCurrentAttack = false;
+                }
+                if (e.health <= 0)
+                {
+                    enemiesToRemove.Add(e);
+                }
+            }
             foreach (Pickup p in levelObjects.OfType<Pickup>())
             {
                 p.Update();
@@ -55,9 +76,15 @@ namespace Test_Loopguy
             {
                 d.Update(gameTime);
             }
-                foreach (Destructible d in destructiblesToRemove)
+
+            foreach (Destructible d in destructiblesToRemove)
             {
-                levelObjects.Remove(d);
+            levelObjects.Remove(d);
+            }
+
+            foreach (Enemy e in enemiesToRemove)
+            {
+                enemies.Remove(e);
             }
             //update game objects
             //update enemy ai
@@ -78,7 +105,14 @@ namespace Test_Loopguy
                 {
                     lo.Draw(spriteBatch);
                 }
-                
+            }
+
+            foreach(Enemy e in enemies)
+            {
+                if(e != null)
+                {
+                    e.Draw(spriteBatch);
+                }
             }
             //draw tiles and objects and enemies, in the correct order
         }

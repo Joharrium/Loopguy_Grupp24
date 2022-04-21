@@ -522,36 +522,74 @@ namespace Test_Loopguy
 
         public bool MeleeHit(GameObject obj)
         {
-            foreach(Vector2 v in LevelManager.GetPointsOfObject((LevelObject)obj))
+            if (obj is Enemy)
             {
-                if (Vector2.Distance(centerPosition, v) <= meleeRange)
+                /*
+                foreach (Vector2 v in LevelManager.GetPointsOfObject((Enemy)obj))
                 {
+                    if (Vector2.Distance(centerPosition, v) <= meleeRange)
+                    {
 
-                    float angle = (float)Helper.GetAngle(centerPosition, v, 0);
+                        float angle = (float)Helper.GetAngle(centerPosition, v, 0);
 
-                    if (dirInt == 2)
-                    { //DOWN
-                        if (angle >= pi * 1.75f || angle < pi * 0.25f)
-                            return true;
+                        if (dirInt == 2)
+                        { //DOWN
+                            if (angle >= pi * 1.75f || angle < pi * 0.25f)
+                                return true;
+                        }
+                        else if (dirInt == 4)
+                        { //RIGHT
+                            if (angle >= pi * 0.25f && angle < pi * 0.75f)
+                                return true;
+                        }
+                        else if (dirInt == 1)
+                        { //UP
+                            if (angle >= pi * 0.75f && angle < pi * 1.25f)
+                                return true;
+                        }
+                        else
+                        { //LEFT
+                            if (angle >= pi * 1.25f && angle < pi * 1.75f)
+                                return true;
+                        }
                     }
-                    else if (dirInt == 4)
-                    { //RIGHT
-                        if (angle >= pi * 0.25f && angle < pi * 0.75f)
-                            return true;
-                    }
-                    else if (dirInt == 1)
-                    { //UP
-                        if (angle >= pi * 0.75f && angle < pi * 1.25f)
-                            return true;
-                    }
-                    else
-                    { //LEFT
-                        if (angle >= pi * 1.25f && angle < pi * 1.75f)
-                            return true;
+                }
+                */
+            }
+            else
+            {
+
+
+                foreach (Vector2 v in LevelManager.GetPointsOfObject((LevelObject)obj))
+                {
+                    if (Vector2.Distance(centerPosition, v) <= meleeRange)
+                    {
+
+                        float angle = (float)Helper.GetAngle(centerPosition, v, 0);
+
+                        if (dirInt == 2)
+                        { //DOWN
+                            if (angle >= pi * 1.75f || angle < pi * 0.25f)
+                                return true;
+                        }
+                        else if (dirInt == 4)
+                        { //RIGHT
+                            if (angle >= pi * 0.25f && angle < pi * 0.75f)
+                                return true;
+                        }
+                        else if (dirInt == 1)
+                        { //UP
+                            if (angle >= pi * 0.75f && angle < pi * 1.25f)
+                                return true;
+                        }
+                        else
+                        { //LEFT
+                            if (angle >= pi * 1.25f && angle < pi * 1.75f)
+                                return true;
+                        }
                     }
                 }
             }
-
             
 
             return false;
