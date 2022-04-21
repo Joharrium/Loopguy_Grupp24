@@ -21,6 +21,8 @@ namespace Test_Loopguy
         public bool hitDuringCurrentAttack = false;
         protected int knockBackDistance;
         protected float knockBackDuration;
+        protected float knockBackRemaining;
+        protected Vector2 knockBackDirection;
         public Enemy(Vector2 position) : base(position)
         {
             this.position = position;
@@ -36,26 +38,64 @@ namespace Test_Loopguy
 
         public override void Update(GameTime gameTime)
         {
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
-            healthBar.SetCurrentValue(position, health);
+            healthBar.SetCurrentValue(position + new Vector2(6, texture.Height), health);
             if(!aggro)
             {
                 aggro = InAggroRange();
             }
-            
+            if(knockBackRemaining > 0)
+            {
+                knockBackRemaining -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                position += knockBackDirection * knockBackDistance * deltaTime;
+            }
+            else
+            {
+                Movement(deltaTime);
+            }
+        }
+
+        public virtual void Movement(float deltaTime)
+        {
+            Vector2 futurePosCalc = position + direction * speed * deltaTime;
+            if(LevelManager.LevelObjectCollision(futurePosCalc))
+            {
+                if (!LevelManager.LevelObjectCollision(new Vector2(futurePosCalc.X, position.Y)))
+                {
+                    position.X = futurePosCalc.X;
+                }
+
+
+                if (!LevelManager.LevelObjectCollision(new Vector2(position.X, futurePosCalc.Y)))
+                {
+                    position.Y = futurePosCalc.Y;
+                }
+            }
+            else
+            {
+                position += direction * speed * deltaTime;
+            }
         }
 
         public void TakeDamage(int damage)
         {
-            health -= damage;
-            Vector2 thing = centerPosition - EntityManager.player.centerPosition;
-            thing.Normalize();
-            position = thing * knockBackDistance;
+            if(!hitDuringCurrentAttack)
+            {
+                health -= damage;
+                Vector2 thing = centerPosition - EntityManager.player.centerPosition;
+                thing.Normalize();
+
+                knockBackDirection = thing;
+                knockBackRemaining = knockBackDuration;
+
+                //position += thing * knockBackDistance;
+            }
         }
 
         protected bool InAggroRange()
         {
-            if (Math.Pow(EntityManager.player.centerPosition.X - centerPosition.X, 2) + Math.Pow(EntityManager.player.centerPosition.Y - centerPosition.Y, 2) == Math.Pow(aggroRange, 2))
+            if ((EntityManager.player.centerPosition - centerPosition).Length() <= aggroRange) 
             {
                 return true;
             }
@@ -68,7 +108,7 @@ namespace Test_Loopguy
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, Color.White);
-
+            healthBar.Draw(spriteBatch);
         }
         //Placeholder klass för testning av EntityManagers listhantering
     }
@@ -82,13 +122,14 @@ namespace Test_Loopguy
 
         public override void Update(GameTime gameTime)
         {
-            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            
             base.Update(gameTime);
             if(aggro)
             {
                 AggroBehavior();
             }
-            Movement(deltaTime);
+            //Movement(deltaTime);
+
         }
 
         protected void AggroBehavior()
@@ -110,13 +151,15 @@ namespace Test_Loopguy
             this.position = position;
             this.texture = TexMGR.enemyPlaceholder;
             this.maxHealth = 5;
-            this.maxSpeed = 20;
-            aggroRange = 1600;
+            this.maxSpeed = 40;
+            aggroRange = 176;
             damage = 1;
-            knockBackDistance = 2;
-            knockBackDuration = 60;
+            knockBackDistance = 160;
+            knockBackDuration = 160;
             Init();
-            aggro = true;
+            aggro = false;
+        }
     }
-    }
+
+    
 }

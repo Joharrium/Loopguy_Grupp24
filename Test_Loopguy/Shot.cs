@@ -32,7 +32,7 @@ namespace Test_Loopguy
 
             sprite.Position = position;
             sprite.Play(0, 4, 50);
-            sprite.Update(gameTime);
+            sprite.Update(gameTime);    
 
             base.Movement(deltaTime);
         }

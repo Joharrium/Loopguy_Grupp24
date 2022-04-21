@@ -152,32 +152,32 @@ namespace Test_Loopguy
 
         private void barrelDestructibleSelect_Click(object sender, EventArgs e)
         {
-            LevelEditor.selectedObject = ObjectSelection.BarrelDestructible;
-            LevelEditor.currentSelection = Selection.Object;
+            LevelEditor.SelectObject(ObjectSelection.BarrelDestructible);
         }
 
         private void carpetSelect_Click(object sender, EventArgs e)
         {
-            LevelEditor.currentSelection = Selection.Tile;
-            LevelEditor.selectedTile = TileSelection.CarpetWorn;
+            LevelEditor.SelectTile(TileSelection.CarpetWorn);
         }
 
         private void metalTileSelect_Click(object sender, EventArgs e)
         {
-            LevelEditor.currentSelection = Selection.Tile;
-            LevelEditor.selectedTile = TileSelection.TileMetal;
+            LevelEditor.SelectTile(TileSelection.TileMetal);
         }
 
         private void wornWallSelect_Click(object sender, EventArgs e)
         {
-            LevelEditor.currentSelection = Selection.Tile;
-            LevelEditor.selectedTile = TileSelection.DrywallWorn;
+            LevelEditor.SelectTile(TileSelection.DrywallWorn);
         }
 
         private void wallMetalSelect_Click(object sender, EventArgs e)
         {
-            LevelEditor.currentSelection = Selection.Tile;
-            LevelEditor.selectedTile = TileSelection.WallMetal;
+            LevelEditor.SelectTile(TileSelection.WallMetal);
+        }
+
+        private void meleeTestSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectEnemy(EnemySelection.MeleeTest);
         }
     }
 }
