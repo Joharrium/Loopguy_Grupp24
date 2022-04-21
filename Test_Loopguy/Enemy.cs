@@ -87,6 +87,7 @@ namespace Test_Loopguy
 
         public void TakeDamage(int damage)
         {
+            aggro = true;
             if(!hitDuringCurrentAttack)
             {
                 health -= damage;
