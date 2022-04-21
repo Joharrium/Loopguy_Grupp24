@@ -17,6 +17,7 @@ namespace Test_Loopguy
         private static double loadTimer = 80;
         public static bool loadStarted = false;
         const double LOADTIMER = 80;
+        
 
         private static Player player;
         private static Vector2 target;
@@ -120,6 +121,16 @@ namespace Test_Loopguy
             }
             
             
+        }
+
+        internal static void AddEnemyProjectile(Shot projectile)
+        {
+            currentLevel.enemyProjectiles.Add(projectile);
+        }
+
+        internal static void AddPlayerProjectile(Shot projectile)
+        {
+            currentLevel.playerProjectiles.Add(projectile);
         }
 
         public static bool WallCollision(Vector2 position)
