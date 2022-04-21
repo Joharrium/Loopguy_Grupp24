@@ -99,7 +99,7 @@ namespace Test_Loopguy
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
             this.pictureBox25 = new System.Windows.Forms.PictureBox();
             this.pictureBox26 = new System.Windows.Forms.PictureBox();
-            this.pictureBox27 = new System.Windows.Forms.PictureBox();
+            this.rangedTestSelect = new System.Windows.Forms.PictureBox();
             this.meleeTestSelect = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.wallMetalSelect)).BeginInit();
@@ -154,7 +154,7 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rangedTestSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.meleeTestSelect)).BeginInit();
             this.SuspendLayout();
             // 
@@ -717,7 +717,7 @@ namespace Test_Loopguy
             this.groupBox3.Controls.Add(this.pictureBox24);
             this.groupBox3.Controls.Add(this.pictureBox25);
             this.groupBox3.Controls.Add(this.pictureBox26);
-            this.groupBox3.Controls.Add(this.pictureBox27);
+            this.groupBox3.Controls.Add(this.rangedTestSelect);
             this.groupBox3.Controls.Add(this.meleeTestSelect);
             this.groupBox3.Location = new System.Drawing.Point(10, 375);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -908,15 +908,16 @@ namespace Test_Loopguy
             this.pictureBox26.TabIndex = 2;
             this.pictureBox26.TabStop = false;
             // 
-            // pictureBox27
+            // rangedTestSelect
             // 
-            this.pictureBox27.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox27.Image")));
-            this.pictureBox27.Location = new System.Drawing.Point(66, 20);
-            this.pictureBox27.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox27.Name = "pictureBox27";
-            this.pictureBox27.Size = new System.Drawing.Size(56, 48);
-            this.pictureBox27.TabIndex = 1;
-            this.pictureBox27.TabStop = false;
+            this.rangedTestSelect.Image = ((System.Drawing.Image)(resources.GetObject("rangedTestSelect.Image")));
+            this.rangedTestSelect.Location = new System.Drawing.Point(66, 20);
+            this.rangedTestSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rangedTestSelect.Name = "rangedTestSelect";
+            this.rangedTestSelect.Size = new System.Drawing.Size(56, 48);
+            this.rangedTestSelect.TabIndex = 1;
+            this.rangedTestSelect.TabStop = false;
+            this.rangedTestSelect.Click += new System.EventHandler(this.rangedTestSelect_Click);
             // 
             // meleeTestSelect
             // 
@@ -1009,7 +1010,7 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rangedTestSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.meleeTestSelect)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1087,7 +1088,7 @@ namespace Test_Loopguy
         private System.Windows.Forms.PictureBox pictureBox24;
         private System.Windows.Forms.PictureBox pictureBox25;
         private System.Windows.Forms.PictureBox pictureBox26;
-        private System.Windows.Forms.PictureBox pictureBox27;
+        private System.Windows.Forms.PictureBox rangedTestSelect;
         private System.Windows.Forms.PictureBox meleeTestSelect;
     }
 }

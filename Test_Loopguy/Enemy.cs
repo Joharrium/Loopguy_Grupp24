@@ -45,7 +45,11 @@ namespace Test_Loopguy
             {
                 aggro = InAggroRange();
             }
-            if(knockBackRemaining > 0)
+            else
+            {
+                AggroBehavior();
+            }
+            if (knockBackRemaining > 0)
             {
                 knockBackRemaining -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 position += knockBackDirection * knockBackDistance * deltaTime;
@@ -110,7 +114,10 @@ namespace Test_Loopguy
             spriteBatch.Draw(texture, position, Color.White);
             healthBar.Draw(spriteBatch);
         }
-        //Placeholder klass för testning av EntityManagers listhantering
+        protected virtual void AggroBehavior()
+        {
+
+        }
     }
     class MeleeEnemy : Enemy
     {
@@ -124,15 +131,11 @@ namespace Test_Loopguy
         {
             
             base.Update(gameTime);
-            if(aggro)
-            {
-                AggroBehavior();
-            }
             //Movement(deltaTime);
 
         }
 
-        protected void AggroBehavior()
+        protected override void AggroBehavior()
         {
             Vector2 thing = centerPosition - EntityManager.player.centerPosition;
             thing.Normalize();
@@ -140,6 +143,83 @@ namespace Test_Loopguy
 
             direction = thing;
             speed = maxSpeed;
+        }
+    }
+
+    class RangedEnemy : Enemy
+    {
+        protected int minRange;
+        protected int maxRange;
+        protected int fleeRange;
+        protected bool fleeing;
+
+        public RangedEnemy(Vector2 position) : base(position)
+        {
+
+        }
+
+        protected override void AggroBehavior()
+        {
+            Vector2 thing = centerPosition - EntityManager.player.centerPosition;
+            if(!fleeing)
+            {
+                if (thing.Length() < maxRange && thing.Length() > minRange)
+                {
+                    speed = 0;
+                    //Attack
+                }
+                else if(thing.Length() > maxRange)
+                {
+                    thing.Normalize();
+                    thing *= -1;
+
+                    direction = thing;
+                    speed = maxSpeed;
+                }
+                else if(thing.Length() < minRange)
+                {
+                    thing.Normalize();
+
+                    direction = thing;
+                    speed = maxSpeed;
+                    fleeing = true;
+                }
+            }
+            else
+            {
+                
+                if(thing.Length() > fleeRange)
+                {
+                    fleeing = false;
+                }
+                thing.Normalize();
+
+                direction = thing;
+                speed = maxSpeed;
+            }
+
+
+        }
+    }
+
+    class TestEnemyRanged : RangedEnemy
+    {
+
+        public TestEnemyRanged(Vector2 position) : base(position)
+        {
+            this.position = position;
+            this.texture = TexMGR.enemyPlaceholder;
+            this.maxHealth = 4;
+            this.maxSpeed = 36;
+            minRange = 40;
+            maxRange = 128;
+            fleeRange = 80;
+            aggroRange = 192;
+            damage = 1;
+            knockBackDistance = 180;
+            knockBackDuration = 160;
+            Init();
+            aggro = false;
         }
     }
 

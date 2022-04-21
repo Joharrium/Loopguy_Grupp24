@@ -51,23 +51,27 @@ namespace Test_Loopguy
                 }
             }
 
-            foreach(Enemy e in enemies)
+            if(!Game1.editLevel)
             {
-                e.Update(gameTime);
-                if(player.MeleeHit(e) && player.attacking)
+                foreach (Enemy e in enemies)
                 {
-                    e.TakeDamage(1);
-                    e.hitDuringCurrentAttack = true;
-                }
-                if (!player.attacking)
-                {
-                    e.hitDuringCurrentAttack = false;
-                }
-                if (e.health <= 0)
-                {
-                    enemiesToRemove.Add(e);
+                    e.Update(gameTime);
+                    if (player.MeleeHit(e) && player.attacking)
+                    {
+                        e.TakeDamage(1);
+                        e.hitDuringCurrentAttack = true;
+                    }
+                    if (!player.attacking)
+                    {
+                        e.hitDuringCurrentAttack = false;
+                    }
+                    if (e.health <= 0)
+                    {
+                        enemiesToRemove.Add(e);
+                    }
                 }
             }
+            
             foreach (Pickup p in levelObjects.OfType<Pickup>())
             {
                 p.Update();

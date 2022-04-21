@@ -179,5 +179,10 @@ namespace Test_Loopguy
         {
             LevelEditor.SelectEnemy(EnemySelection.MeleeTest);
         }
+
+        private void rangedTestSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectEnemy(EnemySelection.RangedTest);
+        }
     }
 }

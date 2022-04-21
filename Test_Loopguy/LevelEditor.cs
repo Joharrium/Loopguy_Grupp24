@@ -141,10 +141,10 @@ namespace Test_Loopguy
                         switch (selectedEnemy)
                         {
                             case EnemySelection.MeleeTest:
-                                LevelManager.EnemyAdd(new TestEnemy(Game1.mousePos + new Vector2(16, 16)));
+                                LevelManager.EnemyAdd(new TestEnemy(Game1.mousePos - new Vector2(8, 8)));
                                 break;
                             case EnemySelection.RangedTest:
-                                LevelManager.EnemyAdd(new TestEnemy(Game1.mousePos + new Vector2(16, 16)));
+                                LevelManager.EnemyAdd(new TestEnemyRanged(Game1.mousePos + new Vector2(16, 16)));
                                 break;
                         }
                         //LevelManager.TileEdit(selectedTile, Game1.mousePos);
