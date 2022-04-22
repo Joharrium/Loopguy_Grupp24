@@ -122,7 +122,7 @@ namespace Test_Loopguy
                         Shot shot = new Shot(shotPosition, gunDirection, shotAngle);
                         LevelManager.AddPlayerProjectile(shot);
                         //shots.Add(shot);
-
+                        //Audio.PlaySound(Audio.meepmerp);
                         Audio.lasergun.PlayRandomSound();
                         shooting = true;
                     }

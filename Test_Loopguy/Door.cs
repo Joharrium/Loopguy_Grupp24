@@ -16,10 +16,12 @@ namespace Test_Loopguy
         protected Texture2D openTex;
         protected bool playerInArea;
         protected SoundEffect openSound;
+        protected SoundEffect denySound;
         public Door(Vector2 position, int requiredKey) : base(position)
         {
             this.texture = TexMGR.door;
             openTex = TexMGR.door_open;
+            denySound = Audio.meepmerp;
             sourceRectangle = new Rectangle(0, 0, 32, 32);
             this.position = position;
             hitBox = new Rectangle((int)position.X, (int)position.Y, 32, 32);
@@ -32,11 +34,19 @@ namespace Test_Loopguy
         {
             if (unlockArea.Contains(EntityManager.player.centerPosition))
             {
+                
+                
                 foreach (int key in EntityManager.player.keys)
                 {
                     CheckIfKey(key);
                 }
+                if (!playerInArea && !open)
+                {
+                    Audio.PlaySound(denySound);
+                }
+                playerInArea = true;
                 //CheckIfKey(k)
+
             }
             else
             {
@@ -70,14 +80,14 @@ namespace Test_Loopguy
                 hitBox.Height = 0;
                 open = true;
                 animation.Position = position;
-                //Audio.PlaySound(Audio.open);
+                
                 Audio.PlaySound(openSound);
             }
             else
             if(!playerInArea && !open)
             {
                 playerInArea = true;
-                //Audio.PlaySound(Audio.deny);
+                
             }
         }
 
@@ -93,6 +103,7 @@ namespace Test_Loopguy
         public DoorSliding(Vector2 position, int requiredKey) : base(position, requiredKey)
         {
             openSound = Audio.door_hiss_sound;
+            denySound = Audio.meepmerp;
             this.texture = TexMGR.door_sliding;
             openTex = TexMGR.door_sliding_open;
             sourceRectangle = new Rectangle(0, 0, 32, 32);
