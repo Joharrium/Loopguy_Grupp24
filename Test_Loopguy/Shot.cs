@@ -22,7 +22,7 @@ namespace Test_Loopguy
             sprite = new AnimSprite(TexMGR.shot, new Point(8, 8));
             sprite.Position = position;
 
-            speed = 300;
+            speed = 50;
         }
 
         public bool CheckCollision(GameObject obj)

@@ -205,12 +205,10 @@ namespace Test_Loopguy
 
             foreach (Shot s in playerProjectiles)
             {
-                s.Draw(spriteBatch);
                 s.DrawRotation(spriteBatch);
             }
             foreach (Shot s in enemyProjectiles)
             {
-                s.Draw(spriteBatch);
                 s.DrawRotation(spriteBatch);
             }
             //draw tiles and objects and enemies, in the correct order
