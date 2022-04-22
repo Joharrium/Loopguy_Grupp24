@@ -15,7 +15,9 @@ namespace Test_Loopguy
             keycard, door_sliding, door_sliding_open, barrelDestroyed;
         // ui files
         public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door, 
-            healthbar_small_outline, healthbar_small_fill_bg, healthbar_small_fill;
+            healthbar_small_outline, healthbar_small_fill_bg, healthbar_small_fill,
+            player_healthbar_outline, player_healthbar_inline, player_healthbar_fill, player_healthbar_fill_bg
+            ;
         public static SpriteFont UI_menuFont;
         // character files
         public static Texture2D enemyPlaceholder;
@@ -96,6 +98,11 @@ namespace Test_Loopguy
             healthbar_small_fill = c.Load<Texture2D>("gfx/interface/healthbar_small_fill");
             healthbar_small_fill_bg = c.Load<Texture2D>("gfx/interface/healthbar_small_fill_bg");
             healthbar_small_outline = c.Load<Texture2D>("gfx/interface/healthbar_small_outline");
+
+            player_healthbar_outline = c.Load<Texture2D>("gfx/interface/player_healthbar_outline");
+            player_healthbar_inline = c.Load<Texture2D>("gfx/interface/player_healthbar_inline");
+            player_healthbar_fill = c.Load<Texture2D>("gfx/interface/player_healthbar_fill");
+            player_healthbar_fill_bg = c.Load<Texture2D>("gfx/interface/player_healthbar_fill_bg");
         }
 
         private static void LoadCharacters(ContentManager c)

@@ -42,6 +42,11 @@ namespace Test_Loopguy
             foreach (Shot s in enemyProjectiles)
             {
                 s.Update(gameTime);
+                if(s.CheckCollision(player))
+                {
+                    player.health--;
+                    projectilesToRemove.Add(s);
+                }
                 if (!cameraBounds.Contains(s.centerPosition))
                 {
                     //projectilesToRemove.Add(s);

@@ -72,6 +72,7 @@ namespace Test_Loopguy
 
                     EntityManager.Draw(spriteBatch);
                     ParticleManager.Draw(spriteBatch);
+                    //Player.healthBar.Draw(spriteBatch);
                     break;
                 case GameState.InEditor:
                     break;

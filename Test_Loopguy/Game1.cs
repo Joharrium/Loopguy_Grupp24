@@ -88,7 +88,7 @@ namespace Test_Loopguy
                 Application.Run(frmNewForm);
             }
 
-            Audio.PlayMusic(Audio.sus_low);
+            Audio.PlayMusic(Audio.unatco_hq);
 
 
         }
@@ -192,9 +192,14 @@ namespace Test_Loopguy
 
             Color cursorColor = new Color(200, 200, 200, 200);
             spriteBatch.Draw(TexMGR.cursor, new Vector2(mousePos.X - TexMGR.cursor.Width / 2, mousePos.Y - TexMGR.cursor.Height / 2), cursorColor);
-
             //player.Draw(spriteBatch);
 
+            spriteBatch.End();
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
+            //DRAW HUD HERE
+
+            Player.healthBar.Draw(spriteBatch);
             spriteBatch.End();
 
             GraphicsDevice.SetRenderTarget(null);

@@ -22,7 +22,7 @@ namespace Test_Loopguy
         //he he he he he he he he he he he he he he he he he heeeeeeeeeeeeeeeeeeeeeeeeeeeeee he he//he he he he he he he he he he he he he he he he he heeeeeeeeeeeeeeeeeeeeeeeeeeeeee he he//he he he he he he he he he he he he he he he he he heeeeeeeeeeeeeeeeeeeeeeeeeeeeee he he
         //he he he he he he he he he he he he he he he he he heeeeeeeeeeeeeeeeeeeeeeeeeeeeee he he
 
-        public static SoundEffect sus_low, sus_high;
+        public static SoundEffect sus_low, sus_high, unatco_hq;
         
         private static SoundEffectInstance playingTrack;
 
@@ -54,6 +54,7 @@ namespace Test_Loopguy
         {
             sus_high = c.Load<SoundEffect>("audio/music/sus_high");
             sus_low = c.Load<SoundEffect>("audio/music/sus_low");
+            unatco_hq = c.Load<SoundEffect>("audio/music/unatco_hq");
         }
 
         

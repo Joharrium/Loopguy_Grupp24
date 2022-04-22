@@ -9,6 +9,7 @@ namespace Test_Loopguy
 {
     internal class Player : MovingObject
     {
+        public int health = 5;
         AnimSprite sprite;
         AnimSprite gunSprite;
         AnimSprite meleeSprite;
@@ -22,6 +23,7 @@ namespace Test_Loopguy
         Vector2 prevDirection;
 
         public bool usedGate;
+        static public PlayerHealthBar healthBar;
 
         float gunAngle;
         float aimAngle;
@@ -52,6 +54,8 @@ namespace Test_Loopguy
 
             dirInt = 2;
             LoadKeys();
+            healthBar = new PlayerHealthBar(5);
+            
         }
         
         private void LoadKeys()
@@ -82,6 +86,8 @@ namespace Test_Loopguy
         {
             hitBox = new Rectangle((int)position.X, (int)position.Y, sprite.size.X, sprite.size.Y);
             centerPosition = new Vector2(position.X + sprite.size.X / 2, position.Y + sprite.size.Y / 2);
+
+            healthBar.UpdateBar(health);
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -221,6 +227,8 @@ namespace Test_Loopguy
             {
                 shot.DrawRotation(spriteBatch);
             }
+
+            //healthBar.Draw(spriteBatch);
         }
 
         public void Melee(float deltaTime)
@@ -439,7 +447,7 @@ namespace Test_Loopguy
             float absDirShort = (float)Math.Round(absDirection, 2);
             playerInfoString = absDirShort.ToString() + " || " + frameTime.ToString() + " || " + playerVelocityShort.ToString();
         }
-
+        
         public void DrawAim(SpriteBatch spriteBatch)
         {
 
