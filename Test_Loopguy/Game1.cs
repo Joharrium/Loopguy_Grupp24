@@ -149,22 +149,16 @@ namespace Test_Loopguy
 
             //Get angles between player and stuff
             double mouseAngle = Helper.GetAngle(EntityManager.player.centerPosition, mousePos, 0);
-            double targetAngle = Helper.GetAngle(EntityManager.player.centerPosition, Vector2.Zero , 0); //change zero vector to target
 
             //Converts angles from radians double to more readable stuff
             double piRadM = mouseAngle / Math.PI;
             float piRadShortM = (float)Math.Round(piRadM, 2);
             int degShortM = (int)MathHelper.ToDegrees((float)mouseAngle);
 
-            double piRadT = targetAngle / Math.PI;
-            float piRadShortT = (float)Math.Round(piRadT, 2);
-            int degShortT = (int)MathHelper.ToDegrees((float)targetAngle);
-
             //Shows player position
             Point playerPosRounded = new Point((int)Math.Round(EntityManager.player.position.X, 0), (int)Math.Round(EntityManager.player.position.Y, 0));
 
             infoString = "Mouse Angle: " + piRadShortM.ToString() + "pi rad - " + degShortM.ToString() + " degrees \n"
-                + "Target Angle: " + piRadShortT.ToString() + "pi rad - " + degShortT.ToString() + " degrees \n"
                 + "Player position: " + playerPosRounded;
 
             Window.Title = EntityManager.player.playerInfoString;
