@@ -129,7 +129,7 @@ namespace Test_Loopguy
 
                     if (shooting)
                     {
-                        Shoot(50);
+                        Shoot(25);
                     }
                 }
                 else
