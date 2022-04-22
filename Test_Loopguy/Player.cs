@@ -120,7 +120,8 @@ namespace Test_Loopguy
                         Vector2 shotPosition = new Vector2(centerPosition.X + gunDirection.X * 20 - 4, centerPosition.Y + gunDirection.Y * 20 - 6);
                         float shotAngle = aimAngle + pi;
                         Shot shot = new Shot(shotPosition, gunDirection, shotAngle);
-                        shots.Add(shot);
+                        LevelManager.AddPlayerProjectile(shot);
+                        //shots.Add(shot);
 
                         Audio.lasergun.PlayRandomSound();
                         shooting = true;
@@ -536,7 +537,7 @@ namespace Test_Loopguy
 
         public bool MeleeHit(GameObject obj)
         {
-            foreach(Vector2 v in LevelManager.GetPointsOfObject((LevelObject)obj))
+            foreach (Vector2 v in LevelManager.GetPointsOfObject(obj))
             {
                 if (Vector2.Distance(centerPosition, v) <= meleeRange)
                 {
@@ -565,7 +566,7 @@ namespace Test_Loopguy
                     }
                 }
             }
-
+            
             
 
             return false;

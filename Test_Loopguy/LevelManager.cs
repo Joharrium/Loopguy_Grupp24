@@ -17,6 +17,7 @@ namespace Test_Loopguy
         private static double loadTimer = 80;
         public static bool loadStarted = false;
         const double LOADTIMER = 80;
+        
 
         private static Player player;
         private static Vector2 target;
@@ -41,7 +42,7 @@ namespace Test_Loopguy
             }
         }
 
-        internal static List<Vector2> GetPointsOfObject(LevelObject lo)
+        internal static List<Vector2> GetPointsOfObject(GameObject lo)
         {
             List<Vector2> points = new List<Vector2>();
             points.Add(lo.position);
@@ -51,6 +52,8 @@ namespace Test_Loopguy
             points.Add(lo.centerPosition);
             return points;
         }
+
+        
 
         internal static void Update(GameTime gameTime, Player player)
         {
@@ -108,7 +111,26 @@ namespace Test_Loopguy
         
         public static bool LevelObjectCollision(Vector2 position)
         {
-            return currentLevel.LevelObjectCollision(position);
+            if(!currentLevel.LevelObjectCollision(position))
+            {
+                return currentLevel.WallCollision(position);
+            }
+            else
+            {
+                return currentLevel.LevelObjectCollision(position);
+            }
+            
+            
+        }
+
+        internal static void AddEnemyProjectile(Shot projectile)
+        {
+            currentLevel.enemyProjectiles.Add(projectile);
+        }
+
+        internal static void AddPlayerProjectile(Shot projectile)
+        {
+            currentLevel.playerProjectiles.Add(projectile);
         }
 
         public static bool WallCollision(Vector2 position)
@@ -258,6 +280,11 @@ namespace Test_Loopguy
         public static void ObjectRemove(Vector2 pos)
         {
             currentLevel.RemoveObject(pos);
+        }
+
+        internal static void EnemyAdd(Enemy enemy)
+        {
+            currentLevel.enemies.Add(enemy);
         }
 
         public static void TileEdit(TileSelection tile, Vector2 position)

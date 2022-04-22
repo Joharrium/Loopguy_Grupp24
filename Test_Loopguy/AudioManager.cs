@@ -18,7 +18,13 @@ namespace Test_Loopguy
         static float musicVolume = 0.3F;
         static float soundVolume = 0.5F;
         //music
-        static SoundEffect musicTitle, musicBattle1, musicEnemyTurn, musicOverworld1, musicOverworld2, musicOverworld3, musicMystery;
+        //bizarre error markings that could only be "fixed" like this, disregard these comments
+        //he he he he he he he he he he he he he he he he he heeeeeeeeeeeeeeeeeeeeeeeeeeeeee he he//he he he he he he he he he he he he he he he he he heeeeeeeeeeeeeeeeeeeeeeeeeeeeee he he//he he he he he he he he he he he he he he he he he heeeeeeeeeeeeeeeeeeeeeeeeeeeeee he he
+        //he he he he he he he he he he he he he he he he he heeeeeeeeeeeeeeeeeeeeeeeeeeeeee he he
+
+        public static SoundEffect sus_low, sus_high;
+        
+        private static SoundEffectInstance playingTrack;
 
         public static SoundCollection lasergun;
         //sound
@@ -30,19 +36,7 @@ namespace Test_Loopguy
             LoadMusic(Content);
             LoadSound(Content);
             CreateCollections();
-            /*
-            foreach (SoundEffectInstance s in sound)
-            {
-                s.Volume = soundVolume;
-            }
 
-
-            foreach (SoundEffectInstance m in music)
-            {
-                m.IsLooped = true;
-                m.Volume = musicVolume;
-            }
-            */
         }
         static void CreateCollections()
         {
@@ -58,7 +52,8 @@ namespace Test_Loopguy
         }
         static void LoadMusic(ContentManager c)
         {
-
+            sus_high = c.Load<SoundEffect>("audio/music/sus_high");
+            sus_low = c.Load<SoundEffect>("audio/music/sus_low");
         }
 
         
@@ -85,6 +80,24 @@ namespace Test_Loopguy
                 EnergyGun_Shoot2C = c.Load<SoundEffect>("audio/sound/gun/EnergyGun_Shoot2C");
                 EnergyGun_Shoot2D = c.Load<SoundEffect>("audio/sound/gun/EnergyGun_Shoot2D");
             }
+        }
+
+        public static void PlayMusic(SoundEffect music)
+        {
+            if(music !=null)
+            {
+                SoundEffectInstance instance = music.CreateInstance();
+                instance.Volume = musicVolume;
+                instance.IsLooped = true;
+                instance.Play();
+                playingTrack = instance;
+            }
+        }
+
+        public static void StopMusic()
+        {
+            playingTrack.Stop();
+            playingTrack = null;
         }
 
         public static void PlaySound(SoundEffect sound)
