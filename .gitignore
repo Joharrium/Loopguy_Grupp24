@@ -361,3 +361,24 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Test_Loopguy/maps/level1/objectmapwithdoor.txt
+/Test_Loopguy/maps/maps/gates/5.txt
+/Test_Loopguy/maps/maps/gates/4.txt
+/Test_Loopguy/maps/maps/gates/3.txt
+/Test_Loopguy/maps/maps/gates/2.txt
+/Test_Loopguy/maps/maps/gates/1.txt
+/Test_Loopguy/maps/maps/level2/tilemap.txt
+/Test_Loopguy/maps/maps/level2/objectmap.txt
+/Test_Loopguy/maps/maps/level2/bounds.txt
+/Test_Loopguy/maps/maps/level2
+/Test_Loopguy/maps/maps/level1/tilemap0backup.txt
+/Test_Loopguy/maps/maps/level1/tilemap.txt
+/Test_Loopguy/maps/maps/level1/objectmap_backup2.txt
+/Test_Loopguy/maps/maps/level1/objectmapwithdoor.txt
+/Test_Loopguy/maps/maps/level1/objectmap.txt
+/Test_Loopguy/maps/maps/level1/objectmap - backup.txt
+/Test_Loopguy/maps/maps/level1/heightmap.txt
+/Test_Loopguy/maps/maps/level1/entrance_ids.txt
+/Test_Loopguy/maps/maps/level1/enemymap.txt
+/Test_Loopguy/maps/maps/level1/bounds.txt
+/Test_Loopguy/maps/maps.zip
