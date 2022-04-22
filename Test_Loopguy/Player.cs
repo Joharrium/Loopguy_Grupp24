@@ -475,6 +475,8 @@ namespace Test_Loopguy
 
             gunDirection = new Vector2((float)Math.Sin(aimAngle), (float)Math.Cos(aimAngle));
 
+            Vector2 dotPos = centerPosition;
+
             for (int i = 16; i < 580; i++)
             {
                 Vector2 aimPoint = new Vector2(centerPosition.X + i * gunDirection.X, centerPosition.Y + i * gunDirection.Y);
@@ -484,10 +486,15 @@ namespace Test_Loopguy
                 {
                     break;
                 }
+                else
+                {
+                    dotPos = new Vector2(aimPoint.X + (gunDirection.X * 5) - 1, aimPoint.Y + (gunDirection.Y * 5) - 1.5f);
+                }
 
                 spriteBatch.Draw(TexMGR.cyanPixel, aimPoint, Helper.RandomTransparency(random, 0, 90));
             }
 
+            spriteBatch.Draw(TexMGR.blueDot, dotPos, Color.White);
         }
 
         public void Shoot(int frameTime)
