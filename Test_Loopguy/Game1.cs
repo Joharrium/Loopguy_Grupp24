@@ -88,6 +88,7 @@ namespace Test_Loopguy
                 Application.Run(frmNewForm);
             }
 
+            Audio.PlayMusic(Audio.sus_low);
 
 
         }

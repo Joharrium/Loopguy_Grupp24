@@ -13,6 +13,10 @@ namespace Test_Loopguy
         Rectangle cameraBounds;
         public Tile[,] tiles;
         public List<LevelObject> levelObjects;
+        internal List<Enemy> enemies;
+        internal List<Shot> enemyProjectiles;
+        internal List<Shot> playerProjectiles;
+            //should change to generic projectile class to account for different projectile types
         //list of enemies
         //list of corresponding entrances from different ids and their position
 
@@ -23,30 +27,35 @@ namespace Test_Loopguy
             this.cameraBounds = cameraBounds;
             this.levelObjects = levelObjects;
             this.tiles = tiles;
-            
+            enemyProjectiles = new List<Shot>();
+            playerProjectiles = new List<Shot>();
+            this.enemies = new List<Enemy>();
+            enemies.Add(new TestEnemy(new Vector2(400, 400)));
         }
 
         internal void Update(GameTime gameTime, Player player)
         {
-            List<Destructible> destructiblesToRemove = new List<Destructible>();
-            foreach(Destructible lo in levelObjects.OfType<Destructible>())
-            {
-                if(lo is Destructible && player.MeleeHit(lo) && player.attacking)
-                {
-                    lo.Damage(1);
-                    lo.hitDuringCurrentAttack = true;
-                }
-                if(!player.attacking)
-                {
-                    lo.hitDuringCurrentAttack = false;
-                }
+            List<Shot> projectilesToRemove = new List<Shot>();
+            DestructibleUpdate(gameTime);
+            EnemyUpdate(gameTime);
 
-                lo.Update(gameTime);
-                if(lo.actuallyDestroyed)
+            foreach (Shot s in enemyProjectiles)
+            {
+                s.Update(gameTime);
+                if (!cameraBounds.Contains(s.centerPosition))
                 {
-                    destructiblesToRemove.Add(lo);
+                    //projectilesToRemove.Add(s);
                 }
             }
+            foreach (Shot s in playerProjectiles)
+            {
+                s.Update(gameTime);
+                if(!cameraBounds.Contains(s.centerPosition))
+                {
+                    //dprojectilesToRemove.Add(s);
+                }
+            }
+
             foreach (Pickup p in levelObjects.OfType<Pickup>())
             {
                 p.Update();
@@ -55,16 +64,122 @@ namespace Test_Loopguy
             {
                 d.Update(gameTime);
             }
-                foreach (Destructible d in destructiblesToRemove)
+
+            foreach (Shot s in projectilesToRemove)
+            {
+                if (playerProjectiles.Contains(s))
+                {
+                    playerProjectiles.Remove(s);
+                }
+                if (enemyProjectiles.Contains(s))
+                {
+                    enemyProjectiles.Remove(s);
+                }
+            }
+
+        }
+
+        private void DestructibleUpdate(GameTime gameTime)
+        {
+            List<Destructible> destructiblesToRemove = new List<Destructible>();
+            List<Shot> projectilesToRemove = new List<Shot>();
+            foreach (Destructible lo in levelObjects.OfType<Destructible>())
+            {
+                foreach (Shot s in playerProjectiles)
+                {
+                    if (s.CheckCollision(lo))
+                    {
+                        lo.Damage(1);
+                        projectilesToRemove.Add(s);
+                    }
+                }
+                foreach (Shot s in enemyProjectiles)
+                {
+                    if (s.CheckCollision(lo))
+                    {
+                        lo.Damage(1);
+                        projectilesToRemove.Add(s);
+                    }
+                }
+                if (lo is Destructible && EntityManager.player.MeleeHit(lo) && EntityManager.player.attacking)
+                {
+                    lo.Damage(1);
+                    lo.hitDuringCurrentAttack = true;
+                }
+                if (!EntityManager.player.attacking)
+                {
+                    lo.hitDuringCurrentAttack = false;
+                }
+
+                lo.Update(gameTime);
+                if (lo.actuallyDestroyed)
+                {
+                    destructiblesToRemove.Add(lo);
+                }
+            }
+
+            foreach (Destructible d in destructiblesToRemove)
             {
                 levelObjects.Remove(d);
             }
-            //update game objects
-            //update enemy ai
 
-            //do any animations
+            foreach (Shot s in projectilesToRemove)
+            {
+                if(playerProjectiles.Contains(s))
+                {
+                    playerProjectiles.Remove(s);
+                }
+                if(enemyProjectiles.Contains(s))
+                {
+                    enemyProjectiles.Remove(s);
+                }
+            }
         }
 
+        private void EnemyUpdate(GameTime gameTime)
+        {
+            List<Enemy> enemiesToRemove = new List<Enemy>();
+            List<Shot> projectilesToRemove = new List<Shot>();
+            if (!Game1.editLevel)
+            {
+                foreach (Enemy e in enemies)
+                {
+                    foreach(Shot s in playerProjectiles)
+                    {
+                        if(s.CheckCollision(e))
+                        {
+                            e.TakeDamage(1);
+                            projectilesToRemove.Add(s);
+                        }
+                    }
+                    e.Update(gameTime);
+                    if (EntityManager.player.MeleeHit(e) && EntityManager.player.attacking)
+                    {
+                        e.TakeDamage(1);
+                        e.hitDuringCurrentAttack = true;
+                    }
+                    if (!EntityManager.player.attacking)
+                    {
+                        e.hitDuringCurrentAttack = false;
+                    }
+                    if (e.health <= 0)
+                    {
+                        enemiesToRemove.Add(e);
+                    }
+                }
+            }
+            foreach (Enemy e in enemiesToRemove)
+            {
+                enemies.Remove(e);
+            }
+            foreach (Shot s in projectilesToRemove)
+            {
+                if (playerProjectiles.Contains(s))
+                {
+                    playerProjectiles.Remove(s);
+                }
+            }
+        }
         
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -78,7 +193,23 @@ namespace Test_Loopguy
                 {
                     lo.Draw(spriteBatch);
                 }
-                
+            }
+
+            foreach(Enemy e in enemies)
+            {
+                if(e != null)
+                {
+                    e.Draw(spriteBatch);
+                }
+            }
+
+            foreach (Shot s in playerProjectiles)
+            {
+                s.DrawRotation(spriteBatch);
+            }
+            foreach (Shot s in enemyProjectiles)
+            {
+                s.DrawRotation(spriteBatch);
             }
             //draw tiles and objects and enemies, in the correct order
         }

@@ -6,7 +6,7 @@ namespace Test_Loopguy
     static class TexMGR
     {
         public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, gunSheet, testTile, testAlt, box, checkers;
-        public static Texture2D meleeFx, shot;
+        public static Texture2D meleeFx, shot, blueDot;
         // terrain files
         public static Texture2D grassBasic, grassAlt, grayBrickWall, dirt, tiles_checkered_gray, tiles_checkered_brown, tiles_big_light, tiles_big_dark,
             carpet_worn, tile_metal, tile_metal_copper, wall_metal, wall_worn;
@@ -17,6 +17,9 @@ namespace Test_Loopguy
         public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door, 
             healthbar_small_outline, healthbar_small_fill_bg, healthbar_small_fill;
         public static SpriteFont UI_menuFont;
+        // character files
+        public static Texture2D enemyPlaceholder;
+
         //particles
         public static Texture2D spark_small;
 
@@ -26,6 +29,7 @@ namespace Test_Loopguy
             LoadObjects(c);
             LoadUI(c);
             LoadParticles(c);
+            LoadCharacters(c);
 
             notex = c.Load<Texture2D>("notex");
             checkers = c.Load<Texture2D>("checkers");
@@ -39,6 +43,7 @@ namespace Test_Loopguy
             testAlt = c.Load<Texture2D>("testtilealt");
             meleeFx = c.Load<Texture2D>("meleefx");
             shot = c.Load<Texture2D>("shot");
+            blueDot = c.Load<Texture2D>("bluedot");
         }
 
         private static void LoadTerrain(ContentManager c)
@@ -92,6 +97,11 @@ namespace Test_Loopguy
             healthbar_small_outline = c.Load<Texture2D>("gfx/interface/healthbar_small_outline");
         }
 
+        private static void LoadCharacters(ContentManager c)
+        {
+            enemyPlaceholder = c.Load<Texture2D>("gfx/characters/enemy_placeholder");
+        }
+        
         private static void LoadParticles(ContentManager c)
         {
             spark_small = c.Load<Texture2D>("gfx/particles/spark_small");

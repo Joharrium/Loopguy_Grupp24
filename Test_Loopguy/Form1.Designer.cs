@@ -31,6 +31,10 @@ namespace Test_Loopguy
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.wallMetalSelect = new System.Windows.Forms.PictureBox();
+            this.wornWallSelect = new System.Windows.Forms.PictureBox();
+            this.metalTileSelect = new System.Windows.Forms.PictureBox();
+            this.carpetSelect = new System.Windows.Forms.PictureBox();
             this.tileBigDarkSelect = new System.Windows.Forms.PictureBox();
             this.tileBigLightSelect = new System.Windows.Forms.PictureBox();
             this.tilesCheckeredBrownSelect = new System.Windows.Forms.PictureBox();
@@ -76,11 +80,32 @@ namespace Test_Loopguy
             this.label6 = new System.Windows.Forms.Label();
             this.goToLevelWithID = new System.Windows.Forms.TextBox();
             this.goToLevelButton = new System.Windows.Forms.Button();
-            this.carpetSelect = new System.Windows.Forms.PictureBox();
-            this.metalTileSelect = new System.Windows.Forms.PictureBox();
-            this.wornWallSelect = new System.Windows.Forms.PictureBox();
-            this.wallMetalSelect = new System.Windows.Forms.PictureBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
+            this.pictureBox21 = new System.Windows.Forms.PictureBox();
+            this.pictureBox22 = new System.Windows.Forms.PictureBox();
+            this.pictureBox23 = new System.Windows.Forms.PictureBox();
+            this.pictureBox24 = new System.Windows.Forms.PictureBox();
+            this.pictureBox25 = new System.Windows.Forms.PictureBox();
+            this.pictureBox26 = new System.Windows.Forms.PictureBox();
+            this.rangedTestSelect = new System.Windows.Forms.PictureBox();
+            this.meleeTestSelect = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.wallMetalSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wornWallSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metalTileSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carpetSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileBigDarkSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileBigLightSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tilesCheckeredBrownSelect)).BeginInit();
@@ -110,10 +135,27 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.shrubSmallSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.potSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barrelSelect)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.carpetSelect)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.metalTileSelect)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wornWallSelect)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wallMetalSelect)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rangedTestSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.meleeTestSelect)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -138,6 +180,50 @@ namespace Test_Loopguy
             this.groupBox2.TabIndex = 30;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tiles";
+            // 
+            // wallMetalSelect
+            // 
+            this.wallMetalSelect.Image = ((System.Drawing.Image)(resources.GetObject("wallMetalSelect.Image")));
+            this.wallMetalSelect.Location = new System.Drawing.Point(189, 125);
+            this.wallMetalSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.wallMetalSelect.Name = "wallMetalSelect";
+            this.wallMetalSelect.Size = new System.Drawing.Size(56, 48);
+            this.wallMetalSelect.TabIndex = 11;
+            this.wallMetalSelect.TabStop = false;
+            this.wallMetalSelect.Click += new System.EventHandler(this.wallMetalSelect_Click);
+            // 
+            // wornWallSelect
+            // 
+            this.wornWallSelect.Image = ((System.Drawing.Image)(resources.GetObject("wornWallSelect.Image")));
+            this.wornWallSelect.Location = new System.Drawing.Point(128, 125);
+            this.wornWallSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.wornWallSelect.Name = "wornWallSelect";
+            this.wornWallSelect.Size = new System.Drawing.Size(56, 48);
+            this.wornWallSelect.TabIndex = 10;
+            this.wornWallSelect.TabStop = false;
+            this.wornWallSelect.Click += new System.EventHandler(this.wornWallSelect_Click);
+            // 
+            // metalTileSelect
+            // 
+            this.metalTileSelect.Image = ((System.Drawing.Image)(resources.GetObject("metalTileSelect.Image")));
+            this.metalTileSelect.Location = new System.Drawing.Point(66, 125);
+            this.metalTileSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.metalTileSelect.Name = "metalTileSelect";
+            this.metalTileSelect.Size = new System.Drawing.Size(56, 48);
+            this.metalTileSelect.TabIndex = 9;
+            this.metalTileSelect.TabStop = false;
+            this.metalTileSelect.Click += new System.EventHandler(this.metalTileSelect_Click);
+            // 
+            // carpetSelect
+            // 
+            this.carpetSelect.Image = ((System.Drawing.Image)(resources.GetObject("carpetSelect.Image")));
+            this.carpetSelect.Location = new System.Drawing.Point(5, 125);
+            this.carpetSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.carpetSelect.Name = "carpetSelect";
+            this.carpetSelect.Size = new System.Drawing.Size(56, 48);
+            this.carpetSelect.TabIndex = 8;
+            this.carpetSelect.TabStop = false;
+            this.carpetSelect.Click += new System.EventHandler(this.carpetSelect_Click);
             // 
             // tileBigDarkSelect
             // 
@@ -320,7 +406,7 @@ namespace Test_Loopguy
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(252, 385);
+            this.groupBox1.Size = new System.Drawing.Size(252, 337);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Objects";
@@ -611,55 +697,245 @@ namespace Test_Loopguy
             this.goToLevelButton.UseVisualStyleBackColor = true;
             this.goToLevelButton.Click += new System.EventHandler(this.goToLevelButton_Click);
             // 
-            // carpetSelect
+            // groupBox3
             // 
-            this.carpetSelect.Image = ((System.Drawing.Image)(resources.GetObject("carpetSelect.Image")));
-            this.carpetSelect.Location = new System.Drawing.Point(5, 125);
-            this.carpetSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.carpetSelect.Name = "carpetSelect";
-            this.carpetSelect.Size = new System.Drawing.Size(56, 48);
-            this.carpetSelect.TabIndex = 8;
-            this.carpetSelect.TabStop = false;
-            this.carpetSelect.Click += new System.EventHandler(this.carpetSelect_Click);
+            this.groupBox3.Controls.Add(this.pictureBox1);
+            this.groupBox3.Controls.Add(this.pictureBox2);
+            this.groupBox3.Controls.Add(this.pictureBox3);
+            this.groupBox3.Controls.Add(this.pictureBox4);
+            this.groupBox3.Controls.Add(this.pictureBox5);
+            this.groupBox3.Controls.Add(this.pictureBox6);
+            this.groupBox3.Controls.Add(this.pictureBox7);
+            this.groupBox3.Controls.Add(this.pictureBox8);
+            this.groupBox3.Controls.Add(this.pictureBox9);
+            this.groupBox3.Controls.Add(this.pictureBox10);
+            this.groupBox3.Controls.Add(this.pictureBox11);
+            this.groupBox3.Controls.Add(this.pictureBox12);
+            this.groupBox3.Controls.Add(this.pictureBox21);
+            this.groupBox3.Controls.Add(this.pictureBox22);
+            this.groupBox3.Controls.Add(this.pictureBox23);
+            this.groupBox3.Controls.Add(this.pictureBox24);
+            this.groupBox3.Controls.Add(this.pictureBox25);
+            this.groupBox3.Controls.Add(this.pictureBox26);
+            this.groupBox3.Controls.Add(this.rangedTestSelect);
+            this.groupBox3.Controls.Add(this.meleeTestSelect);
+            this.groupBox3.Location = new System.Drawing.Point(10, 375);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox3.Size = new System.Drawing.Size(252, 287);
+            this.groupBox3.TabIndex = 22;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Enemies";
             // 
-            // metalTileSelect
+            // pictureBox1
             // 
-            this.metalTileSelect.Image = ((System.Drawing.Image)(resources.GetObject("metalTileSelect.Image")));
-            this.metalTileSelect.Location = new System.Drawing.Point(66, 125);
-            this.metalTileSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.metalTileSelect.Name = "metalTileSelect";
-            this.metalTileSelect.Size = new System.Drawing.Size(56, 48);
-            this.metalTileSelect.TabIndex = 9;
-            this.metalTileSelect.TabStop = false;
-            this.metalTileSelect.Click += new System.EventHandler(this.metalTileSelect_Click);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(189, 230);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
             // 
-            // wornWallSelect
+            // pictureBox2
             // 
-            this.wornWallSelect.Image = ((System.Drawing.Image)(resources.GetObject("wornWallSelect.Image")));
-            this.wornWallSelect.Location = new System.Drawing.Point(128, 125);
-            this.wornWallSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.wornWallSelect.Name = "wornWallSelect";
-            this.wornWallSelect.Size = new System.Drawing.Size(56, 48);
-            this.wornWallSelect.TabIndex = 10;
-            this.wornWallSelect.TabStop = false;
-            this.wornWallSelect.Click += new System.EventHandler(this.wornWallSelect_Click);
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(128, 230);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox2.TabIndex = 18;
+            this.pictureBox2.TabStop = false;
             // 
-            // wallMetalSelect
+            // pictureBox3
             // 
-            this.wallMetalSelect.Image = ((System.Drawing.Image)(resources.GetObject("wallMetalSelect.Image")));
-            this.wallMetalSelect.Location = new System.Drawing.Point(189, 125);
-            this.wallMetalSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.wallMetalSelect.Name = "wallMetalSelect";
-            this.wallMetalSelect.Size = new System.Drawing.Size(56, 48);
-            this.wallMetalSelect.TabIndex = 11;
-            this.wallMetalSelect.TabStop = false;
-            this.wallMetalSelect.Click += new System.EventHandler(this.wallMetalSelect_Click);
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(66, 230);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox3.TabIndex = 17;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(5, 230);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox4.TabIndex = 16;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(189, 177);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox5.TabIndex = 15;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(128, 177);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox6.TabIndex = 14;
+            this.pictureBox6.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(66, 177);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox7.TabIndex = 13;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
+            this.pictureBox8.Location = new System.Drawing.Point(5, 177);
+            this.pictureBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox8.TabIndex = 12;
+            this.pictureBox8.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
+            this.pictureBox9.Location = new System.Drawing.Point(189, 124);
+            this.pictureBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox9.TabIndex = 11;
+            this.pictureBox9.TabStop = false;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
+            this.pictureBox10.Location = new System.Drawing.Point(128, 124);
+            this.pictureBox10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox10.TabIndex = 10;
+            this.pictureBox10.TabStop = false;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
+            this.pictureBox11.Location = new System.Drawing.Point(66, 124);
+            this.pictureBox11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox11.TabIndex = 9;
+            this.pictureBox11.TabStop = false;
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox12.Image")));
+            this.pictureBox12.Location = new System.Drawing.Point(5, 124);
+            this.pictureBox12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox12.TabIndex = 8;
+            this.pictureBox12.TabStop = false;
+            // 
+            // pictureBox21
+            // 
+            this.pictureBox21.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox21.Image")));
+            this.pictureBox21.Location = new System.Drawing.Point(189, 72);
+            this.pictureBox21.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox21.Name = "pictureBox21";
+            this.pictureBox21.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox21.TabIndex = 7;
+            this.pictureBox21.TabStop = false;
+            // 
+            // pictureBox22
+            // 
+            this.pictureBox22.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox22.Image")));
+            this.pictureBox22.Location = new System.Drawing.Point(128, 72);
+            this.pictureBox22.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox22.Name = "pictureBox22";
+            this.pictureBox22.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox22.TabIndex = 6;
+            this.pictureBox22.TabStop = false;
+            // 
+            // pictureBox23
+            // 
+            this.pictureBox23.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox23.Image")));
+            this.pictureBox23.Location = new System.Drawing.Point(66, 72);
+            this.pictureBox23.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox23.Name = "pictureBox23";
+            this.pictureBox23.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox23.TabIndex = 5;
+            this.pictureBox23.TabStop = false;
+            // 
+            // pictureBox24
+            // 
+            this.pictureBox24.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox24.Image")));
+            this.pictureBox24.Location = new System.Drawing.Point(5, 72);
+            this.pictureBox24.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox24.Name = "pictureBox24";
+            this.pictureBox24.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox24.TabIndex = 4;
+            this.pictureBox24.TabStop = false;
+            // 
+            // pictureBox25
+            // 
+            this.pictureBox25.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox25.Image")));
+            this.pictureBox25.Location = new System.Drawing.Point(189, 20);
+            this.pictureBox25.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox25.Name = "pictureBox25";
+            this.pictureBox25.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox25.TabIndex = 3;
+            this.pictureBox25.TabStop = false;
+            // 
+            // pictureBox26
+            // 
+            this.pictureBox26.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox26.Image")));
+            this.pictureBox26.Location = new System.Drawing.Point(128, 20);
+            this.pictureBox26.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox26.Name = "pictureBox26";
+            this.pictureBox26.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox26.TabIndex = 2;
+            this.pictureBox26.TabStop = false;
+            // 
+            // rangedTestSelect
+            // 
+            this.rangedTestSelect.Image = ((System.Drawing.Image)(resources.GetObject("rangedTestSelect.Image")));
+            this.rangedTestSelect.Location = new System.Drawing.Point(66, 20);
+            this.rangedTestSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rangedTestSelect.Name = "rangedTestSelect";
+            this.rangedTestSelect.Size = new System.Drawing.Size(56, 48);
+            this.rangedTestSelect.TabIndex = 1;
+            this.rangedTestSelect.TabStop = false;
+            this.rangedTestSelect.Click += new System.EventHandler(this.rangedTestSelect_Click);
+            // 
+            // meleeTestSelect
+            // 
+            this.meleeTestSelect.Image = ((System.Drawing.Image)(resources.GetObject("meleeTestSelect.Image")));
+            this.meleeTestSelect.Location = new System.Drawing.Point(5, 20);
+            this.meleeTestSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.meleeTestSelect.Name = "meleeTestSelect";
+            this.meleeTestSelect.Size = new System.Drawing.Size(56, 48);
+            this.meleeTestSelect.TabIndex = 0;
+            this.meleeTestSelect.TabStop = false;
+            this.meleeTestSelect.Click += new System.EventHandler(this.meleeTestSelect_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(810, 410);
+            this.ClientSize = new System.Drawing.Size(810, 674);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.goToLevelWithID);
             this.Controls.Add(this.goToLevelButton);
@@ -682,6 +958,10 @@ namespace Test_Loopguy
             this.Name = "Form1";
             this.Text = "Form1";
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.wallMetalSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wornWallSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metalTileSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carpetSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileBigDarkSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileBigLightSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tilesCheckeredBrownSelect)).EndInit();
@@ -711,10 +991,27 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.shrubSmallSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.potSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barrelSelect)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.carpetSelect)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.metalTileSelect)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wornWallSelect)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wallMetalSelect)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rangedTestSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.meleeTestSelect)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -772,5 +1069,26 @@ namespace Test_Loopguy
         private System.Windows.Forms.PictureBox wornWallSelect;
         private System.Windows.Forms.PictureBox metalTileSelect;
         private System.Windows.Forms.PictureBox carpetSelect;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.PictureBox pictureBox12;
+        private System.Windows.Forms.PictureBox pictureBox21;
+        private System.Windows.Forms.PictureBox pictureBox22;
+        private System.Windows.Forms.PictureBox pictureBox23;
+        private System.Windows.Forms.PictureBox pictureBox24;
+        private System.Windows.Forms.PictureBox pictureBox25;
+        private System.Windows.Forms.PictureBox pictureBox26;
+        private System.Windows.Forms.PictureBox rangedTestSelect;
+        private System.Windows.Forms.PictureBox meleeTestSelect;
     }
 }

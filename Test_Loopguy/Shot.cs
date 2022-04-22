@@ -25,6 +25,18 @@ namespace Test_Loopguy
             speed = 300;
         }
 
+        public bool CheckCollision(GameObject obj)
+        {
+            if (obj.hitBox.Intersects(hitBox))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public override void Update(GameTime gameTime)
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -32,7 +44,7 @@ namespace Test_Loopguy
 
             sprite.Position = position;
             sprite.Play(0, 4, 50);
-            sprite.Update(gameTime);
+            sprite.Update(gameTime);    
 
             base.Movement(deltaTime);
         }

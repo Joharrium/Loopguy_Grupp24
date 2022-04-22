@@ -39,6 +39,7 @@ namespace Test_Loopguy
 
         //Right now all shots are handled in this class, might not be appropriate... unless? JK it's not... unless?
         List<Shot> shots;
+        //its not, should probably be sent to level but i cba to fix it right now
 
         public Player(Vector2 position)
             : base(position)
@@ -119,14 +120,16 @@ namespace Test_Loopguy
                         Vector2 shotPosition = new Vector2(centerPosition.X + gunDirection.X * 20 - 4, centerPosition.Y + gunDirection.Y * 20 - 6);
                         float shotAngle = aimAngle + pi;
                         Shot shot = new Shot(shotPosition, gunDirection, shotAngle);
-                        shots.Add(shot);
+                        LevelManager.AddPlayerProjectile(shot);
+                        //shots.Add(shot);
 
+                        Audio.lasergun.PlayRandomSound();
                         shooting = true;
                     }
 
                     if (shooting)
                     {
-                        Shoot(50);
+                        Shoot(25);
                     }
                 }
                 else
@@ -473,12 +476,26 @@ namespace Test_Loopguy
 
             gunDirection = new Vector2((float)Math.Sin(aimAngle), (float)Math.Cos(aimAngle));
 
+            Vector2 dotPos = centerPosition;
+
             for (int i = 16; i < 580; i++)
             {
                 Vector2 aimPoint = new Vector2(centerPosition.X + i * gunDirection.X, centerPosition.Y + i * gunDirection.Y);
+
+                //Stops laser sight on collision with object
+                if (LevelManager.LevelObjectCollision(aimPoint) || LevelManager.WallCollision(aimPoint))
+                {
+                    break;
+                }
+                else
+                {
+                    dotPos = new Vector2(aimPoint.X + (gunDirection.X * 5) - 1, aimPoint.Y + (gunDirection.Y * 5) - 1.5f);
+                }
+
                 spriteBatch.Draw(TexMGR.cyanPixel, aimPoint, Helper.RandomTransparency(random, 0, 90));
             }
 
+            spriteBatch.Draw(TexMGR.blueDot, dotPos, Color.White);
         }
 
         public void Shoot(int frameTime)
@@ -520,7 +537,7 @@ namespace Test_Loopguy
 
         public bool MeleeHit(GameObject obj)
         {
-            foreach(Vector2 v in LevelManager.GetPointsOfObject((LevelObject)obj))
+            foreach (Vector2 v in LevelManager.GetPointsOfObject(obj))
             {
                 if (Vector2.Distance(centerPosition, v) <= meleeRange)
                 {
@@ -549,7 +566,7 @@ namespace Test_Loopguy
                     }
                 }
             }
-
+            
             
 
             return false;

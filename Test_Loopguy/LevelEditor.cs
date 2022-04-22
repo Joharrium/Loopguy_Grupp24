@@ -19,11 +19,17 @@ namespace Test_Loopguy
     {
         Grass, Dirt, GrayBrick, TilesCheckeredGray, TilesCheckeredBrown, TilesBigDark, TilesBigLight, TileMetal, WallMetal, CarpetWorn, DrywallWorn
     }
+
+    public enum EnemySelection
+    {
+        MeleeTest, RangedTest
+    }
     static public class LevelEditor
     {
         public static Selection currentSelection;
         public static ObjectSelection selectedObject;
         public static TileSelection selectedTile;
+        public static EnemySelection selectedEnemy;
         private static int doorRequiredKey;
         private static int keyID;
         private static bool keyPermanent;
@@ -38,6 +44,24 @@ namespace Test_Loopguy
         {
             keyID = id;
             keyPermanent = permanent;
+        }
+
+        public static void SelectObject(ObjectSelection obj)
+        {
+            currentSelection = Selection.Object;
+            selectedObject = obj;
+        }
+
+        public static void SelectEnemy(EnemySelection enemy)
+        {
+            currentSelection = Selection.Enemy;
+            selectedEnemy = enemy;
+        }
+
+        public static void SelectTile(TileSelection tile)
+        {
+            currentSelection = Selection.Tile;
+            selectedTile = tile;
         }
 
         //have list of levels?
@@ -113,7 +137,16 @@ namespace Test_Loopguy
                         }
                         break;
 
-                    case Selection.Tile:
+                    case Selection.Enemy:
+                        switch (selectedEnemy)
+                        {
+                            case EnemySelection.MeleeTest:
+                                LevelManager.EnemyAdd(new TestEnemy(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+                            case EnemySelection.RangedTest:
+                                LevelManager.EnemyAdd(new TestEnemyRanged(Game1.mousePos + new Vector2(16, 16)));
+                                break;
+                        }
                         //LevelManager.TileEdit(selectedTile, Game1.mousePos);
                         break;
                 }
