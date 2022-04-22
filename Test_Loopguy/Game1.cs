@@ -37,7 +37,7 @@ namespace Test_Loopguy
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            IsMouseVisible = true;
+            IsMouseVisible = false;
         }
 
         protected override void Initialize()
@@ -196,6 +196,9 @@ namespace Test_Loopguy
 
             StateManager.Draw(spriteBatch); //Flytta denna samt kör allt via StateManager
 
+            Color cursorColor = new Color(200, 200, 200, 200);
+            spriteBatch.Draw(TexMGR.cursor, new Vector2(mousePos.X - TexMGR.cursor.Width / 2, mousePos.Y - TexMGR.cursor.Height / 2), cursorColor);
+
             //player.Draw(spriteBatch);
 
             spriteBatch.End();
@@ -209,6 +212,7 @@ namespace Test_Loopguy
             spriteBatch.DrawString(smallFont, "current level = " + LevelManager.GetCurrentId().ToString(), new Vector2(0, 64), Color.White);
             spriteBatch.DrawString(smallFont, "x clamp = " + camera.xClamped.ToString(), new Vector2(0, 80), Color.White);
             spriteBatch.DrawString(smallFont, "y clamp = " + camera.yClamped.ToString(), new Vector2(0, 96 ), Color.White);
+
             spriteBatch.End();
 
             base.Draw(gameTime);
