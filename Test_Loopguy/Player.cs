@@ -478,6 +478,13 @@ namespace Test_Loopguy
             for (int i = 16; i < 580; i++)
             {
                 Vector2 aimPoint = new Vector2(centerPosition.X + i * gunDirection.X, centerPosition.Y + i * gunDirection.Y);
+
+                //Stops laser sight on collision with object
+                if (LevelManager.LevelObjectCollision(aimPoint) || LevelManager.WallCollision(aimPoint))
+                {
+                    break;
+                }
+
                 spriteBatch.Draw(TexMGR.cyanPixel, aimPoint, Helper.RandomTransparency(random, 0, 90));
             }
 
