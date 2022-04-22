@@ -106,4 +106,38 @@ namespace Test_Loopguy
             //add to save it to the savefile
         }
     }
+
+    public class HealthPickup : Pickup
+    {
+        protected int healAmount;
+        public HealthPickup(Vector2 position) : base(position)
+        {
+
+        }
+    }
+
+    public class SmallHealthPickup : HealthPickup
+    {
+        public SmallHealthPickup(Vector2 position) : base(position)
+        {
+            this.position = position;
+            this.healAmount = 1;
+            this.hitBox = Rectangle.Empty;
+            texture = TexMGR.medkit;
+            sourceRectangle = new Rectangle(0, 0, 16, 16);
+        }
+        
+        protected override void Effect()
+        {
+            if(EntityManager.player.HealDamage(healAmount))
+            {
+
+            }
+            else
+            {
+                Audio.PlaySound(Audio.meepmerp);
+                //LevelManager.ObjectAdd(new SmallHealthPickup(EntityManager.player.centerPosition));
+            }
+        }
+    }
 }

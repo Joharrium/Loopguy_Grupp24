@@ -10,6 +10,7 @@ namespace Test_Loopguy
     internal class Player : MovingObject
     {
         public int health = 5;
+        private int maxHealth = 5;
         AnimSprite sprite;
         AnimSprite gunSprite;
         AnimSprite meleeSprite;
@@ -229,6 +230,32 @@ namespace Test_Loopguy
             }
 
             //healthBar.Draw(spriteBatch);
+        }
+
+        public void TakeDamage(int damage)
+        {
+
+        }
+
+        public bool HealDamage(int healing)
+        {
+            if (health >= maxHealth)
+            {
+                return false;
+
+            }
+            else
+            {
+                Audio.PlaySound(Audio.healing);
+                health += healing;
+                if (health > maxHealth)
+                {
+                    health = maxHealth;
+                }
+                return true;
+            }
+            
+            
         }
 
         public void Melee(float deltaTime)

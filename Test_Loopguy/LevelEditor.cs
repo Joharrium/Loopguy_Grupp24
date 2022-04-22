@@ -13,7 +13,7 @@ namespace Test_Loopguy
     }
     public enum ObjectSelection
     {
-        Box, Barrel, Pot, ShrubSmall, TreeSmall, BoxOpen, TreeBig, ShrubBig, DoorWood, KeycardRed, DoorSliding, BarrelDestructible
+        Box, Barrel, Pot, ShrubSmall, TreeSmall, BoxOpen, TreeBig, ShrubBig, DoorWood, KeycardRed, DoorSliding, BarrelDestructible, HealingSmall
     }
     public enum TileSelection
     {
@@ -125,11 +125,15 @@ namespace Test_Loopguy
                                 break;
 
                             case ObjectSelection.KeycardRed:
-                                LevelManager.ObjectAdd(new KeyPickup(Game1.mousePos - new Vector2(16, 16), doorRequiredKey, keyPermanent));
+                                LevelManager.ObjectAdd(new KeyPickup(Game1.mousePos - new Vector2(8, 8), doorRequiredKey, keyPermanent));
                                 break;
 
                             case ObjectSelection.BarrelDestructible:
                                 LevelManager.ObjectAdd(new BarrelDestructible(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            case ObjectSelection.HealingSmall:
+                                LevelManager.ObjectAdd(new SmallHealthPickup(Game1.mousePos - new Vector2(8, 8)));
                                 break;
 
                             default:
@@ -144,7 +148,7 @@ namespace Test_Loopguy
                                 LevelManager.EnemyAdd(new TestEnemy(Game1.mousePos - new Vector2(8, 8)));
                                 break;
                             case EnemySelection.RangedTest:
-                                LevelManager.EnemyAdd(new TestEnemyRanged(Game1.mousePos + new Vector2(16, 16)));
+                                LevelManager.EnemyAdd(new TestEnemyRanged(Game1.mousePos - new Vector2(8, 8)));
                                 break;
                         }
                         //LevelManager.TileEdit(selectedTile, Game1.mousePos);

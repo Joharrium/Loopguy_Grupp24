@@ -184,5 +184,10 @@ namespace Test_Loopguy
         {
             LevelEditor.SelectEnemy(EnemySelection.RangedTest);
         }
+
+        private void healSmallSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.HealingSmall);
+        }
     }
 }
