@@ -44,7 +44,7 @@ namespace Test_Loopguy
                 s.Update(gameTime);
                 if(s.CheckCollision(player))
                 {
-                    player.health--;
+                    player.TakeDamage(1);
                     projectilesToRemove.Add(s);
                 }
                 if (!cameraBounds.Contains(s.centerPosition))

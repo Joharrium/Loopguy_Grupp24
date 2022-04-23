@@ -28,7 +28,7 @@ namespace Test_Loopguy
 
         public static SoundCollection lasergun;
         //sound
-        public static SoundEffect meepmerp, swing, open, deny, dash, door_hiss_sound, box_destroy, shrub_destroy, keypickup, healing;
+        public static SoundEffect meepmerp, swing, open, deny, dash, door_hiss_sound, box_destroy, shrub_destroy, keypickup, healing, player_hit;
 
         public static SoundEffect EnergyGun_Shoot1A, EnergyGun_Shoot1B, EnergyGun_Shoot1C, EnergyGun_Shoot1D, EnergyGun_Shoot2A, EnergyGun_Shoot2B, EnergyGun_Shoot2C, EnergyGun_Shoot2D;
         static public void Load(ContentManager Content)
@@ -71,6 +71,7 @@ namespace Test_Loopguy
             door_hiss_sound = c.Load<SoundEffect>("audio/sound/door_hiss_sound");
             keypickup = c.Load<SoundEffect>("audio/sound/keypickup");
             healing = c.Load<SoundEffect>("audio/sound/healing");
+            player_hit = c.Load<SoundEffect>("audio/sound/player_hit");
 
             {
                 EnergyGun_Shoot1A = c.Load<SoundEffect>("audio/sound/gun/EnergyGun_Shoot1A");

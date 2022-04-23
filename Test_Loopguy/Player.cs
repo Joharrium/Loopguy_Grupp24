@@ -234,7 +234,8 @@ namespace Test_Loopguy
 
         public void TakeDamage(int damage)
         {
-
+            health -= damage;
+            Audio.PlaySound(Audio.player_hit);
         }
 
         public bool HealDamage(int healing)
