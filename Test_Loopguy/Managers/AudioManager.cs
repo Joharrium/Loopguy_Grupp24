@@ -24,7 +24,7 @@ namespace Test_Loopguy
 
         public static SoundEffect sus_low, sus_high, unatco_hq;
         
-        private static SoundEffectInstance playingTrack;
+        private static Song playingTrack;
 
         public static SoundCollection lasergun;
         //sound
@@ -93,7 +93,9 @@ namespace Test_Loopguy
                 instance.Volume = musicVolume;
                 instance.IsLooped = true;
                 instance.Play();
-                playingTrack = instance;
+                //playingTrack = instance;
+
+                // THIS WILL BE REMADE
             }
         }
 
@@ -132,5 +134,29 @@ namespace Test_Loopguy
             int randomizer = Game1.rnd.Next(sounds.Count);
             Audio.PlaySound(sounds[randomizer]);
         }
+    }
+
+    public class Song
+    {
+        public string name;
+        private SoundEffect sound;
+        private SoundEffectInstance soundInstance;
+
+        public Song(string name, SoundEffect sound)
+        {
+            this.name = name;
+            soundInstance = sound.CreateInstance();
+        }
+
+        public void Stop()
+        {
+            soundInstance.Stop();
+        }
+
+        public void Play()
+        {
+            soundInstance.Play();
+        }
+
     }
 }

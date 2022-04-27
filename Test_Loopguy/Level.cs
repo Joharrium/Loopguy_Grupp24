@@ -16,6 +16,7 @@ namespace Test_Loopguy
         internal List<Enemy> enemies;
         internal List<Shot> enemyProjectiles;
         internal List<Shot> playerProjectiles;
+        //internal List<>
             //should change to generic projectile class to account for different projectile types
         //list of enemies
         //list of corresponding entrances from different ids and their position
