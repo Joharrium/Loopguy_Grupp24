@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Test_Loopguy
 {
-    static class TexMGR
+    static class TextureManager
     {
         public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, gunSheet, testTile, testAlt, box, checkers;
         public static Texture2D meleeFx, shot, blueDot, cursor;

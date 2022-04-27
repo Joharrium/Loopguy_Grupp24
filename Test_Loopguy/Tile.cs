@@ -14,7 +14,7 @@ namespace Test_Loopguy
         public Tile(Vector2 position) : base(position)
         {
             this.position = position;
-            texture = TexMGR.testAlt;
+            texture = TextureManager.testAlt;
             hitBox.X = (int)position.X;
             hitBox.Y = (int)position.Y;
             hitBox.Width = texture.Width;
@@ -47,12 +47,12 @@ namespace Test_Loopguy
             int randomizer = Game1.rnd.Next(10);
             if (randomizer < 8)
             {
-                texture = TexMGR.grassBasic;
+                texture = TextureManager.grassBasic;
                 variation = Game1.rnd.Next(2);
             }
             else
             {
-                texture = TexMGR.grassAlt;
+                texture = TextureManager.grassAlt;
                 variation = Game1.rnd.Next(4);
             }
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
@@ -66,7 +66,7 @@ namespace Test_Loopguy
         {
             this.position = position;
 
-            texture = TexMGR.dirt;
+            texture = TextureManager.dirt;
             variation = Game1.rnd.Next(4);
             
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
@@ -80,7 +80,7 @@ namespace Test_Loopguy
         {
             this.position = position;
 
-            texture = TexMGR.tiles_big_light;
+            texture = TextureManager.tiles_big_light;
             variation = Game1.rnd.Next(2);
 
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
@@ -94,7 +94,7 @@ namespace Test_Loopguy
         {
             this.position = position;
 
-            texture = TexMGR.tiles_big_dark;
+            texture = TextureManager.tiles_big_dark;
             variation = Game1.rnd.Next(2);
 
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
@@ -108,7 +108,7 @@ namespace Test_Loopguy
         {
             this.position = position;
 
-            texture = TexMGR.tiles_checkered_gray;
+            texture = TextureManager.tiles_checkered_gray;
             int randomizer = Game1.rnd.Next(10);
             if (randomizer == 9)
             {
@@ -130,7 +130,7 @@ namespace Test_Loopguy
         {
             this.position = position;
 
-            texture = TexMGR.tiles_checkered_brown;
+            texture = TextureManager.tiles_checkered_brown;
             int randomizer = Game1.rnd.Next(10);
             if(randomizer == 9)
             {
@@ -153,7 +153,7 @@ namespace Test_Loopguy
         {
             this.position = position;
 
-            texture = TexMGR.tile_metal;
+            texture = TextureManager.tile_metal;
             variation = Game1.rnd.Next(1);
 
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
@@ -167,7 +167,7 @@ namespace Test_Loopguy
         {
             this.position = position;
 
-            texture = TexMGR.carpet_worn;
+            texture = TextureManager.carpet_worn;
             variation = Game1.rnd.Next(3);
 
 
@@ -181,7 +181,7 @@ namespace Test_Loopguy
         public Wall(Vector2 position) : base(position)
         {
             this.position = position;
-            texture = TexMGR.box;
+            texture = TextureManager.box;
             hitBox.X = (int)position.X;
             hitBox.Y = (int)position.Y;
             hitBox.Width = texture.Width;
@@ -201,7 +201,7 @@ namespace Test_Loopguy
         public BrickWall(Vector2 position) : base(position)
         {
             this.position = position - new Vector2(0,16);
-            texture = TexMGR.grayBrickWall;
+            texture = TextureManager.grayBrickWall;
             hitBox.Width = 16;
             hitBox.Height = 16;
         }
@@ -213,7 +213,7 @@ namespace Test_Loopguy
         public MetalWall(Vector2 position) : base(position)
         {
             this.position = position - new Vector2(0, 16);
-            texture = TexMGR.wall_metal;
+            texture = TextureManager.wall_metal;
             hitBox.Width = 16;
             hitBox.Height = 16;
             int variation = Game1.rnd.Next(3);
@@ -227,7 +227,7 @@ namespace Test_Loopguy
         public WornWall(Vector2 position) : base(position)
         {
             this.position = position - new Vector2(0, 16);
-            texture = TexMGR.wall_worn;
+            texture = TextureManager.wall_worn;
             hitBox.Width = 16;
             hitBox.Height = 16;
             variation = Game1.rnd.Next(4);

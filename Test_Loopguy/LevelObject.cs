@@ -15,7 +15,7 @@ namespace Test_Loopguy
         public LevelObject(Vector2 position) : base(position)
         {
             this.position = position;
-            texture = TexMGR.box;
+            texture = TextureManager.box;
             hitBox.X = (int)position.X;
             hitBox.Y = (int)position.Y;
             hitBox.Width = texture.Width;
@@ -40,7 +40,7 @@ namespace Test_Loopguy
         public Box(Vector2 position) : base(position)
         {
             this.position = position;
-            texture = TexMGR.box;
+            texture = TextureManager.box;
         }
     }
 
@@ -50,7 +50,7 @@ namespace Test_Loopguy
         {
             this.position = position;
             variation = Game1.rnd.Next(12);
-            texture = TexMGR.boxOpen;
+            texture = TextureManager.boxOpen;
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
         }
     }
@@ -61,7 +61,7 @@ namespace Test_Loopguy
         {
             this.position = position;
             variation = Game1.rnd.Next(4);
-            texture = TexMGR.tree_big;
+            texture = TextureManager.tree_big;
             hitBox.Width = 48;
             hitBox.Height = 48;
             sourceRectangle = new Rectangle(48 * variation, 0, 48, 48);
@@ -74,7 +74,7 @@ namespace Test_Loopguy
         {
             this.position = position;
             variation = Game1.rnd.Next(4);
-            texture = TexMGR.tree_small;
+            texture = TextureManager.tree_small;
             hitBox.Width = 16;
             hitBox.Height = 24;
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 32);
@@ -86,7 +86,7 @@ namespace Test_Loopguy
         public Barrel(Vector2 position) : base(position)
         {
             this.position = position;
-            texture = TexMGR.barrel;
+            texture = TextureManager.barrel;
             sourceRectangle.Height = 16;
         }
     }
@@ -97,7 +97,7 @@ namespace Test_Loopguy
         {
             this.position = position;
             variation = Game1.rnd.Next(4);
-            texture = TexMGR.shrub_big;
+            texture = TextureManager.shrub_big;
             hitBox.Width = 16;
             hitBox.Height = 12;
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
@@ -109,7 +109,7 @@ namespace Test_Loopguy
         public Pot(Vector2 position) : base(position)
         {
             this.position = position;
-            texture = TexMGR.pot;
+            texture = TextureManager.pot;
             sourceRectangle.Height = 16;
         }
     }

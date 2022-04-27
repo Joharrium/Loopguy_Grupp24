@@ -74,7 +74,7 @@ namespace Test_Loopguy
             this.position = position;
             this.id = id;
             this.permanent = permanent;
-            texture = TexMGR.keycard;
+            texture = TextureManager.keycard;
             this.hitBox = new Rectangle(0, 0, 0, 0);
             pickupSound = Audio.keypickup;
         }
@@ -123,7 +123,7 @@ namespace Test_Loopguy
             this.position = position;
             this.healAmount = 1;
             this.hitBox = Rectangle.Empty;
-            texture = TexMGR.medkit;
+            texture = TextureManager.medkit;
             sourceRectangle = new Rectangle(0, 0, 16, 16);
         }
         

@@ -13,7 +13,7 @@ namespace Test_Loopguy
         protected int maxHealth;
         //for objects that would leave something behind e.g. a tree would leave a stump behind.
         protected LevelObject spawnObject;
-        internal AnimSprite animation;
+        internal AnimatedSprite animation;
         protected HealthBar healthBar;
         internal bool destroyed = false;
         internal bool actuallyDestroyed = false;
@@ -107,13 +107,13 @@ namespace Test_Loopguy
     {
         public ShrubSmall(Vector2 position) : base(position)
         {
-            animation = new AnimSprite(TexMGR.fernDestroyed, new Point(24,24));
+            animation = new AnimatedSprite(TextureManager.fernDestroyed, new Point(24,24));
             animation.Position = position - new Vector2(4, 4);
             this.position = position;
             health = 1;
             maxHealth = 1;
             variation = Game1.rnd.Next(4);
-            texture = TexMGR.shrub_small;
+            texture = TextureManager.shrub_small;
             hitBox.Width = 16;
             hitBox.Height = 16;
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
@@ -126,12 +126,12 @@ namespace Test_Loopguy
     {
         public BarrelDestructible(Vector2 position) : base(position)
         {
-            animation = new AnimSprite(TexMGR.barrelDestroyed, new Point(24, 24));
+            animation = new AnimatedSprite(TextureManager.barrelDestroyed, new Point(24, 24));
             animation.Position = position - new Vector2(4, 4);
             this.position = position;
             health = 3;
             maxHealth = 3;
-            texture = TexMGR.barrel;
+            texture = TextureManager.barrel;
             hitBox.Width = 16;
             hitBox.Height = 16;
             sourceRectangle = new Rectangle(0, 0, 16, 16);

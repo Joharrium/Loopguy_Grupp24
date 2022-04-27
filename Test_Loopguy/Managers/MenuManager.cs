@@ -22,31 +22,31 @@ namespace Test_Loopguy
             Vector2 menuSlot4 = new Vector2(Game1.windowX / 2, Game1.windowY / 2 + menuSpacing * 3);
             Vector2 menuSlot5 = new Vector2(Game1.windowX / 2, Game1.windowY / 2 + menuSpacing * 4);
 
-            var newGameButton = new Button(TexMGR.UI_selectedMenuBox, TexMGR.UI_menuFont, menuSlot1)
+            var newGameButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot1)
             {
                 Position = menuSlot1,
                 Text = "Start Game",
             };
 
-            Button loadGameButton = new Button(TexMGR.UI_selectedMenuBox, TexMGR.UI_menuFont, menuSlot2)
+            Button loadGameButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot2)
             {
                 Position = menuSlot2,
                 Text = "Load Game",
             };
 
-            var highScoreButton = new Button(TexMGR.UI_selectedMenuBox, TexMGR.UI_menuFont, menuSlot3)
+            var highScoreButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot3)
             {
                 Position = menuSlot3,
                 Text = "High Score",
             };
 
-            var settingsButton = new Button(TexMGR.UI_selectedMenuBox, TexMGR.UI_menuFont, menuSlot4)
+            var settingsButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot4)
             {
                 Position = menuSlot4,
                 Text = "Settings",
             };
 
-            var quitGameButton = new Button(TexMGR.UI_selectedMenuBox, TexMGR.UI_menuFont, menuSlot5)
+            var quitGameButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot5)
             {
                 Position = menuSlot5,
                 Text = "Quit Game",

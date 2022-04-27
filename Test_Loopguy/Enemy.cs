@@ -8,7 +8,7 @@ namespace Test_Loopguy
 {
     internal class Enemy : MovingObject
     {
-        public AnimSprite wahoo;
+        public AnimatedSprite wahoo;
         public int health;
         public int maxHealth;
         protected HealthBar healthBar;
@@ -258,7 +258,7 @@ namespace Test_Loopguy
         public TestEnemyRanged(Vector2 position) : base(position)
         {
             this.position = position;
-            this.texture = TexMGR.enemyPlaceholder;
+            this.texture = TextureManager.enemyPlaceholder;
             this.maxHealth = 4;
             this.maxSpeed = 36;
             minRange = 40;
@@ -282,7 +282,7 @@ namespace Test_Loopguy
         public TestEnemy(Vector2 position) : base(position)
         {
             this.position = position;
-            this.texture = TexMGR.enemyPlaceholder;
+            this.texture = TextureManager.enemyPlaceholder;
             this.maxHealth = 5;
             this.maxSpeed = 40;
             aggroRange = 176;

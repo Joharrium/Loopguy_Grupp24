@@ -21,9 +21,9 @@ namespace Test_Loopguy
         public HealthBar(int maxValue)
         {
             this.maxValue = maxValue;
-            outline = TexMGR.healthbar_small_outline;
-            fill = TexMGR.healthbar_small_fill;
-            fill_bg = TexMGR.healthbar_small_fill_bg;
+            outline = TextureManager.healthbar_small_outline;
+            fill = TextureManager.healthbar_small_fill;
+            fill_bg = TextureManager.healthbar_small_fill_bg;
             srcRectangle = new Rectangle(1, 0, 9, 4);
         }
 
@@ -59,10 +59,10 @@ namespace Test_Loopguy
         {
             this.maxValue = maxValue;
             value = maxValue;
-            outline = TexMGR.player_healthbar_outline;
-            inline = TexMGR.player_healthbar_inline;
-            fill = TexMGR.player_healthbar_fill;
-            fill_bg = TexMGR.player_healthbar_fill_bg;
+            outline = TextureManager.player_healthbar_outline;
+            inline = TextureManager.player_healthbar_inline;
+            fill = TextureManager.player_healthbar_fill;
+            fill_bg = TextureManager.player_healthbar_fill_bg;
             srcRectangle = new Rectangle(0, 0, 2, 30);
         }
 

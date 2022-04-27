@@ -16,7 +16,7 @@ namespace Test_Loopguy
         public GameObject(Vector2 position)
         {
             this.position = position;
-            texture = TexMGR.notex;
+            texture = TextureManager.notex;
 
             centerPosition = new Vector2(position.X - texture.Width / 2, position.Y - texture.Height / 2);
         }

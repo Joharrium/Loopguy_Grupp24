@@ -13,7 +13,7 @@ namespace Test_Loopguy
         static private bool started = false;
         static private bool end = false;
         static private Color fadeout = new Color(255, 255, 255, 0);
-        static private Texture2D texture = TexMGR.black_screen;
+        static private Texture2D texture = TextureManager.black_screen;
         static public bool active = false;
         public static void LevelTransitionFade()
         {

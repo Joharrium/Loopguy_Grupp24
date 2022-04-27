@@ -8,7 +8,7 @@ namespace Test_Loopguy
 {
     internal class Shot : MovingObject
     {
-        AnimSprite sprite;
+        AnimatedSprite sprite;
         float rotation;
 
         public Shot(Vector2 position, Vector2 direction, float angle) :
@@ -19,7 +19,7 @@ namespace Test_Loopguy
             
             rotation = angle;
 
-            sprite = new AnimSprite(TexMGR.shot, new Point(8, 8));
+            sprite = new AnimatedSprite(TextureManager.shot, new Point(8, 8));
             sprite.Position = position;
 
             speed = 300;

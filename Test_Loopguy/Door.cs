@@ -12,22 +12,22 @@ namespace Test_Loopguy
         public int requiredKey;
         protected bool open = false;
         protected Rectangle unlockArea;
-        internal AnimSprite animation;
+        internal AnimatedSprite animation;
         protected Texture2D openTex;
         protected bool playerInArea;
         protected SoundEffect openSound;
         protected SoundEffect denySound;
         public Door(Vector2 position, int requiredKey) : base(position)
         {
-            this.texture = TexMGR.door;
-            openTex = TexMGR.door_open;
+            this.texture = TextureManager.door;
+            openTex = TextureManager.door_open;
             denySound = Audio.meepmerp;
             sourceRectangle = new Rectangle(0, 0, 32, 32);
             this.position = position;
             hitBox = new Rectangle((int)position.X, (int)position.Y, 32, 32);
             this.requiredKey = requiredKey;
             unlockArea = new Rectangle((int)(position.X - 16), (int)(position.Y - 16), 64, 64);
-            animation = new AnimSprite(TexMGR.door, new Point(32, 32));
+            animation = new AnimatedSprite(TextureManager.door, new Point(32, 32));
         }
 
         public void Update(GameTime gameTime)
@@ -104,14 +104,14 @@ namespace Test_Loopguy
         {
             openSound = Audio.door_hiss_sound;
             denySound = Audio.meepmerp;
-            this.texture = TexMGR.door_sliding;
-            openTex = TexMGR.door_sliding_open;
+            this.texture = TextureManager.door_sliding;
+            openTex = TextureManager.door_sliding_open;
             sourceRectangle = new Rectangle(0, 0, 32, 32);
             this.position = position;
             hitBox = new Rectangle((int)position.X, (int)position.Y, 32, 32);
             this.requiredKey = requiredKey;
             unlockArea = new Rectangle((int)(position.X - 16), (int)(position.Y - 16), 64, 64);
-            animation = new AnimSprite(TexMGR.door_sliding, new Point(32, 32));
+            animation = new AnimatedSprite(TextureManager.door_sliding, new Point(32, 32));
         }
     }
 }

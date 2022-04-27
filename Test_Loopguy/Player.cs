@@ -11,9 +11,9 @@ namespace Test_Loopguy
     {
         public int health = 5;
         private int maxHealth = 5;
-        AnimSprite sprite;
-        AnimSprite gunSprite;
-        AnimSprite meleeSprite;
+        AnimatedSprite sprite;
+        AnimatedSprite gunSprite;
+        AnimatedSprite meleeSprite;
 
         Random random = new Random();
         public List<int> keys = new List<int>();
@@ -47,9 +47,9 @@ namespace Test_Loopguy
         public Player(Vector2 position)
             : base(position)
         {
-            sprite = new AnimSprite(TexMGR.playerSheet, new Point(32, 32));
-            gunSprite = new AnimSprite(TexMGR.gunSheet, new Point(64, 64));
-            meleeSprite = new AnimSprite(TexMGR.meleeFx, new Point(48, 48));
+            sprite = new AnimatedSprite(TextureManager.playerSheet, new Point(32, 32));
+            gunSprite = new AnimatedSprite(TextureManager.gunSheet, new Point(64, 64));
+            meleeSprite = new AnimatedSprite(TextureManager.meleeFx, new Point(48, 48));
 
             speed = 100;
 
@@ -528,10 +528,10 @@ namespace Test_Loopguy
                     dotPos = new Vector2(aimPoint.X + (gunDirection.X * 5) - 1, aimPoint.Y + (gunDirection.Y * 5) - 1.5f);
                 }
 
-                spriteBatch.Draw(TexMGR.cyanPixel, aimPoint, Helper.RandomTransparency(random, 0, 90));
+                spriteBatch.Draw(TextureManager.cyanPixel, aimPoint, Helper.RandomTransparency(random, 0, 90));
             }
 
-            spriteBatch.Draw(TexMGR.blueDot, dotPos, Color.White);
+            spriteBatch.Draw(TextureManager.blueDot, dotPos, Color.White);
         }
 
         public void Shoot(int frameTime)

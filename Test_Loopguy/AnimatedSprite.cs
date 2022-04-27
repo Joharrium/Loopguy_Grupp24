@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Test_Loopguy
 {
-    internal class AnimSprite
+    internal class AnimatedSprite
     {
         Texture2D sheet;
 
@@ -20,7 +20,7 @@ namespace Test_Loopguy
 
         public int timeSinceLastFrame;
 
-        public AnimSprite(Texture2D sheet, Point size)
+        public AnimatedSprite(Texture2D sheet, Point size)
         {
             this.sheet = sheet;
             this.size = size;

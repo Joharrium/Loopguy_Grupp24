@@ -165,51 +165,51 @@ namespace Test_Loopguy
                 switch (selectedObject)
                 {
                     case ObjectSelection.ShrubSmall:
-                        spriteBatch.Draw(TexMGR.shrub_small, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        spriteBatch.Draw(TextureManager.shrub_small, Game1.mousePos - new Vector2(8, 8), Color.White);
                         break;
 
                     case ObjectSelection.Barrel:
-                        spriteBatch.Draw(TexMGR.barrel, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        spriteBatch.Draw(TextureManager.barrel, Game1.mousePos - new Vector2(8, 8), Color.White);
                         break;
 
                     case ObjectSelection.BarrelDestructible:
-                        spriteBatch.Draw(TexMGR.barrel, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        spriteBatch.Draw(TextureManager.barrel, Game1.mousePos - new Vector2(8, 8), Color.White);
                         break;
 
                     case ObjectSelection.Box:
-                        spriteBatch.Draw(TexMGR.box, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        spriteBatch.Draw(TextureManager.box, Game1.mousePos - new Vector2(8, 8), Color.White);
                         break;
 
                     case ObjectSelection.BoxOpen:
-                        spriteBatch.Draw(TexMGR.boxOpen, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        spriteBatch.Draw(TextureManager.boxOpen, Game1.mousePos - new Vector2(8, 8), Color.White);
                         break;
 
                     case ObjectSelection.TreeSmall:
-                        spriteBatch.Draw(TexMGR.tree_small, Game1.mousePos - new Vector2(8, 16), Color.White);
+                        spriteBatch.Draw(TextureManager.tree_small, Game1.mousePos - new Vector2(8, 16), Color.White);
                         break;
 
                     case ObjectSelection.TreeBig:
-                        spriteBatch.Draw(TexMGR.tree_big, Game1.mousePos - new Vector2(24, 24), Color.White);
+                        spriteBatch.Draw(TextureManager.tree_big, Game1.mousePos - new Vector2(24, 24), Color.White);
                         break;
 
                     case ObjectSelection.ShrubBig:
-                        spriteBatch.Draw(TexMGR.shrub_big, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        spriteBatch.Draw(TextureManager.shrub_big, Game1.mousePos - new Vector2(8, 8), Color.White);
                         break;
 
                     case ObjectSelection.Pot:
-                        spriteBatch.Draw(TexMGR.pot, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        spriteBatch.Draw(TextureManager.pot, Game1.mousePos - new Vector2(8, 8), Color.White);
                         break;
 
                     case ObjectSelection.DoorWood:
-                        spriteBatch.Draw(TexMGR.UI_door, Game1.mousePos - new Vector2(16, 16), Color.White);
+                        spriteBatch.Draw(TextureManager.UI_door, Game1.mousePos - new Vector2(16, 16), Color.White);
                         break;
 
                     case ObjectSelection.DoorSliding:
-                        spriteBatch.Draw(TexMGR.UI_door, Game1.mousePos - new Vector2(16, 16), Color.White);
+                        spriteBatch.Draw(TextureManager.UI_door, Game1.mousePos - new Vector2(16, 16), Color.White);
                         break;
 
                     case ObjectSelection.KeycardRed:
-                        spriteBatch.Draw(TexMGR.keycard, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        spriteBatch.Draw(TextureManager.keycard, Game1.mousePos - new Vector2(8, 8), Color.White);
                         break;
 
                     default:
@@ -223,15 +223,15 @@ namespace Test_Loopguy
                 switch(selectedTile)
                 {
                     case TileSelection.Grass:
-                        spriteBatch.Draw(TexMGR.UI_grass, Game1.mousePos, Color.White);
+                        spriteBatch.Draw(TextureManager.UI_grass, Game1.mousePos, Color.White);
                         break;
 
                     case TileSelection.Dirt:
-                        spriteBatch.Draw(TexMGR.UI_dirt, Game1.mousePos, Color.White);
+                        spriteBatch.Draw(TextureManager.UI_dirt, Game1.mousePos, Color.White);
                         break;
 
                     default:
-                        spriteBatch.Draw(TexMGR.UI_graybrick, Game1.mousePos, Color.White);
+                        spriteBatch.Draw(TextureManager.UI_graybrick, Game1.mousePos, Color.White);
                         break;
                 }
             }

@@ -9,7 +9,7 @@ namespace Test_Loopguy.Content
 {
     public class Particle : GameObject
     {
-        internal AnimSprite animation;
+        internal AnimatedSprite animation;
         bool repeating;
         public bool donePlaying = false;
 
@@ -51,7 +51,7 @@ namespace Test_Loopguy.Content
         public SparkSmall(Vector2 position) : base(position)
         {
             this.position = position;
-            animation = new AnimSprite(TexMGR.spark_small, new Point(16, 16));
+            animation = new AnimatedSprite(TextureManager.spark_small, new Point(16, 16));
             animation.size = new Point(16, 16);
             animation.Position = position;
         }

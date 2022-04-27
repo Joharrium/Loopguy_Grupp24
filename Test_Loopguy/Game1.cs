@@ -49,7 +49,7 @@ namespace Test_Loopguy
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            TexMGR.LoadTextures(Content);
+            TextureManager.LoadTextures(Content);
             MenuManager.LoadMenuButtons();
             EntityManager.PlayerInitialization();
             Audio.Load(Content);
@@ -191,7 +191,7 @@ namespace Test_Loopguy
             StateManager.Draw(spriteBatch); //Flytta denna samt kör allt via StateManager
 
             Color cursorColor = new Color(200, 200, 200, 200);
-            spriteBatch.Draw(TexMGR.cursor, new Vector2(mousePos.X - TexMGR.cursor.Width / 2, mousePos.Y - TexMGR.cursor.Height / 2), cursorColor);
+            spriteBatch.Draw(TextureManager.cursor, new Vector2(mousePos.X - TextureManager.cursor.Width / 2, mousePos.Y - TextureManager.cursor.Height / 2), cursorColor);
             //player.Draw(spriteBatch);
 
             spriteBatch.End();
