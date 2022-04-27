@@ -9,8 +9,8 @@ namespace Test_Loopguy
     public class Tile : GameObject
     {
         public Rectangle sourceRectangle;
-        float rotation;
-        SpriteEffects spriteEffects;
+        protected float rotation;
+        protected SpriteEffects spriteEffects;
         public Tile(Vector2 position) : base(position)
         {
             this.position = position;
@@ -192,7 +192,7 @@ namespace Test_Loopguy
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, Color.White);
+            spriteBatch.Draw(texture, position + new Vector2(hitBox.Width / 2, hitBox.Height / 2), sourceRectangle, Color.White, rotation, new Vector2(hitBox.Width / 2, hitBox.Height / 2), 1, spriteEffects, 1);
         }
     }
 
@@ -204,6 +204,7 @@ namespace Test_Loopguy
             texture = TextureManager.grayBrickWall;
             hitBox.Width = 16;
             hitBox.Height = 16;
+            sourceRectangle = new Rectangle(16 * 0, 0, 16, 32);
         }
     }
 
@@ -231,6 +232,10 @@ namespace Test_Loopguy
             hitBox.Width = 16;
             hitBox.Height = 16;
             variation = Game1.rnd.Next(4);
+            if(variation == 1)
+            {
+                variation = Game1.rnd.Next(4);
+            }
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 32);
         }
     }

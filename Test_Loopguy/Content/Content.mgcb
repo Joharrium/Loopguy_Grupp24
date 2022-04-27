@@ -909,6 +909,18 @@
 /processorParam:TextureFormat=Color
 /build:gfx/terrain/carpet_run_down.png
 
+#begin gfx/terrain/concrete.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/terrain/concrete.png
+
 #begin gfx/terrain/dirt.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -968,6 +980,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/terrain/grass_variation.png
+
+#begin gfx/terrain/metal_tile_bright.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/terrain/metal_tile_bright.png
 
 #begin gfx/terrain/placeholder so git finds the folder.PNG
 /importer:TextureImporter
