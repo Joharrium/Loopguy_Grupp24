@@ -238,7 +238,7 @@ namespace Test_Loopguy
             
         }
 
-        public static void SaveLevelToFile(int id, List<string> objects, List<string> tiles)
+        public static void SaveLevelToFile(int id, List<string> objects, List<string> tiles, List<string> enemies)
         {
             string path = string.Format(@"maps\level{0}\", id);
 
@@ -250,6 +250,7 @@ namespace Test_Loopguy
             File.WriteAllLines(path + "bounds.txt", bounds);
             File.WriteAllLines(path + "objectmap.txt", objects);
             File.WriteAllLines(path + "tilemap.txt", tiles);
+            File.WriteAllLines(path + "enemymap.txt", enemies);
         }
 
         private static List<LevelObject> ObjectLoad(int id)

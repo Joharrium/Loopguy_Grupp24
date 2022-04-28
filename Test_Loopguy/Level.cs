@@ -19,16 +19,15 @@ namespace Test_Loopguy
         internal List<Song> idleSongs = new List<Song>();
         internal List<Song> combatSongs = new List<Song>();
 
-        public Level (int id, Rectangle cameraBounds, List<LevelObject> levelObjects, Tile[,] tiles/*, List<Entrance> entrances*/)
+        internal Level (int id, Rectangle cameraBounds, List<LevelObject> levelObjects, Tile[,] tiles, List<Enemy> enemies)
         {
             this.id = id;
             this.cameraBounds = cameraBounds;
             this.levelObjects = levelObjects;
             this.tiles = tiles;
+            this.enemies = enemies;
             enemyProjectiles = new List<Shot>();
             playerProjectiles = new List<Shot>();
-            this.enemies = new List<Enemy>();
-            enemies.Add(new TestEnemy(new Vector2(400, 400)));
             idleSongs.AddRange(LevelManager.SongLoad(id, false));
             combatSongs.AddRange(LevelManager.SongLoad(id, true));
         }

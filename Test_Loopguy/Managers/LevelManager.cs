@@ -176,7 +176,7 @@ namespace Test_Loopguy
         {
 
 
-            Level level = new Level(id, BoundsLoad(id), ObjectLoad(id), TileLoad(id));
+            Level level = new Level(id, BoundsLoad(id), ObjectLoad(id), TileLoad(id), EnemyLoad(id));
             //obviously shouldn't return null when done
 
             loadedLevels.Add(level);
@@ -274,10 +274,35 @@ namespace Test_Loopguy
             return tiles;
         }
 
+        private static List<Enemy> EnemyLoad(int id)
+        {
+            List<Enemy> enemies = new List<Enemy>();
+
+            List<string> lines = new List<string>();
+            foreach (string line in System.IO.File.ReadLines(string.Format(@"maps\level{0}\enemymap.txt", id)))
+            {
+                lines.Add(line);
+            }
+
+            for (int i = 0; i < lines.Count; i++)
+            {
+                string[] splitter = lines[i].Split(',');
+                string enemyToFind = splitter[0];
+                Vector2 enemyPosition = new Vector2(0, 0);
+                enemyPosition.X = Int32.Parse(splitter[1]);
+                enemyPosition.Y = Int32.Parse(splitter[2]);
+
+                enemies.Add(EnemyCreator(enemyToFind, enemyPosition));
+
+            }
+
+
+            return enemies;
+        }
+
         private static List<LevelObject> ObjectLoad(int id)
         {
             List<LevelObject> levelObjects = new List<LevelObject>();
-            levelObjects.Add(new Box(new Vector2(56, 56)));
 
             List<string> lines = new List<string>();
             foreach (string line in System.IO.File.ReadLines(string.Format(@"maps\level{0}\objectmap.txt", id)))
@@ -372,6 +397,20 @@ namespace Test_Loopguy
         {
             return new KeyPickup(pos, id, permanent);
         }
+
+        internal static Enemy EnemyCreator(string name, Vector2 pos)
+        {
+            switch (name)
+            {
+                case "TestEnemyRanged":
+                    return new TestEnemyRanged(pos);
+
+                case "TestEnemy":
+                    return new TestEnemy(pos);
+                default:
+                    return new TestEnemy(pos);
+            }
+        }
         public static LevelObject ObjectCreator(string name, Vector2 pos)
         {
             switch (name)
@@ -441,6 +480,17 @@ namespace Test_Loopguy
             }
 
             return objects;
+        }
+        public static List<string> ExportEnemyList()
+        {
+            List<string> enemies = new List<string>();
+
+            foreach(Enemy e in currentLevel.enemies)
+            {
+                enemies.Add(e.GetType().Name + "," + ((int)e.position.X) + "," + ((int)e.position.Y));
+            }
+
+            return enemies;
         }
 
         public static List<string> ExportTileList(int id)
