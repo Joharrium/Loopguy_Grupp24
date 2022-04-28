@@ -20,6 +20,18 @@
 /processorParam:Quality=Best
 /build:audio/music/march_of_the_white_knights.ogg
 
+#begin audio/music/nyc_streets.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/music/nyc_streets.ogg
+
+#begin audio/music/oceanlab_action.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/music/oceanlab_action.ogg
+
 #begin audio/music/sus_high.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

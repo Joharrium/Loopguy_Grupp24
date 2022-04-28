@@ -19,7 +19,7 @@ namespace Test_Loopguy
         static float soundVolume = 0.5F;
         //music
 
-        public static SoundEffect sus_low, sus_high, unatco_hq, march_of_the_white_knights;
+        public static SoundEffect sus_low, sus_high, unatco_hq, march_of_the_white_knights, nyc_streets, oceanlab_action;
         
         private static Song playingTrack;
         private static List<Song> combatMusicCurrent = new List<Song>();
@@ -45,6 +45,8 @@ namespace Test_Loopguy
             //should probably be called stuff like "battle_1" or "idle_1" or stuff
             songs.Add(new Song("combat_1", march_of_the_white_knights));
             songs.Add(new Song("idle_1", unatco_hq));
+            songs.Add(new Song("idle_2", nyc_streets));
+            songs.Add(new Song("combat_2", oceanlab_action));
 
             foreach (Song s in songs)
             {
@@ -70,6 +72,8 @@ namespace Test_Loopguy
             sus_low = c.Load<SoundEffect>("audio/music/sus_low");
             unatco_hq = c.Load<SoundEffect>("audio/music/unatco_hq");
             march_of_the_white_knights = c.Load<SoundEffect>("audio/music/march_of_the_white_knights");
+            nyc_streets = c.Load<SoundEffect>("audio/music/nyc_streets");
+            oceanlab_action = c.Load<SoundEffect>("audio/music/oceanlab_action");
         }
         static void LoadSound(ContentManager c)
         {
