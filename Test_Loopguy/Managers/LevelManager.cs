@@ -153,6 +153,7 @@ namespace Test_Loopguy
             
         }
 
+
         internal static void AddEnemyProjectile(Shot projectile)
         {
             currentLevel.enemyProjectiles.Add(projectile);

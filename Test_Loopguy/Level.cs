@@ -50,10 +50,33 @@ namespace Test_Loopguy
                 {
                     //projectilesToRemove.Add(s);
                 }
+                foreach (LevelObject lo in levelObjects)
+                {
+                    if(lo.height > 8)
+                    {
+                        if (s.CheckCollision(lo))
+                        {
+                            projectilesToRemove.Add(s);
+                        }
+                    }
+                    
+                }
             }
             foreach (Shot s in playerProjectiles)
             {
                 s.Update(gameTime);
+                
+                foreach(LevelObject lo in levelObjects)
+                {
+                    if (lo.height > 8)
+                    {
+                        if (s.CheckCollision(lo))
+                        {
+                            projectilesToRemove.Add(s);
+                        }
+                    }
+                }
+
                 if(!cameraBounds.Contains(s.centerPosition))
                 {
                     //dprojectilesToRemove.Add(s);
@@ -87,6 +110,7 @@ namespace Test_Loopguy
         {
             List<Destructible> destructiblesToRemove = new List<Destructible>();
             List<Shot> projectilesToRemove = new List<Shot>();
+
             foreach (Destructible lo in levelObjects.OfType<Destructible>())
             {
                 foreach (Shot s in playerProjectiles)
@@ -121,6 +145,7 @@ namespace Test_Loopguy
                     destructiblesToRemove.Add(lo);
                 }
             }
+
 
             foreach (Destructible d in destructiblesToRemove)
             {

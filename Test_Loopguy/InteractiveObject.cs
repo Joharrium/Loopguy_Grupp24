@@ -114,14 +114,13 @@ namespace Test_Loopguy
             maxHealth = 1;
             variation = Game1.rnd.Next(4);
             texture = TextureManager.shrub_small;
-            hitBox.Width = 16;
-            hitBox.Height = 16;
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
             healthBar = new HealthBar(maxHealth);
             hitSound = Audio.shrub_destroy;
 
             footprint = new Rectangle((int)position.X + 1, (int)position.Y + 4, 14, 10);
             height = 2;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
         }
     }
 
@@ -135,14 +134,13 @@ namespace Test_Loopguy
             health = 3;
             maxHealth = 3;
             texture = TextureManager.barrel;
-            hitBox.Width = 16;
-            hitBox.Height = 16;
             sourceRectangle = new Rectangle(0, 0, 16, 16);
             healthBar = new HealthBar(maxHealth);
             hitSound = Audio.box_destroy;
 
             footprint = new Rectangle((int)position.X, (int)position.Y + 6, 16, 10);
             height = 10;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
         }
     }
 
