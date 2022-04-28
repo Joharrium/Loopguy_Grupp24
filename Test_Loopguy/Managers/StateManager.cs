@@ -71,7 +71,7 @@ namespace Test_Loopguy
                     if(Game1.editLevel)
                         LevelEditor.Draw(spriteBatch);
 
-                    EntityManager.Draw(spriteBatch);
+                    //EntityManager.Draw(spriteBatch);
                     ParticleManager.Draw(spriteBatch);
                     //Player.healthBar.Draw(spriteBatch);
                     break;

@@ -51,12 +51,14 @@ namespace Test_Loopguy
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            sprite.Draw(spriteBatch);
+            sprite.DrawRotation(spriteBatch, rotation);
         }
 
+        
         public void DrawRotation(SpriteBatch spriteBatch)
         {
             sprite.DrawRotation(spriteBatch, rotation);
         }
+        
     }
 }

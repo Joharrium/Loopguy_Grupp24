@@ -52,7 +52,7 @@ namespace Test_Loopguy
                 }
                 foreach (LevelObject lo in levelObjects)
                 {
-                    if(lo.height > 8)
+                    if(lo.height > 8 && !(lo is Destructible))
                     {
                         if (s.CheckCollision(lo))
                         {
@@ -68,7 +68,7 @@ namespace Test_Loopguy
                 
                 foreach(LevelObject lo in levelObjects)
                 {
-                    if (lo.height > 8)
+                    if (lo.height > 8 && !(lo is Destructible))
                     {
                         if (s.CheckCollision(lo))
                         {
@@ -216,32 +216,58 @@ namespace Test_Loopguy
             {
                 t.Draw(spriteBatch);
             }
-            foreach (LevelObject lo in levelObjects)
+            List<GameObject> objects = new List<GameObject>();
+            objects.AddRange(levelObjects);
+            objects.AddRange(enemies);
+            objects.Add(EntityManager.player);
+            objects.AddRange(playerProjectiles);
+            objects.AddRange(enemyProjectiles);
+
+            List<GameObject> sortedList = objects.OrderBy(o => o.centerPosition.Y + o.texture.Height).ToList();
+            objects = sortedList;
+
+            foreach (GameObject g in objects)
             {
-                if(lo != null)
+
+                if (g != null)
                 {
-                    lo.Draw(spriteBatch);
+                    g.Draw(spriteBatch);
                 }
+                
             }
 
-            foreach(Enemy e in enemies)
-            {
-                if(e != null)
-                {
-                    e.Draw(spriteBatch);
-                }
-            }
 
-            foreach (Shot s in playerProjectiles)
-            {
-                s.DrawRotation(spriteBatch);
+
+
+                /*
+                foreach (LevelObject lo in levelObjects)
+                {
+                    if(lo != null)
+                    {
+                        lo.Draw(spriteBatch);
+                    }
+                }
+
+                foreach(Enemy e in enemies)
+                {
+                    if(e != null)
+                    {
+                        e.Draw(spriteBatch);
+                    }
+                }
+
+                foreach (Shot s in playerProjectiles)
+                {
+                    s.DrawRotation(spriteBatch);
+                }
+                foreach (Shot s in enemyProjectiles)
+                {
+                    s.DrawRotation(spriteBatch);
+                }
+
+                */
+                //draw tiles and objects and enemies, in the correct order
             }
-            foreach (Shot s in enemyProjectiles)
-            {
-                s.DrawRotation(spriteBatch);
-            }
-            //draw tiles and objects and enemies, in the correct order
-        }
 
         public bool LevelObjectCollision(Vector2 check)
         {
