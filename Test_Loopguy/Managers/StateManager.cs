@@ -40,6 +40,7 @@ namespace Test_Loopguy
 
                     EntityManager.Update(gameTime);
                     CameraManager.Update(gameTime);
+                    Audio.Update();
 
 
 

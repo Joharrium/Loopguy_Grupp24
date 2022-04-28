@@ -143,6 +143,15 @@ namespace Test_Loopguy
             PlayMusic();
         }
 
+        public static void Update()
+        {
+            if(!playingTrack.IsPlaying())
+            {
+                StopMusic();
+                PlayMusic();
+            }
+        }
+
         public static void PlayMusic()
         {
             bool combat = true;
@@ -230,7 +239,19 @@ namespace Test_Loopguy
         {
             this.name = name;
             soundInstance = sound.CreateInstance();
-            soundInstance.IsLooped = true;
+            soundInstance.IsLooped = false;
+        }
+
+        public bool IsPlaying()
+        {
+            if(soundInstance.State == SoundState.Stopped)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public void Stop()
