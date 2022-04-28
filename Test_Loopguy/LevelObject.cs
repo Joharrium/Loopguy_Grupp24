@@ -12,6 +12,8 @@ namespace Test_Loopguy
         float rotation;
         SpriteEffects spriteEffects;
         protected int variation = 0;
+        internal Rectangle footprint;
+        internal int height;
         public LevelObject(Vector2 position) : base(position)
         {
             this.position = position;
@@ -21,7 +23,7 @@ namespace Test_Loopguy
             hitBox.Width = texture.Width;
             hitBox.Height = texture.Height;
             sourceRectangle.Width = 16;
-            sourceRectangle.Height = 24;
+            sourceRectangle.Height = 16;
 
             centerPosition = new Vector2(position.X - texture.Width / 2, position.Y - texture.Height / 2);
         }
@@ -41,6 +43,12 @@ namespace Test_Loopguy
         {
             this.position = position;
             texture = TextureManager.box;
+            sourceRectangle.Width = 16;
+            sourceRectangle.Height = 24;
+            footprint = new Rectangle((int)position.X, (int)position.Y + 10, 16, 14);
+            height = 12;
+            
+            
         }
     }
 
@@ -52,6 +60,8 @@ namespace Test_Loopguy
             variation = Game1.rnd.Next(12);
             texture = TextureManager.boxOpen;
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
+            footprint = new Rectangle((int)position.X, (int)position.Y + 6, 16, 10);
+            height = 6;
         }
     }
 
@@ -65,6 +75,8 @@ namespace Test_Loopguy
             hitBox.Width = 48;
             hitBox.Height = 48;
             sourceRectangle = new Rectangle(48 * variation, 0, 48, 48);
+            footprint = new Rectangle((int)position.X + 11, (int)position.Y + 30, 26, 16);
+            height = 44;
         }
     }
 
@@ -78,6 +90,9 @@ namespace Test_Loopguy
             hitBox.Width = 16;
             hitBox.Height = 24;
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 32);
+
+            footprint = new Rectangle((int)position.X + 2, (int)position.Y + 21, 12, 8);
+            height = 28;
         }
     }
 
@@ -88,6 +103,8 @@ namespace Test_Loopguy
             this.position = position;
             texture = TextureManager.barrel;
             sourceRectangle.Height = 16;
+            footprint = new Rectangle((int)position.X, (int)position.Y + 6, 16, 10);
+            height = 9;
         }
     }
 
@@ -101,6 +118,9 @@ namespace Test_Loopguy
             hitBox.Width = 16;
             hitBox.Height = 12;
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
+
+            footprint = new Rectangle((int)position.X, (int)position.Y + 4, 16, 12);
+            height = 5;
         }
     }
 
@@ -111,6 +131,8 @@ namespace Test_Loopguy
             this.position = position;
             texture = TextureManager.pot;
             sourceRectangle.Height = 16;
+            footprint = new Rectangle((int)position.X, (int)position.Y + 4, 16, 12);
+            height = 6;
         }
     }
 }

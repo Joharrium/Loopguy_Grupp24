@@ -119,6 +119,9 @@ namespace Test_Loopguy
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
             healthBar = new HealthBar(maxHealth);
             hitSound = Audio.shrub_destroy;
+
+            footprint = new Rectangle((int)position.X + 1, (int)position.Y + 4, 14, 10);
+            height = 2;
         }
     }
 
@@ -137,6 +140,9 @@ namespace Test_Loopguy
             sourceRectangle = new Rectangle(0, 0, 16, 16);
             healthBar = new HealthBar(maxHealth);
             hitSound = Audio.box_destroy;
+
+            footprint = new Rectangle((int)position.X, (int)position.Y + 6, 16, 10);
+            height = 10;
         }
     }
 

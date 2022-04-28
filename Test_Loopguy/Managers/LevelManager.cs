@@ -21,8 +21,6 @@ namespace Test_Loopguy
 
         private static Player player;
         private static Vector2 target;
-
-        //have list of levels?
         internal static void StartLevelTransition(int levelToLoad, Player player, Vector2 target)
         {
             loadTimer = LOADTIMER;
@@ -177,7 +175,6 @@ namespace Test_Loopguy
 
 
             Level level = new Level(id, BoundsLoad(id), ObjectLoad(id), TileLoad(id), EnemyLoad(id));
-            //obviously shouldn't return null when done
 
             loadedLevels.Add(level);
             currentLevel = level;

@@ -224,7 +224,7 @@ namespace Test_Loopguy
             {
                 if(lo != null)
                 {
-                    if (lo.hitBox.Contains(check))
+                    if (lo.footprint.Contains(check))
                     {
                         return true;
                     }
