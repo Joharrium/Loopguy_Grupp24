@@ -25,6 +25,7 @@ namespace Test_Loopguy
         protected Vector2 knockBackDirection;
         protected float attackCooldown;
         protected float attackCooldownRemaining;
+        protected float timeBetweenAICalls;
         public Enemy(Vector2 position) : base(position)
         {
             this.position = position;
@@ -43,14 +44,22 @@ namespace Test_Loopguy
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
             healthBar.SetCurrentValue(position + new Vector2(6, texture.Height), health);
-            if(!aggro)
+
+            if(timeBetweenAICalls < 0)
             {
-                aggro = InAggroRange();
+                if (!aggro)
+                {
+                    aggro = InAggroRange();
+                }
+                else
+                {
+                    AggroBehavior();
+                }
+                timeBetweenAICalls = 0.7f;
             }
-            else
-            {
-                AggroBehavior();
-            }
+
+            timeBetweenAICalls -= deltaTime;
+
             if (knockBackRemaining > 0)
             {
                 knockBackRemaining -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
