@@ -16,11 +16,8 @@ namespace Test_Loopguy
         internal List<Enemy> enemies;
         internal List<Shot> enemyProjectiles;
         internal List<Shot> playerProjectiles;
-        //internal List<>
-            //should change to generic projectile class to account for different projectile types
-        //list of enemies
-        //list of corresponding entrances from different ids and their position
-
+        internal List<Song> idleSongs = new List<Song>();
+        internal List<Song> combatSongs = new List<Song>();
 
         public Level (int id, Rectangle cameraBounds, List<LevelObject> levelObjects, Tile[,] tiles/*, List<Entrance> entrances*/)
         {
@@ -32,6 +29,8 @@ namespace Test_Loopguy
             playerProjectiles = new List<Shot>();
             this.enemies = new List<Enemy>();
             enemies.Add(new TestEnemy(new Vector2(400, 400)));
+            idleSongs.AddRange(LevelManager.SongLoad(id, false));
+            combatSongs.AddRange(LevelManager.SongLoad(id, true));
         }
 
         internal void Update(GameTime gameTime, Player player)

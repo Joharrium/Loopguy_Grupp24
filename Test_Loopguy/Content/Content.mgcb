@@ -14,6 +14,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin audio/music/march_of_the_white_knights.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/music/march_of_the_white_knights.ogg
+
 #begin audio/music/sus_high.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

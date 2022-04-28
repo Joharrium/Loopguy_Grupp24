@@ -18,16 +18,18 @@ namespace Test_Loopguy
         static float musicVolume = 0.3F;
         static float soundVolume = 0.5F;
         //music
-        //bizarre error markings that could only be "fixed" like this, disregard these comments
-        //he he he he he he he he he he he he he he he he he heeeeeeeeeeeeeeeeeeeeeeeeeeeeee he he//he he he he he he he he he he he he he he he he he heeeeeeeeeeeeeeeeeeeeeeeeeeeeee he he//he he he he he he he he he he he he he he he he he heeeeeeeeeeeeeeeeeeeeeeeeeeeeee he he
-        //he he he he he he he he he he he he he he he he he heeeeeeeeeeeeeeeeeeeeeeeeeeeeee he he
 
-        public static SoundEffect sus_low, sus_high, unatco_hq;
+        public static SoundEffect sus_low, sus_high, unatco_hq, march_of_the_white_knights;
         
         private static Song playingTrack;
+        private static List<Song> combatMusicCurrent = new List<Song>();
+        private static List<Song> idleMusicCurrent = new List<Song>();
 
-        public static SoundCollection lasergun;
+        public static List<Song> songs = new List<Song>();
+
+
         //sound
+        public static SoundCollection lasergun;
         public static SoundEffect meepmerp, swing, open, deny, dash, door_hiss_sound, box_destroy, shrub_destroy, keypickup, healing, player_hit;
 
         public static SoundEffect EnergyGun_Shoot1A, EnergyGun_Shoot1B, EnergyGun_Shoot1C, EnergyGun_Shoot1D, EnergyGun_Shoot2A, EnergyGun_Shoot2B, EnergyGun_Shoot2C, EnergyGun_Shoot2D;
@@ -36,8 +38,20 @@ namespace Test_Loopguy
             LoadMusic(Content);
             LoadSound(Content);
             CreateCollections();
-
+            CreateSongs();  
         }
+        static void CreateSongs()
+        {
+            //should probably be called stuff like "battle_1" or "idle_1" or stuff
+            songs.Add(new Song("combat_1", march_of_the_white_knights));
+            songs.Add(new Song("idle_1", unatco_hq));
+
+            foreach (Song s in songs)
+            {
+                s.SetVolume(musicVolume);
+            }
+        }
+
         static void CreateCollections()
         {
             lasergun = new SoundCollection();
@@ -55,10 +69,8 @@ namespace Test_Loopguy
             sus_high = c.Load<SoundEffect>("audio/music/sus_high");
             sus_low = c.Load<SoundEffect>("audio/music/sus_low");
             unatco_hq = c.Load<SoundEffect>("audio/music/unatco_hq");
+            march_of_the_white_knights = c.Load<SoundEffect>("audio/music/march_of_the_white_knights");
         }
-
-        
-
         static void LoadSound(ContentManager c)
         {
             meepmerp = c.Load<SoundEffect>("audio/sound/meepmerp");
@@ -85,18 +97,86 @@ namespace Test_Loopguy
             }
         }
 
-        public static void PlayMusic(SoundEffect music)
+        public static List<Song> LoadLevelMusic(List<string> names, bool combat)
         {
-            if(music !=null)
+            combatMusicCurrent.Clear();
+            idleMusicCurrent.Clear();
+            foreach(Song s in songs)
             {
-                SoundEffectInstance instance = music.CreateInstance();
-                instance.Volume = musicVolume;
-                instance.IsLooped = true;
-                instance.Play();
-                //playingTrack = instance;
-
-                // THIS WILL BE REMADE
+                foreach(string n in names)
+                {
+                    if(s.name.Equals(n))
+                    {
+                        if(combat)
+                        {
+                            combatMusicCurrent.Add(s);
+                        }
+                        else
+                        {
+                            idleMusicCurrent.Add(s);
+                        }
+                        
+                    }
+                }
             }
+            if(combat)
+            {
+                return combatMusicCurrent;
+            }
+            else
+            {
+                return idleMusicCurrent;
+            }
+            //PlayMusic();
+        }
+
+        public static void UpdateLevelMusic()
+        {
+            combatMusicCurrent.Clear();
+            idleMusicCurrent.Clear();
+            combatMusicCurrent.AddRange(LevelManager.GetMusic(true));
+            idleMusicCurrent.AddRange(LevelManager.GetMusic(false));
+            PlayMusic();
+        }
+
+        public static void PlayMusic()
+        {
+            bool combat = true;
+            //for testing, remove this bool later and get combat status from somewhere else
+
+            if (combatMusicCurrent.Contains(playingTrack) && combat /*|| idleMusicCurrent.Contains(playingTrack)*/)
+            {
+                playingTrack.Play();
+            }
+            else
+            {
+                if(playingTrack != null)
+                {
+                    playingTrack.Stop();
+                }
+                
+                playingTrack = null;
+            }
+           
+            if (playingTrack == null)
+            {
+                //if player in combat
+                if (combat)
+                {
+                    int trackRandomizer = Game1.rnd.Next(combatMusicCurrent.Count);
+                    playingTrack = combatMusicCurrent[trackRandomizer];
+                }
+                else
+                {
+                    int trackRandomizer = Game1.rnd.Next(idleMusicCurrent.Count);
+                    playingTrack = idleMusicCurrent[trackRandomizer];
+                }
+            }
+            if(playingTrack != null)
+            {
+                playingTrack.Play();
+            }
+            
         }
 
         public static void StopMusic()
@@ -146,11 +226,21 @@ namespace Test_Loopguy
         {
             this.name = name;
             soundInstance = sound.CreateInstance();
+            soundInstance.IsLooped = true;
         }
 
         public void Stop()
         {
             soundInstance.Stop();
+        }
+
+        public void SetVolume(float volume)
+        {
+            soundInstance.Volume = volume;
+        }
+        public void Pause()
+        {
+            soundInstance.Pause();
         }
 
         public void Play()

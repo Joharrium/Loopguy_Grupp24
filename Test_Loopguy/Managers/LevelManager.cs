@@ -90,16 +90,19 @@ namespace Test_Loopguy
 
         public static void TryLoad(int id)
         {
+            
             foreach (Level l in loadedLevels)
             {
                 if(l.id == id)
                 {
                     currentLevel = l;
+                    Audio.UpdateLevelMusic();
                     return;
                 }
             }
-
+            
             currentLevel = LoadLevel(id);
+            Audio.UpdateLevelMusic();
 
         }
 
@@ -108,6 +111,17 @@ namespace Test_Loopguy
             return currentLevel.id;
         }
         
+        public static List<Song> GetMusic(bool combat)
+        {
+            if (combat)
+            {
+                return currentLevel.combatSongs;
+            }
+            else
+            {
+                return currentLevel.idleSongs;
+            }
+        }
         
         public static bool LevelObjectCollision(Vector2 position)
         {
@@ -165,6 +179,27 @@ namespace Test_Loopguy
             bounds.Width = Int32.Parse(splitter[0]);
             bounds.Height = Int32.Parse(splitter[1]);
             return bounds;
+        }
+
+        public static List<Song> SongLoad(int id, bool combat)
+        {
+            List<string> lines = new List<string>();
+            if(combat)
+            {
+                foreach (string line in System.IO.File.ReadLines(string.Format(@"maps\level{0}\music_combat.txt", id)))
+                {
+                    lines.Add(line);
+                }
+            }
+            else
+            {
+                foreach (string line in System.IO.File.ReadLines(string.Format(@"maps\level{0}\music_idle.txt", id)))
+                {
+                    lines.Add(line);
+                }
+            }
+            
+            return Audio.LoadLevelMusic(lines, combat);
         }
 
         private static Tile[,] TileLoad(int id)
