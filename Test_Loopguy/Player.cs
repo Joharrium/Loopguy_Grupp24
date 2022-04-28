@@ -232,10 +232,22 @@ namespace Test_Loopguy
             //healthBar.Draw(spriteBatch);
         }
 
+        public void Reset(Vector2 position)
+        {
+            this.position = position;
+            health = maxHealth; 
+            keys.Clear(); 
+            LoadKeys();
+        }
+
         public void TakeDamage(int damage)
         {
             health -= damage;
             Audio.PlaySound(Audio.player_hit);
+            if( health <= 0)
+            {
+                LevelManager.Reset();
+            }
         }
 
         public bool HealDamage(int healing)

@@ -145,11 +145,15 @@ namespace Test_Loopguy
 
         public static void Update()
         {
-            if(!playingTrack.IsPlaying())
+            if(playingTrack != null)
             {
-                StopMusic();
-                PlayMusic();
+                if (!playingTrack.IsPlaying())
+                {
+                    StopMusic();
+                    PlayMusic();
+                }
             }
+            
         }
 
         public static void PlayMusic()

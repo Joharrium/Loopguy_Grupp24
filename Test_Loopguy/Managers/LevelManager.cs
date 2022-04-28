@@ -77,6 +77,24 @@ namespace Test_Loopguy
             }
         }
 
+        public static void Reset()
+        {
+            List<Level> levelsToClear = new List<Level>();
+            Level level1 = LoadLevel(1);
+            currentLevel = level1;
+            EntityManager.player.Reset( new Vector2(64, 64));
+
+            foreach (Level l in loadedLevels)
+            {
+                levelsToClear.Add(l);
+            }
+            foreach(Level l in levelsToClear)
+            {
+                loadedLevels.Remove(l);
+            }
+            loadedLevels.Add(level1);
+
+        }
 
         public static Rectangle GetBounds()
         {
