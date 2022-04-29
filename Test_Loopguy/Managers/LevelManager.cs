@@ -210,6 +210,7 @@ namespace Test_Loopguy
 
             loadedLevels.Add(level);
             currentLevel = level;
+            currentLevel.RefreshEdges();
             return level;
         }
 

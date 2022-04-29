@@ -31,6 +31,15 @@ namespace Test_Loopguy
             idleSongs.AddRange(LevelManager.SongLoad(id, false));
             combatSongs.AddRange(LevelManager.SongLoad(id, true));
             
+
+        }
+
+        public void RefreshEdges()
+        {
+            foreach (Tile t in tiles)
+            {
+                t.UpdateEdges();
+            }
         }
 
         internal void Update(GameTime gameTime, Player player)
