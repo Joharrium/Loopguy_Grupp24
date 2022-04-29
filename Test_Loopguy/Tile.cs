@@ -11,6 +11,7 @@ namespace Test_Loopguy
         public Rectangle sourceRectangle;
         protected float rotation;
         protected SpriteEffects spriteEffects;
+        protected TileEdge edges;
         public Tile(Vector2 position) : base(position)
         {
             this.position = position;
@@ -26,6 +27,23 @@ namespace Test_Loopguy
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position + new Vector2(hitBox.Width/2, hitBox.Height/2), sourceRectangle, Color.White, rotation, new Vector2(hitBox.Width / 2, hitBox.Height / 2), 1, spriteEffects, 1);
+            
+        }
+
+        public void DrawEdges(SpriteBatch spriteBatch)
+        {
+            if (edges != null)
+            {
+                edges.Draw(spriteBatch);
+            }
+        }
+
+        public void UpdateEdges()
+        {
+            if(edges != null)
+            {
+                edges.UpdateEdges(this);
+            }
         }
     }
 
@@ -56,6 +74,7 @@ namespace Test_Loopguy
                 variation = Game1.rnd.Next(4);
             }
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
+            edges = new TileEdge(TextureManager.grass_edge, this);
         }
     }
 

@@ -9,7 +9,7 @@ namespace Test_Loopguy
         public static Texture2D meleeFx, shot, blueDot, cursor;
         // terrain files
         public static Texture2D grassBasic, grassAlt, grayBrickWall, dirt, tiles_checkered_gray, tiles_checkered_brown, tiles_big_light, tiles_big_dark,
-            carpet_worn, tile_metal, tile_metal_copper, wall_metal, wall_worn, tile_metal_bright;
+            carpet_worn, tile_metal, tile_metal_copper, wall_metal, wall_worn, tile_metal_bright, grass_edge;
         // object files
         public static Texture2D boxOpen, barrel, pot, shrub_big, shrub_small, tree_big, tree_small, fernDestroyed, door, door_open, 
             keycard, door_sliding, door_sliding_open, barrelDestroyed, medkit;
@@ -66,6 +66,8 @@ namespace Test_Loopguy
             wall_metal = c.Load<Texture2D>("gfx/terrain/wall_metal");
             wall_worn = c.Load<Texture2D>("gfx/terrain/wall_run_down");
             tile_metal_bright = c.Load<Texture2D>("gfx/terrain/metal_tile_bright");
+
+            grass_edge = c.Load<Texture2D>("gfx/terrain/grass_edges");
         }
 
         private static void LoadObjects(ContentManager c)

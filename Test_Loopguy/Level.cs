@@ -30,6 +30,7 @@ namespace Test_Loopguy
             playerProjectiles = new List<Shot>();
             idleSongs.AddRange(LevelManager.SongLoad(id, false));
             combatSongs.AddRange(LevelManager.SongLoad(id, true));
+            
         }
 
         internal void Update(GameTime gameTime, Player player)
@@ -216,6 +217,9 @@ namespace Test_Loopguy
             {
                 t.Draw(spriteBatch);
             }
+
+            
+
             List<GameObject> objects = new List<GameObject>();
             objects.AddRange(levelObjects);
             objects.AddRange(enemies);
@@ -237,37 +241,11 @@ namespace Test_Loopguy
             }
 
 
-
-
-                /*
-                foreach (LevelObject lo in levelObjects)
-                {
-                    if(lo != null)
-                    {
-                        lo.Draw(spriteBatch);
-                    }
-                }
-
-                foreach(Enemy e in enemies)
-                {
-                    if(e != null)
-                    {
-                        e.Draw(spriteBatch);
-                    }
-                }
-
-                foreach (Shot s in playerProjectiles)
-                {
-                    s.DrawRotation(spriteBatch);
-                }
-                foreach (Shot s in enemyProjectiles)
-                {
-                    s.DrawRotation(spriteBatch);
-                }
-
-                */
-                //draw tiles and objects and enemies, in the correct order
+            foreach (Tile t in tiles)
+            {
+                t.DrawEdges(spriteBatch);
             }
+        }
 
         public bool LevelObjectCollision(Vector2 check)
         {
@@ -357,6 +335,10 @@ namespace Test_Loopguy
 
         public void TileEdit(TileSelection tile, Vector2 position)
         {
+            foreach (Tile t in tiles)
+            {
+                t.UpdateEdges();
+            }
             Tile editedTile = null;
             foreach(Tile t in tiles)
             {
@@ -436,6 +418,7 @@ namespace Test_Loopguy
             return new Point(xCoordinate, yCoordinate);
             
         }
+
     }
     public class Entrance
     {

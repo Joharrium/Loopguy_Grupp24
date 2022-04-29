@@ -169,6 +169,33 @@ namespace Test_Loopguy
             return currentLevel.WallCollision(position);
         }
 
+        public static bool[,] GetEdges(Tile tile)
+        {
+            bool[,] edges = new bool[3,3];
+            Point coords = currentLevel.GetTileCoordinate(tile);
+            for (int i = -1; i < 1; i++)
+            {
+                for(int j = -1; j < 1; j++)
+                {
+                    if(coords.X + i >= 0 && coords.Y + j >= 0 && coords.X + i < currentLevel.tiles.GetLength(0) && coords.Y + j < currentLevel.tiles.GetLength(1))
+                    {
+                        edges[i + 1, j + 1] = true;
+                        if (currentLevel.tiles[coords.X + i, coords.Y + j].GetType() == typeof(GrassTile))
+                        {
+                            edges[i + 1, j + 1] = false;
+                        }
+                        else
+                        {
+                            edges[i + 1, j + 1] = true;
+                        }
+                    }
+                    
+                }
+                
+            }
+            return edges;
+        }
+
         //below are editor and load methods
 
         public static Level LoadLevel(int id)

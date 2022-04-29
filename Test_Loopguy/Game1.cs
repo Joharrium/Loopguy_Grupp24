@@ -73,10 +73,6 @@ namespace Test_Loopguy
             camera = new Camera();
             camera.SetPosition(new Vector2(200, 200));
 
-            //player = new Player(new Vector2(64, 64));
-            //TileManager.Initialization();
-            //WallManager.Initialization();
-
             var frmNewForm = new Form1();
             var newThread = new System.Threading.Thread(frmNewFormThread);
 
@@ -120,7 +116,6 @@ namespace Test_Loopguy
 
             //Update player position
             //player.Update(gameTime);
-            //LevelManager.Update(gameTime);
             //Update camera position
             camera.SmoothPosition(EntityManager.player.cameraPosition, deltaTime);
 
@@ -163,11 +158,6 @@ namespace Test_Loopguy
 
             Window.Title = EntityManager.player.playerInfoString;
 
-            //if (editLevel)
-            //{
-            //    LevelEditor.Update(gameTime);
-            //}
-
             StateManager.Update(gameTime);
 
             base.Update(gameTime);
@@ -180,13 +170,6 @@ namespace Test_Loopguy
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, camera.Transform);
             //Draw game stuff here!
-
-            //LevelManager.Draw(spriteBatch);
-
-            //if (editLevel)
-            //{
-            //    LevelEditor.Draw(spriteBatch);
-            //}
 
             StateManager.Draw(spriteBatch); //Flytta denna samt kör allt via StateManager
 
