@@ -62,7 +62,7 @@ namespace Test_Loopguy
 
             //straight edges
             {
-                if (dir[0, 1])
+                if (dir[0, 1] && dir[0,0])
                 {
                     edges[0, 1].SetVariation(new int[] { 5, 1 });
                 }
@@ -71,7 +71,7 @@ namespace Test_Loopguy
                     edges[2, 1].SetVariation(new int[] { 5, 0 });
                 }
 
-                if (dir[1, 0])
+                if (dir[1, 0] && dir[0,0])
                 {
                     edges[1, 0].SetVariation(new int[] { 1, 1 });
                 }
@@ -91,13 +91,13 @@ namespace Test_Loopguy
                 {
                     edges[2, 1].SetVariation(new int[] { 0, 1 });
                 }
-                if (!dir[0, 1] && dir[2, 0] && !dir[1, 2])
+                if (!dir[0, 0] && dir[0, 1])
                 {
-                    edges[2, 0].SetVariation(new int[] { 2, 0 });
+                    edges[0, 1].SetVariation(new int[] { 2, 0 });
                 }
                 if (!dir[0, 2] && dir[1, 2])
                 {
-                    edges[0, 2].SetVariation(new int[] { 0, 0 });
+                    edges[1, 2].SetVariation(new int[] { 0, 0 });
                 }
             }
 
@@ -109,7 +109,7 @@ namespace Test_Loopguy
                     groog++;
                 }
             }
-            if(groog == 8)
+            if(groog == 9)
             {
                 foreach(Edge e in edges)
                 {

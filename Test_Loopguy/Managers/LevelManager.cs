@@ -173,14 +173,14 @@ namespace Test_Loopguy
         {
             bool[,] edges = new bool[3,3];
             Point coords = currentLevel.GetTileCoordinate(tile);
-            for (int i = -1; i < 1; i++)
+            for (int i = -1; i < 2; i++)
             {
-                for(int j = -1; j < 1; j++)
+                for(int j = -1; j < 2; j++)
                 {
                     if(coords.X + i >= 0 && coords.Y + j >= 0 && coords.X + i < currentLevel.tiles.GetLength(0) && coords.Y + j < currentLevel.tiles.GetLength(1))
                     {
                         edges[i + 1, j + 1] = true;
-                        if (currentLevel.tiles[coords.X + i, coords.Y + j].GetType() == typeof(GrassTile))
+                        if (currentLevel.tiles[coords.X + i, coords.Y + j] is GrassTile)
                         {
                             edges[i + 1, j + 1] = false;
                         }
@@ -192,6 +192,10 @@ namespace Test_Loopguy
                     
                 }
                 
+            }
+            if(edges[0,2])
+            {
+                Console.WriteLine("fuck this");
             }
             return edges;
         }

@@ -217,8 +217,15 @@ namespace Test_Loopguy
             {
                 t.Draw(spriteBatch);
             }
+            foreach (Tile t in tiles)
+            {
+                t.DrawEdges(spriteBatch);
+            }
+            foreach (Tile t in tiles.OfType<Wall>())
+            {
+                t.Draw(spriteBatch);
+            }
 
-            
 
             List<GameObject> objects = new List<GameObject>();
             objects.AddRange(levelObjects);
@@ -241,10 +248,7 @@ namespace Test_Loopguy
             }
 
 
-            foreach (Tile t in tiles)
-            {
-                t.DrawEdges(spriteBatch);
-            }
+            
         }
 
         public bool LevelObjectCollision(Vector2 check)
@@ -335,10 +339,7 @@ namespace Test_Loopguy
 
         public void TileEdit(TileSelection tile, Vector2 position)
         {
-            foreach (Tile t in tiles)
-            {
-                t.UpdateEdges();
-            }
+            
             Tile editedTile = null;
             foreach(Tile t in tiles)
             {
@@ -390,8 +391,11 @@ namespace Test_Loopguy
                         break;
                 }
             }
-            
-            
+            foreach (Tile t in tiles)
+            {
+                t.UpdateEdges();
+            }
+
         }
 
         public Point GetTileCoordinate(Tile tile)
