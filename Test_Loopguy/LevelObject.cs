@@ -14,6 +14,7 @@ namespace Test_Loopguy
         protected int variation = 0;
         internal Rectangle footprint;
         internal int height;
+        internal AnimatedSprite anim;
         public LevelObject(Vector2 position) : base(position)
         {
             this.position = position;
@@ -30,6 +31,10 @@ namespace Test_Loopguy
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            if(anim != null)
+            {
+                anim.Draw(spriteBatch);
+            }
             spriteBatch.Draw(texture, position + new Vector2(hitBox.Width/2, hitBox.Height/2), sourceRectangle, Color.White, rotation, new Vector2(hitBox.Width / 2, hitBox.Height / 2), 1, spriteEffects, 1);
         }
     }
@@ -50,6 +55,22 @@ namespace Test_Loopguy
             hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
             
             
+        }
+    }
+
+    public class Console : LevelObject
+    {
+        public Console(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.console;
+            sourceRectangle.Width = 32;
+            sourceRectangle.Height = 24;
+            footprint = new Rectangle((int)position.X, (int)position.Y + 14, 32, 10);
+            height = 12;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+
+
         }
     }
 

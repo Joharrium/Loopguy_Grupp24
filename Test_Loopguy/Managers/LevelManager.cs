@@ -193,10 +193,6 @@ namespace Test_Loopguy
                 }
                 
             }
-            if(edges[0,2])
-            {
-                Console.WriteLine("fuck this");
-            }
             return edges;
         }
 

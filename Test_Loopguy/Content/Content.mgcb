@@ -723,6 +723,18 @@
 /processorParam:TextureFormat=Color
 /build:gfx/objects/box_open.png
 
+#begin gfx/objects/console_thing.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/console_thing.png
+
 #begin gfx/objects/door_big.png
 /importer:TextureImporter
 /processor:TextureProcessor
