@@ -278,6 +278,7 @@ namespace Test_Loopguy
             return levelObjects;
         }
         
+        /*
         public static bool LevelObjectCollision(Vector2 position)
         {
             return currentLevel.LevelObjectCollision(position);
@@ -287,6 +288,7 @@ namespace Test_Loopguy
         {
             return currentLevel.WallCollision(position);
         }
+        */
 
         private static LevelObject ObjectCreator(string name, Vector2 pos)
         {

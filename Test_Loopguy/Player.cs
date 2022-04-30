@@ -40,9 +40,11 @@ namespace Test_Loopguy
         bool shooting;
         bool dashing;
 
-        //Right now all shots are handled in this class, might not be appropriate... unless? JK it's not... unless?
+        //unused I think so should be cleaned up
         List<Shot> shots;
-        //its not, should probably be sent to level but i cba to fix it right now
+
+        //footprint rectangle
+        Rectangle footprint;
 
         public Player(Vector2 position)
             : base(position)
@@ -56,6 +58,7 @@ namespace Test_Loopguy
             dirInt = 2;
             LoadKeys();
             healthBar = new PlayerHealthBar(5);
+            footprint = new Rectangle((int)position.X, (int)position.Y + 24, 8, 8);
             
         }
         
@@ -86,6 +89,8 @@ namespace Test_Loopguy
         public override void Update(GameTime gameTime)
         {
             hitBox = new Rectangle((int)position.X, (int)position.Y, sprite.size.X, sprite.size.Y);
+            footprint = new Rectangle((int)position.X + 4, (int)position.Y + 24, 8, 8);
+            
             centerPosition = new Vector2(position.X + sprite.size.X / 2, position.Y + sprite.size.Y / 2);
 
             healthBar.UpdateBar(health);
@@ -302,8 +307,9 @@ namespace Test_Loopguy
             }
 
             Vector2 futurepos = centerPosition + direction * speed * deltaTime + new Vector2(0, 12);
+            Rectangle futureFootPrint = new Rectangle((int)futurepos.X, (int)futurepos.Y + 24, footprint.Width, footprint.Height);
 
-            if (LevelManager.LevelObjectCollision(futurepos) || LevelManager.WallCollision(futurepos))
+            if (LevelManager.LevelObjectCollision(futureFootPrint) || LevelManager.WallCollision(futurepos))
             {
 
             }
@@ -335,8 +341,10 @@ namespace Test_Loopguy
             for (int i = 1; i < dashRange + 1; i++)
             {
                 Vector2 dashPos = new Vector2(centerPosition.X + i * direction.X, centerPosition.Y + i * direction.Y) + new Vector2(0, 12);
+                Rectangle futureFootPrint = new Rectangle((int)dashPos.X, (int)dashPos.Y, footprint.Width, footprint.Height);
 
-                if (LevelManager.LevelObjectCollision(dashPos) || LevelManager.WallCollision(dashPos))
+
+                if (LevelManager.LevelObjectCollision(futureFootPrint) || LevelManager.WallCollision(dashPos))
                 {
                     break;
                 }
@@ -355,22 +363,35 @@ namespace Test_Loopguy
         private void CheckMovement(float deltaTime)
         {
             //test method so player can move diagonally over a wall but its kinda weird so not used currently
-            Vector2 futurepos = centerPosition + direction * speed * deltaTime + new Vector2(0, 12);
-            if (LevelManager.LevelObjectCollision(new Vector2(futurepos.X, centerPosition.Y)) || LevelManager.WallCollision(new Vector2(futurepos.X, centerPosition.Y)))
-            {
+            Vector2 futurePosCalc = position + direction * speed * deltaTime;
+            Rectangle futureFootPrint = new Rectangle((int)futurePosCalc.X + 12, (int)futurePosCalc.Y + 24, footprint.Width, footprint.Height);
 
+            bool bingus = false;
+            bool bongus = false;
+            if (LevelManager.LevelObjectCollision(futureFootPrint))
+            {
+                if(LevelManager.LevelObjectCollision(new Rectangle((int)futurePosCalc.X + 12, (int)position.Y + 24, footprint.Width, footprint.Height)))
+                {
+                    bingus = true;
+                }
+                if(LevelManager.LevelObjectCollision(new Rectangle((int)position.X + 12, (int)futurePosCalc.Y + 24, footprint.Width, footprint.Height)))
+                {
+                    bongus = true;
+                }
+                if (!bingus && bongus)
+                {
+                    position.X = futurePosCalc.X;
+                }
+
+
+                if (!bongus && bingus)
+                {
+                    position.Y = futurePosCalc.Y;
+                }
             }
             else
             {
-                position.X += direction.X * speed * deltaTime;
-            }
-            if (LevelManager.LevelObjectCollision(new Vector2(centerPosition.X, futurepos.Y)) || LevelManager.WallCollision(new Vector2(centerPosition.X, futurepos.Y)))
-            {
-
-            }
-            else
-            {
-                position.Y += direction.Y * speed * deltaTime;
+                position += direction * speed * deltaTime;
             }
         }
 
@@ -458,9 +479,11 @@ namespace Test_Loopguy
                 prevDirection = direction;
             }
 
-
+            /*
             Vector2 futurepos = centerPosition + direction * speed * deltaTime + new Vector2(0, 12);
-            if (LevelManager.LevelObjectCollision(futurepos) || LevelManager.WallCollision(futurepos))
+            Rectangle futureFootPrint = new Rectangle((int)futurepos.X, (int)futurepos.Y, footprint.Width, footprint.Height);
+
+            if (LevelManager.LevelObjectCollision(futureFootPrint))
             {
 
             }
@@ -468,6 +491,8 @@ namespace Test_Loopguy
             {
                 position += direction * speed * deltaTime;
             }
+            */
+            CheckMovement(deltaTime);
 
             LevelManager.CheckGate(this);
             
@@ -531,11 +556,13 @@ namespace Test_Loopguy
                 Vector2 aimPoint = new Vector2(centerPosition.X + i * gunDirection.X, centerPosition.Y + i * gunDirection.Y);
 
                 //Stops laser sight on collision with object
+                /* sorry to comment this out will fix soon
                 if (LevelManager.LevelObjectCollision(aimPoint) || LevelManager.WallCollision(aimPoint))
                 {
                     break;
                 }
                 else
+                */
                 {
                     dotPos = new Vector2(aimPoint.X + (gunDirection.X * 5) - 1, aimPoint.Y + (gunDirection.Y * 5) - 1.5f);
                 }

@@ -26,11 +26,13 @@ namespace Test_Loopguy
         protected float attackCooldown;
         protected float attackCooldownRemaining;
         protected float timeBetweenAICalls;
+        public Rectangle footprint;
         public Enemy(Vector2 position) : base(position)
         {
             this.position = position;
             health = maxHealth;
             healthBar = new HealthBar(maxHealth);
+            footprint = new Rectangle((int)position.X, (int)position.Y, 32, 8);
         }
 
         public void Init()
@@ -43,6 +45,7 @@ namespace Test_Loopguy
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
+            footprint.Location = position.ToPoint();
             healthBar.SetCurrentValue(position + new Vector2(6, texture.Height), health);
 
             if(timeBetweenAICalls < 0)
@@ -75,15 +78,16 @@ namespace Test_Loopguy
         public virtual void Movement(float deltaTime)
         {
             Vector2 futurePosCalc = position + direction * speed * deltaTime;
-            if(LevelManager.LevelObjectCollision(futurePosCalc))
+            Rectangle futureFootPrintCalc = new Rectangle(footprint.X + (int)futurePosCalc.X, footprint.Y + (int)futurePosCalc.Y, footprint.Width, footprint.Height);
+            if(LevelManager.LevelObjectCollision(futureFootPrintCalc))
             {
-                if (!LevelManager.LevelObjectCollision(new Vector2(futurePosCalc.X, position.Y)))
+                if (!LevelManager.LevelObjectCollision(new Rectangle((int)futurePosCalc.X, (int)position.Y, footprint.Width, footprint.Height)))
                 {
                     position.X = futurePosCalc.X;
                 }
 
 
-                if (!LevelManager.LevelObjectCollision(new Vector2(position.X, futurePosCalc.Y)))
+                if (!LevelManager.LevelObjectCollision(new Rectangle((int)position.X, (int)futurePosCalc.Y, footprint.Width, footprint.Height)))
                 {
                     position.Y = futurePosCalc.Y;
                 }

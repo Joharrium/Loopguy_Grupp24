@@ -139,11 +139,11 @@ namespace Test_Loopguy
             }
         }
         
-        public static bool LevelObjectCollision(Vector2 position)
+        public static bool LevelObjectCollision(Rectangle position)
         {
             if(!currentLevel.LevelObjectCollision(position))
             {
-                return currentLevel.WallCollision(position);
+                return currentLevel.WallCollision(position.Center.ToVector2());
             }
             else
             {
