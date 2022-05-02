@@ -9,7 +9,7 @@ namespace Test_Loopguy.Content
 {
     public enum ParticleSelection
     {
-        SparkSmall
+        SparkSmall, ShotExplosion
     }
     public static class ParticleManager
     {
@@ -51,6 +51,9 @@ namespace Test_Loopguy.Content
             {
                 case ParticleSelection.SparkSmall:
                     particles.Add(new SparkSmall(position));
+                    break;
+                case ParticleSelection.ShotExplosion:
+                    particles.Add(new ShotExplosion(position));
                     break;
             }
         }

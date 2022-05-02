@@ -260,11 +260,11 @@ namespace Test_Loopguy
             
         }
 
-        public bool LevelObjectCollision(Rectangle check)
+        public bool LevelObjectCollision(Rectangle check, int height)
         {
             foreach(LevelObject lo in levelObjects)
             {
-                if(lo != null)
+                if(lo != null && lo.height > height)
                 {
                     if (lo.footprint.Intersects(check))
                     {

@@ -309,7 +309,7 @@ namespace Test_Loopguy
             Vector2 futurepos = centerPosition + direction * speed * deltaTime + new Vector2(0, 12);
             Rectangle futureFootPrint = new Rectangle((int)futurepos.X, (int)futurepos.Y + 24, footprint.Width, footprint.Height);
 
-            if (LevelManager.LevelObjectCollision(futureFootPrint) || LevelManager.WallCollision(futurepos))
+            if (LevelManager.LevelObjectCollision(futureFootPrint, 0) || LevelManager.WallCollision(futurepos))
             {
 
             }
@@ -344,7 +344,7 @@ namespace Test_Loopguy
                 Rectangle futureFootPrint = new Rectangle((int)dashPos.X, (int)dashPos.Y, footprint.Width, footprint.Height);
 
 
-                if (LevelManager.LevelObjectCollision(futureFootPrint) || LevelManager.WallCollision(dashPos))
+                if (LevelManager.LevelObjectCollision(futureFootPrint, 0) || LevelManager.WallCollision(dashPos))
                 {
                     break;
                 }
@@ -362,19 +362,18 @@ namespace Test_Loopguy
 
         private void CheckMovement(float deltaTime)
         {
-            //test method so player can move diagonally over a wall but its kinda weird so not used currently
             Vector2 futurePosCalc = position + direction * speed * deltaTime;
             Rectangle futureFootPrint = new Rectangle((int)futurePosCalc.X + 12, (int)futurePosCalc.Y + 24, footprint.Width, footprint.Height);
 
             bool bingus = false;
             bool bongus = false;
-            if (LevelManager.LevelObjectCollision(futureFootPrint))
+            if (LevelManager.LevelObjectCollision(futureFootPrint, 0))
             {
-                if(LevelManager.LevelObjectCollision(new Rectangle((int)futurePosCalc.X + 12, (int)position.Y + 24, footprint.Width, footprint.Height)))
+                if(LevelManager.LevelObjectCollision(new Rectangle((int)futurePosCalc.X + 12, (int)position.Y + 24, footprint.Width, footprint.Height), 0))
                 {
                     bingus = true;
                 }
-                if(LevelManager.LevelObjectCollision(new Rectangle((int)position.X + 12, (int)futurePosCalc.Y + 24, footprint.Width, footprint.Height)))
+                if(LevelManager.LevelObjectCollision(new Rectangle((int)position.X + 12, (int)futurePosCalc.Y + 24, footprint.Width, footprint.Height), 0))
                 {
                     bongus = true;
                 }
@@ -479,32 +478,11 @@ namespace Test_Loopguy
                 prevDirection = direction;
             }
 
-            /*
-            Vector2 futurepos = centerPosition + direction * speed * deltaTime + new Vector2(0, 12);
-            Rectangle futureFootPrint = new Rectangle((int)futurepos.X, (int)futurepos.Y, footprint.Width, footprint.Height);
-
-            if (LevelManager.LevelObjectCollision(futureFootPrint))
-            {
-
-            }
-            else
-            {
-                position += direction * speed * deltaTime;
-            }
-            */
             CheckMovement(deltaTime);
 
             LevelManager.CheckGate(this);
             
 
-            //if (WallManager.CheckCollision(centerPosition + direction * speed * deltaTime + new Vector2(0, 12)))
-            {
-                
-            }
-            //else
-            {
-                //position += direction * speed * deltaTime;
-            }
 
             Vector2 velocity = direction * speed;
             float playerVelocityShort = velocity.Length();
@@ -554,15 +532,14 @@ namespace Test_Loopguy
             for (int i = 16; i < 580; i++)
             {
                 Vector2 aimPoint = new Vector2(centerPosition.X + i * gunDirection.X, centerPosition.Y + i * gunDirection.Y);
+                Rectangle aimRect = new Rectangle(aimPoint.ToPoint(), new Point(1,1));
 
                 //Stops laser sight on collision with object
-                /* sorry to comment this out will fix soon
-                if (LevelManager.LevelObjectCollision(aimPoint) || LevelManager.WallCollision(aimPoint))
+                if (LevelManager.LevelObjectCollision(aimRect, 9) || LevelManager.WallCollision(aimPoint))
                 {
                     break;
                 }
                 else
-                */
                 {
                     dotPos = new Vector2(aimPoint.X + (gunDirection.X * 5) - 1, aimPoint.Y + (gunDirection.Y * 5) - 1.5f);
                 }

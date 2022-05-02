@@ -67,6 +67,7 @@ namespace Test_Loopguy
             {
                 position = new Vector2(-99999, -99999);
                 hitBox.X = -100000;
+                footprint.X = -10000;
                 destroyed = true;
                 animation.PlayOnce(0, 200, 70);
                 if(animation.currentFrame.X > 10)

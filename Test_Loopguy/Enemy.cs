@@ -79,15 +79,15 @@ namespace Test_Loopguy
         {
             Vector2 futurePosCalc = position + direction * speed * deltaTime;
             Rectangle futureFootPrintCalc = new Rectangle(footprint.X + (int)futurePosCalc.X, footprint.Y + (int)futurePosCalc.Y, footprint.Width, footprint.Height);
-            if(LevelManager.LevelObjectCollision(futureFootPrintCalc))
+            if(LevelManager.LevelObjectCollision(futureFootPrintCalc, 0))
             {
-                if (!LevelManager.LevelObjectCollision(new Rectangle((int)futurePosCalc.X, (int)position.Y, footprint.Width, footprint.Height)))
+                if (!LevelManager.LevelObjectCollision(new Rectangle((int)futurePosCalc.X, (int)position.Y, footprint.Width, footprint.Height), 0))
                 {
                     position.X = futurePosCalc.X;
                 }
 
 
-                if (!LevelManager.LevelObjectCollision(new Rectangle((int)position.X, (int)futurePosCalc.Y, footprint.Width, footprint.Height)))
+                if (!LevelManager.LevelObjectCollision(new Rectangle((int)position.X, (int)futurePosCalc.Y, footprint.Width, footprint.Height), 0))
                 {
                     position.Y = futurePosCalc.Y;
                 }

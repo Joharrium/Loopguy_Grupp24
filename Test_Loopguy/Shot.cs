@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Test_Loopguy.Content;
 
 namespace Test_Loopguy
 {
@@ -29,6 +30,7 @@ namespace Test_Loopguy
         {
             if (obj.hitBox.Intersects(hitBox))
             {
+                ParticleManager.NewParticle(ParticleSelection.ShotExplosion, position);
                 return true;
             }
             else

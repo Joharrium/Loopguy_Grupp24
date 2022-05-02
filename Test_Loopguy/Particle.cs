@@ -12,6 +12,7 @@ namespace Test_Loopguy.Content
         internal AnimatedSprite animation;
         bool repeating;
         public bool donePlaying = false;
+        protected int animLength = 4;
 
         public Particle(Vector2 position) : base(position)
         {
@@ -24,13 +25,13 @@ namespace Test_Loopguy.Content
             animation.Update(gameTime);
             if(repeating)
             {
-                animation.Play(0, 1000, 60);
+                animation.Play(0, 100, 60);
             }
             else if (!repeating)
             {
-                if (animation.PlayOnce(0, 1000, 60))
+                if (animation.PlayOnce(0, 100, 60))
                 {
-                    if(animation.currentFrame.X > 64)
+                    if(animation.currentFrame.X > animLength)
                     {
                         position = new Vector2(-1000, -1000);
                         donePlaying = true;
@@ -54,6 +55,17 @@ namespace Test_Loopguy.Content
             animation = new AnimatedSprite(TextureManager.spark_small, new Point(16, 16));
             animation.size = new Point(16, 16);
             animation.Position = position;
+        }
+    }
+
+    public class ShotExplosion : Particle
+    {
+        public ShotExplosion(Vector2 position) : base(position)
+        {
+            animation = new AnimatedSprite(TextureManager.shot_explosion, new Point(8, 8));
+            animation.size = new Point(8, 8);
+            animation.Position = position;
+            animLength = 3;
         }
     }
 }
