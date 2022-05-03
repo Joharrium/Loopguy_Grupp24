@@ -194,5 +194,10 @@ namespace Test_Loopguy
         {
             LevelEditor.SelectObject(ObjectSelection.AmmoSmall);
         }
+
+        private void countDownBox_CheckedChanged(object sender, EventArgs e)
+        {
+            LevelManager.countTime = !countDownBox.Checked;
+        }
     }
 }

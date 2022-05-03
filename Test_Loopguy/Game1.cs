@@ -183,6 +183,7 @@ namespace Test_Loopguy
             //DRAW HUD HERE
             Player.ammoBar.Draw(spriteBatch);
             Player.healthBar.Draw(spriteBatch);
+            LevelManager.DrawTimer(spriteBatch);
             spriteBatch.End();
 
             GraphicsDevice.SetRenderTarget(null);

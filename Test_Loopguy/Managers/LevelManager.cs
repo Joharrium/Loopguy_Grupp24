@@ -10,6 +10,9 @@ namespace Test_Loopguy
 {
     static public class LevelManager
     {
+        public static bool countTime = false;
+        private static float timeLeft = 600;
+        private static float startingTime = 600;
         private static Level currentLevel;
         private static int queuedLevel;
         private static List<Level> loadedLevels = new List<Level>();
@@ -62,6 +65,25 @@ namespace Test_Loopguy
             }
             
             currentLevel.Update(gameTime, player);
+            if(countTime)
+            timeLeft -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if(timeLeft < 0)
+            {
+                Reset();
+            }
+        }
+
+        public static void DrawTimer(SpriteBatch spriteBatch)
+        {
+            string add = "";
+            if(Math.Truncate(timeLeft%60) < 10)
+            {
+                add = "0";
+            }
+            string calculateTimer = (((timeLeft - timeLeft%60) / 60) + ":" + add + Math.Truncate(timeLeft%60)).ToString();
+            Vector2 pos = new Vector2(Game1.windowX - 48, 4);
+
+            spriteBatch.DrawString(TextureManager.UI_menuFont, calculateTimer, pos, Color.White);
         }
         public static void Draw(SpriteBatch spriteBatch)
         {
@@ -82,6 +104,7 @@ namespace Test_Loopguy
             Level level1 = LoadLevel(1);
             currentLevel = level1;
             EntityManager.player.Reset( new Vector2(64, 64));
+            timeLeft = startingTime;
 
             foreach (Level l in loadedLevels)
             {

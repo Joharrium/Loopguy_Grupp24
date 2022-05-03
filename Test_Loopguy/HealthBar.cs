@@ -56,7 +56,7 @@ namespace Test_Loopguy
             this.maxValue = maxValue;
             outline = TextureManager.ammobar_outline;
             fill = TextureManager.ammobar_fill;
-            fill_bg = TextureManager.notex;
+            fill_bg = TextureManager.ammobar_fill_bg;
             srcRectangle = new Rectangle(4, 3, 68, 20);
             divisorValue = 68;
             offset = new Vector2(4, 3);
