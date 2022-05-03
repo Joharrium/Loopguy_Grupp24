@@ -33,7 +33,7 @@ namespace Test_Loopguy
         {
             get
             {
-                return new Rectangle((int)Position.X - 50, (int)Position.Y + 15, texture.Width, texture.Height);
+                return new Rectangle((int)Position.X - 25, (int)Position.Y + 2, texture.Width, texture.Height);
             }
         }
 
