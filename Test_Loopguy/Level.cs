@@ -31,8 +31,6 @@ namespace Test_Loopguy
             idleSongs.AddRange(LevelManager.SongLoad(id, false));
             combatSongs.AddRange(LevelManager.SongLoad(id, true));
 
-            this.levelObjects.Add(new SmallAmmoPickup(new Vector2(300, 300)));
-
         }
 
         public void RefreshEdges()
