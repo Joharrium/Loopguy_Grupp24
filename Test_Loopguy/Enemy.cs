@@ -176,7 +176,6 @@ namespace Test_Loopguy
         //protected projectile 
         
         //shit idk
-        List<Shot> projectiles = new List<Shot>();
 
         public RangedEnemy(Vector2 position) : base(position)
         {
@@ -186,10 +185,6 @@ namespace Test_Loopguy
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            foreach(Shot p in projectiles)
-            {
-                p.Update(gameTime);
-            }
         }
 
         protected virtual void AttackBehavior()
@@ -257,11 +252,6 @@ namespace Test_Loopguy
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            foreach (Shot p in projectiles)
-            {
-                p.Draw(spriteBatch);
-                p.DrawRotation(spriteBatch);
-            }
         }
     }
 

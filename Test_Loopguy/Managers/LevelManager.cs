@@ -182,12 +182,12 @@ namespace Test_Loopguy
             objectsToAdd.Add(lo);
         }
 
-        internal static void AddEnemyProjectile(Shot projectile)
+        internal static void AddEnemyProjectile(Projectile projectile)
         {
             currentLevel.enemyProjectiles.Add(projectile);
         }
 
-        internal static void AddPlayerProjectile(Shot projectile)
+        internal static void AddPlayerProjectile(Projectile projectile)
         {
             currentLevel.playerProjectiles.Add(projectile);
         }

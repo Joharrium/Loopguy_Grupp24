@@ -44,8 +44,6 @@ namespace Test_Loopguy
         bool shooting;
         bool dashing;
 
-        //unused I think so should be cleaned up
-        List<Shot> shots;
 
         //footprint rectangle
         Rectangle footprint;
@@ -87,8 +85,6 @@ namespace Test_Loopguy
 
                 keys = keysToAdd;
             }
-
-            shots = new List<Shot>();
         }
 
         public override void Update(GameTime gameTime)
@@ -181,11 +177,6 @@ namespace Test_Loopguy
                 }
             }
 
-            foreach (Shot shot in shots)
-            {
-                shot.Update(gameTime);
-            }
-
             sprite.Position = position;
             gunSprite.Position = new Vector2(position.X - 16, position.Y - 16);
             meleeSprite.Position = new Vector2(position.X - 8, position.Y - 8);
@@ -235,12 +226,6 @@ namespace Test_Loopguy
                     }
                 }
             }
-
-            foreach(Shot shot in shots)
-            {
-                shot.DrawRotation(spriteBatch);
-            }
-
             //healthBar.Draw(spriteBatch);
         }
 

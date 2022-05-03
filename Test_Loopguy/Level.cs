@@ -14,8 +14,8 @@ namespace Test_Loopguy
         public Tile[,] tiles;
         public List<LevelObject> levelObjects;
         internal List<Enemy> enemies;
-        internal List<Shot> enemyProjectiles;
-        internal List<Shot> playerProjectiles;
+        internal List<Projectile> enemyProjectiles;
+        internal List<Projectile> playerProjectiles;
         internal List<Song> idleSongs = new List<Song>();
         internal List<Song> combatSongs = new List<Song>();
 
@@ -26,8 +26,8 @@ namespace Test_Loopguy
             this.levelObjects = levelObjects;
             this.tiles = tiles;
             this.enemies = enemies;
-            enemyProjectiles = new List<Shot>();
-            playerProjectiles = new List<Shot>();
+            enemyProjectiles = new List<Projectile>();
+            playerProjectiles = new List<Projectile>();
             idleSongs.AddRange(LevelManager.SongLoad(id, false));
             combatSongs.AddRange(LevelManager.SongLoad(id, true));
 
@@ -43,11 +43,11 @@ namespace Test_Loopguy
 
         internal void Update(GameTime gameTime, Player player)
         {
-            List<Shot> projectilesToRemove = new List<Shot>();
+            List<Projectile> projectilesToRemove = new List<Projectile>();
             DestructibleUpdate(gameTime);
             EnemyUpdate(gameTime);
 
-            foreach (Shot s in enemyProjectiles)
+            foreach (Projectile s in enemyProjectiles)
             {
                 s.Update(gameTime);
                 if(s.CheckCollision(player))
@@ -71,7 +71,7 @@ namespace Test_Loopguy
                     
                 }
             }
-            foreach (Shot s in playerProjectiles)
+            foreach (Projectile s in playerProjectiles)
             {
                 s.Update(gameTime);
                 
@@ -101,7 +101,7 @@ namespace Test_Loopguy
                 d.Update(gameTime);
             }
 
-            foreach (Shot s in projectilesToRemove)
+            foreach (Projectile s in projectilesToRemove)
             {
                 if (playerProjectiles.Contains(s))
                 {
@@ -124,11 +124,11 @@ namespace Test_Loopguy
         private void DestructibleUpdate(GameTime gameTime)
         {
             List<Destructible> destructiblesToRemove = new List<Destructible>();
-            List<Shot> projectilesToRemove = new List<Shot>();
+            List<Projectile> projectilesToRemove = new List<Projectile>();
 
             foreach (Destructible lo in levelObjects.OfType<Destructible>())
             {
-                foreach (Shot s in playerProjectiles)
+                foreach (Projectile s in playerProjectiles)
                 {
                     if (s.CheckCollision(lo))
                     {
@@ -136,7 +136,7 @@ namespace Test_Loopguy
                         projectilesToRemove.Add(s);
                     }
                 }
-                foreach (Shot s in enemyProjectiles)
+                foreach (Projectile s in enemyProjectiles)
                 {
                     if (s.CheckCollision(lo))
                     {
@@ -167,7 +167,7 @@ namespace Test_Loopguy
                 levelObjects.Remove(d);
             }
 
-            foreach (Shot s in projectilesToRemove)
+            foreach (Projectile s in projectilesToRemove)
             {
                 if(playerProjectiles.Contains(s))
                 {
@@ -183,12 +183,12 @@ namespace Test_Loopguy
         private void EnemyUpdate(GameTime gameTime)
         {
             List<Enemy> enemiesToRemove = new List<Enemy>();
-            List<Shot> projectilesToRemove = new List<Shot>();
+            List<Projectile> projectilesToRemove = new List<Projectile>();
             if (!Game1.editLevel)
             {
                 foreach (Enemy e in enemies)
                 {
-                    foreach(Shot s in playerProjectiles)
+                    foreach(Projectile s in playerProjectiles)
                     {
                         if(s.CheckCollision(e))
                         {
@@ -216,7 +216,7 @@ namespace Test_Loopguy
             {
                 enemies.Remove(e);
             }
-            foreach (Shot s in projectilesToRemove)
+            foreach (Projectile s in projectilesToRemove)
             {
                 if (playerProjectiles.Contains(s))
                 {

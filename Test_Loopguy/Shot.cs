@@ -7,30 +7,32 @@ using Test_Loopguy.Content;
 
 namespace Test_Loopguy
 {
-    internal class Shot : MovingObject
+    internal class Projectile : MovingObject
     {
-        AnimatedSprite sprite;
-        float rotation;
+        protected AnimatedSprite sprite;
+        protected float rotation;
+        protected ParticleSelection particleType;
 
-        public Shot(Vector2 position, Vector2 direction, float angle) :
+        public Projectile(Vector2 position, Vector2 direction, float angle) :
             base(position)
         {
             this.position = position;
             this.direction = direction;
-            
+
             rotation = angle;
 
             sprite = new AnimatedSprite(TextureManager.shot, new Point(8, 8));
             sprite.Position = position;
 
             speed = 300;
+            particleType = ParticleSelection.ShotExplosion;
         }
 
         public bool CheckCollision(GameObject obj)
         {
             if (obj.hitBox.Intersects(hitBox))
             {
-                ParticleManager.NewParticle(ParticleSelection.ShotExplosion, position);
+                ParticleManager.NewParticle(particleType, position);
                 return true;
             }
             else
@@ -46,7 +48,7 @@ namespace Test_Loopguy
 
             sprite.Position = position;
             sprite.Play(0, 4, 50);
-            sprite.Update(gameTime);    
+            sprite.Update(gameTime);
 
             base.Movement(deltaTime);
         }
@@ -55,12 +57,17 @@ namespace Test_Loopguy
         {
             sprite.DrawRotation(spriteBatch, rotation);
         }
-
-        
-        public void DrawRotation(SpriteBatch spriteBatch)
+    }
+    internal class Shot : Projectile
+    {
+        public Shot(Vector2 position, Vector2 direction, float angle) :
+            base(position, direction, angle)
         {
-            sprite.DrawRotation(spriteBatch, rotation);
+            sprite = new AnimatedSprite(TextureManager.shot, new Point(8, 8));
+            sprite.Position = position;
+
+            speed = 300;
+            particleType = ParticleSelection.ShotExplosion;
         }
-        
     }
 }
