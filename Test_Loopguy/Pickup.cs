@@ -16,6 +16,7 @@ namespace Test_Loopguy
         private float wave = 0;
         private float waveadjust = 0;
         protected SoundEffect pickupSound;
+        protected bool pickupAttempted;
         public Pickup(Vector2 position) : base(position)
         {
             this.position = position;
@@ -28,6 +29,11 @@ namespace Test_Loopguy
             Wave();
         }
 
+        public void SetPickupAttempted()
+        {
+            pickupAttempted = true;
+        }
+
         private void Wave()
         {
             wave += 0.15F;
@@ -38,19 +44,24 @@ namespace Test_Loopguy
 
         private void PickUp()
         {
-            if(pickupBox.Contains(EntityManager.player.centerPosition) && !pickedUp )
+            if(pickupBox.Contains(EntityManager.player.centerPosition) && !pickedUp)
             {
-                ParticleManager.NewParticle(ParticleSelection.SparkSmall, position);
-                position.X = -10000;
-                position.Y = -10000;
-                pickedUp = true;
-                Effect();
-                if(pickupSound != null)
+                if(!pickupAttempted)
                 {
-                    Audio.PlaySound(pickupSound);
-                }
-                
-                
+                    ParticleManager.NewParticle(ParticleSelection.SparkSmall, position);
+                    position.X = -10000;
+                    position.Y = -10000;
+                    pickedUp = true;
+                    Effect();
+                    if (pickupSound != null)
+                    {
+                        Audio.PlaySound(pickupSound);
+                    }
+                }  
+            }
+            else
+            {
+                pickupAttempted = false;
             }
         }
 
@@ -116,7 +127,17 @@ namespace Test_Loopguy
         }
         protected override void Effect()
         {
-            EntityManager.player.AddAmmo(ammoAmount);
+            if (EntityManager.player.AddAmmo(ammoAmount))
+            {
+
+            }
+            else
+            {
+                Audio.PlaySound(Audio.meepmerp);
+                SmallAmmoPickup newPickup = new SmallAmmoPickup(EntityManager.player.centerPosition);
+                newPickup.SetPickupAttempted();
+                LevelManager.QueueAddObject(newPickup);
+            }
         }
     }
 
@@ -149,7 +170,10 @@ namespace Test_Loopguy
             else
             {
                 Audio.PlaySound(Audio.meepmerp);
-                LevelManager.QueueAddObject(new SmallHealthPickup(EntityManager.player.centerPosition));
+
+                SmallHealthPickup newPickup = new SmallHealthPickup(EntityManager.player.centerPosition);
+                newPickup.SetPickupAttempted();
+                LevelManager.QueueAddObject(newPickup);
             }
         }
     }

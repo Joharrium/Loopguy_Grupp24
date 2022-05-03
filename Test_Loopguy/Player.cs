@@ -282,13 +282,22 @@ namespace Test_Loopguy
             }
         }
 
-        public void AddAmmo(int ammoToAdd)
+        public bool AddAmmo(int ammoToAdd)
         {
-            ammo += ammoToAdd;
-            if(ammo > maxAmmo)
+            if(ammo >= maxAmmo)
             {
-                ammo = maxAmmo;
+                return false;
             }
+            else
+            {
+                ammo += ammoToAdd;
+                if (ammo > maxAmmo)
+                {
+                    ammo = maxAmmo;
+                }
+                return true;
+            }
+            
         }
 
         public void Melee(float deltaTime)
