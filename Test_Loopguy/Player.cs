@@ -99,7 +99,7 @@ namespace Test_Loopguy
             centerPosition = new Vector2(position.X + sprite.size.X / 2, position.Y + sprite.size.Y / 2);
 
             healthBar.UpdateBar(health);
-            ammoBar.SetCurrentValue(new Vector2(2, 40), ammo);
+            ammoBar.SetCurrentValue(new Vector2(2, 38), ammo);
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
