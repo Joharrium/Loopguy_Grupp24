@@ -174,8 +174,8 @@ namespace Test_Loopguy
 
             StateManager.Draw(spriteBatch); //Flytta denna samt kör allt via StateManager
 
-            //Color cursorColor = new Color(200, 200, 200, 200);
-            //spriteBatch.Draw(TextureManager.cursor, new Vector2(mousePos.X - TextureManager.cursor.Width / 2, mousePos.Y - TextureManager.cursor.Height / 2), cursorColor);
+            Color cursorColor = new Color(200, 200, 200, 200);
+            spriteBatch.Draw(TextureManager.cursor, new Vector2(mousePos.X - TextureManager.cursor.Width / 2, mousePos.Y - TextureManager.cursor.Height / 2), cursorColor);
             //player.Draw(spriteBatch);
 
             spriteBatch.End();
