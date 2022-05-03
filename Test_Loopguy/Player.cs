@@ -330,17 +330,7 @@ namespace Test_Loopguy
                 direction.Y = 0;
             }
 
-            Vector2 futurepos = centerPosition + direction * speed * deltaTime + new Vector2(0, 12);
-            Rectangle futureFootPrint = new Rectangle((int)futurepos.X, (int)futurepos.Y + 24, footprint.Width, footprint.Height);
-
-            if (LevelManager.LevelObjectCollision(futureFootPrint, 0) || LevelManager.WallCollision(futurepos))
-            {
-
-            }
-            else
-            {
-                position += direction * speed / 2 * deltaTime;
-            }
+            CheckMovement(deltaTime);
             
             //The PlayOnce method returns false when the animation is done playing!!!
             attacking = meleeSprite.PlayOnce(rowInt, 4, frameTime);
