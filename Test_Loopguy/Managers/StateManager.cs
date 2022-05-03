@@ -20,7 +20,7 @@ namespace Test_Loopguy
             Load,
         }
 
-        public static GameState currentState = GameState.InGame;
+        public static GameState currentState = GameState.Menu;
 
         public static void Update(GameTime gameTime)
         {
@@ -74,6 +74,17 @@ namespace Test_Loopguy
                     //EntityManager.Draw(spriteBatch);
                     ParticleManager.Draw(spriteBatch);
                     //Player.healthBar.Draw(spriteBatch);
+
+                    Color cursorColor = new Color(200, 200, 200, 200);
+                    spriteBatch.Draw(TextureManager.cursor, new Vector2(Game1.mousePos.X - TextureManager.cursor.Width / 2, Game1.mousePos.Y - TextureManager.cursor.Height / 2), cursorColor);
+
+                    spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
+                    //DRAW HUD HERE
+                    Player.ammoBar.Draw(spriteBatch);
+                    Player.healthBar.Draw(spriteBatch);
+                    LevelManager.DrawTimer(spriteBatch);
+                    spriteBatch.End();
+
                     break;
                 case GameState.InEditor:
                     break;
