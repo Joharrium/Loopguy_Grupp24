@@ -41,11 +41,15 @@ namespace Test_Loopguy
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
+
+
             spriteBatch.Draw(fill_bg, position, Color.White);
 
             spriteBatch.Draw(fill, position + offset, srcRectangle, Color.White);
             spriteBatch.Draw(outline, position, Color.White);
+
+            spriteBatch.End();
         }
     }
 
@@ -93,8 +97,9 @@ namespace Test_Loopguy
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            
-            
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
+
+
             spriteBatch.Draw(fill_bg, position, Color.White);
             if(maxValue != value)
             {
@@ -103,6 +108,8 @@ namespace Test_Loopguy
             
             spriteBatch.Draw(outline, position, Color.White);
             spriteBatch.Draw(inline, position, Color.White);
+
+            spriteBatch.End();
         }
 
     }

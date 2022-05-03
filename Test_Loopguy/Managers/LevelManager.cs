@@ -75,6 +75,9 @@ namespace Test_Loopguy
 
         public static void DrawTimer(SpriteBatch spriteBatch)
         {
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
+
+
             string add = "";
             if(Math.Truncate(timeLeft%60) < 10)
             {
@@ -84,6 +87,8 @@ namespace Test_Loopguy
             Vector2 pos = new Vector2(Game1.windowX - 48, 4);
 
             spriteBatch.DrawString(TextureManager.UI_menuFont, calculateTimer, pos, Color.White);
+
+            spriteBatch.End();
         }
         public static void Draw(SpriteBatch spriteBatch)
         {
