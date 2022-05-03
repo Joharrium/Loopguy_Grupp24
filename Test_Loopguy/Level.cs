@@ -30,7 +30,8 @@ namespace Test_Loopguy
             playerProjectiles = new List<Shot>();
             idleSongs.AddRange(LevelManager.SongLoad(id, false));
             combatSongs.AddRange(LevelManager.SongLoad(id, true));
-            
+
+            this.levelObjects.Add(new SmallAmmoPickup(new Vector2(300, 300)));
 
         }
 
@@ -114,6 +115,12 @@ namespace Test_Loopguy
                 }
             }
 
+            foreach(LevelObject lo in LevelManager.objectsToAdd)
+            {
+                levelObjects.Add(lo);
+            }
+
+            LevelManager.objectsToAdd.Clear();
         }
 
         private void DestructibleUpdate(GameTime gameTime)

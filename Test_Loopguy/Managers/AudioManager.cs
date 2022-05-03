@@ -29,8 +29,10 @@ namespace Test_Loopguy
 
 
         //sound
-        public static SoundCollection lasergun;
+        public static SoundCollection lasergun, footstepsMetal, footstepsStone, footstepsWood, footstepsGrass;
         public static SoundEffect meepmerp, swing, open, deny, dash, door_hiss_sound, box_destroy, shrub_destroy, keypickup, healing, player_hit;
+
+        //public static SoundEffect 
 
         public static SoundEffect EnergyGun_Shoot1A, EnergyGun_Shoot1B, EnergyGun_Shoot1C, EnergyGun_Shoot1D, EnergyGun_Shoot2A, EnergyGun_Shoot2B, EnergyGun_Shoot2C, EnergyGun_Shoot2D;
         static public void Load(ContentManager Content)

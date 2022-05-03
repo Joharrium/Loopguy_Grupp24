@@ -181,7 +181,7 @@ namespace Test_Loopguy
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
             //DRAW HUD HERE
-
+            Player.ammoBar.Draw(spriteBatch);
             Player.healthBar.Draw(spriteBatch);
             spriteBatch.End();
 

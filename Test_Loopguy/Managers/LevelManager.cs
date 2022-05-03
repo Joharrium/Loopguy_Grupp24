@@ -17,7 +17,8 @@ namespace Test_Loopguy
         private static double loadTimer = 80;
         public static bool loadStarted = false;
         const double LOADTIMER = 80;
-        
+
+        public static List<LevelObject> objectsToAdd = new List<LevelObject>();
 
         private static Player player;
         private static Vector2 target;
@@ -153,6 +154,10 @@ namespace Test_Loopguy
             
         }
 
+        internal static void QueueAddObject(LevelObject lo)
+        {
+            objectsToAdd.Add(lo);
+        }
 
         internal static void AddEnemyProjectile(Shot projectile)
         {

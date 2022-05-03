@@ -11,6 +11,9 @@ namespace Test_Loopguy
     {
         public int health = 5;
         private int maxHealth = 5;
+
+        private int ammo = 5;
+        private int maxAmmo = 5;
         AnimatedSprite sprite;
         AnimatedSprite gunSprite;
         AnimatedSprite meleeSprite;
@@ -25,6 +28,7 @@ namespace Test_Loopguy
 
         public bool usedGate;
         static public PlayerHealthBar healthBar;
+        static public AmmoBar ammoBar;
 
         float gunAngle;
         float aimAngle;
@@ -58,6 +62,7 @@ namespace Test_Loopguy
             dirInt = 2;
             LoadKeys();
             healthBar = new PlayerHealthBar(5);
+            ammoBar = new AmmoBar(5);
             footprint = new Rectangle((int)position.X, (int)position.Y + 24, 8, 8);
             
         }
@@ -94,6 +99,7 @@ namespace Test_Loopguy
             centerPosition = new Vector2(position.X + sprite.size.X / 2, position.Y + sprite.size.Y / 2);
 
             healthBar.UpdateBar(health);
+            ammoBar.SetCurrentValue(new Vector2(2, 40), ammo);
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -124,7 +130,7 @@ namespace Test_Loopguy
                     Game1.camera.stabilize = true;
 
                     //SHOOTING
-                    if (InputReader.Shoot() && !shooting)
+                    if (InputReader.Shoot() && !shooting && ammo > 0)
                     {
                         gunSprite.currentFrame.X = 0;
                         gunSprite.timeSinceLastFrame = 0;
@@ -137,6 +143,7 @@ namespace Test_Loopguy
                         //Audio.PlaySound(Audio.meepmerp);
                         Audio.lasergun.PlayRandomSound();
                         shooting = true;
+                        ammo--; ;
                     }
 
                     if (shooting)
@@ -272,8 +279,15 @@ namespace Test_Loopguy
                 }
                 return true;
             }
-            
-            
+        }
+
+        public void AddAmmo(int ammoToAdd)
+        {
+            ammo += ammoToAdd;
+            if(ammo > maxAmmo)
+            {
+                ammo = maxAmmo;
+            }
         }
 
         public void Melee(float deltaTime)

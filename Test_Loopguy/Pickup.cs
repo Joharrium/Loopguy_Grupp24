@@ -107,12 +107,50 @@ namespace Test_Loopguy
         }
     }
 
+    public class AmmoPickup : Pickup
+    {
+        protected int ammoAmount;
+        public AmmoPickup(Vector2 position) : base(position)
+        {
+
+        }
+        protected override void Effect()
+        {
+            EntityManager.player.AddAmmo(ammoAmount);
+        }
+    }
+
+    public class SmallAmmoPickup : AmmoPickup
+    {
+        public SmallAmmoPickup(Vector2 position) : base(position)
+        {
+            ammoAmount = 1;
+            hitBox = Rectangle.Empty;
+            texture = TextureManager.medkit;
+            sourceRectangle = new Rectangle(0, 0, 16, 16);
+        }
+
+    }
+
     public class HealthPickup : Pickup
     {
         protected int healAmount;
         public HealthPickup(Vector2 position) : base(position)
         {
 
+        }
+
+        protected override void Effect()
+        {
+            if (EntityManager.player.HealDamage(healAmount))
+            {
+
+            }
+            else
+            {
+                Audio.PlaySound(Audio.meepmerp);
+                LevelManager.QueueAddObject(new SmallHealthPickup(EntityManager.player.centerPosition));
+            }
         }
     }
 
@@ -127,17 +165,6 @@ namespace Test_Loopguy
             sourceRectangle = new Rectangle(0, 0, 16, 16);
         }
         
-        protected override void Effect()
-        {
-            if(EntityManager.player.HealDamage(healAmount))
-            {
-
-            }
-            else
-            {
-                Audio.PlaySound(Audio.meepmerp);
-                //LevelManager.ObjectAdd(new SmallHealthPickup(EntityManager.player.centerPosition));
-            }
-        }
+        
     }
 }

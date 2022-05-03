@@ -12,6 +12,7 @@ namespace Test_Loopguy
         protected float rotation;
         protected SpriteEffects spriteEffects;
         protected TileEdge edges;
+        protected SoundCollection footsteps;
         public Tile(Vector2 position) : base(position)
         {
             this.position = position;

@@ -125,5 +125,5 @@ ShrubBig,154,228
 Door,272,0,2
 DoorSliding,400,0,3
 Door,300,300,1
-KeyPickup,343,136,3,False
-KeyPickup,200,214,2,False
+KeyPickup,343,152,3,False
+KeyPickup,200,230,2,False

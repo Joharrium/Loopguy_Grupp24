@@ -267,6 +267,30 @@
 /processorParam:TextureFormat=Compressed
 /build:gfx/fonts/menuFont.spritefont
 
+#begin gfx/interface/ammobar_fill.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/interface/ammobar_fill.png
+
+#begin gfx/interface/ammobar_outline.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/interface/ammobar_outline.png
+
 #begin gfx/interface/black_screenlol.png
 /importer:TextureImporter
 /processor:TextureProcessor
