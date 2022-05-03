@@ -189,5 +189,10 @@ namespace Test_Loopguy
         {
             LevelEditor.SelectObject(ObjectSelection.HealingSmall);
         }
+
+        private void ammoSmallSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.AmmoSmall);
+        }
     }
 }

@@ -13,11 +13,13 @@ namespace Test_Loopguy
     }
     public enum ObjectSelection
     {
-        Box, Barrel, Pot, ShrubSmall, TreeSmall, BoxOpen, TreeBig, ShrubBig, DoorWood, KeycardRed, DoorSliding, BarrelDestructible, HealingSmall
+        Box, Barrel, Pot, ShrubSmall, TreeSmall, BoxOpen, TreeBig, ShrubBig, DoorWood, 
+        KeycardRed, DoorSliding, BarrelDestructible, HealingSmall, AmmoSmall
     }
     public enum TileSelection
     {
-        Grass, Dirt, GrayBrick, TilesCheckeredGray, TilesCheckeredBrown, TilesBigDark, TilesBigLight, TileMetal, WallMetal, CarpetWorn, DrywallWorn
+        Grass, Dirt, GrayBrick, TilesCheckeredGray, TilesCheckeredBrown, TilesBigDark, 
+        TilesBigLight, TileMetal, WallMetal, CarpetWorn, DrywallWorn
     }
 
     public enum EnemySelection
@@ -134,6 +136,10 @@ namespace Test_Loopguy
 
                             case ObjectSelection.HealingSmall:
                                 LevelManager.ObjectAdd(new SmallHealthPickup(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            case ObjectSelection.AmmoSmall:
+                                LevelManager.ObjectAdd(new SmallAmmoPickup(Game1.mousePos - new Vector2(8, 8)));
                                 break;
 
                             default:
@@ -277,18 +283,6 @@ namespace Test_Loopguy
 
             return levelObjects;
         }
-        
-        /*
-        public static bool LevelObjectCollision(Vector2 position)
-        {
-            return currentLevel.LevelObjectCollision(position);
-        }
-
-        public static bool WallCollision(Vector2 position)
-        {
-            return currentLevel.WallCollision(position);
-        }
-        */
 
         private static LevelObject ObjectCreator(string name, Vector2 pos)
         {
@@ -310,12 +304,5 @@ namespace Test_Loopguy
                     return null;
             }
         }
-
-        /*
-        private static List<Enemy> EnemyLoad(int id)
-        {
-            
-        }
-        */
     }
 }

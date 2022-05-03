@@ -126,7 +126,7 @@ namespace Test_Loopguy
         {
             ammoAmount = 1;
             hitBox = Rectangle.Empty;
-            texture = TextureManager.medkit;
+            texture = TextureManager.ammo;
             sourceRectangle = new Rectangle(0, 0, 16, 16);
         }
 

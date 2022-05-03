@@ -247,7 +247,8 @@ namespace Test_Loopguy
         public void Reset(Vector2 position)
         {
             this.position = position;
-            health = maxHealth; 
+            health = maxHealth;
+            ammo = maxAmmo;
             keys.Clear(); 
             LoadKeys();
         }

@@ -473,6 +473,20 @@ namespace Test_Loopguy
                 case "BarrelDestructible":
                     return new BarrelDestructible(pos);
 
+                case "SmallHealthPickup":
+                    return new SmallHealthPickup(pos);
+
+                case "SmallAmmoPickup":
+                    return new SmallAmmoPickup(pos);
+
+                    /*
+                case "BarrelDestructible":
+                    return new BarrelDestructible(pos);
+
+                case "BarrelDestructible":
+                    return new BarrelDestructible(pos);
+                    */
+
                 default:
                     return null;
                     

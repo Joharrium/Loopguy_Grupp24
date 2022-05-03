@@ -12,7 +12,7 @@ namespace Test_Loopguy
             carpet_worn, tile_metal, tile_metal_copper, wall_metal, wall_worn, tile_metal_bright, grass_edge;
         // object files
         public static Texture2D boxOpen, barrel, pot, shrub_big, shrub_small, tree_big, tree_small, fernDestroyed, door, door_open, 
-            keycard, door_sliding, door_sliding_open, barrelDestroyed, medkit, console;
+            keycard, door_sliding, door_sliding_open, barrelDestroyed, medkit, console, ammo;
         // ui files
         public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door, 
             healthbar_small_outline, healthbar_small_fill_bg, healthbar_small_fill,
@@ -89,6 +89,8 @@ namespace Test_Loopguy
             barrelDestroyed = c.Load<Texture2D>("gfx/objects/barrel_destructible");
             medkit = c.Load<Texture2D>("gfx/objects/medkit");
             console = c.Load<Texture2D>("gfx/objects/console_thing");
+            ammo = c.Load<Texture2D>("gfx/objects/ammo");
+
         }
 
         private static void LoadUI(ContentManager c)
