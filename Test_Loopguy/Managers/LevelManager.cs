@@ -328,6 +328,10 @@ namespace Test_Loopguy
                     {
                         tiles[i, j] = new WornWall(tempPos);
                     }
+                    if (terrainStrings[j][i] == 'h')
+                    {
+                        tiles[i, j] = new TileMetal(tempPos);
+                    }
                 }
             }
 
@@ -460,16 +464,12 @@ namespace Test_Loopguy
 
         internal static Enemy EnemyCreator(string name, Vector2 pos)
         {
-            switch (name)
+            return name switch
             {
-                case "TestEnemyRanged":
-                    return new TestEnemyRanged(pos);
-
-                case "TestEnemy":
-                    return new TestEnemy(pos);
-                default:
-                    return new TestEnemy(pos);
-            }
+                "TestEnemyRanged" => new TestEnemyRanged(pos),
+                "TestEnemy" => new TestEnemy(pos),
+                _ => new TestEnemy(pos),
+            };
         }
         public static LevelObject ObjectCreator(string name, Vector2 pos)
         {
@@ -585,6 +585,10 @@ namespace Test_Loopguy
                     if (currentLevel.tiles[j, i] is WornWall)
                     {
                         types[j, i] = 'f';
+                    }
+                    if (currentLevel.tiles[j, i] is TileMetal)
+                    {
+                        types[j, i] = 'h';
                     }
                 }
             }

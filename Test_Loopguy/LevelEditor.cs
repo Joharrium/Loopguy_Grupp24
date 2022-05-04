@@ -68,7 +68,6 @@ namespace Test_Loopguy
             selectedTile = tile;
         }
 
-        //have list of levels?
         public static void Update(GameTime gameTime)
         {
             if(InputReader.RightClick())
@@ -129,7 +128,7 @@ namespace Test_Loopguy
                                 break;
 
                             case ObjectSelection.KeycardRed:
-                                LevelManager.ObjectAdd(new KeyPickup(Game1.mousePos - new Vector2(8, 8), doorRequiredKey, keyPermanent));
+                                LevelManager.ObjectAdd(new KeyPickup(Game1.mousePos - new Vector2(8, 8), keyID, keyPermanent));
                                 break;
 
                             case ObjectSelection.BarrelDestructible:
@@ -191,6 +190,7 @@ namespace Test_Loopguy
                             default:
                                 break;
                         }
+
                         break;
 
                     case Selection.Enemy:
@@ -343,52 +343,6 @@ namespace Test_Loopguy
             File.WriteAllLines(path + "objectmap.txt", objects);
             File.WriteAllLines(path + "tilemap.txt", tiles);
             File.WriteAllLines(path + "enemymap.txt", enemies);
-        }
-
-        private static List<LevelObject> ObjectLoad(int id)
-        {
-            List<LevelObject> levelObjects = new List<LevelObject>();
-            levelObjects.Add(new Box(new Vector2(56, 56)));
-
-            List<string> lines = new List<string>();
-            foreach (string line in System.IO.File.ReadLines(string.Format(@"maps\level{0}\objectmap.txt", id)))
-            {
-                lines.Add(line);
-            }
-
-            for (int i = 0; i<lines.Count; i++)
-            {
-                string[] splitter = lines[i].Split(',');
-                string objectToFind = splitter[0];
-                Vector2 objectPosition = new Vector2(0,0);
-                objectPosition.X = Int32.Parse(splitter[1]);
-                objectPosition.Y = Int32.Parse(splitter[2]);
-                levelObjects.Add(ObjectCreator(objectToFind, objectPosition));
-            }
-            
-
-            return levelObjects;
-        }
-
-        private static LevelObject ObjectCreator(string name, Vector2 pos)
-        {
-            switch (name)
-            {
-                case "Box":
-                    return new Box(pos);
-
-                case "ShrubSmall":
-                    return new ShrubSmall(pos);
-
-                case "TreeBig":
-                    return new TreeBig(pos);
-
-                case "BoxOpen":
-                    return new BoxOpen(pos);
-
-                default:
-                    return null;
-            }
         }
     }
 }

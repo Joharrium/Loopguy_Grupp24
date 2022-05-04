@@ -44,6 +44,7 @@ namespace Test_Loopguy
         internal void Update(GameTime gameTime, Player player)
         {
             List<Projectile> projectilesToRemove = new List<Projectile>();
+            List<Pickup> pickupsToRemove = new List<Pickup>();
             DestructibleUpdate(gameTime);
             EnemyUpdate(gameTime);
 
@@ -95,6 +96,10 @@ namespace Test_Loopguy
             foreach (Pickup p in levelObjects.OfType<Pickup>())
             {
                 p.Update();
+                if(p.pickedUp)
+                {
+                    pickupsToRemove.Add(p);
+                }
             }
             foreach (Door d in levelObjects.OfType<Door>())
             {
@@ -111,6 +116,11 @@ namespace Test_Loopguy
                 {
                     enemyProjectiles.Remove(s);
                 }
+            }
+
+            foreach (Pickup p in pickupsToRemove)
+            {
+                levelObjects.Remove(p);
             }
 
             foreach(LevelObject lo in LevelManager.objectsToAdd)

@@ -8,7 +8,7 @@ namespace Test_Loopguy
 {
     internal class Enemy : MovingObject
     {
-        public AnimatedSprite wahoo;
+        public AnimatedSprite animSprite;
         public int health;
         public int maxHealth;
         protected HealthBar healthBar;
