@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
+using Test_Loopguy.Content;
 
 namespace Test_Loopguy
 {
@@ -259,6 +260,7 @@ namespace Test_Loopguy
             {
                 Audio.PlaySound(Audio.healing);
                 health += healing;
+                ParticleManager.NewParticle(ParticleSelection.HealEffect, position + new Vector2(4,4));
                 if (health > maxHealth)
                 {
                     health = maxHealth;

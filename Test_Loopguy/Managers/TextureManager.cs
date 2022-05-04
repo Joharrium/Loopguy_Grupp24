@@ -23,7 +23,7 @@ namespace Test_Loopguy
         public static Texture2D enemyPlaceholder;
 
         //particles
-        public static Texture2D spark_small, shot_explosion;
+        public static Texture2D spark_small, shot_explosion, heal_effect;
 
         public static void LoadTextures(ContentManager c)
         {
@@ -125,6 +125,7 @@ namespace Test_Loopguy
         {
             spark_small = c.Load<Texture2D>("gfx/particles/spark_small");
             shot_explosion = c.Load<Texture2D>("gfx/particles/shot_explosion");
+            heal_effect = c.Load<Texture2D>("gfx/particles/heal_effect");
         }
     }
 }

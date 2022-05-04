@@ -68,4 +68,15 @@ namespace Test_Loopguy.Content
             animLength = 3;
         }
     }
+
+    public class HealEffect : Particle
+    {
+        public HealEffect(Vector2 position) : base(position)
+        {
+            animation = new AnimatedSprite(TextureManager.heal_effect, new Point(24, 24));
+            animation.size = new Point(24, 24);
+            animation.Position = position;
+            animLength = 3;
+        }
+    }
 }
