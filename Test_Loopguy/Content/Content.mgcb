@@ -741,6 +741,30 @@
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/billboard.png
 
+#begin gfx/objects/assetpack/billboard.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/billboard.png
+
+#begin gfx/objects/assetpack/cabinet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/cabinet.png
+
 #begin gfx/objects/assetpack/cabinet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -764,6 +788,54 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/cardboard_box_stack_small.png
+
+#begin gfx/objects/assetpack/cardboard_box_stack_small.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/cardboard_box_stack_small.png
+
+#begin gfx/objects/assetpack/chair_office_backwards.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/chair_office_backwards.png
+
+#begin gfx/objects/assetpack/chair_office_forward.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/chair_office_forward.png
+
+#begin gfx/objects/assetpack/counter.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/counter.png
 
 #begin gfx/objects/assetpack/counter.png
 /importer:TextureImporter
@@ -789,6 +861,30 @@
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/desk_monitors.png
 
+#begin gfx/objects/assetpack/desk_monitors.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/desk_monitors.png
+
+#begin gfx/objects/assetpack/desk_office.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/desk_office.png
+
 #begin gfx/objects/assetpack/machine_heartbeat_thing.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -801,6 +897,30 @@
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/machine_heartbeat_thing.png
 
+#begin gfx/objects/assetpack/machine_heartbeat_thing.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/machine_heartbeat_thing.png
+
+#begin gfx/objects/assetpack/monitor_wall.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/monitor_wall.png
+
 #begin gfx/objects/assetpack/reception_desk.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -812,6 +932,42 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/reception_desk.png
+
+#begin gfx/objects/assetpack/reception_desk.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/reception_desk.png
+
+#begin gfx/objects/assetpack/server.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/server.png
+
+#begin gfx/objects/assetpack/shelf_archiving.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/shelf_archiving.png
 
 #begin gfx/objects/assetpack/shelf_archiving.png
 /importer:TextureImporter
@@ -837,6 +993,30 @@
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/shelf_archiving_small.png
 
+#begin gfx/objects/assetpack/shelf_archiving_small.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/shelf_archiving_small.png
+
+#begin gfx/objects/assetpack/stocked_shelf.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/stocked_shelf.png
+
 #begin gfx/objects/assetpack/stocked_shelf.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -861,6 +1041,18 @@
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/table_computer_medicine.png
 
+#begin gfx/objects/assetpack/table_computer_medicine.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/table_computer_medicine.png
+
 #begin gfx/objects/assetpack/table_operation.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -872,6 +1064,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/table_operation.png
+
+#begin gfx/objects/assetpack/table_operation.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/table_operation.png
+
+#begin gfx/objects/assetpack/tv.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/tv.png
 
 #begin gfx/objects/assetpack/tv.png
 /importer:TextureImporter

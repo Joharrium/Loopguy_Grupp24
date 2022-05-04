@@ -52,8 +52,12 @@ namespace Test_Loopguy
             this.label1 = new System.Windows.Forms.Label();
             this.mapWidth = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pictureBox17 = new System.Windows.Forms.PictureBox();
-            this.pictureBox18 = new System.Windows.Forms.PictureBox();
+            this.shelfArchivingSelect = new System.Windows.Forms.PictureBox();
+            this.serverSelect = new System.Windows.Forms.PictureBox();
+            this.monitorWallSelect = new System.Windows.Forms.PictureBox();
+            this.deskOfficeSelect = new System.Windows.Forms.PictureBox();
+            this.chairOfficeFwSelect = new System.Windows.Forms.PictureBox();
+            this.chairOfficeBwSelect = new System.Windows.Forms.PictureBox();
             this.counterSelect = new System.Windows.Forms.PictureBox();
             this.cardboardBoxSmallStackSelect = new System.Windows.Forms.PictureBox();
             this.cabinetSelect = new System.Windows.Forms.PictureBox();
@@ -116,8 +120,12 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.dirtSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grassSelect)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shelfArchivingSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.serverSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.monitorWallSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deskOfficeSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chairOfficeFwSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chairOfficeBwSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.counterSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cardboardBoxSmallStackSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cabinetSelect)).BeginInit();
@@ -365,8 +373,12 @@ namespace Test_Loopguy
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.pictureBox17);
-            this.groupBox1.Controls.Add(this.pictureBox18);
+            this.groupBox1.Controls.Add(this.shelfArchivingSelect);
+            this.groupBox1.Controls.Add(this.serverSelect);
+            this.groupBox1.Controls.Add(this.monitorWallSelect);
+            this.groupBox1.Controls.Add(this.deskOfficeSelect);
+            this.groupBox1.Controls.Add(this.chairOfficeFwSelect);
+            this.groupBox1.Controls.Add(this.chairOfficeBwSelect);
             this.groupBox1.Controls.Add(this.counterSelect);
             this.groupBox1.Controls.Add(this.cardboardBoxSmallStackSelect);
             this.groupBox1.Controls.Add(this.cabinetSelect);
@@ -392,23 +404,65 @@ namespace Test_Loopguy
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Objects";
             // 
-            // pictureBox17
+            // shelfArchivingSelect
             // 
-            this.pictureBox17.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox17.Image")));
-            this.pictureBox17.Location = new System.Drawing.Point(216, 307);
-            this.pictureBox17.Name = "pictureBox17";
-            this.pictureBox17.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox17.TabIndex = 19;
-            this.pictureBox17.TabStop = false;
+            this.shelfArchivingSelect.Image = ((System.Drawing.Image)(resources.GetObject("shelfArchivingSelect.Image")));
+            this.shelfArchivingSelect.Location = new System.Drawing.Point(216, 379);
+            this.shelfArchivingSelect.Name = "shelfArchivingSelect";
+            this.shelfArchivingSelect.Size = new System.Drawing.Size(64, 64);
+            this.shelfArchivingSelect.TabIndex = 23;
+            this.shelfArchivingSelect.TabStop = false;
+            this.shelfArchivingSelect.Click += new System.EventHandler(this.shelfArchivingSelect_Click);
             // 
-            // pictureBox18
+            // serverSelect
             // 
-            this.pictureBox18.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox18.Image")));
-            this.pictureBox18.Location = new System.Drawing.Point(146, 307);
-            this.pictureBox18.Name = "pictureBox18";
-            this.pictureBox18.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox18.TabIndex = 18;
-            this.pictureBox18.TabStop = false;
+            this.serverSelect.Image = ((System.Drawing.Image)(resources.GetObject("serverSelect.Image")));
+            this.serverSelect.Location = new System.Drawing.Point(146, 379);
+            this.serverSelect.Name = "serverSelect";
+            this.serverSelect.Size = new System.Drawing.Size(64, 64);
+            this.serverSelect.TabIndex = 22;
+            this.serverSelect.TabStop = false;
+            this.serverSelect.Click += new System.EventHandler(this.serverSelect_Click);
+            // 
+            // monitorWallSelect
+            // 
+            this.monitorWallSelect.Image = ((System.Drawing.Image)(resources.GetObject("monitorWallSelect.Image")));
+            this.monitorWallSelect.Location = new System.Drawing.Point(75, 379);
+            this.monitorWallSelect.Name = "monitorWallSelect";
+            this.monitorWallSelect.Size = new System.Drawing.Size(64, 64);
+            this.monitorWallSelect.TabIndex = 21;
+            this.monitorWallSelect.TabStop = false;
+            this.monitorWallSelect.Click += new System.EventHandler(this.monitorWallSelect_Click);
+            // 
+            // deskOfficeSelect
+            // 
+            this.deskOfficeSelect.Image = ((System.Drawing.Image)(resources.GetObject("deskOfficeSelect.Image")));
+            this.deskOfficeSelect.Location = new System.Drawing.Point(6, 379);
+            this.deskOfficeSelect.Name = "deskOfficeSelect";
+            this.deskOfficeSelect.Size = new System.Drawing.Size(64, 64);
+            this.deskOfficeSelect.TabIndex = 20;
+            this.deskOfficeSelect.TabStop = false;
+            this.deskOfficeSelect.Click += new System.EventHandler(this.deskOfficeSelect_Click);
+            // 
+            // chairOfficeFwSelect
+            // 
+            this.chairOfficeFwSelect.Image = ((System.Drawing.Image)(resources.GetObject("chairOfficeFwSelect.Image")));
+            this.chairOfficeFwSelect.Location = new System.Drawing.Point(216, 307);
+            this.chairOfficeFwSelect.Name = "chairOfficeFwSelect";
+            this.chairOfficeFwSelect.Size = new System.Drawing.Size(64, 64);
+            this.chairOfficeFwSelect.TabIndex = 19;
+            this.chairOfficeFwSelect.TabStop = false;
+            this.chairOfficeFwSelect.Click += new System.EventHandler(this.chairOfficeFwSelect_Click);
+            // 
+            // chairOfficeBwSelect
+            // 
+            this.chairOfficeBwSelect.Image = ((System.Drawing.Image)(resources.GetObject("chairOfficeBwSelect.Image")));
+            this.chairOfficeBwSelect.Location = new System.Drawing.Point(146, 307);
+            this.chairOfficeBwSelect.Name = "chairOfficeBwSelect";
+            this.chairOfficeBwSelect.Size = new System.Drawing.Size(64, 64);
+            this.chairOfficeBwSelect.TabIndex = 18;
+            this.chairOfficeBwSelect.TabStop = false;
+            this.chairOfficeBwSelect.Click += new System.EventHandler(this.chairOfficeBwSelect_Click);
             // 
             // counterSelect
             // 
@@ -932,8 +986,12 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.dirtSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grassSelect)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shelfArchivingSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.serverSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.monitorWallSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deskOfficeSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chairOfficeFwSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chairOfficeBwSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.counterSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cardboardBoxSmallStackSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cabinetSelect)).EndInit();
@@ -998,8 +1056,8 @@ namespace Test_Loopguy
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox mapWidth;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.PictureBox pictureBox17;
-        private System.Windows.Forms.PictureBox pictureBox18;
+        private System.Windows.Forms.PictureBox chairOfficeFwSelect;
+        private System.Windows.Forms.PictureBox chairOfficeBwSelect;
         private System.Windows.Forms.PictureBox counterSelect;
         private System.Windows.Forms.PictureBox cardboardBoxSmallStackSelect;
         private System.Windows.Forms.PictureBox cabinetSelect;
@@ -1052,5 +1110,9 @@ namespace Test_Loopguy
         private System.Windows.Forms.PictureBox rangedTestSelect;
         private System.Windows.Forms.PictureBox meleeTestSelect;
         private System.Windows.Forms.CheckBox countDownBox;
+        private System.Windows.Forms.PictureBox shelfArchivingSelect;
+        private System.Windows.Forms.PictureBox serverSelect;
+        private System.Windows.Forms.PictureBox monitorWallSelect;
+        private System.Windows.Forms.PictureBox deskOfficeSelect;
     }
 }

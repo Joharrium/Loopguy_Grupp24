@@ -180,7 +180,7 @@ namespace Test_Loopguy
         {
             this.position = position;
             texture = TextureManager.cabinet;
-            variation = Game1.rnd.Next(2);
+            variation = Game1.rnd.Next(3);
             sourceRectangle = new Rectangle(32 * variation, 0, 32, 40);
             footprint = new Rectangle((int)position.X + 2, (int)position.Y + 15, 27, 12);
             height = 27;
@@ -211,9 +211,104 @@ namespace Test_Loopguy
             variation = Game1.rnd.Next(2);
             sourceRectangle = new Rectangle(32 * variation, 0, 32, 28);
             footprint = new Rectangle((int)position.X + 2, (int)position.Y + 17, 28, 9);
-            height = 12;
+            height = 7;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+    public class ChairOfficeBw : LevelObject
+    {
+        public ChairOfficeBw(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.chair_office_bw;
+            variation = Game1.rnd.Next(3);
+            sourceRectangle = new Rectangle(12 * variation, 0, 12, 24);
+            footprint = new Rectangle((int)position.X + 0, (int)position.Y + 14, 12, 8);
+            height = 7;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+    public class ChairOfficeFw : LevelObject
+    {
+        public ChairOfficeFw(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.chair_office_fw;
+            variation = Game1.rnd.Next(3);
+            sourceRectangle = new Rectangle(12 * variation, 0, 12, 24);
+            footprint = new Rectangle((int)position.X + 0, (int)position.Y + 16, 12, 8);
+            height = 7;
             hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
         }
     }
 
+    public class Server : LevelObject
+    {
+        public Server(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.server;
+            variation = Game1.rnd.Next(2);
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 34);
+            footprint = new Rectangle((int)position.X + 0, (int)position.Y + 25, 16, 9);
+            height = 24;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class ShelfArchiving : LevelObject
+    {
+        public ShelfArchiving(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.shelf_archiving;
+            variation = Game1.rnd.Next(5);
+            sourceRectangle = new Rectangle(32 * variation, 0, 32, 36);
+            footprint = new Rectangle((int)position.X + 2, (int)position.Y + 28, 30, 7);
+            height = 20;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class ShelfArchivingSmall : LevelObject
+    {
+        public ShelfArchivingSmall(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.shelf_archiving_small;
+            variation = Game1.rnd.Next(5);
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 28);
+            footprint = new Rectangle((int)position.X + 1, (int)position.Y + 20, 30, 7);
+            height = 20;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class MonitorWall : LevelObject
+    {
+        public MonitorWall(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.monitor_wall;
+            variation = Game1.rnd.Next(2);
+            sourceRectangle = new Rectangle(60 * variation, 0, 60, 36);
+            footprint = new Rectangle((int)position.X + 0, (int)position.Y + 0, 0, 0);
+            height = 20;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class DeskOffice : LevelObject
+    {
+        public DeskOffice(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.desk_office;
+            variation = Game1.rnd.Next(4);
+            sourceRectangle = new Rectangle(48 * variation, 0, 48, 32);
+            footprint = new Rectangle((int)position.X + 1, (int)position.Y + 18, 46, 14);
+            height = 7;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
 }

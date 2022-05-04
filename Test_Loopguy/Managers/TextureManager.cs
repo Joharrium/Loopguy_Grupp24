@@ -11,10 +11,10 @@ namespace Test_Loopguy
         public static Texture2D grassBasic, grassAlt, grayBrickWall, dirt, tiles_checkered_gray, tiles_checkered_brown, tiles_big_light, tiles_big_dark,
             carpet_worn, tile_metal, tile_metal_copper, wall_metal, wall_worn, tile_metal_bright, grass_edge;
         // object files
-        public static Texture2D boxOpen, barrel, pot, shrub_big, shrub_small, tree_big, tree_small, fernDestroyed, door, door_open, 
+        public static Texture2D boxOpen, barrel, pot, shrub_big, shrub_small, tree_big, tree_small, fernDestroyed, door, door_open,
             keycard, door_sliding, door_sliding_open, barrelDestroyed, medkit, console, ammo,
             billboard, cabinet, cardboard_box_stack_small, counter, desk_monitors, machine_heartbeat_thing, reception_desk, shelf_archiving,
-            shelf_archiving_small, table_computer_medicine, table_operation
+            shelf_archiving_small, table_computer_medicine, table_operation, monitor_wall, desk_office, chair_office_fw, chair_office_bw, server
             ;
         // ui files
         public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door, 
@@ -106,6 +106,13 @@ namespace Test_Loopguy
                 shelf_archiving_small = c.Load<Texture2D>("gfx/objects/assetpack/shelf_archiving_small");
                 table_computer_medicine = c.Load<Texture2D>("gfx/objects/assetpack/table_computer_medicine");
                 table_operation = c.Load<Texture2D>("gfx/objects/assetpack/table_operation");
+                server = c.Load<Texture2D>("gfx/objects/assetpack/server");
+                monitor_wall = c.Load<Texture2D>("gfx/objects/assetpack/monitor_wall");
+                desk_office = c.Load<Texture2D>("gfx/objects/assetpack/desk_office");
+                chair_office_bw = c.Load<Texture2D>("gfx/objects/assetpack/chair_office_backwards");
+                chair_office_fw = c.Load<Texture2D>("gfx/objects/assetpack/chair_office_forward");
+
+
             }
 
         }

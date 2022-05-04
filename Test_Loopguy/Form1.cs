@@ -17,8 +17,7 @@ namespace Test_Loopguy
 
         private void barrelSelect_Click(object sender, EventArgs e)
         {
-            LevelEditor.selectedObject = ObjectSelection.Barrel;
-            LevelEditor.currentSelection = Selection.Object;
+            LevelEditor.SelectObject(ObjectSelection.ShelfArchivingSmall);
         }
 
         private void potSelect_Click(object sender, EventArgs e)
@@ -218,6 +217,36 @@ namespace Test_Loopguy
         private void counterSelect_Click(object sender, EventArgs e)
         {
             LevelEditor.SelectObject(ObjectSelection.Counter);
+        }
+
+        private void chairOfficeBwSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.ChairOfficeBw);
+        }
+
+        private void chairOfficeFwSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.ChairOfficeFw);
+        }
+
+        private void deskOfficeSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.DeskOffice);
+        }
+
+        private void monitorWallSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.MonitorWall);
+        }
+
+        private void serverSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.Server);
+        }
+
+        private void shelfArchivingSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.ShelfArchiving);
         }
     }
 }

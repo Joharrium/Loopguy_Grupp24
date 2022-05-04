@@ -15,7 +15,8 @@ namespace Test_Loopguy
     {
         Box, Barrel, Pot, ShrubSmall, TreeSmall, BoxOpen, TreeBig, ShrubBig, DoorWood, 
         KeycardRed, DoorSliding, BarrelDestructible, HealingSmall, AmmoSmall, Counter, 
-        CardboardStackSmall, Billboard, Cabinet
+        CardboardStackSmall, Billboard, Cabinet, MonitorWall, ShelfArchiving, ShelfArchivingSmall,
+        DeskOffice, Server, ChairOfficeBw, ChairOfficeFw
     }
     public enum TileSelection
     {
@@ -157,6 +158,34 @@ namespace Test_Loopguy
 
                             case ObjectSelection.Billboard:
                                 LevelManager.ObjectAdd(new BillBoard(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            case ObjectSelection.ShelfArchiving:
+                                LevelManager.ObjectAdd(new ShelfArchiving(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            case ObjectSelection.ShelfArchivingSmall:
+                                LevelManager.ObjectAdd(new ShelfArchivingSmall(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            case ObjectSelection.DeskOffice:
+                                LevelManager.ObjectAdd(new DeskOffice(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            case ObjectSelection.MonitorWall:
+                                LevelManager.ObjectAdd(new MonitorWall(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            case ObjectSelection.Server:
+                                LevelManager.ObjectAdd(new Server(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            case ObjectSelection.ChairOfficeBw:
+                                LevelManager.ObjectAdd(new ChairOfficeFw(Game1.mousePos - new Vector2(6, 12)));
+                                break;
+
+                            case ObjectSelection.ChairOfficeFw:
+                                LevelManager.ObjectAdd(new ChairOfficeBw(Game1.mousePos - new Vector2(6, 12)));
                                 break;
 
                             default:
