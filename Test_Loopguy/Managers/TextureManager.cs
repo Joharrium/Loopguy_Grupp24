@@ -12,7 +12,10 @@ namespace Test_Loopguy
             carpet_worn, tile_metal, tile_metal_copper, wall_metal, wall_worn, tile_metal_bright, grass_edge;
         // object files
         public static Texture2D boxOpen, barrel, pot, shrub_big, shrub_small, tree_big, tree_small, fernDestroyed, door, door_open, 
-            keycard, door_sliding, door_sliding_open, barrelDestroyed, medkit, console, ammo;
+            keycard, door_sliding, door_sliding_open, barrelDestroyed, medkit, console, ammo,
+            billboard, cabinet, cardboard_box_stack_small, counter, desk_monitors, machine_heartbeat_thing, reception_desk, shelf_archiving,
+            shelf_archiving_small, table_computer_medicine, table_operation
+            ;
         // ui files
         public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door, 
             healthbar_small_outline, healthbar_small_fill_bg, healthbar_small_fill,
@@ -90,6 +93,20 @@ namespace Test_Loopguy
             medkit = c.Load<Texture2D>("gfx/objects/medkit");
             console = c.Load<Texture2D>("gfx/objects/console_thing");
             ammo = c.Load<Texture2D>("gfx/objects/ammo");
+
+            {
+                billboard = c.Load<Texture2D>("gfx/objects/assetpack/billboard");
+                cabinet = c.Load<Texture2D>("gfx/objects/assetpack/cabinet");
+                cardboard_box_stack_small = c.Load<Texture2D>("gfx/objects/assetpack/cardboard_box_stack_small");
+                counter = c.Load<Texture2D>("gfx/objects/assetpack/counter");
+                desk_monitors = c.Load<Texture2D>("gfx/objects/assetpack/desk_monitors");
+                machine_heartbeat_thing = c.Load<Texture2D>("gfx/objects/assetpack/machine_heartbeat_thing");
+                reception_desk = c.Load<Texture2D>("gfx/objects/assetpack/reception_desk");
+                shelf_archiving = c.Load<Texture2D>("gfx/objects/assetpack/shelf_archiving");
+                shelf_archiving_small = c.Load<Texture2D>("gfx/objects/assetpack/shelf_archiving_small");
+                table_computer_medicine = c.Load<Texture2D>("gfx/objects/assetpack/table_computer_medicine");
+                table_operation = c.Load<Texture2D>("gfx/objects/assetpack/table_operation");
+            }
 
         }
 

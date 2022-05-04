@@ -14,7 +14,8 @@ namespace Test_Loopguy
     public enum ObjectSelection
     {
         Box, Barrel, Pot, ShrubSmall, TreeSmall, BoxOpen, TreeBig, ShrubBig, DoorWood, 
-        KeycardRed, DoorSliding, BarrelDestructible, HealingSmall, AmmoSmall
+        KeycardRed, DoorSliding, BarrelDestructible, HealingSmall, AmmoSmall, Counter, 
+        CardboardStackSmall, Billboard, Cabinet
     }
     public enum TileSelection
     {
@@ -140,6 +141,22 @@ namespace Test_Loopguy
 
                             case ObjectSelection.AmmoSmall:
                                 LevelManager.ObjectAdd(new SmallAmmoPickup(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            case ObjectSelection.CardboardStackSmall:
+                                LevelManager.ObjectAdd(new CardboardBoxStackSmall(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            case ObjectSelection.Cabinet:
+                                LevelManager.ObjectAdd(new Cabinet(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            case ObjectSelection.Counter:
+                                LevelManager.ObjectAdd(new Counter(Game1.mousePos - new Vector2(8, 8)));
+                                break;
+
+                            case ObjectSelection.Billboard:
+                                LevelManager.ObjectAdd(new BillBoard(Game1.mousePos - new Vector2(8, 8)));
                                 break;
 
                             default:

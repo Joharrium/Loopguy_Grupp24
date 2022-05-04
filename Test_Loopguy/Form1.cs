@@ -199,5 +199,25 @@ namespace Test_Loopguy
         {
             LevelManager.countTime = !countDownBox.Checked;
         }
+
+        private void BillBoardSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.Billboard);
+        }
+
+        private void cabinetSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.Cabinet);
+        }
+
+        private void cardboardBoxSmallStackSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.CardboardStackSmall);
+        }
+
+        private void counterSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.Counter);
+        }
     }
 }

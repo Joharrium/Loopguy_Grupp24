@@ -322,6 +322,10 @@ namespace Test_Loopguy
                     {
                         tiles[i, j] = new TileBigLight(tempPos);
                     }
+                    if (terrainStrings[j][i] == 'f')
+                    {
+                        tiles[i, j] = new WornWall(tempPos);
+                    }
                 }
             }
 
@@ -501,14 +505,19 @@ namespace Test_Loopguy
 
                 case "SmallAmmoPickup":
                     return new SmallAmmoPickup(pos);
+                    
+                case "Cabinet":
+                    return new Cabinet(pos);
 
-                    /*
-                case "BarrelDestructible":
-                    return new BarrelDestructible(pos);
+                case "Counter":
+                    return new Counter(pos);
 
-                case "BarrelDestructible":
-                    return new BarrelDestructible(pos);
-                    */
+                case "CardboardBoxStackSmall":
+                    return new CardboardBoxStackSmall(pos);
+
+                case "BillBoard":
+                    return new BillBoard(pos);
+
 
                 default:
                     return null;
@@ -596,6 +605,10 @@ namespace Test_Loopguy
                     if (currentLevel.tiles[j, i] is TileBigLight)
                     {
                         types[j, i] = 'e';
+                    }
+                    if (currentLevel.tiles[j, i] is WornWall)
+                    {
+                        types[j, i] = 'f';
                     }
                 }
             }
