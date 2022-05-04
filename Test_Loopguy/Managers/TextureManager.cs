@@ -20,7 +20,9 @@ namespace Test_Loopguy
         public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door, 
             healthbar_small_outline, healthbar_small_fill_bg, healthbar_small_fill,
             player_healthbar_outline, player_healthbar_inline, player_healthbar_fill, player_healthbar_fill_bg,
-            ammobar_fill, ammobar_outline, ammobar_fill_bg;
+            ammobar_fill, ammobar_outline, ammobar_fill_bg, menu_bg
+            
+            ;
         public static SpriteFont UI_menuFont;
         // character files
         public static Texture2D enemyPlaceholder, playerCharacterForMenu;
@@ -139,6 +141,7 @@ namespace Test_Loopguy
             ammobar_fill = c.Load<Texture2D>("gfx/interface/ammobar_fill");
             ammobar_outline = c.Load<Texture2D>("gfx/interface/ammobar_outline");
             ammobar_fill_bg = c.Load<Texture2D>("gfx/interface/ammobar_fill_bg");
+            menu_bg = c.Load<Texture2D>("gfx/interface/menu_bg");
         }
 
         private static void LoadCharacters(ContentManager c)

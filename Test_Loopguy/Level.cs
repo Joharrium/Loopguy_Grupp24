@@ -47,6 +47,7 @@ namespace Test_Loopguy
             List<Pickup> pickupsToRemove = new List<Pickup>();
             DestructibleUpdate(gameTime);
             EnemyUpdate(gameTime);
+            Rectangle mapbounds = new Rectangle(0, 0, cameraBounds.Width * 2, cameraBounds.Height * 2);
 
             foreach (Projectile s in enemyProjectiles)
             {
@@ -56,9 +57,10 @@ namespace Test_Loopguy
                     player.TakeDamage(1);
                     projectilesToRemove.Add(s);
                 }
-                if (!cameraBounds.Contains(s.centerPosition))
+                
+                if (!mapbounds.Contains(s.centerPosition))
                 {
-                    //projectilesToRemove.Add(s);
+                    projectilesToRemove.Add(s);
                 }
                 foreach (LevelObject lo in levelObjects)
                 {
@@ -70,6 +72,17 @@ namespace Test_Loopguy
                         }
                     }
                     
+                }
+
+                foreach (Tile w in tiles)
+                {
+                    if (w is Wall)
+                    {
+                        if (s.CheckCollision(w))
+                        {
+                            projectilesToRemove.Add(s);
+                        }
+                    }
                 }
             }
             foreach (Projectile s in playerProjectiles)
@@ -87,9 +100,20 @@ namespace Test_Loopguy
                     }
                 }
 
-                if(!cameraBounds.Contains(s.centerPosition))
+                foreach (Tile w in tiles)
                 {
-                    //dprojectilesToRemove.Add(s);
+                    if(w is Wall)
+                    {
+                        if (s.CheckCollision(w))
+                        {
+                            projectilesToRemove.Add(s);
+                        }
+                    }
+                }
+
+                if (!mapbounds.Contains(s.centerPosition))
+                {
+                    projectilesToRemove.Add(s);
                 }
             }
 
@@ -288,7 +312,11 @@ namespace Test_Loopguy
                 }
                 
             }
-            return false;
+            {
+                return WallCollision(check.Center.ToVector2());
+            }
+            
+
         }
 
         public Rectangle GetBounds()
