@@ -17,6 +17,7 @@ namespace Test_Loopguy
         SpriteFont smallFont;
 
         public static Camera camera;
+        public static Game1 game1;
 
         //Player player;
 
@@ -38,6 +39,7 @@ namespace Test_Loopguy
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = false;
+            game1 = this; //Used for Exit() in menuManager
         }
 
         protected override void Initialize()
