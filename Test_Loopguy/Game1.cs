@@ -169,23 +169,7 @@ namespace Test_Loopguy
             GraphicsDevice.SetRenderTarget(renderTarget);
             GraphicsDevice.Clear(Color.SlateGray);
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, camera.Transform);
-            //Draw game stuff here!
-
-            StateManager.Draw(spriteBatch); //Flytta denna samt kör allt via StateManager
-
-            Color cursorColor = new Color(200, 200, 200, 200);
-            spriteBatch.Draw(TextureManager.cursor, new Vector2(mousePos.X - TextureManager.cursor.Width / 2, mousePos.Y - TextureManager.cursor.Height / 2), cursorColor);
-            //player.Draw(spriteBatch);
-
-            spriteBatch.End();
-
-            //spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
-            ////DRAW HUD HERE
-            //Player.ammoBar.Draw(spriteBatch);
-            //Player.healthBar.Draw(spriteBatch);
-            //LevelManager.DrawTimer(spriteBatch);
-            //spriteBatch.End();
+            StateManager.Draw(spriteBatch);
 
             GraphicsDevice.SetRenderTarget(null);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);

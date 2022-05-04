@@ -20,7 +20,7 @@ namespace Test_Loopguy
             ammobar_fill, ammobar_outline, ammobar_fill_bg;
         public static SpriteFont UI_menuFont;
         // character files
-        public static Texture2D enemyPlaceholder;
+        public static Texture2D enemyPlaceholder, playerCharacterForMenu;
 
         //particles
         public static Texture2D spark_small, shot_explosion;
@@ -119,6 +119,7 @@ namespace Test_Loopguy
         private static void LoadCharacters(ContentManager c)
         {
             enemyPlaceholder = c.Load<Texture2D>("gfx/characters/enemy_placeholder");
+            playerCharacterForMenu = c.Load<Texture2D>("LOOP_FELLA");
         }
         
         private static void LoadParticles(ContentManager c)

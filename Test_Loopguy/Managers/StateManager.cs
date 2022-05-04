@@ -60,30 +60,33 @@ namespace Test_Loopguy
             {
                 case GameState.Menu:
 
+                    //Everything that goes into the menuscreen draws in MenuManager.Draw()
                     MenuManager.Draw(spriteBatch);
 
                     break;
                 case GameState.InGame:
 
+                    spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, Game1.camera.Transform);
+                    //Draw game stuff here!
+
                     LevelManager.Draw(spriteBatch);
-                    
-
-                    if(Game1.editLevel)
-                        LevelEditor.Draw(spriteBatch);
-
-                    //EntityManager.Draw(spriteBatch);
                     ParticleManager.Draw(spriteBatch);
-                    //Player.healthBar.Draw(spriteBatch);
+
+                    if (Game1.editLevel)
+                        LevelEditor.Draw(spriteBatch);
 
                     Color cursorColor = new Color(200, 200, 200, 200);
                     spriteBatch.Draw(TextureManager.cursor, new Vector2(Game1.mousePos.X - TextureManager.cursor.Width / 2, Game1.mousePos.Y - TextureManager.cursor.Height / 2), cursorColor);
 
-                    //spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
+                    spriteBatch.End();
+
+                    spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
                     //DRAW HUD HERE
+
                     Player.ammoBar.Draw(spriteBatch);
                     Player.healthBar.Draw(spriteBatch);
                     LevelManager.DrawTimer(spriteBatch);
-                    //spriteBatch.End();
+                    spriteBatch.End();
 
                     break;
                 case GameState.InEditor:
