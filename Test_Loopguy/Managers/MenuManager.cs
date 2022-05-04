@@ -90,6 +90,7 @@ namespace Test_Loopguy
             throw new NotImplementedException();
         }
 
+        //Quits the game, however what I think is due to the win.forms the application doesn't stop at this point but only closes the windows.
         private static void QuitGameButton_Click(object sender, EventArgs e)
         {
             Game1.game1.Exit();
