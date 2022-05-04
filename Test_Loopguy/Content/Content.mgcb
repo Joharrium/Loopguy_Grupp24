@@ -152,6 +152,12 @@
 /processorParam:Quality=Best
 /build:audio/sound/player_hit.wav
 
+#begin audio/sound/reload.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/reload.ogg
+
 #begin audio/sound/shrub_destroy.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

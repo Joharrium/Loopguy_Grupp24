@@ -30,7 +30,8 @@ namespace Test_Loopguy
 
         //sound
         public static SoundCollection lasergun, footstepsMetal, footstepsStone, footstepsWood, footstepsGrass;
-        public static SoundEffect meepmerp, swing, open, deny, dash, door_hiss_sound, box_destroy, shrub_destroy, keypickup, healing, player_hit;
+        public static SoundEffect meepmerp, swing, open, deny, dash, door_hiss_sound, 
+            box_destroy, shrub_destroy, keypickup, healing, player_hit, reload;
 
         //public static SoundEffect 
 
@@ -90,6 +91,7 @@ namespace Test_Loopguy
             keypickup = c.Load<SoundEffect>("audio/sound/keypickup");
             healing = c.Load<SoundEffect>("audio/sound/healing");
             player_hit = c.Load<SoundEffect>("audio/sound/player_hit");
+            reload = c.Load<SoundEffect>("audio/sound/reload");
 
             {
                 EnergyGun_Shoot1A = c.Load<SoundEffect>("audio/sound/gun/EnergyGun_Shoot1A");

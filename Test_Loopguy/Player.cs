@@ -277,6 +277,7 @@ namespace Test_Loopguy
             }
             else
             {
+                Audio.PlaySound(Audio.reload);
                 ammo += ammoToAdd;
                 if (ammo > maxAmmo)
                 {
