@@ -92,7 +92,7 @@ namespace Test_Loopguy
 
         private static void QuitGameButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Game1.game1.Exit();
         }
 
         public static void Update(GameTime gameTime)
