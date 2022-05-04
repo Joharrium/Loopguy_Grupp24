@@ -173,7 +173,7 @@ namespace Test_Loopguy
         {
             this.position = position;
 
-            texture = TextureManager.tile_metal;
+            texture = TextureManager.tile_clinical;
             variation = Game1.rnd.Next(1);
 
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);

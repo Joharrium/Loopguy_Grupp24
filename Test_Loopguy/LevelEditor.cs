@@ -149,43 +149,43 @@ namespace Test_Loopguy
                                 break;
 
                             case ObjectSelection.Cabinet:
-                                LevelManager.ObjectAdd(new Cabinet(Game1.mousePos - new Vector2(8, 8)));
+                                LevelManager.ObjectAdd(new Cabinet(Game1.mousePos - new Vector2(16, 20)));
                                 break;
 
                             case ObjectSelection.Counter:
-                                LevelManager.ObjectAdd(new Counter(Game1.mousePos - new Vector2(8, 8)));
+                                LevelManager.ObjectAdd(new Counter(Game1.mousePos - new Vector2(16, 14)));
                                 break;
 
                             case ObjectSelection.Billboard:
-                                LevelManager.ObjectAdd(new BillBoard(Game1.mousePos - new Vector2(8, 8)));
+                                LevelManager.ObjectAdd(new BillBoard(Game1.mousePos - new Vector2(16, 16)));
                                 break;
 
                             case ObjectSelection.ShelfArchiving:
-                                LevelManager.ObjectAdd(new ShelfArchiving(Game1.mousePos - new Vector2(8, 8)));
+                                LevelManager.ObjectAdd(new ShelfArchiving(Game1.mousePos - new Vector2(16, 18)));
                                 break;
 
                             case ObjectSelection.ShelfArchivingSmall:
-                                LevelManager.ObjectAdd(new ShelfArchivingSmall(Game1.mousePos - new Vector2(8, 8)));
+                                LevelManager.ObjectAdd(new ShelfArchivingSmall(Game1.mousePos - new Vector2(8, 14)));
                                 break;
 
                             case ObjectSelection.DeskOffice:
-                                LevelManager.ObjectAdd(new DeskOffice(Game1.mousePos - new Vector2(8, 8)));
+                                LevelManager.ObjectAdd(new DeskOffice(Game1.mousePos - new Vector2(24, 16)));
                                 break;
 
                             case ObjectSelection.MonitorWall:
-                                LevelManager.ObjectAdd(new MonitorWall(Game1.mousePos - new Vector2(8, 8)));
+                                LevelManager.ObjectAdd(new MonitorWall(Game1.mousePos - new Vector2(30, 18)));
                                 break;
 
                             case ObjectSelection.Server:
-                                LevelManager.ObjectAdd(new Server(Game1.mousePos - new Vector2(8, 8)));
+                                LevelManager.ObjectAdd(new Server(Game1.mousePos - new Vector2(8, 17)));
                                 break;
 
                             case ObjectSelection.ChairOfficeBw:
-                                LevelManager.ObjectAdd(new ChairOfficeFw(Game1.mousePos - new Vector2(6, 12)));
+                                LevelManager.ObjectAdd(new ChairOfficeBw(Game1.mousePos - new Vector2(6, 12)));
                                 break;
 
                             case ObjectSelection.ChairOfficeFw:
-                                LevelManager.ObjectAdd(new ChairOfficeBw(Game1.mousePos - new Vector2(6, 12)));
+                                LevelManager.ObjectAdd(new ChairOfficeFw(Game1.mousePos - new Vector2(6, 12)));
                                 break;
 
                             default:
@@ -262,6 +262,46 @@ namespace Test_Loopguy
 
                     case ObjectSelection.KeycardRed:
                         spriteBatch.Draw(TextureManager.keycard, Game1.mousePos - new Vector2(8, 8), Color.White);
+                        break;
+
+                    case ObjectSelection.Cabinet:
+                        spriteBatch.Draw(TextureManager.cabinet, Game1.mousePos - new Vector2(16, 20), Color.White);
+                        break;
+
+                    case ObjectSelection.Counter:
+                        spriteBatch.Draw(TextureManager.counter, Game1.mousePos - new Vector2(16, 14), Color.White);
+                        break;
+
+                    case ObjectSelection.Billboard:
+                        spriteBatch.Draw(TextureManager.billboard, Game1.mousePos - new Vector2(16, 16), Color.White);
+                        break;
+
+                    case ObjectSelection.ShelfArchiving:
+                        spriteBatch.Draw(TextureManager.shelf_archiving, Game1.mousePos - new Vector2(16, 18), Color.White);
+                        break;
+
+                    case ObjectSelection.ShelfArchivingSmall:
+                        spriteBatch.Draw(TextureManager.shelf_archiving_small, Game1.mousePos - new Vector2(8, 14), Color.White);
+                        break;
+
+                    case ObjectSelection.DeskOffice:
+                        spriteBatch.Draw(TextureManager.desk_office, Game1.mousePos - new Vector2(24, 16), Color.White);
+                        break;
+
+                    case ObjectSelection.MonitorWall:
+                        spriteBatch.Draw(TextureManager.monitor_wall, Game1.mousePos - new Vector2(30, 18), Color.White);
+                        break;
+
+                    case ObjectSelection.Server:
+                        spriteBatch.Draw(TextureManager.server, Game1.mousePos - new Vector2(8, 17), Color.White);
+                        break;
+
+                    case ObjectSelection.ChairOfficeBw:
+                        spriteBatch.Draw(TextureManager.chair_office_bw, Game1.mousePos - new Vector2(6, 12), Color.White);
+                        break;
+
+                    case ObjectSelection.ChairOfficeFw:
+                        spriteBatch.Draw(TextureManager.chair_office_fw, Game1.mousePos - new Vector2(6, 12), Color.White);
                         break;
 
                     default:

@@ -473,58 +473,32 @@ namespace Test_Loopguy
         }
         public static LevelObject ObjectCreator(string name, Vector2 pos)
         {
-            switch (name)
+            return name switch
             {
-                case "Box":
-                    return new Box(pos);
-
-                case "ShrubSmall":
-                    return new ShrubSmall(pos);
-
-                case "TreeBig":
-                    return new TreeBig(pos);
-
-                case "BoxOpen":
-                    return new BoxOpen(pos);
-
-                case "Barrel":
-                    return new Barrel(pos);
-
-                case "TreeSmall":
-                    return new TreeSmall(pos);
-
-                case "ShrubBig":
-                    return new ShrubBig(pos);
-
-                case "Pot":
-                    return new Pot(pos);
-
-                case "BarrelDestructible":
-                    return new BarrelDestructible(pos);
-
-                case "SmallHealthPickup":
-                    return new SmallHealthPickup(pos);
-
-                case "SmallAmmoPickup":
-                    return new SmallAmmoPickup(pos);
-                    
-                case "Cabinet":
-                    return new Cabinet(pos);
-
-                case "Counter":
-                    return new Counter(pos);
-
-                case "CardboardBoxStackSmall":
-                    return new CardboardBoxStackSmall(pos);
-
-                case "BillBoard":
-                    return new BillBoard(pos);
-
-
-                default:
-                    return null;
-                    
-            }
+                "Box" => new Box(pos),
+                "ShrubSmall" => new ShrubSmall(pos),
+                "TreeBig" => new TreeBig(pos),
+                "BoxOpen" => new BoxOpen(pos),
+                "Barrel" => new Barrel(pos),
+                "TreeSmall" => new TreeSmall(pos),
+                "ShrubBig" => new ShrubBig(pos),
+                "Pot" => new Pot(pos),
+                "BarrelDestructible" => new BarrelDestructible(pos),
+                "SmallHealthPickup" => new SmallHealthPickup(pos),
+                "SmallAmmoPickup" => new SmallAmmoPickup(pos),
+                "Cabinet" => new Cabinet(pos),
+                "Counter" => new Counter(pos),
+                "CardboardBoxStackSmall" => new CardboardBoxStackSmall(pos),
+                "BillBoard" => new BillBoard(pos),
+                "ShelfArchivingSmall" => new ShelfArchivingSmall(pos),
+                "ShelfArchiving" => new ShelfArchiving(pos),
+                "ChairOfficeBw" => new ChairOfficeBw(pos),
+                "ChairOfficeFw" => new ChairOfficeFw(pos),
+                "MonitorWall" => new MonitorWall(pos),
+                "Server" => new Server(pos),
+                "DeskOffice" => new DeskOffice(pos),
+                _ => null,
+            };
         }
 
         public static List<string> ExportObjectList(int id)
