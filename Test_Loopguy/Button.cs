@@ -33,7 +33,7 @@ namespace Test_Loopguy
         {
             get
             {
-                return new Rectangle((int)Position.X - 50, (int)Position.Y + 15, texture.Width, texture.Height);
+                return new Rectangle((int)Position.X - 25, (int)Position.Y + 2, texture.Width, texture.Height);
             }
         }
 
@@ -49,6 +49,8 @@ namespace Test_Loopguy
 
         public override void Update(GameTime gameTime)
         {
+            Vector2 windowMousePos = new Vector2(InputReader.mouseState.X / Game1.windowScale, InputReader.mouseState.Y / Game1.windowScale);
+
             previousMouse = currentMouse;
             currentMouse = Mouse.GetState();
 
@@ -56,7 +58,22 @@ namespace Test_Loopguy
 
             isHovering = false;
 
-            if (mouseRectangle.Intersects(Rectangle))
+            //if (mouseRectangle.Intersects(Rectangle))
+            //{
+            //    isHovering = true;
+
+            //    if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed)
+            //    {
+            //        Click?.Invoke(this, new EventArgs());
+
+            //        //if (Click != null)
+            //        //{
+            //        //    Click(this, new EventArgs());
+            //        //}
+            //    }
+            //}
+
+            if (Rectangle.Contains(windowMousePos))
             {
                 isHovering = true;
 
