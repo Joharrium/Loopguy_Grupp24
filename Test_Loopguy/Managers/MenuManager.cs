@@ -10,6 +10,7 @@ namespace Test_Loopguy
     class MenuManager
     {
 
+    
         static List<Component> gameComponents;
 
         public static void LoadMenuButtons()
@@ -89,9 +90,10 @@ namespace Test_Loopguy
             throw new NotImplementedException();
         }
 
+        //Quits the game, however what I think is due to the win.forms the application doesn't stop at this point but only closes the windows.
         private static void QuitGameButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Game1.game1.Exit();
         }
 
         public static void Update(GameTime gameTime)
@@ -104,14 +106,28 @@ namespace Test_Loopguy
 
         public static void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Begin();
+            Vector2 imagePosition = new Vector2(Game1.windowX / 8, Game1.windowY / 3);
+            Vector2 titlePosition = new Vector2(Game1.windowX / 2, Game1.windowY / 4);
 
+            spriteBatch.Begin();
+
+            //Draw buttons
             foreach (var component in gameComponents)
             {
                 component.Draw(spriteBatch);
             }
 
-            //spriteBatch.End();
+            //Draw cursor
+            Color cursorColor = new Color(200, 200, 200, 200);
+            spriteBatch.Draw(TextureManager.cursor, new Vector2(Game1.mousePos.X - TextureManager.cursor.Width / 2, Game1.mousePos.Y - TextureManager.cursor.Height / 2), cursorColor);
+
+            //Draw title
+
+
+            //Draw image
+            spriteBatch.Draw(TextureManager.playerCharacterForMenu, imagePosition, Color.White);
+
+            spriteBatch.End();
         }
     }
 }

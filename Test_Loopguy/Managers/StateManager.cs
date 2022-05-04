@@ -20,7 +20,7 @@ namespace Test_Loopguy
             Load,
         }
 
-        public static GameState currentState = GameState.InGame;
+        public static GameState currentState = GameState.Menu;
 
         public static void Update(GameTime gameTime)
         {
@@ -60,20 +60,34 @@ namespace Test_Loopguy
             {
                 case GameState.Menu:
 
+                    //Everything that goes into the menuscreen draws in MenuManager.Draw()
                     MenuManager.Draw(spriteBatch);
 
                     break;
                 case GameState.InGame:
 
-                    LevelManager.Draw(spriteBatch);
-                    
+                    spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, Game1.camera.Transform);
+                    //Draw game stuff here!
 
-                    if(Game1.editLevel)
+                    LevelManager.Draw(spriteBatch);
+                    ParticleManager.Draw(spriteBatch);
+
+                    if (Game1.editLevel)
                         LevelEditor.Draw(spriteBatch);
 
-                    //EntityManager.Draw(spriteBatch);
-                    ParticleManager.Draw(spriteBatch);
-                    //Player.healthBar.Draw(spriteBatch);
+                    Color cursorColor = new Color(200, 200, 200, 200);
+                    spriteBatch.Draw(TextureManager.cursor, new Vector2(Game1.mousePos.X - TextureManager.cursor.Width / 2, Game1.mousePos.Y - TextureManager.cursor.Height / 2), cursorColor);
+
+                    spriteBatch.End();
+
+                    spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
+                    //DRAW HUD HERE
+
+                    Player.ammoBar.Draw(spriteBatch);
+                    Player.healthBar.Draw(spriteBatch);
+                    LevelManager.DrawTimer(spriteBatch);
+                    spriteBatch.End();
+
                     break;
                 case GameState.InEditor:
                     break;

@@ -17,6 +17,7 @@ namespace Test_Loopguy
         SpriteFont smallFont;
 
         public static Camera camera;
+        public static Game1 game1;
 
         //Player player;
 
@@ -38,6 +39,7 @@ namespace Test_Loopguy
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = false;
+            game1 = this; //Used for Exit() in menuManager
         }
 
         protected override void Initialize()
@@ -50,7 +52,7 @@ namespace Test_Loopguy
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             TextureManager.LoadTextures(Content);
-            MenuManager.LoadMenuButtons();
+         
             EntityManager.PlayerInitialization();
             Audio.Load(Content);
             smallFont = Content.Load<SpriteFont>("smallFont");
@@ -69,6 +71,7 @@ namespace Test_Loopguy
 
             LevelManager.LoadLevel(1);
             LevelManager.EntranceLoad();
+            MenuManager.LoadMenuButtons();
 
             camera = new Camera();
             camera.SetPosition(new Vector2(200, 200));
@@ -168,23 +171,7 @@ namespace Test_Loopguy
             GraphicsDevice.SetRenderTarget(renderTarget);
             GraphicsDevice.Clear(Color.SlateGray);
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, camera.Transform);
-            //Draw game stuff here!
-
-            StateManager.Draw(spriteBatch); //Flytta denna samt kör allt via StateManager
-
-            Color cursorColor = new Color(200, 200, 200, 200);
-            spriteBatch.Draw(TextureManager.cursor, new Vector2(mousePos.X - TextureManager.cursor.Width / 2, mousePos.Y - TextureManager.cursor.Height / 2), cursorColor);
-            //player.Draw(spriteBatch);
-
-            spriteBatch.End();
-
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
-            //DRAW HUD HERE
-            Player.ammoBar.Draw(spriteBatch);
-            Player.healthBar.Draw(spriteBatch);
-            LevelManager.DrawTimer(spriteBatch);
-            spriteBatch.End();
+            StateManager.Draw(spriteBatch);
 
             GraphicsDevice.SetRenderTarget(null);
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
