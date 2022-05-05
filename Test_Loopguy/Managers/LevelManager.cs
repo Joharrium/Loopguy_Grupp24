@@ -332,6 +332,10 @@ namespace Test_Loopguy
                     {
                         tiles[i, j] = new TileMetal(tempPos);
                     }
+                    if (terrainStrings[j][i] == 'i')
+                    {
+                        tiles[i, j] = new Water(tempPos);
+                    }
                 }
             }
 
@@ -589,6 +593,10 @@ namespace Test_Loopguy
                     if (currentLevel.tiles[j, i] is TileMetal)
                     {
                         types[j, i] = 'h';
+                    }
+                    if (currentLevel.tiles[j, i] is Water)
+                    {
+                        types[j, i] = 'i';
                     }
                 }
             }

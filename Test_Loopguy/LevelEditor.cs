@@ -21,7 +21,7 @@ namespace Test_Loopguy
     public enum TileSelection
     {
         Grass, Dirt, GrayBrick, TilesCheckeredGray, TilesCheckeredBrown, TilesBigDark, 
-        TilesBigLight, TileMetal, WallMetal, CarpetWorn, DrywallWorn
+        TilesBigLight, TileMetal, WallMetal, CarpetWorn, DrywallWorn, Water
     }
 
     public enum EnemySelection
@@ -325,6 +325,7 @@ namespace Test_Loopguy
                     default:
                         spriteBatch.Draw(TextureManager.UI_graybrick, Game1.mousePos, Color.White);
                         break;
+
                 }
             }
             

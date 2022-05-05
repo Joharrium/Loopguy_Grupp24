@@ -248,5 +248,10 @@ namespace Test_Loopguy
         {
             LevelEditor.SelectObject(ObjectSelection.ShelfArchiving);
         }
+
+        private void waterSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectTile(TileSelection.Water);
+        }
     }
 }

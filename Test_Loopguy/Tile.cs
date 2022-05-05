@@ -19,8 +19,8 @@ namespace Test_Loopguy
             texture = TextureManager.testAlt;
             hitBox.X = (int)position.X;
             hitBox.Y = (int)position.Y;
-            hitBox.Width = texture.Width;
-            hitBox.Height = texture.Height;
+            hitBox.Width = 16;
+            hitBox.Height = 16;
 
             centerPosition = new Vector2(position.X - texture.Width / 2, position.Y - texture.Height / 2);
         }
@@ -45,6 +45,23 @@ namespace Test_Loopguy
             {
                 edges.UpdateEdges(this);
             }
+        }
+    }
+
+    public class Hazard : Tile
+    {
+        public Hazard(Vector2 position) : base(position)
+        {
+
+        }
+    }
+
+    public class Water : Hazard
+    {
+        public Water(Vector2 position) : base(position)
+        {
+            texture = TextureManager.water;
+            sourceRectangle = new Rectangle(0, 0, 16, 16);
         }
     }
 

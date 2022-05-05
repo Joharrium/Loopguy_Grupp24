@@ -47,7 +47,7 @@ namespace Test_Loopguy
 
 
         //footprint rectangle
-        Rectangle footprint;
+        public Rectangle footprint;
 
         public Player(Vector2 position)
             : base(position)
@@ -91,7 +91,7 @@ namespace Test_Loopguy
         public override void Update(GameTime gameTime)
         {
             hitBox = new Rectangle((int)position.X, (int)position.Y, sprite.size.X, sprite.size.Y);
-            footprint = new Rectangle((int)position.X + 4, (int)position.Y + 24, 8, 8);
+            footprint = new Rectangle((int)position.X + 12, (int)position.Y + 24, 8, 8);
             
             centerPosition = new Vector2(position.X + sprite.size.X / 2, position.Y + sprite.size.Y / 2);
 
@@ -189,6 +189,7 @@ namespace Test_Loopguy
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(TextureManager.black_screen, footprint, Color.White);
             if (attacking)
             {
                 sprite.Draw(spriteBatch);

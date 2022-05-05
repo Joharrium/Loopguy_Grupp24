@@ -152,7 +152,33 @@ namespace Test_Loopguy
                 levelObjects.Add(lo);
             }
 
+            foreach(Hazard h in tiles.OfType<Hazard>())
+            {
+                if(player.footprint.Intersects(h.hitBox))
+                {
+                    if(!IsOnGround(player.footprint))
+                    {
+                        LevelManager.Reset();
+                    }   
+                }
+
+            }
+
             LevelManager.objectsToAdd.Clear();
+        }
+
+        private bool IsOnGround(Rectangle footprint)
+        {
+
+            Rectangle checkPrint = new Rectangle(footprint.X, footprint.Y, footprint.Width, footprint.Height);
+            foreach(Floor f in tiles.OfType<Floor>())
+            {
+                if(f.hitBox.Intersects(checkPrint))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void DestructibleUpdate(GameTime gameTime)
@@ -439,6 +465,9 @@ namespace Test_Loopguy
                         break;
                     case TileSelection.DrywallWorn:
                         tiles[coordinates.X, coordinates.Y] = new WornWall(gameLocation);
+                        break;
+                    case TileSelection.Water:
+                        tiles[coordinates.X, coordinates.Y] = new Water(gameLocation);
 
                         break;
                 }
