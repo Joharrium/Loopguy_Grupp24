@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Test_Loopguy
 {
-    internal class AnimatedSprite
+    public class AnimatedSprite
     {
         Texture2D sheet;
 

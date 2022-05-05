@@ -13,6 +13,8 @@ namespace Test_Loopguy
         protected SpriteEffects spriteEffects;
         protected TileEdge edges;
         protected SoundCollection footsteps;
+        public bool updateAble = false;
+        protected AnimatedSprite animSprite = null;
         public Tile(Vector2 position) : base(position)
         {
             this.position = position;
@@ -28,7 +30,20 @@ namespace Test_Loopguy
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position + new Vector2(hitBox.Width/2, hitBox.Height/2), sourceRectangle, Color.White, rotation, new Vector2(hitBox.Width / 2, hitBox.Height / 2), 1, spriteEffects, 1);
-            
+            if(animSprite != null)
+            {
+                animSprite.Draw(spriteBatch);
+            }
+           
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            if(animSprite != null)
+            {
+                animSprite.Update(gameTime);
+                animSprite.Play(0, 4, 160);
+            }
         }
 
         public void DrawEdges(SpriteBatch spriteBatch)
@@ -62,7 +77,12 @@ namespace Test_Loopguy
         {
             texture = TextureManager.water;
             sourceRectangle = new Rectangle(0, 0, 16, 16);
+            updateAble = true;
+            animSprite = new AnimatedSprite(texture, new Point(16, 16));
+            animSprite.Play(0, 600000000, 600);
+            animSprite.Position = position;
         }
+
     }
 
     public class Floor : Tile

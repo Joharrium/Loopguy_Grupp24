@@ -49,6 +49,14 @@ namespace Test_Loopguy
             EnemyUpdate(gameTime);
             Rectangle mapbounds = new Rectangle(0, 0, cameraBounds.Width * 2, cameraBounds.Height * 2);
 
+            foreach(Tile t in tiles)
+            {
+                if(t.updateAble)
+                {
+                    t.Update(gameTime);
+                }
+            }
+
             foreach (Projectile s in enemyProjectiles)
             {
                 s.Update(gameTime);
