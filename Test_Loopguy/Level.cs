@@ -166,7 +166,7 @@ namespace Test_Loopguy
                 {
                     if(!IsOnGround(player.footprint))
                     {
-                        LevelManager.Reset();
+                        player.EnteredHazard();
                     }   
                 }
 

@@ -39,7 +39,7 @@ namespace Test_Loopguy
             if(loadTimer < 0)
             {
                 TryLoad(queuedLevel);
-                player.position = target;
+                player.EnterRoom(target);
                 loadStarted = false;
             }
         }

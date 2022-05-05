@@ -22,6 +22,8 @@ namespace Test_Loopguy
         Random random = new Random();
         public List<int> keys = new List<int>();
 
+        Vector2 roomEntrancePosition = new Vector2(64, 64);
+
         //Wtf
         public Vector2 cameraPosition;
         Vector2 gunDirection;
@@ -185,6 +187,19 @@ namespace Test_Loopguy
             gunSprite.Update(gameTime);
             meleeSprite.Update(gameTime);
             sprite.Update(gameTime);
+        }
+
+        public void EnterRoom(Vector2 position)
+        {
+            roomEntrancePosition = position;
+            this.position = position;
+        }
+
+        public void EnteredHazard()
+        {
+            position = roomEntrancePosition;
+            TakeDamage(1);
+            Fadeout.LevelTransitionFade();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
