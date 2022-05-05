@@ -17,6 +17,7 @@ namespace Test_Loopguy
         static public bool active = false;
         public static void LevelTransitionFade()
         {
+            InputReader.playerInputEnabled = false;
             started = true;
             if(fadeout.A > 40)
             {
@@ -59,10 +60,15 @@ namespace Test_Loopguy
                 {
                     fadeout.A -= 5;
                 }
+                if(fadeout.A < 240)
+                {
+                    InputReader.playerInputEnabled = true;
+                }
                 if(fadeout.A == 0)
                 {
                     end = false;
                     active = false;
+                    InputReader.playerInputEnabled = true;
                 }
             }
         }

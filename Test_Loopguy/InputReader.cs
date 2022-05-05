@@ -13,73 +13,110 @@ static class InputReader
 	public static GamePadState padState, oldPadState = GamePad.GetState(PlayerIndex.One);
 
 	public static bool editMode;
+	public static bool playerInputEnabled = true;
 
 	public static bool KeyPressed(Keys key)
 	{
-		return keyState.IsKeyDown(key) && oldKeyState.IsKeyUp(key);
+		if (playerInputEnabled)
+			return keyState.IsKeyDown(key) && oldKeyState.IsKeyUp(key);
+		else
+			return false;
 	}
 	public static bool ButtonPressed(Buttons button)
 	{
-		return padState.IsButtonDown(button) && oldPadState.IsButtonUp(button);
+		if (playerInputEnabled)
+			return padState.IsButtonDown(button) && oldPadState.IsButtonUp(button);
+		else
+			return false;
 	}
 	public static bool LeftClick()
 	{
-		return mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Released;
+		if (playerInputEnabled)
+			return mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Released;
+		else
+			return false;
 	}
 	public static bool RightClick()
 	{
-		return mouseState.RightButton == ButtonState.Pressed && oldMouseState.RightButton == ButtonState.Released;
+		if (playerInputEnabled)
+			return mouseState.RightButton == ButtonState.Pressed && oldMouseState.RightButton == ButtonState.Released;
+		else
+			return false;
 	}
 
 	public static bool MovementLeft()
 	{
-		return keyState.IsKeyDown(Keys.Left) || keyState.IsKeyDown(Keys.A) || padState.IsButtonDown(Buttons.DPadLeft);
+		if (playerInputEnabled)
+			return keyState.IsKeyDown(Keys.Left) || keyState.IsKeyDown(Keys.A) || padState.IsButtonDown(Buttons.DPadLeft);
+		else
+			return false;
 	}
 	public static bool MovementRight()
 	{
-		return keyState.IsKeyDown(Keys.Right) || keyState.IsKeyDown(Keys.D) || padState.IsButtonDown(Buttons.DPadRight);
+		if (playerInputEnabled)
+			return keyState.IsKeyDown(Keys.Right) || keyState.IsKeyDown(Keys.D) || padState.IsButtonDown(Buttons.DPadRight);
+		else
+			return false;
 	}
 	public static bool MovementUp()
 	{
-		return keyState.IsKeyDown(Keys.Up) || keyState.IsKeyDown(Keys.W) || padState.IsButtonDown(Buttons.DPadUp);
+		if (playerInputEnabled)
+			return keyState.IsKeyDown(Keys.Up) || keyState.IsKeyDown(Keys.W) || padState.IsButtonDown(Buttons.DPadUp);
+		else
+			return false;
 	}
 	public static bool MovementDown()
 	{
-		return keyState.IsKeyDown(Keys.Down) || keyState.IsKeyDown(Keys.S) || padState.IsButtonDown(Buttons.DPadDown);
+		if (playerInputEnabled)
+			return keyState.IsKeyDown(Keys.Down) || keyState.IsKeyDown(Keys.S) || padState.IsButtonDown(Buttons.DPadDown);
+		else
+			return false;
 	}
 	
 	public static bool Dash()
     {
-		return KeyPressed(Keys.Space) || ButtonPressed(Buttons.A);
-    }
+		if (playerInputEnabled)
+			return KeyPressed(Keys.Space) || ButtonPressed(Buttons.A);
+		else
+			return false;
+	}
 	public static bool Attack()
     {
-		if (editMode)
+		if (editMode || !playerInputEnabled)
 			return false;
 		else
 			return LeftClick() || KeyPressed(Keys.RightControl) || ButtonPressed(Buttons.X);
     }
 	public static bool Aim()
     {
-		return keyState.IsKeyDown(Keys.LeftShift) || padState.IsButtonDown(Buttons.LeftTrigger);
+		if (playerInputEnabled)
+			return keyState.IsKeyDown(Keys.LeftShift) || padState.IsButtonDown(Buttons.LeftTrigger);
+		else
+			return false;
 	}
 	public static bool Shoot()
     { //This is same as Attack so should probs just remove
-		//No it's not
-		return LeftClick() || KeyPressed(Keys.RightControl) || ButtonPressed(Buttons.RightTrigger);
+	  //No it's not
+		if (playerInputEnabled)
+			return LeftClick() || KeyPressed(Keys.RightControl) || ButtonPressed(Buttons.RightTrigger);
+		else
+			return false;
 	}
 
 	public static bool MovingLeftStick()
     {
-		return padState.ThumbSticks.Left != Vector2.Zero;
-    }
+		if (playerInputEnabled)
+			return padState.ThumbSticks.Left != Vector2.Zero;
+		else
+			return false;
+	}
 	public static Vector2 LeftStickDirection()
     {
-		return padState.ThumbSticks.Left;
-    }
+			return padState.ThumbSticks.Left;
+	}
 	public static Vector2 RightStickDirection()
 	{
-		return padState.ThumbSticks.Right;
+			return padState.ThumbSticks.Right;
 	}
 	public static float LeftStickLength()
 	{
