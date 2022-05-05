@@ -15,6 +15,8 @@ namespace Test_Loopguy
         static private Color fadeout = new Color(255, 255, 255, 0);
         static private Texture2D texture = TextureManager.black_screen;
         static public bool active = false;
+        static private byte fadeInSpeed;
+        static private byte fadeOutSpeed;
         public static void LevelTransitionFade()
         {
             InputReader.playerInputEnabled = false;
@@ -27,7 +29,29 @@ namespace Test_Loopguy
             {
                 fadeout.A = 0;
             }
-            
+
+            fadeInSpeed = 51;
+            fadeOutSpeed = 5;
+            end = false;
+            delay = 200;
+            active = true;
+        }
+
+        public static void HazardFade()
+        {
+            InputReader.playerInputEnabled = false;
+            started = true;
+            if (fadeout.A > 40)
+            {
+                fadeout.A = 255;
+            }
+            else
+            {
+                fadeout.A = 0;
+            }
+
+            fadeInSpeed = 51;
+            fadeOutSpeed = 4;
             end = false;
             delay = 200;
             active = true;
@@ -40,7 +64,15 @@ namespace Test_Loopguy
                 
                 if(fadeout.A < 255)
                 {
-                    fadeout.A += 51;
+                    if(fadeout.A + fadeInSpeed > 255)
+                    {
+                        fadeout.A = 255;
+                    }
+                    else
+                    {
+                        fadeout.A += fadeInSpeed;
+                    }
+                    
                 }
                 
                 if(fadeout.A == 255)
@@ -58,7 +90,15 @@ namespace Test_Loopguy
             {
                 if (fadeout.A > 0)
                 {
-                    fadeout.A -= 5;
+                    if(fadeout.A - fadeOutSpeed < 0)
+                    {
+                        fadeout.A = 0;
+                    }
+                    else
+                    {
+                        fadeout.A -= fadeOutSpeed;
+                    }
+            
                 }
                 if(fadeout.A < 240)
                 {

@@ -197,9 +197,10 @@ namespace Test_Loopguy
 
         public void EnteredHazard()
         {
+            Audio.PlaySound(Audio.splash);
             position = roomEntrancePosition;
             TakeDamage(1);
-            Fadeout.LevelTransitionFade();
+            Fadeout.HazardFade();
         }
 
         public override void Draw(SpriteBatch spriteBatch)

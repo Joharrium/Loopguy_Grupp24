@@ -167,6 +167,7 @@ namespace Test_Loopguy
                     if(!IsOnGround(player.footprint))
                     {
                         player.EnteredHazard();
+                        break;
                     }   
                 }
 
