@@ -279,6 +279,98 @@ namespace Test_Loopguy
         }
     }
 
+    class RangedRobotEnemy : RangedEnemy
+    {
+        
+        AnimatedSprite sprite;  //Bör läggas in i RangedEnemy I guess
+
+        public RangedRobotEnemy(Vector2 position) : base(position)
+        {
+            
+            this.position = position;         
+            sprite = new AnimatedSprite(TextureManager.robotEnemySheet, new Point(64, 64));
+
+            minRange = 40;
+            maxRange = 128;
+            fleeRange = 128;
+            aggroRange = 192;
+            damage = 1;
+            knockBackDistance = 180;
+            knockBackDuration = 160;
+            Init();
+            aggro = false;
+            attackCooldown = 620;
+            attackCooldownRemaining = 320;
+            accuracy = 50;
+
+        }
+
+        public enum FacingDirection
+        {
+            Right,
+            Left,
+            Up,
+            Down
+        }
+
+        public override void Movement(float deltaTime)
+        {
+            bool turnedRight, turnedLeft, turnedUp, turnedDown;
+
+            FacingDirection currentDirection = FacingDirection.Down;
+
+            float absDirection = Math.Abs(direction.X) + Math.Abs(direction.Y);
+
+            int frameTime = 0;
+
+            if (absDirection != 0)
+            {
+                frameTime = (int)(50 / absDirection);
+            }
+
+
+            if (direction.X > 0)
+            {
+                sprite.Play(5, 12, frameTime);
+                currentDirection = FacingDirection.Right;
+            }
+            else if (direction.X < 0)
+            {
+                sprite.Play(4, 12, frameTime);
+                currentDirection = FacingDirection.Left;
+            }
+            else if (direction.Y > 0)
+            {
+                sprite.Play(7, 11, frameTime);
+                currentDirection = FacingDirection.Up;
+            }
+            else if (direction.Y < 0)
+            {
+                sprite.Play(6, 12, frameTime);
+                currentDirection = FacingDirection.Down;
+            }
+            else if (direction.X == 0 && currentDirection == FacingDirection.Down)
+            {
+
+            }
+
+
+
+
+            //base.Movement(deltaTime);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+
+            sprite.Draw(spriteBatch);
+
+            //base.Draw(spriteBatch);
+        }
+
+
+    }
+
     class TestEnemy : MeleeEnemy
     {
         
