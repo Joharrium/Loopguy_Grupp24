@@ -12,7 +12,7 @@ namespace Test_Loopguy
         protected float rotation;
         protected SpriteEffects spriteEffects;
         protected TileEdge edges;
-        protected SoundCollection footsteps;
+        public SoundCollection footsteps;
         public bool updateAble = false;
         protected AnimatedSprite animSprite = null;
         public Tile(Vector2 position) : base(position)
@@ -23,7 +23,7 @@ namespace Test_Loopguy
             hitBox.Y = (int)position.Y;
             hitBox.Width = 16;
             hitBox.Height = 16;
-
+            footsteps = Audio.footstepsGeneric;
             centerPosition = new Vector2(position.X - texture.Width / 2, position.Y - texture.Height / 2);
         }
 
@@ -99,7 +99,7 @@ namespace Test_Loopguy
         public GrassTile(Vector2 position) : base(position)
         {
             this.position = position;
-
+            footsteps = Audio.footstepsGrass;
             int randomizer = Game1.rnd.Next(10);
             if (randomizer < 8)
             {
@@ -122,6 +122,7 @@ namespace Test_Loopguy
         public DirtTile(Vector2 position) : base(position)
         {
             this.position = position;
+            footsteps = Audio.footstepsDirt;
 
             texture = TextureManager.dirt;
             variation = Game1.rnd.Next(4);
@@ -136,7 +137,7 @@ namespace Test_Loopguy
         public TileBigLight(Vector2 position) : base(position)
         {
             this.position = position;
-
+            footsteps = Audio.footstepsStone;
             texture = TextureManager.tiles_big_light;
             variation = Game1.rnd.Next(2);
 
@@ -150,7 +151,7 @@ namespace Test_Loopguy
         public TileBigDark(Vector2 position) : base(position)
         {
             this.position = position;
-
+            footsteps = Audio.footstepsStone;
             texture = TextureManager.tiles_big_dark;
             variation = Game1.rnd.Next(2);
 
@@ -164,7 +165,7 @@ namespace Test_Loopguy
         public CheckeredTileGray(Vector2 position) : base(position)
         {
             this.position = position;
-
+            footsteps = Audio.footstepsStone;
             texture = TextureManager.tiles_checkered_gray;
             int randomizer = Game1.rnd.Next(10);
             if (randomizer == 9)
@@ -186,7 +187,7 @@ namespace Test_Loopguy
         public CheckeredTileBrown(Vector2 position) : base(position)
         {
             this.position = position;
-
+            footsteps = Audio.footstepsStone;
             texture = TextureManager.tiles_checkered_brown;
             int randomizer = Game1.rnd.Next(10);
             if(randomizer == 9)
@@ -209,7 +210,7 @@ namespace Test_Loopguy
         public TileMetal(Vector2 position) : base(position)
         {
             this.position = position;
-
+            footsteps = Audio.footstepsMetal;
             texture = TextureManager.tile_clinical;
             variation = Game1.rnd.Next(1);
 
@@ -223,7 +224,7 @@ namespace Test_Loopguy
         public CarpetWorn(Vector2 position) : base(position)
         {
             this.position = position;
-
+            footsteps = Audio.footstepsGeneric;
             texture = TextureManager.carpet_worn;
             variation = Game1.rnd.Next(3);
 

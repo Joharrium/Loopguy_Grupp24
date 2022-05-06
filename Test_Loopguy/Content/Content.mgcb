@@ -74,6 +74,66 @@
 /processorParam:Quality=Best
 /build:audio/sound/door_hiss_sound.wav
 
+#begin audio/sound/footsteps/dirt_1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/footsteps/dirt_1.wav
+
+#begin audio/sound/footsteps/dirt_2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/footsteps/dirt_2.wav
+
+#begin audio/sound/footsteps/generic_1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/footsteps/generic_1.wav
+
+#begin audio/sound/footsteps/generic_2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/footsteps/generic_2.wav
+
+#begin audio/sound/footsteps/grass_1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/footsteps/grass_1.wav
+
+#begin audio/sound/footsteps/grass_2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/footsteps/grass_2.wav
+
+#begin audio/sound/footsteps/metal_1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/footsteps/metal_1.wav
+
+#begin audio/sound/footsteps/metal_2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/footsteps/metal_2.wav
+
+#begin audio/sound/footsteps/stone_1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/footsteps/stone_1.wav
+
+#begin audio/sound/footsteps/stone_2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/footsteps/stone_2.wav
+
 #begin audio/sound/gun/EnergyGun_Shoot1A.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

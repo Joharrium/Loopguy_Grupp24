@@ -55,7 +55,17 @@ namespace Test_Loopguy
             return points;
         }
 
-        
+        public static Tile GetTile(Vector2 pos)
+        {
+            foreach(Tile t in currentLevel.tiles)
+            {
+                if(t.hitBox.Contains(pos))
+                {
+                    return t;
+                }
+            }
+            return new Tile(pos);
+        }
 
         internal static void Update(GameTime gameTime, Player player)
         {

@@ -29,13 +29,14 @@ namespace Test_Loopguy
 
 
         //sound
-        public static SoundCollection lasergun, footstepsMetal, footstepsStone, footstepsWood, footstepsGrass;
+        public static SoundCollection lasergun, footstepsMetal, footstepsStone, footstepsGeneric, footstepsGrass, footstepsDirt;
         public static SoundEffect meepmerp, swing, open, deny, dash, door_hiss_sound, 
             box_destroy, shrub_destroy, keypickup, healing, player_hit, reload, splash;
 
         //public static SoundEffect 
 
         public static SoundEffect EnergyGun_Shoot1A, EnergyGun_Shoot1B, EnergyGun_Shoot1C, EnergyGun_Shoot1D, EnergyGun_Shoot2A, EnergyGun_Shoot2B, EnergyGun_Shoot2C, EnergyGun_Shoot2D;
+        public static SoundEffect grass_1, grass_2, dirt_1, dirt_2, generic_1, generic_2, metal_1, metal_2, stone_1, stone_2;
         static public void Load(ContentManager Content)
         {
             LoadMusic(Content);
@@ -59,15 +60,41 @@ namespace Test_Loopguy
 
         static void CreateCollections()
         {
-            lasergun = new SoundCollection();
-            lasergun.AddSound(EnergyGun_Shoot1A);
-            lasergun.AddSound(EnergyGun_Shoot1B);
-            lasergun.AddSound(EnergyGun_Shoot1C);
-            lasergun.AddSound(EnergyGun_Shoot1D);
-            lasergun.AddSound(EnergyGun_Shoot2A);
-            lasergun.AddSound(EnergyGun_Shoot2B);
-            lasergun.AddSound(EnergyGun_Shoot2C);
-            lasergun.AddSound(EnergyGun_Shoot2D);
+            //laser gun collection
+            {
+                lasergun = new SoundCollection();
+                lasergun.AddSound(EnergyGun_Shoot1A);
+                lasergun.AddSound(EnergyGun_Shoot1B);
+                lasergun.AddSound(EnergyGun_Shoot1C);
+                lasergun.AddSound(EnergyGun_Shoot1D);
+                lasergun.AddSound(EnergyGun_Shoot2A);
+                lasergun.AddSound(EnergyGun_Shoot2B);
+                lasergun.AddSound(EnergyGun_Shoot2C);
+                lasergun.AddSound(EnergyGun_Shoot2D);
+            }
+            //footsteps
+            {
+                footstepsDirt = new SoundCollection();
+                footstepsGeneric = new SoundCollection();
+                footstepsGrass = new SoundCollection();
+                footstepsMetal = new SoundCollection();
+                footstepsStone = new SoundCollection();
+
+                footstepsDirt.AddSound(dirt_1);
+                footstepsDirt.AddSound(dirt_2);
+
+                footstepsGeneric.AddSound(generic_1);
+                footstepsGeneric.AddSound(generic_2);
+
+                footstepsGrass.AddSound(grass_1);
+                footstepsGrass.AddSound(grass_2);
+
+                footstepsMetal.AddSound(metal_1);
+                footstepsMetal.AddSound(metal_2);
+
+                footstepsStone.AddSound(stone_1);
+                footstepsStone.AddSound(stone_2);
+            }
         }
         static void LoadMusic(ContentManager c)
         {
@@ -103,6 +130,19 @@ namespace Test_Loopguy
                 EnergyGun_Shoot2B = c.Load<SoundEffect>("audio/sound/gun/EnergyGun_Shoot2B");
                 EnergyGun_Shoot2C = c.Load<SoundEffect>("audio/sound/gun/EnergyGun_Shoot2C");
                 EnergyGun_Shoot2D = c.Load<SoundEffect>("audio/sound/gun/EnergyGun_Shoot2D");
+            }
+
+            {
+                dirt_1 = c.Load<SoundEffect>("audio/sound/footsteps/dirt_1");
+                dirt_2 = c.Load<SoundEffect>("audio/sound/footsteps/dirt_2");
+                generic_1 = c.Load<SoundEffect>("audio/sound/footsteps/generic_1");
+                generic_2 = c.Load<SoundEffect>("audio/sound/footsteps/generic_2");
+                grass_1 = c.Load<SoundEffect>("audio/sound/footsteps/grass_1");
+                grass_2 = c.Load<SoundEffect>("audio/sound/footsteps/grass_2");
+                metal_1 = c.Load<SoundEffect>("audio/sound/footsteps/metal_1");
+                metal_2 = c.Load<SoundEffect>("audio/sound/footsteps/metal_2");
+                stone_1 = c.Load<SoundEffect>("audio/sound/footsteps/stone_1");
+                stone_2 = c.Load<SoundEffect>("audio/sound/footsteps/stone_2");
             }
         }
 

@@ -29,6 +29,9 @@ namespace Test_Loopguy
         Vector2 gunDirection;
         Vector2 prevDirection;
 
+        float traveledDistance = 35;
+        float distanceBetweenFootsteps = 35;
+
         public bool usedGate;
         static public PlayerHealthBar healthBar;
         static public AmmoBar ammoBar;
@@ -180,6 +183,7 @@ namespace Test_Loopguy
                 }
             }
 
+            FootstepCalculation();
             sprite.Position = position;
             gunSprite.Position = new Vector2(position.X - 16, position.Y - 16);
             meleeSprite.Position = new Vector2(position.X - 8, position.Y - 8);
@@ -193,6 +197,20 @@ namespace Test_Loopguy
         {
             roomEntrancePosition = position;
             this.position = position;
+        }
+
+        private void FootstepCalculation()
+        {
+            if(traveledDistance >= distanceBetweenFootsteps)
+            {
+                traveledDistance = 0;
+                Tile tile = LevelManager.GetTile(footprint.Center.ToVector2());
+                if(tile.footsteps != null)
+                {
+                    tile.footsteps.PlayRandomSound();
+                }
+                
+            }
         }
 
         public void EnteredHazard()
@@ -398,17 +416,22 @@ namespace Test_Loopguy
                 }
                 if (!bingus && bongus)
                 {
+                    traveledDistance += Math.Abs(position.X - futurePosCalc.X);
                     position.X = futurePosCalc.X;
+
                 }
 
 
                 if (!bongus && bingus)
                 {
+                    traveledDistance += Math.Abs(position.Y - futurePosCalc.Y);
                     position.Y = futurePosCalc.Y;
                 }
             }
             else
             {
+                Vector2 delta = position - futurePosCalc;
+                traveledDistance += Math.Abs(delta.Length());
                 position += direction * speed * deltaTime;
             }
         }
