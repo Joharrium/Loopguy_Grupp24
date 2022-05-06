@@ -42,7 +42,7 @@ namespace Test_Loopguy
 
         int dirInt;
         const int meleeRange = 22;
-        const int dashRange = 40;
+        const int dashRange = 10;
 
         public string playerInfoString;
 
@@ -95,7 +95,7 @@ namespace Test_Loopguy
 
         public override void Update(GameTime gameTime)
         {
-            hitBox = new Rectangle((int)position.X, (int)position.Y, sprite.size.X, sprite.size.Y);
+            hitBox = new Rectangle((int)(position.X + (sprite.size.X * 0.375)), (int)(position.Y + sprite.size.Y / 4), sprite.size.X / 4, sprite.size.Y / 2);
             footprint = new Rectangle((int)position.X + 12, (int)position.Y + 24, 8, 8);
             
             centerPosition = new Vector2(position.X + sprite.size.X / 2, position.Y + sprite.size.Y / 2);
@@ -122,7 +122,6 @@ namespace Test_Loopguy
             }
             else if (dashing)
             {
-                dashing = false;
             }
             else
             {
@@ -139,7 +138,7 @@ namespace Test_Loopguy
 
                         Vector2 shotPosition = new Vector2(centerPosition.X + gunDirection.X * 20 - 4, centerPosition.Y + gunDirection.Y * 20 - 6);
                         float shotAngle = aimAngle + pi;
-                        Shot shot = new Shot(shotPosition, gunDirection, shotAngle);
+                        Shot shot = new Shot(shotPosition, gunDirection, shotAngle, 300);
                         LevelManager.AddPlayerProjectile(shot);
                         //shots.Add(shot);
                         //Audio.PlaySound(Audio.meepmerp);
@@ -223,7 +222,12 @@ namespace Test_Loopguy
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            //draw footprint
             spriteBatch.Draw(TextureManager.black_screen, footprint, Color.White);
+            //draw hitbox borders
+            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Top), Color.White);
+            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Bottom), Color.White);
+
             if (attacking)
             {
                 sprite.Draw(spriteBatch);
@@ -258,11 +262,12 @@ namespace Test_Loopguy
                     }
                     else if (dashing)
                     {
-                        Dash(spriteBatch);
+                        dashing = Dash(spriteBatch);
                     }
                 }
             }
             //healthBar.Draw(spriteBatch);
+
         }
 
         public void Reset(Vector2 position)
@@ -359,7 +364,7 @@ namespace Test_Loopguy
             attacking = meleeSprite.PlayOnce(rowInt, 4, frameTime);
         }
 
-        public void Dash(SpriteBatch spriteBatch)
+        public bool Dash(SpriteBatch spriteBatch)
         {
             Vector2 viablePos = centerPosition + new Vector2(0, 12);
 
@@ -395,6 +400,8 @@ namespace Test_Loopguy
             viablePos += new Vector2(0, - 12);
             viablePos = new Vector2(viablePos.X - sprite.size.X / 2, viablePos.Y - sprite.size.Y / 2);
             position = viablePos;
+
+            return false;
         }
 
         private void CheckMovement(float deltaTime)

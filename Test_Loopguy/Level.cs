@@ -60,7 +60,15 @@ namespace Test_Loopguy
             foreach (Projectile s in enemyProjectiles)
             {
                 s.Update(gameTime);
-                if(s.CheckCollision(player))
+                //Make projectiles bounce back if hit by player Melee attack
+                if (EntityManager.player.MeleeHit(s) && EntityManager.player.attacking)
+                {
+                    s.Bounce();
+                    Projectile reflS = s.Clone();
+                    playerProjectiles.Add(reflS);
+                    projectilesToRemove.Add(s);
+                }
+                if (s.CheckCollision(player))
                 {
                     player.TakeDamage(1);
                     projectilesToRemove.Add(s);

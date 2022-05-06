@@ -205,7 +205,7 @@ namespace Test_Loopguy
             direction *= -1;
 
 
-            LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)((float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0) + Math.PI)));
+            LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 200));
         }
 
         protected override void AggroBehavior()
