@@ -47,7 +47,7 @@ namespace Test_Loopguy
             List<Pickup> pickupsToRemove = new List<Pickup>();
             DestructibleUpdate(gameTime);
             EnemyUpdate(gameTime);
-            Rectangle mapbounds = new Rectangle(0, 0, cameraBounds.Width * 2, cameraBounds.Height * 2);
+            Rectangle mapbounds = new Rectangle(0, 0, cameraBounds.Width * 2 + Game1.windowX, cameraBounds.Height * 2 + Game1.windowY);
 
             foreach(Tile t in tiles)
             {
