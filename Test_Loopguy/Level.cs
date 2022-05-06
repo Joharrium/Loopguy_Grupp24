@@ -467,7 +467,7 @@ namespace Test_Loopguy
                         tiles[coordinates.X, coordinates.Y] = new TileMetal(gameLocation);
                         break;
                     case TileSelection.WallMetal:
-                        tiles[coordinates.X, coordinates.Y] = new MetalWall(gameLocation);
+                        tiles[coordinates.X, coordinates.Y] = new WallGray(gameLocation);
                         break;
                     case TileSelection.CarpetWorn:
                         tiles[coordinates.X, coordinates.Y] = new CarpetWorn(gameLocation);

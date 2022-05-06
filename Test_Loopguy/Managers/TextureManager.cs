@@ -9,7 +9,7 @@ namespace Test_Loopguy
         public static Texture2D meleeFx, shot, blueDot, cursor;
         // terrain files
         public static Texture2D grassBasic, grassAlt, grayBrickWall, dirt, tiles_checkered_gray, tiles_checkered_brown, tiles_big_light, tiles_big_dark,
-            carpet_worn, tile_metal, tile_metal_copper, wall_metal, wall_worn, tile_metal_bright, grass_edge, tile_clinical, water;
+            carpet_worn, tile_metal, tile_metal_copper, wall_metal, wall_worn, tile_metal_bright, grass_edge, tile_clinical, water, wall_beige, wall_gray, wall_brick_beige;
         // object files
         public static Texture2D boxOpen, barrel, pot, shrub_big, shrub_small, tree_big, tree_small, fernDestroyed, door, door_open,
             keycard, door_sliding, door_sliding_open, barrelDestroyed, medkit, console, ammo,
@@ -75,6 +75,9 @@ namespace Test_Loopguy
             grass_edge = c.Load<Texture2D>("gfx/terrain/grass_edges");
             tile_clinical = c.Load<Texture2D>("gfx/terrain/tile_clinical");
             water = c.Load<Texture2D>("gfx/terrain/water");
+            wall_beige = c.Load<Texture2D>("gfx/terrain/wall_beige");
+            wall_gray = c.Load<Texture2D>("gfx/terrain/wall_gray");
+            wall_brick_beige = c.Load<Texture2D>("gfx/terrain/wall_brick_beige");
         }
 
         private static void LoadObjects(ContentManager c)

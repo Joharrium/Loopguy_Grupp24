@@ -266,16 +266,16 @@ namespace Test_Loopguy
         }
     }
 
-    public class MetalWall : Wall
+    public class WallGray : Wall
     {
         int variation;
-        public MetalWall(Vector2 position) : base(position)
+        public WallGray(Vector2 position) : base(position)
         {
             this.position = position - new Vector2(0, 16);
-            texture = TextureManager.wall_metal;
+            texture = TextureManager.wall_beige;
             hitBox.Width = 16;
             hitBox.Height = 16;
-            int variation = Game1.rnd.Next(3);
+            int variation = Game1.rnd.Next(1);
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 32);
         }
     }
