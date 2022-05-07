@@ -245,7 +245,7 @@ namespace Test_Loopguy
             hitBox.Width = texture.Width;
             hitBox.Height = texture.Height;
 
-            centerPosition = new Vector2(position.X - texture.Width / 2, position.Y - texture.Height / 2);
+            centerPosition = new Vector2(position.X - 16 / 2, position.Y - 20);
         }
 
         public void SetConnections()

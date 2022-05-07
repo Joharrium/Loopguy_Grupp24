@@ -302,6 +302,7 @@ namespace Test_Loopguy
         {
             foreach (Tile t in tiles)
             {
+                if(t is Floor || t is Hazard)
                 t.Draw(spriteBatch);
             }
             foreach (Tile t in tiles)
@@ -310,7 +311,7 @@ namespace Test_Loopguy
             }
             foreach (Tile t in tiles.OfType<Wall>())
             {
-                t.Draw(spriteBatch);
+                //t.Draw(spriteBatch);
             }
 
 
@@ -320,6 +321,7 @@ namespace Test_Loopguy
             objects.Add(EntityManager.player);
             objects.AddRange(playerProjectiles);
             objects.AddRange(enemyProjectiles);
+            objects.AddRange(tiles.OfType<Wall>());
 
             List<GameObject> sortedList = objects.OrderBy(o => o.centerPosition.Y + o.texture.Height).ToList();
             objects = sortedList;
