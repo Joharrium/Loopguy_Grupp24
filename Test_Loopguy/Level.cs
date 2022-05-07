@@ -39,6 +39,10 @@ namespace Test_Loopguy
             {
                 t.UpdateEdges();
             }
+            foreach (Wall w in tiles.OfType<Wall>())
+            {
+                w.SetConnections();
+            }
         }
 
         internal void Update(GameTime gameTime, Player player)
@@ -484,6 +488,10 @@ namespace Test_Loopguy
             foreach (Tile t in tiles)
             {
                 t.UpdateEdges();
+            }
+            foreach (Wall w in tiles.OfType<Wall>())
+            {
+                w.SetConnections();
             }
 
         }

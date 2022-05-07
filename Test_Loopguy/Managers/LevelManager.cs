@@ -220,7 +220,7 @@ namespace Test_Loopguy
                     if(coords.X + i >= 0 && coords.Y + j >= 0 && coords.X + i < currentLevel.tiles.GetLength(0) && coords.Y + j < currentLevel.tiles.GetLength(1))
                     {
                         edges[i + 1, j + 1] = true;
-                        if (currentLevel.tiles[coords.X + i, coords.Y + j] is GrassTile)
+                        if (currentLevel.tiles[coords.X + i, coords.Y + j].GetType() == tile.GetType())
                         {
                             edges[i + 1, j + 1] = false;
                         }
