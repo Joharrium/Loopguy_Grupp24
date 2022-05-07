@@ -105,6 +105,7 @@ namespace Test_Loopguy
                 ScaleWindow(-1);
             else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.F1))
             {
+                LevelManager.RefreshEdges();
                 editLevel = !editLevel;
                 InputReader.editMode = editLevel;
                 if(editLevel)

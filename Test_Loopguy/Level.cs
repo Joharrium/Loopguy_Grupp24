@@ -489,11 +489,11 @@ namespace Test_Loopguy
             }
             foreach (Tile t in tiles)
             {
-                t.UpdateEdges();
+                //t.UpdateEdges();
             }
             foreach (Wall w in tiles.OfType<Wall>())
             {
-                w.SetConnections();
+                //w.SetConnections();
             }
 
         }
