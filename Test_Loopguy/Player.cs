@@ -10,6 +10,17 @@ namespace Test_Loopguy
 {
     internal class Player : MovingObject
     {
+        enum Direction
+        {
+            Zero,
+            Up,
+            Down,
+            Left,
+            Right,
+        }
+
+        Direction currentDirection;
+
         public int health = 5;
         private int maxHealth = 5;
 
@@ -40,15 +51,19 @@ namespace Test_Loopguy
         float aimAngle;
         const float pi = (float)Math.PI;
 
-        int dirInt;
+        float deltaTime;
+
         const int meleeRange = 22;
-        const int dashRange = 10;
+
+        const int dashRange = 5; //pixels per frame
+        const int maxDashFrames = 10; //frames per dash
+        int dashFrames;
 
         public string playerInfoString;
 
         public bool attacking;
         bool shooting;
-        bool dashing;
+        public bool dashing;
 
 
         //footprint rectangle
@@ -61,9 +76,9 @@ namespace Test_Loopguy
             gunSprite = new AnimatedSprite(TextureManager.gunSheet, new Point(64, 64));
             meleeSprite = new AnimatedSprite(TextureManager.meleeFx, new Point(48, 48));
 
-            speed = 100;
+            speed = 100; //pixels per second
 
-            dirInt = 2;
+            currentDirection = Direction.Down;
             LoadKeys();
             healthBar = new PlayerHealthBar(5);
             ammoBar = new AmmoBar(5);
@@ -103,7 +118,7 @@ namespace Test_Loopguy
             healthBar.UpdateBar(health);
             ammoBar.SetCurrentValue(new Vector2(2, 38), ammo);
 
-            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (attacking)
             {
@@ -121,7 +136,8 @@ namespace Test_Loopguy
                 
             }
             else if (dashing)
-            {
+            { 
+
             }
             else
             {
@@ -235,17 +251,26 @@ namespace Test_Loopguy
             }
             else
             {
-                if (dirInt == 1)
+                if (currentDirection == Direction.Up)
                 { //if aiming up, draw player sprite on top
 
-                    if (InputReader.Aim() || shooting)
+                    if (dashing)
+                    {
+                        if (dashFrames <= maxDashFrames)
+                        {
+                            Dash(spriteBatch);
+                            dashFrames++;
+                        }
+                        else
+                        {
+                            dashing = false;
+                            dashFrames = 0;
+                        }
+                    }
+                    else if (InputReader.Aim() || shooting)
                     {
                         DrawAim(spriteBatch);
                         DrawGun(spriteBatch);
-                    }
-                    else if (dashing)
-                    {
-                        Dash(spriteBatch);
                     }
 
                     sprite.Draw(spriteBatch);
@@ -255,14 +280,23 @@ namespace Test_Loopguy
 
                     sprite.Draw(spriteBatch);
 
-                    if (InputReader.Aim() || shooting)
+                    if (dashing)
+                    {
+                        if (dashFrames <= maxDashFrames)
+                        {
+                            Dash(spriteBatch);
+                            dashFrames++;
+                        }
+                        else
+                        {
+                            dashing = false;
+                            dashFrames = 0;
+                        }
+                    }
+                    else if (InputReader.Aim() || shooting)
                     {
                         DrawAim(spriteBatch);
                         DrawGun(spriteBatch);
-                    }
-                    else if (dashing)
-                    {
-                        dashing = Dash(spriteBatch);
                     }
                 }
             }
@@ -330,22 +364,22 @@ namespace Test_Loopguy
 
         public void Melee(float deltaTime)
         {
-            int rowInt = dirInt - 1; //Wow dude??
+            int rowInt = (int)currentDirection - 1; //Wow dude??
             int frameTime = 50;
 
-            if (dirInt == 1)
+            if (currentDirection == Direction.Up)
             {//UP
                 sprite.Play(6, 4, frameTime);
                 direction.X = 0;
                 direction.Y = -1;
             }
-            else if (dirInt == 2)
+            else if (currentDirection == Direction.Down)
             {//DOWN
                 sprite.Play(7, 4, frameTime);
                 direction.X = 0;
                 direction.Y = 1;
             }
-            else if (dirInt == 3)
+            else if (currentDirection == Direction.Left)
             {//LEFT
                 sprite.Play(8, 4, frameTime);
                 direction.X = -1;
@@ -364,25 +398,27 @@ namespace Test_Loopguy
             attacking = meleeSprite.PlayOnce(rowInt, 4, frameTime);
         }
 
-        public bool Dash(SpriteBatch spriteBatch)
+        public void Dash(SpriteBatch spriteBatch)
         {
-            Vector2 viablePos = centerPosition + new Vector2(0, 12);
-
-            if(direction == Vector2.Zero)
+            if (direction == Vector2.Zero)
             {
-                if (dirInt == 1)
+                if (currentDirection == Direction.Up)
                     direction.Y = -1;
-                else if (dirInt == 2)
+                else if (currentDirection == Direction.Down)
                     direction.Y = 1;
-                else if (dirInt == 3)
+                else if (currentDirection == Direction.Left)
                     direction.X = -1;
                 else
                     direction.X = 1;
             }
 
+            Vector2 viablePos = centerPosition + new Vector2(0, 12);
+;
+
             for (int i = 1; i < dashRange + 1; i++)
             {
                 Vector2 dashPos = new Vector2(centerPosition.X + i * direction.X, centerPosition.Y + i * direction.Y) + new Vector2(0, 12);
+                
                 Rectangle futureFootPrint = new Rectangle((int)dashPos.X, (int)dashPos.Y, footprint.Width, footprint.Height);
 
 
@@ -392,7 +428,7 @@ namespace Test_Loopguy
                 }
                 else
                 {
-                    sprite.DrawElsewhere(spriteBatch, new Vector2(dashPos.X - sprite.size.X / 2, dashPos.Y - sprite.size.Y / 2 - 12));
+                    //sprite.DrawElsewhere(spriteBatch, new Vector2(dashPos.X - sprite.size.X / 2, dashPos.Y - sprite.size.Y / 2 - 12));
                     viablePos = dashPos;
                 }
             }
@@ -401,7 +437,6 @@ namespace Test_Loopguy
             viablePos = new Vector2(viablePos.X - sprite.size.X / 2, viablePos.Y - sprite.size.Y / 2);
             position = viablePos;
 
-            return false;
         }
 
         private void CheckMovement(float deltaTime)
@@ -491,30 +526,30 @@ namespace Test_Loopguy
             if (direction.Y < 0 && absDirectionX < absDirectionY)
             {//UP
                 sprite.Play(0, 12, frameTime);
-                dirInt = 1;
+                currentDirection = Direction.Up;
             }
             else if (direction.Y > 0 && absDirectionX < absDirectionY)
             {//DOWN
                 sprite.Play(1, 12, frameTime);
-                dirInt = 2;
+                currentDirection = Direction.Down;
             }
             else if (direction.X < 0)
             {//LEFT
                 sprite.Play(2, 12, frameTime);
-                dirInt = 3;
+                currentDirection = Direction.Left;
             }
             else if (direction.X > 0)
             {//RIGHT
                 sprite.Play(3, 12, frameTime);
-                dirInt = 4;
+                currentDirection = Direction.Right;
             }
             else
             {
-                if (dirInt == 1)
+                if (currentDirection == Direction.Up)
                     sprite.Frame(0, 4);
-                else if (dirInt == 2)
+                else if (currentDirection == Direction.Down)
                     sprite.Frame(1, 4);
-                else if (dirInt == 3)
+                else if (currentDirection == Direction.Left)
                     sprite.Frame(2, 4);
                 else
                     sprite.Frame(3, 4);
@@ -545,25 +580,25 @@ namespace Test_Loopguy
 
             if (aimAngle > pi * 1.75f || aimAngle < pi * 0.25f)
             {//DOWN
-                dirInt = 2;
+                currentDirection = Direction.Down;
             }
             else if (aimAngle < pi * 0.75f)
             {//RIGHT
-                dirInt = 4;
+                currentDirection = Direction.Right;
             }
             else if (aimAngle < pi * 1.25f)
             {//UP
-                dirInt = 1;
+                currentDirection = Direction.Up;
             }
             else
             {//LEFT
-                dirInt = 3;
+                currentDirection = Direction.Left;
             }
 
             if (!shooting)
-                gunSprite.Frame(dirInt - 1, 0);
+                gunSprite.Frame((int)currentDirection - 1, 0);
 
-            sprite.Frame(dirInt - 1, 5);
+            sprite.Frame((int)currentDirection - 1, 5);
 
             if (!InputReader.MovingLeftStick())
             {
@@ -602,15 +637,15 @@ namespace Test_Loopguy
         public void Shoot(int frameTime)
         {
             if (aimAngle > pi * 1.75f || aimAngle < pi * 0.25f)
-                dirInt = 2;
+                currentDirection = Direction.Down;
             else if (aimAngle < pi * 0.75f)
-                dirInt = 4;
+                currentDirection = Direction.Right;
             else if (aimAngle < pi * 1.25f)
-                dirInt = 1;
+                currentDirection = Direction.Up;
             else
-                dirInt = 3;
+                currentDirection = Direction.Left;
 
-            shooting = gunSprite.PlayOnce(dirInt, 5, frameTime);
+            shooting = gunSprite.PlayOnce((int)currentDirection, 5, frameTime);
         }
 
         public void DrawGun(SpriteBatch spriteBatch)
@@ -618,14 +653,14 @@ namespace Test_Loopguy
             double angleOffset;
 
             //These are ordered in a way that makes perfect sense, shut up
-            if (dirInt == 2)//down
+            if (currentDirection == Direction.Down)//down
                 angleOffset = 0;
-            else if (dirInt == 3)//right
-                angleOffset = -1.5 * pi;
-            else if (dirInt == 1)//up
+            else if (currentDirection == Direction.Right)//right
+                angleOffset = -0.5 * pi;
+            else if (currentDirection == Direction.Up)//up
                 angleOffset = -1 * pi;
             else//left
-                angleOffset = -0.5 * pi;
+                angleOffset = -1.5 * pi;
 
             if (!InputReader.MovingLeftStick())
                 gunAngle = (float)Helper.GetAngle(centerPosition, Game1.mousePos, angleOffset);
@@ -645,17 +680,17 @@ namespace Test_Loopguy
 
                     float angle = (float)Helper.GetAngle(centerPosition, v, 0);
 
-                    if (dirInt == 2)
+                    if (currentDirection == Direction.Down)
                     { //DOWN
                         if (angle >= pi * 1.75f || angle < pi * 0.25f)
                             return true;
                     }
-                    else if (dirInt == 4)
+                    else if (currentDirection == Direction.Right)
                     { //RIGHT
                         if (angle >= pi * 0.25f && angle < pi * 0.75f)
                             return true;
                     }
-                    else if (dirInt == 1)
+                    else if (currentDirection == Direction.Up)
                     { //UP
                         if (angle >= pi * 0.75f && angle < pi * 1.25f)
                             return true;
