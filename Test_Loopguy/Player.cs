@@ -453,6 +453,8 @@ namespace Test_Loopguy
 
         public void Dash(SpriteBatch spriteBatch)
         {
+            sprite.Frame((int)primaryOrientation - 1, 10);
+
             if (direction == Vector2.Zero)
             {
                 if (primaryOrientation == Orientation.Up)
@@ -481,7 +483,7 @@ namespace Test_Loopguy
                 }
                 else
                 {
-                    //sprite.DrawElsewhere(spriteBatch, new Vector2(dashPos.X - sprite.size.X / 2, dashPos.Y - sprite.size.Y / 2 - 12));
+                    sprite.DrawElsewhere(spriteBatch, new Vector2(dashPos.X - sprite.size.X / 2, dashPos.Y - sprite.size.Y / 2 - 12), 40);
                     viablePos = dashPos;
                 }
             }

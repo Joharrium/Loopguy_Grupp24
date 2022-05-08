@@ -68,8 +68,9 @@ namespace Test_Loopguy
             sprite.DrawRotation(spriteBatch, rotation);
         }
 
-        public void Bounce()
+        public void Bounce(float angle)
         {
+            rotation = angle;
             float randDeviation = (float)rand.NextDouble() - 0.5f;
             rotation += (float)Math.PI + randDeviation;
 

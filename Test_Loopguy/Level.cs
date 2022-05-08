@@ -65,7 +65,7 @@ namespace Test_Loopguy
                 if (EntityManager.player.MeleeHit(s) && EntityManager.player.attacking)
                 {
                     Projectile reflS = s.Clone();
-                    reflS.Bounce();
+                    reflS.Bounce((float)Helper.GetAngle(player.centerPosition, reflS.centerPosition, 0));
                     playerProjectiles.Add(reflS);
 
                     projectilesToRemove.Add(s);
