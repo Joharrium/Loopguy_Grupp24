@@ -368,7 +368,7 @@ namespace Test_Loopguy
         public void Melee(float deltaTime)
         {
             int rowInt = (int)primaryOrientation - 1; //Wow dude??
-            int frameTime = 300;
+            int frameTime = 50;
 
             if (primaryOrientation == Orientation.Up)
             {//UP
@@ -762,23 +762,76 @@ namespace Test_Loopguy
 
                     if (primaryOrientation == Orientation.Down)
                     { 
-                        if (angle >= pi * 1.75f || angle < pi * 0.25f)
-                            return true;
+                        if (secondaryOrientation == Orientation.Down)
+                        {
+                            if (angle >= pi * 1.75f || angle < pi * 0.25f)
+                                return true;
+                        }
+                        else if (secondaryOrientation == Orientation.Left)
+                        {
+                            if (angle >= pi * 1.5f)
+                                return true;
+                        }
+                        else if (secondaryOrientation == Orientation.Right)
+                        {
+                            if (angle < pi * 0.5f)
+                                return true;
+                        }
                     }
                     else if (primaryOrientation == Orientation.Right)
                     { 
-                        if (angle >= pi * 0.25f && angle < pi * 0.75f)
-                            return true;
+                        if (secondaryOrientation == Orientation.Right)
+                        {
+                            if (angle >= pi * 0.25f && angle < pi * 0.75f)
+                                return true;
+                        }
+                        else if (secondaryOrientation == Orientation.Up)
+                        {
+                            if (angle >= pi * 0.5f && angle < pi)
+                                return true;
+                        }
+                        else if (secondaryOrientation == Orientation.Down)
+                        {
+                            if (angle < pi * 0.5f)
+                                return true;
+                        }
                     }
                     else if (primaryOrientation == Orientation.Up)
                     { 
-                        if (angle >= pi * 0.75f && angle < pi * 1.25f)
-                            return true;
+                        if (secondaryOrientation == Orientation.Up)
+                        {
+                            if (angle >= pi * 0.75f && angle < pi * 1.25f)
+                                return true;
+                        }
+                        else if (secondaryOrientation == Orientation.Left)
+                        {
+                            if (angle >= pi && angle < pi * 1.5f)
+                                return true;
+                        }
+                        else if (secondaryOrientation == Orientation.Right)
+                        {
+                            if (angle >= pi * 0.5f && angle < pi)
+                                return true;
+                        }
+
                     }
                     else
                     { //LEFT
-                        if (angle >= pi * 1.25f && angle < pi * 1.75f)
-                            return true;
+                        if (secondaryOrientation == Orientation.Left)
+                        {
+                            if (angle >= pi * 1.25f && angle < pi * 1.75f)
+                                return true;
+                        }
+                        else if (secondaryOrientation == Orientation.Up)
+                        {
+                            if (angle >= pi && angle < pi * 1.5f)
+                                return true;
+                        }
+                        else if (secondaryOrientation == Orientation.Down)
+                        {
+                            if (angle >= pi * 1.5f)
+                                return true;
+                        }
                     }
                 }
             }
