@@ -367,75 +367,76 @@ namespace Test_Loopguy
 
         public void Melee(float deltaTime)
         {
-            int rowInt = (int)primaryOrientation - 1; //Wow dude??
+            int rowIntPlayer = 6 + (int)primaryOrientation - 1; //Melee sprites are 6 rows down on player sprite sheet
+            int rowIntSword = (int)primaryOrientation - 1; //Wow dude??
             int frameTime = 50;
 
             if (primaryOrientation == Orientation.Up)
             {//UP
-                sprite.Play(6, 4, frameTime);
                 direction.X = 0;
                 direction.Y = -1;
 
                 if (secondaryOrientation == Orientation.Left)
                 {
-                    rowInt = 4;
+                    rowIntPlayer = 8;
+                    rowIntSword = 4;
                     direction.X = -1;
                 }
                 else if (secondaryOrientation == Orientation.Right)
                 {
-                    rowInt = 6;
+                    rowIntPlayer = 9;
+                    rowIntSword = 6;
                     direction.X = 1;
                 }
 
             }
             else if (primaryOrientation == Orientation.Down)
             {//DOWN
-                sprite.Play(7, 4, frameTime);
                 direction.X = 0;
                 direction.Y = 1;
 
                 if (secondaryOrientation == Orientation.Left)
                 {
-                    rowInt = 5;
+                    rowIntPlayer = 8;
+                    rowIntSword = 5;
                     direction.X = -1;
                 }
                 else if (secondaryOrientation == Orientation.Right)
                 {
-                    rowInt = 7;
+                    rowIntPlayer = 9;
+                    rowIntSword = 7;
                     direction.X = 1;
                 }
             }
             else if (primaryOrientation == Orientation.Left)
             {//LEFT
-                sprite.Play(8, 4, frameTime);
                 direction.X = -1;
                 direction.Y = 0;
 
                 if (secondaryOrientation == Orientation.Up)
                 {
-                    rowInt = 4;
+                    rowIntSword = 4;
                     direction.Y = -1;
                 }
                 else if (secondaryOrientation == Orientation.Down)
                 {
-                    rowInt = 5;
+                    rowIntSword = 5;
                     direction.Y = 1;
                 }
             }
             else
             {//RIGHT
-                sprite.Play(9, 4, frameTime);
                 direction.X = 1;
                 direction.Y = 0;
 
                 if (secondaryOrientation == Orientation.Up)
                 {
-                    rowInt = 6;
+                    rowIntSword = 6;
                     direction.Y = -1;
                 }
                 else if (secondaryOrientation == Orientation.Down)
                 {
-                    rowInt = 7;
+                    rowIntSword = 7;
                     direction.Y = 1;
                 }
             }
@@ -443,9 +444,11 @@ namespace Test_Loopguy
             direction.Normalize();
 
             CheckMovement(deltaTime);
-            
+
+            sprite.Play(rowIntPlayer, 4, frameTime);
+
             //The PlayOnce method returns false when the animation is done playing!!!
-            attacking = meleeSprite.PlayOnce(rowInt, 4, frameTime);
+            attacking = meleeSprite.PlayOnce(rowIntSword, 4, frameTime);
         }
 
         public void Dash(SpriteBatch spriteBatch)
@@ -632,7 +635,7 @@ namespace Test_Loopguy
                 else
                     sprite.Frame(3, 4);
 
-                secondaryOrientation = primaryOrientation;
+                //secondaryOrientation = primaryOrientation;
             }
 
             //This normalizes the direction Vector so that movement is consistent in all directions. If it normalizes a Vector of 0,0 it gets fucky though
@@ -652,7 +655,9 @@ namespace Test_Loopguy
             float playerVelocityShort = velocity.Length();
 
             float absDirShort = (float)Math.Round(absDirection, 2);
-            playerInfoString = absDirShort.ToString() + " || " + frameTime.ToString() + " || " + playerVelocityShort.ToString();
+            float dirXshort = (float)Math.Round(direction.X, 2);
+            float dirYshort = (float)Math.Round(direction.Y, 2);
+            playerInfoString = absDirShort.ToString() + " || " + frameTime.ToString() + " || " + playerVelocityShort.ToString() + "\n\n\n\n\n\n\n Dir X: " + dirXshort + "\n Dir Y: " + dirYshort;
         }
         
         public void DrawAim(SpriteBatch spriteBatch)

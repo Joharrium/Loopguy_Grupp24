@@ -178,7 +178,7 @@ namespace Test_Loopguy
             
             spriteBatch.Draw(renderTarget, screenRect, Color.White);
             Fadeout.Draw(spriteBatch);
-            spriteBatch.DrawString(smallFont, infoString, Vector2.Zero, Color.White);
+            spriteBatch.DrawString(smallFont, infoString + "\n" + EntityManager.player.playerInfoString, Vector2.Zero, Color.White);
             spriteBatch.DrawString(smallFont, "current level = " + LevelManager.GetCurrentId().ToString(), new Vector2(0, 64), Color.White);
             spriteBatch.DrawString(smallFont, "x clamp = " + camera.xClamped.ToString(), new Vector2(0, 80), Color.White);
             spriteBatch.DrawString(smallFont, "y clamp = " + camera.yClamped.ToString(), new Vector2(0, 96 ), Color.White);
