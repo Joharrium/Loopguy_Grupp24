@@ -266,7 +266,7 @@ namespace Test_Loopguy
             this.position = position - new Vector2(0,16);
             texture = TextureManager.wall_brick_beige;
             hitBox.Width = 16;
-            hitBox.Height = 16;
+            hitBox.Height = 19;
             sourceRectangle = new Rectangle(16 * 0, 0, 16, 32);
         }
     }
@@ -279,7 +279,7 @@ namespace Test_Loopguy
             this.position = position - new Vector2(0, 16);
             texture = TextureManager.wall_gray;
             hitBox.Width = 16;
-            hitBox.Height = 16;
+            hitBox.Height = 19;
             int variation = Game1.rnd.Next(1);
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 32);
         }
@@ -293,7 +293,7 @@ namespace Test_Loopguy
             this.position = position - new Vector2(0, 16);
             texture = TextureManager.wall_beige;
             hitBox.Width = 16;
-            hitBox.Height = 16;
+            hitBox.Height = 19;
             variation = Game1.rnd.Next(4);
             if(variation == 1)
             {

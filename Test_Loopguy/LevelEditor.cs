@@ -344,8 +344,11 @@ namespace Test_Loopguy
             File.WriteAllLines(path + "objectmap.txt", objects);
             File.WriteAllLines(path + "tilemap.txt", tiles);
             File.WriteAllLines(path + "enemymap.txt", enemies);
-            File.Create(path + "music_idle.txt");
-            File.Create(path + "music_combat.txt");
+            if(!File.Exists(path + "music_idle.txt"))
+            {
+                File.Create(path + "music_idle.txt");
+                File.Create(path + "music_combat.txt");
+            }
         }
     }
 }
