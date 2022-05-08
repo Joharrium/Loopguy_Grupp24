@@ -10,7 +10,7 @@ namespace Test_Loopguy
 {
     internal class Player : MovingObject
     {
-        enum Direction
+        enum Orientation
         {
             Zero,
             Up,
@@ -19,7 +19,9 @@ namespace Test_Loopguy
             Right,
         }
 
-        Direction currentDirection;
+        //Orientation is used mainly for visuals but also melee calculation
+        Orientation primaryOrientation;
+        Orientation secondaryOrientation;
 
         public int health = 5;
         private int maxHealth = 5;
@@ -78,7 +80,8 @@ namespace Test_Loopguy
 
             speed = 100; //pixels per second
 
-            currentDirection = Direction.Down;
+            primaryOrientation = Orientation.Down;
+            secondaryOrientation = Orientation.Down;
             LoadKeys();
             healthBar = new PlayerHealthBar(5);
             ammoBar = new AmmoBar(5);
@@ -251,7 +254,7 @@ namespace Test_Loopguy
             }
             else
             {
-                if (currentDirection == Direction.Up)
+                if (primaryOrientation == Orientation.Up)
                 { //if aiming up, draw player sprite on top
 
                     if (dashing)
@@ -364,33 +367,80 @@ namespace Test_Loopguy
 
         public void Melee(float deltaTime)
         {
-            int rowInt = (int)currentDirection - 1; //Wow dude??
-            int frameTime = 50;
+            int rowInt = (int)primaryOrientation - 1; //Wow dude??
+            int frameTime = 300;
 
-            if (currentDirection == Direction.Up)
+            if (primaryOrientation == Orientation.Up)
             {//UP
                 sprite.Play(6, 4, frameTime);
                 direction.X = 0;
                 direction.Y = -1;
+
+                if (secondaryOrientation == Orientation.Left)
+                {
+                    rowInt = 4;
+                    direction.X = -1;
+                }
+                else if (secondaryOrientation == Orientation.Right)
+                {
+                    rowInt = 6;
+                    direction.X = 1;
+                }
+
             }
-            else if (currentDirection == Direction.Down)
+            else if (primaryOrientation == Orientation.Down)
             {//DOWN
                 sprite.Play(7, 4, frameTime);
                 direction.X = 0;
                 direction.Y = 1;
+
+                if (secondaryOrientation == Orientation.Left)
+                {
+                    rowInt = 5;
+                    direction.X = -1;
+                }
+                else if (secondaryOrientation == Orientation.Right)
+                {
+                    rowInt = 7;
+                    direction.X = 1;
+                }
             }
-            else if (currentDirection == Direction.Left)
+            else if (primaryOrientation == Orientation.Left)
             {//LEFT
                 sprite.Play(8, 4, frameTime);
                 direction.X = -1;
                 direction.Y = 0;
+
+                if (secondaryOrientation == Orientation.Up)
+                {
+                    rowInt = 4;
+                    direction.Y = -1;
+                }
+                else if (secondaryOrientation == Orientation.Down)
+                {
+                    rowInt = 5;
+                    direction.Y = 1;
+                }
             }
             else
             {//RIGHT
                 sprite.Play(9, 4, frameTime);
                 direction.X = 1;
                 direction.Y = 0;
+
+                if (secondaryOrientation == Orientation.Up)
+                {
+                    rowInt = 6;
+                    direction.Y = -1;
+                }
+                else if (secondaryOrientation == Orientation.Down)
+                {
+                    rowInt = 7;
+                    direction.Y = 1;
+                }
             }
+
+            direction.Normalize();
 
             CheckMovement(deltaTime);
             
@@ -402,11 +452,11 @@ namespace Test_Loopguy
         {
             if (direction == Vector2.Zero)
             {
-                if (currentDirection == Direction.Up)
+                if (primaryOrientation == Orientation.Up)
                     direction.Y = -1;
-                else if (currentDirection == Direction.Down)
+                else if (primaryOrientation == Orientation.Down)
                     direction.Y = 1;
-                else if (currentDirection == Direction.Left)
+                else if (primaryOrientation == Orientation.Left)
                     direction.X = -1;
                 else
                     direction.X = 1;
@@ -522,37 +572,67 @@ namespace Test_Loopguy
                 frameTime = (int)(50 / absDirection);
             }
 
-            //Visual changes depending on direction
+            //Orientation changes depending on direction
             if (direction.Y < 0 && absDirectionX < absDirectionY)
-            {//UP
+            {
                 sprite.Play(0, 12, frameTime);
-                currentDirection = Direction.Up;
+                primaryOrientation = Orientation.Up;
+
+                if (direction.X > 0.5f)
+                    secondaryOrientation = Orientation.Right;
+                else if (direction.X < -0.5f)
+                    secondaryOrientation = Orientation.Left;
+                else
+                    secondaryOrientation = Orientation.Up;
             }
             else if (direction.Y > 0 && absDirectionX < absDirectionY)
-            {//DOWN
+            {
                 sprite.Play(1, 12, frameTime);
-                currentDirection = Direction.Down;
+                primaryOrientation = Orientation.Down;
+
+                if (direction.X > 0.5f)
+                    secondaryOrientation = Orientation.Right;
+                else if (direction.X < -0.5f)
+                    secondaryOrientation = Orientation.Left;
+                else
+                    secondaryOrientation = Orientation.Down;
             }
             else if (direction.X < 0)
-            {//LEFT
+            {
                 sprite.Play(2, 12, frameTime);
-                currentDirection = Direction.Left;
+                primaryOrientation = Orientation.Left;
+
+                if (direction.Y < -0.5f)
+                    secondaryOrientation = Orientation.Up;
+                else if (direction.Y > 0.5f)
+                    secondaryOrientation = Orientation.Down;
+                else
+                    secondaryOrientation = Orientation.Left;
             }
             else if (direction.X > 0)
-            {//RIGHT
+            {
                 sprite.Play(3, 12, frameTime);
-                currentDirection = Direction.Right;
+                primaryOrientation = Orientation.Right;
+
+                if (direction.Y < -0.5f)
+                    secondaryOrientation = Orientation.Up;
+                else if (direction.Y > 0.5f)
+                    secondaryOrientation = Orientation.Down;
+                else
+                    secondaryOrientation = Orientation.Right;
             }
             else
             {
-                if (currentDirection == Direction.Up)
+                if (primaryOrientation == Orientation.Up)
                     sprite.Frame(0, 4);
-                else if (currentDirection == Direction.Down)
+                else if (primaryOrientation == Orientation.Down)
                     sprite.Frame(1, 4);
-                else if (currentDirection == Direction.Left)
+                else if (primaryOrientation == Orientation.Left)
                     sprite.Frame(2, 4);
                 else
                     sprite.Frame(3, 4);
+
+                secondaryOrientation = primaryOrientation;
             }
 
             //This normalizes the direction Vector so that movement is consistent in all directions. If it normalizes a Vector of 0,0 it gets fucky though
@@ -579,26 +659,26 @@ namespace Test_Loopguy
         {
 
             if (aimAngle > pi * 1.75f || aimAngle < pi * 0.25f)
-            {//DOWN
-                currentDirection = Direction.Down;
+            {
+                primaryOrientation = Orientation.Down;
             }
             else if (aimAngle < pi * 0.75f)
-            {//RIGHT
-                currentDirection = Direction.Right;
+            {
+                primaryOrientation = Orientation.Right;
             }
             else if (aimAngle < pi * 1.25f)
-            {//UP
-                currentDirection = Direction.Up;
+            {
+                primaryOrientation = Orientation.Up;
             }
             else
-            {//LEFT
-                currentDirection = Direction.Left;
+            {
+                primaryOrientation = Orientation.Left;
             }
 
             if (!shooting)
-                gunSprite.Frame((int)currentDirection - 1, 0);
+                gunSprite.Frame((int)primaryOrientation - 1, 0);
 
-            sprite.Frame((int)currentDirection - 1, 5);
+            sprite.Frame((int)primaryOrientation - 1, 5);
 
             if (!InputReader.MovingLeftStick())
             {
@@ -637,15 +717,15 @@ namespace Test_Loopguy
         public void Shoot(int frameTime)
         {
             if (aimAngle > pi * 1.75f || aimAngle < pi * 0.25f)
-                currentDirection = Direction.Down;
+                primaryOrientation = Orientation.Down;
             else if (aimAngle < pi * 0.75f)
-                currentDirection = Direction.Right;
+                primaryOrientation = Orientation.Right;
             else if (aimAngle < pi * 1.25f)
-                currentDirection = Direction.Up;
+                primaryOrientation = Orientation.Up;
             else
-                currentDirection = Direction.Left;
+                primaryOrientation = Orientation.Left;
 
-            shooting = gunSprite.PlayOnce((int)currentDirection, 5, frameTime);
+            shooting = gunSprite.PlayOnce((int)primaryOrientation, 5, frameTime);
         }
 
         public void DrawGun(SpriteBatch spriteBatch)
@@ -653,11 +733,11 @@ namespace Test_Loopguy
             double angleOffset;
 
             //These are ordered in a way that makes perfect sense, shut up
-            if (currentDirection == Direction.Down)//down
+            if (primaryOrientation == Orientation.Down)
                 angleOffset = 0;
-            else if (currentDirection == Direction.Right)//right
+            else if (primaryOrientation == Orientation.Right)
                 angleOffset = -0.5 * pi;
-            else if (currentDirection == Direction.Up)//up
+            else if (primaryOrientation == Orientation.Up)
                 angleOffset = -1 * pi;
             else//left
                 angleOffset = -1.5 * pi;
@@ -680,18 +760,18 @@ namespace Test_Loopguy
 
                     float angle = (float)Helper.GetAngle(centerPosition, v, 0);
 
-                    if (currentDirection == Direction.Down)
-                    { //DOWN
+                    if (primaryOrientation == Orientation.Down)
+                    { 
                         if (angle >= pi * 1.75f || angle < pi * 0.25f)
                             return true;
                     }
-                    else if (currentDirection == Direction.Right)
-                    { //RIGHT
+                    else if (primaryOrientation == Orientation.Right)
+                    { 
                         if (angle >= pi * 0.25f && angle < pi * 0.75f)
                             return true;
                     }
-                    else if (currentDirection == Direction.Up)
-                    { //UP
+                    else if (primaryOrientation == Orientation.Up)
+                    { 
                         if (angle >= pi * 0.75f && angle < pi * 1.25f)
                             return true;
                     }
