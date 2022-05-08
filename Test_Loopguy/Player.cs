@@ -31,6 +31,7 @@ namespace Test_Loopguy
         AnimatedSprite sprite;
         AnimatedSprite gunSprite;
         AnimatedSprite meleeSprite;
+        AnimatedSprite dashCloudSprite;
 
         Random random = new Random();
         public List<int> keys = new List<int>();
@@ -41,6 +42,8 @@ namespace Test_Loopguy
         public Vector2 cameraPosition;
         Vector2 gunDirection;
         Vector2 prevDirection;
+        Vector2 dashDirection;
+        Vector2 dashPosition;
 
         float traveledDistance = 35;
         float distanceBetweenFootsteps = 35;
@@ -55,6 +58,9 @@ namespace Test_Loopguy
 
         float deltaTime;
 
+        float timeSinceDash;
+        const float timeBetweedDashes = 1f;
+
         const int meleeRange = 22;
 
         const int dashRange = 5; //pixels per frame
@@ -65,7 +71,9 @@ namespace Test_Loopguy
 
         public bool attacking;
         bool shooting;
+        bool canDash;
         public bool dashing;
+        bool dashCloud;
 
 
         //footprint rectangle
@@ -77,6 +85,7 @@ namespace Test_Loopguy
             sprite = new AnimatedSprite(TextureManager.playerSheet, new Point(32, 32));
             gunSprite = new AnimatedSprite(TextureManager.gunSheet, new Point(64, 64));
             meleeSprite = new AnimatedSprite(TextureManager.meleeFx, new Point(48, 48));
+            dashCloudSprite = new AnimatedSprite(TextureManager.dashCloud, new Point(42, 24));
 
             speed = 100; //pixels per second
 
@@ -86,7 +95,8 @@ namespace Test_Loopguy
             healthBar = new PlayerHealthBar(5);
             ammoBar = new AmmoBar(5);
             footprint = new Rectangle((int)position.X, (int)position.Y + 24, 8, 8);
-            
+
+            canDash = true;
         }
         
         private void LoadKeys()
@@ -123,6 +133,17 @@ namespace Test_Loopguy
 
             deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            if (!canDash)
+            {
+                timeSinceDash += deltaTime;
+                
+                if (timeSinceDash >= timeBetweedDashes)
+                {
+                    canDash = true;
+                    timeSinceDash = 0;
+                }
+            }
+
             if (attacking)
             {
                 Melee(deltaTime);
@@ -139,7 +160,7 @@ namespace Test_Loopguy
                 
             }
             else if (dashing)
-            { 
+            {
 
             }
             else
@@ -193,10 +214,12 @@ namespace Test_Loopguy
                         attacking = true;
                         Audio.PlaySound(Audio.swing);
                     }
-                    else if (InputReader.Dash())
+                    else if (InputReader.Dash() && canDash)
                     {
                         Audio.PlaySound(Audio.dash);
+                        dashPosition = new Vector2(footprint.Center.X - 21, footprint.Center.Y - 12);
                         dashing = true;
+                        canDash = false;
                     }
                 }
             }
@@ -208,6 +231,7 @@ namespace Test_Loopguy
 
             gunSprite.Update(gameTime);
             meleeSprite.Update(gameTime);
+            dashCloudSprite.Update(gameTime);
             sprite.Update(gameTime);
         }
 
@@ -243,9 +267,12 @@ namespace Test_Loopguy
         {
             //draw footprint
             spriteBatch.Draw(TextureManager.black_screen, footprint, Color.White);
-            //draw hitbox borders
-            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Top), Color.White);
-            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Bottom), Color.White);
+
+            if (dashCloud)
+            {
+                dashCloudSprite.Position = dashPosition;
+                dashCloud = DrawDashCloud(spriteBatch);
+            }
 
             if (attacking)
             {
@@ -262,6 +289,9 @@ namespace Test_Loopguy
                         if (dashFrames <= maxDashFrames)
                         {
                             Dash(spriteBatch);
+                            dashDirection = direction;
+                            dashDirection.Normalize();
+                            dashCloud = true;
                             dashFrames++;
                         }
                         else
@@ -288,6 +318,8 @@ namespace Test_Loopguy
                         if (dashFrames <= maxDashFrames)
                         {
                             Dash(spriteBatch);
+                            dashDirection = direction;
+                            dashCloud = true;
                             dashFrames++;
                         }
                         else
@@ -303,6 +335,11 @@ namespace Test_Loopguy
                     }
                 }
             }
+
+            //draw hitbox borders
+            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Top), Color.White);
+            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Bottom), Color.White);
+
             //healthBar.Draw(spriteBatch);
 
         }
@@ -846,6 +883,17 @@ namespace Test_Loopguy
             
 
             return false;
+        }
+
+        public bool DrawDashCloud(SpriteBatch spriteBatch)
+        {
+            float rotation = (float)Math.Atan2(dashDirection.X, dashDirection.Y);
+            rotation -= pi / 2;
+
+            Vector2 origin = new Vector2(41, 12);
+            dashCloudSprite.DrawRotation(spriteBatch, rotation, origin);
+            bool playAnimation = dashCloudSprite.PlayOnce(0, 13, 50);
+            return playAnimation;
         }
     }
 }

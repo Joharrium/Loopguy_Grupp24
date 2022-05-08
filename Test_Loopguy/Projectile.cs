@@ -71,8 +71,10 @@ namespace Test_Loopguy
         public void Bounce(float angle)
         {
             rotation = angle;
-            float randDeviation = (float)rand.NextDouble() - 0.5f;
-            rotation += (float)Math.PI + randDeviation;
+
+            //code bellow is for adding a slight random deviation to bounce, probably won't use
+            //float randDeviation = (float)rand.NextDouble() - 0.5f;
+            //rotation += (float)Math.PI + randDeviation;
 
             direction = new Vector2(-(float)Math.Sin(rotation), -(float)Math.Cos(rotation));
         }
