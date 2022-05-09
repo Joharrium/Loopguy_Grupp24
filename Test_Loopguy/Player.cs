@@ -620,9 +620,9 @@ namespace Test_Loopguy
                 sprite.Play(0, 12, frameTime);
                 primaryOrientation = Orientation.Up;
 
-                if (direction.X > 0.375f)
+                if (direction.X > 0.38f)
                     secondaryOrientation = Orientation.Right;
-                else if (direction.X < -0.375f)
+                else if (direction.X < -0.38f)
                     secondaryOrientation = Orientation.Left;
                 else
                     secondaryOrientation = Orientation.Up;
@@ -632,9 +632,9 @@ namespace Test_Loopguy
                 sprite.Play(1, 12, frameTime);
                 primaryOrientation = Orientation.Down;
 
-                if (direction.X > 0.375f)
+                if (direction.X > 0.38f)
                     secondaryOrientation = Orientation.Right;
-                else if (direction.X < -0.375f)
+                else if (direction.X < -0.38f)
                     secondaryOrientation = Orientation.Left;
                 else
                     secondaryOrientation = Orientation.Down;
@@ -644,9 +644,9 @@ namespace Test_Loopguy
                 sprite.Play(2, 12, frameTime);
                 primaryOrientation = Orientation.Left;
 
-                if (direction.Y < -0.375f)
+                if (direction.Y < -0.38f)
                     secondaryOrientation = Orientation.Up;
-                else if (direction.Y > 0.375f)
+                else if (direction.Y > 0.38f)
                     secondaryOrientation = Orientation.Down;
                 else
                     secondaryOrientation = Orientation.Left;
@@ -656,9 +656,9 @@ namespace Test_Loopguy
                 sprite.Play(3, 12, frameTime);
                 primaryOrientation = Orientation.Right;
 
-                if (direction.Y < -0.375f)
+                if (direction.Y < -0.38f)
                     secondaryOrientation = Orientation.Up;
-                else if (direction.Y > 0.375f)
+                else if (direction.Y > 0.38f)
                     secondaryOrientation = Orientation.Down;
                 else
                     secondaryOrientation = Orientation.Right;
