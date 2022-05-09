@@ -65,7 +65,6 @@ namespace Test_Loopguy
             {
                 s.Update(gameTime);
                 //Make projectiles bounce back if hit by player Melee attack
-                //maybe change the bounce to depend on what direction the player is attacking instead of just reflecting straight back
                 if (EntityManager.player.MeleeHit(s) && EntityManager.player.attacking)
                 {
                     Projectile reflS = s.Clone();

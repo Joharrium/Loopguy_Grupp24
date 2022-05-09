@@ -102,7 +102,7 @@ namespace Test_Loopguy
 
             spriteBatch.Draw(sheet, position, frame, Color.White, -angle, origin, 1, SpriteEffects.None, 0);
         }
-        public void DrawElsewhere(SpriteBatch spriteBatch, Vector2 otherPos, int alpha)
+        public void DrawElsewhere(SpriteBatch spriteBatch, Vector2 otherPos, byte alpha)
         {
             frame = new Rectangle(currentFrame.X * size.X, currentFrame.Y * size.Y, size.X, size.Y);
 
