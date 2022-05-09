@@ -289,10 +289,6 @@ namespace Test_Loopguy
                         if (dashFrames <= maxDashFrames)
                         {
                             Dash(spriteBatch);
-                            dashDirection = direction;
-                            dashDirection.Normalize();
-                            dashCloud = true;
-                            dashFrames++;
                         }
                         else
                         {
@@ -315,18 +311,7 @@ namespace Test_Loopguy
 
                     if (dashing)
                     {
-                        if (dashFrames <= maxDashFrames)
-                        {
-                            Dash(spriteBatch);
-                            dashDirection = direction;
-                            dashCloud = true;
-                            dashFrames++;
-                        }
-                        else
-                        {
-                            dashing = false;
-                            dashFrames = 0;
-                        }
+                        Dash(spriteBatch);
                     }
                     else if (InputReader.Aim() || shooting)
                     {
@@ -490,6 +475,21 @@ namespace Test_Loopguy
 
         public void Dash(SpriteBatch spriteBatch)
         {
+            if (dashFrames <= maxDashFrames)
+            {
+                DashFrame(spriteBatch);
+                dashDirection = direction;
+                dashCloud = true;
+                dashFrames++;
+            }
+            else
+            {
+                dashing = false;
+                dashFrames = 0;
+            }
+        }
+        public void DashFrame(SpriteBatch spriteBatch)
+        {
             sprite.Frame((int)primaryOrientation - 1, 10);
 
             if (direction == Vector2.Zero)
@@ -620,9 +620,9 @@ namespace Test_Loopguy
                 sprite.Play(0, 12, frameTime);
                 primaryOrientation = Orientation.Up;
 
-                if (direction.X > 0.5f)
+                if (direction.X > 0.375f)
                     secondaryOrientation = Orientation.Right;
-                else if (direction.X < -0.5f)
+                else if (direction.X < -0.375f)
                     secondaryOrientation = Orientation.Left;
                 else
                     secondaryOrientation = Orientation.Up;
@@ -632,9 +632,9 @@ namespace Test_Loopguy
                 sprite.Play(1, 12, frameTime);
                 primaryOrientation = Orientation.Down;
 
-                if (direction.X > 0.5f)
+                if (direction.X > 0.375f)
                     secondaryOrientation = Orientation.Right;
-                else if (direction.X < -0.5f)
+                else if (direction.X < -0.375f)
                     secondaryOrientation = Orientation.Left;
                 else
                     secondaryOrientation = Orientation.Down;
@@ -644,9 +644,9 @@ namespace Test_Loopguy
                 sprite.Play(2, 12, frameTime);
                 primaryOrientation = Orientation.Left;
 
-                if (direction.Y < -0.5f)
+                if (direction.Y < -0.375f)
                     secondaryOrientation = Orientation.Up;
-                else if (direction.Y > 0.5f)
+                else if (direction.Y > 0.375f)
                     secondaryOrientation = Orientation.Down;
                 else
                     secondaryOrientation = Orientation.Left;
@@ -656,9 +656,9 @@ namespace Test_Loopguy
                 sprite.Play(3, 12, frameTime);
                 primaryOrientation = Orientation.Right;
 
-                if (direction.Y < -0.5f)
+                if (direction.Y < -0.375f)
                     secondaryOrientation = Orientation.Up;
-                else if (direction.Y > 0.5f)
+                else if (direction.Y > 0.375f)
                     secondaryOrientation = Orientation.Down;
                 else
                     secondaryOrientation = Orientation.Right;
