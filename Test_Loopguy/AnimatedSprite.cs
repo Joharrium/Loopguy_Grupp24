@@ -88,19 +88,25 @@ namespace Test_Loopguy
             frame = new Rectangle(currentFrame.X * size.X, currentFrame.Y * size.Y, size.X, size.Y);
             Vector2 origin = new Vector2(size.X / 2, size.Y / 2);
 
-            //position.X = (int)Math.Round(Position.X + size.X / 2);
-            //position.Y = (int)Math.Round(Position.Y + size.Y / 2);
+            position.X = Position.X + size.X / 2;
+            position.Y = Position.Y + size.Y / 2;
+
+            spriteBatch.Draw(sheet, position, frame, Color.White, -angle, origin, 1, SpriteEffects.None, 0);
+        }
+        public void DrawRotation(SpriteBatch spriteBatch, float angle, Vector2 origin)
+        {
+            frame = new Rectangle(currentFrame.X * size.X, currentFrame.Y * size.Y, size.X, size.Y);
 
             position.X = Position.X + size.X / 2;
             position.Y = Position.Y + size.Y / 2;
 
             spriteBatch.Draw(sheet, position, frame, Color.White, -angle, origin, 1, SpriteEffects.None, 0);
         }
-        public void DrawElsewhere(SpriteBatch spriteBatch, Vector2 otherPos)
+        public void DrawElsewhere(SpriteBatch spriteBatch, Vector2 otherPos, int alpha)
         {
             frame = new Rectangle(currentFrame.X * size.X, currentFrame.Y * size.Y, size.X, size.Y);
 
-            spriteBatch.Draw(sheet, otherPos, frame, Color.White);
+            spriteBatch.Draw(sheet, otherPos, frame, new Color(alpha, alpha, alpha, alpha));
         }
     }
 }

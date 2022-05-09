@@ -6,7 +6,7 @@ namespace Test_Loopguy
     static class TextureManager
     {
         public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, gunSheet, testTile, testAlt, box, checkers;
-        public static Texture2D meleeFx, shot, blueDot, cursor;
+        public static Texture2D meleeFx, shot, blueDot, cursor, dashCloud;
         // terrain files
         public static Texture2D grassBasic, grassAlt, grayBrickWall, dirt, tiles_checkered_gray, tiles_checkered_brown, tiles_big_light, tiles_big_dark,
             carpet_worn, tile_metal, tile_metal_copper, wall_metal, wall_worn, tile_metal_bright, grass_edge, tile_clinical, water, wall_beige, wall_gray, wall_brick_beige;
@@ -52,6 +52,7 @@ namespace Test_Loopguy
             shot = c.Load<Texture2D>("shot");
             blueDot = c.Load<Texture2D>("bluedot");
             cursor = c.Load<Texture2D>("cursor");
+            dashCloud = c.Load<Texture2D>("dashCloud");
         }
 
         private static void LoadTerrain(ContentManager c)

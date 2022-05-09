@@ -10,6 +10,19 @@ namespace Test_Loopguy
 {
     internal class Player : MovingObject
     {
+        enum Orientation
+        {
+            Zero,
+            Up,
+            Down,
+            Left,
+            Right,
+        }
+
+        //Orientation is used mainly for visuals but also melee calculation
+        Orientation primaryOrientation;
+        Orientation secondaryOrientation;
+
         public int health = 5;
         private int maxHealth = 5;
 
@@ -18,6 +31,7 @@ namespace Test_Loopguy
         AnimatedSprite sprite;
         AnimatedSprite gunSprite;
         AnimatedSprite meleeSprite;
+        AnimatedSprite dashCloudSprite;
 
         Random random = new Random();
         public List<int> keys = new List<int>();
@@ -28,6 +42,8 @@ namespace Test_Loopguy
         public Vector2 cameraPosition;
         Vector2 gunDirection;
         Vector2 prevDirection;
+        Vector2 dashDirection;
+        Vector2 dashPosition;
 
         float traveledDistance = 35;
         float distanceBetweenFootsteps = 35;
@@ -40,15 +56,24 @@ namespace Test_Loopguy
         float aimAngle;
         const float pi = (float)Math.PI;
 
-        int dirInt;
+        float deltaTime;
+
+        float timeSinceDash;
+        const float timeBetweedDashes = 1f;
+
         const int meleeRange = 22;
-        const int dashRange = 40;
+
+        const int dashRange = 5; //pixels per frame
+        const int maxDashFrames = 10; //frames per dash
+        int dashFrames;
 
         public string playerInfoString;
 
         public bool attacking;
         bool shooting;
-        bool dashing;
+        bool canDash;
+        public bool dashing;
+        bool dashCloud;
 
 
         //footprint rectangle
@@ -60,15 +85,18 @@ namespace Test_Loopguy
             sprite = new AnimatedSprite(TextureManager.playerSheet, new Point(32, 32));
             gunSprite = new AnimatedSprite(TextureManager.gunSheet, new Point(64, 64));
             meleeSprite = new AnimatedSprite(TextureManager.meleeFx, new Point(48, 48));
+            dashCloudSprite = new AnimatedSprite(TextureManager.dashCloud, new Point(42, 24));
 
-            speed = 100;
+            speed = 100; //pixels per second
 
-            dirInt = 2;
+            primaryOrientation = Orientation.Down;
+            secondaryOrientation = Orientation.Down;
             LoadKeys();
             healthBar = new PlayerHealthBar(5);
             ammoBar = new AmmoBar(5);
             footprint = new Rectangle((int)position.X, (int)position.Y + 24, 8, 8);
-            
+
+            canDash = true;
         }
         
         private void LoadKeys()
@@ -95,7 +123,7 @@ namespace Test_Loopguy
 
         public override void Update(GameTime gameTime)
         {
-            hitBox = new Rectangle((int)position.X, (int)position.Y, sprite.size.X, sprite.size.Y);
+            hitBox = new Rectangle((int)(position.X + (sprite.size.X * 0.375)), (int)(position.Y + sprite.size.Y / 4), sprite.size.X / 4, sprite.size.Y / 2);
             footprint = new Rectangle((int)position.X + 12, (int)position.Y + 24, 8, 8);
             
             centerPosition = new Vector2(position.X + sprite.size.X / 2, position.Y + sprite.size.Y / 2);
@@ -103,7 +131,18 @@ namespace Test_Loopguy
             healthBar.UpdateBar(health);
             ammoBar.SetCurrentValue(new Vector2(2, 38), ammo);
 
-            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (!canDash)
+            {
+                timeSinceDash += deltaTime;
+                
+                if (timeSinceDash >= timeBetweedDashes)
+                {
+                    canDash = true;
+                    timeSinceDash = 0;
+                }
+            }
 
             if (attacking)
             {
@@ -122,7 +161,7 @@ namespace Test_Loopguy
             }
             else if (dashing)
             {
-                dashing = false;
+
             }
             else
             {
@@ -139,7 +178,7 @@ namespace Test_Loopguy
 
                         Vector2 shotPosition = new Vector2(centerPosition.X + gunDirection.X * 20 - 4, centerPosition.Y + gunDirection.Y * 20 - 6);
                         float shotAngle = aimAngle + pi;
-                        Shot shot = new Shot(shotPosition, gunDirection, shotAngle);
+                        Shot shot = new Shot(shotPosition, gunDirection, shotAngle, 300);
                         LevelManager.AddPlayerProjectile(shot);
                         //shots.Add(shot);
                         //Audio.PlaySound(Audio.meepmerp);
@@ -175,10 +214,12 @@ namespace Test_Loopguy
                         attacking = true;
                         Audio.PlaySound(Audio.swing);
                     }
-                    else if (InputReader.Dash())
+                    else if (InputReader.Dash() && canDash)
                     {
                         Audio.PlaySound(Audio.dash);
+                        dashPosition = new Vector2(footprint.Center.X - 21, footprint.Center.Y - 12);
                         dashing = true;
+                        canDash = false;
                     }
                 }
             }
@@ -190,6 +231,7 @@ namespace Test_Loopguy
 
             gunSprite.Update(gameTime);
             meleeSprite.Update(gameTime);
+            dashCloudSprite.Update(gameTime);
             sprite.Update(gameTime);
         }
 
@@ -223,7 +265,15 @@ namespace Test_Loopguy
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            //draw footprint
             spriteBatch.Draw(TextureManager.black_screen, footprint, Color.White);
+
+            if (dashCloud)
+            {
+                dashCloudSprite.Position = dashPosition;
+                dashCloud = DrawDashCloud(spriteBatch);
+            }
+
             if (attacking)
             {
                 sprite.Draw(spriteBatch);
@@ -231,17 +281,25 @@ namespace Test_Loopguy
             }
             else
             {
-                if (dirInt == 1)
+                if (primaryOrientation == Orientation.Up)
                 { //if aiming up, draw player sprite on top
 
-                    if (InputReader.Aim() || shooting)
+                    if (dashing)
+                    {
+                        if (dashFrames <= maxDashFrames)
+                        {
+                            Dash(spriteBatch);
+                        }
+                        else
+                        {
+                            dashing = false;
+                            dashFrames = 0;
+                        }
+                    }
+                    else if (InputReader.Aim() || shooting)
                     {
                         DrawAim(spriteBatch);
                         DrawGun(spriteBatch);
-                    }
-                    else if (dashing)
-                    {
-                        Dash(spriteBatch);
                     }
 
                     sprite.Draw(spriteBatch);
@@ -251,18 +309,24 @@ namespace Test_Loopguy
 
                     sprite.Draw(spriteBatch);
 
-                    if (InputReader.Aim() || shooting)
+                    if (dashing)
+                    {
+                        Dash(spriteBatch);
+                    }
+                    else if (InputReader.Aim() || shooting)
                     {
                         DrawAim(spriteBatch);
                         DrawGun(spriteBatch);
                     }
-                    else if (dashing)
-                    {
-                        Dash(spriteBatch);
-                    }
                 }
             }
+
+            //draw hitbox borders
+            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Top), Color.White);
+            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Bottom), Color.White);
+
             //healthBar.Draw(spriteBatch);
+
         }
 
         public void Reset(Vector2 position)
@@ -325,59 +389,128 @@ namespace Test_Loopguy
 
         public void Melee(float deltaTime)
         {
-            int rowInt = dirInt - 1; //Wow dude??
+            int rowIntPlayer = 6 + (int)primaryOrientation - 1; //Melee sprites are 6 rows down on player sprite sheet
+            int rowIntSword = (int)primaryOrientation - 1; //Wow dude??
             int frameTime = 50;
 
-            if (dirInt == 1)
+            if (primaryOrientation == Orientation.Up)
             {//UP
-                sprite.Play(6, 4, frameTime);
                 direction.X = 0;
                 direction.Y = -1;
+
+                if (secondaryOrientation == Orientation.Left)
+                {
+                    rowIntPlayer = 8;
+                    rowIntSword = 4;
+                    direction.X = -1;
+                }
+                else if (secondaryOrientation == Orientation.Right)
+                {
+                    rowIntPlayer = 9;
+                    rowIntSword = 6;
+                    direction.X = 1;
+                }
+
             }
-            else if (dirInt == 2)
+            else if (primaryOrientation == Orientation.Down)
             {//DOWN
-                sprite.Play(7, 4, frameTime);
                 direction.X = 0;
                 direction.Y = 1;
+
+                if (secondaryOrientation == Orientation.Left)
+                {
+                    rowIntPlayer = 8;
+                    rowIntSword = 5;
+                    direction.X = -1;
+                }
+                else if (secondaryOrientation == Orientation.Right)
+                {
+                    rowIntPlayer = 9;
+                    rowIntSword = 7;
+                    direction.X = 1;
+                }
             }
-            else if (dirInt == 3)
+            else if (primaryOrientation == Orientation.Left)
             {//LEFT
-                sprite.Play(8, 4, frameTime);
                 direction.X = -1;
                 direction.Y = 0;
+
+                if (secondaryOrientation == Orientation.Up)
+                {
+                    rowIntSword = 4;
+                    direction.Y = -1;
+                }
+                else if (secondaryOrientation == Orientation.Down)
+                {
+                    rowIntSword = 5;
+                    direction.Y = 1;
+                }
             }
             else
             {//RIGHT
-                sprite.Play(9, 4, frameTime);
                 direction.X = 1;
                 direction.Y = 0;
+
+                if (secondaryOrientation == Orientation.Up)
+                {
+                    rowIntSword = 6;
+                    direction.Y = -1;
+                }
+                else if (secondaryOrientation == Orientation.Down)
+                {
+                    rowIntSword = 7;
+                    direction.Y = 1;
+                }
             }
 
+            direction.Normalize();
+
             CheckMovement(deltaTime);
-            
+
+            sprite.Play(rowIntPlayer, 4, frameTime);
+
             //The PlayOnce method returns false when the animation is done playing!!!
-            attacking = meleeSprite.PlayOnce(rowInt, 4, frameTime);
+            attacking = meleeSprite.PlayOnce(rowIntSword, 4, frameTime);
         }
 
         public void Dash(SpriteBatch spriteBatch)
         {
-            Vector2 viablePos = centerPosition + new Vector2(0, 12);
-
-            if(direction == Vector2.Zero)
+            if (dashFrames <= maxDashFrames)
             {
-                if (dirInt == 1)
+                DashFrame(spriteBatch);
+                dashDirection = direction;
+                dashCloud = true;
+                dashFrames++;
+            }
+            else
+            {
+                dashing = false;
+                dashFrames = 0;
+            }
+        }
+        public void DashFrame(SpriteBatch spriteBatch)
+        {
+            sprite.Frame((int)primaryOrientation - 1, 10);
+
+            if (direction == Vector2.Zero)
+            {
+                if (primaryOrientation == Orientation.Up)
                     direction.Y = -1;
-                else if (dirInt == 2)
+                else if (primaryOrientation == Orientation.Down)
                     direction.Y = 1;
-                else if (dirInt == 3)
+                else if (primaryOrientation == Orientation.Left)
                     direction.X = -1;
                 else
                     direction.X = 1;
             }
 
+            Vector2 viablePos = centerPosition + new Vector2(0, 12);
+;
+
             for (int i = 1; i < dashRange + 1; i++)
             {
                 Vector2 dashPos = new Vector2(centerPosition.X + i * direction.X, centerPosition.Y + i * direction.Y) + new Vector2(0, 12);
+                
                 Rectangle futureFootPrint = new Rectangle((int)dashPos.X, (int)dashPos.Y, footprint.Width, footprint.Height);
 
 
@@ -387,7 +520,7 @@ namespace Test_Loopguy
                 }
                 else
                 {
-                    sprite.DrawElsewhere(spriteBatch, new Vector2(dashPos.X - sprite.size.X / 2, dashPos.Y - sprite.size.Y / 2 - 12));
+                    sprite.DrawElsewhere(spriteBatch, new Vector2(dashPos.X - sprite.size.X / 2, dashPos.Y - sprite.size.Y / 2 - 12), 40);
                     viablePos = dashPos;
                 }
             }
@@ -395,6 +528,7 @@ namespace Test_Loopguy
             viablePos += new Vector2(0, - 12);
             viablePos = new Vector2(viablePos.X - sprite.size.X / 2, viablePos.Y - sprite.size.Y / 2);
             position = viablePos;
+
         }
 
         private void CheckMovement(float deltaTime)
@@ -480,37 +614,67 @@ namespace Test_Loopguy
                 frameTime = (int)(50 / absDirection);
             }
 
-            //Visual changes depending on direction
+            //Orientation changes depending on direction
             if (direction.Y < 0 && absDirectionX < absDirectionY)
-            {//UP
+            {
                 sprite.Play(0, 12, frameTime);
-                dirInt = 1;
+                primaryOrientation = Orientation.Up;
+
+                if (direction.X > 0.38f)
+                    secondaryOrientation = Orientation.Right;
+                else if (direction.X < -0.38f)
+                    secondaryOrientation = Orientation.Left;
+                else
+                    secondaryOrientation = Orientation.Up;
             }
             else if (direction.Y > 0 && absDirectionX < absDirectionY)
-            {//DOWN
+            {
                 sprite.Play(1, 12, frameTime);
-                dirInt = 2;
+                primaryOrientation = Orientation.Down;
+
+                if (direction.X > 0.38f)
+                    secondaryOrientation = Orientation.Right;
+                else if (direction.X < -0.38f)
+                    secondaryOrientation = Orientation.Left;
+                else
+                    secondaryOrientation = Orientation.Down;
             }
             else if (direction.X < 0)
-            {//LEFT
+            {
                 sprite.Play(2, 12, frameTime);
-                dirInt = 3;
+                primaryOrientation = Orientation.Left;
+
+                if (direction.Y < -0.38f)
+                    secondaryOrientation = Orientation.Up;
+                else if (direction.Y > 0.38f)
+                    secondaryOrientation = Orientation.Down;
+                else
+                    secondaryOrientation = Orientation.Left;
             }
             else if (direction.X > 0)
-            {//RIGHT
+            {
                 sprite.Play(3, 12, frameTime);
-                dirInt = 4;
+                primaryOrientation = Orientation.Right;
+
+                if (direction.Y < -0.38f)
+                    secondaryOrientation = Orientation.Up;
+                else if (direction.Y > 0.38f)
+                    secondaryOrientation = Orientation.Down;
+                else
+                    secondaryOrientation = Orientation.Right;
             }
             else
             {
-                if (dirInt == 1)
+                if (primaryOrientation == Orientation.Up)
                     sprite.Frame(0, 4);
-                else if (dirInt == 2)
+                else if (primaryOrientation == Orientation.Down)
                     sprite.Frame(1, 4);
-                else if (dirInt == 3)
+                else if (primaryOrientation == Orientation.Left)
                     sprite.Frame(2, 4);
                 else
                     sprite.Frame(3, 4);
+
+                //secondaryOrientation = primaryOrientation;
             }
 
             //This normalizes the direction Vector so that movement is consistent in all directions. If it normalizes a Vector of 0,0 it gets fucky though
@@ -530,33 +694,35 @@ namespace Test_Loopguy
             float playerVelocityShort = velocity.Length();
 
             float absDirShort = (float)Math.Round(absDirection, 2);
-            playerInfoString = absDirShort.ToString() + " || " + frameTime.ToString() + " || " + playerVelocityShort.ToString();
+            float dirXshort = (float)Math.Round(direction.X, 2);
+            float dirYshort = (float)Math.Round(direction.Y, 2);
+            playerInfoString = absDirShort.ToString() + " || " + frameTime.ToString() + " || " + playerVelocityShort.ToString() + "\n\n\n\n\n\n\n Dir X: " + dirXshort + "\n Dir Y: " + dirYshort;
         }
         
         public void DrawAim(SpriteBatch spriteBatch)
         {
 
             if (aimAngle > pi * 1.75f || aimAngle < pi * 0.25f)
-            {//DOWN
-                dirInt = 2;
+            {
+                primaryOrientation = Orientation.Down;
             }
             else if (aimAngle < pi * 0.75f)
-            {//RIGHT
-                dirInt = 4;
+            {
+                primaryOrientation = Orientation.Right;
             }
             else if (aimAngle < pi * 1.25f)
-            {//UP
-                dirInt = 1;
+            {
+                primaryOrientation = Orientation.Up;
             }
             else
-            {//LEFT
-                dirInt = 3;
+            {
+                primaryOrientation = Orientation.Left;
             }
 
             if (!shooting)
-                gunSprite.Frame(dirInt - 1, 0);
+                gunSprite.Frame((int)primaryOrientation - 1, 0);
 
-            sprite.Frame(dirInt - 1, 5);
+            sprite.Frame((int)primaryOrientation - 1, 5);
 
             if (!InputReader.MovingLeftStick())
             {
@@ -595,15 +761,15 @@ namespace Test_Loopguy
         public void Shoot(int frameTime)
         {
             if (aimAngle > pi * 1.75f || aimAngle < pi * 0.25f)
-                dirInt = 2;
+                primaryOrientation = Orientation.Down;
             else if (aimAngle < pi * 0.75f)
-                dirInt = 4;
+                primaryOrientation = Orientation.Right;
             else if (aimAngle < pi * 1.25f)
-                dirInt = 1;
+                primaryOrientation = Orientation.Up;
             else
-                dirInt = 3;
+                primaryOrientation = Orientation.Left;
 
-            shooting = gunSprite.PlayOnce(dirInt, 5, frameTime);
+            shooting = gunSprite.PlayOnce((int)primaryOrientation, 5, frameTime);
         }
 
         public void DrawGun(SpriteBatch spriteBatch)
@@ -611,14 +777,14 @@ namespace Test_Loopguy
             double angleOffset;
 
             //These are ordered in a way that makes perfect sense, shut up
-            if (dirInt == 2)//down
+            if (primaryOrientation == Orientation.Down)
                 angleOffset = 0;
-            else if (dirInt == 3)//right
-                angleOffset = -1.5 * pi;
-            else if (dirInt == 1)//up
+            else if (primaryOrientation == Orientation.Right)
+                angleOffset = -0.5 * pi;
+            else if (primaryOrientation == Orientation.Up)
                 angleOffset = -1 * pi;
             else//left
-                angleOffset = -0.5 * pi;
+                angleOffset = -1.5 * pi;
 
             if (!InputReader.MovingLeftStick())
                 gunAngle = (float)Helper.GetAngle(centerPosition, Game1.mousePos, angleOffset);
@@ -638,25 +804,78 @@ namespace Test_Loopguy
 
                     float angle = (float)Helper.GetAngle(centerPosition, v, 0);
 
-                    if (dirInt == 2)
-                    { //DOWN
-                        if (angle >= pi * 1.75f || angle < pi * 0.25f)
-                            return true;
+                    if (primaryOrientation == Orientation.Down)
+                    { 
+                        if (secondaryOrientation == Orientation.Down)
+                        {
+                            if (angle >= pi * 1.75f || angle < pi * 0.25f)
+                                return true;
+                        }
+                        else if (secondaryOrientation == Orientation.Left)
+                        {
+                            if (angle >= pi * 1.5f)
+                                return true;
+                        }
+                        else if (secondaryOrientation == Orientation.Right)
+                        {
+                            if (angle < pi * 0.5f)
+                                return true;
+                        }
                     }
-                    else if (dirInt == 4)
-                    { //RIGHT
-                        if (angle >= pi * 0.25f && angle < pi * 0.75f)
-                            return true;
+                    else if (primaryOrientation == Orientation.Right)
+                    { 
+                        if (secondaryOrientation == Orientation.Right)
+                        {
+                            if (angle >= pi * 0.25f && angle < pi * 0.75f)
+                                return true;
+                        }
+                        else if (secondaryOrientation == Orientation.Up)
+                        {
+                            if (angle >= pi * 0.5f && angle < pi)
+                                return true;
+                        }
+                        else if (secondaryOrientation == Orientation.Down)
+                        {
+                            if (angle < pi * 0.5f)
+                                return true;
+                        }
                     }
-                    else if (dirInt == 1)
-                    { //UP
-                        if (angle >= pi * 0.75f && angle < pi * 1.25f)
-                            return true;
+                    else if (primaryOrientation == Orientation.Up)
+                    { 
+                        if (secondaryOrientation == Orientation.Up)
+                        {
+                            if (angle >= pi * 0.75f && angle < pi * 1.25f)
+                                return true;
+                        }
+                        else if (secondaryOrientation == Orientation.Left)
+                        {
+                            if (angle >= pi && angle < pi * 1.5f)
+                                return true;
+                        }
+                        else if (secondaryOrientation == Orientation.Right)
+                        {
+                            if (angle >= pi * 0.5f && angle < pi)
+                                return true;
+                        }
+
                     }
                     else
                     { //LEFT
-                        if (angle >= pi * 1.25f && angle < pi * 1.75f)
-                            return true;
+                        if (secondaryOrientation == Orientation.Left)
+                        {
+                            if (angle >= pi * 1.25f && angle < pi * 1.75f)
+                                return true;
+                        }
+                        else if (secondaryOrientation == Orientation.Up)
+                        {
+                            if (angle >= pi && angle < pi * 1.5f)
+                                return true;
+                        }
+                        else if (secondaryOrientation == Orientation.Down)
+                        {
+                            if (angle >= pi * 1.5f)
+                                return true;
+                        }
                     }
                 }
             }
@@ -664,6 +883,17 @@ namespace Test_Loopguy
             
 
             return false;
+        }
+
+        public bool DrawDashCloud(SpriteBatch spriteBatch)
+        {
+            float rotation = (float)Math.Atan2(dashDirection.X, dashDirection.Y);
+            rotation -= pi / 2;
+
+            Vector2 origin = new Vector2(41, 12);
+            dashCloudSprite.DrawRotation(spriteBatch, rotation, origin);
+            bool playAnimation = dashCloudSprite.PlayOnce(0, 13, 50);
+            return playAnimation;
         }
     }
 }

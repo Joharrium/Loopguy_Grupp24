@@ -64,7 +64,18 @@ namespace Test_Loopguy
             foreach (Projectile s in enemyProjectiles)
             {
                 s.Update(gameTime);
-                if(s.CheckCollision(player))
+                //Make projectiles bounce back if hit by player Melee attack
+                //maybe change the bounce to depend on what direction the player is attacking instead of just reflecting straight back
+                if (EntityManager.player.MeleeHit(s) && EntityManager.player.attacking)
+                {
+                    Projectile reflS = s.Clone();
+                    reflS.Bounce((float)Helper.GetAngle(player.centerPosition, reflS.centerPosition, Math.PI));
+                    playerProjectiles.Add(reflS);
+
+                    projectilesToRemove.Add(s);
+                }
+
+                if (s.CheckCollision(player) && !player.dashing)
                 {
                     player.TakeDamage(1);
                     projectilesToRemove.Add(s);
