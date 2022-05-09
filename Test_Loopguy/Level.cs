@@ -177,7 +177,7 @@ namespace Test_Loopguy
 
             foreach(Hazard h in tiles.OfType<Hazard>())
             {
-                if(player.footprint.Intersects(h.hitBox))
+                if(player.footprint.Intersects(h.hitBox) && !player.dashing)
                 {
                     if(!IsOnGround(player.footprint))
                     {
