@@ -17,7 +17,7 @@ namespace Test_Loopguy
         SpriteFont font;
         Texture2D texture;
 
-        bool isHovering;
+        public bool isHovering;
 
         public event EventHandler Click;
 
@@ -51,33 +51,13 @@ namespace Test_Loopguy
         {
             Vector2 windowMousePos = new Vector2(InputReader.mouseState.X / Game1.windowScale, InputReader.mouseState.Y / Game1.windowScale);
 
-            previousMouse = currentMouse;
-            currentMouse = Mouse.GetState();
-
-            Rectangle mouseRectangle = new Rectangle(currentMouse.X, currentMouse.Y, 1, 1);
-
-            isHovering = false;
-
-            //if (mouseRectangle.Intersects(Rectangle))
-            //{
-            //    isHovering = true;
-
-            //    if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed)
-            //    {
-            //        Click?.Invoke(this, new EventArgs());
-
-            //        //if (Click != null)
-            //        //{
-            //        //    Click(this, new EventArgs());
-            //        //}
-            //    }
-            //}
+            //isHovering = false;
 
             if (Rectangle.Contains(windowMousePos))
             {
-                isHovering = true;
+                //isHovering = true;
 
-                if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed)
+                if (InputReader.mouseState.LeftButton == ButtonState.Released && InputReader.oldMouseState.LeftButton == ButtonState.Pressed)
                 {
                     Click?.Invoke(this, new EventArgs());
 
@@ -87,6 +67,12 @@ namespace Test_Loopguy
                     //}
                 }
             }
+            //else
+            //{
+            //    isHovering = false;
+            //}
+
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)

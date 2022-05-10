@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,9 +10,21 @@ namespace Test_Loopguy
 {
     class MenuManager
     {
+        static bool usingMouse = false;
 
+        static Button newGameButton, loadGameButton, highScoreButton, settingsButton, quitGameButton;
     
         static List<Component> gameComponents;
+
+        static Component currentSelection;
+     
+        enum NavigationState
+        {
+            Mouse,
+            KeyboardDpad
+        }
+
+        static NavigationState currentState;
 
         public static void LoadMenuButtons()
         {
@@ -23,31 +36,31 @@ namespace Test_Loopguy
             Vector2 menuSlot4 = new Vector2(Game1.windowX / 2, Game1.windowY / 2 + menuSpacing * 3);
             Vector2 menuSlot5 = new Vector2(Game1.windowX / 2, Game1.windowY / 2 + menuSpacing * 4);
 
-            var newGameButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot1)
+            newGameButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot1)
             {
                 Position = menuSlot1,
                 Text = "Start Game",
             };
 
-            Button loadGameButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot2)
+            loadGameButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot2)
             {
                 Position = menuSlot2,
                 Text = "Load Game",
             };
 
-            var highScoreButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot3)
+            highScoreButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot3)
             {
                 Position = menuSlot3,
                 Text = "High Score",
             };
 
-            var settingsButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot4)
+            settingsButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot4)
             {
                 Position = menuSlot4,
                 Text = "Settings",
             };
 
-            var quitGameButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot5)
+            quitGameButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot5)
             {
                 Position = menuSlot5,
                 Text = "Quit Game",
@@ -62,11 +75,115 @@ namespace Test_Loopguy
                 quitGameButton,
             };
 
+            currentSelection = gameComponents[0];
+
+
             newGameButton.Click += NewGameButton_Click;
             loadGameButton.Click += LoadGameButton_Click;
             highScoreButton.Click += HighScoreButton_Click;
             settingsButton.Click += SettingsButton_Click;
             quitGameButton.Click += QuitGameButton_Click;
+
+        }
+
+        public static void NavigateMenu()
+        {
+            if (InputReader.MoveMentDownNonContinous())
+            {
+                if (gameComponents.IndexOf(currentSelection) + 2 > gameComponents.Count)
+                {
+                    currentSelection = gameComponents[0];
+                }
+                else
+                {
+                    currentSelection = gameComponents[gameComponents.IndexOf(currentSelection) + 1];
+                }
+            }
+
+            if (InputReader.MoveMentUpNonContinous())
+            {
+                if (gameComponents.IndexOf(currentSelection) - 1 < 0)
+                {
+                    currentSelection = gameComponents[gameComponents.Count - 1];
+                }
+                else
+                {
+                    currentSelection = gameComponents[gameComponents.IndexOf(currentSelection) - 1];
+                }
+            }
+        }
+
+        public static void MakeSelection()
+        {
+            if (currentSelection == newGameButton)
+            {
+                newGameButton.isHovering = true;
+
+                if (InputReader.ButtonPressed(Buttons.X) || InputReader.KeyPressed(Keys.Enter))
+                {
+                    StateManager.currentState = StateManager.GameState.InGame;
+                }
+            }
+            else
+            {
+                newGameButton.isHovering = false;
+            }
+
+            if (currentSelection == loadGameButton)
+            {
+                loadGameButton.isHovering = true;
+
+                if (InputReader.ButtonPressed(Buttons.X) || InputReader.KeyPressed(Keys.Enter))
+                {
+                    loadGameButton.isHovering = false;
+                }
+            }
+            else
+            {
+                loadGameButton.isHovering = false;
+            }
+
+            if (currentSelection == highScoreButton)
+            {
+                highScoreButton.isHovering = true;
+
+                if (InputReader.ButtonPressed(Buttons.X) || InputReader.KeyPressed(Keys.Enter))
+                {
+                    highScoreButton.isHovering = false;
+                }
+            }
+            else
+            {
+                highScoreButton.isHovering = false;
+            }
+
+            if (currentSelection == settingsButton)
+            {
+                settingsButton.isHovering = true;
+
+                if (InputReader.ButtonPressed(Buttons.X) || InputReader.KeyPressed(Keys.Enter))
+                {
+                    settingsButton.isHovering = false;
+                }
+            }
+            else
+            {
+                settingsButton.isHovering = false;
+            }
+
+            if (currentSelection == quitGameButton)
+            {
+                quitGameButton.isHovering = true;
+
+                if (InputReader.ButtonPressed(Buttons.X) || InputReader.KeyPressed(Keys.Enter))
+                {
+                    Game1.game1.Exit();
+                }
+            }
+            else
+            {
+                quitGameButton.isHovering = false;
+            }
 
         }
 
@@ -98,10 +215,51 @@ namespace Test_Loopguy
 
         public static void Update(GameTime gameTime)
         {
-            foreach (var component in gameComponents)
+            MakeSelection();
+            NavigateMenu();
+
+            foreach (Button b in gameComponents)
             {
-                component.Update(gameTime);
+
+                Vector2 windowMousePos = new Vector2(InputReader.mouseState.X / Game1.windowScale, InputReader.mouseState.Y / Game1.windowScale);           
+
+                b.isHovering = false;
+
+                switch (currentState)
+                {
+
+                    case NavigationState.Mouse:
+
+                        if (b.Rectangle.Contains(windowMousePos))
+                        {
+                            b.isHovering = true;
+                        }
+                        break;
+
+                    case NavigationState.KeyboardDpad:
+
+                        if (currentSelection == b)
+                        {
+                            b.isHovering = true;
+                        }
+                        break;
+                }
+
+
+                if (InputReader.KeyPressed(Keys.Down) || InputReader.KeyPressed(Keys.Up))
+                {
+                    currentState = NavigationState.KeyboardDpad;
+                }            
+
+                if (InputReader.mouseState != InputReader.oldMouseState)
+                {
+                    currentState = NavigationState.Mouse;
+                }
+
+                b.Update(gameTime);
+
             }
+
         }
 
         public static void Draw(SpriteBatch spriteBatch)
