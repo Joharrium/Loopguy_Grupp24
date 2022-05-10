@@ -6,11 +6,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Test_Loopguy
 {
-    internal class Enemy : MovingObject
+    internal class Enemy : Character
     {
-        public AnimatedSprite animSprite;
-        public int health;
-        public int maxHealth;
         protected HealthBar healthBar;
         public int damage;
         protected int aggroRange;
@@ -26,7 +23,6 @@ namespace Test_Loopguy
         protected float attackCooldown;
         protected float attackCooldownRemaining;
         protected float timeBetweenAICalls;
-        public Rectangle footprint;
         public Enemy(Vector2 position) : base(position)
         {
             this.position = position;

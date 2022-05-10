@@ -8,27 +8,11 @@ using Test_Loopguy.Content;
 
 namespace Test_Loopguy
 {
-    internal class Player : MovingObject
+    internal class Player : Character
     {
-        enum Orientation
-        {
-            Zero,
-            Up,
-            Down,
-            Left,
-            Right,
-        }
-
-        //Orientation is used mainly for visuals but also melee calculation
-        Orientation primaryOrientation;
-        Orientation secondaryOrientation;
-
-        public int health = 5;
-        private int maxHealth = 5;
-
         private int ammo = 5;
         private int maxAmmo = 5;
-        AnimatedSprite sprite;
+
         AnimatedSprite gunSprite;
         AnimatedSprite meleeSprite;
         AnimatedSprite dashCloudSprite;
@@ -76,9 +60,6 @@ namespace Test_Loopguy
         bool dashCloud;
 
 
-        //footprint rectangle
-        public Rectangle footprint;
-
         public Player(Vector2 position)
             : base(position)
         {
@@ -87,13 +68,16 @@ namespace Test_Loopguy
             meleeSprite = new AnimatedSprite(TextureManager.meleeFx, new Point(48, 48));
             dashCloudSprite = new AnimatedSprite(TextureManager.dashCloud, new Point(42, 24));
 
+            maxHealth = 5;
+            health = maxHealth;
+
             speed = 100; //pixels per second
 
             primaryOrientation = Orientation.Down;
             secondaryOrientation = Orientation.Down;
             LoadKeys();
-            healthBar = new PlayerHealthBar(5);
-            ammoBar = new AmmoBar(5);
+            healthBar = new PlayerHealthBar(maxHealth);
+            ammoBar = new AmmoBar(maxAmmo);
             footprint = new Rectangle((int)position.X, (int)position.Y + 24, 8, 8);
 
             canDash = true;
@@ -666,58 +650,6 @@ namespace Test_Loopguy
             playerInfoString = absDirShort.ToString() + " || " + frameTime.ToString() + " || " + playerVelocityShort.ToString() + "\n\n\n\n\n\n\n Dir X: " + dirXshort + "\n Dir Y: " + dirYshort;
         }
 
-        public void GetOrientation()
-        {
-            float absDirectionX = Math.Abs(direction.X);
-            float absDirectionY = Math.Abs(direction.Y);
-
-            //Orientation changes depending on direction
-            if (direction.Y < 0 && absDirectionX < absDirectionY)
-            {
-                primaryOrientation = Orientation.Up;
-
-                if (direction.X > 0.38f)
-                    secondaryOrientation = Orientation.Right;
-                else if (direction.X < -0.38f)
-                    secondaryOrientation = Orientation.Left;
-                else
-                    secondaryOrientation = Orientation.Up;
-            }
-            else if (direction.Y > 0 && absDirectionX < absDirectionY)
-            {
-                primaryOrientation = Orientation.Down;
-
-                if (direction.X > 0.38f)
-                    secondaryOrientation = Orientation.Right;
-                else if (direction.X < -0.38f)
-                    secondaryOrientation = Orientation.Left;
-                else
-                    secondaryOrientation = Orientation.Down;
-            }
-            else if (direction.X < 0)
-            {
-                primaryOrientation = Orientation.Left;
-
-                if (direction.Y < -0.38f)
-                    secondaryOrientation = Orientation.Up;
-                else if (direction.Y > 0.38f)
-                    secondaryOrientation = Orientation.Down;
-                else
-                    secondaryOrientation = Orientation.Left;
-            }
-            else if (direction.X > 0)
-            {
-                primaryOrientation = Orientation.Right;
-
-                if (direction.Y < -0.38f)
-                    secondaryOrientation = Orientation.Up;
-                else if (direction.Y > 0.38f)
-                    secondaryOrientation = Orientation.Down;
-                else
-                    secondaryOrientation = Orientation.Right;
-            }
-        }
-        
         public void DrawAim(SpriteBatch spriteBatch)
         {
 
