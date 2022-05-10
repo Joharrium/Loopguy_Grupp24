@@ -203,6 +203,8 @@ namespace Test_Loopguy
 
                     gunDirection = Vector2.Zero;
                     Movement(deltaTime);
+                    //Implement orientation stuff in a higher class "Character"
+                    GetOrientation();
 
                     if (InputReader.Attack() && !attacking)
                     {
@@ -511,7 +513,7 @@ namespace Test_Loopguy
             {
                 Vector2 dashPos = new Vector2(centerPosition.X + i * direction.X, centerPosition.Y + i * direction.Y) + new Vector2(0, 12);
                 
-                Rectangle futureFootPrint = new Rectangle((int)dashPos.X, (int)dashPos.Y, footprint.Width, footprint.Height);
+                Rectangle futureFootPrint = new Rectangle((int)dashPos.X - footprint.Width / 2, (int)dashPos.Y - footprint.Height / 2, footprint.Width, footprint.Height);
 
 
                 if (LevelManager.LevelObjectCollision(futureFootPrint, 0) || LevelManager.WallCollision(dashPos))
@@ -572,6 +574,7 @@ namespace Test_Loopguy
 
         public override void Movement(float deltaTime)
         {
+            
             direction.Y = 0;
             direction.X = 0;
 
@@ -594,11 +597,7 @@ namespace Test_Loopguy
                     direction.Y += 1;
             }
             
-
             float absDirection = Math.Abs(direction.X) + Math.Abs(direction.Y);
-            float absDirectionX = Math.Abs(direction.X);
-            float absDirectionY = Math.Abs(direction.Y);
-
 
             //Changes frame rate depending on direction vector
 
@@ -614,54 +613,24 @@ namespace Test_Loopguy
                 frameTime = (int)(50 / absDirection);
             }
 
-            //Orientation changes depending on direction
-            if (direction.Y < 0 && absDirectionX < absDirectionY)
+            if (absDirection > 0)
             {
-                sprite.Play(0, 12, frameTime);
-                primaryOrientation = Orientation.Up;
-
-                if (direction.X > 0.38f)
-                    secondaryOrientation = Orientation.Right;
-                else if (direction.X < -0.38f)
-                    secondaryOrientation = Orientation.Left;
+                if (primaryOrientation == Orientation.Up)
+                {
+                    sprite.Play(0, 12, frameTime);
+                }
+                else if (primaryOrientation == Orientation.Down)
+                {
+                    sprite.Play(1, 12, frameTime);
+                }
+                else if (primaryOrientation == Orientation.Left)
+                {
+                    sprite.Play(2, 12, frameTime);
+                }
                 else
-                    secondaryOrientation = Orientation.Up;
-            }
-            else if (direction.Y > 0 && absDirectionX < absDirectionY)
-            {
-                sprite.Play(1, 12, frameTime);
-                primaryOrientation = Orientation.Down;
-
-                if (direction.X > 0.38f)
-                    secondaryOrientation = Orientation.Right;
-                else if (direction.X < -0.38f)
-                    secondaryOrientation = Orientation.Left;
-                else
-                    secondaryOrientation = Orientation.Down;
-            }
-            else if (direction.X < 0)
-            {
-                sprite.Play(2, 12, frameTime);
-                primaryOrientation = Orientation.Left;
-
-                if (direction.Y < -0.38f)
-                    secondaryOrientation = Orientation.Up;
-                else if (direction.Y > 0.38f)
-                    secondaryOrientation = Orientation.Down;
-                else
-                    secondaryOrientation = Orientation.Left;
-            }
-            else if (direction.X > 0)
-            {
-                sprite.Play(3, 12, frameTime);
-                primaryOrientation = Orientation.Right;
-
-                if (direction.Y < -0.38f)
-                    secondaryOrientation = Orientation.Up;
-                else if (direction.Y > 0.38f)
-                    secondaryOrientation = Orientation.Down;
-                else
-                    secondaryOrientation = Orientation.Right;
+                {
+                    sprite.Play(3, 12, frameTime);
+                }
             }
             else
             {
@@ -673,8 +642,6 @@ namespace Test_Loopguy
                     sprite.Frame(2, 4);
                 else
                     sprite.Frame(3, 4);
-
-                //secondaryOrientation = primaryOrientation;
             }
 
             //This normalizes the direction Vector so that movement is consistent in all directions. If it normalizes a Vector of 0,0 it gets fucky though
@@ -697,6 +664,58 @@ namespace Test_Loopguy
             float dirXshort = (float)Math.Round(direction.X, 2);
             float dirYshort = (float)Math.Round(direction.Y, 2);
             playerInfoString = absDirShort.ToString() + " || " + frameTime.ToString() + " || " + playerVelocityShort.ToString() + "\n\n\n\n\n\n\n Dir X: " + dirXshort + "\n Dir Y: " + dirYshort;
+        }
+
+        public void GetOrientation()
+        {
+            float absDirectionX = Math.Abs(direction.X);
+            float absDirectionY = Math.Abs(direction.Y);
+
+            //Orientation changes depending on direction
+            if (direction.Y < 0 && absDirectionX < absDirectionY)
+            {
+                primaryOrientation = Orientation.Up;
+
+                if (direction.X > 0.38f)
+                    secondaryOrientation = Orientation.Right;
+                else if (direction.X < -0.38f)
+                    secondaryOrientation = Orientation.Left;
+                else
+                    secondaryOrientation = Orientation.Up;
+            }
+            else if (direction.Y > 0 && absDirectionX < absDirectionY)
+            {
+                primaryOrientation = Orientation.Down;
+
+                if (direction.X > 0.38f)
+                    secondaryOrientation = Orientation.Right;
+                else if (direction.X < -0.38f)
+                    secondaryOrientation = Orientation.Left;
+                else
+                    secondaryOrientation = Orientation.Down;
+            }
+            else if (direction.X < 0)
+            {
+                primaryOrientation = Orientation.Left;
+
+                if (direction.Y < -0.38f)
+                    secondaryOrientation = Orientation.Up;
+                else if (direction.Y > 0.38f)
+                    secondaryOrientation = Orientation.Down;
+                else
+                    secondaryOrientation = Orientation.Left;
+            }
+            else if (direction.X > 0)
+            {
+                primaryOrientation = Orientation.Right;
+
+                if (direction.Y < -0.38f)
+                    secondaryOrientation = Orientation.Up;
+                else if (direction.Y > 0.38f)
+                    secondaryOrientation = Orientation.Down;
+                else
+                    secondaryOrientation = Orientation.Right;
+            }
         }
         
         public void DrawAim(SpriteBatch spriteBatch)
@@ -743,7 +762,7 @@ namespace Test_Loopguy
                 Rectangle aimRect = new Rectangle(aimPoint.ToPoint(), new Point(1,1));
 
                 //Stops laser sight on collision with object
-                if (LevelManager.LevelObjectCollision(aimRect, 9) || LevelManager.WallCollision(aimPoint))
+                if (LevelManager.LevelObjectCollision(aimRect, 9))
                 {
                     break;
                 }
