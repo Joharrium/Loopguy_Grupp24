@@ -117,74 +117,43 @@ namespace Test_Loopguy
         {
             if (currentSelection == newGameButton)
             {
-                newGameButton.isHovering = true;
-
                 if (InputReader.ButtonPressed(Buttons.X) || InputReader.KeyPressed(Keys.Enter))
                 {
                     StateManager.currentState = StateManager.GameState.InGame;
                 }
             }
-            else
-            {
-                newGameButton.isHovering = false;
-            }
 
             if (currentSelection == loadGameButton)
             {
-                loadGameButton.isHovering = true;
-
                 if (InputReader.ButtonPressed(Buttons.X) || InputReader.KeyPressed(Keys.Enter))
                 {
                     loadGameButton.isHovering = false;
                 }
             }
-            else
-            {
-                loadGameButton.isHovering = false;
-            }
 
             if (currentSelection == highScoreButton)
             {
-                highScoreButton.isHovering = true;
-
                 if (InputReader.ButtonPressed(Buttons.X) || InputReader.KeyPressed(Keys.Enter))
                 {
                     highScoreButton.isHovering = false;
                 }
             }
-            else
-            {
-                highScoreButton.isHovering = false;
-            }
 
             if (currentSelection == settingsButton)
             {
-                settingsButton.isHovering = true;
-
                 if (InputReader.ButtonPressed(Buttons.X) || InputReader.KeyPressed(Keys.Enter))
                 {
                     settingsButton.isHovering = false;
                 }
             }
-            else
-            {
-                settingsButton.isHovering = false;
-            }
 
             if (currentSelection == quitGameButton)
             {
-                quitGameButton.isHovering = true;
-
                 if (InputReader.ButtonPressed(Buttons.X) || InputReader.KeyPressed(Keys.Enter))
                 {
                     Game1.game1.Exit();
                 }
             }
-            else
-            {
-                quitGameButton.isHovering = false;
-            }
-
         }
 
         private static void NewGameButton_Click(object sender, EventArgs e)
