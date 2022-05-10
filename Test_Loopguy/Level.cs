@@ -39,6 +39,10 @@ namespace Test_Loopguy
             {
                 t.UpdateEdges();
             }
+            foreach (Wall w in tiles.OfType<Wall>())
+            {
+                w.SetConnections();
+            }
         }
 
         internal void Update(GameTime gameTime, Player player)
@@ -47,7 +51,7 @@ namespace Test_Loopguy
             List<Pickup> pickupsToRemove = new List<Pickup>();
             DestructibleUpdate(gameTime);
             EnemyUpdate(gameTime);
-            Rectangle mapbounds = new Rectangle(0, 0, cameraBounds.Width * 2, cameraBounds.Height * 2);
+            Rectangle mapbounds = new Rectangle(0, 0, cameraBounds.Width * 2 + Game1.windowX, cameraBounds.Height * 2 + Game1.windowY);
 
             foreach(Tile t in tiles)
             {
@@ -60,7 +64,17 @@ namespace Test_Loopguy
             foreach (Projectile s in enemyProjectiles)
             {
                 s.Update(gameTime);
-                if(s.CheckCollision(player))
+                //Make projectiles bounce back if hit by player Melee attack
+                if (EntityManager.player.MeleeHit(s) && EntityManager.player.attacking)
+                {
+                    Projectile reflS = s.Clone();
+                    reflS.Bounce((float)Helper.GetAngle(player.centerPosition, reflS.centerPosition, Math.PI));
+                    playerProjectiles.Add(reflS);
+
+                    projectilesToRemove.Add(s);
+                }
+
+                if (s.CheckCollision(player) && !player.dashing)
                 {
                     player.TakeDamage(1);
                     projectilesToRemove.Add(s);
@@ -162,7 +176,7 @@ namespace Test_Loopguy
 
             foreach(Hazard h in tiles.OfType<Hazard>())
             {
-                if(player.footprint.Intersects(h.hitBox))
+                if(player.footprint.Intersects(h.hitBox) && !player.dashing)
                 {
                     if(!IsOnGround(player.footprint))
                     {
@@ -298,6 +312,7 @@ namespace Test_Loopguy
         {
             foreach (Tile t in tiles)
             {
+                if(t is Floor || t is Hazard)
                 t.Draw(spriteBatch);
             }
             foreach (Tile t in tiles)
@@ -306,7 +321,7 @@ namespace Test_Loopguy
             }
             foreach (Tile t in tiles.OfType<Wall>())
             {
-                t.Draw(spriteBatch);
+                //t.Draw(spriteBatch);
             }
 
 
@@ -316,6 +331,7 @@ namespace Test_Loopguy
             objects.Add(EntityManager.player);
             objects.AddRange(playerProjectiles);
             objects.AddRange(enemyProjectiles);
+            objects.AddRange(tiles.OfType<Wall>());
 
             List<GameObject> sortedList = objects.OrderBy(o => o.centerPosition.Y + o.texture.Height).ToList();
             objects = sortedList;
@@ -467,7 +483,7 @@ namespace Test_Loopguy
                         tiles[coordinates.X, coordinates.Y] = new TileMetal(gameLocation);
                         break;
                     case TileSelection.WallMetal:
-                        tiles[coordinates.X, coordinates.Y] = new MetalWall(gameLocation);
+                        tiles[coordinates.X, coordinates.Y] = new WallGray(gameLocation);
                         break;
                     case TileSelection.CarpetWorn:
                         tiles[coordinates.X, coordinates.Y] = new CarpetWorn(gameLocation);
@@ -483,7 +499,11 @@ namespace Test_Loopguy
             }
             foreach (Tile t in tiles)
             {
-                t.UpdateEdges();
+                //t.UpdateEdges();
+            }
+            foreach (Wall w in tiles.OfType<Wall>())
+            {
+                //w.SetConnections();
             }
 
         }

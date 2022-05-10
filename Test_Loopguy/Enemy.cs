@@ -6,11 +6,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Test_Loopguy
 {
-    internal class Enemy : MovingObject
+    internal class Enemy : Character
     {
-        public AnimatedSprite animSprite;
-        public int health;
-        public int maxHealth;
         protected HealthBar healthBar;
         public int damage;
         protected int aggroRange;
@@ -26,7 +23,6 @@ namespace Test_Loopguy
         protected float attackCooldown;
         protected float attackCooldownRemaining;
         protected float timeBetweenAICalls;
-        public Rectangle footprint;
         public Enemy(Vector2 position) : base(position)
         {
             this.position = position;
@@ -205,7 +201,7 @@ namespace Test_Loopguy
             direction *= -1;
 
 
-            LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)((float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0) + Math.PI)));
+            LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 200));
         }
 
         protected override void AggroBehavior()

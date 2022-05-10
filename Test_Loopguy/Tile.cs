@@ -245,7 +245,12 @@ namespace Test_Loopguy
             hitBox.Width = texture.Width;
             hitBox.Height = texture.Height;
 
-            centerPosition = new Vector2(position.X - texture.Width / 2, position.Y - texture.Height / 2);
+            centerPosition = new Vector2(position.X - 16 / 2, position.Y - 20);
+        }
+
+        public void SetConnections()
+        {
+            sourceRectangle.X = 16 * ConnectedTextureCalc.GetConnections(this);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -259,23 +264,23 @@ namespace Test_Loopguy
         public BrickWall(Vector2 position) : base(position)
         {
             this.position = position - new Vector2(0,16);
-            texture = TextureManager.grayBrickWall;
+            texture = TextureManager.wall_brick_beige;
             hitBox.Width = 16;
-            hitBox.Height = 16;
+            hitBox.Height = 19;
             sourceRectangle = new Rectangle(16 * 0, 0, 16, 32);
         }
     }
 
-    public class MetalWall : Wall
+    public class WallGray : Wall
     {
         int variation;
-        public MetalWall(Vector2 position) : base(position)
+        public WallGray(Vector2 position) : base(position)
         {
             this.position = position - new Vector2(0, 16);
-            texture = TextureManager.wall_metal;
+            texture = TextureManager.wall_gray;
             hitBox.Width = 16;
-            hitBox.Height = 16;
-            int variation = Game1.rnd.Next(3);
+            hitBox.Height = 19;
+            int variation = Game1.rnd.Next(1);
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 32);
         }
     }
@@ -286,9 +291,9 @@ namespace Test_Loopguy
         public WornWall(Vector2 position) : base(position)
         {
             this.position = position - new Vector2(0, 16);
-            texture = TextureManager.wall_worn;
+            texture = TextureManager.wall_beige;
             hitBox.Width = 16;
-            hitBox.Height = 16;
+            hitBox.Height = 19;
             variation = Game1.rnd.Next(4);
             if(variation == 1)
             {
