@@ -654,21 +654,13 @@ namespace Test_Loopguy
         {
 
             if (aimAngle > pi * 1.75f || aimAngle < pi * 0.25f)
-            {
                 primaryOrientation = Orientation.Down;
-            }
             else if (aimAngle < pi * 0.75f)
-            {
                 primaryOrientation = Orientation.Right;
-            }
             else if (aimAngle < pi * 1.25f)
-            {
                 primaryOrientation = Orientation.Up;
-            }
             else
-            {
                 primaryOrientation = Orientation.Left;
-            }
 
             if (!shooting)
                 gunSprite.Frame((int)primaryOrientation - 1, 0);
@@ -686,6 +678,11 @@ namespace Test_Loopguy
 
             gunDirection = new Vector2((float)Math.Sin(aimAngle), (float)Math.Cos(aimAngle));
 
+            //USE LINE COLLISION FOR LASER SIGHT INSTEEEEAAAAAD
+            Line laserLine = new Line(centerPosition, new Vector2(centerPosition.X + 580 * gunDirection.X, centerPosition.Y + 580 * gunDirection.Y));
+            //how tho
+
+            //OUTDATED LAGGY CODE BELLOW
             Vector2 dotPos = centerPosition;
 
             for (int i = 16; i < 580; i++)
