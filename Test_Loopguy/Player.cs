@@ -743,7 +743,7 @@ namespace Test_Loopguy
                 Rectangle aimRect = new Rectangle(aimPoint.ToPoint(), new Point(1,1));
 
                 //Stops laser sight on collision with object
-                if (LevelManager.LevelObjectCollision(aimRect, 9) || LevelManager.WallCollision(aimPoint))
+                if (LevelManager.LevelObjectCollision(aimRect, 9))
                 {
                     break;
                 }
