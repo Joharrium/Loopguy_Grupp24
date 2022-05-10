@@ -31,6 +31,8 @@ namespace Test_Loopguy
             idleSongs.AddRange(LevelManager.SongLoad(id, false));
             combatSongs.AddRange(LevelManager.SongLoad(id, true));
 
+            enemies.Add(new RangedRobotEnemy(new Vector2(250, 250)));
+
         }
 
         public void RefreshEdges()

@@ -283,14 +283,20 @@ namespace Test_Loopguy
     {
         
         AnimatedSprite sprite;  //Bör läggas in i RangedEnemy I guess
+        bool isAttacking;
 
         public RangedRobotEnemy(Vector2 position) : base(position)
         {
             
-            this.position = position;         
+            this.position = position;
+            this.maxSpeed = 36;
             sprite = new AnimatedSprite(TextureManager.robotEnemySheet, new Point(64, 64));
+            sprite.Position = position;
+            maxHealth = 10;
+            health = maxHealth;
+            healthBar = new HealthBar(maxHealth);
 
-            minRange = 40;
+            minRange = 128;
             maxRange = 128;
             fleeRange = 128;
             aggroRange = 192;
@@ -316,6 +322,8 @@ namespace Test_Loopguy
         public override void Movement(float deltaTime)
         {
             bool turnedRight, turnedLeft, turnedUp, turnedDown;
+            
+
 
             FacingDirection currentDirection = FacingDirection.Down;
 
@@ -354,16 +362,44 @@ namespace Test_Loopguy
 
             }
 
+            if (minRange == 128)
+            {
+             
+                isAttacking = sprite.PlayOnce(2, 20, frameTime);
+            }
+
+
+            if (isAttacking)
+            {
+                maxSpeed = 0;
+            }
 
 
 
-            //base.Movement(deltaTime);
+            base.Movement(deltaTime);
+        }
+
+        protected override void AggroBehavior()
+        {
+            Vector2 thing = centerPosition - EntityManager.player.centerPosition;
+            thing.Normalize();
+            thing *= -1;
+
+            direction = thing;
+            speed = maxSpeed;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            sprite.Update(gameTime);
+            base.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-
             sprite.Draw(spriteBatch);
+            sprite.Position = position;
+
 
             //base.Draw(spriteBatch);
         }
