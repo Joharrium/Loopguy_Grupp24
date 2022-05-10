@@ -72,20 +72,20 @@ static class InputReader
 		else
 			return false;
 	}
-	public static bool MoveMentDownNonContinous()
+	public static bool MovementDownNonContinous()
 	{
 		if (playerInputEnabled)
 		{
-			if (keyState.IsKeyDown(Keys.Down) && oldKeyState.IsKeyUp(Keys.Down) || keyState.IsKeyDown(Keys.S) && oldKeyState.IsKeyUp(Keys.S) || padState.IsButtonDown(Buttons.DPadDown) && padState.IsButtonUp(Buttons.DPadDown))        
+			if (keyState.IsKeyDown(Keys.Down) && oldKeyState.IsKeyUp(Keys.Down) || keyState.IsKeyDown(Keys.S) && oldKeyState.IsKeyUp(Keys.S) || padState.IsButtonDown(Buttons.DPadDown) && oldPadState.IsButtonUp(Buttons.DPadDown))        
 				return keyState.IsKeyDown(Keys.Down) || keyState.IsKeyDown(Keys.S) || padState.IsButtonDown(Buttons.DPadDown);
 		}
 		return false;
 	}
-	public static bool MoveMentUpNonContinous()
+	public static bool MovementUpNonContinous()
 	{
 		if (playerInputEnabled)
 		{
-			if (keyState.IsKeyDown(Keys.Up) && oldKeyState.IsKeyUp(Keys.Up) || keyState.IsKeyDown(Keys.W) && oldKeyState.IsKeyUp(Keys.W) || padState.IsButtonDown(Buttons.DPadUp) && padState.IsButtonUp(Buttons.DPadUp))
+			if (keyState.IsKeyDown(Keys.Up) && oldKeyState.IsKeyUp(Keys.Up) || keyState.IsKeyDown(Keys.W) && oldKeyState.IsKeyUp(Keys.W) || padState.IsButtonDown(Buttons.DPadUp) && oldPadState.IsButtonUp(Buttons.DPadUp))
 				return keyState.IsKeyDown(Keys.Up) || keyState.IsKeyDown(Keys.W) || padState.IsButtonDown(Buttons.DPadUp);
 		}
 		return false;

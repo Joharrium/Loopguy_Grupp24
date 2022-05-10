@@ -88,7 +88,7 @@ namespace Test_Loopguy
 
         public static void NavigateMenu()
         {
-            if (InputReader.MoveMentDownNonContinous())
+            if (InputReader.MovementDownNonContinous())
             {
                 if (gameComponents.IndexOf(currentSelection) + 2 > gameComponents.Count)
                 {
@@ -100,7 +100,7 @@ namespace Test_Loopguy
                 }
             }
 
-            if (InputReader.MoveMentUpNonContinous())
+            if (InputReader.MovementUpNonContinous())
             {
                 if (gameComponents.IndexOf(currentSelection) - 1 < 0)
                 {
@@ -117,7 +117,7 @@ namespace Test_Loopguy
         {
             if (currentSelection == newGameButton)
             {
-                if (InputReader.ButtonPressed(Buttons.X) || InputReader.KeyPressed(Keys.Enter))
+                if (InputReader.ButtonPressed(Buttons.A) || InputReader.KeyPressed(Keys.Enter))
                 {
                     StateManager.currentState = StateManager.GameState.InGame;
                 }
@@ -125,7 +125,7 @@ namespace Test_Loopguy
 
             if (currentSelection == loadGameButton)
             {
-                if (InputReader.ButtonPressed(Buttons.X) || InputReader.KeyPressed(Keys.Enter))
+                if (InputReader.ButtonPressed(Buttons.A) || InputReader.KeyPressed(Keys.Enter))
                 {
                     loadGameButton.isHovering = false;
                 }
@@ -133,7 +133,7 @@ namespace Test_Loopguy
 
             if (currentSelection == highScoreButton)
             {
-                if (InputReader.ButtonPressed(Buttons.X) || InputReader.KeyPressed(Keys.Enter))
+                if (InputReader.ButtonPressed(Buttons.A) || InputReader.KeyPressed(Keys.Enter))
                 {
                     highScoreButton.isHovering = false;
                 }
@@ -141,7 +141,7 @@ namespace Test_Loopguy
 
             if (currentSelection == settingsButton)
             {
-                if (InputReader.ButtonPressed(Buttons.X) || InputReader.KeyPressed(Keys.Enter))
+                if (InputReader.ButtonPressed(Buttons.A) || InputReader.KeyPressed(Keys.Enter))
                 {
                     settingsButton.isHovering = false;
                 }
@@ -149,7 +149,7 @@ namespace Test_Loopguy
 
             if (currentSelection == quitGameButton)
             {
-                if (InputReader.ButtonPressed(Buttons.X) || InputReader.KeyPressed(Keys.Enter))
+                if (InputReader.ButtonPressed(Buttons.A) || InputReader.KeyPressed(Keys.Enter))
                 {
                     Game1.game1.Exit();
                 }
@@ -214,11 +214,11 @@ namespace Test_Loopguy
                         break;
                 }
 
-
-                if (InputReader.KeyPressed(Keys.Down) || InputReader.KeyPressed(Keys.Up))
+                if (InputReader.MovementDownNonContinous() || InputReader.MovementUpNonContinous())
                 {
                     currentState = NavigationState.KeyboardDpad;
-                }            
+
+                }
 
                 if (InputReader.mouseState != InputReader.oldMouseState)
                 {
