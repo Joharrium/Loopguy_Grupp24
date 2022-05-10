@@ -185,8 +185,6 @@ namespace Test_Loopguy
             {
                 return true; //currentLevel.LevelObjectCollision(position, height);
             }
-            
-            
         }
 
         internal static void QueueAddObject(LevelObject lo)
