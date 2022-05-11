@@ -199,7 +199,7 @@ namespace Test_Loopguy
             direction.Y *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
             direction.Normalize();
             direction *= -1;
-
+            
 
             LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 200));
         }
@@ -279,7 +279,8 @@ namespace Test_Loopguy
     {
         
         AnimatedSprite sprite;  //Bör läggas in i RangedEnemy I guess
-        bool isAttacking;
+        bool isAttacking = false;
+        Vector2 attackOrigin;
 
         public RangedRobotEnemy(Vector2 position) : base(position)
         {
@@ -288,143 +289,111 @@ namespace Test_Loopguy
             this.maxSpeed = 36;
             sprite = new AnimatedSprite(TextureManager.robotEnemySheet, new Point(64, 64));
             sprite.Position = position;
+            //attackOrigin = new Vector2(position.X + 25, position.Y + 28);
             maxHealth = 10;
             health = maxHealth;
             healthBar = new HealthBar(maxHealth);
 
-            minRange = 128;
+            minRange = 40;
             maxRange = 128;
-            fleeRange = 128;
+            fleeRange = 80;
             aggroRange = 192;
             damage = 1;
             knockBackDistance = 180;
             knockBackDuration = 160;
             Init();
             aggro = false;
-            attackCooldown = 100;
-            attackCooldownRemaining = 320;
-            accuracy = 50;
+            attackCooldown = 1000;
+            attackCooldownRemaining = 1000;
+            accuracy = 100;
 
+        }
+
+        protected override void Attack()
+        {
+            attackCooldownRemaining = attackCooldown;
+            Vector2 direction = centerPosition - EntityManager.player.centerPosition;
+            direction.X *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
+            direction.Y *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
+            direction.Normalize();
+            direction *= -1;
+            isAttacking = true;
+
+            LevelManager.AddEnemyProjectile(new Shot(attackOrigin, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 200));
         }
 
         public override void Movement(float deltaTime)
         {
-            //bool turnedRight, turnedLeft, turnedUp, turnedDown;
-
-
-
-            //FacingDirection currentDirection = FacingDirection.Down;
-
-            //float absDirection = Math.Abs(direction.X) + Math.Abs(direction.Y);
-            //float absDirectionX = Math.Abs(direction.X);
-            //float absDirectionY = Math.Abs(direction.Y);
-
-            ////Changes frame rate depending on direction vector
-
-            //if (absDirection > 1)
-            //    absDirection = 1;
-            //else if (absDirection != 0 && absDirection < 0.2f)
-            //    absDirection = 0.2f;
-
+        
             int frameTime = 50;
-
-            //if (absDirection != 0)
-            //{
-            //    frameTime = (int)(50 / absDirection);
-            //}
-
-
-            //if (direction.X > 0)
-            //{//Right
-            //    sprite.Play(5, 12, frameTime);
-            //    currentDirection = FacingDirection.Right;
-            //}
-            //else if (direction.X < 0)
-            //{//Left
-            //    sprite.Play(4, 12, frameTime);
-            //    currentDirection = FacingDirection.Left;
-            //}
-            //else if (direction.Y > 0 && absDirectionX < absDirectionY)
-            //{//Up
-            //    sprite.Play(7, 11, frameTime);
-            //    currentDirection = FacingDirection.Up;
-            //}
-            //else if (direction.Y < 0 && absDirectionX < absDirectionY)
-            //{//Down
-            //    sprite.Play(6, 12, frameTime);
-            //    currentDirection = FacingDirection.Down;
-            //}
-            //else if (direction.X == 0 && currentDirection == FacingDirection.Down)
-            //{
-
-            //}
-
-            //if (minRange == 128)
-            //{
-
-            //    isAttacking = true;
-            //    isAttacking = D
-            //}
-            //else
-            //{
-            //    isAttacking = false;
-            //}
-
-            //if (isAttacking)
-            //{
-            //    maxSpeed = 0;
-            //}
 
             GetOrientation();
 
             if (primaryOrientation == Orientation.Up)
             {
                 sprite.Play(7, 11, frameTime);
+                attackOrigin = new Vector2(position.X + 30, position.Y + 30);
             }
             else if (primaryOrientation == Orientation.Down)
             {
                 sprite.Play(6, 12, frameTime);
+                attackOrigin = new Vector2(position.X + 30, position.Y + 30);
             }
             else if (primaryOrientation == Orientation.Right)
             {
                 sprite.Play(5, 12, frameTime);
+                attackOrigin = new Vector2(position.X + 33, position.Y + 27);
             }
             else if (primaryOrientation == Orientation.Left)
             {
                 sprite.Play(4, 12, frameTime);
+                attackOrigin = new Vector2(position.X + 26, position.Y + 27);
             }
 
-            if (attackCooldown == 0)
+            if (isAttacking)
             {
                 maxSpeed = 0;
+
+                if (primaryOrientation == Orientation.Up)
+                {
+                    sprite.PlayOnce(1, 20, frameTime);
+                    isAttacking = false;
+     
+                }
+                else if (primaryOrientation == Orientation.Down)
+                {
+                    sprite.PlayOnce(0, 20, frameTime);
+                    isAttacking = false;
+                }
+                else if (primaryOrientation == Orientation.Left)
+                {
+                    sprite.PlayOnce(2, 20, frameTime);
+                    isAttacking = false;
+                }
+                else if (primaryOrientation == Orientation.Right)
+                {
+                    sprite.PlayOnce(3, 20, frameTime);
+                    isAttacking = false;
+                }
+
+
             }
-            
-            if (isAttacking && attackCooldown == 0)
-            {
-                maxSpeed = 0;
-                isAttacking = sprite.PlayOnce(2, 20, frameTime);
-            }
-            //else if (!isAttacking)
-            //{
-            //    maxSpeed = 128;
-            //}
 
             base.Movement(deltaTime);
         }
 
-        protected override void AggroBehavior()
-        {
-            Vector2 thing = centerPosition - EntityManager.player.centerPosition;
-            thing.Normalize();
-            thing *= -1;
-
-            direction = thing;
-            speed = maxSpeed;
-        }
 
         public override void Update(GameTime gameTime)
         {
             sprite.Update(gameTime);
+
+            attackCooldownRemaining -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            if (attackCooldown <= 0)
+            {
+                isAttacking = true;
+            }
+
             base.Update(gameTime);
         }
 
