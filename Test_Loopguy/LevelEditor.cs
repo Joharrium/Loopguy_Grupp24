@@ -202,6 +202,7 @@ namespace Test_Loopguy
                             case EnemySelection.RangedTest:
                                 LevelManager.EnemyAdd(new TestEnemyRanged(Game1.mousePos - new Vector2(8, 8)));
                                 break;
+
                         }
                         //LevelManager.TileEdit(selectedTile, Game1.mousePos);
                         break;

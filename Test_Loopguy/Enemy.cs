@@ -275,6 +275,147 @@ namespace Test_Loopguy
         }
     }
 
+    class RangedRobotEnemy : RangedEnemy
+    {
+        
+        AnimatedSprite sprite;  //Bör läggas in i RangedEnemy I guess
+        bool isAttacking;
+
+        public RangedRobotEnemy(Vector2 position) : base(position)
+        {
+            
+            this.position = position;
+            this.maxSpeed = 36;
+            sprite = new AnimatedSprite(TextureManager.robotEnemySheet, new Point(64, 64));
+            sprite.Position = position;
+            maxHealth = 10;
+            health = maxHealth;
+            healthBar = new HealthBar(maxHealth);
+
+            minRange = 128;
+            maxRange = 128;
+            fleeRange = 128;
+            aggroRange = 192;
+            damage = 1;
+            knockBackDistance = 180;
+            knockBackDuration = 160;
+            Init();
+            aggro = false;
+            attackCooldown = 620;
+            attackCooldownRemaining = 320;
+            accuracy = 50;
+
+        }
+
+        public enum FacingDirection
+        {
+            Right,
+            Left,
+            Up,
+            Down
+        }
+
+        public override void Movement(float deltaTime)
+        {
+            bool turnedRight, turnedLeft, turnedUp, turnedDown;
+            
+
+
+            FacingDirection currentDirection = FacingDirection.Down;
+
+            float absDirection = Math.Abs(direction.X) + Math.Abs(direction.Y);
+            float absDirectionX = Math.Abs(direction.X);
+            float absDirectionY = Math.Abs(direction.Y);
+
+            //Changes frame rate depending on direction vector
+
+            if (absDirection > 1)
+                absDirection = 1;
+            else if (absDirection != 0 && absDirection < 0.2f)
+                absDirection = 0.2f;
+
+            int frameTime = 0;
+
+            if (absDirection != 0)
+            {
+                frameTime = (int)(50 / absDirection);
+            }
+
+
+            if (direction.X > 0)
+            {//Right
+                sprite.Play(5, 12, frameTime);
+                currentDirection = FacingDirection.Right;
+            }
+            else if (direction.X < 0)
+            {//Left
+                sprite.Play(4, 12, frameTime);
+                currentDirection = FacingDirection.Left;
+            }
+            else if (direction.Y > 0 && absDirectionX < absDirectionY)
+            {//Up
+                sprite.Play(7, 11, frameTime);
+                currentDirection = FacingDirection.Up;
+            }
+            else if (direction.Y < 0 && absDirectionX < absDirectionY)
+            {//Down
+                sprite.Play(6, 12, frameTime);
+                currentDirection = FacingDirection.Down;
+            }
+            else if (direction.X == 0 && currentDirection == FacingDirection.Down)
+            {
+
+            }
+
+            //if (minRange == 128)
+            //{
+
+            //    isAttacking = true;
+            //    isAttacking = sprite.PlayOnce(2, 20, frameTime);
+            //}
+            //else
+            //{
+            //    isAttacking = false;
+            //}
+
+            //if (isAttacking)
+            //{
+            //    maxSpeed = 0;
+            //}
+
+
+
+            base.Movement(deltaTime);
+        }
+
+        protected override void AggroBehavior()
+        {
+            Vector2 thing = centerPosition - EntityManager.player.centerPosition;
+            thing.Normalize();
+            thing *= -1;
+
+            direction = thing;
+            speed = maxSpeed;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            sprite.Update(gameTime);
+            base.Update(gameTime);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            sprite.Draw(spriteBatch);
+            sprite.Position = position;
+
+
+            //base.Draw(spriteBatch);
+        }
+
+
+    }
+
     class TestEnemy : MeleeEnemy
     {
         
