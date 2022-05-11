@@ -29,7 +29,7 @@ namespace Test_Loopguy
         public static Rectangle screenRect;
         public static int windowX, windowY, windowScale;
 
-        public static bool editLevel = true;
+        public static bool editLevel = false;
 
         string infoString;
 

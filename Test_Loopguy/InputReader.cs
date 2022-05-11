@@ -15,7 +15,7 @@ static class InputReader
 	public static bool editMode;
 	public static bool playerInputEnabled = true;
 
-	public static bool KeyPressed(Keys key)
+	public static bool KeyPressed(Keys key) 
 	{
 		if (playerInputEnabled)
 			return keyState.IsKeyDown(key) && oldKeyState.IsKeyUp(key);
