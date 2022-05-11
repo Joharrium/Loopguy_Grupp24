@@ -34,46 +34,78 @@ namespace Test_Loopguy
             Line cBottom = this;
 
             Line smallLine = this;
+            double smallestline;
 
             bool left = LineIntersects(rleft);
-            if(IntersectionPoint != null && IntersectionPoint != Vector2.Zero)
+            if(left)
             {
-                cLeft = new Line(P1, IntersectionPoint);
-                if(cLeft.Length() < smallLine.Length())
+                cLeft = new Line(P1, new Vector2(IntersectionPoint.X, IntersectionPoint.Y));
+                if (cLeft.Length() < smallLine.Length())
                 {
                     smallLine = cLeft;
+                    smallestline = smallLine.Length();
                 }
-                
             }
-            
+            {
+                /*
+                            if(IntersectionPoint != null && IntersectionPoint != Vector2.Zero)
+                            {
+                                cLeft = new Line(P1, IntersectionPoint);
+                                if(cLeft.Length() < smallLine.Length())
+                                {
+                                    smallLine = cLeft;
+                                }
+
+                            }
+                            */
+            }
+
+
 
             bool right = LineIntersects(rright);
-            if (IntersectionPoint != null && IntersectionPoint != cLeft.P2)
+            if(right)
             {
-                cRight = new Line(P1, IntersectionPoint);
-                if(cRight.Length() < smallLine.Length())
+                cRight = new Line(P1, new Vector2(IntersectionPoint.X, IntersectionPoint.Y));
+                if (cRight.Length() < smallLine.Length())
                 {
                     smallLine = cRight;
+                    smallestline = smallLine.Length();
                 }
             }
 
-            bool top = LineIntersects(rtop);
-            if (IntersectionPoint != null && IntersectionPoint != cLeft.P2 && IntersectionPoint != cRight.P2)
             {
-                cTop = new Line(P1, IntersectionPoint);
+                /*
+                 if (IntersectionPoint != null && IntersectionPoint != cLeft.P2)
+                    {
+                        cRight = new Line(P1, IntersectionPoint);
+                        if(cRight.Length() < smallLine.Length())
+                        {
+                            smallLine = cRight;
+                        }
+                    }
+                 */
+            }
+
+            
+            bool top = LineIntersects(rtop);
+            if(top)
+            {
+                cTop = new Line(P1, new Vector2(IntersectionPoint.X, IntersectionPoint.Y));
                 if (cTop.Length() < smallLine.Length())
                 {
                     smallLine = cTop;
+                    smallestline = smallLine.Length();
                 }
             }
 
             bool bottom = LineIntersects(rbottom);
-            if (IntersectionPoint != null && IntersectionPoint != cLeft.P2 && IntersectionPoint != cRight.P2 && IntersectionPoint != cTop.P2)
+            if(bottom)
             {
-                cBottom = new Line(P1, IntersectionPoint);
+                cBottom = new Line(P1, new Vector2(IntersectionPoint.X, IntersectionPoint.Y));
                 if (cBottom.Length() < smallLine.Length())
                 {
                     smallLine = cBottom;
+                    smallestline = smallLine.Length();
                 }
             }
 
@@ -92,7 +124,7 @@ namespace Test_Loopguy
 
         private double Length()
         {
-            return Math.Abs(Math.Sqrt((P1.X - P2.X) + (P1.Y - P2.Y)));
+            return Math.Abs(Math.Sqrt(Math.Pow(P1.X - P2.X, 2) + Math.Pow(P1.Y - P2.Y, 2)));
         }
 
 
