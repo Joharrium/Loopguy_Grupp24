@@ -8,7 +8,7 @@ using Test_Loopguy.Content;
 
 namespace Test_Loopguy
 {
-    internal class Line
+    public class Line
     {
         public Vector2 P1, P2;
 

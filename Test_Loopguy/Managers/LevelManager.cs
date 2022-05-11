@@ -187,6 +187,19 @@ namespace Test_Loopguy
             }
         }
 
+        public static bool LevelObjectCollision(Line line, int height)
+        {
+            if (!currentLevel.LevelObjectCollision(line, height))
+            {
+                return false;
+                //return currentLevel.WallCollision(position.Center.ToVector2());
+            }
+            else
+            {
+                return true; //currentLevel.LevelObjectCollision(position, height);
+            }
+        }
+
         internal static void QueueAddObject(LevelObject lo)
         {
             objectsToAdd.Add(lo);

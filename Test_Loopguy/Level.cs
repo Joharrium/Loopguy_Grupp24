@@ -369,7 +369,24 @@ namespace Test_Loopguy
             
 
         }
+        public bool LevelObjectCollision(Line line, int height)
+        {
+            foreach (LevelObject lo in levelObjects)
+            {
+                if (lo != null && lo.height > height)
+                {
+                    if (line.RectangleIntersects(lo.footprint))
+                    {
+                        return true;
+                    }
+                }
 
+            }
+            {
+                //return WallCollision(check.Center.ToVector2());
+            }
+            return false;
+        }
         public Rectangle GetBounds()
         {
             return cameraBounds;
