@@ -136,6 +136,7 @@ namespace Test_Loopguy
                 {
                     canDash = true;
                     timeSinceDash = 0;
+                    Audio.PlaySound(Audio.ping);
                 }
             }
 
