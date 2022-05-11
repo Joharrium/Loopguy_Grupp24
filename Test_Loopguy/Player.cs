@@ -693,26 +693,41 @@ namespace Test_Loopguy
             Line laserLine = new Line(centerPosition, new Vector2(centerPosition.X + 580 * gunDirection.X, centerPosition.Y + 580 * gunDirection.Y));
             //how tho
 
-            //OUTDATED LAGGY CODE BELLOW
-            Vector2 dotPos = centerPosition;
+            LevelManager.LevelObjectCollision(laserLine, 9);
 
-            for (int i = 16; i < 580; i++)
+            Line newLaserLine = new Line(centerPosition, laserLine.IntersectionPoint);
+            Vector2 laserVector = new Vector2(newLaserLine.P2.X - newLaserLine.P1.X, newLaserLine.P2.Y - newLaserLine.P1.Y);
+            int laserLength = (int)laserVector.Length();
+
+            for (int i = 16; i < laserLength; i++)
             {
                 Vector2 aimPoint = new Vector2(centerPosition.X + i * gunDirection.X, centerPosition.Y + i * gunDirection.Y);
-                Rectangle aimRect = new Rectangle(aimPoint.ToPoint(), new Point(1,1));
-
-                //Stops laser sight on collision with object
-                if (LevelManager.LevelObjectCollision(aimRect, 9))
-                {
-                    break;
-                }
-                else
-                {
-                    dotPos = new Vector2(aimPoint.X + (gunDirection.X * 5) - 1, aimPoint.Y + (gunDirection.Y * 5) - 1.5f);
-                }
-
                 spriteBatch.Draw(TextureManager.cyanPixel, aimPoint, Helper.RandomTransparency(random, 0, 90));
             }
+
+            //OUTDATED LAGGY CODE BELLOW
+            Vector2 dotPos = laserLine.IntersectionPoint;
+
+            //OUTDATED LAGGY CODE BELLOW
+            //Vector2 dotPos = centerPosition;
+
+            //for (int i = 16; i < 580; i++)
+            //{
+            //    Vector2 aimPoint = new Vector2(centerPosition.X + i * gunDirection.X, centerPosition.Y + i * gunDirection.Y);
+            //    Rectangle aimRect = new Rectangle(aimPoint.ToPoint(), new Point(1,1));
+
+            //    //Stops laser sight on collision with object
+            //    if (LevelManager.LevelObjectCollision(aimRect, 9))
+            //    {
+            //        break;
+            //    }
+            //    else
+            //    {
+            //        dotPos = new Vector2(aimPoint.X + (gunDirection.X * 5) - 1, aimPoint.Y + (gunDirection.Y * 5) - 1.5f);
+            //    }
+
+            //    spriteBatch.Draw(TextureManager.cyanPixel, aimPoint, Helper.RandomTransparency(random, 0, 90));
+            //}
 
             spriteBatch.Draw(TextureManager.blueDot, dotPos, Color.White);
         }
