@@ -28,7 +28,7 @@ namespace Test_Loopguy
             this.position = position;
             health = maxHealth;
             healthBar = new HealthBar(maxHealth);
-            footprint = new Rectangle((int)position.X, (int)position.Y, 32, 8);
+            footprint = new Rectangle((int)position.X, (int)position.Y, 32, 8); //
         }
 
         public void Init()
