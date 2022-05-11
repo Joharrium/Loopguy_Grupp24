@@ -328,6 +328,15 @@ namespace Test_Loopguy
             FacingDirection currentDirection = FacingDirection.Down;
 
             float absDirection = Math.Abs(direction.X) + Math.Abs(direction.Y);
+            float absDirectionX = Math.Abs(direction.X);
+            float absDirectionY = Math.Abs(direction.Y);
+
+            //Changes frame rate depending on direction vector
+
+            if (absDirection > 1)
+                absDirection = 1;
+            else if (absDirection != 0 && absDirection < 0.2f)
+                absDirection = 0.2f;
 
             int frameTime = 0;
 
@@ -338,22 +347,22 @@ namespace Test_Loopguy
 
 
             if (direction.X > 0)
-            {
+            {//Right
                 sprite.Play(5, 12, frameTime);
                 currentDirection = FacingDirection.Right;
             }
             else if (direction.X < 0)
-            {
+            {//Left
                 sprite.Play(4, 12, frameTime);
                 currentDirection = FacingDirection.Left;
             }
-            else if (direction.Y > 0)
-            {
+            else if (direction.Y > 0 && absDirectionX < absDirectionY)
+            {//Up
                 sprite.Play(7, 11, frameTime);
                 currentDirection = FacingDirection.Up;
             }
-            else if (direction.Y < 0)
-            {
+            else if (direction.Y < 0 && absDirectionX < absDirectionY)
+            {//Down
                 sprite.Play(6, 12, frameTime);
                 currentDirection = FacingDirection.Down;
             }
@@ -362,17 +371,21 @@ namespace Test_Loopguy
 
             }
 
-            if (minRange == 128)
-            {
-             
-                isAttacking = sprite.PlayOnce(2, 20, frameTime);
-            }
+            //if (minRange == 128)
+            //{
 
+            //    isAttacking = true;
+            //    isAttacking = sprite.PlayOnce(2, 20, frameTime);
+            //}
+            //else
+            //{
+            //    isAttacking = false;
+            //}
 
-            if (isAttacking)
-            {
-                maxSpeed = 0;
-            }
+            //if (isAttacking)
+            //{
+            //    maxSpeed = 0;
+            //}
 
 
 

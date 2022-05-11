@@ -20,7 +20,7 @@ namespace Test_Loopguy
             Load,
         }
 
-        public static GameState currentState = GameState.Menu;
+        public static GameState currentState = GameState.InGame;
 
         public static void Update(GameTime gameTime)
         {
