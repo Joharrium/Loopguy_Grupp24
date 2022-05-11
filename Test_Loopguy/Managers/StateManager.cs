@@ -71,6 +71,7 @@ namespace Test_Loopguy
 
                     LevelManager.Draw(spriteBatch);
                     ParticleManager.Draw(spriteBatch);
+                    Player.dashBar.Draw(spriteBatch);
 
                     if (Game1.editLevel)
                         LevelEditor.Draw(spriteBatch);
@@ -85,6 +86,7 @@ namespace Test_Loopguy
 
                     Player.ammoBar.Draw(spriteBatch);
                     Player.healthBar.Draw(spriteBatch);
+                    
                     LevelManager.DrawTimer(spriteBatch);
                     spriteBatch.End();
 

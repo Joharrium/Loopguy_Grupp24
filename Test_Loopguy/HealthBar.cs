@@ -53,6 +53,30 @@ namespace Test_Loopguy
         }
     }
 
+    public class DashBar : HealthBar
+    {
+        public DashBar(int maxValue) :base(maxValue)
+        {
+
+        }
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            //spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
+
+            if(value < maxValue)
+            {
+
+            
+            spriteBatch.Draw(fill_bg, position, Color.White);
+
+            spriteBatch.Draw(fill, position + offset, srcRectangle, Color.LightBlue);
+            spriteBatch.Draw(outline, position, Color.White);
+            }
+
+            //spriteBatch.End();
+        }
+    }
+
     public class AmmoBar : HealthBar
     {
         public AmmoBar(int maxValue) : base(maxValue)

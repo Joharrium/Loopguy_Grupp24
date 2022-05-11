@@ -35,6 +35,7 @@ namespace Test_Loopguy
         public bool usedGate;
         static public PlayerHealthBar healthBar;
         static public AmmoBar ammoBar;
+        static public DashBar dashBar;
 
         float gunAngle;
         float aimAngle;
@@ -78,6 +79,7 @@ namespace Test_Loopguy
             LoadKeys();
             healthBar = new PlayerHealthBar(maxHealth);
             ammoBar = new AmmoBar(maxAmmo);
+            dashBar = new DashBar(100);
             footprint = new Rectangle((int)position.X, (int)position.Y + 24, 8, 8);
 
             canDash = true;
@@ -112,6 +114,15 @@ namespace Test_Loopguy
             
             centerPosition = new Vector2(position.X + sprite.size.X / 2, position.Y + sprite.size.Y / 2);
 
+            if(timeSinceDash != 0)
+            {
+                dashBar.SetCurrentValue(footprint.Location.ToVector2(), Math.Min((int)(timeSinceDash * 100), 100));
+            }
+            if(canDash)
+            {
+                dashBar.SetCurrentValue(footprint.Location.ToVector2(), 100);
+            }
+            
             healthBar.UpdateBar(health);
             ammoBar.SetCurrentValue(new Vector2(2, 38), ammo);
 
