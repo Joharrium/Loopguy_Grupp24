@@ -301,77 +301,69 @@ namespace Test_Loopguy
             knockBackDuration = 160;
             Init();
             aggro = false;
-            attackCooldown = 620;
+            attackCooldown = 100;
             attackCooldownRemaining = 320;
             accuracy = 50;
 
         }
 
-        public enum FacingDirection
-        {
-            Right,
-            Left,
-            Up,
-            Down
-        }
-
         public override void Movement(float deltaTime)
         {
-            bool turnedRight, turnedLeft, turnedUp, turnedDown;
-            
+            //bool turnedRight, turnedLeft, turnedUp, turnedDown;
 
 
-            FacingDirection currentDirection = FacingDirection.Down;
 
-            float absDirection = Math.Abs(direction.X) + Math.Abs(direction.Y);
-            float absDirectionX = Math.Abs(direction.X);
-            float absDirectionY = Math.Abs(direction.Y);
+            //FacingDirection currentDirection = FacingDirection.Down;
 
-            //Changes frame rate depending on direction vector
+            //float absDirection = Math.Abs(direction.X) + Math.Abs(direction.Y);
+            //float absDirectionX = Math.Abs(direction.X);
+            //float absDirectionY = Math.Abs(direction.Y);
 
-            if (absDirection > 1)
-                absDirection = 1;
-            else if (absDirection != 0 && absDirection < 0.2f)
-                absDirection = 0.2f;
+            ////Changes frame rate depending on direction vector
 
-            int frameTime = 0;
+            //if (absDirection > 1)
+            //    absDirection = 1;
+            //else if (absDirection != 0 && absDirection < 0.2f)
+            //    absDirection = 0.2f;
 
-            if (absDirection != 0)
-            {
-                frameTime = (int)(50 / absDirection);
-            }
+            int frameTime = 50;
+
+            //if (absDirection != 0)
+            //{
+            //    frameTime = (int)(50 / absDirection);
+            //}
 
 
-            if (direction.X > 0)
-            {//Right
-                sprite.Play(5, 12, frameTime);
-                currentDirection = FacingDirection.Right;
-            }
-            else if (direction.X < 0)
-            {//Left
-                sprite.Play(4, 12, frameTime);
-                currentDirection = FacingDirection.Left;
-            }
-            else if (direction.Y > 0 && absDirectionX < absDirectionY)
-            {//Up
-                sprite.Play(7, 11, frameTime);
-                currentDirection = FacingDirection.Up;
-            }
-            else if (direction.Y < 0 && absDirectionX < absDirectionY)
-            {//Down
-                sprite.Play(6, 12, frameTime);
-                currentDirection = FacingDirection.Down;
-            }
-            else if (direction.X == 0 && currentDirection == FacingDirection.Down)
-            {
+            //if (direction.X > 0)
+            //{//Right
+            //    sprite.Play(5, 12, frameTime);
+            //    currentDirection = FacingDirection.Right;
+            //}
+            //else if (direction.X < 0)
+            //{//Left
+            //    sprite.Play(4, 12, frameTime);
+            //    currentDirection = FacingDirection.Left;
+            //}
+            //else if (direction.Y > 0 && absDirectionX < absDirectionY)
+            //{//Up
+            //    sprite.Play(7, 11, frameTime);
+            //    currentDirection = FacingDirection.Up;
+            //}
+            //else if (direction.Y < 0 && absDirectionX < absDirectionY)
+            //{//Down
+            //    sprite.Play(6, 12, frameTime);
+            //    currentDirection = FacingDirection.Down;
+            //}
+            //else if (direction.X == 0 && currentDirection == FacingDirection.Down)
+            //{
 
-            }
+            //}
 
             //if (minRange == 128)
             //{
 
             //    isAttacking = true;
-            //    isAttacking = sprite.PlayOnce(2, 20, frameTime);
+            //    isAttacking = D
             //}
             //else
             //{
@@ -383,7 +375,39 @@ namespace Test_Loopguy
             //    maxSpeed = 0;
             //}
 
+            GetOrientation();
 
+            if (primaryOrientation == Orientation.Up)
+            {
+                sprite.Play(7, 11, frameTime);
+            }
+            else if (primaryOrientation == Orientation.Down)
+            {
+                sprite.Play(6, 12, frameTime);
+            }
+            else if (primaryOrientation == Orientation.Right)
+            {
+                sprite.Play(5, 12, frameTime);
+            }
+            else if (primaryOrientation == Orientation.Left)
+            {
+                sprite.Play(4, 12, frameTime);
+            }
+
+            if (attackCooldown == 0)
+            {
+                maxSpeed = 0;
+            }
+            
+            if (isAttacking && attackCooldown == 0)
+            {
+                maxSpeed = 0;
+                isAttacking = sprite.PlayOnce(2, 20, frameTime);
+            }
+            //else if (!isAttacking)
+            //{
+            //    maxSpeed = 128;
+            //}
 
             base.Movement(deltaTime);
         }
