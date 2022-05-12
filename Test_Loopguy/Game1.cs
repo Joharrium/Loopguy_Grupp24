@@ -51,6 +51,8 @@ namespace Test_Loopguy
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            ProfileManager.Init();
+
             TextureManager.LoadTextures(Content);
          
             EntityManager.PlayerInitialization();

@@ -106,13 +106,7 @@ namespace Test_Loopguy
 
         private void SaveKeyToFile()
         {
-            string path = @"saves\keys.txt";
-
-            using (StreamWriter sw = File.AppendText(path))
-            {
-                sw.WriteLine();
-                sw.WriteLine(id.ToString());
-            }
+            ProfileManager.AddKey(id);
 
             //add to save it to the savefile
         }

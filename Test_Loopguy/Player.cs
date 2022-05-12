@@ -85,7 +85,7 @@ namespace Test_Loopguy
 
             primaryOrientation = Orientation.Down;
             secondaryOrientation = Orientation.Down;
-            LoadKeys();
+            keys.AddRange(ProfileManager.GetKeys());
             healthBar = new PlayerHealthBar(maxHealth);
             ammoBar = new AmmoBar(maxAmmo);
             dashBar = new DashBar(100);
@@ -94,27 +94,7 @@ namespace Test_Loopguy
             canDash = true;
         }
         
-        private void LoadKeys()
-        {
-            if (File.Exists(@"saves\keys.txt"))
-            {
-                List<string> lines = new List<string>();
-                foreach (string line in System.IO.File.ReadLines(@"saves\keys.txt"))
-                {
-                    lines.Add(line);
-                }
-
-                List<int> keysToAdd = new List<int>();
-                foreach(string l in lines)
-                {
-                    keysToAdd.Add(Int32.Parse(l));
-                }
-                
-
-
-                keys = keysToAdd;
-            }
-        }
+        
 
         public override void Update(GameTime gameTime)
         {
@@ -346,8 +326,8 @@ namespace Test_Loopguy
             this.position = position;
             health = maxHealth;
             ammo = maxAmmo;
-            keys.Clear(); 
-            LoadKeys();
+            keys.Clear();
+            keys.AddRange(ProfileManager.GetKeys());
         }
 
         public void TakeDamage(int damage)

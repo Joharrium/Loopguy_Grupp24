@@ -371,12 +371,14 @@ namespace Test_Loopguy
         }
         public bool LevelObjectCollision(Line line, int height)
         {
+            Line shortestLine = line;
             foreach (LevelObject lo in levelObjects)
             {
                 if (lo != null && lo.height > height)
                 {
-                    if (line.RectangleIntersects(lo.footprint))
+                    if (line.RectangleIntersects(lo.footprint) && line.LineFromIntersect(lo.footprint).Length() < shortestLine.Length())
                     {
+                        shortestLine = line.LineFromIntersect(lo.footprint);
                         return true;
                     }
                 }
