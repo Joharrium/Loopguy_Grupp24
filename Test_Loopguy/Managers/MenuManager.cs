@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 
 namespace Test_Loopguy
 {
@@ -152,7 +153,7 @@ namespace Test_Loopguy
                 if (InputReader.ButtonPressed(Buttons.A) || InputReader.KeyPressed(Keys.Enter))
                 {
                     Game1.game1.Exit();
-                    // pseudo code: form.formForLevelEditor.Exit();
+                    Game1.editorFrm.BeginInvoke(new Action(() => CloseEditorForm()));
                 }
             }
         }
@@ -177,11 +178,15 @@ namespace Test_Loopguy
             throw new NotImplementedException();
         }
 
-        //Quits the game, however what I think is due to the win.forms the application doesn't stop at this point but only closes the windows.
         private static void QuitGameButton_Click(object sender, EventArgs e)
         {
             Game1.game1.Exit();
-            // pseudo code: form.formForLevelEditor.Exit();
+            Game1.editorFrm.BeginInvoke(new Action(() => CloseEditorForm()));
+        }
+
+        private static void CloseEditorForm()
+        {
+            Game1.editorFrm.Close(); // byebye
         }
 
         public static void Update(GameTime gameTime)

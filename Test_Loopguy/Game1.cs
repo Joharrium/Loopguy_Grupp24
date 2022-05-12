@@ -20,7 +20,9 @@ namespace Test_Loopguy
 
         public static Camera camera;
         public static Game1 game1;
+
         public static Form1 editorFrm;
+        Thread formThread;
 
         //Player player;
 
@@ -82,10 +84,10 @@ namespace Test_Loopguy
             camera.SetPosition(new Vector2(200, 200));
 
             editorFrm = new Form1();
-            Thread newThread = new System.Threading.Thread(frmNewFormThread);
+            formThread = new Thread(frmNewFormThread);
 
-            newThread.SetApartmentState(System.Threading.ApartmentState.STA);
-            newThread.Start();
+            formThread.SetApartmentState(ApartmentState.STA);
+            formThread.Start();
 
             void frmNewFormThread()
             {
