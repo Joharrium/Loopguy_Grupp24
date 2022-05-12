@@ -153,6 +153,7 @@ namespace Test_Loopguy
                 if (InputReader.ButtonPressed(Buttons.A) || InputReader.KeyPressed(Keys.Enter))
                 {
                     Game1.game1.Exit();
+                    Game1.editorFrm.BeginInvoke(new Action(() => CloseEditorForm()));
                 }
             }
         }
@@ -181,6 +182,12 @@ namespace Test_Loopguy
         private static void QuitGameButton_Click(object sender, EventArgs e)
         {
             Game1.game1.Exit();
+            Game1.editorFrm.BeginInvoke(new Action(() => CloseEditorForm()));
+        }
+
+        private static void CloseEditorForm()
+        {
+            Game1.editorFrm.Close(); // byebye
         }
 
         public override void Update(GameTime gameTime)
