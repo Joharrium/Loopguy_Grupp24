@@ -201,7 +201,7 @@ namespace Test_Loopguy
             direction *= -1;
             
 
-            LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 200));
+            LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 200, damage));
         }
 
         protected override void AggroBehavior()
@@ -254,6 +254,7 @@ namespace Test_Loopguy
     class TestEnemyRanged : RangedEnemy
     {
 
+
         public TestEnemyRanged(Vector2 position) : base(position)
         {
             this.position = position;
@@ -264,14 +265,26 @@ namespace Test_Loopguy
             maxRange = 280;
             fleeRange = 80;
             aggroRange = 192;
-            damage = 3;
+            damage = 1;
             knockBackDistance = 180;
             knockBackDuration = 160;
             Init();
             aggro = false;
             attackCooldown = 620;
             attackCooldownRemaining = 320;
-            accuracy = 1;
+            accuracy = 50;
+        }
+
+        protected override void Attack()
+        {
+            attackCooldownRemaining = attackCooldown;
+            Vector2 direction = centerPosition - EntityManager.player.centerPosition;
+            direction.X *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
+            direction.Y *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
+            direction.Normalize();
+            direction *= -1;
+
+            LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 300, damage));
         }
     }
 
@@ -284,7 +297,9 @@ namespace Test_Loopguy
         bool directionIsLocked;
         bool isMoving;
 
-        int frameTime = 50;
+        public int rangedRobotEnemyDamage;
+
+        int frameTime = 100;
 
         Vector2 attackOrigin;
         Vector2 oldPosition;
@@ -296,7 +311,7 @@ namespace Test_Loopguy
         {
             
             this.position = position;
-            this.maxSpeed = 36;
+            this.maxSpeed = 20;
             sprite = new AnimatedSprite(TextureManager.robotEnemySheet, new Point(64, 64));
             sprite.Position = position;
             //attackOrigin = new Vector2(position.X + 25, position.Y + 28);
@@ -308,7 +323,7 @@ namespace Test_Loopguy
             maxRange = 100; //för attack
             fleeRange = 20; //dit den flyr innan den börjar attackera
             aggroRange = 192; //när den upptäcker spelaren
-            damage = 1;
+            damage = 3;
             knockBackDistance = 180;
             knockBackDuration = 160;
             Init();
@@ -328,7 +343,7 @@ namespace Test_Loopguy
             direction.Normalize();
             direction *= -1;
 
-            LevelManager.AddEnemyProjectile(new Shot(attackOrigin, direction, (float)Helper.GetAngle(attackOrigin, EntityManager.player.centerPosition, 0 + Math.PI), 300));
+            LevelManager.AddEnemyProjectile(new Shot(attackOrigin, direction, (float)Helper.GetAngle(attackOrigin, EntityManager.player.centerPosition, 0 + Math.PI), 300, damage));
         }
 
         protected override void AggroBehavior()
@@ -387,8 +402,6 @@ namespace Test_Loopguy
 
         public override void Movement(float deltaTime)
         {
-        
-            //int frameTime = 50;
 
             GetOrientation();
 
