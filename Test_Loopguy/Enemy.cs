@@ -284,6 +284,8 @@ namespace Test_Loopguy
         bool directionIsLocked;
         bool isMoving;
 
+        int frameTime = 50;
+
         Vector2 attackOrigin;
         Vector2 oldPosition;
         Orientation lockedOrientation;
@@ -378,65 +380,63 @@ namespace Test_Loopguy
 
             maxSpeed = 0;
 
+
+
             if (!isAttacking)
             {
                 lockedOrientation = primaryOrientation;
                 isAttacking = true;
             }
 
-            if (lockedOrientation == Orientation.Up)
-            {
+            //if (lockedOrientation == Orientation.Up)
+            //{
 
-                if (!sprite.PlayOnce(1, 20, frameTime))
-                {
-                    Attack();
-                    isAttacking = false;
-                    attackCooldownRemaining = attackCooldown;
-                }
+            //    if (!sprite.PlayOnce(1, 20, frameTime))
+            //    {
+            //        Attack();
+            //        isAttacking = false;
+            //    }
 
-            }
-            else if (lockedOrientation == Orientation.Down)
-            {
-                if (!sprite.PlayOnce(0, 20, frameTime))
-                {
-                    Attack();
-                    isAttacking = false;
-                    attackCooldownRemaining = attackCooldown;
+            //}
+            //else if (lockedOrientation == Orientation.Down)
+            //{
+            //    if (!sprite.PlayOnce(0, 20, frameTime))
+            //    {
+            //        Attack();
+            //        isAttacking = false;
 
-                }
+            //    }
 
-            }
-            else if (lockedOrientation == Orientation.Left)
-            {
-                if (!sprite.PlayOnce(2, 20, frameTime))
-                {
-                    Attack();
-                    isAttacking = false;
-                    attackCooldownRemaining = attackCooldown;
+            //}
+            //else if (lockedOrientation == Orientation.Left)
+            //{
+            //    if (!sprite.PlayOnce(2, 20, frameTime))
+            //    {
+            //        Attack();
+            //        isAttacking = false;
 
-                }
+            //    }
 
-            }
-            else if (lockedOrientation == Orientation.Right)
-            {
-                if (!sprite.PlayOnce(3, 20, frameTime))
-                {
-                    Attack();
-                    isAttacking = false;
-                    attackCooldownRemaining = attackCooldown;
-                }
+            //}
+            //else if (lockedOrientation == Orientation.Right)
+            //{
+            //    if (!sprite.PlayOnce(3, 20, frameTime))
+            //    {
+            //        Attack();
+            //        isAttacking = false;
+            //    }
 
-            }
-            else if (lockedOrientation == Orientation.Zero)
-            {
-                isAttacking = false;
-            }
+            //}
+            //else if (lockedOrientation == Orientation.Zero)
+            //{
+            //    isAttacking = false;
+            //}
         }
 
         public override void Movement(float deltaTime)
         {
         
-            int frameTime = 50;
+            //int frameTime = 50;
 
             GetOrientation();
 
@@ -465,21 +465,21 @@ namespace Test_Loopguy
 
                 if (!isMoving)
                 {
-                    if (primaryOrientation == Orientation.Up)
+                    if (lockedOrientation == Orientation.Up)
                     {
-                        sprite.Frame(11, 1);
+                        sprite.Frame(0, 11);
                     }
-                    else if (primaryOrientation == Orientation.Down)
+                    else if (lockedOrientation == Orientation.Down)
                     {
-                        sprite.Frame(10, 1);
+                        sprite.Frame(0, 10);
                     }
-                    else if (primaryOrientation == Orientation.Right)
+                    else if (lockedOrientation == Orientation.Right)
                     {
-                        sprite.Frame(9, 1);
+                        sprite.Frame(0, 9);
                     }
-                    else if (primaryOrientation == Orientation.Left)
+                    else if (lockedOrientation == Orientation.Left)
                     {
-                        sprite.Frame(8, 1);
+                        sprite.Frame(0, 8);
                     }
                 }
 
@@ -491,15 +491,15 @@ namespace Test_Loopguy
                 maxSpeed = 36;
             }
 
-            if (direction.X < 0 && direction.Y < 0 || direction.X > 0 && direction.Y > 0)
+            if (speed < 0 || speed > 0)
             {
                 isMoving = true;
             }
-            else if (direction.X == 0 && direction.Y == 0)
+            else if (speed == 0)
             {
                 isMoving = false;
             }
-  
+
             base.Movement(deltaTime);
         }
 
@@ -507,6 +507,54 @@ namespace Test_Loopguy
         public override void Update(GameTime gameTime)
         {
             sprite.Update(gameTime);
+
+            if (isAttacking)
+            {
+
+                if (lockedOrientation == Orientation.Up)
+                {
+
+                    if (!sprite.PlayOnce(1, 20, frameTime))
+                    {
+                        Attack();
+                        isAttacking = false;
+                    }
+
+                }
+                else if (lockedOrientation == Orientation.Down)
+                {
+                    if (!sprite.PlayOnce(0, 20, frameTime))
+                    {
+                        Attack();
+                        isAttacking = false;
+
+                    }
+
+                }
+                else if (lockedOrientation == Orientation.Left)
+                {
+                    if (!sprite.PlayOnce(2, 20, frameTime))
+                    {
+                        Attack();
+                        isAttacking = false;
+
+                    }
+
+                }
+                else if (lockedOrientation == Orientation.Right)
+                {
+                    if (!sprite.PlayOnce(3, 20, frameTime))
+                    {
+                        Attack();
+                        isAttacking = false;
+                    }
+
+                }
+                else if (lockedOrientation == Orientation.Zero)
+                {
+                    isAttacking = false;
+                }
+            }
 
             base.Update(gameTime);
         }
