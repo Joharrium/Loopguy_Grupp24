@@ -271,7 +271,7 @@ namespace Test_Loopguy
             aggro = false;
             attackCooldown = 620;
             attackCooldownRemaining = 320;
-            accuracy = 50;
+            accuracy = 1;
         }
     }
 
@@ -322,13 +322,13 @@ namespace Test_Loopguy
         protected override void Attack()
         {
             attackCooldownRemaining = attackCooldown;
-            Vector2 direction = centerPosition - EntityManager.player.centerPosition;
+            Vector2 direction = attackOrigin - EntityManager.player.centerPosition;
             direction.X *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
             direction.Y *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
             direction.Normalize();
             direction *= -1;
 
-            LevelManager.AddEnemyProjectile(new Shot(attackOrigin, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 200));
+            LevelManager.AddEnemyProjectile(new Shot(attackOrigin, direction, (float)Helper.GetAngle(attackOrigin, EntityManager.player.centerPosition, 0 + Math.PI), 300));
         }
 
         protected override void AggroBehavior()
@@ -375,12 +375,7 @@ namespace Test_Loopguy
         protected override void AttackBehavior()
         {
 
-            int frameTime = 50;
-
-
             maxSpeed = 0;
-
-
 
             if (!isAttacking)
             {
@@ -388,49 +383,6 @@ namespace Test_Loopguy
                 isAttacking = true;
             }
 
-            //if (lockedOrientation == Orientation.Up)
-            //{
-
-            //    if (!sprite.PlayOnce(1, 20, frameTime))
-            //    {
-            //        Attack();
-            //        isAttacking = false;
-            //    }
-
-            //}
-            //else if (lockedOrientation == Orientation.Down)
-            //{
-            //    if (!sprite.PlayOnce(0, 20, frameTime))
-            //    {
-            //        Attack();
-            //        isAttacking = false;
-
-            //    }
-
-            //}
-            //else if (lockedOrientation == Orientation.Left)
-            //{
-            //    if (!sprite.PlayOnce(2, 20, frameTime))
-            //    {
-            //        Attack();
-            //        isAttacking = false;
-
-            //    }
-
-            //}
-            //else if (lockedOrientation == Orientation.Right)
-            //{
-            //    if (!sprite.PlayOnce(3, 20, frameTime))
-            //    {
-            //        Attack();
-            //        isAttacking = false;
-            //    }
-
-            //}
-            //else if (lockedOrientation == Orientation.Zero)
-            //{
-            //    isAttacking = false;
-            //}
         }
 
         public override void Movement(float deltaTime)
