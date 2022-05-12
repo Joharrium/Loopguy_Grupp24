@@ -28,7 +28,7 @@ namespace Test_Loopguy
             this.position = position;
             health = maxHealth;
             healthBar = new HealthBar(maxHealth);
-            footprint = new Rectangle((int)position.X, (int)position.Y, 32, 8);
+            footprint = new Rectangle((int)position.X, (int)position.Y, 32, 8); //
         }
 
         public void Init()
@@ -44,8 +44,8 @@ namespace Test_Loopguy
             footprint.Location = position.ToPoint();
             healthBar.SetCurrentValue(position + new Vector2(6, texture.Height), health);
 
-            if(timeBetweenAICalls < 0)
-            {
+            //if(timeBetweenAICalls < 0)
+            //{
                 if (!aggro)
                 {
                     aggro = InAggroRange();
@@ -54,8 +54,8 @@ namespace Test_Loopguy
                 {
                     AggroBehavior();
                 }
-                timeBetweenAICalls = 0.7f;
-            }
+                //timeBetweenAICalls = 0.7f;
+            //}
 
             timeBetweenAICalls -= deltaTime;
 
@@ -199,7 +199,7 @@ namespace Test_Loopguy
             direction.Y *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
             direction.Normalize();
             direction *= -1;
-
+            
 
             LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 200));
         }
@@ -264,7 +264,7 @@ namespace Test_Loopguy
             maxRange = 128;
             fleeRange = 80;
             aggroRange = 192;
-            damage = 1;
+            damage = 3;
             knockBackDistance = 180;
             knockBackDuration = 160;
             Init();
@@ -273,6 +273,216 @@ namespace Test_Loopguy
             attackCooldownRemaining = 320;
             accuracy = 50;
         }
+    }
+
+    class RangedRobotEnemy : RangedEnemy
+    {
+        
+        AnimatedSprite sprite;  //Bör läggas in i RangedEnemy I guess
+        bool isAttacking = false;
+        bool directionIsLocked;
+        Vector2 attackOrigin;
+        Orientation lockedOrientation /*= Orientation.Down*/;
+        public RangedRobotEnemy(Vector2 position) : base(position)
+        {
+            
+            this.position = position;
+            this.maxSpeed = 36;
+            sprite = new AnimatedSprite(TextureManager.robotEnemySheet, new Point(64, 64));
+            sprite.Position = position;
+            //attackOrigin = new Vector2(position.X + 25, position.Y + 28);
+            maxHealth = 10;
+            health = maxHealth;
+            healthBar = new HealthBar(maxHealth);
+
+            minRange = 40;
+            maxRange = 180;  //för attack
+            fleeRange = 80; //dit den flyr innan den börjar attackera
+            aggroRange = 192; //när den upptäcker spelaren
+            damage = 1;
+            knockBackDistance = 180;
+            knockBackDuration = 160;
+            Init();
+            aggro = false;
+            attackCooldown = 2000;
+            attackCooldownRemaining = 2000;
+            accuracy = 0;
+            
+        }
+
+        protected override void Attack()
+        {
+            attackCooldownRemaining = attackCooldown;
+            Vector2 direction = centerPosition - EntityManager.player.centerPosition;
+            direction.X *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
+            direction.Y *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
+            direction.Normalize();
+            direction *= -1;
+
+            LevelManager.AddEnemyProjectile(new Shot(attackOrigin, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 200));
+        }
+
+        protected override void AggroBehavior()
+        {
+            Vector2 thing = centerPosition - EntityManager.player.centerPosition;
+            if (!fleeing)
+            {
+                if (thing.Length() < maxRange && thing.Length() > minRange && attackCooldownRemaining <= 0)
+                {
+                    speed = 0;
+                    AttackBehavior();
+                }
+                else if (thing.Length() > maxRange)
+                {
+                    thing.Normalize();
+                    thing *= -1;
+
+                    direction = thing;
+                    speed = maxSpeed;
+                }
+                else if (thing.Length() < minRange)
+                {
+                    thing.Normalize();
+
+                    direction = thing;
+                    speed = maxSpeed;
+                    fleeing = true;
+                }
+            }
+            else
+            {
+
+                if (thing.Length() > fleeRange)
+                {
+                    fleeing = false;
+                }
+                thing.Normalize();
+
+                direction = thing;
+                speed = maxSpeed;
+            }
+        }
+
+        protected override void AttackBehavior()
+        {
+
+            int frameTime = 50;
+
+
+            maxSpeed = 0;
+
+            if (!isAttacking)
+            {
+                lockedOrientation = primaryOrientation;
+                isAttacking = true;
+            }
+
+            if (lockedOrientation == Orientation.Up)
+            {
+
+                if (!sprite.PlayOnce(1, 20, frameTime))
+                {
+                    Attack();
+                    isAttacking = false;
+                    attackCooldownRemaining = attackCooldown;
+                }
+
+            }
+            else if (lockedOrientation == Orientation.Down)
+            {
+                if (!sprite.PlayOnce(0, 20, frameTime))
+                {
+                    Attack();
+                    isAttacking = false;
+                    attackCooldownRemaining = attackCooldown;
+
+                }
+
+            }
+            else if (lockedOrientation == Orientation.Left)
+            {
+                if (!sprite.PlayOnce(2, 20, frameTime))
+                {
+                    Attack();
+                    isAttacking = false;
+                    attackCooldownRemaining = attackCooldown;
+
+                }
+
+            }
+            else if (lockedOrientation == Orientation.Right)
+            {
+                if (!sprite.PlayOnce(3, 20, frameTime))
+                {
+                    Attack();
+                    isAttacking = false;
+                    attackCooldownRemaining = attackCooldown;
+                }
+
+            }
+            else if (lockedOrientation == Orientation.Zero)
+            {
+                isAttacking = false;
+            }
+        }
+
+        public override void Movement(float deltaTime)
+        {
+        
+            int frameTime = 50;
+
+            GetOrientation();
+
+            if (!isAttacking)
+            {
+                if (primaryOrientation == Orientation.Up)
+                {
+                    sprite.Play(7, 11, frameTime);
+                    attackOrigin = new Vector2(position.X + 30, position.Y + 30);
+                }
+                else if (primaryOrientation == Orientation.Down)
+                {
+                    sprite.Play(6, 12, frameTime);
+                    attackOrigin = new Vector2(position.X + 30, position.Y + 30);
+                }
+                else if (primaryOrientation == Orientation.Right)
+                {
+                    sprite.Play(5, 12, frameTime);
+                    attackOrigin = new Vector2(position.X + 33, position.Y + 27);
+                }
+                else if (primaryOrientation == Orientation.Left)
+                {
+                    sprite.Play(4, 12, frameTime);
+                    attackOrigin = new Vector2(position.X + 26, position.Y + 27);
+                }
+            }
+
+            if (!isAttacking)
+            {
+                maxSpeed = 36;
+            }
+  
+            base.Movement(deltaTime);
+        }
+
+
+        public override void Update(GameTime gameTime)
+        {
+            sprite.Update(gameTime);
+
+            base.Update(gameTime);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            sprite.Draw(spriteBatch);
+            sprite.Position = position;
+
+
+            //base.Draw(spriteBatch);
+        }
+
+
     }
 
     class TestEnemy : MeleeEnemy
