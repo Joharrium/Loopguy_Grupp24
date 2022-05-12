@@ -236,7 +236,7 @@ namespace Test_Loopguy
             //If uA and uB are between 0-1, lines are colliding
             if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1)
             {
-                float intersectionX = P1.X + (uA * (P2.X - P1.X)) - 2;
+                float intersectionX = P1.X + (uA * (P2.X - P1.X));
                 float intersectionY = P1.Y + (uA * (P2.Y - P1.Y));
                 IntersectionPoint = new Vector2(intersectionX, intersectionY);
 
