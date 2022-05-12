@@ -57,7 +57,7 @@ namespace Test_Loopguy
                 //timeBetweenAICalls = 0.7f;
             //}
 
-            timeBetweenAICalls -= deltaTime;
+            //timeBetweenAICalls -= deltaTime;
 
             if (knockBackRemaining > 0)
             {
@@ -261,7 +261,7 @@ namespace Test_Loopguy
             this.maxHealth = 4;
             this.maxSpeed = 36;
             minRange = 40;
-            maxRange = 128;
+            maxRange = 280;
             fleeRange = 80;
             aggroRange = 192;
             damage = 3;
@@ -279,10 +279,17 @@ namespace Test_Loopguy
     {
         
         AnimatedSprite sprite;  //Bör läggas in i RangedEnemy I guess
+
         bool isAttacking = false;
         bool directionIsLocked;
+        bool isMoving;
+
         Vector2 attackOrigin;
-        Orientation lockedOrientation /*= Orientation.Down*/;
+        Vector2 oldPosition;
+        Orientation lockedOrientation;
+
+
+
         public RangedRobotEnemy(Vector2 position) : base(position)
         {
             
@@ -293,11 +300,11 @@ namespace Test_Loopguy
             //attackOrigin = new Vector2(position.X + 25, position.Y + 28);
             maxHealth = 10;
             health = maxHealth;
-            healthBar = new HealthBar(maxHealth);
+            //healthBar = new HealthBar(maxHealth);
 
             minRange = 40;
-            maxRange = 180;  //för attack
-            fleeRange = 80; //dit den flyr innan den börjar attackera
+            maxRange = 100; //för attack
+            fleeRange = 20; //dit den flyr innan den börjar attackera
             aggroRange = 192; //när den upptäcker spelaren
             damage = 1;
             knockBackDistance = 180;
@@ -455,11 +462,42 @@ namespace Test_Loopguy
                     sprite.Play(4, 12, frameTime);
                     attackOrigin = new Vector2(position.X + 26, position.Y + 27);
                 }
+
+                if (!isMoving)
+                {
+                    if (primaryOrientation == Orientation.Up)
+                    {
+                        sprite.Frame(11, 1);
+                    }
+                    else if (primaryOrientation == Orientation.Down)
+                    {
+                        sprite.Frame(10, 1);
+                    }
+                    else if (primaryOrientation == Orientation.Right)
+                    {
+                        sprite.Frame(9, 1);
+                    }
+                    else if (primaryOrientation == Orientation.Left)
+                    {
+                        sprite.Frame(8, 1);
+                    }
+                }
+
+           
             }
 
             if (!isAttacking)
             {
                 maxSpeed = 36;
+            }
+
+            if (direction.X < 0 && direction.Y < 0 || direction.X > 0 && direction.Y > 0)
+            {
+                isMoving = true;
+            }
+            else if (direction.X == 0 && direction.Y == 0)
+            {
+                isMoving = false;
             }
   
             base.Movement(deltaTime);
@@ -477,6 +515,23 @@ namespace Test_Loopguy
         {
             sprite.Draw(spriteBatch);
             sprite.Position = position;
+
+            if (isAttacking)
+            {
+                Line enemyLaserLine = new Line(attackOrigin, EntityManager.player.position);
+
+                LevelManager.LevelObjectCollision(enemyLaserLine, 9);
+
+                Line newEnemyLaserLine = new Line(attackOrigin, enemyLaserLine.IntersectionPoint);
+                Vector2 laserVector = new Vector2(newEnemyLaserLine.P2.X - newEnemyLaserLine.P1.X, newEnemyLaserLine.P2.Y - newEnemyLaserLine.P1.Y);
+                int laserLength = (int)laserVector.Length();
+
+                Random rnd = new Random();
+                for (int i = 16; i < laserLength; i++)
+                {
+                    spriteBatch.Draw(TextureManager.cyanPixel, EntityManager.player.position, Color.White);
+                }
+            }
 
 
             //base.Draw(spriteBatch);
