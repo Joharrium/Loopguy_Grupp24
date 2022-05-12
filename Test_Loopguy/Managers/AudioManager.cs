@@ -59,6 +59,20 @@ namespace Test_Loopguy
             }
         }
 
+        public static void SetMusicVolume(int i)
+        {
+            musicVolume = i / 100;
+            foreach (Song s in songs)
+            {
+                s.SetVolume(musicVolume);
+            }
+        }
+        public static void SetSoundVolume(float i)
+        {
+            soundVolume = (float)(Math.Pow(i / 100, 2));
+            //soundVolume = (i / 100);
+        }
+
         static void CreateCollections()
         {
             //laser gun collection

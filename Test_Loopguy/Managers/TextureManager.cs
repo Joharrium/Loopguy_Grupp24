@@ -17,10 +17,10 @@ namespace Test_Loopguy
             shelf_archiving_small, table_computer_medicine, table_operation, monitor_wall, desk_office, chair_office_fw, chair_office_bw, server
             ;
         // ui files
-        public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door, 
+        public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door,
             healthbar_small_outline, healthbar_small_fill_bg, healthbar_small_fill,
             player_healthbar_outline, player_healthbar_inline, player_healthbar_fill, player_healthbar_fill_bg,
-            ammobar_fill, ammobar_outline, ammobar_fill_bg, menu_bg
+            ammobar_fill, ammobar_outline, ammobar_fill_bg, menu_bg, slider_container, slider_fill
             
             ;
         public static SpriteFont UI_menuFont;
@@ -147,6 +147,9 @@ namespace Test_Loopguy
             ammobar_outline = c.Load<Texture2D>("gfx/interface/ammobar_outline");
             ammobar_fill_bg = c.Load<Texture2D>("gfx/interface/ammobar_fill_bg");
             menu_bg = c.Load<Texture2D>("gfx/interface/menu_bg");
+
+            slider_container = c.Load<Texture2D>("gfx/interface/menu_items/slider_container");
+            slider_fill = c.Load<Texture2D>("gfx/interface/menu_items/slider_fill");
         }
 
         private static void LoadCharacters(ContentManager c)

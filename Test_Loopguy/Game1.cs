@@ -50,10 +50,11 @@ namespace Test_Loopguy
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            ProfileManager.Init();
-
             TextureManager.LoadTextures(Content);
+            ProfileManager.Init();
+            
+
+            
          
             EntityManager.PlayerInitialization();
             Audio.Load(Content);
@@ -71,9 +72,10 @@ namespace Test_Loopguy
             graphics.PreferredBackBufferHeight = screenRect.Height;
             graphics.ApplyChanges();
 
+            MenuManager.Init();
+
             LevelManager.LoadLevel(1);
             LevelManager.EntranceLoad();
-            MenuManager.LoadMenuButtons();
 
             camera = new Camera();
             camera.SetPosition(new Vector2(200, 200));
@@ -114,6 +116,10 @@ namespace Test_Loopguy
                 {
 
                 }
+            }
+            else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.Tab))
+            {
+                StateManager.currentState = StateManager.GameState.Menu;
             }
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
