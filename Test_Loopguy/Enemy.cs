@@ -264,7 +264,7 @@ namespace Test_Loopguy
             maxRange = 128;
             fleeRange = 80;
             aggroRange = 192;
-            damage = 1;
+            damage = 3;
             knockBackDistance = 180;
             knockBackDuration = 160;
             Init();
@@ -282,7 +282,7 @@ namespace Test_Loopguy
         bool isAttacking = false;
         bool directionIsLocked;
         Vector2 attackOrigin;
-        Orientation lockedOrientation = Orientation.Down;
+        Orientation lockedOrientation /*= Orientation.Down*/;
         public RangedRobotEnemy(Vector2 position) : base(position)
         {
             
@@ -306,7 +306,7 @@ namespace Test_Loopguy
             aggro = false;
             attackCooldown = 2000;
             attackCooldownRemaining = 2000;
-            accuracy = 1;
+            accuracy = 0;
             
         }
 
@@ -456,7 +456,7 @@ namespace Test_Loopguy
                     attackOrigin = new Vector2(position.X + 26, position.Y + 27);
                 }
             }
-    
+
             if (!isAttacking)
             {
                 maxSpeed = 36;
