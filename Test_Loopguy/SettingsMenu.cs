@@ -30,13 +30,13 @@ namespace Test_Loopguy
 
         public override void LoadMenuButtons()
         {
-            float menuSpacing = Game1.windowY / 10;
+            float menuSpacing = Game1.windowY / 8;
 
-            Vector2 menuSlot1 = new Vector2(Game1.windowX / 2, Game1.windowY / 2);
-            Vector2 menuSlot2 = new Vector2(Game1.windowX / 2, Game1.windowY / 2 + menuSpacing);
-            Vector2 menuSlot3 = new Vector2(Game1.windowX / 2, Game1.windowY / 2 + menuSpacing * 2);
-            Vector2 menuSlot4 = new Vector2(Game1.windowX / 2, Game1.windowY / 2 + menuSpacing * 3);
-            Vector2 menuSlot5 = new Vector2(Game1.windowX / 2, Game1.windowY / 2 + menuSpacing * 4);
+            Vector2 menuSlot1 = new Vector2(Game1.windowX / 2 - 150, Game1.windowY / 3);
+            Vector2 menuSlot2 = new Vector2(Game1.windowX / 2 - 150, Game1.windowY / 3 + menuSpacing);
+            Vector2 menuSlot3 = new Vector2(Game1.windowX / 2 - 150, Game1.windowY / 3 + menuSpacing * 2);
+            Vector2 menuSlot4 = new Vector2(Game1.windowX / 2 - 150, Game1.windowY / 3 + menuSpacing * 3);
+            Vector2 menuSlot5 = new Vector2(Game1.windowX / 2 - 150, Game1.windowY / 3 + menuSpacing * 4);
 
             returnButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot1)
             {
@@ -44,12 +44,12 @@ namespace Test_Loopguy
                 Text = "Return to Main Menu",
             };
 
-            sound = new Slider(menuSlot2, 100);
+            sound = new Slider(menuSlot2, 100, "Sound Volume", false);
 
 
-            music = new Slider(menuSlot3, 100);
+            music = new Slider(menuSlot3, 100, "Music Volume", false);
 
-            screenSize = new Slider(menuSlot4, 4);
+            screenSize = new Slider(menuSlot4, 4, "Screen Size", true);
 
 
             gameComponents = new List<Component>()
@@ -99,7 +99,7 @@ namespace Test_Loopguy
             {
                 if (InputReader.ButtonPressed(Buttons.A) || InputReader.KeyPressed(Keys.Enter))
                 {
-                    MenuManager.GoToSettingsMenu();
+                    MenuManager.GoToMainMenu();
                 }
             }
 
@@ -112,11 +112,12 @@ namespace Test_Loopguy
             if (currentSelection == music)
             {
                 //music.Update(gameTime);
-                Audio.SetMusicVolume(sound.Value);
+                Audio.SetMusicVolume(music.Value);
             }
 
             if (currentSelection == screenSize)
             {
+                Game1.game1.ScaleWindowAbsolute(screenSize.Value + 1);
                 //screenSize.Update(gameTime);
             }
         }
@@ -167,6 +168,7 @@ namespace Test_Loopguy
                         if (b.Rectangle.Contains(windowMousePos))
                         {
                             b.isHovering = true;
+                            currentSelection = b;
                         }
                         break;
 
@@ -217,7 +219,7 @@ namespace Test_Loopguy
 
 
             //Draw image
-            spriteBatch.Draw(TextureManager.playerCharacterForMenu, imagePosition, Color.White);
+            //spriteBatch.Draw(TextureManager.playerCharacterForMenu, imagePosition, Color.White);
 
             spriteBatch.End();
         }

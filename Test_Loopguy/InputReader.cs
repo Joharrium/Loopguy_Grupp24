@@ -91,6 +91,25 @@ static class InputReader
 		return false;
 	}
 
+	public static bool MovementLeftNonContinous()
+	{
+		if (playerInputEnabled)
+		{
+			if (keyState.IsKeyDown(Keys.Left) && oldKeyState.IsKeyUp(Keys.Left) || keyState.IsKeyDown(Keys.A) && oldKeyState.IsKeyUp(Keys.A) || padState.IsButtonDown(Buttons.DPadLeft) && oldPadState.IsButtonUp(Buttons.DPadLeft))
+				return keyState.IsKeyDown(Keys.Left) || keyState.IsKeyDown(Keys.A) || padState.IsButtonDown(Buttons.DPadLeft);
+		}
+		return false;
+	}
+	public static bool MovementRightNonContinous()
+	{
+		if (playerInputEnabled)
+		{
+			if (keyState.IsKeyDown(Keys.Right) && oldKeyState.IsKeyUp(Keys.Right) || keyState.IsKeyDown(Keys.D) && oldKeyState.IsKeyUp(Keys.D) || padState.IsButtonDown(Buttons.DPadRight) && oldPadState.IsButtonUp(Buttons.DPadRight))
+				return keyState.IsKeyDown(Keys.Right) || keyState.IsKeyDown(Keys.D) || padState.IsButtonDown(Buttons.DPadRight);
+		}
+		return false;
+	}
+
 	public static bool Dash()
     {
 		if (playerInputEnabled)

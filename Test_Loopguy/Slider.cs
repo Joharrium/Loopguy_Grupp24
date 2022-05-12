@@ -13,6 +13,8 @@ namespace Test_Loopguy
         Texture2D outline, fill;
         int maxValue;
         int currentValue;
+        bool incrementalMovement;
+        string text;
 
         public int Value
         {
@@ -28,18 +30,21 @@ namespace Test_Loopguy
         {
             get
             {
-                return new Rectangle((int)position.X - 25, (int)position.Y + 2, outline.Width, outline.Height);
+                return new Rectangle((int)position.X, (int)position.Y + 20, outline.Width, outline.Height);
             }
         }
 
 
-        public Slider(Vector2 position, int maxValue)
+        public Slider(Vector2 position, int maxValue, string text,  bool incremental)
         {
             this.position = position - new Vector2(30, 0);
             this.maxValue = maxValue;
             currentValue = maxValue / 2;
             fill = TextureManager.slider_fill;
             outline = TextureManager.slider_container;
+            sourceRectangle.Width = 150;
+            this.incrementalMovement = incremental;
+            this.text = text;
         }
 
         public override void Update(GameTime gameTime)
@@ -52,13 +57,21 @@ namespace Test_Loopguy
 
         public void DoMovement()
         {
-            if (InputReader.MovementLeft())
+            if ((InputReader.MovementLeft() && !incrementalMovement) || (InputReader.MovementLeftNonContinous() && incrementalMovement))
             {
                 CheckValue(currentValue - 1);
             }
-            if (InputReader.MovementRight())
+           if ((InputReader.MovementRight() && !incrementalMovement) || (InputReader.MovementRightNonContinous() && incrementalMovement))
             {
                 CheckValue(currentValue + 1);
+            }
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                CheckValue((int)((InputReader.mouseState.Position.X / Game1.windowScale) - position.X) * maxValue / 300);
+                if((int)((InputReader.mouseState.Position.X / Game1.windowScale) - position.X) > 295)
+                {
+                    CheckValue(maxValue);
+                }
             }
         }
 
@@ -77,6 +90,10 @@ namespace Test_Loopguy
                 currentValue = newValue;
             }
             sourceRectangle.Width = (int)((currentValue * 300) / maxValue);
+            if(sourceRectangle.Width > 295)
+            {
+                currentValue = maxValue;
+            }
         }
 
 
@@ -85,16 +102,17 @@ namespace Test_Loopguy
             if(isHovering)
             {
                 spriteBatch.Draw(TextureManager.UI_selectedMenuBox, Rectangle, Color.White);
-                spriteBatch.Draw(outline, position, Color.White);
-                spriteBatch.Draw(fill, position, sourceRectangle, Color.White);
+                spriteBatch.Draw(outline, position + new Vector2(0, 20), Color.White);
+                spriteBatch.Draw(fill, position + new Vector2(0, 20), sourceRectangle, Color.White);
                 
             }
             else
             {
-                spriteBatch.Draw(outline, position, Color.DarkGray);
-                spriteBatch.Draw(fill, position, sourceRectangle, Color.DarkGray);
+                spriteBatch.Draw(outline, position + new Vector2(0,20), Color.DarkGray);
+                spriteBatch.Draw(fill, position + new Vector2(0, 20), sourceRectangle, Color.DarkGray);
             }
 
+            spriteBatch.DrawString(TextureManager.UI_menuFont, text, position, Color.White);
 
             
 

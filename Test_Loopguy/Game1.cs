@@ -119,10 +119,19 @@ namespace Test_Loopguy
 
                 }
             }
-            else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.Tab))
+            else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.Tab) )
             {
-                StateManager.currentState = StateManager.GameState.Menu;
+                if(StateManager.currentState == StateManager.GameState.InGame)
+                {
+                    StateManager.currentState = StateManager.GameState.Menu;
+                }
+                else
+                {
+                    StateManager.currentState = StateManager.GameState.InGame;
+                }
+                
             }
+            
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             InputReader.Update();
@@ -205,6 +214,16 @@ namespace Test_Loopguy
         void ScaleWindow(int i)
         {
             windowScale += i;
+            screenRect.Width = windowScale * windowX;
+            screenRect.Height = windowScale * windowY;
+            graphics.PreferredBackBufferWidth = screenRect.Width;
+            graphics.PreferredBackBufferHeight = screenRect.Height;
+            graphics.ApplyChanges();
+        }
+
+        public void ScaleWindowAbsolute(int i)
+        {
+            windowScale = i;
             screenRect.Width = windowScale * windowX;
             screenRect.Height = windowScale * windowY;
             graphics.PreferredBackBufferWidth = screenRect.Width;

@@ -61,7 +61,7 @@ namespace Test_Loopguy
 
         public static void SetMusicVolume(int i)
         {
-            musicVolume = i / 100;
+            musicVolume = (float)(Math.Pow((float)i / 100, 2));
             foreach (Song s in songs)
             {
                 s.SetVolume(musicVolume);
