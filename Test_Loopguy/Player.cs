@@ -696,7 +696,7 @@ namespace Test_Loopguy
 
             LevelManager.LevelObjectCollision(laserLine, 9);
 
-            Line newLaserLine = new Line(centerPosition, laserLine.IntersectionPoint);
+            Line newLaserLine = new Line(centerPosition, laserLine.intersectionPoint);
             Vector2 laserVector = new Vector2(newLaserLine.P2.X - newLaserLine.P1.X, newLaserLine.P2.Y - newLaserLine.P1.Y);
             int laserLength = (int)laserVector.Length();
 
@@ -707,7 +707,7 @@ namespace Test_Loopguy
             }
 
             //OUTDATED LAGGY CODE BELLOW
-            Vector2 dotPos = laserLine.IntersectionPoint;
+            Vector2 dotPos = laserLine.intersectionPoint;
 
             //OUTDATED LAGGY CODE BELLOW
             //Vector2 dotPos = centerPosition;

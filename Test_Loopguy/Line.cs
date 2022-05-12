@@ -12,7 +12,7 @@ namespace Test_Loopguy
     {
         public Vector2 P1, P2;
 
-        public Vector2 IntersectionPoint;
+        public Vector2 intersectionPoint;
 
         public Line(Vector2 p1, Vector2 p2)
         {
@@ -28,21 +28,43 @@ namespace Test_Loopguy
             Line rtop = new Line(new Vector2(rect.Left, rect.Top), new Vector2(rect.Right, rect.Top));
             Line rbottom = new Line(new Vector2(rect.Left, rect.Bottom), new Vector2(rect.Right, rect.Bottom));
 
-            bool left = LineIntersects(rleft);
-            bool right = LineIntersects(rright);
-            bool top = LineIntersects(rtop);
-            bool bottom = LineIntersects(rbottom);
+            Vector2 intersectLeft = LineIntersects(rleft);
+            Vector2 intersectRight = LineIntersects(rright);
+            Vector2 intersectTop = LineIntersects(rtop);
+            Vector2 intersectBottom = LineIntersects(rbottom);
 
-            //If any of the above are true, the line intersects with rectangle
-            if (left || right || top || bottom)
+            float distanceLeft = Vector2.Distance(P1, intersectLeft);
+            float distanceRight = Vector2.Distance(P1, intersectRight);
+            float distanceTop = Vector2.Distance(P1, intersectTop);
+            float distanceBottom = Vector2.Distance(P1, intersectBottom);
+
+            if(distanceLeft < distanceRight && distanceLeft < distanceTop && distanceLeft < distanceBottom)
             {
+                intersectionPoint = intersectLeft;
                 return true;
             }
-
-            return false;
+            else if (distanceRight < distanceLeft && distanceRight < distanceTop && distanceTop < distanceBottom)
+            {
+                intersectionPoint = intersectRight;
+                return true;
+            }
+            else if (distanceTop < distanceLeft && distanceTop < distanceRight && distanceTop < distanceBottom)
+            {
+                intersectionPoint = intersectTop;
+                return true;
+            }
+            else if (distanceBottom < distanceLeft && distanceBottom < distanceRight && distanceBottom < distanceTop)
+            {
+                intersectionPoint = intersectBottom;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public bool LineIntersects(Line o)
+        public Vector2 LineIntersects(Line o)
         {
             //Calculates the direction of the lines
             float uA = ((o.P2.X - o.P1.X) * (P1.Y - o.P1.Y) - (o.P2.Y - o.P1.Y) * (P1.X - o.P1.X)) / ((o.P2.Y - o.P1.Y) * (P2.X - P1.X) - (o.P2.X - o.P1.X) * (P2.Y - P1.Y));
@@ -53,12 +75,12 @@ namespace Test_Loopguy
             {
                 float intersectionX = P1.X + (uA * (P2.X - P1.X));
                 float intersectionY = P1.Y + (uA * (P2.Y - P1.Y));
-                IntersectionPoint = new Vector2(intersectionX, intersectionY);
+                Vector2 intersection = new Vector2(intersectionX, intersectionY);
 
-                return true;
+                return intersection;
             }
 
-            return false;
+            return Vector2.Zero;
         }
 
      }
