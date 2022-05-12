@@ -13,6 +13,15 @@ namespace Test_Loopguy
         private int ammo = 5;
         private int maxAmmo = 5;
 
+        private int storedHealthPacks = 0;
+        public int StoredHealth
+        {
+            get { return storedHealthPacks; }
+        }
+
+        private const int maxStoredHealthPacks = 3;
+
+
         AnimatedSprite gunSprite;
         AnimatedSprite meleeSprite;
         AnimatedSprite dashCloudSprite;
@@ -111,6 +120,11 @@ namespace Test_Loopguy
         {
             hitBox = new Rectangle((int)(position.X + (sprite.size.X * 0.375)), (int)(position.Y + sprite.size.Y / 4), sprite.size.X / 4, sprite.size.Y / 2);
             footprint = new Rectangle((int)position.X + 12, (int)position.Y + 24, 8, 8);
+
+            if(InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.H) || InputReader.ButtonPressed(Microsoft.Xna.Framework.Input.Buttons.Y))
+            {
+                UseHealthPack();
+            }
             
             centerPosition = new Vector2(position.X + sprite.size.X / 2, position.Y + sprite.size.Y / 2);
 
@@ -346,11 +360,36 @@ namespace Test_Loopguy
             }
         }
 
+        public void UseHealthPack()
+        {
+            if(storedHealthPacks > 0 && health < maxHealth)
+            {
+                storedHealthPacks--;
+                Audio.PlaySound(Audio.healing);
+                health += 1;
+                ParticleManager.NewParticle(ParticleSelection.HealEffect, position + new Vector2(4, 4));
+            }
+            else
+            {
+                Audio.PlaySound(Audio.meepmerp);
+            }
+            
+        }
+
         public bool HealDamage(int healing)
         {
             if (health >= maxHealth)
             {
-                return false;
+                if(storedHealthPacks < maxStoredHealthPacks)
+                {
+                    storedHealthPacks++;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
 
             }
             else

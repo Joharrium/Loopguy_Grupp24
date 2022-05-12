@@ -86,6 +86,8 @@ namespace Test_Loopguy
 
                     Player.ammoBar.Draw(spriteBatch);
                     Player.healthBar.Draw(spriteBatch);
+                    spriteBatch.Draw(TextureManager.medkit, new Vector2(104, 12), Color.White);
+                    spriteBatch.DrawString(TextureManager.UI_menuFont, "x " + EntityManager.player.StoredHealth, new Vector2(124, 7), Color.White);
                     
                     LevelManager.DrawTimer(spriteBatch);
                     spriteBatch.End();

@@ -67,9 +67,9 @@ namespace Test_Loopguy
             {
 
             
-            spriteBatch.Draw(fill_bg, position, Color.White);
+            spriteBatch.Draw(fill_bg, position, Color.CornflowerBlue);
 
-            spriteBatch.Draw(fill, position + offset, srcRectangle, Color.LightBlue);
+            spriteBatch.Draw(fill, position + offset, srcRectangle, Color.AliceBlue);
             spriteBatch.Draw(outline, position, Color.White);
             }
 
