@@ -34,7 +34,7 @@ namespace Test_Loopguy
             Line cBottom = this;
 
             Line smallLine = this;
-            double smallestline = smallLine.Length();
+            //double smallestline = smallLine.Length();
 
             bool left = LineIntersects(rleft);
             if(left)
@@ -43,7 +43,7 @@ namespace Test_Loopguy
                 if (cLeft.Length() < smallLine.Length())
                 {
                     smallLine = cLeft;
-                    smallestline = smallLine.Length();
+                    //smallestline = smallLine.Length();
                 }
             }
             {
@@ -69,7 +69,7 @@ namespace Test_Loopguy
                 if (cRight.Length() < smallLine.Length())
                 {
                     smallLine = cRight;
-                    smallestline = smallLine.Length();
+                    //smallestline = smallLine.Length();
                 }
             }
 
@@ -94,7 +94,7 @@ namespace Test_Loopguy
                 if (cTop.Length() < smallLine.Length())
                 {
                     smallLine = cTop;
-                    smallestline = smallLine.Length();
+                    //smallestline = smallLine.Length();
                 }
             }
 
@@ -105,7 +105,7 @@ namespace Test_Loopguy
                 if (cBottom.Length() < smallLine.Length())
                 {
                     smallLine = cBottom;
-                    smallestline = smallLine.Length();
+                    //smallestline = smallLine.Length();
                 }
             }
 
