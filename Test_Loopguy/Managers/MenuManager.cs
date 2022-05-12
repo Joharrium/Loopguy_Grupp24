@@ -152,6 +152,7 @@ namespace Test_Loopguy
                 if (InputReader.ButtonPressed(Buttons.A) || InputReader.KeyPressed(Keys.Enter))
                 {
                     Game1.game1.Exit();
+                    // pseudo code: form.formForLevelEditor.Exit();
                 }
             }
         }
@@ -180,6 +181,7 @@ namespace Test_Loopguy
         private static void QuitGameButton_Click(object sender, EventArgs e)
         {
             Game1.game1.Exit();
+            // pseudo code: form.formForLevelEditor.Exit();
         }
 
         public static void Update(GameTime gameTime)

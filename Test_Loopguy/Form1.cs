@@ -15,6 +15,11 @@ namespace Test_Loopguy
             InitializeComponent();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // dead
+        }
+
         private void barrelSelect_Click(object sender, EventArgs e)
         {
             LevelEditor.SelectObject(ObjectSelection.ShelfArchivingSmall);
@@ -253,5 +258,7 @@ namespace Test_Loopguy
         {
             LevelEditor.SelectTile(TileSelection.Water);
         }
+
+        
     }
 }

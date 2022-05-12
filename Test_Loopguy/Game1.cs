@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Threading;
+using System.Diagnostics;
 
 namespace Test_Loopguy
 {
@@ -18,6 +20,7 @@ namespace Test_Loopguy
 
         public static Camera camera;
         public static Game1 game1;
+        public static Form1 editorFrm;
 
         //Player player;
 
@@ -78,19 +81,16 @@ namespace Test_Loopguy
             camera = new Camera();
             camera.SetPosition(new Vector2(200, 200));
 
-            var frmNewForm = new Form1();
-            var newThread = new System.Threading.Thread(frmNewFormThread);
+            editorFrm = new Form1();
+            Thread newThread = new System.Threading.Thread(frmNewFormThread);
 
             newThread.SetApartmentState(System.Threading.ApartmentState.STA);
             newThread.Start();
 
             void frmNewFormThread()
             {
-                Application.Run(frmNewForm);
+                Application.Run(editorFrm);
             }
-
-            
-
 
         }
 
