@@ -18,7 +18,11 @@ namespace Test_Loopguy
         static List<Component> gameComponents;
 
         static Component currentSelection;
-     
+
+        static float rotation = 0;
+        static Vector2 origin = new Vector2(0, 0);
+        static float scale = 3.5f;
+
         enum NavigationState
         {
             Mouse,
@@ -246,7 +250,7 @@ namespace Test_Loopguy
             spriteBatch.Begin();
 
             //Draw buttons
-            foreach (var component in gameComponents)
+            foreach (Component component in gameComponents)
             {
                 component.Draw(spriteBatch);
             }
@@ -256,7 +260,7 @@ namespace Test_Loopguy
             spriteBatch.Draw(TextureManager.cursor, new Vector2(Game1.mousePos.X - TextureManager.cursor.Width / 2, Game1.mousePos.Y - TextureManager.cursor.Height / 2), cursorColor);
 
             //Draw title
-
+            spriteBatch.DrawString(TextureManager.UI_menuFont2, "LOOP GUY", new Vector2(150, 60), Color.Firebrick);
 
             //Draw image
             spriteBatch.Draw(TextureManager.playerCharacterForMenu, imagePosition, Color.White);

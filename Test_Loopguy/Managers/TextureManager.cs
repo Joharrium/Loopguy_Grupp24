@@ -23,7 +23,7 @@ namespace Test_Loopguy
             ammobar_fill, ammobar_outline, ammobar_fill_bg, menu_bg
             
             ;
-        public static SpriteFont UI_menuFont;
+        public static SpriteFont UI_menuFont, UI_menuFont2;
         // character files
         public static Texture2D enemyPlaceholder, playerCharacterForMenu;
 
@@ -131,6 +131,7 @@ namespace Test_Loopguy
             UI_dirt = c.Load<Texture2D>("gfx/interface/editor_icons/dirt_small");
             UI_selectedMenuBox = c.Load<Texture2D>("gfx/interface/menu_items/selectedMenuBox");
             UI_menuFont = c.Load<SpriteFont>("gfx/fonts/menuFont");
+            UI_menuFont2 = c.Load<SpriteFont>("MenuFont2");
             UI_graybrick = c.Load<Texture2D>("gfx/interface/editor_icons/graybrick_small");
             black_screen = c.Load<Texture2D>("gfx/interface/black_screenlol");
             UI_door = c.Load<Texture2D>("gfx/interface/editor_icons/door_small");
