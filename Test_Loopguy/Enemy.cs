@@ -272,8 +272,8 @@ namespace Test_Loopguy
             fleeRange = 80;
             aggroRange = 192;
             damage = 1;
-            knockBackDistance = 0;
-            knockBackDuration = 0;
+            knockBackDistance = 180;
+            knockBackDuration = 160;
             Init();
             aggro = false;
             attackCooldown = 620;
@@ -324,15 +324,15 @@ namespace Test_Loopguy
             
             sprite = new AnimatedSprite(TextureManager.robotEnemySheet, frameSize);
             
-            maxHealth = 10;
+            maxHealth = 5;
 
             minRange = 40;
             maxRange = 100; //för attack
             fleeRange = 20; //dit den flyr innan den börjar attackera
             aggroRange = 192; //när den upptäcker spelaren
             damage = 3;
-            knockBackDistance = 180;
-            knockBackDuration = 160;
+            knockBackDistance = 0;
+            knockBackDuration = 0;
             Init();
             aggro = false;
             attackCooldown = 2000;
