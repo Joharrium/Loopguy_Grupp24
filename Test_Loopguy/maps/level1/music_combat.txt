@@ -1,2 +1,0 @@
-combat_1
-idle_2
