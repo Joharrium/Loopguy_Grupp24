@@ -233,5 +233,11 @@ namespace Test_Loopguy
             graphics.ApplyChanges();
         }
 
+        public void ToggleFullscreen(bool state)
+        {
+            graphics.IsFullScreen = state;
+            graphics.ApplyChanges();
+        }
+
     }
 }
