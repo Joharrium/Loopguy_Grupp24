@@ -17,8 +17,6 @@ namespace Test_Loopguy
         SpriteFont font;
         Texture2D texture;
 
-        public bool isHovering;
-
         public event EventHandler Click;
 
         public bool Clicked { get; private set; }
@@ -29,7 +27,8 @@ namespace Test_Loopguy
 
         public string Text { get; set; }
 
-        public Rectangle Rectangle
+        public override bool isHovering { get; set; }
+        public override Rectangle Rectangle
         {
             get
             {
