@@ -681,30 +681,6 @@
 /processorParam:TextureFormat=Color
 /build:gfx/interface/menu_bg.png
 
-#begin gfx/interface/menu_items/checkbox_false.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/interface/menu_items/checkbox_false.png
-
-#begin gfx/interface/menu_items/checkbox_true.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/interface/menu_items/checkbox_true.png
-
 #begin gfx/interface/menu_items/logo.png
 /importer:TextureImporter
 /processor:TextureProcessor
