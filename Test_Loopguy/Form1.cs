@@ -10,9 +10,12 @@ namespace Test_Loopguy
 {
     public partial class Form1 : Form
     {
+        Form1 editorForm;
+
         public Form1()
         {
             InitializeComponent();
+            editorForm = this;
         }
 
         private void barrelSelect_Click(object sender, EventArgs e)
@@ -253,5 +256,7 @@ namespace Test_Loopguy
         {
             LevelEditor.SelectTile(TileSelection.Water);
         }
+
+        
     }
 }

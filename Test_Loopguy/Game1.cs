@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Threading;
+using System.Diagnostics;
 
 namespace Test_Loopguy
 {
@@ -18,6 +20,9 @@ namespace Test_Loopguy
 
         public static Camera camera;
         public static Game1 game1;
+
+        public static Form1 editorFrm;
+        Thread formThread;
 
         //Player player;
 
@@ -50,10 +55,11 @@ namespace Test_Loopguy
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            ProfileManager.Init();
-
             TextureManager.LoadTextures(Content);
+            ProfileManager.Init();
+            
+
+            
          
             EntityManager.PlayerInitialization();
             Audio.Load(Content);
@@ -71,26 +77,26 @@ namespace Test_Loopguy
             graphics.PreferredBackBufferHeight = screenRect.Height;
             graphics.ApplyChanges();
 
-            LevelManager.LoadLevel(3);
+
+            MenuManager.Init();
+
+            LevelManager.LoadLevel(1);
+
             LevelManager.EntranceLoad();
-            MenuManager.LoadMenuButtons();
 
             camera = new Camera();
             camera.SetPosition(new Vector2(200, 200));
 
-            var frmNewForm = new Form1();
-            var newThread = new System.Threading.Thread(frmNewFormThread);
+            editorFrm = new Form1();
+            formThread = new Thread(frmNewFormThread);
 
-            newThread.SetApartmentState(System.Threading.ApartmentState.STA);
-            newThread.Start();
+            formThread.SetApartmentState(ApartmentState.STA);
+            formThread.Start();
 
             void frmNewFormThread()
             {
-                Application.Run(frmNewForm);
+                Application.Run(editorFrm);
             }
-
-            
-
 
         }
 
@@ -115,6 +121,19 @@ namespace Test_Loopguy
 
                 }
             }
+            else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.Tab) )
+            {
+                if(StateManager.currentState == StateManager.GameState.InGame)
+                {
+                    StateManager.currentState = StateManager.GameState.Menu;
+                }
+                else
+                {
+                    StateManager.currentState = StateManager.GameState.InGame;
+                }
+                
+            }
+            
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             InputReader.Update();
@@ -197,6 +216,16 @@ namespace Test_Loopguy
         void ScaleWindow(int i)
         {
             windowScale += i;
+            screenRect.Width = windowScale * windowX;
+            screenRect.Height = windowScale * windowY;
+            graphics.PreferredBackBufferWidth = screenRect.Width;
+            graphics.PreferredBackBufferHeight = screenRect.Height;
+            graphics.ApplyChanges();
+        }
+
+        public void ScaleWindowAbsolute(int i)
+        {
+            windowScale = i;
             screenRect.Width = windowScale * windowX;
             screenRect.Height = windowScale * windowY;
             graphics.PreferredBackBufferWidth = screenRect.Width;
