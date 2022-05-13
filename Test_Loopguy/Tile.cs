@@ -235,7 +235,7 @@ namespace Test_Loopguy
 
     public class Wall : Tile
     {
-
+        public Rectangle footprint;
         public Wall(Vector2 position) : base(position)
         {
             this.position = position;
@@ -244,7 +244,8 @@ namespace Test_Loopguy
             hitBox.Y = (int)position.Y;
             hitBox.Width = texture.Width;
             hitBox.Height = texture.Height;
-
+            footprint = hitBox;
+            hitBox.Y -= 8;
             centerPosition = new Vector2(position.X - 16 / 2, position.Y - 20);
         }
 
