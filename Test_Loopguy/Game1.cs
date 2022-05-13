@@ -45,7 +45,6 @@ namespace Test_Loopguy
             Content.RootDirectory = "Content";
             IsMouseVisible = false;
             game1 = this; //Used for Exit() in menuManager
-            graphics.IsFullScreen = true;
         }
 
         protected override void Initialize()
