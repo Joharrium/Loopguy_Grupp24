@@ -59,7 +59,7 @@ namespace Test_Loopguy
             base.Update(gameTime);
 
             sprite.Position = position;
-            sprite.Play(0, 4, 50);
+            sprite.Play(0, 8, 50);
             sprite.Update(gameTime);
 
             base.Movement(deltaTime);
@@ -90,7 +90,7 @@ namespace Test_Loopguy
         {
             this.damage = damage;
 
-            sprite = new AnimatedSprite(TextureManager.shot, new Point(8, 8));
+            sprite = new AnimatedSprite(TextureManager.robotEnemyShot, new Point(9, 9));
             sprite.Position = position;   
             particleType = ParticleSelection.ShotExplosion;
         }
