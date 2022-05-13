@@ -257,6 +257,9 @@ namespace Test_Loopguy
             LevelEditor.SelectTile(TileSelection.Water);
         }
 
-        
+        private void bigRobotSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectEnemy(EnemySelection.RobotBig);
+        }
     }
 }

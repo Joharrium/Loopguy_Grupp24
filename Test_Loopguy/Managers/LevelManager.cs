@@ -497,6 +497,7 @@ namespace Test_Loopguy
             {
                 "TestEnemyRanged" => new TestEnemyRanged(pos),
                 "TestEnemy" => new TestEnemy(pos),
+                "RangedRobotEnemy" => new RangedRobotEnemy(pos),
                 _ => new TestEnemy(pos),
             };
         }

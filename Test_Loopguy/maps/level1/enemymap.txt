@@ -1,3 +1,6 @@
-TestEnemyRanged,320,291
-TestEnemyRanged,428,115
-TestEnemyRanged,406,157
+RangedRobotEnemy,647,250
+TestEnemyRanged,551,135
+TestEnemyRanged,535,200
+TestEnemyRanged,600,161
+TestEnemyRanged,712,447
+TestEnemyRanged,656,411

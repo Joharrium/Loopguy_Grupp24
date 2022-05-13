@@ -325,7 +325,7 @@ namespace Test_Loopguy
 
 
 
-        public RangedRobotEnemy(Vector2 position) : base(position)
+        public RangedRobotEnemy(Vector2 position) : base(position)  
         {
             
             this.position = position;

@@ -218,7 +218,7 @@ namespace Test_Loopguy
                 {
                     if (s.CheckCollision(lo))
                     {
-                        lo.Damage(1);
+                        lo.Damage(s.damage);
                         projectilesToRemove.Add(s);
                     }
                 }
@@ -226,7 +226,7 @@ namespace Test_Loopguy
                 {
                     if (s.CheckCollision(lo))
                     {
-                        lo.Damage(1);
+                        lo.Damage(s.damage);
                         projectilesToRemove.Add(s);
                     }
                 }
@@ -278,7 +278,7 @@ namespace Test_Loopguy
                     {
                         if(s.CheckCollision(e))
                         {
-                            e.TakeDamage(1);
+                            e.TakeDamage(s.damage);
                             projectilesToRemove.Add(s);
                         }
                     }
