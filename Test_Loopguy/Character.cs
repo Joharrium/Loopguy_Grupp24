@@ -21,6 +21,8 @@ namespace Test_Loopguy
         protected Orientation primaryOrientation;
         protected Orientation secondaryOrientation;
 
+        protected Orientation currentOrientation;
+
         protected AnimatedSprite sprite;
 
         public Rectangle footprint;

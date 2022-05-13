@@ -15,6 +15,8 @@ namespace Test_Loopguy
         protected float idleDir;
         protected float idleTime;
         protected int maxSpeed;
+        protected int xOffset;
+        protected int yOffset;
         protected bool aggro = false;
         public bool hitDuringCurrentAttack = false;
         protected int knockBackDistance;
@@ -24,12 +26,13 @@ namespace Test_Loopguy
         protected float attackCooldown;
         protected float attackCooldownRemaining;
         protected float timeBetweenAICalls;
+        
         public Enemy(Vector2 position) : base(position)
         {
             this.position = position;
             health = maxHealth;
             healthBar = new HealthBar(maxHealth);
-            footprint = new Rectangle((int)position.X, (int)position.Y, 32, 8);
+            footprint = new Rectangle((int)position.X, (int)position.Y, 32, 8); //
         }
 
         public void Init()
@@ -43,10 +46,10 @@ namespace Test_Loopguy
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
             footprint.Location = position.ToPoint();
-            healthBar.SetCurrentValue(position + new Vector2(6, texture.Height), health);
+            healthBar.SetCurrentValue(position + new Vector2(xOffset, yOffset), health);
 
-            if(timeBetweenAICalls < 0)
-            {
+            //if(timeBetweenAICalls < 0)
+            //{
                 if (!aggro)
                 {
                     aggro = InAggroRange();
@@ -55,10 +58,10 @@ namespace Test_Loopguy
                 {
                     AggroBehavior();
                 }
-                timeBetweenAICalls = 0.7f;
-            }
+                //timeBetweenAICalls = 0.7f;
+            //}
 
-            timeBetweenAICalls -= deltaTime;
+            //timeBetweenAICalls -= deltaTime;
 
             if (knockBackRemaining > 0)
             {
@@ -212,9 +215,9 @@ namespace Test_Loopguy
             direction.Y *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
             direction.Normalize();
             direction *= -1;
+            
 
-
-            LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 200));
+            LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 200, damage));
         }
 
         protected override void AggroBehavior()
@@ -267,14 +270,18 @@ namespace Test_Loopguy
     class TestEnemyRanged : RangedEnemy
     {
 
+
         public TestEnemyRanged(Vector2 position) : base(position)
         {
             this.position = position;
             this.texture = TextureManager.enemyPlaceholder;
+            frameSize = new Point(texture.Width, texture.Height);
+            xOffset = 6;
+            yOffset = texture.Height;
             this.maxHealth = 4;
             this.maxSpeed = 36;
             minRange = 40;
-            maxRange = 128;
+            maxRange = 280;
             fleeRange = 80;
             aggroRange = 192;
             damage = 1;
@@ -286,6 +293,285 @@ namespace Test_Loopguy
             attackCooldownRemaining = 320;
             accuracy = 50;
         }
+
+        protected override void Attack()
+        {
+            attackCooldownRemaining = attackCooldown;
+            Vector2 direction = centerPosition - EntityManager.player.centerPosition;
+            direction.X *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
+            direction.Y *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
+            direction.Normalize();
+            direction *= -1;
+
+            LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 300, damage));
+        }
+    }
+
+    class RangedRobotEnemy : RangedEnemy
+    {
+        
+        AnimatedSprite sprite;  //Bör läggas in i RangedEnemy I guess
+
+        bool isAttacking = false;
+        bool directionIsLocked;
+        bool isMoving;
+
+        int frameTime = 100;
+        //Point frameSize = new Point(64, 64);
+
+        Vector2 attackOrigin;
+        Vector2 oldPosition;
+        Orientation lockedOrientation;
+
+
+
+        public RangedRobotEnemy(Vector2 position) : base(position)
+        {
+            
+            this.position = position;
+            frameSize = new Point(64, 64);
+            xOffset = frameSize.X / 2;
+            yOffset = frameSize.Y;//texture.Height * 12;
+            maxSpeed = 20;
+
+            
+            sprite = new AnimatedSprite(TextureManager.robotEnemySheet, frameSize);
+            
+            maxHealth = 5;
+
+            minRange = 40;
+            maxRange = 100; //för attack
+            fleeRange = 20; //dit den flyr innan den börjar attackera
+            aggroRange = 192; //när den upptäcker spelaren
+            damage = 3;
+            knockBackDistance = 0;
+            knockBackDuration = 0;
+            Init();
+            aggro = false;
+            attackCooldown = 2000;
+            attackCooldownRemaining = 2000;
+            accuracy = 0;
+            
+        }
+
+        protected override void Attack()
+        {
+            attackCooldownRemaining = attackCooldown;
+            Vector2 direction = attackOrigin - EntityManager.player.centerPosition;
+            direction.X *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
+            direction.Y *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
+            direction.Normalize();
+            direction *= -1;
+
+            LevelManager.AddEnemyProjectile(new Shot(attackOrigin, direction, (float)Helper.GetAngle(attackOrigin, EntityManager.player.centerPosition, 0 + Math.PI), 300, damage));
+        }
+
+        protected override void AggroBehavior()
+        {
+            Vector2 thing = centerPosition - EntityManager.player.centerPosition;
+            if (!fleeing)
+            {
+                if (thing.Length() < maxRange && thing.Length() > minRange && attackCooldownRemaining <= 0)
+                {
+                    speed = 0;
+                    AttackBehavior();
+                }
+                else if (thing.Length() > maxRange)
+                {
+                    thing.Normalize();
+                    thing *= -1;
+
+                    direction = thing;
+                    speed = maxSpeed;
+                }
+                else if (thing.Length() < minRange)
+                {
+                    thing.Normalize();
+
+                    direction = thing;
+                    speed = maxSpeed;
+                    fleeing = true;
+                }
+            }
+            else
+            {
+
+                if (thing.Length() > fleeRange)
+                {
+                    fleeing = false;
+                }
+                thing.Normalize();
+
+                direction = thing;
+                speed = maxSpeed;
+            }
+        }
+
+        protected override void AttackBehavior()
+        {
+
+            maxSpeed = 0;
+
+            if (!isAttacking)
+            {
+                lockedOrientation = primaryOrientation;
+                isAttacking = true;
+            }
+
+        }
+
+        public override void Movement(float deltaTime)
+        {
+
+            GetOrientation();
+
+            if (!isAttacking)
+            {
+                if (primaryOrientation == Orientation.Up)
+                {
+                    sprite.Play(7, 11, frameTime);
+                    attackOrigin = new Vector2(position.X + 30, position.Y + 30);
+                }
+                else if (primaryOrientation == Orientation.Down)
+                {
+                    sprite.Play(6, 12, frameTime);
+                    attackOrigin = new Vector2(position.X + 30, position.Y + 30);
+                }
+                else if (primaryOrientation == Orientation.Right)
+                {
+                    sprite.Play(5, 12, frameTime);
+                    attackOrigin = new Vector2(position.X + 33, position.Y + 27);
+                }
+                else if (primaryOrientation == Orientation.Left)
+                {
+                    sprite.Play(4, 12, frameTime);
+                    attackOrigin = new Vector2(position.X + 26, position.Y + 27);
+                }
+
+                if (!isMoving)
+                {
+                    if (lockedOrientation == Orientation.Up)
+                    {
+                        sprite.Frame(0, 11);
+                    }
+                    else if (lockedOrientation == Orientation.Down)
+                    {
+                        sprite.Frame(0, 10);
+                    }
+                    else if (lockedOrientation == Orientation.Right)
+                    {
+                        sprite.Frame(0, 9);
+                    }
+                    else if (lockedOrientation == Orientation.Left)
+                    {
+                        sprite.Frame(0, 8);
+                    }
+                }
+
+           
+            }
+
+            if (!isAttacking)
+            {
+                maxSpeed = 36;
+            }
+
+            if (speed < 0 || speed > 0)
+            {
+                isMoving = true;
+            }
+            else if (speed == 0)
+            {
+                isMoving = false;
+            }
+
+            base.Movement(deltaTime);
+        }
+
+
+        public override void Update(GameTime gameTime)
+        {
+            sprite.Update(gameTime);
+            sprite.Position = position;
+
+            if (isAttacking)
+            {
+
+                if (lockedOrientation == Orientation.Up)
+                {
+
+                    if (!sprite.PlayOnce(1, 20, frameTime))
+                    {
+                        Attack();
+                        isAttacking = false;
+                    }
+
+                }
+                else if (lockedOrientation == Orientation.Down)
+                {
+                    if (!sprite.PlayOnce(0, 20, frameTime))
+                    {
+                        Attack();
+                        isAttacking = false;
+
+                    }
+
+                }
+                else if (lockedOrientation == Orientation.Left)
+                {
+                    if (!sprite.PlayOnce(2, 20, frameTime))
+                    {
+                        Attack();
+                        isAttacking = false;
+
+                    }
+
+                }
+                else if (lockedOrientation == Orientation.Right)
+                {
+                    if (!sprite.PlayOnce(3, 20, frameTime))
+                    {
+                        Attack();
+                        isAttacking = false;
+                    }
+
+                }
+                else if (lockedOrientation == Orientation.Zero)
+                {
+                    isAttacking = false;
+                }
+            }
+
+            base.Update(gameTime);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            sprite.Draw(spriteBatch);
+            healthBar.Draw(spriteBatch);
+ 
+            if (isAttacking)
+            {
+                Line enemyLaserLine = new Line(attackOrigin, EntityManager.player.position);
+
+                LevelManager.LevelObjectCollision(enemyLaserLine, 9);
+
+                Line newEnemyLaserLine = new Line(attackOrigin, enemyLaserLine.IntersectionPoint);
+                Vector2 laserVector = new Vector2(newEnemyLaserLine.P2.X - newEnemyLaserLine.P1.X, newEnemyLaserLine.P2.Y - newEnemyLaserLine.P1.Y);
+                int laserLength = (int)laserVector.Length();
+
+                Random rnd = new Random();
+                for (int i = 16; i < laserLength; i++)
+                {
+                    spriteBatch.Draw(TextureManager.cyanPixel, EntityManager.player.position, Color.White);
+                }
+            }
+
+
+            //base.Draw(spriteBatch);
+        }
+
+
     }
 
     class TestEnemy : MeleeEnemy
@@ -295,6 +581,8 @@ namespace Test_Loopguy
         {
             this.position = position;
             this.texture = TextureManager.enemyPlaceholder;
+            xOffset = 6;
+            yOffset = texture.Height;
             this.maxHealth = 5;
             this.maxSpeed = 40;
             aggroRange = 176;

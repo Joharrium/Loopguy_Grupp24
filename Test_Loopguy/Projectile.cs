@@ -14,6 +14,8 @@ namespace Test_Loopguy
         protected float rotation;
         protected ParticleSelection particleType;
 
+        public int damage;
+
         protected float bounceCooldown;
 
         public Projectile Clone()
@@ -21,7 +23,7 @@ namespace Test_Loopguy
             return (Projectile)MemberwiseClone();
         }
 
-        public Projectile(Vector2 position, Vector2 direction, float angle, float speed) :
+        public Projectile(Vector2 position, Vector2 direction, float angle, float speed, int damage) :
             base(position)
         {
             this.position = position;
@@ -81,12 +83,15 @@ namespace Test_Loopguy
     }
     internal class Shot : Projectile
     {
-        public Shot(Vector2 position, Vector2 direction, float angle, float speed) :
-            base(position, direction, angle, speed)
-        {
-            sprite = new AnimatedSprite(TextureManager.shot, new Point(8, 8));
-            sprite.Position = position;
+        //public int damage;
 
+        public Shot(Vector2 position, Vector2 direction, float angle, float speed, int damage) :
+            base(position, direction, angle, speed, damage)
+        {
+            this.damage = damage;
+
+            sprite = new AnimatedSprite(TextureManager.shot, new Point(8, 8));
+            sprite.Position = position;   
             particleType = ParticleSelection.ShotExplosion;
         }
     }
