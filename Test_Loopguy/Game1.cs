@@ -45,6 +45,7 @@ namespace Test_Loopguy
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = false;
+            graphics.SynchronizeWithVerticalRetrace = false;
             game1 = this; //Used for Exit() in menuManager
         }
 
@@ -205,7 +206,7 @@ namespace Test_Loopguy
             spriteBatch.DrawString(smallFont, "current level = " + LevelManager.GetCurrentId().ToString(), new Vector2(0, 64), Color.White);
             spriteBatch.DrawString(smallFont, "x clamp = " + camera.xClamped.ToString(), new Vector2(0, 80), Color.White);
             spriteBatch.DrawString(smallFont, "y clamp = " + camera.yClamped.ToString(), new Vector2(0, 96 ), Color.White);
-            spriteBatch.DrawString(smallFont, frameCounter.framerate.ToString(), new Vector2(300, 0), Color.White);
+            spriteBatch.DrawString(smallFont, (1 / gameTime.ElapsedGameTime.TotalSeconds).ToString(), new Vector2(300, 0), Color.White);
 
             spriteBatch.End();
 
