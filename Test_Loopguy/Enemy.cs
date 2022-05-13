@@ -14,6 +14,8 @@ namespace Test_Loopguy
         protected float idleDir;
         protected float idleTime;
         protected int maxSpeed;
+        protected int xOffset;
+        protected int yOffset;
         protected bool aggro = false;
         public bool hitDuringCurrentAttack = false;
         protected int knockBackDistance;
@@ -23,6 +25,7 @@ namespace Test_Loopguy
         protected float attackCooldown;
         protected float attackCooldownRemaining;
         protected float timeBetweenAICalls;
+        
         public Enemy(Vector2 position) : base(position)
         {
             this.position = position;
@@ -42,7 +45,7 @@ namespace Test_Loopguy
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
             footprint.Location = position.ToPoint();
-            healthBar.SetCurrentValue(position + new Vector2(6, texture.Height), health);
+            healthBar.SetCurrentValue(position + new Vector2(xOffset, yOffset), health);
 
             //if(timeBetweenAICalls < 0)
             //{
@@ -259,6 +262,9 @@ namespace Test_Loopguy
         {
             this.position = position;
             this.texture = TextureManager.enemyPlaceholder;
+            frameSize = new Point(texture.Width, texture.Height);
+            xOffset = 6;
+            yOffset = texture.Height;
             this.maxHealth = 4;
             this.maxSpeed = 36;
             minRange = 40;
@@ -266,8 +272,8 @@ namespace Test_Loopguy
             fleeRange = 80;
             aggroRange = 192;
             damage = 1;
-            knockBackDistance = 180;
-            knockBackDuration = 160;
+            knockBackDistance = 0;
+            knockBackDuration = 0;
             Init();
             aggro = false;
             attackCooldown = 620;
@@ -297,9 +303,8 @@ namespace Test_Loopguy
         bool directionIsLocked;
         bool isMoving;
 
-        public int rangedRobotEnemyDamage;
-
         int frameTime = 100;
+        //Point frameSize = new Point(64, 64);
 
         Vector2 attackOrigin;
         Vector2 oldPosition;
@@ -311,13 +316,15 @@ namespace Test_Loopguy
         {
             
             this.position = position;
-            this.maxSpeed = 20;
-            sprite = new AnimatedSprite(TextureManager.robotEnemySheet, new Point(64, 64));
-            sprite.Position = position;
-            //attackOrigin = new Vector2(position.X + 25, position.Y + 28);
+            frameSize = new Point(64, 64);
+            xOffset = frameSize.X / 2;
+            yOffset = frameSize.Y;//texture.Height * 12;
+            maxSpeed = 20;
+
+            
+            sprite = new AnimatedSprite(TextureManager.robotEnemySheet, frameSize);
+            
             maxHealth = 10;
-            health = maxHealth;
-            //healthBar = new HealthBar(maxHealth);
 
             minRange = 40;
             maxRange = 100; //för attack
@@ -472,6 +479,7 @@ namespace Test_Loopguy
         public override void Update(GameTime gameTime)
         {
             sprite.Update(gameTime);
+            sprite.Position = position;
 
             if (isAttacking)
             {
@@ -527,8 +535,8 @@ namespace Test_Loopguy
         public override void Draw(SpriteBatch spriteBatch)
         {
             sprite.Draw(spriteBatch);
-            sprite.Position = position;
-
+            healthBar.Draw(spriteBatch);
+ 
             if (isAttacking)
             {
                 Line enemyLaserLine = new Line(attackOrigin, EntityManager.player.position);
@@ -560,6 +568,8 @@ namespace Test_Loopguy
         {
             this.position = position;
             this.texture = TextureManager.enemyPlaceholder;
+            xOffset = 6;
+            yOffset = texture.Height;
             this.maxHealth = 5;
             this.maxSpeed = 40;
             aggroRange = 176;
