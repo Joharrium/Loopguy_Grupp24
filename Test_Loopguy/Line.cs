@@ -33,6 +33,7 @@ namespace Test_Loopguy
             Line cBottom = this;
 
             Line smallLine = this;
+            //double smallestline = smallLine.Length();
 
             bool left = LineIntersects(rleft);
             if (left)
@@ -41,8 +42,24 @@ namespace Test_Loopguy
                 if (cLeft.Length() < smallLine.Length())
                 {
                     smallLine = cLeft;
+                    //smallestline = smallLine.Length();
                 }
             }
+            {
+                /*
+                            if(IntersectionPoint != null && IntersectionPoint != Vector2.Zero)
+                            {
+                                cLeft = new Line(P1, IntersectionPoint);
+                                if(cLeft.Length() < smallLine.Length())
+                                {
+                                    smallLine = cLeft;
+                                }
+
+                            }
+                            */
+            }
+
+
 
             bool right = LineIntersects(rright);
             if (right)
@@ -51,7 +68,21 @@ namespace Test_Loopguy
                 if (cRight.Length() < smallLine.Length())
                 {
                     smallLine = cRight;
+                    //smallestline = smallLine.Length();
                 }
+            }
+
+            {
+                /*
+                 if (IntersectionPoint != null && IntersectionPoint != cLeft.P2)
+                    {
+                        cRight = new Line(P1, IntersectionPoint);
+                        if(cRight.Length() < smallLine.Length())
+                        {
+                            smallLine = cRight;
+                        }
+                    }
+                 */
             }
 
 
@@ -62,6 +93,7 @@ namespace Test_Loopguy
                 if (cTop.Length() < smallLine.Length())
                 {
                     smallLine = cTop;
+                    //smallestline = smallLine.Length();
                 }
             }
 
@@ -72,6 +104,7 @@ namespace Test_Loopguy
                 if (cBottom.Length() < smallLine.Length())
                 {
                     smallLine = cBottom;
+                    //smallestline = smallLine.Length();
                 }
             }
 
@@ -79,7 +112,10 @@ namespace Test_Loopguy
             IntersectionPoint = smallLine.P2;
 
 
+            //If any of the above are true, the line intersects with rectangle
+
                 return smallLine;
+
         }
 
         public bool RectangleIntersects(Rectangle rect)
@@ -96,6 +132,7 @@ namespace Test_Loopguy
             Line cBottom = this;
 
             Line smallLine = this;
+            //double smallestline = smallLine.Length();
 
             bool left = LineIntersects(rleft);
             if(left)
@@ -104,8 +141,24 @@ namespace Test_Loopguy
                 if (cLeft.Length() < smallLine.Length())
                 {
                     smallLine = cLeft;
+                    //smallestline = smallLine.Length();
                 }
             }
+            {
+                /*
+                            if(IntersectionPoint != null && IntersectionPoint != Vector2.Zero)
+                            {
+                                cLeft = new Line(P1, IntersectionPoint);
+                                if(cLeft.Length() < smallLine.Length())
+                                {
+                                    smallLine = cLeft;
+                                }
+
+                            }
+                            */
+            }
+
+
 
             bool right = LineIntersects(rright);
             if(right)
@@ -114,9 +167,24 @@ namespace Test_Loopguy
                 if (cRight.Length() < smallLine.Length())
                 {
                     smallLine = cRight;
+                    //smallestline = smallLine.Length();
                 }
             }
 
+            {
+                /*
+                 if (IntersectionPoint != null && IntersectionPoint != cLeft.P2)
+                    {
+                        cRight = new Line(P1, IntersectionPoint);
+                        if(cRight.Length() < smallLine.Length())
+                        {
+                            smallLine = cRight;
+                        }
+                    }
+                 */
+            }
+
+            
             bool top = LineIntersects(rtop);
             if(top)
             {
@@ -124,6 +192,7 @@ namespace Test_Loopguy
                 if (cTop.Length() < smallLine.Length())
                 {
                     smallLine = cTop;
+                    //smallestline = smallLine.Length();
                 }
             }
 
@@ -134,12 +203,15 @@ namespace Test_Loopguy
                 if (cBottom.Length() < smallLine.Length())
                 {
                     smallLine = cBottom;
+                    //smallestline = smallLine.Length();
                 }
             }
 
             P2 = smallLine.P2;
             IntersectionPoint = smallLine.P2;
 
+
+            //If any of the above are true, the line intersects with rectangle
             if (left || right || top || bottom)
             {
                 return true;
@@ -152,6 +224,8 @@ namespace Test_Loopguy
         {
             return Math.Abs(Math.Sqrt(Math.Pow(P1.X - P2.X, 2) + Math.Pow(P1.Y - P2.Y, 2)));
         }
+
+
 
         public bool LineIntersects(Line o)
         {
