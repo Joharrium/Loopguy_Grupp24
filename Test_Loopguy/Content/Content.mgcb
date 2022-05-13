@@ -1749,6 +1749,13 @@
 /processorParam:TextureFormat=Color
 /build:meleefx.png
 
+#begin MenuFont2.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:MenuFont2.spritefont
+
 #begin notex.png
 /importer:TextureImporter
 /processor:TextureProcessor

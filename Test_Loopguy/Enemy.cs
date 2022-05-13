@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 namespace Test_Loopguy
 {
@@ -127,14 +128,17 @@ namespace Test_Loopguy
             spriteBatch.Draw(texture, position, Color.White);
             healthBar.Draw(spriteBatch);
         }
+
         protected virtual void AggroBehavior()
         {
 
         }
     }
+
     class MeleeEnemy : Enemy
     {
         protected int range;
+
         public MeleeEnemy(Vector2 position) : base(position)
         {
 
@@ -142,20 +146,29 @@ namespace Test_Loopguy
 
         public override void Update(GameTime gameTime)
         {
-            
             base.Update(gameTime);
             //Movement(deltaTime);
-
         }
 
         protected override void AggroBehavior()
         {
-            Vector2 thing = centerPosition - EntityManager.player.centerPosition;
-            thing.Normalize();
-            thing *= -1;
+            Vector2 distBetweenPlrAndEnemy = centerPosition - EntityManager.player.centerPosition;
+            Debug.WriteLine(distBetweenPlrAndEnemy.ToString());
+            distBetweenPlrAndEnemy.Normalize();
+            distBetweenPlrAndEnemy *= -1;
 
-            direction = thing;
+            direction = distBetweenPlrAndEnemy;
             speed = maxSpeed;
+
+        }
+
+        public virtual void MeleeAttack()
+        {
+            /// Pseudo code:
+            /// if enemy is close enough to player:
+            /// make melee attack and then check if he is still close enough
+            /// if he is, make another attack
+            /// dont forget to have timer between attack so it dosent destroy player.
         }
     }
 
