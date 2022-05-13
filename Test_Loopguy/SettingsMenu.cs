@@ -16,7 +16,7 @@ namespace Test_Loopguy
         static Button returnButton;
         Slider sound, music, screenSize;
         Checkbox fullscreen;
-
+        //wat
         List<Component> gameComponents;
 
         static Component currentSelection;

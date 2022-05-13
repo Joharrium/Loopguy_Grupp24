@@ -13,7 +13,7 @@ namespace Test_Loopguy
         Texture2D check, uncheck;
         bool state;
         string text;
-
+        //yep
         public bool State
         {
             get { return state; }
