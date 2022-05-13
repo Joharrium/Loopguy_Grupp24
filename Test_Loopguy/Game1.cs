@@ -20,6 +20,7 @@ namespace Test_Loopguy
 
         public static Camera camera;
         public static Game1 game1;
+        private SmartFramerate frameCounter;
 
         public static Form1 editorFrm;
         Thread formThread;
@@ -57,8 +58,7 @@ namespace Test_Loopguy
             spriteBatch = new SpriteBatch(GraphicsDevice);
             TextureManager.LoadTextures(Content);
             ProfileManager.Init();
-            
-
+            frameCounter = new SmartFramerate(500);
             
          
             EntityManager.PlayerInitialization();
@@ -102,6 +102,7 @@ namespace Test_Loopguy
 
         protected override void Update(GameTime gameTime)
         {
+            frameCounter.Update((float)gameTime.ElapsedGameTime.TotalSeconds) ;
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == Microsoft.Xna.Framework.Input.ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
             {
                 Exit();
@@ -124,7 +125,7 @@ namespace Test_Loopguy
             else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.Tab) )
             {
                 if(StateManager.currentState == StateManager.GameState.InGame)
-                {
+                { 
                     StateManager.currentState = StateManager.GameState.Menu;
                 }
                 else
@@ -204,6 +205,7 @@ namespace Test_Loopguy
             spriteBatch.DrawString(smallFont, "current level = " + LevelManager.GetCurrentId().ToString(), new Vector2(0, 64), Color.White);
             spriteBatch.DrawString(smallFont, "x clamp = " + camera.xClamped.ToString(), new Vector2(0, 80), Color.White);
             spriteBatch.DrawString(smallFont, "y clamp = " + camera.yClamped.ToString(), new Vector2(0, 96 ), Color.White);
+            spriteBatch.DrawString(smallFont, frameCounter.framerate.ToString(), new Vector2(300, 0), Color.White);
 
             spriteBatch.End();
 

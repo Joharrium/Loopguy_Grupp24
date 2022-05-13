@@ -18,6 +18,8 @@ namespace Test_Loopguy
         internal List<Projectile> playerProjectiles;
         internal List<Song> idleSongs = new List<Song>();
         internal List<Song> combatSongs = new List<Song>();
+        private List<Wall> walls = new List<Wall>();
+        private List<Hazard> hazards = new List<Hazard>();
 
         internal Level (int id, Rectangle cameraBounds, List<LevelObject> levelObjects, Tile[,] tiles, List<Enemy> enemies)
         {
@@ -30,6 +32,8 @@ namespace Test_Loopguy
             playerProjectiles = new List<Projectile>();
             idleSongs.AddRange(LevelManager.SongLoad(id, false));
             combatSongs.AddRange(LevelManager.SongLoad(id, true));
+            walls.AddRange(tiles.OfType<Wall>());
+            hazards.AddRange(tiles.OfType<Hazard>());
 
         }
 
@@ -99,14 +103,11 @@ namespace Test_Loopguy
                     
                 }
 
-                foreach (Tile w in tiles)
+                foreach (Wall w in walls)
                 {
-                    if (w is Wall)
+                    if (s.CheckCollision(w))
                     {
-                        if (s.CheckCollision(w))
-                        {
-                            projectilesToRemove.Add(s);
-                        }
+                        projectilesToRemove.Add(s);
                     }
                 }
             }
@@ -125,14 +126,11 @@ namespace Test_Loopguy
                     }
                 }
 
-                foreach (Tile w in tiles)
+                foreach (Wall w in walls)
                 {
-                    if(w is Wall)
+                    if (s.CheckCollision(w))
                     {
-                        if (s.CheckCollision(w))
-                        {
-                            projectilesToRemove.Add(s);
-                        }
+                        projectilesToRemove.Add(s);
                     }
                 }
 
@@ -177,7 +175,7 @@ namespace Test_Loopguy
                 levelObjects.Add(lo);
             }
 
-            foreach(Hazard h in tiles.OfType<Hazard>())
+            foreach(Hazard h in hazards)
             {
                 if(player.footprint.Intersects(h.hitBox) && !player.dashing)
                 {
@@ -313,20 +311,24 @@ namespace Test_Loopguy
         
         public void Draw(SpriteBatch spriteBatch)
         {
+            Rectangle cullingRect = new Rectangle((int)(EntityManager.player.position.X - 480), (int)(EntityManager.player.position.Y - 270), 960, 540);
             foreach (Tile t in tiles)
             {
-                if(t is Floor || t is Hazard)
-                t.Draw(spriteBatch);
+                if(!(t is Wall))
+                {
+                    if(cullingRect.Contains(t.centerPosition))
+                    {
+                        t.Draw(spriteBatch);
+                    }
+                }
+               
             }
             foreach (Tile t in tiles)
             {
                 t.DrawEdges(spriteBatch);
             }
-            foreach (Tile t in tiles.OfType<Wall>())
-            {
-                //t.Draw(spriteBatch);
-            }
 
+            
 
             List<GameObject> objects = new List<GameObject>();
             objects.AddRange(levelObjects);
@@ -334,7 +336,7 @@ namespace Test_Loopguy
             objects.Add(EntityManager.player);
             objects.AddRange(playerProjectiles);
             objects.AddRange(enemyProjectiles);
-            objects.AddRange(tiles.OfType<Wall>());
+            objects.AddRange(walls);
 
             List<GameObject> sortedList = objects.OrderBy(o => o.centerPosition.Y + o.texture.Height).ToList();
             objects = sortedList;
@@ -344,6 +346,7 @@ namespace Test_Loopguy
 
                 if (g != null)
                 {
+                    if(cullingRect.Contains(g.centerPosition))
                     g.Draw(spriteBatch);
                 }
                 
@@ -404,7 +407,7 @@ namespace Test_Loopguy
 
         public bool WallCollision(Vector2 check)
         {
-            foreach (Wall w in tiles.OfType<Wall>())
+            foreach (Wall w in walls)
             {
                 if (w.footprint.Contains(check))
                 {
@@ -417,7 +420,7 @@ namespace Test_Loopguy
         public bool WallCollision(Line line)
         {
             Line shortestLine = line;
-            foreach (Wall w in tiles.OfType<Wall>())
+            foreach (Wall w in walls)
             {
                 if (line.RectangleIntersects(w.hitBox) && line.LineFromIntersect(w.hitBox).Length() < shortestLine.Length())
                 {
@@ -528,14 +531,8 @@ namespace Test_Loopguy
                         break;
                 }
             }
-            foreach (Tile t in tiles)
-            {
-                //t.UpdateEdges();
-            }
-            foreach (Wall w in tiles.OfType<Wall>())
-            {
-                //w.SetConnections();
-            }
+            walls.AddRange(tiles.OfType<Wall>());
+            hazards.AddRange(tiles.OfType<Hazard>());
 
         }
 
