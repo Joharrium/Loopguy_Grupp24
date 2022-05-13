@@ -113,8 +113,6 @@ namespace Test_Loopguy
         }
         static void LoadMusic(ContentManager c)
         {
-            sus_high = c.Load<SoundEffect>("audio/music/sus_high");
-            sus_low = c.Load<SoundEffect>("audio/music/sus_low");
             unatco_hq = c.Load<SoundEffect>("audio/music/unatco_hq");
             march_of_the_white_knights = c.Load<SoundEffect>("audio/music/march_of_the_white_knights");
             nyc_streets = c.Load<SoundEffect>("audio/music/nyc_streets");

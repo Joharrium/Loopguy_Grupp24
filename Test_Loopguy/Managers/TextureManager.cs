@@ -39,7 +39,6 @@ namespace Test_Loopguy
             LoadCharacters(c);
 
             notex = c.Load<Texture2D>("notex");
-            checkers = c.Load<Texture2D>("checkers");
             playerSheet = c.Load<Texture2D>("Loopy3");
             gunSheet = c.Load<Texture2D>("guns");
             target = c.Load<Texture2D>("target");
