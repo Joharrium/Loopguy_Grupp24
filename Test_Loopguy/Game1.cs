@@ -77,9 +77,11 @@ namespace Test_Loopguy
             graphics.PreferredBackBufferHeight = screenRect.Height;
             graphics.ApplyChanges();
 
+
             MenuManager.Init();
 
             LevelManager.LoadLevel(1);
+
             LevelManager.EntranceLoad();
 
             camera = new Camera();

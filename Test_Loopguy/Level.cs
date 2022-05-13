@@ -76,7 +76,10 @@ namespace Test_Loopguy
 
                 if (s.CheckCollision(player) && !player.dashing)
                 {
-                    player.TakeDamage(1);
+
+                    player.TakeDamage(s.damage);
+
+                    //player.TakeDamage(1);
                     projectilesToRemove.Add(s);
                 }
                 

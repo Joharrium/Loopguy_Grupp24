@@ -11,6 +11,7 @@ namespace Test_Loopguy
 
         protected Vector2 direction;
         protected float speed;
+        protected Point frameSize;
 
         public MovingObject (Vector2 position)
             : base(position)
@@ -20,7 +21,7 @@ namespace Test_Loopguy
 
         public virtual void Update(GameTime gameTime)
         {
-            hitBox = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+            hitBox = new Rectangle((int)position.X, (int)position.Y, frameSize.X, frameSize.Y);
             centerPosition = new Vector2(position.X + texture.Width / 2, position.Y + texture.Height / 2);
 
         }
