@@ -257,7 +257,7 @@ namespace Test_Loopguy
             spriteBatch.Draw(TextureManager.cursor, new Vector2(Game1.mousePos.X - TextureManager.cursor.Width / 2, Game1.mousePos.Y - TextureManager.cursor.Height / 2), cursorColor);
 
             //Draw title
-
+            spriteBatch.Draw(TextureManager.logo, new Vector2(240, 20), Color.White);
 
             //Draw image
             spriteBatch.Draw(TextureManager.playerCharacterForMenu, imagePosition, Color.White);
