@@ -20,6 +20,7 @@ namespace Test_Loopguy
         internal List<Song> combatSongs = new List<Song>();
         private List<Wall> walls = new List<Wall>();
         private List<Hazard> hazards = new List<Hazard>();
+        private List<Destructible> destructibles = new List<Destructible>();
 
         internal Level (int id, Rectangle cameraBounds, List<LevelObject> levelObjects, Tile[,] tiles, List<Enemy> enemies)
         {
@@ -34,6 +35,7 @@ namespace Test_Loopguy
             combatSongs.AddRange(LevelManager.SongLoad(id, true));
             walls.AddRange(tiles.OfType<Wall>());
             hazards.AddRange(tiles.OfType<Hazard>());
+            destructibles.AddRange(levelObjects.OfType<Destructible>());
 
         }
 
@@ -210,7 +212,7 @@ namespace Test_Loopguy
             List<Destructible> destructiblesToRemove = new List<Destructible>();
             List<Projectile> projectilesToRemove = new List<Projectile>();
 
-            foreach (Destructible lo in levelObjects.OfType<Destructible>())
+            foreach (Destructible lo in destructibles)
             {
                 foreach (Projectile s in playerProjectiles)
                 {
@@ -249,6 +251,7 @@ namespace Test_Loopguy
             foreach (Destructible d in destructiblesToRemove)
             {
                 levelObjects.Remove(d);
+                destructibles.Remove(d);
             }
 
             foreach (Projectile s in projectilesToRemove)
@@ -437,6 +440,7 @@ namespace Test_Loopguy
             //sorts by Y level so objects automatically are drawn in order but its kinda wonky and maybe not good
             List<LevelObject> sortedList = levelObjects.OrderBy(o => o.position.Y + o.texture.Height).ToList();
             levelObjects = sortedList;
+            destructibles.AddRange(levelObjects.OfType<Destructible>());
         }
 
         public void RemoveObject(Vector2 pos)
