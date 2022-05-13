@@ -376,18 +376,17 @@ namespace Test_Loopguy
             {
                 if (lo != null && lo.height > height)
                 {
-                    if (line.RectangleIntersects(lo.footprint) && line.LineFromIntersect(lo.footprint).Length() < shortestLine.Length())
+                    if (line.RectangleIntersects(lo.hitBox) && line.LineFromIntersect(lo.hitBox).Length() < shortestLine.Length())
                     {
-                        shortestLine = line.LineFromIntersect(lo.footprint);
+                        shortestLine = line.LineFromIntersect(lo.hitBox);
                         return true;
                     }
                 }
 
             }
             {
-                //return WallCollision(check.Center.ToVector2());
+                return WallCollision(line);
             }
-            return false;
         }
         public Rectangle GetBounds()
         {
@@ -402,16 +401,26 @@ namespace Test_Loopguy
 
         public bool WallCollision(Vector2 check)
         {
-            foreach (Tile w in tiles)
+            foreach (Wall w in tiles.OfType<Wall>())
             {
-                if(w is Wall)
+                if (w.footprint.Contains(check))
                 {
-                    if (w.hitBox.Contains(check))
-                    {
-                        return true;
-                    }
+                    return true;
                 }
-                
+            }
+            return false;
+        }
+
+        public bool WallCollision(Line line)
+        {
+            Line shortestLine = line;
+            foreach (Wall w in tiles.OfType<Wall>())
+            {
+                if (line.RectangleIntersects(w.hitBox) && line.LineFromIntersect(w.hitBox).Length() < shortestLine.Length())
+                {
+                    shortestLine = line.LineFromIntersect(w.hitBox);
+                    return true;
+                }
             }
             return false;
         }

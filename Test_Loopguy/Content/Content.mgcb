@@ -741,6 +741,18 @@
 /processorParam:TextureFormat=Color
 /build:gfx/interface/menu_bg.png
 
+#begin gfx/interface/menu_items/logo.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/interface/menu_items/logo.png
+
 #begin gfx/interface/menu_items/selectedMenuBox.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -752,6 +764,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/interface/menu_items/selectedMenuBox.png
+
+#begin gfx/interface/menu_items/slider_container.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/interface/menu_items/slider_container.png
+
+#begin gfx/interface/menu_items/slider_fill.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/interface/menu_items/slider_fill.png
 
 #begin gfx/interface/placeholder so git finds the folder.PNG
 /importer:TextureImporter

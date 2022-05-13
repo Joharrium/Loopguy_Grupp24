@@ -55,10 +55,11 @@ namespace Test_Loopguy
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            ProfileManager.Init();
-
             TextureManager.LoadTextures(Content);
+            ProfileManager.Init();
+            
+
+            
          
             EntityManager.PlayerInitialization();
             Audio.Load(Content);
@@ -76,9 +77,10 @@ namespace Test_Loopguy
             graphics.PreferredBackBufferHeight = screenRect.Height;
             graphics.ApplyChanges();
 
+            MenuManager.Init();
+
             LevelManager.LoadLevel(1);
             LevelManager.EntranceLoad();
-            MenuManager.LoadMenuButtons();
 
             camera = new Camera();
             camera.SetPosition(new Vector2(200, 200));
@@ -117,6 +119,19 @@ namespace Test_Loopguy
 
                 }
             }
+            else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.Tab) )
+            {
+                if(StateManager.currentState == StateManager.GameState.InGame)
+                {
+                    StateManager.currentState = StateManager.GameState.Menu;
+                }
+                else
+                {
+                    StateManager.currentState = StateManager.GameState.InGame;
+                }
+                
+            }
+            
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             InputReader.Update();
@@ -199,6 +214,16 @@ namespace Test_Loopguy
         void ScaleWindow(int i)
         {
             windowScale += i;
+            screenRect.Width = windowScale * windowX;
+            screenRect.Height = windowScale * windowY;
+            graphics.PreferredBackBufferWidth = screenRect.Width;
+            graphics.PreferredBackBufferHeight = screenRect.Height;
+            graphics.ApplyChanges();
+        }
+
+        public void ScaleWindowAbsolute(int i)
+        {
+            windowScale = i;
             screenRect.Width = windowScale * windowX;
             screenRect.Height = windowScale * windowY;
             graphics.PreferredBackBufferWidth = screenRect.Width;
