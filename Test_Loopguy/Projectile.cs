@@ -34,8 +34,8 @@ namespace Test_Loopguy
 
             rotation = angle;
 
-            sprite = new AnimatedSprite(TextureManager.shot, new Point(8, 8));
-            sprite.Position = position;
+            //sprite = new AnimatedSprite(TextureManager.shot, new Point(8, 8));
+            //sprite.Position = position;
 
             particleType = ParticleSelection.ShotExplosion;
         }
@@ -53,17 +53,17 @@ namespace Test_Loopguy
             }
         }
 
-        public override void Update(GameTime gameTime)
-        {
-            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            base.Update(gameTime);
+        //public override void Update(GameTime gameTime)
+        //{
+        //    float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+        //    base.Update(gameTime);
 
-            sprite.Position = position;
-            sprite.Play(0, 4, 50);
-            sprite.Update(gameTime);
+        //    sprite.Position = position;
+        //    sprite.Play(0, 4, 50);
+        //    sprite.Update(gameTime);
 
-            base.Movement(deltaTime);
-        }
+        //    base.Movement(deltaTime);
+        //}
 
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -93,6 +93,29 @@ namespace Test_Loopguy
             sprite = new AnimatedSprite(TextureManager.shot, new Point(8, 8));
             sprite.Position = position;   
             particleType = ParticleSelection.ShotExplosion;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            base.Update(gameTime);
+
+            sprite.Position = position;
+            sprite.Play(0, 4, 50);
+            sprite.Update(gameTime);
+
+            base.Movement(deltaTime);
+        }
+    }
+    
+    internal class RobotEnemyShot : Projectile
+    {
+        public RobotEnemyShot(Vector2 position, Vector2 direction, float angle, float speed, int damage) :
+            base(position, direction, angle, speed, damage)
+        {
+            this.damage = damage;
+
+            //sprite = new AnimatedSprite(TextureManager.)
         }
     }
 }
