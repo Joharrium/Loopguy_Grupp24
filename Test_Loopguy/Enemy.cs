@@ -24,7 +24,7 @@ namespace Test_Loopguy
         public bool hitDuringCurrentAttack = false;
 
         //Used for sending a bool value (using sprite.PlayOnce) to Level.EnemyUpdate, in order to remove enemies after their death animation, double negation bc Sprite.PlayOnce returns false
-        public bool isNotDying = true;  
+        public bool isNotDying = true;  //Försökte göra en metod för att motverka redundans i samtliga enemy update(), men work in progress.
 
         protected int knockBackDistance;
         protected float knockBackDuration;
