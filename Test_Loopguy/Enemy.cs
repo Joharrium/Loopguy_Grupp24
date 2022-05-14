@@ -15,8 +15,11 @@ namespace Test_Loopguy
         protected float idleDir;
         protected float idleTime;
         protected int maxSpeed;
+
+        //Used for healthbar positioning
         protected int xOffset;
         protected int yOffset;
+
         protected bool aggro = false;
         public bool hitDuringCurrentAttack = false;
         protected int knockBackDistance;
@@ -303,26 +306,19 @@ namespace Test_Loopguy
             direction.Normalize();
             direction *= -1;
 
-            LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 300, damage));
+            LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 150, damage));
         }
     }
 
     class RangedRobotEnemy : RangedEnemy
-    {
-        
-        AnimatedSprite sprite;  //Bör läggas in i RangedEnemy I guess
-
+    {       
         bool isAttacking = false;
-        bool directionIsLocked;
         bool isMoving;
 
         int frameTime = 100;
-        //Point frameSize = new Point(64, 64);
 
         Vector2 attackOrigin;
-        Vector2 oldPosition;
         Orientation lockedOrientation;
-
 
 
         public RangedRobotEnemy(Vector2 position) : base(position)  
@@ -331,7 +327,7 @@ namespace Test_Loopguy
             this.position = position;
             frameSize = new Point(64, 64);
             xOffset = frameSize.X / 2;
-            yOffset = frameSize.Y;//texture.Height * 12;
+            yOffset = frameSize.Y;
             maxSpeed = 20;
 
             
@@ -340,9 +336,9 @@ namespace Test_Loopguy
             maxHealth = 5;
 
             minRange = 40;
-            maxRange = 100; //för attack
-            fleeRange = 20; //dit den flyr innan den börjar attackera
-            aggroRange = 192; //när den upptäcker spelaren
+            maxRange = 120;
+            fleeRange = 20; 
+            aggroRange = 192;
             damage = 3;
             knockBackDistance = 0;
             knockBackDuration = 0;
@@ -363,7 +359,7 @@ namespace Test_Loopguy
             direction.Normalize();
             direction *= -1;
 
-            LevelManager.AddEnemyProjectile(new Shot(attackOrigin, direction, (float)Helper.GetAngle(attackOrigin, EntityManager.player.centerPosition, 0 + Math.PI), 300, damage));
+            LevelManager.AddEnemyProjectile(new RobotEnemyShot(attackOrigin, direction, (float)Helper.GetAngle(attackOrigin, EntityManager.player.centerPosition, 0 + Math.PI), 300, damage));
         }
 
         protected override void AggroBehavior()
@@ -409,7 +405,6 @@ namespace Test_Loopguy
 
         protected override void AttackBehavior()
         {
-
             maxSpeed = 0;
 
             if (!isAttacking)
@@ -417,7 +412,6 @@ namespace Test_Loopguy
                 lockedOrientation = primaryOrientation;
                 isAttacking = true;
             }
-
         }
 
         public override void Movement(float deltaTime)
@@ -466,9 +460,7 @@ namespace Test_Loopguy
                     {
                         sprite.Frame(0, 8);
                     }
-                }
-
-           
+                }       
             }
 
             if (!isAttacking)
@@ -566,12 +558,8 @@ namespace Test_Loopguy
                     spriteBatch.Draw(TextureManager.cyanPixel, EntityManager.player.position, Color.White);
                 }
             }
-
-
             //base.Draw(spriteBatch);
         }
-
-
     }
 
     class TestEnemy : MeleeEnemy
@@ -592,7 +580,5 @@ namespace Test_Loopguy
             Init();
             aggro = false;
         }
-    }
-
-    
+    }   
 }
