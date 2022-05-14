@@ -34,9 +34,6 @@ namespace Test_Loopguy
 
             rotation = angle;
 
-            //sprite = new AnimatedSprite(TextureManager.shot, new Point(8, 8));
-            //sprite.Position = position;
-
             particleType = ParticleSelection.ShotExplosion;
         }
 
@@ -52,18 +49,6 @@ namespace Test_Loopguy
                 return false;
             }
         }
-
-        //public override void Update(GameTime gameTime)
-        //{
-        //    float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-        //    base.Update(gameTime);
-
-        //    sprite.Position = position;
-        //    sprite.Play(0, 4, 50);
-        //    sprite.Update(gameTime);
-
-        //    base.Movement(deltaTime);
-        //}
 
         public override void Draw(SpriteBatch spriteBatch)
         {
