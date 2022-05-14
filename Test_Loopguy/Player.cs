@@ -38,7 +38,6 @@ namespace Test_Loopguy
         Vector2 dashDirection;
         Vector2 dashPosition;
 
-        float traveledDistance = 35;
         float distanceBetweenFootsteps = 35;
 
         public bool usedGate;
@@ -48,14 +47,11 @@ namespace Test_Loopguy
 
         float gunAngle;
         float aimAngle;
-        const float pi = (float)Math.PI;
 
         float deltaTime;
 
         float timeSinceDash;
         const float timeBetweedDashes = 1f;
-
-        const int meleeRange = 22;
 
         const int dashRange = 5; //pixels per frame
         const int maxDashFrames = 10; //frames per dash
@@ -136,7 +132,7 @@ namespace Test_Loopguy
 
             if (attacking)
             {
-                Melee(deltaTime);
+                PlayMelee(deltaTime);
 
                 
                 //Here is where you would use the MeleeHit method, I think
@@ -151,7 +147,7 @@ namespace Test_Loopguy
             }
             else if (dashing)
             {
-
+                //do nothing
             }
             else
             {
@@ -242,8 +238,7 @@ namespace Test_Loopguy
                 if(tile.footsteps != null)
                 {
                     tile.footsteps.PlayRandomSound();
-                }
-                
+                }             
             }
         }
 
@@ -330,16 +325,6 @@ namespace Test_Loopguy
             keys.AddRange(ProfileManager.GetKeys());
         }
 
-        public void TakeDamage(int damage)
-        {
-            health -= damage;
-            Audio.PlaySound(Audio.player_hit);
-            if( health <= 0)
-            {
-                LevelManager.Reset();
-            }
-        }
-
         public void UseHealthPack()
         {
             if(storedHealthPacks > 0 && health < maxHealth)
@@ -404,7 +389,7 @@ namespace Test_Loopguy
             
         }
 
-        public void Melee(float deltaTime)
+        public void PlayMelee(float deltaTime)
         {
             int rowIntPlayer = 6 + (int)primaryOrientation - 1; //Melee sprites are 6 rows down on player sprite sheet
             int rowIntSword = (int)primaryOrientation - 1; //Wow dude??
@@ -546,45 +531,6 @@ namespace Test_Loopguy
             viablePos = new Vector2(viablePos.X - sprite.size.X / 2, viablePos.Y - sprite.size.Y / 2);
             position = viablePos;
 
-        }
-
-        private void CheckMovement(float deltaTime)
-        {
-            Vector2 futurePosCalc = position + direction * speed * deltaTime;
-            Rectangle futureFootPrint = new Rectangle((int)futurePosCalc.X + 12, (int)futurePosCalc.Y + 24, footprint.Width, footprint.Height);
-
-            bool bingus = false;
-            bool bongus = false;
-            if (LevelManager.LevelObjectCollision(futureFootPrint, 0))
-            {
-                if(LevelManager.LevelObjectCollision(new Rectangle((int)futurePosCalc.X + 12, (int)position.Y + 24, footprint.Width, footprint.Height), 0))
-                {
-                    bingus = true;
-                }
-                if(LevelManager.LevelObjectCollision(new Rectangle((int)position.X + 12, (int)futurePosCalc.Y + 24, footprint.Width, footprint.Height), 0))
-                {
-                    bongus = true;
-                }
-                if (!bingus && bongus)
-                {
-                    traveledDistance += Math.Abs(position.X - futurePosCalc.X);
-                    position.X = futurePosCalc.X;
-
-                }
-
-
-                if (!bongus && bingus)
-                {
-                    traveledDistance += Math.Abs(position.Y - futurePosCalc.Y);
-                    position.Y = futurePosCalc.Y;
-                }
-            }
-            else
-            {
-                Vector2 delta = position - futurePosCalc;
-                traveledDistance += Math.Abs(delta.Length());
-                position += direction * speed * deltaTime;
-            }
         }
 
         public override void Movement(float deltaTime)
@@ -764,96 +710,6 @@ namespace Test_Loopguy
 
 
             gunSprite.DrawRotation(spriteBatch, gunAngle);
-        }
-
-        public bool MeleeHit(GameObject obj)
-        {
-            foreach (Vector2 v in LevelManager.GetPointsOfObject(obj))
-            {
-                if (Vector2.Distance(centerPosition, v) <= meleeRange)
-                {
-
-                    float angle = (float)Helper.GetAngle(centerPosition, v, 0);
-
-                    if (primaryOrientation == Orientation.Down)
-                    { 
-                        if (secondaryOrientation == Orientation.Down)
-                        {
-                            if (angle >= pi * 1.75f || angle < pi * 0.25f)
-                                return true;
-                        }
-                        else if (secondaryOrientation == Orientation.Left)
-                        {
-                            if (angle >= pi * 1.5f)
-                                return true;
-                        }
-                        else if (secondaryOrientation == Orientation.Right)
-                        {
-                            if (angle < pi * 0.5f)
-                                return true;
-                        }
-                    }
-                    else if (primaryOrientation == Orientation.Right)
-                    { 
-                        if (secondaryOrientation == Orientation.Right)
-                        {
-                            if (angle >= pi * 0.25f && angle < pi * 0.75f)
-                                return true;
-                        }
-                        else if (secondaryOrientation == Orientation.Up)
-                        {
-                            if (angle >= pi * 0.5f && angle < pi)
-                                return true;
-                        }
-                        else if (secondaryOrientation == Orientation.Down)
-                        {
-                            if (angle < pi * 0.5f)
-                                return true;
-                        }
-                    }
-                    else if (primaryOrientation == Orientation.Up)
-                    { 
-                        if (secondaryOrientation == Orientation.Up)
-                        {
-                            if (angle >= pi * 0.75f && angle < pi * 1.25f)
-                                return true;
-                        }
-                        else if (secondaryOrientation == Orientation.Left)
-                        {
-                            if (angle >= pi && angle < pi * 1.5f)
-                                return true;
-                        }
-                        else if (secondaryOrientation == Orientation.Right)
-                        {
-                            if (angle >= pi * 0.5f && angle < pi)
-                                return true;
-                        }
-
-                    }
-                    else
-                    { //LEFT
-                        if (secondaryOrientation == Orientation.Left)
-                        {
-                            if (angle >= pi * 1.25f && angle < pi * 1.75f)
-                                return true;
-                        }
-                        else if (secondaryOrientation == Orientation.Up)
-                        {
-                            if (angle >= pi && angle < pi * 1.5f)
-                                return true;
-                        }
-                        else if (secondaryOrientation == Orientation.Down)
-                        {
-                            if (angle >= pi * 1.5f)
-                                return true;
-                        }
-                    }
-                }
-            }
-            
-            
-
-            return false;
         }
 
         public bool DrawDashCloud(SpriteBatch spriteBatch)
