@@ -1780,6 +1780,30 @@
 /processorParam:TextureFormat=Color
 /build:pinkPixel.png
 
+#begin projektilSpriteSheetRobotEnemy.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:projektilSpriteSheetRobotEnemy.png
+
+#begin projektilSpriteSheetRobotEnemyVit.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:projektilSpriteSheetRobotEnemyVit.png
+
 #begin redPixel.png
 /importer:TextureImporter
 /processor:TextureProcessor
