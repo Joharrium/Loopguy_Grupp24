@@ -131,7 +131,7 @@ namespace Test_Loopguy
             }
         }
 
-        public void TakeDamage(int damage)
+        public virtual void TakeDamage(int damage)
         {
             health -= damage;
             Audio.PlaySound(Audio.player_hit);

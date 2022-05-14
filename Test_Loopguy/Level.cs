@@ -85,7 +85,6 @@ namespace Test_Loopguy
 
                     player.TakeDamage(s.damage);
 
-                    //player.TakeDamage(1);
                     projectilesToRemove.Add(s);
                 }
                 
@@ -293,7 +292,7 @@ namespace Test_Loopguy
                     {
                         e.hitDuringCurrentAttack = false;
                     }
-                    if (e.health <= 0)
+                    if (!e.isNotDying)
                     {
                         enemiesToRemove.Add(e);
                     }

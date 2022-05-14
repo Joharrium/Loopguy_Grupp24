@@ -22,6 +22,10 @@ namespace Test_Loopguy
 
         protected bool aggro = false;
         public bool hitDuringCurrentAttack = false;
+
+        //Used for sending a bool value (using sprite.PlayOnce) to Level.EnemyUpdate, in order to remove enemies after their death animation, double negation bc Sprite.PlayOnce returns false
+        public bool isNotDying = true;  
+
         protected int knockBackDistance;
         protected float knockBackDuration;
         protected float knockBackRemaining;
@@ -35,7 +39,7 @@ namespace Test_Loopguy
             this.position = position;
             health = maxHealth;
             healthBar = new HealthBar(maxHealth);
-            footprint = new Rectangle((int)position.X, (int)position.Y, 32, 8); //
+            footprint = new Rectangle((int)position.X, (int)position.Y, 32, 8);
         }
 
         public void Init()
@@ -76,9 +80,10 @@ namespace Test_Loopguy
                 Movement(deltaTime);
             }
             attackCooldownRemaining -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
         }
 
-        public virtual void Movement(float deltaTime)
+        public override void Movement(float deltaTime)
         {
             Vector2 futurePosCalc = position + direction * speed * deltaTime;
             Rectangle futureFootPrintCalc = new Rectangle(footprint.X + (int)futurePosCalc.X, footprint.Y + (int)futurePosCalc.Y, footprint.Width, footprint.Height);
@@ -101,7 +106,7 @@ namespace Test_Loopguy
             }
         }
 
-        public void TakeDamage(int damage)
+        public override void TakeDamage(int damage)
         {
             aggro = true;
             if(!hitDuringCurrentAttack)
@@ -116,6 +121,7 @@ namespace Test_Loopguy
                 //position += thing * knockBackDistance;
             }
         }
+
 
         protected bool InAggroRange()
         {
@@ -152,6 +158,10 @@ namespace Test_Loopguy
 
         public override void Update(GameTime gameTime)
         {
+            if (health <= 0)
+            {
+                isNotDying = false; //Change 'false' to sprite.PlayOnce(/*death animation values*/)
+            }
             base.Update(gameTime);
             //Movement(deltaTime);
         }
@@ -308,6 +318,15 @@ namespace Test_Loopguy
 
             LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 150, damage));
         }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (health <= 0)
+            {
+                isNotDying = false; //Change 'false' to sprite.PlayOnce(/*death animation values*/)
+            }
+            base.Update(gameTime);
+        }
     }
 
     class RangedRobotEnemy : RangedEnemy
@@ -320,6 +339,8 @@ namespace Test_Loopguy
         Vector2 attackOrigin;
         Orientation lockedOrientation;
 
+        
+
 
         public RangedRobotEnemy(Vector2 position) : base(position)  
         {
@@ -329,7 +350,6 @@ namespace Test_Loopguy
             xOffset = frameSize.X / 2;
             yOffset = frameSize.Y;
             maxSpeed = 20;
-
             
             sprite = new AnimatedSprite(TextureManager.robotEnemySheet, frameSize);
             
@@ -534,6 +554,11 @@ namespace Test_Loopguy
                 }
             }
 
+            if (health <= 0)
+            {
+                isNotDying = sprite.PlayOnce(12, 23, 50);
+            }
+
             base.Update(gameTime);
         }
 
@@ -579,6 +604,15 @@ namespace Test_Loopguy
             knockBackDuration = 160;
             Init();
             aggro = false;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (health <= 0)
+            {
+                isNotDying = false; //Change 'false' to sprite.PlayOnce(/*death animation values*/)
+            }
+            base.Update(gameTime);
         }
     }   
 }
