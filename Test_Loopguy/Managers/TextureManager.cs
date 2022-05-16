@@ -161,7 +161,7 @@ namespace Test_Loopguy
         private static void LoadCharacters(ContentManager c)
         {
             enemyPlaceholder = c.Load<Texture2D>("gfx/characters/enemy_placeholder");
-            playerCharacterForMenu = c.Load<Texture2D>("LOOP_FELLA");
+            playerCharacterForMenu = c.Load<Texture2D>("gfx/interface/menu_items/guy");
             robotEnemySheet = c.Load<Texture2D>("rangedRobotEnemySpriteSheet");
         }
         
