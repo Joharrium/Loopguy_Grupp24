@@ -242,7 +242,7 @@ namespace Test_Loopguy
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            Vector2 imagePosition = new Vector2(- 20, (Game1.windowY / 10) + gameComponents.IndexOf(currentSelection)*(Game1.windowY / 10));
+            Vector2 imagePosition = new Vector2(- 24, (Game1.windowY / 10) + gameComponents.IndexOf(currentSelection)*(Game1.windowY / 10));
             Vector2 titlePosition = new Vector2(Game1.windowX / 2, Game1.windowY / 4);
 
             spriteBatch.Begin();

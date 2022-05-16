@@ -129,7 +129,7 @@ namespace Test_Loopguy
             if(currentSelection == fullscreen)
             {
                 fullscreen.Update(gameTime);
-                Game1.game1.ToggleFullscreen(fullscreen.Check());
+                Game1.game1.ToggleFullscreen(fullscreen.Check(), screenSize.Value + 1);
             }
         }
 
