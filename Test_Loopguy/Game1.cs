@@ -228,18 +228,44 @@ namespace Test_Loopguy
 
         public void ScaleWindowAbsolute(int i)
         {
-            windowScale = i;
-            screenRect.Width = windowScale * windowX;
-            screenRect.Height = windowScale * windowY;
-            graphics.PreferredBackBufferWidth = screenRect.Width;
-            graphics.PreferredBackBufferHeight = screenRect.Height;
-            graphics.ApplyChanges();
+            if(!graphics.IsFullScreen)
+            {
+                windowScale = i;
+                screenRect.Width = windowScale * windowX;
+                screenRect.Height = windowScale * windowY;
+                graphics.PreferredBackBufferWidth = screenRect.Width;
+                graphics.PreferredBackBufferHeight = screenRect.Height;
+                graphics.ApplyChanges();
+            }
+            
         }
 
-        public void ToggleFullscreen(bool state)
+        public void ToggleFullscreen(bool state, int scale)
         {
-            graphics.IsFullScreen = state;
-            graphics.ApplyChanges();
+            if(state != graphics.IsFullScreen)
+            {
+                int maxPossibleX = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 480);
+                int maxPossibleY = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 270);
+                if(maxPossibleX >= maxPossibleY)
+                {
+                    ScaleWindowAbsolute(maxPossibleX);
+                }
+                else if(maxPossibleX < maxPossibleY)
+                {
+                    ScaleWindowAbsolute(maxPossibleY);
+                }
+                
+                
+
+                graphics.IsFullScreen = state;
+
+                graphics.ApplyChanges();
+            }
+            if (state == false)
+            {
+                ScaleWindowAbsolute(scale);
+            }
+            
         }
 
     }

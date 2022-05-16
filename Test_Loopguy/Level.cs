@@ -339,8 +339,32 @@ namespace Test_Loopguy
             objects.AddRange(playerProjectiles);
             objects.AddRange(enemyProjectiles);
             objects.AddRange(walls);
+            {
+                foreach (LevelObject g in objects.OfType<LevelObject>())
+                {
+                    g.drawDepth = g.footprint.Bottom;
+                }
+                foreach (Enemy g in objects.OfType<Enemy>())
+                {
+                    g.drawDepth = g.footprint.Bottom;
+                }
+                foreach (Player g in objects.OfType<Player>())
+                {
+                    g.drawDepth = g.footprint.Bottom;
+                }
+                foreach (Wall g in objects.OfType<Wall>())
+                {
+                    g.drawDepth = g.footprint.Bottom;
+                }
+                foreach (Projectile g in objects.OfType<Projectile>())
+                {
+                    g.drawDepth = g.hitBox.Center.Y;
+                }
+                
+            }
+            
 
-            List<GameObject> sortedList = objects.OrderBy(o => o.centerPosition.Y + o.texture.Height).ToList();
+            List<GameObject> sortedList = objects.OrderBy(o => o.drawDepth).ToList();
             objects = sortedList;
 
             foreach (GameObject g in objects)

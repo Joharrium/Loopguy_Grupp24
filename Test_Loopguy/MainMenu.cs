@@ -210,6 +210,7 @@ namespace Test_Loopguy
                         if (b.Rectangle.Contains(windowMousePos))
                         {
                             b.isHovering = true;
+                            currentSelection = b;
                         }
                         break;
 
@@ -241,7 +242,7 @@ namespace Test_Loopguy
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            Vector2 imagePosition = new Vector2(Game1.windowX / 8, Game1.windowY / 3);
+            Vector2 imagePosition = new Vector2(- 24, (Game1.windowY / 10) + gameComponents.IndexOf(currentSelection)*(Game1.windowY / 10));
             Vector2 titlePosition = new Vector2(Game1.windowX / 2, Game1.windowY / 4);
 
             spriteBatch.Begin();

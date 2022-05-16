@@ -5,7 +5,7 @@ namespace Test_Loopguy
 {
     static class TextureManager
     {
-        public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, gunSheet, testTile, testAlt, box, checkers;
+        public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, pistolSheet, testTile, testAlt, box, checkers;
         public static Texture2D meleeFx, shot, robotEnemyShot, blueDot, cursor, dashCloud;
         // terrain files
         public static Texture2D grassBasic, grassAlt, grayBrickWall, dirt, tiles_checkered_gray, tiles_checkered_brown, tiles_big_light, tiles_big_dark,
@@ -26,7 +26,7 @@ namespace Test_Loopguy
             ;
         public static SpriteFont UI_menuFont, UI_menuFont2;
         // character files
-        public static Texture2D enemyPlaceholder, playerCharacterForMenu, robotEnemySheet;
+        public static Texture2D enemyPlaceholder, playerCharacterForMenu, robotEnemySheet, blankbig, blanksmall;
 
         //particles
         public static Texture2D spark_small, shot_explosion, heal_effect;
@@ -41,7 +41,7 @@ namespace Test_Loopguy
 
             notex = c.Load<Texture2D>("notex");
             playerSheet = c.Load<Texture2D>("Loopy3");
-            gunSheet = c.Load<Texture2D>("guns");
+            pistolSheet = c.Load<Texture2D>("pistol");
             target = c.Load<Texture2D>("target");
             blueArc = c.Load<Texture2D>("blueArc");
             redPixel = c.Load<Texture2D>("redPixel");
@@ -161,8 +161,10 @@ namespace Test_Loopguy
         private static void LoadCharacters(ContentManager c)
         {
             enemyPlaceholder = c.Load<Texture2D>("gfx/characters/enemy_placeholder");
-            playerCharacterForMenu = c.Load<Texture2D>("LOOP_FELLA");
+            playerCharacterForMenu = c.Load<Texture2D>("gfx/interface/menu_items/guy");
             robotEnemySheet = c.Load<Texture2D>("rangedRobotEnemySpriteSheet");
+            blankbig = c.Load<Texture2D>("gfx/characters/64x64blank");
+            blanksmall = c.Load<Texture2D>("gfx/characters/32x32blank");
         }
         
         private static void LoadParticles(ContentManager c)

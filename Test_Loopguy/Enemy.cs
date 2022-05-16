@@ -39,7 +39,7 @@ namespace Test_Loopguy
             this.position = position;
             health = maxHealth;
             healthBar = new HealthBar(maxHealth);
-            footprint = new Rectangle((int)position.X, (int)position.Y, 32, 8);
+            footprint = new Rectangle((int)position.X + footprintOffset.X, (int)position.Y + footprintOffset.Y, 32, 8);
         }
 
         public void Init()
@@ -52,7 +52,7 @@ namespace Test_Loopguy
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
-            footprint.Location = position.ToPoint();
+            footprint.Location = position.ToPoint() + footprintOffset;
             healthBar.SetCurrentValue(position + new Vector2(xOffset, yOffset), health);
 
             //if(timeBetweenAICalls < 0)
@@ -85,25 +85,8 @@ namespace Test_Loopguy
 
         public override void Movement(float deltaTime)
         {
-            Vector2 futurePosCalc = position + direction * speed * deltaTime;
-            Rectangle futureFootPrintCalc = new Rectangle(footprint.X + (int)futurePosCalc.X, footprint.Y + (int)futurePosCalc.Y, footprint.Width, footprint.Height);
-            if(LevelManager.LevelObjectCollision(futureFootPrintCalc, 0))
-            {
-                if (!LevelManager.LevelObjectCollision(new Rectangle((int)futurePosCalc.X, (int)position.Y, footprint.Width, footprint.Height), 0))
-                {
-                    position.X = futurePosCalc.X;
-                }
 
-
-                if (!LevelManager.LevelObjectCollision(new Rectangle((int)position.X, (int)futurePosCalc.Y, footprint.Width, footprint.Height), 0))
-                {
-                    position.Y = futurePosCalc.Y;
-                }
-            }
-            else
-            {
-                position += direction * speed * deltaTime;
-            }
+            CheckMovement(deltaTime);
         }
 
         public override void TakeDamage(int damage)
@@ -287,6 +270,7 @@ namespace Test_Loopguy
         public TestEnemyRanged(Vector2 position) : base(position)
         {
             this.position = position;
+            footprintOffset = new Point(0, 24);
             this.texture = TextureManager.enemyPlaceholder;
             frameSize = new Point(texture.Width, texture.Height);
             xOffset = 6;
@@ -305,6 +289,7 @@ namespace Test_Loopguy
             attackCooldown = 620;
             attackCooldownRemaining = 320;
             accuracy = 50;
+            
         }
 
         protected override void Attack()
@@ -346,12 +331,15 @@ namespace Test_Loopguy
         {
             
             this.position = position;
+            footprintOffset = new Point(16, 48);
+            footprint = new Rectangle((int)(position.X + footprintOffset.X), (int)(position.Y + footprintOffset.Y), 32, 16);
             frameSize = new Point(64, 64);
             xOffset = frameSize.X / 2;
             yOffset = frameSize.Y;
             maxSpeed = 20;
             
             sprite = new AnimatedSprite(TextureManager.robotEnemySheet, frameSize);
+            texture = TextureManager.blankbig;
             
             maxHealth = 5;
 
@@ -505,6 +493,7 @@ namespace Test_Loopguy
         {
             sprite.Update(gameTime);
             sprite.Position = position;
+            
 
             if (isAttacking)
             {
@@ -593,6 +582,7 @@ namespace Test_Loopguy
         public TestEnemy(Vector2 position) : base(position)
         {
             this.position = position;
+            footprintOffset = new Point(0, 24);
             this.texture = TextureManager.enemyPlaceholder;
             xOffset = 6;
             yOffset = texture.Height;
