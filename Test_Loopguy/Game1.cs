@@ -244,7 +244,18 @@ namespace Test_Loopguy
         {
             if(state != graphics.IsFullScreen)
             {
-                ScaleWindowAbsolute((int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 480));
+                int maxPossibleX = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 480);
+                int maxPossibleY = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 270);
+                if(maxPossibleX >= maxPossibleY)
+                {
+                    ScaleWindowAbsolute(maxPossibleX);
+                }
+                else if(maxPossibleX < maxPossibleY)
+                {
+                    ScaleWindowAbsolute(maxPossibleY);
+                }
+                
+                
 
                 graphics.IsFullScreen = state;
 
