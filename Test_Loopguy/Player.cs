@@ -70,7 +70,7 @@ namespace Test_Loopguy
             : base(position)
         {
             sprite = new AnimatedSprite(TextureManager.playerSheet, new Point(32, 32));
-            gunSprite = new AnimatedSprite(TextureManager.gunSheet, new Point(64, 64));
+            gunSprite = new AnimatedSprite(TextureManager.pistolSheet, new Point(64, 64));
             meleeSprite = new AnimatedSprite(TextureManager.meleeFx, new Point(48, 48));
             dashCloudSprite = new AnimatedSprite(TextureManager.dashCloud, new Point(42, 24));
 
