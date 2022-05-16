@@ -1,0 +1,4 @@
+TestEnemyRanged,623,-45
+TestEnemyRanged,536,86
+TestEnemyRanged,587,119
+TestEnemyRanged,535,148

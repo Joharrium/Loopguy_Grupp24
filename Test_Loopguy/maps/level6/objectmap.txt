@@ -1,0 +1,6 @@
+BarrelDestructible,371,74
+BarrelDestructible,371,84
+BarrelDestructible,792,86
+BarrelDestructible,371,94
+Door,848,-1,1
+KeyPickup,856,89,1,True

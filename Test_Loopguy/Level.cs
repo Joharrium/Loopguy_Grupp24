@@ -39,7 +39,7 @@ namespace Test_Loopguy
 
         }
 
-        public void RefreshEdges()
+        public void RefreshMap()
         {
             foreach (Tile t in tiles)
             {
@@ -49,6 +49,12 @@ namespace Test_Loopguy
             {
                 w.SetConnections();
             }
+            walls.Clear();
+            hazards.Clear();
+            destructibles.Clear();
+            walls.AddRange(tiles.OfType<Wall>());
+            hazards.AddRange(tiles.OfType<Hazard>());
+            destructibles.AddRange(levelObjects.OfType<Destructible>());
         }
 
         internal void Update(GameTime gameTime, Player player)

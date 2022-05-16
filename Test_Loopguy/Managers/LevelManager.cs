@@ -250,7 +250,7 @@ namespace Test_Loopguy
         //below are editor and load methods
         public static void RefreshEdges()
         {
-            currentLevel.RefreshEdges();
+            currentLevel.RefreshMap();
         }
 
         public static Level LoadLevel(int id)
@@ -261,7 +261,7 @@ namespace Test_Loopguy
 
             loadedLevels.Add(level);
             currentLevel = level;
-            currentLevel.RefreshEdges();
+            currentLevel.RefreshMap();
             return level;
         }
 

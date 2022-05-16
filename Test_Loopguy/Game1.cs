@@ -45,7 +45,6 @@ namespace Test_Loopguy
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = false;
-            graphics.SynchronizeWithVerticalRetrace = false;
             game1 = this; //Used for Exit() in menuManager
         }
 
@@ -118,6 +117,7 @@ namespace Test_Loopguy
                 LevelManager.RefreshEdges();
                 editLevel = !editLevel;
                 InputReader.editMode = editLevel;
+                LevelEditor.editingMode = editLevel;
                 if(editLevel)
                 {
 
