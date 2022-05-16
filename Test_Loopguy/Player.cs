@@ -79,6 +79,7 @@ namespace Test_Loopguy
 
             speed = 100; //pixels per second
 
+            footprintOffset = new Point(12, 24);
             primaryOrientation = Orientation.Down;
             secondaryOrientation = Orientation.Down;
             keys.AddRange(ProfileManager.GetKeys());

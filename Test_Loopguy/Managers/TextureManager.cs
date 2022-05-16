@@ -26,7 +26,7 @@ namespace Test_Loopguy
             ;
         public static SpriteFont UI_menuFont, UI_menuFont2;
         // character files
-        public static Texture2D enemyPlaceholder, playerCharacterForMenu, robotEnemySheet;
+        public static Texture2D enemyPlaceholder, playerCharacterForMenu, robotEnemySheet, blankbig, blanksmall;
 
         //particles
         public static Texture2D spark_small, shot_explosion, heal_effect;
@@ -163,6 +163,8 @@ namespace Test_Loopguy
             enemyPlaceholder = c.Load<Texture2D>("gfx/characters/enemy_placeholder");
             playerCharacterForMenu = c.Load<Texture2D>("gfx/interface/menu_items/guy");
             robotEnemySheet = c.Load<Texture2D>("rangedRobotEnemySpriteSheet");
+            blankbig = c.Load<Texture2D>("gfx/characters/64x64blank");
+            blanksmall = c.Load<Texture2D>("gfx/characters/32x32blank");
         }
         
         private static void LoadParticles(ContentManager c)

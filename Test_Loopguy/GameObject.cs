@@ -12,6 +12,7 @@ namespace Test_Loopguy
         public Vector2 position;
         public Vector2 centerPosition;
         public Rectangle hitBox;
+        public float drawDepth;
 
         public GameObject(Vector2 position)
         {

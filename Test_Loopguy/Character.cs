@@ -29,6 +29,7 @@ namespace Test_Loopguy
 
         public Rectangle footprint;
         protected float traveledDistance = 35;
+        protected Point footprintOffset;
 
         public int health;
         public int maxHealth;
@@ -95,17 +96,17 @@ namespace Test_Loopguy
         public void CheckMovement(float deltaTime)
         {
             Vector2 futurePosCalc = position + direction * speed * deltaTime;
-            Rectangle futureFootPrint = new Rectangle((int)futurePosCalc.X + 12, (int)futurePosCalc.Y + 24, footprint.Width, footprint.Height);
+            Rectangle futureFootPrint = new Rectangle((int)futurePosCalc.X + footprintOffset.X, (int)futurePosCalc.Y + footprintOffset.Y, footprint.Width, footprint.Height);
 
             bool blockX = false;
             bool blockY = false;
             if (LevelManager.LevelObjectCollision(futureFootPrint, 0))
             {
-                if (LevelManager.LevelObjectCollision(new Rectangle((int)futurePosCalc.X + 12, (int)position.Y + 24, footprint.Width, footprint.Height), 0))
+                if (LevelManager.LevelObjectCollision(new Rectangle((int)futurePosCalc.X + footprintOffset.X, (int)position.Y + footprintOffset.Y, footprint.Width, footprint.Height), 0))
                 {
                     blockX = true;
                 }
-                if (LevelManager.LevelObjectCollision(new Rectangle((int)position.X + 12, (int)futurePosCalc.Y + 24, footprint.Width, footprint.Height), 0))
+                if (LevelManager.LevelObjectCollision(new Rectangle((int)position.X + footprintOffset.X, (int)futurePosCalc.Y + footprintOffset.Y, footprint.Width, footprint.Height), 0))
                 {
                     blockY = true;
                 }
