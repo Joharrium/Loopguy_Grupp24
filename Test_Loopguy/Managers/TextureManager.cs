@@ -21,10 +21,10 @@ namespace Test_Loopguy
             healthbar_small_outline, healthbar_small_fill_bg, healthbar_small_fill,
             player_healthbar_outline, player_healthbar_inline, player_healthbar_fill, player_healthbar_fill_bg,
             ammobar_fill, ammobar_outline, ammobar_fill_bg, menu_bg, slider_container, slider_fill, logo,
-            checkbox_true, checkbox_false
+            checkbox_true, checkbox_false, control_atlas
             
             ;
-        public static SpriteFont UI_menuFont, UI_menuFont2;
+        public static SpriteFont UI_menuFont, UI_menuFont2, smallestFont;
         // character files
         public static Texture2D enemyPlaceholder, playerCharacterForMenu, robotEnemySheet, blankbig, blanksmall;
 
@@ -134,6 +134,7 @@ namespace Test_Loopguy
             UI_selectedMenuBox = c.Load<Texture2D>("gfx/interface/menu_items/selectedMenuBox");
             UI_menuFont = c.Load<SpriteFont>("gfx/fonts/menuFont");
             UI_menuFont2 = c.Load<SpriteFont>("MenuFont2");
+            smallestFont = c.Load<SpriteFont>("smallestFont");
             UI_graybrick = c.Load<Texture2D>("gfx/interface/editor_icons/graybrick_small");
             black_screen = c.Load<Texture2D>("gfx/interface/black_screenlol");
             UI_door = c.Load<Texture2D>("gfx/interface/editor_icons/door_small");
@@ -150,6 +151,7 @@ namespace Test_Loopguy
             ammobar_outline = c.Load<Texture2D>("gfx/interface/ammobar_outline");
             ammobar_fill_bg = c.Load<Texture2D>("gfx/interface/ammobar_fill_bg");
             menu_bg = c.Load<Texture2D>("gfx/interface/menu_bg");
+            control_atlas = c.Load<Texture2D>("gfx/interface/control_atlas");
 
             slider_container = c.Load<Texture2D>("gfx/interface/menu_items/slider_container");
             slider_fill = c.Load<Texture2D>("gfx/interface/menu_items/slider_fill");

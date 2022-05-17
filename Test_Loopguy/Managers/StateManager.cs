@@ -83,7 +83,10 @@ namespace Test_Loopguy
 
                     spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
                     //DRAW HUD HERE
-
+                    foreach(HintArea h in LevelManager.CurrentLevel.Hints)
+                    {
+                        h.Draw(spriteBatch);
+                    }
                     Player.ammoBar.Draw(spriteBatch);
                     Player.healthBar.Draw(spriteBatch);
                     spriteBatch.Draw(TextureManager.medkit, new Vector2(104, 12), Color.White);

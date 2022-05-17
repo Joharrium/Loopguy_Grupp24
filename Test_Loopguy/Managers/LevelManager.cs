@@ -14,6 +14,10 @@ namespace Test_Loopguy
         private static float timeLeft = 600;
         private static float startingTime = 600;
         private static Level currentLevel;
+        public static Level CurrentLevel
+        {
+            get { return currentLevel; }
+        }
         private static int queuedLevel;
         private static List<Level> loadedLevels = new List<Level>();
         public static List<Entrance> gates = new List<Entrance>();
