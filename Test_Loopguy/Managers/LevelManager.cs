@@ -672,6 +672,31 @@ namespace Test_Loopguy
             
             return entrances;
         }
+
+        internal static List<HintArea> HintAreaLoad(int i)
+        {
+            List<HintArea> hints = new List<HintArea>();
+            if (File.Exists(string.Format(@"maps\level{0}\hints.txt", i)))
+            {
+                List<string> lines = new List<string>();
+                foreach (string line in System.IO.File.ReadLines(string.Format(@"maps\level{0}\hints.txt", i)))
+                {
+                    lines.Add(line);
+                }
+
+               foreach(string line in lines)
+                {
+                    string[] splitter = line.Split(',');
+                    Rectangle area = new Rectangle(Int32.Parse(splitter[0]), Int32.Parse(splitter[1]), Int32.Parse(splitter[2]), Int32.Parse(splitter[3]));
+                    string text = splitter[4];
+                    InputIcon icon = (InputIcon)(Int32.Parse(splitter[5]));
+                    hints.Add(new HintArea(area, text, icon));
+                }
+            }
+            
+
+            return hints;
+        }
         
     }
 }

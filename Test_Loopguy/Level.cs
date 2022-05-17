@@ -41,7 +41,8 @@ namespace Test_Loopguy
             walls.AddRange(tiles.OfType<Wall>());
             hazards.AddRange(tiles.OfType<Hazard>());
             destructibles.AddRange(levelObjects.OfType<Destructible>());
-            hints.Add(new HintArea(new Rectangle(0, 0, 400, 400), "to dash", InputIcon.A));
+            hints = LevelManager.HintAreaLoad(id);
+            //hints.Add(new HintArea(new Rectangle(0, 0, 400, 400), "to dash", InputIcon.A));
 
         }
 
