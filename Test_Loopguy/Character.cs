@@ -95,6 +95,7 @@ namespace Test_Loopguy
 
         public void CheckMovement(float deltaTime)
         {
+            //calculating future position
             Vector2 futurePosCalc = position + direction * speed * deltaTime;
             Rectangle futureFootPrint = new Rectangle((int)futurePosCalc.X + footprintOffset.X, (int)futurePosCalc.Y + footprintOffset.Y, footprint.Width, footprint.Height);
 
@@ -104,6 +105,7 @@ namespace Test_Loopguy
             {
                 if (LevelManager.LevelObjectCollision(futureFootPrint, 0))
                 {
+                    //if first check returns a collision, check the same collision twice but only in x and y to see which direction causes collision
                     if (LevelManager.LevelObjectCollision(new Rectangle((int)futurePosCalc.X + footprintOffset.X, (int)position.Y + footprintOffset.Y, footprint.Width, footprint.Height), 0))
                     {
                         blockX = true;
@@ -112,6 +114,8 @@ namespace Test_Loopguy
                     {
                         blockY = true;
                     }
+
+                    //lets the character move if at least one block failed
                     if (!blockX && blockY)
                     {
                         traveledDistance += Math.Abs(position.X - futurePosCalc.X);
@@ -126,6 +130,7 @@ namespace Test_Loopguy
                         position.Y = futurePosCalc.Y;
                     }
                 }
+                //lets character move normally
                 else
                 {
                     Vector2 delta = position - futurePosCalc;

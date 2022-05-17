@@ -11,6 +11,7 @@ namespace Test_Loopguy
     {
         protected HealthBar healthBar;
         public int damage;
+        //range at which enemy will detect player
         protected int aggroRange;
         protected float idleDir;
         protected float idleTime;
@@ -32,6 +33,7 @@ namespace Test_Loopguy
         protected Vector2 knockBackDirection;
         protected float attackCooldown;
         protected float attackCooldownRemaining;
+        //doesn't seem to be causing too much performance issues anymore but may be worth keeping around to try and reuse later.
         protected float timeBetweenAICalls;
         
         public Enemy(Vector2 position) : base(position)
@@ -50,6 +52,7 @@ namespace Test_Loopguy
 
         private void KnockbackCollisionCheck(float deltaTime)
         {
+            //same as checkmovement but for knockback
             Vector2 futurePosCalc = position + knockBackDirection * knockBackDistance * deltaTime;
             Rectangle futureFootPrint = new Rectangle((int)futurePosCalc.X + footprintOffset.X, (int)futurePosCalc.Y + footprintOffset.Y, footprint.Width, footprint.Height);
 
@@ -103,20 +106,15 @@ namespace Test_Loopguy
             footprint.Location = position.ToPoint() + footprintOffset;
             healthBar.SetCurrentValue(position + new Vector2(xOffset, yOffset), health);
 
-            //if(timeBetweenAICalls < 0)
-            //{
-                if (!aggro)
-                {
-                    aggro = InAggroRange();
-                }
-                else
-                {
-                    AggroBehavior();
-                }
-                //timeBetweenAICalls = 0.7f;
-            //}
-
-            //timeBetweenAICalls -= deltaTime;
+            if (!aggro)
+            {
+                //checks if player is in aggro range
+                aggro = InAggroRange();
+            }
+            else
+            {
+                AggroBehavior();
+            }
 
             if (knockBackRemaining > 0)
             {
@@ -143,13 +141,11 @@ namespace Test_Loopguy
             if(!hitDuringCurrentAttack)
             {
                 health -= damage;
-                Vector2 thing = centerPosition - EntityManager.player.centerPosition;
-                thing.Normalize();
+                Vector2 distance = centerPosition - EntityManager.player.centerPosition;
+                distance.Normalize();
 
-                knockBackDirection = thing;
+                knockBackDirection = distance;
                 knockBackRemaining = knockBackDuration;
-
-                //position += thing * knockBackDistance;
             }
         }
 
@@ -223,6 +219,7 @@ namespace Test_Loopguy
     {
         protected int minRange;
         protected int maxRange;
+        //if flee behavior is not desired this should be able to be set to 0
         protected int fleeRange;
         protected bool fleeing;
 
@@ -255,6 +252,7 @@ namespace Test_Loopguy
         {
             attackCooldownRemaining = attackCooldown;
             Vector2 direction = centerPosition - EntityManager.player.centerPosition;
+            //randomizes projectile direction somewhat based on accuracy
             direction.X *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
             direction.Y *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
             direction.Normalize();
