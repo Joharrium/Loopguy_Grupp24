@@ -29,12 +29,17 @@ namespace Test_Loopguy
         //Player player;
 
         Texture2D blueArc, redPixel;
+        public static bool isFullscreen;
 
         RenderTarget2D renderTarget;
 
         public static Vector2 mousePos;
         public static Rectangle screenRect;
         public static int windowX, windowY, windowScale;
+        public static int WindowScale
+        {
+            get { return windowScale; }
+        }
 
         public static bool editLevel = false;
 
@@ -288,6 +293,7 @@ namespace Test_Loopguy
             {
                 ScaleWindowAbsolute(scale);
             }
+            isFullscreen = graphics.IsFullScreen;
             
         }
 
