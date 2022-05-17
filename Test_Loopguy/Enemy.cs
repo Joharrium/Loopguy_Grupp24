@@ -540,8 +540,11 @@ namespace Test_Loopguy
             sprite.Update(gameTime);
             sprite.Position = position;
             
-
-            if (isAttacking)
+            if (health <= 0)
+            {
+                isNotDying = sprite.PlayOnce(12, 23, 50);
+            }
+            else if (isAttacking)
             {
 
                 if (lockedOrientation == Orientation.Up)
@@ -587,11 +590,6 @@ namespace Test_Loopguy
                 {
                     isAttacking = false;
                 }
-            }
-
-            if (health <= 0)
-            {
-                isNotDying = sprite.PlayOnce(12, 23, 50);
             }
 
             base.Update(gameTime);
