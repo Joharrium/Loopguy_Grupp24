@@ -10,6 +10,7 @@ namespace Test_Loopguy
     public class AnimatedSprite
     {
         Texture2D sheet;
+        SpriteEffects effects;
 
         public Point size;
         public Point currentFrame;
@@ -26,6 +27,7 @@ namespace Test_Loopguy
             this.size = size;
 
             currentFrame = new Point(0, 0);
+            effects = SpriteEffects.None;
         }
 
         public Vector2 Position { get; set; }
@@ -81,7 +83,7 @@ namespace Test_Loopguy
 
             position = Position;
 
-            spriteBatch.Draw(sheet, position, frame, Color.White);
+            spriteBatch.Draw(sheet, position, frame, Color.White, 0, Vector2.Zero, 1, effects, 0);
         }
         public void DrawRotation(SpriteBatch spriteBatch, float angle)
         {

@@ -14,6 +14,10 @@ namespace Test_Loopguy
         private static float timeLeft = 600;
         private static float startingTime = 600;
         private static Level currentLevel;
+        public static Level CurrentLevel
+        {
+            get { return currentLevel; }
+        }
         private static int queuedLevel;
         private static List<Level> loadedLevels = new List<Level>();
         public static List<Entrance> gates = new List<Entrance>();
@@ -250,7 +254,7 @@ namespace Test_Loopguy
         //below are editor and load methods
         public static void RefreshEdges()
         {
-            currentLevel.RefreshEdges();
+            currentLevel.RefreshMap();
         }
 
         public static Level LoadLevel(int id)
@@ -261,7 +265,7 @@ namespace Test_Loopguy
 
             loadedLevels.Add(level);
             currentLevel = level;
-            currentLevel.RefreshEdges();
+            currentLevel.RefreshMap();
             return level;
         }
 
@@ -667,6 +671,31 @@ namespace Test_Loopguy
             }
             
             return entrances;
+        }
+
+        internal static List<HintArea> HintAreaLoad(int i)
+        {
+            List<HintArea> hints = new List<HintArea>();
+            if (File.Exists(string.Format(@"maps\level{0}\hints.txt", i)))
+            {
+                List<string> lines = new List<string>();
+                foreach (string line in System.IO.File.ReadLines(string.Format(@"maps\level{0}\hints.txt", i)))
+                {
+                    lines.Add(line);
+                }
+
+               foreach(string line in lines)
+                {
+                    string[] splitter = line.Split(',');
+                    Rectangle area = new Rectangle(Int32.Parse(splitter[0]), Int32.Parse(splitter[1]), Int32.Parse(splitter[2]), Int32.Parse(splitter[3]));
+                    string text = splitter[4];
+                    InputIcon icon = (InputIcon)(Int32.Parse(splitter[5]));
+                    hints.Add(new HintArea(area, text, icon));
+                }
+            }
+            
+
+            return hints;
         }
         
     }

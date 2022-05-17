@@ -21,6 +21,11 @@ namespace Test_Loopguy
         private List<Wall> walls = new List<Wall>();
         private List<Hazard> hazards = new List<Hazard>();
         private List<Destructible> destructibles = new List<Destructible>();
+        internal List<HintArea> hints = new List<HintArea>();
+        internal List<HintArea> Hints
+        {
+            get { return hints; }
+        }
 
         internal Level (int id, Rectangle cameraBounds, List<LevelObject> levelObjects, Tile[,] tiles, List<Enemy> enemies)
         {
@@ -36,10 +41,12 @@ namespace Test_Loopguy
             walls.AddRange(tiles.OfType<Wall>());
             hazards.AddRange(tiles.OfType<Hazard>());
             destructibles.AddRange(levelObjects.OfType<Destructible>());
+            hints = LevelManager.HintAreaLoad(id);
+            //hints.Add(new HintArea(new Rectangle(0, 0, 400, 400), "to dash", InputIcon.A));
 
         }
 
-        public void RefreshEdges()
+        public void RefreshMap()
         {
             foreach (Tile t in tiles)
             {
@@ -49,6 +56,12 @@ namespace Test_Loopguy
             {
                 w.SetConnections();
             }
+            walls.Clear();
+            hazards.Clear();
+            destructibles.Clear();
+            walls.AddRange(tiles.OfType<Wall>());
+            hazards.AddRange(tiles.OfType<Hazard>());
+            destructibles.AddRange(levelObjects.OfType<Destructible>());
         }
 
         internal void Update(GameTime gameTime, Player player)
@@ -187,6 +200,11 @@ namespace Test_Loopguy
                     }   
                 }
 
+            }
+
+            foreach (HintArea h in hints)
+            {
+                h.Update();
             }
 
             LevelManager.objectsToAdd.Clear();
@@ -378,8 +396,8 @@ namespace Test_Loopguy
                 
             }
 
-
             
+
         }
 
         public bool LevelObjectCollision(Rectangle check, int height)

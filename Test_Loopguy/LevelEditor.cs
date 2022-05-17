@@ -38,6 +38,7 @@ namespace Test_Loopguy
         private static int keyID;
         private static bool keyPermanent;
         private static Level currentLevel;
+        public static bool editingMode = false;
 
         public static void SetDoorParams(int key)
         {

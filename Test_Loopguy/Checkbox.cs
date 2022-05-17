@@ -32,10 +32,10 @@ namespace Test_Loopguy
         }
 
 
-        public Checkbox(Vector2 position, string text)
+        public Checkbox(Vector2 position, string text, bool state)
         {
             this.position = position - new Vector2(30, 0);
-            state = false;
+            this.state = state;
             uncheck = TextureManager.checkbox_false;
             check = TextureManager.checkbox_true;
             this.text = text;

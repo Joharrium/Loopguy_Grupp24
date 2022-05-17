@@ -95,33 +95,47 @@ namespace Test_Loopguy
 
         public void CheckMovement(float deltaTime)
         {
+            //calculating future position
             Vector2 futurePosCalc = position + direction * speed * deltaTime;
             Rectangle futureFootPrint = new Rectangle((int)futurePosCalc.X + footprintOffset.X, (int)futurePosCalc.Y + footprintOffset.Y, footprint.Width, footprint.Height);
 
             bool blockX = false;
             bool blockY = false;
-            if (LevelManager.LevelObjectCollision(futureFootPrint, 0))
+            if(!LevelEditor.editingMode)
             {
-                if (LevelManager.LevelObjectCollision(new Rectangle((int)futurePosCalc.X + footprintOffset.X, (int)position.Y + footprintOffset.Y, footprint.Width, footprint.Height), 0))
+                if (LevelManager.LevelObjectCollision(futureFootPrint, 0))
                 {
-                    blockX = true;
-                }
-                if (LevelManager.LevelObjectCollision(new Rectangle((int)position.X + footprintOffset.X, (int)futurePosCalc.Y + footprintOffset.Y, footprint.Width, footprint.Height), 0))
-                {
-                    blockY = true;
-                }
-                if (!blockX && blockY)
-                {
-                    traveledDistance += Math.Abs(position.X - futurePosCalc.X);
-                    position.X = futurePosCalc.X;
+                    //if first check returns a collision, check the same collision twice but only in x and y to see which direction causes collision
+                    if (LevelManager.LevelObjectCollision(new Rectangle((int)futurePosCalc.X + footprintOffset.X, (int)position.Y + footprintOffset.Y, footprint.Width, footprint.Height), 0))
+                    {
+                        blockX = true;
+                    }
+                    if (LevelManager.LevelObjectCollision(new Rectangle((int)position.X + footprintOffset.X, (int)futurePosCalc.Y + footprintOffset.Y, footprint.Width, footprint.Height), 0))
+                    {
+                        blockY = true;
+                    }
 
+                    //lets the character move if at least one block failed
+                    if (!blockX && blockY)
+                    {
+                        traveledDistance += Math.Abs(position.X - futurePosCalc.X);
+                        position.X = futurePosCalc.X;
+
+                    }
+
+
+                    if (!blockY && blockX)
+                    {
+                        traveledDistance += Math.Abs(position.Y - futurePosCalc.Y);
+                        position.Y = futurePosCalc.Y;
+                    }
                 }
-
-
-                if (!blockY && blockX)
+                //lets character move normally
+                else
                 {
-                    traveledDistance += Math.Abs(position.Y - futurePosCalc.Y);
-                    position.Y = futurePosCalc.Y;
+                    Vector2 delta = position - futurePosCalc;
+                    traveledDistance += Math.Abs(delta.Length());
+                    position += direction * speed * deltaTime;
                 }
             }
             else

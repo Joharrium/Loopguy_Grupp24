@@ -290,6 +290,13 @@
 /processorParam:TextureFormat=Color
 /build:dashcloud.png
 
+#begin File.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:File.spritefont;smallestFont.spritefont
+
 #begin gfx/characters/32x32blank.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -392,6 +399,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/interface/black_screenlol.png
+
+#begin gfx/interface/control_atlas.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/interface/control_atlas.png
 
 #begin gfx/interface/editor_icons/barrel.png
 /importer:TextureImporter
@@ -1839,6 +1858,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:projektilSpriteSheetRobotEnemyVit.png
+
+#begin railgun.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:railgun.png
 
 #begin rangedRobotEnemySpriteSheet.png
 /importer:TextureImporter

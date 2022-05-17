@@ -11,6 +11,7 @@ namespace Test_Loopguy
     {
         protected HealthBar healthBar;
         public int damage;
+        //range at which enemy will detect player
         protected int aggroRange;
         protected float idleDir;
         protected float idleTime;
@@ -32,6 +33,7 @@ namespace Test_Loopguy
         protected Vector2 knockBackDirection;
         protected float attackCooldown;
         protected float attackCooldownRemaining;
+        //doesn't seem to be causing too much performance issues anymore but may be worth keeping around to try and reuse later.
         protected float timeBetweenAICalls;
         
         public Enemy(Vector2 position) : base(position)
@@ -48,6 +50,55 @@ namespace Test_Loopguy
             healthBar = new HealthBar(maxHealth);
         }
 
+        private void KnockbackCollisionCheck(float deltaTime)
+        {
+            //same as checkmovement but for knockback
+            Vector2 futurePosCalc = position + knockBackDirection * knockBackDistance * deltaTime;
+            Rectangle futureFootPrint = new Rectangle((int)futurePosCalc.X + footprintOffset.X, (int)futurePosCalc.Y + footprintOffset.Y, footprint.Width, footprint.Height);
+
+            bool blockX = false;
+            bool blockY = false;
+            if (!LevelEditor.editingMode)
+            {
+                if (LevelManager.LevelObjectCollision(futureFootPrint, 0))
+                {
+                    if (LevelManager.LevelObjectCollision(new Rectangle((int)futurePosCalc.X + footprintOffset.X, (int)position.Y + footprintOffset.Y, footprint.Width, footprint.Height), 0))
+                    {
+                        blockX = true;
+                    }
+                    if (LevelManager.LevelObjectCollision(new Rectangle((int)position.X + footprintOffset.X, (int)futurePosCalc.Y + footprintOffset.Y, footprint.Width, footprint.Height), 0))
+                    {
+                        blockY = true;
+                    }
+                    if (!blockX && blockY)
+                    {
+                        traveledDistance += Math.Abs(position.X - futurePosCalc.X);
+                        position.X = futurePosCalc.X;
+
+                    }
+
+
+                    if (!blockY && blockX)
+                    {
+                        traveledDistance += Math.Abs(position.Y - futurePosCalc.Y);
+                        position.Y = futurePosCalc.Y;
+                    }
+                }
+                else
+                {
+                    Vector2 delta = position - futurePosCalc;
+                    traveledDistance += Math.Abs(delta.Length());
+                    position += knockBackDirection * knockBackDistance * deltaTime;
+                }
+            }
+            else
+            {
+                Vector2 delta = position - futurePosCalc;
+                traveledDistance += Math.Abs(delta.Length());
+                position += knockBackDirection * knockBackDistance * deltaTime;
+            }
+        }
+
         public override void Update(GameTime gameTime)
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -55,25 +106,20 @@ namespace Test_Loopguy
             footprint.Location = position.ToPoint() + footprintOffset;
             healthBar.SetCurrentValue(position + new Vector2(xOffset, yOffset), health);
 
-            //if(timeBetweenAICalls < 0)
-            //{
-                if (!aggro)
-                {
-                    aggro = InAggroRange();
-                }
-                else
-                {
-                    AggroBehavior();
-                }
-                //timeBetweenAICalls = 0.7f;
-            //}
-
-            //timeBetweenAICalls -= deltaTime;
+            if (!aggro)
+            {
+                //checks if player is in aggro range
+                aggro = InAggroRange();
+            }
+            else
+            {
+                AggroBehavior();
+            }
 
             if (knockBackRemaining > 0)
             {
                 knockBackRemaining -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                position += knockBackDirection * knockBackDistance * deltaTime;
+                KnockbackCollisionCheck(deltaTime);
             }
             else
             {
@@ -95,13 +141,11 @@ namespace Test_Loopguy
             if(!hitDuringCurrentAttack)
             {
                 health -= damage;
-                Vector2 thing = centerPosition - EntityManager.player.centerPosition;
-                thing.Normalize();
+                Vector2 distance = centerPosition - EntityManager.player.centerPosition;
+                distance.Normalize();
 
-                knockBackDirection = thing;
+                knockBackDirection = distance;
                 knockBackRemaining = knockBackDuration;
-
-                //position += thing * knockBackDistance;
             }
         }
 
@@ -175,6 +219,7 @@ namespace Test_Loopguy
     {
         protected int minRange;
         protected int maxRange;
+        //if flee behavior is not desired this should be able to be set to 0
         protected int fleeRange;
         protected bool fleeing;
 
@@ -207,6 +252,7 @@ namespace Test_Loopguy
         {
             attackCooldownRemaining = attackCooldown;
             Vector2 direction = centerPosition - EntityManager.player.centerPosition;
+            //randomizes projectile direction somewhat based on accuracy
             direction.X *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
             direction.Y *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
             direction.Normalize();
@@ -494,8 +540,11 @@ namespace Test_Loopguy
             sprite.Update(gameTime);
             sprite.Position = position;
             
-
-            if (isAttacking)
+            if (health <= 0)
+            {
+                isNotDying = sprite.PlayOnce(12, 23, 50);
+            }
+            else if (isAttacking)
             {
 
                 if (lockedOrientation == Orientation.Up)
@@ -541,11 +590,6 @@ namespace Test_Loopguy
                 {
                     isAttacking = false;
                 }
-            }
-
-            if (health <= 0)
-            {
-                isNotDying = sprite.PlayOnce(12, 23, 50);
             }
 
             base.Update(gameTime);

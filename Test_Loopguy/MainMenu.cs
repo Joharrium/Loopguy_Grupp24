@@ -46,7 +46,7 @@ namespace Test_Loopguy
             loadGameButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot2)
             {
                 Position = menuSlot2,
-                Text = "Load Game",
+                Text = "Profile : 1",
             };
 
             highScoreButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot3)
@@ -128,7 +128,8 @@ namespace Test_Loopguy
             {
                 if (InputReader.ButtonPressed(Buttons.A) || InputReader.KeyPressed(Keys.Enter))
                 {
-                    loadGameButton.isHovering = false;
+                    ProfileManager.ChangeProfile();
+                    loadGameButton.Text = "Profile : " + ProfileManager.CurrentProfileId();
                 }
             }
 
@@ -165,7 +166,8 @@ namespace Test_Loopguy
 
         private static void LoadGameButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            ProfileManager.ChangeProfile();
+            loadGameButton.Text = "Profile : " + ProfileManager.CurrentProfileId();
         }
 
         private static void HighScoreButton_Click(object sender, EventArgs e)

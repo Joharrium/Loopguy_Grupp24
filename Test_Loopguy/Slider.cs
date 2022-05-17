@@ -35,14 +35,14 @@ namespace Test_Loopguy
         }
 
 
-        public Slider(Vector2 position, int maxValue, string text,  bool incremental)
+        public Slider(Vector2 position, int currentvalue, int maxValue, string text,  bool incremental)
         {
             this.position = position - new Vector2(30, 0);
             this.maxValue = maxValue;
-            currentValue = maxValue / 2;
+            currentValue = currentvalue;
             fill = TextureManager.slider_fill;
             outline = TextureManager.slider_container;
-            sourceRectangle.Width = 150;
+            CheckValue(currentvalue);
             this.incrementalMovement = incremental;
             this.text = text;
         }
