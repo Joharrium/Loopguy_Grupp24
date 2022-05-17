@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Threading;
 using System.Diagnostics;
+using System.IO;
 
 namespace Test_Loopguy
 {
@@ -48,6 +49,8 @@ namespace Test_Loopguy
             game1 = this; //Used for Exit() in menuManager
         }
 
+        
+
         protected override void Initialize()
         {
             base.Initialize();
@@ -70,7 +73,7 @@ namespace Test_Loopguy
             //Resolution and window stuff
             windowX = 480;
             windowY = 270;
-            windowScale = 3;
+            LoadSettings();
             screenRect = new Rectangle(0, 0, windowScale * windowX, windowScale * windowY);
             renderTarget = new RenderTarget2D(GraphicsDevice, windowX, windowY);
             graphics.PreferredBackBufferWidth = screenRect.Width;
@@ -238,6 +241,26 @@ namespace Test_Loopguy
                 graphics.ApplyChanges();
             }
             
+        }
+
+        protected void LoadSettings()
+        {
+
+            if (File.Exists(@"saves\settings\settings.txt"))
+            {
+                List<string> lines = new List<string>();
+                foreach (string line in System.IO.File.ReadLines(@"saves\settings\settings.txt"))
+                {
+                    lines.Add(line);
+                }
+
+                Audio.SetMusicVolume(Int32.Parse(lines[0]));
+                Audio.SetSoundVolume(Int32.Parse(lines[1]));
+
+                windowScale = Int32.Parse(lines[2]);
+                graphics.IsFullScreen = Boolean.Parse(lines[3]);
+            }
+
         }
 
         public void ToggleFullscreen(bool state, int scale)

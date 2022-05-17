@@ -16,7 +16,16 @@ namespace Test_Loopguy
     public static class Audio
     {
         static float musicVolume = 0.3F;
+        public static float MusicVolume
+        {
+            get { return musicVolume; }
+        }
         static float soundVolume = 0.5F;
+
+        public static float SoundVolume
+        {
+            get { return soundVolume; }
+        }
         //music
 
         public static SoundEffect sus_low, sus_high, unatco_hq, march_of_the_white_knights, nyc_streets, oceanlab_action;

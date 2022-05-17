@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace Test_Loopguy
@@ -8,6 +9,7 @@ namespace Test_Loopguy
     {
         static List<Profile> profiles = new List<Profile>();
         static Profile currentProfile;
+        
 
         public static void Init()
         {
@@ -33,6 +35,19 @@ namespace Test_Loopguy
             currentProfile = profiles[(CurrentProfileId() + 1) % profiles.Count];
             LevelManager.Reset();
             
+        }
+
+        public static void SaveSettings(int music, int sound, int scale, bool fullscreen)
+        {
+            string path = @"saves\settings\settings.txt";
+            List<string> toWrite = new List<string>();
+
+            toWrite.Add(music.ToString());
+            toWrite.Add(sound.ToString());
+            toWrite.Add(scale.ToString());
+            toWrite.Add(fullscreen.ToString());
+
+            File.WriteAllLines(path, toWrite);
         }
 
         public static int CurrentProfileId()

@@ -46,10 +46,10 @@ namespace Test_Loopguy
                 Text = "Return to Main Menu",
             };
 
-            sound = new Slider(menuSlot2, 100, "Sound Volume", false);
+            sound = new Slider(menuSlot2, (int)(Audio.SoundVolume*100), "Sound Volume", false);
 
 
-            music = new Slider(menuSlot3, 100, "Music Volume", false);
+            music = new Slider(menuSlot3, (int)(Audio.MusicVolume * 100), "Music Volume", false);
 
             screenSize = new Slider(menuSlot4, 4, "Screen Size", true);
 
@@ -104,6 +104,7 @@ namespace Test_Loopguy
             {
                 if (InputReader.ButtonPressed(Buttons.A) || InputReader.KeyPressed(Keys.Enter))
                 {
+                    ProfileManager.SaveSettings(music.Value, sound.Value, screenSize.Value, fullscreen.State);
                     MenuManager.GoToMainMenu();
                 }
             }
@@ -135,6 +136,7 @@ namespace Test_Loopguy
 
         private void NewGameButton_Click(object sender, EventArgs e)
         {
+            ProfileManager.SaveSettings(music.Value, sound.Value, screenSize.Value, fullscreen.State);
             MenuManager.GoToMainMenu();
         }
 
