@@ -48,6 +48,54 @@ namespace Test_Loopguy
             healthBar = new HealthBar(maxHealth);
         }
 
+        private void KnockbackCollisionCheck(float deltaTime)
+        {
+            Vector2 futurePosCalc = position + knockBackDirection * knockBackDistance * deltaTime;
+            Rectangle futureFootPrint = new Rectangle((int)futurePosCalc.X + footprintOffset.X, (int)futurePosCalc.Y + footprintOffset.Y, footprint.Width, footprint.Height);
+
+            bool blockX = false;
+            bool blockY = false;
+            if (!LevelEditor.editingMode)
+            {
+                if (LevelManager.LevelObjectCollision(futureFootPrint, 0))
+                {
+                    if (LevelManager.LevelObjectCollision(new Rectangle((int)futurePosCalc.X + footprintOffset.X, (int)position.Y + footprintOffset.Y, footprint.Width, footprint.Height), 0))
+                    {
+                        blockX = true;
+                    }
+                    if (LevelManager.LevelObjectCollision(new Rectangle((int)position.X + footprintOffset.X, (int)futurePosCalc.Y + footprintOffset.Y, footprint.Width, footprint.Height), 0))
+                    {
+                        blockY = true;
+                    }
+                    if (!blockX && blockY)
+                    {
+                        traveledDistance += Math.Abs(position.X - futurePosCalc.X);
+                        position.X = futurePosCalc.X;
+
+                    }
+
+
+                    if (!blockY && blockX)
+                    {
+                        traveledDistance += Math.Abs(position.Y - futurePosCalc.Y);
+                        position.Y = futurePosCalc.Y;
+                    }
+                }
+                else
+                {
+                    Vector2 delta = position - futurePosCalc;
+                    traveledDistance += Math.Abs(delta.Length());
+                    position += knockBackDirection * knockBackDistance * deltaTime;
+                }
+            }
+            else
+            {
+                Vector2 delta = position - futurePosCalc;
+                traveledDistance += Math.Abs(delta.Length());
+                position += knockBackDirection * knockBackDistance * deltaTime;
+            }
+        }
+
         public override void Update(GameTime gameTime)
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -73,7 +121,7 @@ namespace Test_Loopguy
             if (knockBackRemaining > 0)
             {
                 knockBackRemaining -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                position += knockBackDirection * knockBackDistance * deltaTime;
+                KnockbackCollisionCheck(deltaTime);
             }
             else
             {
