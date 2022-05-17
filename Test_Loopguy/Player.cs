@@ -134,7 +134,8 @@ namespace Test_Loopguy
             if (attacking)
             {
                 PlayMelee(deltaTime);
-
+                //this is so that the player sprite matches the melee sprite when attacking
+                sprite.flipHorizontally = meleeSprite.flipHorizontally;
                 
                 //Here is where you would use the MeleeHit method, I think
                 //However, keep in mind that the this will run as long as the attack animation runs,
@@ -152,6 +153,9 @@ namespace Test_Loopguy
             }
             else
             {
+                //this is to prevent moonwalking
+                sprite.flipHorizontally = false;
+
                 if (InputReader.Aim() || shooting)
                 {
                     cameraPosition = centerPosition + gunDirection * 50;
@@ -199,6 +203,16 @@ namespace Test_Loopguy
                         meleeSprite.timeSinceLastFrame = 0;
                         sprite.currentFrame.X = 0;
                         sprite.timeSinceLastFrame = 0;
+
+                        //flip melee attack
+                        if (primaryOrientation == Orientation.Up || primaryOrientation == Orientation.Down)
+                        {
+                            meleeSprite.flipHorizontally = !meleeSprite.flipHorizontally;
+                        }
+                        else
+                        {
+                            meleeSprite.flipHorizontally = false;
+                        }
 
                         attacking = true;
                         Audio.PlaySound(Audio.swing);
