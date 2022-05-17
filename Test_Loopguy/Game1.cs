@@ -258,7 +258,7 @@ namespace Test_Loopguy
                 Audio.SetSoundVolume(Int32.Parse(lines[1]));
 
                 windowScale = Int32.Parse(lines[2]);
-                graphics.IsFullScreen = Boolean.Parse(lines[3]);
+                ToggleFullscreen(Boolean.Parse(lines[3]), windowScale);
             }
 
         }
