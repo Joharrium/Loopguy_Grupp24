@@ -65,6 +65,7 @@ namespace Test_Loopguy
         public bool dashing;
         bool dashCloud;
 
+        bool flipMelee;
 
         public Player(Vector2 position)
             : base(position)
@@ -135,17 +136,7 @@ namespace Test_Loopguy
             {
                 PlayMelee(deltaTime);
                 //this is so that the player sprite matches the melee sprite when attacking
-                sprite.flipHorizontally = meleeSprite.flipHorizontally;
-                
-                //Here is where you would use the MeleeHit method, I think
-                //However, keep in mind that the this will run as long as the attack animation runs,
-                //which is 200 ms right now (multiple hits will occur)
 
-                //Another way to do it is that the MeleeHit method only runs once per attack,
-                //although that would prevent an enemy walking in to the attack animation from taking damage
-                //Idk mang
-
-                
             }
             else if (dashing)
             {
@@ -164,8 +155,7 @@ namespace Test_Loopguy
                     //SHOOTING
                     if (InputReader.Shoot() && !shooting && ammo > 0)
                     {
-                        gunSprite.currentFrame.X = 0;
-                        gunSprite.timeSinceLastFrame = 0;
+                        gunSprite.ResetAnimation();
 
                         Vector2 shotPosition = new Vector2(centerPosition.X + gunDirection.X * 20 - 4, centerPosition.Y + gunDirection.Y * 20 - 6);
                         float shotAngle = aimAngle + pi;
@@ -199,20 +189,11 @@ namespace Test_Loopguy
 
                     if (InputReader.Attack() && !attacking)
                     {
-                        meleeSprite.currentFrame.X = 0;
-                        meleeSprite.timeSinceLastFrame = 0;
-                        sprite.currentFrame.X = 0;
-                        sprite.timeSinceLastFrame = 0;
+                        meleeSprite.ResetAnimation();
+                        sprite.ResetAnimation();
 
                         //flip melee attack
-                        if (primaryOrientation == Orientation.Up || primaryOrientation == Orientation.Down)
-                        {
-                            meleeSprite.flipHorizontally = !meleeSprite.flipHorizontally;
-                        }
-                        else
-                        {
-                            meleeSprite.flipHorizontally = false;
-                        }
+                        flipMelee = !flipMelee;
 
                         attacking = true;
                         Audio.PlaySound(Audio.swing);
@@ -415,16 +396,39 @@ namespace Test_Loopguy
                 direction.X = 0;
                 direction.Y = -1;
 
+                meleeSprite.flipVertically = false;
+
+                if(flipMelee)
+                    sprite.flipHorizontally = meleeSprite.flipHorizontally = true;
+                else
+                    sprite.flipHorizontally = meleeSprite.flipHorizontally = false;
+
                 if (secondaryOrientation == Orientation.Left)
                 {
+                    if (flipMelee)
+                    {
+                        rowIntSword = 7;
+                        meleeSprite.flipVertically = meleeSprite.flipHorizontally = true;
+                    }
+                    else
+                    {
+                        rowIntSword = 4;
+                    }
                     rowIntPlayer = 8;
-                    rowIntSword = 4;
                     direction.X = -1;
                 }
                 else if (secondaryOrientation == Orientation.Right)
                 {
-                    rowIntPlayer = 9;
-                    rowIntSword = 6;
+                    if (flipMelee)
+                    {
+                        rowIntSword = 5
+                        meleeSprite.flipVertically = meleeSprite.flipHorizontally = true;
+                    }
+                    else
+                    {
+                        rowIntSword = 6;
+                    }
+                    rowIntPlayer = 10;
                     direction.X = 1;
                 }
 
@@ -434,16 +438,39 @@ namespace Test_Loopguy
                 direction.X = 0;
                 direction.Y = 1;
 
+                meleeSprite.flipVertically = false;
+
+                if (flipMelee)
+                    sprite.flipHorizontally = meleeSprite.flipHorizontally = true;
+                else
+                    sprite.flipHorizontally = meleeSprite.flipHorizontally = false;
+
                 if (secondaryOrientation == Orientation.Left)
                 {
+                    if (flipMelee)
+                    {
+                        rowIntSword = 6;
+                        meleeSprite.flipVertically = meleeSprite.flipHorizontally = true;
+                    }
+                    else
+                    {
+                        rowIntSword = 5;
+                    }
                     rowIntPlayer = 8;
-                    rowIntSword = 5;
                     direction.X = -1;
                 }
                 else if (secondaryOrientation == Orientation.Right)
                 {
-                    rowIntPlayer = 9;
-                    rowIntSword = 7;
+                    if (flipMelee)
+                    {
+                        rowIntSword = 4;
+                        meleeSprite.flipVertically = meleeSprite.flipHorizontally = true;
+                    }
+                    else
+                    {
+                        rowIntSword = 7;
+                    }
+                    rowIntPlayer = 10;
                     direction.X = 1;
                 }
             }
@@ -452,14 +479,43 @@ namespace Test_Loopguy
                 direction.X = -1;
                 direction.Y = 0;
 
+                meleeSprite.flipHorizontally = false;
+
+                if (flipMelee)
+                {
+                    rowIntPlayer = 9;
+                    meleeSprite.flipVertically = true;
+                }
+                else
+                {
+                    rowIntPlayer = 8;
+                    meleeSprite.flipVertically = false;
+                }
+
                 if (secondaryOrientation == Orientation.Up)
                 {
-                    rowIntSword = 4;
+                    if (flipMelee)
+                    {
+                        rowIntSword = 7;
+                        meleeSprite.flipVertically = meleeSprite.flipHorizontally = true;
+                    }
+                    else
+                    {
+                        rowIntSword = 4;
+                    }
                     direction.Y = -1;
                 }
                 else if (secondaryOrientation == Orientation.Down)
                 {
-                    rowIntSword = 5;
+                    if (flipMelee)
+                    {
+                        rowIntSword = 6;
+                        meleeSprite.flipVertically = meleeSprite.flipHorizontally = true;
+                    }
+                    else
+                    {
+                        rowIntSword = 5;
+                    }
                     direction.Y = 1;
                 }
             }
@@ -468,14 +524,43 @@ namespace Test_Loopguy
                 direction.X = 1;
                 direction.Y = 0;
 
+                meleeSprite.flipHorizontally = false;
+
+                if (flipMelee)
+                {
+                    rowIntPlayer = 11;
+                    meleeSprite.flipVertically = true;
+                }
+                else
+                {
+                    rowIntPlayer = 10;
+                    meleeSprite.flipVertically = false;
+                }
+
                 if (secondaryOrientation == Orientation.Up)
                 {
-                    rowIntSword = 6;
+                    if (flipMelee)
+                    {
+                        rowIntSword = 5;
+                        meleeSprite.flipVertically = meleeSprite.flipHorizontally = true;
+                    }
+                    else
+                    {
+                        rowIntSword = 6;
+                    }
                     direction.Y = -1;
                 }
                 else if (secondaryOrientation == Orientation.Down)
                 {
-                    rowIntSword = 7;
+                    if (flipMelee)
+                    {
+                        rowIntSword = 4;
+                        meleeSprite.flipVertically = meleeSprite.flipHorizontally = true;
+                    }
+                    else
+                    {
+                        rowIntSword = 7;
+                    }
                     direction.Y = 1;
                 }
             }
@@ -507,7 +592,7 @@ namespace Test_Loopguy
         }
         public void DashFrame(SpriteBatch spriteBatch)
         {
-            sprite.Frame((int)primaryOrientation - 1, 10);
+            sprite.Frame((int)primaryOrientation - 1, 12);
 
             if (direction == Vector2.Zero)
             {

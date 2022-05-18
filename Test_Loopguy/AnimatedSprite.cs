@@ -124,5 +124,11 @@ namespace Test_Loopguy
             spriteBatch.Draw(sheet, otherPos, frame, new Color(alpha, alpha, alpha, alpha));
         }
 
+        public void ResetAnimation()
+        {
+            currentFrame.X = 0;
+            timeSinceLastFrame = 0;
+        }
+
     }
 }
