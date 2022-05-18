@@ -11,6 +11,7 @@ namespace Test_Loopguy
     {
         protected HealthBar healthBar;
         public int damage;
+
         //range at which enemy will detect player
         protected int aggroRange;
         protected float idleDir;
@@ -413,6 +414,17 @@ namespace Test_Loopguy
             LevelManager.AddEnemyProjectile(new RobotEnemyShot(attackOrigin, direction, (float)Helper.GetAngle(attackOrigin, EntityManager.player.centerPosition, 0 + Math.PI), 300, damage));
         }
 
+        protected override void AttackBehavior()
+        {
+            maxSpeed = 0;
+
+            if (!isAttacking)
+            {
+                lockedOrientation = primaryOrientation;
+                isAttacking = true;
+            }
+        }
+
         protected override void AggroBehavior()
         {
             Vector2 thing = centerPosition - EntityManager.player.centerPosition;
@@ -454,16 +466,7 @@ namespace Test_Loopguy
             }
         }
 
-        protected override void AttackBehavior()
-        {
-            maxSpeed = 0;
-
-            if (!isAttacking)
-            {
-                lockedOrientation = primaryOrientation;
-                isAttacking = true;
-            }
-        }
+       
 
         public override void Movement(float deltaTime)
         {

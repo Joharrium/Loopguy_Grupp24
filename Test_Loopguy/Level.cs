@@ -305,6 +305,11 @@ namespace Test_Loopguy
                     {
                         e.TakeDamage(1);
                         e.hitDuringCurrentAttack = true;
+
+                        if (e.GetType() == typeof(RangedRobotEnemy))
+                        {
+                            
+                        }
                     }
                     if (!EntityManager.player.attacking)
                     {
