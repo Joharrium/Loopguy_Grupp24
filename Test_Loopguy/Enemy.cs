@@ -370,9 +370,6 @@ namespace Test_Loopguy
         Vector2 attackOrigin;
         Orientation lockedOrientation;
 
-        
-
-
         public RangedRobotEnemy(Vector2 position) : base(position)  
         {
             
@@ -500,19 +497,19 @@ namespace Test_Loopguy
                 {
                     if (lockedOrientation == Orientation.Up)
                     {
-                        sprite.Frame(0, 11);
+                        sprite.Frame(0, 7);
                     }
                     else if (lockedOrientation == Orientation.Down)
                     {
-                        sprite.Frame(0, 10);
+                        sprite.Frame(0, 6);
                     }
                     else if (lockedOrientation == Orientation.Right)
                     {
-                        sprite.Frame(0, 9);
+                        sprite.Frame(0, 5);
                     }
                     else if (lockedOrientation == Orientation.Left)
                     {
-                        sprite.Frame(0, 8);
+                        sprite.Frame(0, 4);
                     }
                 }       
             }
@@ -542,7 +539,7 @@ namespace Test_Loopguy
             
             if (health <= 0)
             {
-                isNotDying = sprite.PlayOnce(12, 23, 50);
+                isNotDying = sprite.PlayOnce(8, 28, 50);
             }
             else if (isAttacking)
             {
