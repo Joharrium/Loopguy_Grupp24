@@ -606,7 +606,7 @@ namespace Test_Loopguy
 
                 LevelManager.LevelObjectCollision(enemyLaserLine, 9);
 
-                Line newEnemyLaserLine = new Line(attackOrigin, enemyLaserLine.IntersectionPoint);
+                Line newEnemyLaserLine = new Line(attackOrigin, enemyLaserLine.intersectionPoint);
                 Vector2 laserVector = new Vector2(newEnemyLaserLine.P2.X - newEnemyLaserLine.P1.X, newEnemyLaserLine.P2.Y - newEnemyLaserLine.P1.Y);
                 int laserLength = (int)laserVector.Length();
 

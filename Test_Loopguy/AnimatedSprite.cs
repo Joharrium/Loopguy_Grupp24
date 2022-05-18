@@ -40,6 +40,10 @@ namespace Test_Loopguy
 
             if (!flipHorizontally && !flipVertically)
                 effects = SpriteEffects.None;
+            else if(flipHorizontally && flipVertically)
+            {
+                effects = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
+            }
             else
             {
                 if (flipHorizontally)

@@ -113,10 +113,10 @@ static class InputReader
 	public static bool Dash()
     {
 		if (playerInputEnabled)
-			return KeyPressed(Keys.Space) || ButtonPressed(Buttons.A);
+			return keyState.IsKeyDown(Keys.Space) || padState.IsButtonDown(Buttons.A);
 		else
 			return false;
-	}
+    }
 	public static bool Attack()
     {
 		if (editMode || !playerInputEnabled)

@@ -22,7 +22,7 @@ namespace Test_Loopguy
         protected Orientation primaryOrientation;
         protected Orientation secondaryOrientation;
 
-        protected AnimatedSprite sprite;
+        public AnimatedSprite sprite;
 
         protected const float pi = (float)Math.PI;
         protected const int meleeRange = 22;
