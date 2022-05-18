@@ -841,6 +841,7 @@ namespace Test_Loopguy
             float dirYshort = (float)Math.Round(direction.Y, 2);
             playerInfoString = absDirShort.ToString() + " || " + frameTime.ToString() + " || " + playerVelocityShort.ToString() + "\n\n\n\n\n\n\n Dir X: " + dirXshort + "\n Dir Y: " + dirYshort;
         }
+
         public void DrawDashAim(SpriteBatch spriteBatch)
         {
             int fullDashRange = dashRange * maxDashFrames;
