@@ -247,7 +247,7 @@ namespace Test_Loopguy
         {
             Audio.PlaySound(Audio.splash);
             position = roomEntrancePosition;
-            TakeDamage(1);
+            TakeDamage(1, DamageSound.meleeOnMetal);
             Fadeout.HazardFade();
         }
 

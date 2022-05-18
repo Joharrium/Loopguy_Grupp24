@@ -136,7 +136,7 @@ namespace Test_Loopguy
             CheckMovement(deltaTime);
         }
 
-        public override void TakeDamage(int damage)
+        public override void TakeDamage(int damage, DamageSound soundType)
         {
             aggro = true;
             if(!hitDuringCurrentAttack)
@@ -147,6 +147,17 @@ namespace Test_Loopguy
 
                 knockBackDirection = distance;
                 knockBackRemaining = knockBackDuration;
+
+            }
+
+            if (soundType == DamageSound.meleeOnMetal)
+            {
+                Audio.PlaySound(Audio.meleeOnMetal);
+            }
+
+            if (soundType == DamageSound.laserGun)
+            {
+                Audio.PlaySound(Audio.player_hit);
             }
         }
 

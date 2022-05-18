@@ -19,6 +19,18 @@ namespace Test_Loopguy
             Left,
             Right,
         }
+
+        //Made for defining the sound made from each type of damage
+        public enum DamageSound
+        {
+            meleeOnMetal,
+            meleeOnFlesh,
+            laserGun,
+            railGun,
+        }
+
+        //public AttackType currentAttack;
+
         protected Orientation primaryOrientation;
         protected Orientation secondaryOrientation;
 
@@ -146,7 +158,7 @@ namespace Test_Loopguy
             }
         }
 
-        public virtual void TakeDamage(int damage)
+        public virtual void TakeDamage(int damage, DamageSound soundType)
         {
             health -= damage;
             Audio.PlaySound(Audio.player_hit);
@@ -154,6 +166,7 @@ namespace Test_Loopguy
             {
                 LevelManager.Reset();
             }
+     
         }
 
         public bool MeleeHit(GameObject obj)
