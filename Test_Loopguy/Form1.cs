@@ -261,5 +261,35 @@ namespace Test_Loopguy
         {
             LevelEditor.SelectEnemy(EnemySelection.RobotBig);
         }
+
+        private void deskBackwardSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.DeskBackward);
+        }
+
+        private void deskForwardSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.DeskForward);
+        }
+
+        private void pottedPlantSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.PottedPlant);
+        }
+
+        private void bigSinkSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.BigSink);
+        }
+
+        private void crateStackSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.CrateStack);
+        }
+
+        private void operationEquipmentSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.OperationEquipment);
+        }
     }
 }

@@ -16,7 +16,8 @@ namespace Test_Loopguy
         Box, Barrel, Pot, ShrubSmall, TreeSmall, BoxOpen, TreeBig, ShrubBig, DoorWood, 
         KeycardRed, DoorSliding, BarrelDestructible, HealingSmall, AmmoSmall, Counter, 
         CardboardStackSmall, Billboard, Cabinet, MonitorWall, ShelfArchiving, ShelfArchivingSmall,
-        DeskOffice, Server, ChairOfficeBw, ChairOfficeFw
+        DeskOffice, Server, ChairOfficeBw, ChairOfficeFw, DeskForward, DeskBackward, PottedPlant,
+        BigSink, CrateStack, OperationEquipment
     }
     public enum TileSelection
     {
@@ -188,6 +189,30 @@ namespace Test_Loopguy
                                 LevelManager.ObjectAdd(new ChairOfficeFw(Game1.mousePos - new Vector2(6, 12)));
                                 break;
 
+                            case ObjectSelection.DeskBackward:
+                                LevelManager.ObjectAdd(new DeskBackward(Game1.mousePos - new Vector2(6, 12)));
+                                break;
+
+                            case ObjectSelection.DeskForward:
+                                LevelManager.ObjectAdd(new DeskForward(Game1.mousePos - new Vector2(6, 12)));
+                                break;
+
+                            case ObjectSelection.PottedPlant:
+                                LevelManager.ObjectAdd(new PottedPlant(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.BigSink:
+                                LevelManager.ObjectAdd(new BigSink(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.CrateStack:
+                                LevelManager.ObjectAdd(new CrateStack(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.OperationEquipment:
+                                LevelManager.ObjectAdd(new OperationEquipment(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
                             default:
                                 break;
                         }
@@ -307,6 +332,30 @@ namespace Test_Loopguy
 
                     case ObjectSelection.ChairOfficeFw:
                         spriteBatch.Draw(TextureManager.chair_office_fw, Game1.mousePos - new Vector2(6, 12), Color.White);
+                        break;
+
+                    case ObjectSelection.DeskBackward:
+                        spriteBatch.Draw(TextureManager.desk_bw, (Game1.mousePos - new Vector2(6, 12)), Color.White);
+                        break;
+
+                    case ObjectSelection.DeskForward:
+                        spriteBatch.Draw(TextureManager.desk_fw, (Game1.mousePos - new Vector2(6, 12)), Color.White);
+                        break;
+
+                    case ObjectSelection.PottedPlant:
+                        spriteBatch.Draw(TextureManager.potted_plant, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.BigSink:
+                        spriteBatch.Draw(TextureManager.big_sink, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.CrateStack:
+                        spriteBatch.Draw(TextureManager.crate_stack, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.OperationEquipment:
+                        spriteBatch.Draw(TextureManager.table_operation, (Game1.mousePos - new Vector2(8, 16)), Color.White);
                         break;
 
                     default:
