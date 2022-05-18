@@ -365,6 +365,10 @@ namespace Test_Loopguy
                     {
                         tiles[i, j] = new Water(tempPos);
                     }
+                    if (terrainStrings[j][i] == 'j')
+                    {
+                        tiles[i, j] = new WallGray(tempPos);
+                    }
                 }
             }
 
@@ -627,6 +631,10 @@ namespace Test_Loopguy
                     if (currentLevel.tiles[j, i] is Water)
                     {
                         types[j, i] = 'i';
+                    }
+                    if (currentLevel.tiles[j,i] is WallGray)
+                    {
+                        types[j, i] = 'j';
                     }
                 }
             }

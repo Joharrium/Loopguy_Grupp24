@@ -331,7 +331,7 @@ namespace Test_Loopguy
         
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle cullingRect = new Rectangle((int)(EntityManager.player.position.X - 480), (int)(EntityManager.player.position.Y - 270), 960, 540);
+            Rectangle cullingRect = new Rectangle((int)(EntityManager.player.position.X - 510), (int)(EntityManager.player.position.Y - 300), 1040, 620);
             foreach (Tile t in tiles)
             {
                 if(!(t is Wall))
