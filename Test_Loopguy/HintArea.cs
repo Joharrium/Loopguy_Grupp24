@@ -10,7 +10,7 @@ namespace Test_Loopguy
 {
     public enum InputIcon
     {
-        X, A, Y, B, Select, Start, LT, RT, LB, RB
+        X, A, Y, B, Select, Start, LT, RT, LB, RB, None
     }
     class HintArea
     {
@@ -19,6 +19,9 @@ namespace Test_Loopguy
         InputIcon icon;
         Texture2D texture = TextureManager.control_atlas;
         public bool active;
+        Color color = new Color(255, 255, 255, 0);
+        Color bgColor = new Color(0, 0, 0, 0);
+        private readonly byte colorIncrement = 15;
 
         public HintArea(Rectangle area, string text, InputIcon icon)
         {
@@ -32,22 +35,60 @@ namespace Test_Loopguy
             if(area.Contains(EntityManager.player.centerPosition))
             {
                 active = true;
+                FadeIn();
             }
             else
             {
                 active = false;
+                FadeOut();
+            }
+        }
+
+        private void FadeIn()
+        {
+            if(color.A < 255)
+            {
+                if(color.A + colorIncrement > 255)
+                {
+                    color.A = 255;
+                    bgColor.A = 255;
+                }
+                else
+                {
+                    color.A += colorIncrement;
+                    bgColor.A += colorIncrement;
+                }
+                
+            }
+            
+        }
+
+        private void FadeOut()
+        {
+            if (color.A > 0)
+            {
+                if (color.A - colorIncrement < 0)
+                {
+                    color.A = 0;
+                    bgColor.A = 0;
+                }
+                else
+                {
+                    color.A -= colorIncrement;
+                    bgColor.A -= colorIncrement;
+                }
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if(active)
+            if(active || color.A > 0)
             {
                 int offset = (int)TextureManager.smallestFont.MeasureString(text).X;
                 Vector2 drawPoint = new Vector2((Game1.windowX / 2) - (offset / 2), Game1.windowY * 0.8F);
-                spriteBatch.Draw(texture, drawPoint - new Vector2(20, 2), new Rectangle(0, (int)icon * 32, 32, 32), Color.White);
-                spriteBatch.DrawString(TextureManager.smallestFont, text, drawPoint + new Vector2(22, 2), Color.Black);
-                spriteBatch.DrawString(TextureManager.smallestFont, text, drawPoint + new Vector2(20, 0), Color.White);
+                spriteBatch.Draw(texture, drawPoint - new Vector2(20, 2), new Rectangle(0, (int)icon * 32, 32, 32), color);
+                spriteBatch.DrawString(TextureManager.smallestFont, text, drawPoint + new Vector2(22, 2), bgColor);
+                spriteBatch.DrawString(TextureManager.smallestFont, text, drawPoint + new Vector2(20, 0), color);
             }
             
         }

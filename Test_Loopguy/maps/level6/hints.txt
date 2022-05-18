@@ -2,3 +2,4 @@
 484,32,160,160,to dash,1
 700,32,42,160,to aim,6
 742,32,42,160,to fire,7
+800,24,128,128,pick up key to unlock doors,10

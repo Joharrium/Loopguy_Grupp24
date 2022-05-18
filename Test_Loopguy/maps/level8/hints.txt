@@ -1,0 +1,3 @@
+24,128,104,90,ammo pickups refill ammo,10
+144,128,104,90,health pickups refill health,10
+242,60,128,48,to use a stored health pack,2

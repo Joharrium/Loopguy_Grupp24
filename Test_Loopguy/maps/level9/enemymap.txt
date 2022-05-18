@@ -1,2 +1,1 @@
-TestEnemyRanged,382,-13
 TestEnemyRanged,322,189
