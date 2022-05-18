@@ -311,4 +311,99 @@ namespace Test_Loopguy
             hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
         }
     }
+
+    public class DeskForward : LevelObject
+    {
+        public DeskForward(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.desk_fw;
+            variation = Game1.rnd.Next(4);
+            sourceRectangle = new Rectangle(48 * variation, 0, 48, 32);
+            footprint = new Rectangle((int)position.X + 2, (int)position.Y + 14, 42, 16);
+            height = 6;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+    public class DeskBackward : LevelObject
+    {
+        public DeskBackward(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.desk_bw;
+            variation = Game1.rnd.Next(4);
+            sourceRectangle = new Rectangle(48 * variation, 0, 48, 32);
+            footprint = new Rectangle((int)position.X + 2, (int)position.Y + 14, 42, 16);
+            height = 6;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+    public class PottedPlant : LevelObject
+    {
+        public PottedPlant(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.potted_plant;
+            variation = Game1.rnd.Next(3);
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 32);
+            footprint = new Rectangle((int)position.X + 3, (int)position.Y + 24, 10, 6);
+            height = 24;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class OperationEquipment : LevelObject
+    {
+        public OperationEquipment(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.table_operation;
+            variation = Game1.rnd.Next(3);
+            sourceRectangle = new Rectangle(28 * variation, 0, 28, 24);
+            footprint = new Rectangle((int)position.X + 1, (int)position.Y + 8, 26, 16);
+            height = 7;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+    public class CarryingThing : LevelObject
+    {
+        public CarryingThing(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.carrying_thing;
+            variation = Game1.rnd.Next(2);
+            sourceRectangle = new Rectangle(20 * variation, 0, 20, 36);
+            footprint = new Rectangle((int)position.X + 0, (int)position.Y + 22, 19, 14);
+            height = 30;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class CrateStack : LevelObject
+    {
+        public CrateStack(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.crate_stack;
+            variation = Game1.rnd.Next(2);
+            sourceRectangle = new Rectangle(26 * variation, 0, 26, 22);
+            footprint = new Rectangle((int)position.X + 3, (int)position.Y + 24, 25, 10);
+            height = 13;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class BigSink : LevelObject
+    {
+        public BigSink(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.big_sink;
+            variation = Game1.rnd.Next(1);
+            sourceRectangle = new Rectangle(46 * variation, 0, 46, 24);
+            footprint = new Rectangle((int)position.X + 0, (int)position.Y + 8, 46, 16);
+            height = 7;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
 }

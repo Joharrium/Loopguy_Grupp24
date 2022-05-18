@@ -14,8 +14,9 @@ namespace Test_Loopguy
         public static Texture2D boxOpen, barrel, pot, shrub_big, shrub_small, tree_big, tree_small, fernDestroyed, door, door_open,
             keycard, door_sliding, door_sliding_open, barrelDestroyed, medkit, console, ammo,
             billboard, cabinet, cardboard_box_stack_small, counter, desk_monitors, machine_heartbeat_thing, reception_desk, shelf_archiving,
-            shelf_archiving_small, table_computer_medicine, table_operation, monitor_wall, desk_office, chair_office_fw, chair_office_bw, server
-            ;
+            shelf_archiving_small, table_computer_medicine, table_operation, monitor_wall, desk_office, chair_office_fw, chair_office_bw, server,
+            big_sink, sink, carrying_thing, crate_stack, nice_bookshelf, shooting_range_bench, shooting_range_target, sofa, camera, desk_bw, desk_fw, 
+            morgue, potted_plant, shelf_weird;
         // ui files
         public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door,
             healthbar_small_outline, healthbar_small_fill_bg, healthbar_small_fill,
@@ -123,6 +124,23 @@ namespace Test_Loopguy
                 chair_office_fw = c.Load<Texture2D>("gfx/objects/assetpack/chair_office_forward");
 
 
+            }
+
+            {
+                big_sink = c.Load<Texture2D>("gfx/objects/assetpack/big_sink");
+                sink = c.Load<Texture2D>("gfx/objects/assetpack/sink");
+                carrying_thing = c.Load<Texture2D>("gfx/objects/assetpack/carrying_thing");
+                crate_stack = c.Load<Texture2D>("gfx/objects/assetpack/crate_stack");
+                nice_bookshelf = c.Load<Texture2D>("gfx/objects/assetpack/nice_bookshelf");
+                shooting_range_bench = c.Load<Texture2D>("gfx/objects/assetpack/shooting_range_bench");
+                shooting_range_target = c.Load<Texture2D>("gfx/objects/assetpack/shooting_range_target");
+                sofa = c.Load<Texture2D>("gfx/objects/assetpack/sofa");
+                camera = c.Load<Texture2D>("gfx/objects/camera");
+                desk_bw = c.Load<Texture2D>("gfx/objects/desk_backward");
+                desk_fw = c.Load<Texture2D>("gfx/objects/desk_forward");
+                morgue = c.Load<Texture2D>("gfx/objects/morgue");
+                potted_plant = c.Load<Texture2D>("gfx/objects/potted_plant");
+                shelf_weird = c.Load<Texture2D>("gfx/objects/shelf_weird");
             }
 
         }

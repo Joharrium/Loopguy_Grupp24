@@ -535,6 +535,12 @@ namespace Test_Loopguy
                 "MonitorWall" => new MonitorWall(pos),
                 "Server" => new Server(pos),
                 "DeskOffice" => new DeskOffice(pos),
+                "DeskBackward" => new DeskBackward(pos),
+                "DeskForward" => new DeskForward(pos),
+                "PottedPlant" => new PottedPlant(pos),
+                "BigSink" => new BigSink(pos),
+                "CrateStack" => new CrateStack(pos),
+                "OperationEquipment" => new OperationEquipment(pos),
                 _ => null,
             };
         }
