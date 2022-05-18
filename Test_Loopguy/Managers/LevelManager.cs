@@ -29,6 +29,22 @@ namespace Test_Loopguy
 
         private static Player player;
         private static Vector2 target;
+
+        internal static void Init()
+        {
+            if(ProfileManager.HasPlayedTutorial())
+            {
+                LoadLevel(10);
+                EntityManager.player.EnterRoom(new Vector2(208, 24));
+            }
+            else
+            {
+                LoadLevel(6);
+            }
+               
+            EntranceLoad();
+        }
+
         internal static void StartLevelTransition(int levelToLoad, Player player, Vector2 target)
         {
             loadTimer = LOADTIMER;
@@ -117,7 +133,12 @@ namespace Test_Loopguy
         public static void Reset()
         {
             List<Level> levelsToClear = new List<Level>();
-            Level level1 = LoadLevel(1);
+            Level level1 = LoadLevel(6);
+            if (ProfileManager.HasPlayedTutorial())
+            {
+                level1 = LoadLevel(10);
+            }
+            
             currentLevel = level1;
             EntityManager.player.Reset( new Vector2(64, 64));
             timeLeft = startingTime;

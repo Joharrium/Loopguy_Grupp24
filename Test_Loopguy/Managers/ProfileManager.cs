@@ -25,6 +25,11 @@ namespace Test_Loopguy
             currentProfile.AddKey(key);
         }
 
+        public static void TutorialFinished()
+        {
+            currentProfile.TutorialFinished();
+        }
+
         public static List<int> GetKeys()
         {
             return currentProfile.GetKeys();
@@ -35,6 +40,11 @@ namespace Test_Loopguy
             currentProfile = profiles[(CurrentProfileId() + 1) % profiles.Count];
             LevelManager.Reset();
             
+        }
+
+        public static bool HasPlayedTutorial()
+        {
+            return currentProfile.PlayedTutorial;
         }
 
         public static void SaveSettings(int music, int sound, int scale, bool fullscreen)

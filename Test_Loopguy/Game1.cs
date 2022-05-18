@@ -88,9 +88,7 @@ namespace Test_Loopguy
 
             MenuManager.Init();
 
-            LevelManager.LoadLevel(1);
-
-            LevelManager.EntranceLoad();
+            LevelManager.Init();
 
             camera = new Camera();
             camera.SetPosition(new Vector2(200, 200));
@@ -131,7 +129,7 @@ namespace Test_Loopguy
 
                 }
             }
-            else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.Tab) )
+            else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.Tab) || InputReader.ButtonPressed(Buttons.Start))
             {
                 if(StateManager.currentState == StateManager.GameState.InGame)
                 { 

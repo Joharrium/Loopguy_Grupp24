@@ -121,6 +121,7 @@ namespace Test_Loopguy
                 if (InputReader.ButtonPressed(Buttons.A) || InputReader.KeyPressed(Keys.Enter))
                 {
                     StateManager.currentState = StateManager.GameState.InGame;
+                    Audio.UpdateLevelMusic();
                 }
             }
 
@@ -162,6 +163,7 @@ namespace Test_Loopguy
         private static void NewGameButton_Click(object sender, EventArgs e)
         {
             StateManager.currentState = StateManager.GameState.InGame;
+            Audio.UpdateLevelMusic();
         }
 
         private static void LoadGameButton_Click(object sender, EventArgs e)

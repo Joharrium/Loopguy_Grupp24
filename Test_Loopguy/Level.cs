@@ -43,6 +43,10 @@ namespace Test_Loopguy
             destructibles.AddRange(levelObjects.OfType<Destructible>());
             hints = LevelManager.HintAreaLoad(id);
             //hints.Add(new HintArea(new Rectangle(0, 0, 400, 400), "to dash", InputIcon.A));
+            if(id == 10)
+            {
+                ProfileManager.TutorialFinished();
+            }
 
         }
 
