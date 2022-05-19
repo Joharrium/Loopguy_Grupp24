@@ -38,6 +38,12 @@
 /processorParam:Quality=Best
 /build:audio/music/unatco_hq.ogg
 
+#begin audio/sound/bonk.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/bonk.wav
+
 #begin audio/sound/box_destroy.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
