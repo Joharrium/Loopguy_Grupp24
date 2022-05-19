@@ -135,11 +135,14 @@ namespace Test_Loopguy
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            outline = TextureManager.player_healthbar_outline;
+
             Color bgColor = new Color(52, 173, 50, 255);
             if(ProfileManager.ColorBlind)
             {
                 spriteBatch.Draw(TextureManager.player_healthbar_fill_bg_alt, position, Color.White);
                 bgColor = new Color(71, 124, 177, 255);
+                outline = TextureManager.player_healthbar_outline_alt;
             }
             else
             {
