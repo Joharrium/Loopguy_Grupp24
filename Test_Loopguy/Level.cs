@@ -306,10 +306,6 @@ namespace Test_Loopguy
                         e.TakeDamage(1, Character.DamageType.melee);
                         e.hitDuringCurrentAttack = true;                 
 
-                        //if (e.GetType() == typeof(RangedRobotEnemy))
-                        //{
-                        //    Audio.PlaySound(Audio.meepmerp);
-                        //}
                     }
                     if (!EntityManager.player.attacking)
                     {

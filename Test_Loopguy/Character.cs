@@ -20,7 +20,7 @@ namespace Test_Loopguy
             Right,
         }
 
-        //Made for defining the sound used for each type of weapon on each type of enemy
+        //Made for defining the sound used for each type of weapon on each type of enemy, the sound is set in each one of the characters TakeDamage() method
         public enum DamageType
         {
             melee,
