@@ -43,7 +43,10 @@ static class InputReader
 		else
 			return false;
 	}
-
+	public static bool MovementInput()
+    {
+		return MovementLeft() || MovementRight() || MovementUp() || MovementDown() || MovingLeftStick();
+    }
 	public static bool MovementLeft()
 	{
 		if (playerInputEnabled)
@@ -113,10 +116,10 @@ static class InputReader
 	public static bool Dash()
     {
 		if (playerInputEnabled)
-			return KeyPressed(Keys.Space) || ButtonPressed(Buttons.A);
+			return keyState.IsKeyDown(Keys.Space) || padState.IsButtonDown(Buttons.A);
 		else
 			return false;
-	}
+    }
 	public static bool Attack()
     {
 		if (editMode || !playerInputEnabled)

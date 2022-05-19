@@ -17,12 +17,13 @@ namespace Test_Loopguy
         KeycardRed, DoorSliding, BarrelDestructible, HealingSmall, AmmoSmall, Counter, 
         CardboardStackSmall, Billboard, Cabinet, MonitorWall, ShelfArchiving, ShelfArchivingSmall,
         DeskOffice, Server, ChairOfficeBw, ChairOfficeFw, DeskForward, DeskBackward, PottedPlant,
-        BigSink, CrateStack, OperationEquipment
+        BigSink, CrateStack, OperationEquipment, Whiteboard, Locker, Morgue, Sofa, Camera, Sink,
+        NiceBookshelf, ShelfWeird, ShootingRangeBench, CarryingThing
     }
     public enum TileSelection
     {
         Grass, Dirt, GrayBrick, TilesCheckeredGray, TilesCheckeredBrown, TilesBigDark, 
-        TilesBigLight, TileMetal, WallMetal, CarpetWorn, DrywallWorn, Water
+        TilesBigLight, TileMetal, WallMetal, CarpetWorn, DrywallWorn, Water, Warning
     }
 
     public enum EnemySelection
@@ -213,6 +214,46 @@ namespace Test_Loopguy
                                 LevelManager.ObjectAdd(new OperationEquipment(Game1.mousePos - new Vector2(8, 16)));
                                 break;
 
+                            case ObjectSelection.Sink:
+                                LevelManager.ObjectAdd(new Sink(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.Morgue:
+                                LevelManager.ObjectAdd(new Morgue(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.Locker:
+                                LevelManager.ObjectAdd(new Locker(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.Sofa:
+                                LevelManager.ObjectAdd(new Sofa(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.Whiteboard:
+                                LevelManager.ObjectAdd(new WhiteBoard(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.CarryingThing:
+                                LevelManager.ObjectAdd(new CarryingThing(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.ShootingRangeBench:
+                                LevelManager.ObjectAdd(new ShootingRangeBench(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.ShelfWeird:
+                                LevelManager.ObjectAdd(new ShelfWeird(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.Camera:
+                                LevelManager.ObjectAdd(new CameraObject(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.NiceBookshelf:
+                                LevelManager.ObjectAdd(new NiceBookshelf(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
                             default:
                                 break;
                         }
@@ -356,6 +397,46 @@ namespace Test_Loopguy
 
                     case ObjectSelection.OperationEquipment:
                         spriteBatch.Draw(TextureManager.table_operation, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.Sink:
+                        spriteBatch.Draw(TextureManager.sink, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.Morgue:
+                        spriteBatch.Draw(TextureManager.morgue, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.Locker:
+                        spriteBatch.Draw(TextureManager.locker, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.Sofa:
+                        spriteBatch.Draw(TextureManager.sofa, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.Whiteboard:
+                        spriteBatch.Draw(TextureManager.whiteboard, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.CarryingThing:
+                        spriteBatch.Draw(TextureManager.carrying_thing, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.ShootingRangeBench:
+                        spriteBatch.Draw(TextureManager.shooting_range_bench, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.ShelfWeird:
+                        spriteBatch.Draw(TextureManager.shelf_weird, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.Camera:
+                        spriteBatch.Draw(TextureManager.camera, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.NiceBookshelf:
+                        spriteBatch.Draw(TextureManager.nice_bookshelf, (Game1.mousePos - new Vector2(8, 16)), Color.White);
                         break;
 
                     default:

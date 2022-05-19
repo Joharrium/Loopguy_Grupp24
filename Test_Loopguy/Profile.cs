@@ -8,6 +8,13 @@ namespace Test_Loopguy
     public class Profile
     {
         private int id;
+        private bool playedTutorial;
+        public bool colorBlind;
+        
+        public bool PlayedTutorial
+        {
+            get { return playedTutorial; }
+        }
         public int Id
         {
         get { return id; }
@@ -19,14 +26,33 @@ namespace Test_Loopguy
         public Profile(int id)
         {
             this.id = id;
-            LoadKeys();
+            LoadProfile();
         }
 
         public List<int> GetKeys()
         {
+
             return keys;
         }
-        private void LoadKeys()
+
+        public void SaveToFile()
+        {
+            string path = String.Format(@"saves\profile{0}\settings.txt", id);
+            List<string> toWrite = new List<string>();
+
+            toWrite.Add(playedTutorial.ToString());
+            toWrite.Add(colorBlind.ToString());
+
+            File.WriteAllLines(path, toWrite);
+        }
+
+        public void TutorialFinished()
+        {
+            playedTutorial = true;
+            SaveToFile();
+            
+        }
+        private void LoadProfile()
         {
             if (File.Exists(String.Format(@"saves\profile{0}\keys.txt", id)))
             {
@@ -46,7 +72,19 @@ namespace Test_Loopguy
 
                 keys = keysToAdd;
             }
-        }
+            if (File.Exists(String.Format(@"saves\profile{0}\keys.txt", id)))
+            {
+                List<string> lines = new List<string>();
+                foreach (string line in System.IO.File.ReadLines(String.Format(@"saves\profile{0}\settings.txt", id)))
+                {
+                    lines.Add(line);
+                }
+                
+                playedTutorial = Boolean.Parse(lines[0]);
+                colorBlind = Boolean.Parse(lines[1]);
+                
+            }
+            }
 
         public void AddKey(int i)
         {

@@ -9,6 +9,12 @@ namespace Test_Loopguy
     {
         static List<Profile> profiles = new List<Profile>();
         static Profile currentProfile;
+
+        public static bool ColorBlind
+        {
+            get { return currentProfile.colorBlind; }
+            set { currentProfile.colorBlind = value; }
+        }
         
 
         public static void Init()
@@ -25,6 +31,11 @@ namespace Test_Loopguy
             currentProfile.AddKey(key);
         }
 
+        public static void TutorialFinished()
+        {
+            currentProfile.TutorialFinished();
+        }
+
         public static List<int> GetKeys()
         {
             return currentProfile.GetKeys();
@@ -35,6 +46,16 @@ namespace Test_Loopguy
             currentProfile = profiles[(CurrentProfileId() + 1) % profiles.Count];
             LevelManager.Reset();
             
+        }
+
+        public static void SaveToFile()
+        {
+            currentProfile.SaveToFile();
+        }
+
+        public static bool HasPlayedTutorial()
+        {
+            return currentProfile.PlayedTutorial;
         }
 
         public static void SaveSettings(int music, int sound, int scale, bool fullscreen)

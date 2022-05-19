@@ -43,6 +43,10 @@ namespace Test_Loopguy
             destructibles.AddRange(levelObjects.OfType<Destructible>());
             hints = LevelManager.HintAreaLoad(id);
             //hints.Add(new HintArea(new Rectangle(0, 0, 400, 400), "to dash", InputIcon.A));
+            if(id == 9)
+            {
+                ProfileManager.TutorialFinished();
+            }
 
         }
 
@@ -567,13 +571,16 @@ namespace Test_Loopguy
                         tiles[coordinates.X, coordinates.Y] = new WallGray(gameLocation);
                         break;
                     case TileSelection.CarpetWorn:
-                        tiles[coordinates.X, coordinates.Y] = new CarpetWorn(gameLocation);
+                        tiles[coordinates.X, coordinates.Y] = new Carpet(gameLocation);
                         break;
                     case TileSelection.DrywallWorn:
                         tiles[coordinates.X, coordinates.Y] = new WornWall(gameLocation);
                         break;
                     case TileSelection.Water:
                         tiles[coordinates.X, coordinates.Y] = new Water(gameLocation);
+                        break;
+                    case TileSelection.Warning:
+                        tiles[coordinates.X, coordinates.Y] = new TileWarning(gameLocation);
 
                         break;
                 }

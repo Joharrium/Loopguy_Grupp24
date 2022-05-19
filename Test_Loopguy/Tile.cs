@@ -218,15 +218,29 @@ namespace Test_Loopguy
         }
     }
 
-    public class CarpetWorn : Floor
+    public class TileWarning : Floor
     {
         int variation;
-        public CarpetWorn(Vector2 position) : base(position)
+        public TileWarning(Vector2 position) : base(position)
+        {
+            this.position = position;
+            footsteps = Audio.footstepsMetal;
+            texture = TextureManager.tile_warning;
+            variation = Game1.rnd.Next(1);
+
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);
+        }
+    }
+
+    public class Carpet : Floor
+    {
+        int variation;
+        public Carpet(Vector2 position) : base(position)
         {
             this.position = position;
             footsteps = Audio.footstepsGeneric;
-            texture = TextureManager.carpet_worn;
-            variation = Game1.rnd.Next(3);
+            texture = TextureManager.tile_carpet;
+            variation = Game1.rnd.Next(1);
 
 
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 16);

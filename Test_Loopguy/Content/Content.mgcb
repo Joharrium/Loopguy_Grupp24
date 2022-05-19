@@ -940,6 +940,18 @@
 /processorParam:TextureFormat=Color
 /build:gfx/interface/player_healthbar_fill_bg.png
 
+#begin gfx/interface/player_healthbar_fill_bg_alt.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/interface/player_healthbar_fill_bg_alt.png
+
 #begin gfx/interface/player_healthbar_inline.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -988,6 +1000,7 @@
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/big_sink.png
 
+
 #begin gfx/objects/assetpack/billboard.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -999,6 +1012,7 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/billboard.png
+
 
 #begin gfx/objects/assetpack/cabinet.png
 /importer:TextureImporter
@@ -1252,6 +1266,31 @@
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/sofa.png
 
+#begin gfx/objects/assetpack/sofa_left.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/sofa_left.png
+
+
+#begin gfx/objects/assetpack/sofa_right.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/sofa_right.png
+
 #begin gfx/objects/assetpack/stocked_shelf.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1263,6 +1302,7 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/stocked_shelf.png
+
 
 #begin gfx/objects/assetpack/table_computer_medicine.png
 /importer:TextureImporter
@@ -1468,6 +1508,18 @@
 /processorParam:TextureFormat=Color
 /build:gfx/objects/keycard.png
 
+#begin gfx/objects/locker.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/locker.png
+
 #begin gfx/objects/medkit.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1599,6 +1651,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/objects/tree_small.png
+
+#begin gfx/objects/whiteboard.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/whiteboard.png
 
 #begin gfx/particles/heal_effect.png
 /importer:TextureImporter
@@ -1768,6 +1832,30 @@
 /processorParam:TextureFormat=Color
 /build:gfx/terrain/placeholder so git finds the folder.PNG
 
+#begin gfx/terrain/tile_bright.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/terrain/tile_bright.png
+
+#begin gfx/terrain/tile_carpet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/terrain/tile_carpet.png
+
 #begin gfx/terrain/tile_clinical.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1779,6 +1867,42 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/terrain/tile_clinical.png
+
+#begin gfx/terrain/tile_clinical_warning.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/terrain/tile_clinical_warning.png
+
+#begin gfx/terrain/tile_concrete.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/terrain/tile_concrete.png
+
+#begin gfx/terrain/tile_hospital.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/terrain/tile_hospital.png
 
 #begin gfx/terrain/tile_metal.png
 /importer:TextureImporter
