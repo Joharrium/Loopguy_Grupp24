@@ -44,11 +44,35 @@
 /processorParam:Quality=Best
 /build:audio/sound/box_destroy.wav
 
-#begin audio/sound/cbar_hit1.wav
+#begin audio/sound/cbar_hit1reduced.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:audio/sound/cbar_hit1.wav
+/build:audio/sound/cbar_hit1reduced.wav
+
+#begin audio/sound/cbar_hit2reduced.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/cbar_hit2reduced.wav
+
+#begin audio/sound/cbar_hitbod1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/cbar_hitbod1.wav
+
+#begin audio/sound/cbar_hitbod2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/cbar_hitbod2.wav
+
+#begin audio/sound/cbar_hitbod3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/cbar_hitbod3.wav
 
 #begin audio/sound/dash.wav
 /importer:WavImporter
@@ -67,6 +91,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:audio/sound/door_hiss_sound.wav
+
+#begin audio/sound/egon_windup2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/egon_windup2.wav
 
 #begin audio/sound/footsteps/dirt_1.wav
 /importer:WavImporter
@@ -194,6 +224,12 @@
 /processorParam:Quality=Best
 /build:audio/sound/meepmerp.wav
 
+#begin audio/sound/mine_charge.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/mine_charge.wav
+
 #begin audio/sound/open.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -235,6 +271,30 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:audio/sound/swing.wav
+
+#begin audio/sound/tauCannonCharge.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/tauCannonCharge.wav
+
+#begin audio/sound/tauCannonEdited2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/tauCannonEdited2.wav
+
+#begin audio/sound/tauCannonShot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/tauCannonShot.wav
+
+#begin audio/sound/tauCannonShotEdited.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/tauCannonShotEdited.wav
 
 #begin blueArc.png
 /importer:TextureImporter

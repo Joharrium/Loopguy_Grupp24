@@ -20,11 +20,10 @@ namespace Test_Loopguy
             Right,
         }
 
-        //Made for defining the sound made from each type of damage
-        public enum DamageSound
+        //Made for defining the sound used for each type of weapon on each type of enemy
+        public enum AttackType
         {
-            meleeOnMetal,
-            meleeOnFlesh,
+            melee,
             laserGun,
             railGun,
         }
@@ -158,7 +157,7 @@ namespace Test_Loopguy
             }
         }
 
-        public virtual void TakeDamage(int damage, DamageSound soundType)
+        public virtual void TakeDamage(int damage, AttackType soundType)
         {
             health -= damage;
             Audio.PlaySound(Audio.player_hit);

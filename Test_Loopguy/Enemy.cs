@@ -136,7 +136,7 @@ namespace Test_Loopguy
             CheckMovement(deltaTime);
         }
 
-        public override void TakeDamage(int damage, DamageSound soundType)
+        public override void TakeDamage(int damage, AttackType soundType)
         {
             aggro = true;
             if(!hitDuringCurrentAttack)
@@ -150,15 +150,15 @@ namespace Test_Loopguy
 
             }
 
-            if (soundType == DamageSound.meleeOnMetal)
-            {
-                Audio.PlaySound(Audio.meleeOnMetal);
-            }
+            //if (soundType == AttackType.melee)
+            //{
+            //    Audio.PlaySound(Audio.meleeOnMetal);
+            //}
 
-            if (soundType == DamageSound.laserGun)
-            {
-                Audio.PlaySound(Audio.player_hit);
-            }
+            //if (soundType == AttackType.laserGun)
+            //{
+            //    Audio.PlaySound(Audio.player_hit);
+            //}
         }
 
 
@@ -362,6 +362,20 @@ namespace Test_Loopguy
             LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 150, damage));
         }
 
+        public override void TakeDamage(int damage, AttackType soundType)
+        {
+            if (soundType == AttackType.melee)
+            {
+                Audio.meleeOnFlesh.PlayRandomSound();
+            }
+            else if (soundType == AttackType.laserGun)
+            {
+                Audio.PlaySound(Audio.player_hit);
+            }
+
+            base.TakeDamage(damage, soundType);
+        }
+
         public override void Update(GameTime gameTime)
         {
             if (health <= 0)
@@ -423,6 +437,7 @@ namespace Test_Loopguy
             direction *= -1;
 
             LevelManager.AddEnemyProjectile(new RobotEnemyShot(attackOrigin, direction, (float)Helper.GetAngle(attackOrigin, EntityManager.player.centerPosition, 0 + Math.PI), 300, damage));
+            Audio.PlaySound(Audio.robotEnemyShot);
         }
 
         protected override void AttackBehavior()
@@ -477,7 +492,22 @@ namespace Test_Loopguy
             }
         }
 
-       
+        public override void TakeDamage(int damage, AttackType soundType)
+        {
+            if (soundType == AttackType.melee)
+            {
+                Audio.meleeOnMetal.PlayRandomSound();
+                //Audio.PlaySound(Audio.meleeOnMetal1);
+            }
+            else if (soundType == AttackType.laserGun)
+            {
+                Audio.PlaySound(Audio.player_hit);
+            }
+
+            base.TakeDamage(damage, soundType);
+        }
+
+
 
         public override void Movement(float deltaTime)
         {
@@ -555,52 +585,61 @@ namespace Test_Loopguy
             {
                 isNotDying = sprite.PlayOnce(8, 28, 50);
             }
-            else if (isAttacking)
+            else
             {
-
-                if (lockedOrientation == Orientation.Up)
+                if (isAttacking)
                 {
+                    //Audio.PlaySound(Audio.robotEnemyCharge2);
 
-                    if (!sprite.PlayOnce(1, 20, frameTime))
+                    if (lockedOrientation == Orientation.Up)
                     {
-                        Attack();
-                        isAttacking = false;
+
+
+                        if (!sprite.PlayOnce(1, 20, frameTime))
+                        {
+                            Attack();
+                            isAttacking = false;
+
+                        }
                     }
-
-                }
-                else if (lockedOrientation == Orientation.Down)
-                {
-                    if (!sprite.PlayOnce(0, 20, frameTime))
+                    else if (lockedOrientation == Orientation.Down)
                     {
-                        Attack();
-                        isAttacking = false;
+                        if (!sprite.PlayOnce(0, 20, frameTime))
+                        {
+                            Attack();
+                            isAttacking = false;
 
-                    }
-
-                }
-                else if (lockedOrientation == Orientation.Left)
-                {
-                    if (!sprite.PlayOnce(2, 20, frameTime))
-                    {
-                        Attack();
-                        isAttacking = false;
+                        }
 
                     }
-
-                }
-                else if (lockedOrientation == Orientation.Right)
-                {
-                    if (!sprite.PlayOnce(3, 20, frameTime))
+                    else if (lockedOrientation == Orientation.Left)
                     {
-                        Attack();
+                        if (!sprite.PlayOnce(2, 20, frameTime))
+                        {
+                            Attack();
+                            isAttacking = false;
+
+                        }
+
+                    }
+                    else if (lockedOrientation == Orientation.Right)
+                    {
+                        if (!sprite.PlayOnce(3, 20, frameTime))
+                        {
+
+                            Attack();
+                            isAttacking = false;
+                        }
+
+                    }
+                    else if (lockedOrientation == Orientation.Zero)
+                    {
                         isAttacking = false;
                     }
+                }
+               
 
-                }
-                else if (lockedOrientation == Orientation.Zero)
-                {
-                    isAttacking = false;
-                }
+               
             }
 
             base.Update(gameTime);

@@ -96,7 +96,7 @@ namespace Test_Loopguy
                 if (s.CheckCollision(player) && !player.dashing)
                 {
 
-                    player.TakeDamage(s.damage, Character.DamageSound.laserGun);
+                    player.TakeDamage(s.damage, Character.AttackType.laserGun);
 
                     projectilesToRemove.Add(s);
                 }
@@ -296,14 +296,14 @@ namespace Test_Loopguy
                     {
                         if(s.CheckCollision(e))
                         {
-                            e.TakeDamage(s.damage, Character.DamageSound.laserGun);
+                            e.TakeDamage(s.damage, Character.AttackType.laserGun);
                             projectilesToRemove.Add(s);
                         }
                     }
                     e.Update(gameTime);
                     if (EntityManager.player.MeleeHit(e) && EntityManager.player.attacking)
                     {
-                        e.TakeDamage(1, Character.DamageSound.meleeOnMetal);
+                        e.TakeDamage(1, Character.AttackType.melee);
                         e.hitDuringCurrentAttack = true;                 
 
                         //if (e.GetType() == typeof(RangedRobotEnemy))
