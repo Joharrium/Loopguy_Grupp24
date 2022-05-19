@@ -89,6 +89,20 @@ namespace Test_Loopguy
             divisorValue = 68;
             offset = new Vector2(4, 3);
         }
+
+        public new void Draw(SpriteBatch spriteBatch)
+        {
+            //spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
+
+
+            spriteBatch.Draw(fill_bg, position, Color.White);
+
+            spriteBatch.Draw(fill, position + offset, srcRectangle, Color.White);
+            spriteBatch.Draw(outline, position, Color.White);
+            OutlinedText.DrawOutlinedText(spriteBatch, position + new Vector2(24, -4), TextureManager.smallestFont, value.ToString() + "/" + maxValue.ToString(), new Color(249, 196, 89), Color.White);
+
+            //spriteBatch.End();
+        }
     }
 
     public class PlayerHealthBar
@@ -121,15 +135,19 @@ namespace Test_Loopguy
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            Color bgColor = new Color(52, 173, 50, 255);
             if(ProfileManager.ColorBlind)
             {
                 spriteBatch.Draw(TextureManager.player_healthbar_fill_bg_alt, position, Color.White);
+                bgColor = new Color(71, 124, 177, 255);
             }
             else
             {
                 spriteBatch.Draw(fill_bg, position, Color.White);
             }
+
             
+
             if(maxValue != value)
             {
                 spriteBatch.Draw(fill, position + new Vector2(80 - ((Math.Abs(value - maxValue) * 16)), 0), srcRectangle, Color.White);
@@ -137,6 +155,8 @@ namespace Test_Loopguy
             
             spriteBatch.Draw(outline, position, Color.White);
             spriteBatch.Draw(inline, position, Color.White);
+
+            OutlinedText.DrawOutlinedText(spriteBatch, position + new Vector2(28,-1), TextureManager.smallestFont, value.ToString() + "/" + maxValue.ToString(), bgColor, Color.White);
 
         }
 
