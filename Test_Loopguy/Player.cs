@@ -236,8 +236,11 @@ namespace Test_Loopguy
 
                 if (InputReader.Aim() || shooting)
                 {
-                    SlideyMovement(deltaTime, 2);
-                    SlideStop(deltaTime, 200);
+                    if (direction != Vector2.Zero)
+                    {
+                        SlideyMovement(deltaTime, 2);
+                        SlideStop(deltaTime, 200);
+                    }
 
                     cameraPosition = centerPosition + gunDirection * 50;
                     Game1.camera.stabilize = true;
