@@ -9,7 +9,7 @@ namespace Test_Loopguy
     internal class MovingObject : GameObject
     {
 
-        protected Vector2 direction;
+        public Vector2 direction;
         protected float speed;
         protected Point frameSize;
 

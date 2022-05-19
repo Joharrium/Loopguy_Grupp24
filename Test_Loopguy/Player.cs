@@ -21,7 +21,6 @@ namespace Test_Loopguy
 
         private const int maxStoredHealthPacks = 3;
 
-
         AnimatedSprite gunSprite;
         AnimatedSprite meleeSprite;
         AnimatedSprite dashCloudSprite;
@@ -50,34 +49,54 @@ namespace Test_Loopguy
 
         float deltaTime;
 
+        float timeSinceAttack; //counts seconds since last attack
+        const float comboWindow = 0.75f; //window of time to follow up attack
+        const float attackCooldown = 0.5f; //time you have to wait to attack again if you miss window
+        const int maxCombo = 3; //number of times you can attack in quick succession before having to wait for attackCooldown
+        int comboCounter; //number of times you've attacked in a quick succession
+
         float timeSinceDash;
         const float timeBetweedDashes = 1f;
 
+        float timePressedDash; //counts seconds you've held dash button
+        const float timeToPrecisionDash = 0.25f; //seconds you have to hold dash button to initiate precision dash (aimed dash)
+        const float timeMaxPrecisionDash = 3; //seconds you can hold the dash button before you automatically dash
+
         const int dashRange = 5; //pixels per frame
-        const int maxDashFrames = 10; //frames per dash
-        int dashFrames;
+        const int standardMaxDashFrames = 10;
+        float maxDashFrames; //frames per dash
+        int dashFrames; //counts frames you've dashed
+
+        float dashLengthIncrease;
 
         public string playerInfoString;
 
         public bool attacking;
+        bool startAttackTimer;
+        bool canAttack;
         bool shooting;
         bool canDash;
         public bool dashing;
         bool dashCloud;
 
+        bool checkDash;
+
+        bool flipMelee;
 
         public Player(Vector2 position)
             : base(position)
         {
             sprite = new AnimatedSprite(TextureManager.playerSheet, new Point(32, 32));
+
             gunSprite = new AnimatedSprite(TextureManager.pistolSheet, new Point(64, 64));
-            meleeSprite = new AnimatedSprite(TextureManager.meleeFx, new Point(48, 48));
+            meleeSprite = new AnimatedSprite(TextureManager.meleeFx, new Point(50, 50));
             dashCloudSprite = new AnimatedSprite(TextureManager.dashCloud, new Point(42, 24));
 
             maxHealth = 5;
             health = maxHealth;
 
             speed = 100; //pixels per second
+            maxDashFrames = standardMaxDashFrames;
 
             footprintOffset = new Point(12, 24);
             primaryOrientation = Orientation.Down;
@@ -88,13 +107,17 @@ namespace Test_Loopguy
             dashBar = new DashBar(100);
             footprint = new Rectangle((int)position.X, (int)position.Y + 24, 8, 8);
 
-            canDash = true;
+            canAttack = true;
+            canDash = false; //if its true you will always dash when loading in from menu lol
+            
         }
         
         
 
         public override void Update(GameTime gameTime)
         {
+            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
             hitBox = new Rectangle((int)(position.X + (sprite.size.X * 0.375)), (int)(position.Y + sprite.size.Y / 4), sprite.size.X / 4, sprite.size.Y / 2);
             footprint = new Rectangle((int)position.X + 12, (int)position.Y + 24, 8, 8);
 
@@ -117,8 +140,33 @@ namespace Test_Loopguy
             healthBar.UpdateBar(health);
             ammoBar.SetCurrentValue(new Vector2(2, 38), ammo);
 
-            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //ATTACK TIMER
+            if (startAttackTimer)
+            {
+                timeSinceAttack += deltaTime;
 
+                if (timeSinceAttack >= comboWindow)
+                {
+                    startAttackTimer = false;
+                    canAttack = false;
+                    comboCounter = 0;
+                    timeSinceAttack = 0;
+                }
+            }
+
+            //ATTACK COOLDOWN
+            if (!canAttack)
+            {
+                timeSinceAttack += deltaTime;
+
+                if (timeSinceAttack >= attackCooldown)
+                {
+                    canAttack = true;
+                    timeSinceAttack = 0;
+                }
+            }
+
+            //DASH TIMER
             if (!canDash)
             {
                 timeSinceDash += deltaTime;
@@ -131,37 +179,68 @@ namespace Test_Loopguy
                 }
             }
 
-            if (attacking)
+            if (checkDash)
+            {
+                timePressedDash += deltaTime;
+
+                //This is for "sliding" to a stop when holding dash button, prevents awkward stop when doing a quick dash and also looks cool
+                SlideStop(deltaTime, 200);
+
+                if (!InputReader.Dash() || timePressedDash > timeMaxPrecisionDash)
+                {
+                    Audio.PlaySound(Audio.dash);
+                    dashPosition = new Vector2(footprint.Center.X - 21, footprint.Center.Y - 12);
+                    dashing = true;
+                    canDash = false;
+                    checkDash = false;
+                }
+                else if (timePressedDash > timeToPrecisionDash)
+                {
+                    maxDashFrames += deltaTime * 4; // <-- increase time coefficient to make precision dash range increase faster, decrease to make slower
+
+                    aimAngle = GetAim();
+
+                    if (InputReader.MovingLeftStick())
+                    {
+                        direction.X = InputReader.padState.ThumbSticks.Left.X;
+                        direction.Y = -InputReader.padState.ThumbSticks.Left.Y;
+                    }
+                    else
+                    {
+                        aimAngle = (float)Helper.GetAngle(centerPosition, Game1.mousePos, 0);
+                        direction = new Vector2((float)Math.Sin(aimAngle), (float)Math.Cos(aimAngle));
+                    }
+                }
+
+            }
+            else if (attacking)
             {
                 PlayMelee(deltaTime);
-
-                
-                //Here is where you would use the MeleeHit method, I think
-                //However, keep in mind that the this will run as long as the attack animation runs,
-                //which is 200 ms right now (multiple hits will occur)
-
-                //Another way to do it is that the MeleeHit method only runs once per attack,
-                //although that would prevent an enemy walking in to the attack animation from taking damage
-                //Idk mang
-
-                
             }
             else if (dashing)
             {
-                //do nothing
+                //dash method is run in Draw because it needs spritebatch, yes it is wack
+                timePressedDash = 0;
             }
             else
             {
+                //this is to prevent moonwalking
+                sprite.flipHorizontally = false;
+
+                maxDashFrames = standardMaxDashFrames;
+                dashLengthIncrease = 0;
+
                 if (InputReader.Aim() || shooting)
                 {
+                    SlideStop(deltaTime, 150);
+
                     cameraPosition = centerPosition + gunDirection * 50;
                     Game1.camera.stabilize = true;
 
                     //SHOOTING
                     if (InputReader.Shoot() && !shooting && ammo > 0)
                     {
-                        gunSprite.currentFrame.X = 0;
-                        gunSprite.timeSinceLastFrame = 0;
+                        gunSprite.ResetAnimation();
 
                         Vector2 shotPosition = new Vector2(centerPosition.X + gunDirection.X * 20 - 4, centerPosition.Y + gunDirection.Y * 20 - 6);
                         float shotAngle = aimAngle + pi;
@@ -193,22 +272,29 @@ namespace Test_Loopguy
                     //Implement orientation stuff in a higher class "Character"
                     GetOrientation();
 
-                    if (InputReader.Attack() && !attacking)
+                    if (InputReader.Attack() && !attacking && canAttack && comboCounter < maxCombo)
                     {
-                        meleeSprite.currentFrame.X = 0;
-                        meleeSprite.timeSinceLastFrame = 0;
-                        sprite.currentFrame.X = 0;
-                        sprite.timeSinceLastFrame = 0;
+                        //for melee combo
+                        comboCounter++;
+                        timeSinceAttack = 0;
+                        startAttackTimer = true;
+
+                        meleeSprite.ResetAnimation();
+                        sprite.ResetAnimation();
+
+                        //flip melee attack animation every attack
+                        flipMelee = !flipMelee;
 
                         attacking = true;
                         Audio.PlaySound(Audio.swing);
                     }
-                    else if (InputReader.Dash() && canDash)
+                    else if (canDash && InputReader.Dash())
                     {
-                        Audio.PlaySound(Audio.dash);
-                        dashPosition = new Vector2(footprint.Center.X - 21, footprint.Center.Y - 12);
-                        dashing = true;
-                        canDash = false;
+                        checkDash = true;
+                    }
+                    else
+                    {
+                        timePressedDash = 0;
                     }
                 }
             }
@@ -222,6 +308,80 @@ namespace Test_Loopguy
             meleeSprite.Update(gameTime);
             dashCloudSprite.Update(gameTime);
             sprite.Update(gameTime);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            //draw footprint
+            spriteBatch.Draw(TextureManager.black_screen, footprint, Color.White);
+
+            if (dashCloud)
+            {
+                dashCloudSprite.Position = dashPosition;
+                dashCloud = DrawDashCloud(spriteBatch);
+            }
+
+            if (checkDash)
+            {
+                if (timePressedDash > timeToPrecisionDash)
+                    DrawDashAim(spriteBatch);
+
+                sprite.Frame((int)primaryOrientation - 1, 12);
+                sprite.Draw(spriteBatch);
+            }
+            else if (attacking)
+            {
+                sprite.Draw(spriteBatch);
+                meleeSprite.Draw(spriteBatch);
+            }
+            else
+            {
+                if (primaryOrientation == Orientation.Up)
+                { //if aiming up, draw player sprite on top
+
+                    if (dashing)
+                    {
+                        if (dashFrames <= maxDashFrames)
+                        {
+                            Dash(spriteBatch);
+                        }
+                        else
+                        {
+                            dashing = false;
+                            dashFrames = 0;
+                        }
+                    }
+                    else if (InputReader.Aim() || shooting)
+                    {
+                        DrawGunAim(spriteBatch);
+                        DrawGun(spriteBatch);
+                    }
+
+                    sprite.Draw(spriteBatch);
+                }
+                else
+                { //if not aiming up, draw gun sprite on top
+
+                    sprite.Draw(spriteBatch);
+
+                    if (dashing)
+                    {
+                        Dash(spriteBatch);
+                    }
+                    else if (InputReader.Aim() || shooting)
+                    {
+                        DrawGunAim(spriteBatch);
+                        DrawGun(spriteBatch);
+                    }
+                }
+            }
+
+            //draw hitbox borders
+            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Top), Color.White);
+            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Bottom), Color.White);
+
+            //healthBar.Draw(spriteBatch);
+
         }
 
         public void EnterRoom(Vector2 position)
@@ -249,72 +409,6 @@ namespace Test_Loopguy
             position = roomEntrancePosition;
             TakeDamage(1);
             Fadeout.HazardFade();
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            //draw footprint
-            spriteBatch.Draw(TextureManager.black_screen, footprint, Color.White);
-
-            if (dashCloud)
-            {
-                dashCloudSprite.Position = dashPosition;
-                dashCloud = DrawDashCloud(spriteBatch);
-            }
-
-            if (attacking)
-            {
-                sprite.Draw(spriteBatch);
-                meleeSprite.Draw(spriteBatch);
-            }
-            else
-            {
-                if (primaryOrientation == Orientation.Up)
-                { //if aiming up, draw player sprite on top
-
-                    if (dashing)
-                    {
-                        if (dashFrames <= maxDashFrames)
-                        {
-                            Dash(spriteBatch);
-                        }
-                        else
-                        {
-                            dashing = false;
-                            dashFrames = 0;
-                        }
-                    }
-                    else if (InputReader.Aim() || shooting)
-                    {
-                        DrawAim(spriteBatch);
-                        DrawGun(spriteBatch);
-                    }
-
-                    sprite.Draw(spriteBatch);
-                }
-                else
-                { //if not aiming up, draw gun sprite on top
-
-                    sprite.Draw(spriteBatch);
-
-                    if (dashing)
-                    {
-                        Dash(spriteBatch);
-                    }
-                    else if (InputReader.Aim() || shooting)
-                    {
-                        DrawAim(spriteBatch);
-                        DrawGun(spriteBatch);
-                    }
-                }
-            }
-
-            //draw hitbox borders
-            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Top), Color.White);
-            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Bottom), Color.White);
-
-            //healthBar.Draw(spriteBatch);
-
         }
 
         public void Reset(Vector2 position)
@@ -392,6 +486,8 @@ namespace Test_Loopguy
 
         public void PlayMelee(float deltaTime)
         {
+            speed = 75;
+
             int rowIntPlayer = 6 + (int)primaryOrientation - 1; //Melee sprites are 6 rows down on player sprite sheet
             int rowIntSword = (int)primaryOrientation - 1; //Wow dude??
             int frameTime = 50;
@@ -401,16 +497,47 @@ namespace Test_Loopguy
                 direction.X = 0;
                 direction.Y = -1;
 
+                meleeSprite.flipVertically = false;
+
+                if(flipMelee)
+                    sprite.flipHorizontally = meleeSprite.flipHorizontally = true;
+                else
+                    sprite.flipHorizontally = meleeSprite.flipHorizontally = false;
+
                 if (secondaryOrientation == Orientation.Left)
                 {
-                    rowIntPlayer = 8;
-                    rowIntSword = 4;
+                    sprite.flipHorizontally = false;
+
+                    if (flipMelee)
+                    {
+                        rowIntSword = 7;
+                        rowIntPlayer = 9;
+                        meleeSprite.flipVertically = true;
+                        meleeSprite.flipHorizontally = true;
+                    }
+                    else
+                    {
+                        rowIntSword = 4;
+                        rowIntPlayer = 8;
+                    }
                     direction.X = -1;
                 }
                 else if (secondaryOrientation == Orientation.Right)
                 {
-                    rowIntPlayer = 9;
-                    rowIntSword = 6;
+                    sprite.flipHorizontally = false;
+
+                    if (flipMelee)
+                    {
+                        rowIntSword = 5;
+                        rowIntPlayer = 11;
+                        meleeSprite.flipVertically = true;
+                        meleeSprite.flipHorizontally = true;
+                    }
+                    else
+                    {
+                        rowIntSword = 6;
+                        rowIntPlayer = 10;
+                    }
                     direction.X = 1;
                 }
 
@@ -420,16 +547,47 @@ namespace Test_Loopguy
                 direction.X = 0;
                 direction.Y = 1;
 
+                meleeSprite.flipVertically = false;
+
+                if (flipMelee)
+                    sprite.flipHorizontally = meleeSprite.flipHorizontally = true;
+                else
+                    sprite.flipHorizontally = meleeSprite.flipHorizontally = false;
+
                 if (secondaryOrientation == Orientation.Left)
                 {
-                    rowIntPlayer = 8;
-                    rowIntSword = 5;
+                    sprite.flipHorizontally = false;
+
+                    if (flipMelee)
+                    {
+                        rowIntSword = 6;
+                        rowIntPlayer = 9;
+                        meleeSprite.flipVertically = true;
+                        meleeSprite.flipHorizontally = true;
+                    }
+                    else
+                    {
+                        rowIntSword = 5;
+                        rowIntPlayer = 8;
+                    }
                     direction.X = -1;
                 }
                 else if (secondaryOrientation == Orientation.Right)
                 {
-                    rowIntPlayer = 9;
-                    rowIntSword = 7;
+                    sprite.flipHorizontally = false;
+
+                    if (flipMelee)
+                    {
+                        rowIntSword = 4;
+                        rowIntPlayer = 11;
+                        meleeSprite.flipVertically = true;
+                        meleeSprite.flipHorizontally = true;
+                    }
+                    else
+                    {
+                        rowIntSword = 7;
+                        rowIntPlayer = 10;
+                    }
                     direction.X = 1;
                 }
             }
@@ -438,14 +596,45 @@ namespace Test_Loopguy
                 direction.X = -1;
                 direction.Y = 0;
 
+                meleeSprite.flipHorizontally = false;
+
+                if (flipMelee)
+                {
+                    rowIntPlayer = 9;
+                    meleeSprite.flipVertically = true;
+                }
+                else
+                {
+                    rowIntPlayer = 8;
+                    meleeSprite.flipVertically = false;
+                }
+
                 if (secondaryOrientation == Orientation.Up)
                 {
-                    rowIntSword = 4;
+                    if (flipMelee)
+                    {
+                        rowIntSword = 7;
+                        meleeSprite.flipVertically = true;
+                        meleeSprite.flipHorizontally = true;
+                    }
+                    else
+                    {
+                        rowIntSword = 4;
+                    }
                     direction.Y = -1;
                 }
                 else if (secondaryOrientation == Orientation.Down)
                 {
-                    rowIntSword = 5;
+                    if (flipMelee)
+                    {
+                        rowIntSword = 6;
+                        meleeSprite.flipVertically = true;
+                        meleeSprite.flipHorizontally = true;
+                    }
+                    else
+                    {
+                        rowIntSword = 5;
+                    }
                     direction.Y = 1;
                 }
             }
@@ -454,14 +643,45 @@ namespace Test_Loopguy
                 direction.X = 1;
                 direction.Y = 0;
 
+                meleeSprite.flipHorizontally = false;
+
+                if (flipMelee)
+                {
+                    rowIntPlayer = 11;
+                    meleeSprite.flipVertically = true;
+                }
+                else
+                {
+                    rowIntPlayer = 10;
+                    meleeSprite.flipVertically = false;
+                }
+
                 if (secondaryOrientation == Orientation.Up)
                 {
-                    rowIntSword = 6;
+                    if (flipMelee)
+                    {
+                        rowIntSword = 5;
+                        meleeSprite.flipVertically = true;
+                        meleeSprite.flipHorizontally = true;
+                    }
+                    else
+                    {
+                        rowIntSword = 6;
+                    }
                     direction.Y = -1;
                 }
                 else if (secondaryOrientation == Orientation.Down)
                 {
-                    rowIntSword = 7;
+                    if (flipMelee)
+                    {
+                        rowIntSword = 4;
+                        meleeSprite.flipVertically = true;
+                        meleeSprite.flipHorizontally = true;
+                    }
+                    else
+                    {
+                        rowIntSword = 7;
+                    }
                     direction.Y = 1;
                 }
             }
@@ -491,9 +711,10 @@ namespace Test_Loopguy
                 dashFrames = 0;
             }
         }
+
         public void DashFrame(SpriteBatch spriteBatch)
         {
-            sprite.Frame((int)primaryOrientation - 1, 10);
+            sprite.Frame((int)primaryOrientation - 1, 13);
 
             if (direction == Vector2.Zero)
             {
@@ -628,31 +849,52 @@ namespace Test_Loopguy
             playerInfoString = absDirShort.ToString() + " || " + frameTime.ToString() + " || " + playerVelocityShort.ToString() + "\n\n\n\n\n\n\n Dir X: " + dirXshort + "\n Dir Y: " + dirYshort;
         }
 
-        public void DrawAim(SpriteBatch spriteBatch)
+        public void SlideStop(float deltaTime, int timeCoefficient)
+        {
+            if (direction == Vector2.Zero || speed < 0) //no sliding when standing still and pressing dash, and no negative speed however small (will slide slightly backwards)
+                speed = 0;
+            else if (speed > 0)
+            {
+                speed -= deltaTime * timeCoefficient; // <-- increase time coefficient to make slide stop faster, decrease to slide longer
+            }
+            CheckMovement(deltaTime);
+        }
+
+        public void DrawDashAim(SpriteBatch spriteBatch)
+        {
+            float fullDashRange = dashRange * maxDashFrames;
+
+            Line dashLine = new Line(centerPosition, new Vector2(centerPosition.X + fullDashRange * direction.X, centerPosition.Y + fullDashRange * direction.Y));
+
+            LevelManager.LevelObjectCollision(dashLine, 0);
+
+            Line newDashLine = new Line(centerPosition, new Vector2(dashLine.intersectionPoint.X, dashLine.intersectionPoint.Y));
+
+            Vector2 dashVector = new Vector2(newDashLine.P2.X - newDashLine.P1.X, newDashLine.P2.Y - newDashLine.P1.Y);
+
+            //Vector2 dashGhost1Pos = new Vector2(centerPosition.X + (dashVector.X * 0.25f) - sprite.size.X / 2, centerPosition.Y + dashVector.Y * 0.25f - sprite.size.Y / 2);
+            Vector2 dashGhost2Pos = new Vector2(centerPosition.X + (dashVector.X * 0.5f) - sprite.size.X / 2, centerPosition.Y + dashVector.Y * 0.5f - sprite.size.Y / 2);
+            //Vector2 dashGhost3Pos = new Vector2(centerPosition.X + (dashVector.X * 0.75f) - sprite.size.X / 2, centerPosition.Y + dashVector.Y * 0.75f - sprite.size.Y / 2);
+            Vector2 finalGhostPos = new Vector2(dashLine.intersectionPoint.X - sprite.size.X / 2, dashLine.intersectionPoint.Y - sprite.size.Y / 2);
+
+            sprite.Frame((int)primaryOrientation - 1, 13);
+            //sprite.DrawElsewhere(spriteBatch, dashGhost1Pos, 50);
+            sprite.DrawElsewhere(spriteBatch, dashGhost2Pos, 50);
+            //sprite.DrawElsewhere(spriteBatch, dashGhost3Pos, 50);
+
+            sprite.Frame((int)primaryOrientation - 1, 4);
+            sprite.DrawElsewhere(spriteBatch, finalGhostPos, 120);
+        }
+
+        public void DrawGunAim(SpriteBatch spriteBatch)
         {
 
-            if (aimAngle > pi * 1.75f || aimAngle < pi * 0.25f)
-                primaryOrientation = Orientation.Down;
-            else if (aimAngle < pi * 0.75f)
-                primaryOrientation = Orientation.Right;
-            else if (aimAngle < pi * 1.25f)
-                primaryOrientation = Orientation.Up;
-            else
-                primaryOrientation = Orientation.Left;
+            aimAngle = GetAim();
 
             if (!shooting)
                 gunSprite.Frame((int)primaryOrientation - 1, 0);
 
             sprite.Frame((int)primaryOrientation - 1, 5);
-
-            if (!InputReader.MovingLeftStick())
-            {
-                aimAngle = (float)Helper.GetAngle(centerPosition, Game1.mousePos, 0);
-            }
-            else
-            {
-                aimAngle = InputReader.LeftStickAngle(0);
-            }
 
             gunDirection = new Vector2((float)Math.Sin(aimAngle), (float)Math.Cos(aimAngle));
 
@@ -661,7 +903,7 @@ namespace Test_Loopguy
             
             LevelManager.LevelObjectCollision(laserLine, 9);
 
-            Line newLaserLine = new Line(centerPosition, laserLine.IntersectionPoint);
+            Line newLaserLine = new Line(centerPosition, laserLine.intersectionPoint);
             Vector2 laserVector = new Vector2(newLaserLine.P2.X - newLaserLine.P1.X, newLaserLine.P2.Y - newLaserLine.P1.Y);
             int laserLength = (int)laserVector.Length();
 
@@ -671,9 +913,34 @@ namespace Test_Loopguy
                 spriteBatch.Draw(TextureManager.cyanPixel, aimPoint, Helper.RandomTransparency(random, 0, 90));
             }
 
-            Vector2 dotPos = new Vector2(laserLine.IntersectionPoint.X - 1 + (gunDirection.X * 5), laserLine.IntersectionPoint.Y - 1 + (gunDirection.Y * 5));
+            Vector2 dotPos = new Vector2(laserLine.intersectionPoint.X - 1 + (gunDirection.X * 5), laserLine.intersectionPoint.Y - 1 + (gunDirection.Y * 5));
 
             spriteBatch.Draw(TextureManager.blueDot, dotPos, Color.White);
+        }
+
+        public float GetAim()
+        {
+            float angle;
+
+            if (!InputReader.MovingLeftStick())
+            {
+                angle = (float)Helper.GetAngle(centerPosition, Game1.mousePos, 0);
+            }
+            else
+            {
+                angle = InputReader.LeftStickAngle(0);
+            }
+
+            if (angle > pi * 1.75f || aimAngle < pi * 0.25f)
+                primaryOrientation = Orientation.Down;
+            else if (angle < pi * 0.75f)
+                primaryOrientation = Orientation.Right;
+            else if (angle < pi * 1.25f)
+                primaryOrientation = Orientation.Up;
+            else
+                primaryOrientation = Orientation.Left;
+
+            return angle;
         }
 
         public void Shoot(int frameTime)
