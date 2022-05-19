@@ -43,7 +43,10 @@ static class InputReader
 		else
 			return false;
 	}
-
+	public static bool MovementInput()
+    {
+		return MovementLeft() || MovementRight() || MovementUp() || MovementDown() || MovingLeftStick();
+    }
 	public static bool MovementLeft()
 	{
 		if (playerInputEnabled)

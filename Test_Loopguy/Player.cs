@@ -62,12 +62,13 @@ namespace Test_Loopguy
         const float timeToPrecisionDash = 0.25f; //seconds you have to hold dash button to initiate precision dash (aimed dash)
         const float timeMaxPrecisionDash = 3; //seconds you can hold the dash button before you automatically dash
 
+        float dashSlideTimer;
+        const float maxDashSlideTime = 0.2f;
+
         const int dashRange = 5; //pixels per frame
         const int standardMaxDashFrames = 10;
         float maxDashFrames; //frames per dash
         int dashFrames; //counts frames you've dashed
-
-        float dashLengthIncrease;
 
         public string playerInfoString;
 
@@ -78,8 +79,11 @@ namespace Test_Loopguy
         bool canDash;
         public bool dashing;
         bool dashCloud;
+        bool dashSlide;
 
         bool checkDash;
+
+        bool slidin;
 
         bool flipMelee;
 
@@ -221,6 +225,9 @@ namespace Test_Loopguy
             {
                 //dash method is run in Draw because it needs spritebatch, yes it is wack
                 timePressedDash = 0;
+                dashSlide = true;
+
+                speed = 150;
             }
             else
             {
@@ -228,11 +235,11 @@ namespace Test_Loopguy
                 sprite.flipHorizontally = false;
 
                 maxDashFrames = standardMaxDashFrames;
-                dashLengthIncrease = 0;
 
                 if (InputReader.Aim() || shooting)
                 {
-                    SlideStop(deltaTime, 150);
+                    SlideyMovement(deltaTime, 2);
+                    SlideStop(deltaTime, 200);
 
                     cameraPosition = centerPosition + gunDirection * 50;
                     Game1.camera.stabilize = true;
@@ -267,10 +274,24 @@ namespace Test_Loopguy
                     else
                         cameraPosition = centerPosition + direction * 30;
 
+
+                    if (!InputReader.MovementInput() || sprite.currentFrame.Y == 5)
+                    {
+                        if (primaryOrientation == Orientation.Up)
+                            sprite.Frame(0, 4);
+                        else if (primaryOrientation == Orientation.Down)
+                            sprite.Frame(1, 4);
+                        else if (primaryOrientation == Orientation.Left)
+                            sprite.Frame(2, 4);
+                        else
+                            sprite.Frame(3, 4);
+                    }
+
+                    if (direction != Vector2.Zero && !InputReader.Aim())
+
                     gunDirection = Vector2.Zero;
                     Movement(deltaTime);
                     //Implement orientation stuff in a higher class "Character"
-                    GetOrientation();
 
                     if (InputReader.Attack() && !attacking && canAttack && comboCounter < maxCombo)
                     {
@@ -757,29 +778,6 @@ namespace Test_Loopguy
 
         public override void Movement(float deltaTime)
         {
-            
-            direction.Y = 0;
-            direction.X = 0;
-
-            if (InputReader.MovingLeftStick())
-            {
-                speed = InputReader.LeftStickLength() * 100;
-                direction.X = InputReader.padState.ThumbSticks.Left.X;
-                direction.Y = -InputReader.padState.ThumbSticks.Left.Y;
-            }
-            else
-            {
-                speed = 100;
-                if (InputReader.MovementLeft())
-                    direction.X -= 1;
-                if (InputReader.MovementRight())
-                    direction.X += 1;
-                if (InputReader.MovementUp())
-                    direction.Y -= 1;
-                if (InputReader.MovementDown())
-                    direction.Y += 1;
-            }
-            
             float absDirection = Math.Abs(direction.X) + Math.Abs(direction.Y);
 
             //Changes frame rate depending on direction vector
@@ -796,8 +794,30 @@ namespace Test_Loopguy
                 frameTime = (int)(50 / absDirection);
             }
 
-            if (absDirection > 0)
+            if (InputReader.MovementInput() && !dashSlide)
             {
+                direction.Y = 0;
+                direction.X = 0;
+
+                if (InputReader.MovingLeftStick())
+                {
+                    speed = InputReader.LeftStickLength() * 100;
+                    direction.X = InputReader.padState.ThumbSticks.Left.X;
+                    direction.Y = -InputReader.padState.ThumbSticks.Left.Y;
+                }
+                else
+                {
+                    speed = 100;
+                    if (InputReader.MovementLeft())
+                        direction.X -= 1;
+                    if (InputReader.MovementRight())
+                        direction.X += 1;
+                    if (InputReader.MovementUp())
+                        direction.Y -= 1;
+                    if (InputReader.MovementDown())
+                        direction.Y += 1;
+                }
+
                 if (primaryOrientation == Orientation.Up)
                 {
                     sprite.Play(0, 12, frameTime);
@@ -814,18 +834,32 @@ namespace Test_Loopguy
                 {
                     sprite.Play(3, 12, frameTime);
                 }
+
+                GetOrientation();
+            }
+            else if (dashSlide)
+            {
+
+                if (speed > 0)
+                {
+                    speed -= deltaTime * 300; // <-- increase time coefficient to make slide stop faster, decrease to slide longer
+                }
+
+                dashSlideTimer += deltaTime;
+                if (dashSlideTimer >= maxDashSlideTime)
+                {
+                    dashSlideTimer = 0;
+                    dashSlide = false;
+                }
+
+                SlideyMovement(deltaTime, 2);
             }
             else
             {
-                if (primaryOrientation == Orientation.Up)
-                    sprite.Frame(0, 4);
-                else if (primaryOrientation == Orientation.Down)
-                    sprite.Frame(1, 4);
-                else if (primaryOrientation == Orientation.Left)
-                    sprite.Frame(2, 4);
-                else
-                    sprite.Frame(3, 4);
+                speed = 0;
+                direction = Vector2.Zero;
             }
+            
 
             //This normalizes the direction Vector so that movement is consistent in all directions. If it normalizes a Vector of 0,0 it gets fucky though
             if (direction != Vector2.Zero)
@@ -849,10 +883,32 @@ namespace Test_Loopguy
             playerInfoString = absDirShort.ToString() + " || " + frameTime.ToString() + " || " + playerVelocityShort.ToString() + "\n\n\n\n\n\n\n Dir X: " + dirXshort + "\n Dir Y: " + dirYshort;
         }
 
+        public void SlideyMovement(float deltaTime, int timeCoefficient)
+        {
+            if (InputReader.MovingLeftStick())
+            {
+                direction.X += InputReader.padState.ThumbSticks.Left.X * deltaTime * timeCoefficient;
+                direction.Y -= InputReader.padState.ThumbSticks.Left.Y * deltaTime * timeCoefficient;
+            }
+            else
+            {
+                if (InputReader.MovementLeft())
+                    direction.X -= 1 * deltaTime * timeCoefficient;
+                if (InputReader.MovementRight())
+                    direction.X += 1 * deltaTime * timeCoefficient;
+                if (InputReader.MovementUp())
+                    direction.Y -= 1 * deltaTime * timeCoefficient;
+                if (InputReader.MovementDown())
+                    direction.Y += 1 * deltaTime * timeCoefficient;
+            }
+        }
+
         public void SlideStop(float deltaTime, int timeCoefficient)
         {
             if (direction == Vector2.Zero || speed < 0) //no sliding when standing still and pressing dash, and no negative speed however small (will slide slightly backwards)
+            {
                 speed = 0;
+            }
             else if (speed > 0)
             {
                 speed -= deltaTime * timeCoefficient; // <-- increase time coefficient to make slide stop faster, decrease to slide longer
