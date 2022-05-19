@@ -98,6 +98,7 @@ namespace Test_Loopguy
 
                     player.TakeDamage(s.damage, Character.DamageType.laserGun);
 
+
                     projectilesToRemove.Add(s);
                 }
                 

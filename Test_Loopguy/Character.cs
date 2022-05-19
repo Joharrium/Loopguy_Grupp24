@@ -26,6 +26,8 @@ namespace Test_Loopguy
             melee,
             laserGun,
             railGun,
+            Hazard,
+            Electricity,
         }
 
         //public AttackType currentAttack;
@@ -160,7 +162,7 @@ namespace Test_Loopguy
         public virtual void TakeDamage(int damage, DamageType soundType)
         {
             health -= damage;
-            Audio.PlaySound(Audio.player_hit);
+           
             if (health <= 0)
             {
                 LevelManager.Reset();

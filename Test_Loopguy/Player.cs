@@ -247,8 +247,30 @@ namespace Test_Loopguy
         {
             Audio.PlaySound(Audio.splash);
             position = roomEntrancePosition;
-            TakeDamage(1, DamageType.melee);
+            TakeDamage(1, DamageType.Hazard);
             Fadeout.HazardFade();
+        }
+
+        public override void TakeDamage(int damage, DamageType soundType)
+        {
+            if (soundType == DamageType.melee)
+            {
+                Audio.PlaySound(Audio.player_hit);
+            }
+            else if (soundType == DamageType.laserGun)
+            {
+                Audio.PlaySound(Audio.player_hit);
+            }
+            else if (soundType == DamageType.Hazard)
+            {
+                Audio.PlaySound(Audio.player_hit);
+            }
+            else if (soundType == DamageType.Electricity)
+            {
+                Audio.PlaySound(Audio.hitByElectricity);
+            }
+            
+            base.TakeDamage(damage, soundType);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

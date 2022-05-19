@@ -41,7 +41,7 @@ namespace Test_Loopguy
         public static SoundCollection lasergun, footstepsMetal, footstepsStone, footstepsGeneric, footstepsGrass, footstepsDirt, meleeOnMetal, meleeOnFlesh;
         public static SoundEffect meepmerp, swing, open, deny, dash, door_hiss_sound, 
             box_destroy, shrub_destroy, keypickup, healing, player_hit, reload, splash,
-            ping, robotEnemyCharge1, robotEnemyCharge2, robotEnemyShot;
+            ping, robotEnemyCharge1, robotEnemyCharge2, robotEnemyShot, hitByElectricity;
 
         //public static SoundEffect 
 
@@ -162,6 +162,7 @@ namespace Test_Loopguy
             robotEnemyCharge1 = c.Load<SoundEffect>("audio/sound/egon_windup2");
             robotEnemyCharge2 = c.Load<SoundEffect>("audio/sound/tauCannonEdited2");
             robotEnemyShot = c.Load<SoundEffect>("audio/sound/tauCannonShotEdited");
+            hitByElectricity = c.Load<SoundEffect>("audio/sound/playerZapped");
 
             {
                 EnergyGun_Shoot1A = c.Load<SoundEffect>("audio/sound/gun/EnergyGun_Shoot1A");

@@ -248,6 +248,12 @@
 /processorParam:Quality=Best
 /build:audio/sound/player_hit.wav
 
+#begin audio/sound/playerZapped.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/playerZapped.wav
+
 #begin audio/sound/reload.ogg
 /importer:OggImporter
 /processor:SoundEffectProcessor
