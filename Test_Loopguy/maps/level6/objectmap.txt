@@ -7,10 +7,10 @@ TreeSmall,447,26
 TreeSmall,495,28
 TreeSmall,752,31
 ShrubBig,480,48
-BarrelDestructible,371,74
-BarrelDestructible,371,84
+BarrelDestructible,383,75
+BarrelDestructible,383,84
 BarrelDestructible,792,86
-BarrelDestructible,371,94
+BarrelDestructible,383,93
 TreeSmall,445,110
 TreeSmall,371,110
 TreeSmall,428,111
@@ -106,4 +106,4 @@ TreeBig,496,242
 TreeBig,451,243
 TreeBig,540,244
 Door,848,-1,1
-KeyPickup,856,95,1,True
+KeyPickup,856,97,1,True
