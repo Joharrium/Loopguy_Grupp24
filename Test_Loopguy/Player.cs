@@ -455,33 +455,6 @@ namespace Test_Loopguy
 
         }
 
-        public void EnterRoom(Vector2 position)
-        {
-            roomEntrancePosition = position;
-            this.position = position;
-        }
-
-        private void FootstepCalculation()
-        {
-            if(traveledDistance >= distanceBetweenFootsteps)
-            {
-                traveledDistance = 0;
-                Tile tile = LevelManager.GetTile(footprint.Center.ToVector2());
-                if(tile.footsteps != null)
-                {
-                    tile.footsteps.PlayRandomSound();
-                }             
-            }
-        }
-
-        public void EnteredHazard()
-        {
-            Audio.PlaySound(Audio.splash);
-            position = roomEntrancePosition;
-            TakeDamage(1);
-            Fadeout.HazardFade();
-        }
-
         public void Reset(Vector2 position)
         {
             this.position = position;
