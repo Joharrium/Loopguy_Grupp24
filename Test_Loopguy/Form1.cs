@@ -291,5 +291,55 @@ namespace Test_Loopguy
         {
             LevelEditor.SelectObject(ObjectSelection.OperationEquipment);
         }
+
+        private void carryingThingSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.CarryingThing);
+        }
+
+        private void niceBookshelfSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.NiceBookshelf);
+        }
+
+        private void shootingRangeBenchSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.ShootingRangeBench);
+        }
+
+        private void sinkSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.Sink);
+        }
+
+        private void sofaSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.Sofa);
+        }
+
+        private void cameraSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.Camera);
+        }
+
+        private void morgueSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.Morgue);
+        }
+
+        private void lockerSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.Locker);
+        }
+
+        private void shelfWeirdSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.ShelfWeird);
+        }
+
+        private void whiteBoardSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.Whiteboard);
+        }
     }
 }

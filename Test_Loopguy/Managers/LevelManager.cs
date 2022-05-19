@@ -562,6 +562,15 @@ namespace Test_Loopguy
                 "BigSink" => new BigSink(pos),
                 "CrateStack" => new CrateStack(pos),
                 "OperationEquipment" => new OperationEquipment(pos),
+                "CarryingThing" => new CarryingThing(pos),
+                "Sofa" => new Sofa(pos),
+                "Sink" => new Sink(pos),
+                "Morgue" => new Morgue(pos),
+                "ShelfWeird" => new ShelfWeird(pos),
+                "NiceBookshelf" => new NiceBookshelf(pos),
+                "CameraObject" => new CameraObject(pos),
+                "ShootingRangeBench" => new CameraObject(pos),
+                "Locker" => new Locker(pos),
                 _ => null,
             };
         }

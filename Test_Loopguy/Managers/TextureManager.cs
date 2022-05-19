@@ -16,7 +16,7 @@ namespace Test_Loopguy
             billboard, cabinet, cardboard_box_stack_small, counter, desk_monitors, machine_heartbeat_thing, reception_desk, shelf_archiving,
             shelf_archiving_small, table_computer_medicine, table_operation, monitor_wall, desk_office, chair_office_fw, chair_office_bw, server,
             big_sink, sink, carrying_thing, crate_stack, nice_bookshelf, shooting_range_bench, shooting_range_target, sofa, camera, desk_bw, desk_fw, 
-            morgue, potted_plant, shelf_weird;
+            morgue, potted_plant, shelf_weird, locker, whiteboard;
         // ui files
         public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door,
             healthbar_small_outline, healthbar_small_fill_bg, healthbar_small_fill,
@@ -122,6 +122,7 @@ namespace Test_Loopguy
                 desk_office = c.Load<Texture2D>("gfx/objects/assetpack/desk_office");
                 chair_office_bw = c.Load<Texture2D>("gfx/objects/assetpack/chair_office_backwards");
                 chair_office_fw = c.Load<Texture2D>("gfx/objects/assetpack/chair_office_forward");
+                
 
 
             }
@@ -141,6 +142,8 @@ namespace Test_Loopguy
                 morgue = c.Load<Texture2D>("gfx/objects/morgue");
                 potted_plant = c.Load<Texture2D>("gfx/objects/potted_plant");
                 shelf_weird = c.Load<Texture2D>("gfx/objects/shelf_weird");
+                locker = c.Load<Texture2D>("gfx/objects/locker");
+                whiteboard = c.Load<Texture2D>("gfx/objects/whiteboard");
             }
 
         }
