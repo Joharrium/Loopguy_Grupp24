@@ -23,7 +23,7 @@ namespace Test_Loopguy
     public enum TileSelection
     {
         Grass, Dirt, GrayBrick, TilesCheckeredGray, TilesCheckeredBrown, TilesBigDark, 
-        TilesBigLight, TileMetal, WallMetal, CarpetWorn, DrywallWorn, Water
+        TilesBigLight, TileMetal, WallMetal, CarpetWorn, DrywallWorn, Water, Warning
     }
 
     public enum EnemySelection

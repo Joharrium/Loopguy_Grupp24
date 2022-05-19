@@ -341,5 +341,10 @@ namespace Test_Loopguy
         {
             LevelEditor.SelectObject(ObjectSelection.Whiteboard);
         }
+
+        private void tileWarningSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectTile(TileSelection.Warning);
+        }
     }
 }

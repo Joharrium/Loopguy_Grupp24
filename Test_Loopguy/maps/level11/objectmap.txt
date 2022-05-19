@@ -6,6 +6,7 @@ Cabinet,208,6
 CardboardBoxStackSmall,237,30
 DeskForward,161,14
 Counter,352,18
+CarryingThing,557,13
 ChairOfficeBw,177,35
 DeskOffice,512,95
 Server,560,93

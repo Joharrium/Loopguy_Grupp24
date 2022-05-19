@@ -9,7 +9,7 @@ namespace Test_Loopguy
         public static Texture2D meleeFx, shot, robotEnemyShot, blueDot, cursor, dashCloud;
         // terrain files
         public static Texture2D grassBasic, grassAlt, grayBrickWall, dirt, tiles_checkered_gray, tiles_checkered_brown, tiles_big_light, tiles_big_dark,
-            carpet_worn, tile_metal, tile_metal_copper, wall_metal, wall_worn, tile_metal_bright, grass_edge, tile_clinical, water, wall_beige, wall_gray, wall_brick_beige;
+            carpet_worn, tile_carpet, tile_warning, wall_metal, wall_worn, tile_metal_bright, grass_edge, tile_clinical, water, wall_beige, wall_gray, wall_brick_beige;
         // object files
         public static Texture2D boxOpen, barrel, pot, shrub_big, shrub_small, tree_big, tree_small, fernDestroyed, door, door_open,
             keycard, door_sliding, door_sliding_open, barrelDestroyed, medkit, console, ammo,
@@ -70,8 +70,8 @@ namespace Test_Loopguy
             tiles_big_dark = c.Load<Texture2D>("gfx/terrain/tiles_big_dark");
 
             carpet_worn = c.Load<Texture2D>("gfx/terrain/carpet_run_down");
-            tile_metal = c.Load<Texture2D>("gfx/terrain/tile_metal");
-            tile_metal_copper = c.Load<Texture2D>("gfx/terrain/tile_metal_weathered");
+            tile_carpet = c.Load<Texture2D>("gfx/terrain/tile_carpet");
+            tile_warning = c.Load<Texture2D>("gfx/terrain/tile_clinical_warning");
             wall_metal = c.Load<Texture2D>("gfx/terrain/wall_metal");
             wall_worn = c.Load<Texture2D>("gfx/terrain/wall_run_down");
             tile_metal_bright = c.Load<Texture2D>("gfx/terrain/metal_tile_bright");

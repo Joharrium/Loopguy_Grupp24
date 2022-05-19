@@ -390,6 +390,14 @@ namespace Test_Loopguy
                     {
                         tiles[i, j] = new WallGray(tempPos);
                     }
+                    if (terrainStrings[j][i] == 'k')
+                    {
+                        tiles[i, j] = new TileWarning(tempPos);
+                    }
+                    if (terrainStrings[j][i] == 'l')
+                    {
+                        tiles[i, j] = new Carpet(tempPos);
+                    }
                 }
             }
 
@@ -668,9 +676,17 @@ namespace Test_Loopguy
                     {
                         types[j, i] = 'i';
                     }
-                    if (currentLevel.tiles[j,i] is WallGray)
+                    if (currentLevel.tiles[j, i] is WallGray)
                     {
                         types[j, i] = 'j';
+                    }
+                    if (currentLevel.tiles[j, i] is TileWarning)
+                    {
+                        types[j, i] = 'k';
+                    }
+                    if (currentLevel.tiles[j, i] is Carpet)
+                    {
+                        types[j, i] = 'l';
                     }
                 }
             }

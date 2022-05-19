@@ -168,7 +168,7 @@ namespace Test_Loopguy
             variation = Game1.rnd.Next(2);
             sourceRectangle = new Rectangle(32 * variation, 0, 32, 32);
 
-            footprint = new Rectangle((int)position.X, (int)position.Y + 48, 0, 0);
+            footprint = new Rectangle((int)position.X, (int)position.Y + 36, 0, 0);
             height = 0;
             hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
         }
@@ -184,7 +184,7 @@ namespace Test_Loopguy
             variation = Game1.rnd.Next(3);
             sourceRectangle = new Rectangle(32 * variation, 0, 32, 24);
 
-            footprint = new Rectangle((int)position.X, (int)position.Y + 48, 0, 0);
+            footprint = new Rectangle((int)position.X, (int)position.Y + 36, 0, 0);
             height = 0;
             hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
         }
