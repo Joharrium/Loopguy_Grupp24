@@ -10,8 +10,8 @@ namespace Test_Loopguy
 {
     internal class Player : Character
     {
-        private int ammo = 8;
-        private int maxAmmo = 8;
+        private int ammo = 40;
+        private int maxAmmo = 40;
 
         private int storedHealthPacks = 0;
         public int StoredHealth
@@ -200,7 +200,7 @@ namespace Test_Loopguy
                 {
                     maxDashFrames += deltaTime * 4; // <-- increase time coefficient to make precision dash range increase faster, decrease to make slower
 
-                    aimAngle = GetAim();
+                    aimAngle = GetAim(0);
 
                     if (InputReader.MovingLeftStick())
                     {
@@ -209,7 +209,6 @@ namespace Test_Loopguy
                     }
                     else
                     {
-                        aimAngle = (float)Helper.GetAngle(centerPosition, Game1.mousePos, 0);
                         direction = new Vector2((float)Math.Sin(aimAngle), (float)Math.Cos(aimAngle));
                     }
                 }
@@ -236,11 +235,10 @@ namespace Test_Loopguy
 
                 if (InputReader.Aim() || shooting)
                 {
-                    if (direction != Vector2.Zero)
-                    {
-                        SlideyMovement(deltaTime, 2);
-                        SlideStop(deltaTime, 200);
-                    }
+                    gunAngle = GetAim(0);
+
+                    SlideyMovement(deltaTime, 2);
+                    SlideStop(deltaTime, 200);
 
                     cameraPosition = centerPosition + gunDirection * 50;
                     Game1.camera.stabilize = true;
@@ -426,7 +424,7 @@ namespace Test_Loopguy
                     else if (InputReader.Aim() || shooting)
                     {
                         DrawGunAim(spriteBatch);
-                        DrawGun(spriteBatch);
+                        gunSprite.DrawRotation(spriteBatch, gunAngle);
                     }
 
                     sprite.Draw(spriteBatch);
@@ -443,14 +441,14 @@ namespace Test_Loopguy
                     else if (InputReader.Aim() || shooting)
                     {
                         DrawGunAim(spriteBatch);
-                        DrawGun(spriteBatch);
+                        gunSprite.DrawRotation(spriteBatch, gunAngle);
                     }
                 }
             }
 
             //draw hitbox borders
-            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Top), Color.White);
-            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Bottom), Color.White);
+            //spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Top), Color.White);
+            //spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Bottom), Color.White);
 
             //healthBar.Draw(spriteBatch);
 
@@ -926,7 +924,8 @@ namespace Test_Loopguy
                     direction.Y += 1 * deltaTime * timeCoefficient;
             }
 
-            direction.Normalize();
+            if (direction != Vector2.Zero)
+                direction.Normalize();
         }
 
         public void SlideStop(float deltaTime, int timeCoefficient)
@@ -972,7 +971,7 @@ namespace Test_Loopguy
         public void DrawGunAim(SpriteBatch spriteBatch)
         {
 
-            aimAngle = GetAim();
+            aimAngle = GetAim(0);
 
             if (!shooting)
                 gunSprite.Frame((int)primaryOrientation - 1, 0);
@@ -1001,7 +1000,7 @@ namespace Test_Loopguy
             spriteBatch.Draw(TextureManager.blueDot, dotPos, Color.White);
         }
 
-        public float GetAim()
+        public float GetAim(float offset)
         {
             float angle;
 
@@ -1014,55 +1013,29 @@ namespace Test_Loopguy
                 angle = InputReader.LeftStickAngle(0);
             }
 
-            if (angle > pi * 1.75f || aimAngle < pi * 0.25f)
-                primaryOrientation = Orientation.Down;
-            else if (angle < pi * 0.75f)
-                primaryOrientation = Orientation.Right;
-            else if (angle < pi * 1.25f)
-                primaryOrientation = Orientation.Up;
-            else
-                primaryOrientation = Orientation.Left;
+            AngleGetOrientation(angle);
 
             return angle;
         }
 
         public void Shoot(int frameTime)
         {
-            if (aimAngle > pi * 1.75f || aimAngle < pi * 0.25f)
-                primaryOrientation = Orientation.Down;
-            else if (aimAngle < pi * 0.75f)
-                primaryOrientation = Orientation.Right;
-            else if (aimAngle < pi * 1.25f)
-                primaryOrientation = Orientation.Up;
-            else
-                primaryOrientation = Orientation.Left;
+            AngleGetOrientation(aimAngle);
 
             shooting = gunSprite.PlayOnce((int)primaryOrientation, 5, frameTime);
         }
 
-        public void DrawGun(SpriteBatch spriteBatch)
+        public void AngleGetOrientation(float angle)
         {
-            double angleOffset;
-
-            //These are ordered in a way that makes perfect sense, shut up
-            if (primaryOrientation == Orientation.Down)
-                angleOffset = 0;
-            else if (primaryOrientation == Orientation.Right)
-                angleOffset = -0.5 * pi;
-            else if (primaryOrientation == Orientation.Up)
-                angleOffset = -1 * pi;
-            else//left
-                angleOffset = -1.5 * pi;
-
-            if (!InputReader.MovingLeftStick())
-                gunAngle = (float)Helper.GetAngle(centerPosition, Game1.mousePos, angleOffset);
-            else
-                gunAngle = InputReader.LeftStickAngle((float)angleOffset);
-
-
-            gunSprite.DrawRotation(spriteBatch, gunAngle);
+            if (angle >= pi * 1.75f || aimAngle < pi * 0.25f)
+                primaryOrientation = Orientation.Down;
+            else if (angle < pi * 0.75f && angle >= pi * 0.25f)
+                primaryOrientation = Orientation.Right;
+            else if (angle < pi * 1.25f && angle >= pi * 0.75f)
+                primaryOrientation = Orientation.Up;
+            else if (angle < pi * 1.75f && angle >= pi * 1.25f)
+                primaryOrientation = Orientation.Left;
         }
-
         public bool DrawDashCloud(SpriteBatch spriteBatch)
         {
             float rotation = (float)Math.Atan2(dashDirection.X, dashDirection.Y);
