@@ -15,7 +15,7 @@ namespace Test_Loopguy
 
         static Button returnButton;
         Slider sound, music, screenSize;
-        Checkbox fullscreen;
+        Checkbox fullscreen, colorblind;
         //wat
         List<Component> gameComponents;
 
@@ -39,6 +39,7 @@ namespace Test_Loopguy
             Vector2 menuSlot3 = new Vector2(Game1.windowX / 2 - 150, offset + menuSpacing * 2);
             Vector2 menuSlot4 = new Vector2(Game1.windowX / 2 - 150, offset + menuSpacing * 3);
             Vector2 menuSlot5 = new Vector2(Game1.windowX / 2 - 150, offset + menuSpacing * 4);
+            Vector2 menuSlot6 = new Vector2(Game1.windowX / 2 - 150, offset + menuSpacing * 5);
 
             returnButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot1)
             {
@@ -55,6 +56,8 @@ namespace Test_Loopguy
 
             fullscreen = new Checkbox(menuSlot5, "Fullscreen", Game1.isFullscreen);
 
+            colorblind = new Checkbox(menuSlot6, "Deuteranopia/Protanopia adjustments", ProfileManager.ColorBlind);
+
 
             gameComponents = new List<Component>()
             {
@@ -63,6 +66,7 @@ namespace Test_Loopguy
                 music,
                 screenSize,
                 fullscreen,
+                colorblind,
             };
 
             currentSelection = gameComponents[0];
@@ -105,6 +109,7 @@ namespace Test_Loopguy
                 if (InputReader.ButtonPressed(Buttons.A) || InputReader.KeyPressed(Keys.Enter))
                 {
                     ProfileManager.SaveSettings(music.Value, sound.Value, screenSize.Value, fullscreen.State);
+                    ProfileManager.SaveToFile();
                     MenuManager.GoToMainMenu();
                 }
             }
@@ -132,11 +137,18 @@ namespace Test_Loopguy
                 fullscreen.Update(gameTime);
                 Game1.game1.ToggleFullscreen(fullscreen.Check(), screenSize.Value + 1);
             }
+
+            if (currentSelection == colorblind)
+            {
+                colorblind.Update(gameTime);
+                ProfileManager.ColorBlind = colorblind.Check();
+            }
         }
 
         private void NewGameButton_Click(object sender, EventArgs e)
         {
             ProfileManager.SaveSettings(music.Value, sound.Value, screenSize.Value, fullscreen.State);
+            ProfileManager.SaveToFile();
             MenuManager.GoToMainMenu();
         }
 

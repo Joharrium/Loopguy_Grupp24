@@ -21,6 +21,8 @@ namespace Test_Loopguy
 
         public int timeSinceLastFrame;
 
+        public bool flipHorizontally, flipVertically;
+
         public AnimatedSprite(Texture2D sheet, Point size)
         {
             this.sheet = sheet;
@@ -35,6 +37,21 @@ namespace Test_Loopguy
         public void Update(GameTime gameTime)
         {
             timeSinceLastFrame += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            if (!flipHorizontally && !flipVertically)
+                effects = SpriteEffects.None;
+            else if(flipHorizontally && flipVertically)
+            {
+                effects = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
+            }
+            else
+            {
+                if (flipHorizontally)
+                    effects = SpriteEffects.FlipHorizontally;
+                if (flipVertically)
+                    effects = SpriteEffects.FlipVertically;
+            }
+
         }
 
         public void Play(int row, int stopX, int frameTime)
@@ -110,5 +127,12 @@ namespace Test_Loopguy
 
             spriteBatch.Draw(sheet, otherPos, frame, new Color(alpha, alpha, alpha, alpha));
         }
+
+        public void ResetAnimation()
+        {
+            currentFrame.X = 0;
+            timeSinceLastFrame = 0;
+        }
+
     }
 }

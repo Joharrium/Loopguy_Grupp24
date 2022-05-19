@@ -87,8 +87,8 @@ namespace Test_Loopguy
                 int offset = (int)TextureManager.smallestFont.MeasureString(text).X;
                 Vector2 drawPoint = new Vector2((Game1.windowX / 2) - (offset / 2), Game1.windowY * 0.8F);
                 spriteBatch.Draw(texture, drawPoint - new Vector2(20, 2), new Rectangle(0, (int)icon * 32, 32, 32), color);
-                spriteBatch.DrawString(TextureManager.smallestFont, text, drawPoint + new Vector2(22, 2), bgColor);
-                spriteBatch.DrawString(TextureManager.smallestFont, text, drawPoint + new Vector2(20, 0), color);
+
+                OutlinedText.DrawOutlinedText(spriteBatch, drawPoint + new Vector2(22, 0), TextureManager.smallestFont, text, bgColor, color);
             }
             
         }

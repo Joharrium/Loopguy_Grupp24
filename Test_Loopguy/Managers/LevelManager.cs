@@ -29,6 +29,22 @@ namespace Test_Loopguy
 
         private static Player player;
         private static Vector2 target;
+
+        internal static void Init()
+        {
+            if(ProfileManager.HasPlayedTutorial())
+            {
+                LoadLevel(10);
+                EntityManager.player.EnterRoom(new Vector2(208, 24));
+            }
+            else
+            {
+                LoadLevel(6);
+            }
+               
+            EntranceLoad();
+        }
+
         internal static void StartLevelTransition(int levelToLoad, Player player, Vector2 target)
         {
             loadTimer = LOADTIMER;
@@ -117,7 +133,12 @@ namespace Test_Loopguy
         public static void Reset()
         {
             List<Level> levelsToClear = new List<Level>();
-            Level level1 = LoadLevel(1);
+            Level level1 = LoadLevel(6);
+            if (ProfileManager.HasPlayedTutorial())
+            {
+                level1 = LoadLevel(10);
+            }
+            
             currentLevel = level1;
             EntityManager.player.Reset( new Vector2(64, 64));
             timeLeft = startingTime;
@@ -369,6 +390,14 @@ namespace Test_Loopguy
                     {
                         tiles[i, j] = new WallGray(tempPos);
                     }
+                    if (terrainStrings[j][i] == 'k')
+                    {
+                        tiles[i, j] = new TileWarning(tempPos);
+                    }
+                    if (terrainStrings[j][i] == 'l')
+                    {
+                        tiles[i, j] = new Carpet(tempPos);
+                    }
                 }
             }
 
@@ -541,6 +570,15 @@ namespace Test_Loopguy
                 "BigSink" => new BigSink(pos),
                 "CrateStack" => new CrateStack(pos),
                 "OperationEquipment" => new OperationEquipment(pos),
+                "CarryingThing" => new CarryingThing(pos),
+                "Sofa" => new Sofa(pos),
+                "Sink" => new Sink(pos),
+                "Morgue" => new Morgue(pos),
+                "ShelfWeird" => new ShelfWeird(pos),
+                "NiceBookshelf" => new NiceBookshelf(pos),
+                "CameraObject" => new CameraObject(pos),
+                "ShootingRangeBench" => new CameraObject(pos),
+                "Locker" => new Locker(pos),
                 _ => null,
             };
         }
@@ -638,9 +676,17 @@ namespace Test_Loopguy
                     {
                         types[j, i] = 'i';
                     }
-                    if (currentLevel.tiles[j,i] is WallGray)
+                    if (currentLevel.tiles[j, i] is WallGray)
                     {
                         types[j, i] = 'j';
+                    }
+                    if (currentLevel.tiles[j, i] is TileWarning)
+                    {
+                        types[j, i] = 'k';
+                    }
+                    if (currentLevel.tiles[j, i] is Carpet)
+                    {
+                        types[j, i] = 'l';
                     }
                 }
             }
