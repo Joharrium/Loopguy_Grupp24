@@ -21,12 +21,15 @@ namespace Test_Loopguy
 
         private const int maxStoredHealthPacks = 3;
 
-        AnimatedSprite gunSprite;
+        AnimatedSprite pistolSprite;
+        AnimatedSprite railgunSprite;
         AnimatedSprite meleeSprite;
         AnimatedSprite dashCloudSprite;
 
         Random random = new Random();
         public List<int> keys = new List<int>();
+
+        Vector2 pistolOrigin, railgunOrigin;
 
         Vector2 roomEntrancePosition = new Vector2(64, 64);
 
@@ -90,9 +93,13 @@ namespace Test_Loopguy
         {
             sprite = new AnimatedSprite(TextureManager.playerSheet, new Point(32, 32));
 
-            gunSprite = new AnimatedSprite(TextureManager.pistolSheet, new Point(64, 64));
+            pistolSprite = new AnimatedSprite(TextureManager.pistolSheet, new Point(32, 34));
+            railgunSprite = new AnimatedSprite(TextureManager.railgunSheet, new Point(32, 48));
             meleeSprite = new AnimatedSprite(TextureManager.meleeFx, new Point(50, 50));
             dashCloudSprite = new AnimatedSprite(TextureManager.dashCloud, new Point(42, 24));
+
+            pistolOrigin = new Vector2(pistolSprite.size.X / 2, 2);
+            railgunOrigin = new Vector2(railgunSprite.size.X / 2, 2);
 
             maxHealth = 5;
             health = maxHealth;
@@ -246,7 +253,7 @@ namespace Test_Loopguy
                     //SHOOTING
                     if (InputReader.Shoot() && !shooting && ammo > 0)
                     {
-                        gunSprite.ResetAnimation();
+                        pistolSprite.ResetAnimation();
 
                         Vector2 shotPosition = new Vector2(centerPosition.X + gunDirection.X * 20 - 4, centerPosition.Y + gunDirection.Y * 20 - 6);
                         float shotAngle = aimAngle + pi;
@@ -321,10 +328,10 @@ namespace Test_Loopguy
 
             FootstepCalculation();
             sprite.Position = position;
-            gunSprite.Position = new Vector2(position.X - 16, position.Y - 16);
+            pistolSprite.Position = new Vector2(position.X, position.Y);
             meleeSprite.Position = new Vector2(position.X - 8, position.Y - 8);
 
-            gunSprite.Update(gameTime);
+            pistolSprite.Update(gameTime);
             meleeSprite.Update(gameTime);
             dashCloudSprite.Update(gameTime);
             sprite.Update(gameTime);
@@ -424,7 +431,7 @@ namespace Test_Loopguy
                     else if (InputReader.Aim() || shooting)
                     {
                         DrawGunAim(spriteBatch);
-                        gunSprite.DrawRotation(spriteBatch, gunAngle);
+                        pistolSprite.DrawRotation(spriteBatch, gunAngle, pistolOrigin);
                     }
 
                     sprite.Draw(spriteBatch);
@@ -441,7 +448,7 @@ namespace Test_Loopguy
                     else if (InputReader.Aim() || shooting)
                     {
                         DrawGunAim(spriteBatch);
-                        gunSprite.DrawRotation(spriteBatch, gunAngle);
+                        pistolSprite.DrawRotation(spriteBatch, gunAngle, pistolOrigin);
                     }
                 }
             }
@@ -974,7 +981,7 @@ namespace Test_Loopguy
             aimAngle = GetAim(0);
 
             if (!shooting)
-                gunSprite.Frame((int)primaryOrientation - 1, 0);
+                pistolSprite.Frame((int)primaryOrientation - 1, 0);
 
             sprite.Frame((int)primaryOrientation - 1, 5);
 
@@ -1022,7 +1029,7 @@ namespace Test_Loopguy
         {
             AngleGetOrientation(aimAngle);
 
-            shooting = gunSprite.PlayOnce((int)primaryOrientation, 5, frameTime);
+            shooting = pistolSprite.PlayOnce((int)primaryOrientation, 5, frameTime);
         }
 
         public void AngleGetOrientation(float angle)
