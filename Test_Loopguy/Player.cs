@@ -49,23 +49,24 @@ namespace Test_Loopguy
 
         float deltaTime;
 
+        float timeSinceAttack; //counts seconds since last attack
+        const float comboWindow = 0.75f; //window of time to follow up attack
+        const float attackCooldown = 0.5f; //time you have to wait to attack again if you miss window
+        const int maxCombo = 3; //number of times you can attack in quick succession before having to wait for attackCooldown
+        int comboCounter; //number of times you've attacked in a quick succession
+
         float timeSinceDash;
         const float timeBetweedDashes = 1f;
 
-        float timePressedDash;
-        const float timeToPrecisionDash = 0.33f;
-        const float timeMaxPrecisionDash = 2;
-
-        float timeSinceAttack;
-
-        const float comboWindow = 0.75f; //window of time to follow up attack
-        const float attackCooldown = 0.5f; //time you have to wait to attack again if you miss window
-        const int maxCombo = 3; //number of times you can attack in a row before having to wait for attackCooldown
-        int comboCounter;
+        float timePressedDash; //counts seconds you've held dash button
+        const float timeToPrecisionDash = 0.25f; //seconds you have to hold dash button to initiate precision dash (aimed dash)
+        const float timeMaxPrecisionDash = 3; //seconds you can hold the dash button before you automatically dash
 
         const int dashRange = 5; //pixels per frame
-        const int maxDashFrames = 10; //frames per dash
-        int dashFrames;
+        float maxDashFrames = 10; //frames per dash
+        int dashFrames; //counts frames you've dashed
+
+        float dashLengthIncrease;
 
         public string playerInfoString;
 
@@ -180,6 +181,15 @@ namespace Test_Loopguy
             {
                 timePressedDash += deltaTime;
 
+                //This is for "sliding" to a stop when holding dash button, prevents awkward stop when doing a quick dash and also looks cool
+                if (direction == Vector2.Zero)
+                    speed = 0;
+                else if (speed > 0)
+                {
+                    speed -= deltaTime * 200; // <-- increase time coefficient to make slide stop faster, decrease to slide longer
+                }
+                CheckMovement(deltaTime);
+
                 if (!InputReader.Dash() || timePressedDash > timeMaxPrecisionDash)
                 {
                     Audio.PlaySound(Audio.dash);
@@ -190,6 +200,7 @@ namespace Test_Loopguy
                 }
                 else
                 {
+                    maxDashFrames += deltaTime * 4;
 
                     if (timePressedDash > timeToPrecisionDash)
                     {
@@ -212,18 +223,19 @@ namespace Test_Loopguy
             else if (attacking)
             {
                 PlayMelee(deltaTime);
-                //this is so that the player sprite matches the melee sprite when attacking
-
             }
             else if (dashing)
             {
-                //do nothing
+                //dash method is run in Draw because it needs spritebatch, yes it is wack
                 timePressedDash = 0;
             }
             else
             {
                 //this is to prevent moonwalking
                 sprite.flipHorizontally = false;
+
+                maxDashFrames = 10;
+                dashLengthIncrease = 0;
 
                 if (InputReader.Aim() || shooting)
                 {
@@ -844,7 +856,7 @@ namespace Test_Loopguy
 
         public void DrawDashAim(SpriteBatch spriteBatch)
         {
-            int fullDashRange = dashRange * maxDashFrames;
+            float fullDashRange = dashRange * maxDashFrames;
 
             Line dashLine = new Line(centerPosition, new Vector2(centerPosition.X + fullDashRange * direction.X, centerPosition.Y + fullDashRange * direction.Y));
 
