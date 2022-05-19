@@ -331,6 +331,56 @@ namespace Test_Loopguy
             sprite.Update(gameTime);
         }
 
+
+        public void EnterRoom(Vector2 position)
+        {
+            roomEntrancePosition = position;
+            this.position = position;
+        }
+
+        private void FootstepCalculation()
+        {
+            if(traveledDistance >= distanceBetweenFootsteps)
+            {
+                traveledDistance = 0;
+                Tile tile = LevelManager.GetTile(footprint.Center.ToVector2());
+                if(tile.footsteps != null)
+                {
+                    tile.footsteps.PlayRandomSound();
+                }             
+            }
+        }
+
+        public void EnteredHazard()
+        {
+            Audio.PlaySound(Audio.splash);
+            position = roomEntrancePosition;
+            TakeDamage(1, DamageType.Hazard);
+            Fadeout.HazardFade();
+        }
+
+        public override void TakeDamage(int damage, DamageType soundType)
+        {
+            if (soundType == DamageType.melee)
+            {
+                Audio.PlaySound(Audio.player_hit);
+            }
+            else if (soundType == DamageType.laserGun)
+            {
+                Audio.PlaySound(Audio.player_hit);
+            }
+            else if (soundType == DamageType.Hazard)
+            {
+                Audio.PlaySound(Audio.player_hit);
+            }
+            else if (soundType == DamageType.Electricity)
+            {
+                Audio.PlaySound(Audio.hitByElectricity);
+            }
+            
+            base.TakeDamage(damage, soundType);
+        }
+
         public override void Draw(SpriteBatch spriteBatch)
         {
             //draw footprint
