@@ -54,7 +54,7 @@ namespace Test_Loopguy
             game1 = this; //Used for Exit() in menuManager
         }
 
-        
+        // :^)
 
         protected override void Initialize()
         {
