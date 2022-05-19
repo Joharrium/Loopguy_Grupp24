@@ -136,7 +136,7 @@ namespace Test_Loopguy
             CheckMovement(deltaTime);
         }
 
-        public override void TakeDamage(int damage, AttackType soundType)
+        public override void TakeDamage(int damage, DamageType soundType)
         {
             aggro = true;
             if(!hitDuringCurrentAttack)
@@ -362,13 +362,13 @@ namespace Test_Loopguy
             LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 150, damage));
         }
 
-        public override void TakeDamage(int damage, AttackType soundType)
+        public override void TakeDamage(int damage, DamageType soundType)
         {
-            if (soundType == AttackType.melee)
+            if (soundType == DamageType.melee)
             {
                 Audio.meleeOnFlesh.PlayRandomSound();
             }
-            else if (soundType == AttackType.laserGun)
+            else if (soundType == DamageType.laserGun)
             {
                 Audio.PlaySound(Audio.player_hit);
             }
@@ -492,14 +492,14 @@ namespace Test_Loopguy
             }
         }
 
-        public override void TakeDamage(int damage, AttackType soundType)
+        public override void TakeDamage(int damage, DamageType soundType)
         {
-            if (soundType == AttackType.melee)
+            if (soundType == DamageType.melee)
             {
                 Audio.meleeOnMetal.PlayRandomSound();
                 //Audio.PlaySound(Audio.meleeOnMetal1);
             }
-            else if (soundType == AttackType.laserGun)
+            else if (soundType == DamageType.laserGun)
             {
                 Audio.PlaySound(Audio.player_hit);
             }
