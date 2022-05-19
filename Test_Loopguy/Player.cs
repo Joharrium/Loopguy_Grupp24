@@ -10,8 +10,8 @@ namespace Test_Loopguy
 {
     internal class Player : Character
     {
-        private int ammo = 5;
-        private int maxAmmo = 5;
+        private int ammo = 8;
+        private int maxAmmo = 8;
 
         private int storedHealthPacks = 0;
         public int StoredHealth
@@ -62,11 +62,11 @@ namespace Test_Loopguy
         const float timeToPrecisionDash = 0.25f; //seconds you have to hold dash button to initiate precision dash (aimed dash)
         const float timeMaxPrecisionDash = 3; //seconds you can hold the dash button before you automatically dash
 
-        float dashSlideTimer;
-        const float maxDashSlideTime = 0.2f;
+        float dashSlideTimer; //counts seconds you've slid after dash
+        const float maxDashSlideTime = 0.2f; //seconds that you'll slide after a dash, also window for gun drifting
 
         const int dashRange = 5; //pixels per frame
-        const int standardMaxDashFrames = 10;
+        const int standardMaxDashFrames = 10; 
         float maxDashFrames; //frames per dash
         int dashFrames; //counts frames you've dashed
 
@@ -82,8 +82,6 @@ namespace Test_Loopguy
         bool dashSlide;
 
         bool checkDash;
-
-        bool slidin;
 
         bool flipMelee;
 
@@ -924,6 +922,8 @@ namespace Test_Loopguy
                 if (InputReader.MovementDown())
                     direction.Y += 1 * deltaTime * timeCoefficient;
             }
+
+            direction.Normalize();
         }
 
         public void SlideStop(float deltaTime, int timeCoefficient)
@@ -937,6 +937,7 @@ namespace Test_Loopguy
                 speed -= deltaTime * timeCoefficient; // <-- increase time coefficient to make slide stop faster, decrease to slide longer
             }
             CheckMovement(deltaTime);
+            LevelManager.CheckGate(this);
         }
 
         public void DrawDashAim(SpriteBatch spriteBatch)
