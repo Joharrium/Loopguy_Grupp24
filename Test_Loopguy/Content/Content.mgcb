@@ -1000,7 +1000,6 @@
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/big_sink.png
 
-
 #begin gfx/objects/assetpack/billboard.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1012,7 +1011,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/billboard.png
-
 
 #begin gfx/objects/assetpack/cabinet.png
 /importer:TextureImporter
@@ -1278,7 +1276,6 @@
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/sofa_left.png
 
-
 #begin gfx/objects/assetpack/sofa_right.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1302,7 +1299,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/stocked_shelf.png
-
 
 #begin gfx/objects/assetpack/table_computer_medicine.png
 /importer:TextureImporter
