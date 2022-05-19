@@ -19,6 +19,19 @@ namespace Test_Loopguy
             Left,
             Right,
         }
+
+        //Made for defining the sound used for each type of weapon on each type of enemy, the sound is set in each one of the characters TakeDamage() method
+        public enum DamageType
+        {
+            melee,
+            laserGun,
+            railGun,
+            Hazard,
+            Electricity,
+        }
+
+        //public AttackType currentAttack;
+
         protected Orientation primaryOrientation;
         protected Orientation secondaryOrientation;
 
@@ -146,14 +159,15 @@ namespace Test_Loopguy
             }
         }
 
-        public virtual void TakeDamage(int damage)
+        public virtual void TakeDamage(int damage, DamageType soundType)
         {
             health -= damage;
-            Audio.PlaySound(Audio.player_hit);
+           
             if (health <= 0)
             {
                 LevelManager.Reset();
             }
+     
         }
 
         public bool MeleeHit(GameObject obj)

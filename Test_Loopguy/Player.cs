@@ -10,8 +10,8 @@ namespace Test_Loopguy
 {
     internal class Player : Character
     {
-        private int ammo = 5;
-        private int maxAmmo = 5;
+        private int ammo = 8;
+        private int maxAmmo = 8;
 
         private int storedHealthPacks = 0;
         public int StoredHealth
@@ -62,11 +62,11 @@ namespace Test_Loopguy
         const float timeToPrecisionDash = 0.25f; //seconds you have to hold dash button to initiate precision dash (aimed dash)
         const float timeMaxPrecisionDash = 3; //seconds you can hold the dash button before you automatically dash
 
-        float dashSlideTimer;
-        const float maxDashSlideTime = 0.2f;
+        float dashSlideTimer; //counts seconds you've slid after dash
+        const float maxDashSlideTime = 0.2f; //seconds that you'll slide after a dash, also window for gun drifting
 
         const int dashRange = 5; //pixels per frame
-        const int standardMaxDashFrames = 10;
+        const int standardMaxDashFrames = 10; 
         float maxDashFrames; //frames per dash
         int dashFrames; //counts frames you've dashed
 
@@ -82,8 +82,6 @@ namespace Test_Loopguy
         bool dashSlide;
 
         bool checkDash;
-
-        bool slidin;
 
         bool flipMelee;
 
@@ -238,8 +236,11 @@ namespace Test_Loopguy
 
                 if (InputReader.Aim() || shooting)
                 {
-                    SlideyMovement(deltaTime, 2);
-                    SlideStop(deltaTime, 200);
+                    if (direction != Vector2.Zero)
+                    {
+                        SlideyMovement(deltaTime, 2);
+                        SlideStop(deltaTime, 200);
+                    }
 
                     cameraPosition = centerPosition + gunDirection * 50;
                     Game1.camera.stabilize = true;
@@ -331,6 +332,56 @@ namespace Test_Loopguy
             sprite.Update(gameTime);
         }
 
+
+        public void EnterRoom(Vector2 position)
+        {
+            roomEntrancePosition = position;
+            this.position = position;
+        }
+
+        private void FootstepCalculation()
+        {
+            if(traveledDistance >= distanceBetweenFootsteps)
+            {
+                traveledDistance = 0;
+                Tile tile = LevelManager.GetTile(footprint.Center.ToVector2());
+                if(tile.footsteps != null)
+                {
+                    tile.footsteps.PlayRandomSound();
+                }             
+            }
+        }
+
+        public void EnteredHazard()
+        {
+            Audio.PlaySound(Audio.splash);
+            position = roomEntrancePosition;
+            TakeDamage(1, DamageType.Hazard);
+            Fadeout.HazardFade();
+        }
+
+        public override void TakeDamage(int damage, DamageType soundType)
+        {
+            if (soundType == DamageType.melee)
+            {
+                Audio.PlaySound(Audio.player_hit);
+            }
+            else if (soundType == DamageType.laserGun)
+            {
+                Audio.PlaySound(Audio.player_hit);
+            }
+            else if (soundType == DamageType.Hazard)
+            {
+                Audio.PlaySound(Audio.player_hit);
+            }
+            else if (soundType == DamageType.Electricity)
+            {
+                Audio.PlaySound(Audio.hitByElectricity);
+            }
+            
+            base.TakeDamage(damage, soundType);
+        }
+
         public override void Draw(SpriteBatch spriteBatch)
         {
             //draw footprint
@@ -403,33 +454,6 @@ namespace Test_Loopguy
 
             //healthBar.Draw(spriteBatch);
 
-        }
-
-        public void EnterRoom(Vector2 position)
-        {
-            roomEntrancePosition = position;
-            this.position = position;
-        }
-
-        private void FootstepCalculation()
-        {
-            if(traveledDistance >= distanceBetweenFootsteps)
-            {
-                traveledDistance = 0;
-                Tile tile = LevelManager.GetTile(footprint.Center.ToVector2());
-                if(tile.footsteps != null)
-                {
-                    tile.footsteps.PlayRandomSound();
-                }             
-            }
-        }
-
-        public void EnteredHazard()
-        {
-            Audio.PlaySound(Audio.splash);
-            position = roomEntrancePosition;
-            TakeDamage(1);
-            Fadeout.HazardFade();
         }
 
         public void Reset(Vector2 position)
@@ -901,6 +925,8 @@ namespace Test_Loopguy
                 if (InputReader.MovementDown())
                     direction.Y += 1 * deltaTime * timeCoefficient;
             }
+
+            direction.Normalize();
         }
 
         public void SlideStop(float deltaTime, int timeCoefficient)
@@ -914,6 +940,7 @@ namespace Test_Loopguy
                 speed -= deltaTime * timeCoefficient; // <-- increase time coefficient to make slide stop faster, decrease to slide longer
             }
             CheckMovement(deltaTime);
+            LevelManager.CheckGate(this);
         }
 
         public void DrawDashAim(SpriteBatch spriteBatch)

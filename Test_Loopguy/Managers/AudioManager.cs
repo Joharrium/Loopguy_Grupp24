@@ -38,15 +38,18 @@ namespace Test_Loopguy
 
 
         //sound
-        public static SoundCollection lasergun, footstepsMetal, footstepsStone, footstepsGeneric, footstepsGrass, footstepsDirt;
+        public static SoundCollection lasergun, footstepsMetal, footstepsStone, footstepsGeneric, footstepsGrass, footstepsDirt, meleeOnMetal, meleeOnFlesh;
         public static SoundEffect meepmerp, swing, open, deny, dash, door_hiss_sound, 
             box_destroy, shrub_destroy, keypickup, healing, player_hit, reload, splash,
-            ping;
+            ping, robotEnemyCharge1, robotEnemyCharge2, robotEnemyShot, hitByElectricity;
 
         //public static SoundEffect 
 
         public static SoundEffect EnergyGun_Shoot1A, EnergyGun_Shoot1B, EnergyGun_Shoot1C, EnergyGun_Shoot1D, EnergyGun_Shoot2A, EnergyGun_Shoot2B, EnergyGun_Shoot2C, EnergyGun_Shoot2D;
         public static SoundEffect grass_1, grass_2, dirt_1, dirt_2, generic_1, generic_2, metal_1, metal_2, stone_1, stone_2;
+        public static SoundEffect meleeOnMetal1, meleeOnMetal2, meleeOnMetal3, meleeOnMetal4, meleeOnMetal5;
+        public static SoundEffect meleeOnFlesh1, meleeOnFlesh2, meleeOnFlesh3;
+
         static public void Load(ContentManager Content)
         {
             LoadMusic(Content);
@@ -119,6 +122,19 @@ namespace Test_Loopguy
                 footstepsStone.AddSound(stone_1);
                 footstepsStone.AddSound(stone_2);
             }
+            //meleeHitOnMetal
+            {
+                meleeOnMetal = new SoundCollection();
+                meleeOnMetal.AddSound(meleeOnMetal1);
+                meleeOnMetal.AddSound(meleeOnMetal2);
+            }
+            //meleeHitOnFlesh
+            {
+                meleeOnFlesh = new SoundCollection();
+                meleeOnFlesh.AddSound(meleeOnFlesh1);
+                meleeOnFlesh.AddSound(meleeOnFlesh2);
+                meleeOnFlesh.AddSound(meleeOnFlesh3);
+            }
         }
         static void LoadMusic(ContentManager c)
         {
@@ -143,6 +159,10 @@ namespace Test_Loopguy
             reload = c.Load<SoundEffect>("audio/sound/reload");
             splash = c.Load<SoundEffect>("audio/sound/splash");
             ping = c.Load<SoundEffect>("audio/sound/ping");
+            robotEnemyCharge1 = c.Load<SoundEffect>("audio/sound/egon_windup2");
+            robotEnemyCharge2 = c.Load<SoundEffect>("audio/sound/tauCannonEdited2");
+            robotEnemyShot = c.Load<SoundEffect>("audio/sound/tauCannonShotEdited");
+            hitByElectricity = c.Load<SoundEffect>("audio/sound/playerZapped");
 
             {
                 EnergyGun_Shoot1A = c.Load<SoundEffect>("audio/sound/gun/EnergyGun_Shoot1A");
@@ -166,6 +186,17 @@ namespace Test_Loopguy
                 metal_2 = c.Load<SoundEffect>("audio/sound/footsteps/metal_2");
                 stone_1 = c.Load<SoundEffect>("audio/sound/footsteps/stone_1");
                 stone_2 = c.Load<SoundEffect>("audio/sound/footsteps/stone_2");
+            }
+
+            {
+                meleeOnMetal1 = c.Load<SoundEffect>("audio/sound/cbar_hit1reduced");
+                meleeOnMetal2 = c.Load<SoundEffect>("audio/sound/cbar_hit2reduced");
+            }
+
+            {
+                meleeOnFlesh1 = c.Load<SoundEffect>("audio/sound/cbar_hitbod1");
+                meleeOnFlesh2 = c.Load<SoundEffect>("audio/sound/cbar_hitbod2");
+                meleeOnFlesh3 = c.Load<SoundEffect>("audio/sound/cbar_hitbod3");
             }
         }
 
@@ -279,6 +310,7 @@ namespace Test_Loopguy
                 instance.Play();
             }
         }
+
     }
     public class SoundCollection
     {

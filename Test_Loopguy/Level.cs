@@ -100,7 +100,8 @@ namespace Test_Loopguy
                 if (s.CheckCollision(player) && !player.dashing)
                 {
 
-                    player.TakeDamage(s.damage);
+                    player.TakeDamage(s.damage, Character.DamageType.laserGun);
+
 
                     projectilesToRemove.Add(s);
                 }
@@ -300,15 +301,16 @@ namespace Test_Loopguy
                     {
                         if(s.CheckCollision(e))
                         {
-                            e.TakeDamage(s.damage);
+                            e.TakeDamage(s.damage, Character.DamageType.laserGun);
                             projectilesToRemove.Add(s);
                         }
                     }
                     e.Update(gameTime);
                     if (EntityManager.player.MeleeHit(e) && EntityManager.player.attacking)
                     {
-                        e.TakeDamage(1);
-                        e.hitDuringCurrentAttack = true;
+                        e.TakeDamage(1, Character.DamageType.melee);
+                        e.hitDuringCurrentAttack = true;                 
+
                     }
                     if (!EntityManager.player.attacking)
                     {
