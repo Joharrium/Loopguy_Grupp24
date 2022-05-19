@@ -18,20 +18,16 @@ namespace Test_Loopguy
         private SpriteBatch spriteBatch;
 
         SpriteFont smallFont;
+        RenderTarget2D renderTarget;
 
         public static Camera camera;
         public static Game1 game1;
         private SmartFramerate frameCounter;
-
         public static Form1 editorFrm;
         Thread formThread;
 
-        //Player player;
-
         Texture2D blueArc, redPixel;
         public static bool isFullscreen;
-
-        RenderTarget2D renderTarget;
 
         public static Vector2 mousePos;
         public static Rectangle screenRect;
@@ -42,9 +38,7 @@ namespace Test_Loopguy
         }
 
         public static bool editLevel = false;
-
         string infoString;
-
 
         public Game1()
         {
@@ -54,20 +48,12 @@ namespace Test_Loopguy
             game1 = this; //Used for Exit() in menuManager
         }
 
-        
-
-        protected override void Initialize()
-        {
-            base.Initialize();
-        }
-
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             TextureManager.LoadTextures(Content);
             ProfileManager.Init();
             frameCounter = new SmartFramerate(500);
-            
          
             EntityManager.PlayerInitialization();
             Audio.Load(Content);
@@ -85,9 +71,7 @@ namespace Test_Loopguy
             graphics.PreferredBackBufferHeight = screenRect.Height;
             graphics.ApplyChanges();
 
-
             MenuManager.Init();
-
             LevelManager.Init();
 
             camera = new Camera();
@@ -103,7 +87,6 @@ namespace Test_Loopguy
             {
                 Application.Run(editorFrm);
             }
-
         }
 
         protected override void Update(GameTime gameTime)
@@ -141,7 +124,6 @@ namespace Test_Loopguy
                 }
                 
             }
-            
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             InputReader.Update();
@@ -280,8 +262,6 @@ namespace Test_Loopguy
                 {
                     ScaleWindowAbsolute(maxPossibleY);
                 }
-                
-                
 
                 graphics.IsFullScreen = state;
 
@@ -292,8 +272,6 @@ namespace Test_Loopguy
                 ScaleWindowAbsolute(scale);
             }
             isFullscreen = graphics.IsFullScreen;
-            
         }
-
     }
 }
