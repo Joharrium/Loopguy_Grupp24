@@ -63,7 +63,8 @@ namespace Test_Loopguy
         const float timeMaxPrecisionDash = 3; //seconds you can hold the dash button before you automatically dash
 
         const int dashRange = 5; //pixels per frame
-        float maxDashFrames = 10; //frames per dash
+        const int standardMaxDashFrames = 10;
+        float maxDashFrames; //frames per dash
         int dashFrames; //counts frames you've dashed
 
         float dashLengthIncrease;
@@ -95,6 +96,7 @@ namespace Test_Loopguy
             health = maxHealth;
 
             speed = 100; //pixels per second
+            maxDashFrames = standardMaxDashFrames;
 
             footprintOffset = new Point(12, 24);
             primaryOrientation = Orientation.Down;
@@ -182,13 +184,7 @@ namespace Test_Loopguy
                 timePressedDash += deltaTime;
 
                 //This is for "sliding" to a stop when holding dash button, prevents awkward stop when doing a quick dash and also looks cool
-                if (direction == Vector2.Zero)
-                    speed = 0;
-                else if (speed > 0)
-                {
-                    speed -= deltaTime * 200; // <-- increase time coefficient to make slide stop faster, decrease to slide longer
-                }
-                CheckMovement(deltaTime);
+                SlideStop(deltaTime, 200);
 
                 if (!InputReader.Dash() || timePressedDash > timeMaxPrecisionDash)
                 {
@@ -198,24 +194,21 @@ namespace Test_Loopguy
                     canDash = false;
                     checkDash = false;
                 }
-                else
+                else if (timePressedDash > timeToPrecisionDash)
                 {
-                    maxDashFrames += deltaTime * 4;
+                    maxDashFrames += deltaTime * 4; // <-- increase time coefficient to make precision dash range increase faster, decrease to make slower
 
-                    if (timePressedDash > timeToPrecisionDash)
+                    aimAngle = GetAim();
+
+                    if (InputReader.MovingLeftStick())
                     {
-                        aimAngle = GetAim();
-
-                        if (InputReader.MovingLeftStick())
-                        {
-                            direction.X = InputReader.padState.ThumbSticks.Left.X;
-                            direction.Y = -InputReader.padState.ThumbSticks.Left.Y;
-                        }
-                        else
-                        {
-                            aimAngle = (float)Helper.GetAngle(centerPosition, Game1.mousePos, 0);
-                            direction = new Vector2((float)Math.Sin(aimAngle), (float)Math.Cos(aimAngle));
-                        }
+                        direction.X = InputReader.padState.ThumbSticks.Left.X;
+                        direction.Y = -InputReader.padState.ThumbSticks.Left.Y;
+                    }
+                    else
+                    {
+                        aimAngle = (float)Helper.GetAngle(centerPosition, Game1.mousePos, 0);
+                        direction = new Vector2((float)Math.Sin(aimAngle), (float)Math.Cos(aimAngle));
                     }
                 }
 
@@ -234,11 +227,13 @@ namespace Test_Loopguy
                 //this is to prevent moonwalking
                 sprite.flipHorizontally = false;
 
-                maxDashFrames = 10;
+                maxDashFrames = standardMaxDashFrames;
                 dashLengthIncrease = 0;
 
                 if (InputReader.Aim() || shooting)
                 {
+                    SlideStop(deltaTime, 150);
+
                     cameraPosition = centerPosition + gunDirection * 50;
                     Game1.camera.stabilize = true;
 
@@ -328,7 +323,7 @@ namespace Test_Loopguy
 
             if (checkDash)
             {
-                if (timePressedDash > 0.5f)
+                if (timePressedDash > timeToPrecisionDash)
                     DrawDashAim(spriteBatch);
 
                 sprite.Frame((int)primaryOrientation - 1, 12);
@@ -852,6 +847,17 @@ namespace Test_Loopguy
             float dirXshort = (float)Math.Round(direction.X, 2);
             float dirYshort = (float)Math.Round(direction.Y, 2);
             playerInfoString = absDirShort.ToString() + " || " + frameTime.ToString() + " || " + playerVelocityShort.ToString() + "\n\n\n\n\n\n\n Dir X: " + dirXshort + "\n Dir Y: " + dirYshort;
+        }
+
+        public void SlideStop(float deltaTime, int timeCoefficient)
+        {
+            if (direction == Vector2.Zero || speed < 0) //no sliding when standing still and pressing dash, and no negative speed however small (will slide slightly backwards)
+                speed = 0;
+            else if (speed > 0)
+            {
+                speed -= deltaTime * timeCoefficient; // <-- increase time coefficient to make slide stop faster, decrease to slide longer
+            }
+            CheckMovement(deltaTime);
         }
 
         public void DrawDashAim(SpriteBatch spriteBatch)
