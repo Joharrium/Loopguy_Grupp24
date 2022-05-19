@@ -20,7 +20,7 @@ namespace Test_Loopguy
         // ui files
         public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door,
             healthbar_small_outline, healthbar_small_fill_bg, healthbar_small_fill,
-            player_healthbar_outline, player_healthbar_inline, player_healthbar_fill, player_healthbar_fill_bg,
+            player_healthbar_outline, player_healthbar_inline, player_healthbar_fill, player_healthbar_fill_bg, player_healthbar_fill_bg_alt,
             ammobar_fill, ammobar_outline, ammobar_fill_bg, menu_bg, slider_container, slider_fill, logo,
             checkbox_true, checkbox_false, control_atlas
             
@@ -167,6 +167,7 @@ namespace Test_Loopguy
             player_healthbar_inline = c.Load<Texture2D>("gfx/interface/player_healthbar_inline");
             player_healthbar_fill = c.Load<Texture2D>("gfx/interface/player_healthbar_fill");
             player_healthbar_fill_bg = c.Load<Texture2D>("gfx/interface/player_healthbar_fill_bg");
+            player_healthbar_fill_bg_alt = c.Load<Texture2D>("gfx/interface/player_healthbar_fill_bg_alt");
 
             ammobar_fill = c.Load<Texture2D>("gfx/interface/ammobar_fill");
             ammobar_outline = c.Load<Texture2D>("gfx/interface/ammobar_outline");

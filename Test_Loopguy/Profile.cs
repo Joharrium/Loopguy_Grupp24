@@ -9,6 +9,8 @@ namespace Test_Loopguy
     {
         private int id;
         private bool playedTutorial;
+        public bool colorBlind;
+        
         public bool PlayedTutorial
         {
             get { return playedTutorial; }
@@ -33,15 +35,22 @@ namespace Test_Loopguy
             return keys;
         }
 
-        public void TutorialFinished()
+        public void SaveToFile()
         {
-            playedTutorial = true;
             string path = String.Format(@"saves\profile{0}\settings.txt", id);
             List<string> toWrite = new List<string>();
 
             toWrite.Add(playedTutorial.ToString());
+            toWrite.Add(colorBlind.ToString());
 
             File.WriteAllLines(path, toWrite);
+        }
+
+        public void TutorialFinished()
+        {
+            playedTutorial = true;
+            SaveToFile();
+            
         }
         private void LoadProfile()
         {
@@ -70,10 +79,10 @@ namespace Test_Loopguy
                 {
                     lines.Add(line);
                 }
-                foreach (string l in lines)
-                {
-                    playedTutorial = Boolean.Parse(l);
-                }
+                
+                playedTutorial = Boolean.Parse(lines[0]);
+                colorBlind = Boolean.Parse(lines[1]);
+                
             }
             }
 

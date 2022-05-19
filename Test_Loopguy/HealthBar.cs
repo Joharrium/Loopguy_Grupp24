@@ -121,8 +121,15 @@ namespace Test_Loopguy
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
-            spriteBatch.Draw(fill_bg, position, Color.White);
+            if(ProfileManager.ColorBlind)
+            {
+                spriteBatch.Draw(TextureManager.player_healthbar_fill_bg_alt, position, Color.White);
+            }
+            else
+            {
+                spriteBatch.Draw(fill_bg, position, Color.White);
+            }
+            
             if(maxValue != value)
             {
                 spriteBatch.Draw(fill, position + new Vector2(80 - ((Math.Abs(value - maxValue) * 16)), 0), srcRectangle, Color.White);
