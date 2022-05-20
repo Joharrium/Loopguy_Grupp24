@@ -485,7 +485,7 @@ namespace Test_Loopguy
             this.position = position;
             texture = TextureManager.nice_bookshelf;
             variation = Game1.rnd.Next(2);
-            sourceRectangle = new Rectangle(64 * variation, 0, 64, 34);
+            sourceRectangle = new Rectangle(32 * variation, 0, 32, 34);
             footprint = new Rectangle((int)position.X + 0, (int)position.Y + 26, 32, 10);
             height = 24;
             hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
@@ -628,6 +628,20 @@ namespace Test_Loopguy
             footprint = new Rectangle((int)position.X + 1, (int)position.Y + 17, 22, 24);
             height = 14;
             hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width - 13, footprint.Height);
+        }
+    }
+
+    public class Bench : LevelObject
+    {
+        public Bench(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.bench;
+            variation = Game1.rnd.Next(1);
+            sourceRectangle = new Rectangle(46 * variation, 0, 46, 15);
+            footprint = new Rectangle((int)position.X + 0, (int)position.Y + 4, 46, 1);
+            height = 5;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
         }
     }
 

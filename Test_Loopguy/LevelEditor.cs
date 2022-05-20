@@ -19,7 +19,7 @@ namespace Test_Loopguy
         DeskOffice, Server, ChairOfficeBw, ChairOfficeFw, DeskForward, DeskBackward, PottedPlant,
         BigSink, CrateStack, OperationEquipment, Whiteboard, Locker, Morgue, Sofa, Camera, Sink,
         NiceBookshelf, ShelfWeird, ShootingRangeBench, CarryingThing, SofaLeft, SofaRight, CanteenTable,
-        CanteenFoodThing, KitchenCounter, CanteenChairLeft, CanteenChairRight
+        CanteenFoodThing, KitchenCounter, CanteenChairLeft, CanteenChairRight, Bench
     }
     public enum TileSelection
     {
@@ -283,6 +283,10 @@ namespace Test_Loopguy
                                 LevelManager.ObjectAdd(new KitchenCounter(Game1.mousePos - new Vector2(8, 16)));
                                 break;
 
+                            case ObjectSelection.Bench:
+                                LevelManager.ObjectAdd(new Bench(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
                             default:
                                 break;
                         }
@@ -494,6 +498,10 @@ namespace Test_Loopguy
 
                     case ObjectSelection.KitchenCounter:
                         spriteBatch.Draw(TextureManager.kitchen_counter, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.Bench:
+                        spriteBatch.Draw(TextureManager.bench, (Game1.mousePos - new Vector2(8, 16)), Color.White);
                         break;
 
                     default:
