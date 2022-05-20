@@ -1366,30 +1366,6 @@
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/sofa_left.png
 
-#begin gfx/objects/assetpack/sofa_left.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/objects/assetpack/sofa_left.png
-
-#begin gfx/objects/assetpack/sofa_right.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gfx/objects/assetpack/sofa_right.png
-
 #begin gfx/objects/assetpack/sofa_right.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2356,6 +2332,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:railgun.png
+
+#begin railgunBeam.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:railgunBeam.png
 
 #begin rangedRobotEnemySpriteSheet.png
 /importer:TextureImporter
