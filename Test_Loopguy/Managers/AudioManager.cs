@@ -292,7 +292,6 @@ namespace Test_Loopguy
             {
                 playingTrack.Play();
             }
-            
         }
 
         public static void StopMusic()
