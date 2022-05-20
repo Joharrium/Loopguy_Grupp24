@@ -623,10 +623,12 @@ namespace Test_Loopguy
     {
         int frameTime = 100;
         bool isAttacking, isMoving = false;
+
         public TestEnemy(Vector2 position) : base(position)
         {
             this.position = position;
             footprintOffset = new Point(0, 24);
+            frameSize = new Point(16, 32);
             sprite = new AnimatedSprite(TextureManager.smallFastEnemySheet, frameSize);
             this.texture = TextureManager.enemyPlaceholder;
             xOffset = 6;
@@ -643,6 +645,8 @@ namespace Test_Loopguy
 
         public override void Update(GameTime gameTime)
         {
+            sprite.Update(gameTime);
+            sprite.Position = position;
             if (health <= 0)
             {
                 isNotDying = false; //Change 'false' to sprite.PlayOnce(/*death animation values*/)
@@ -666,6 +670,7 @@ namespace Test_Loopguy
 
             if (!isAttacking)
             {
+                isMoving = true;
                 if (primaryOrientation == Orientation.Up)
                 {
                     sprite.Play(1,3, frameTime);
