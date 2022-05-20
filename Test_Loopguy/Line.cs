@@ -225,6 +225,10 @@ namespace Test_Loopguy
             return Math.Abs(Math.Sqrt(Math.Pow(P1.X - P2.X, 2) + Math.Pow(P1.Y - P2.Y, 2)));
         }
 
+        public Vector2 ToVector()
+        {
+            return new Vector2(P2.X - P1.X, P2.Y - P1.Y);
+        }
 
 
         public bool LineIntersects(Line o)

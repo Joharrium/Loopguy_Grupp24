@@ -19,8 +19,8 @@ namespace Test_Loopguy
 
         Gun equippedGun;
 
-        private int ammo = 9;
-        private int maxAmmo = 9;
+        private int ammo = 90;
+        private int maxAmmo = 90;
 
         private int storedHealthPacks = 0;
         public int StoredHealth
@@ -32,6 +32,7 @@ namespace Test_Loopguy
 
         AnimatedSprite pistolSprite;
         AnimatedSprite railgunSprite;
+        AnimatedSprite railgunImpactSprite;
         AnimatedSprite meleeSprite;
         AnimatedSprite dashCloudSprite;
 
@@ -39,6 +40,8 @@ namespace Test_Loopguy
         public List<int> keys = new List<int>();
 
         Vector2 pistolOrigin, railgunOrigin;
+        Vector2 railgunBeamPosition;
+        Vector2 railgunImpactPosition;
 
         Vector2 roomEntrancePosition = new Vector2(64, 64);
 
@@ -59,6 +62,8 @@ namespace Test_Loopguy
         float gunAngle;
         float aimAngle;
 
+        float beamAngle;
+
         float deltaTime;
 
         float timeSinceAttack; //counts seconds since last attack
@@ -66,6 +71,8 @@ namespace Test_Loopguy
         const float attackCooldown = 0.5f; //time you have to wait to attack again if you miss window
         const int maxCombo = 3; //number of times you can attack in quick succession before having to wait for attackCooldown
         int comboCounter; //number of times you've attacked in a quick succession
+
+        float timeShot; //counts seconds you've shot for
 
         float timeSinceDash;
         const float timeBetweedDashes = 1f;
@@ -106,6 +113,7 @@ namespace Test_Loopguy
 
             pistolSprite = new AnimatedSprite(TextureManager.pistolSheet, new Point(32, 34));
             railgunSprite = new AnimatedSprite(TextureManager.railgunSheet, new Point(32, 48));
+            railgunImpactSprite = new AnimatedSprite(TextureManager.railgunImpactSheet, new Point(32, 32));
             meleeSprite = new AnimatedSprite(TextureManager.meleeFx, new Point(50, 50));
             dashCloudSprite = new AnimatedSprite(TextureManager.dashCloud, new Point(42, 24));
 
@@ -232,9 +240,13 @@ namespace Test_Loopguy
                     Game1.camera.stabilize = true;
 
                     //PRESSING SHOOT
-                    if (InputReader.Shoot() && !shooting && ammo > 0)
+                    if (InputReader.Shoot() && !shooting)
                     {
-                        if (equippedGun == Gun.Pistol)
+                        railgunImpactSprite.ResetAnimation();
+                        railgunBeamPosition = centerPosition;
+                        beamAngle = aimAngle;
+
+                        if (equippedGun == Gun.Pistol && ammo > 0)
                         {
                             pistolSprite.ResetAnimation();
 
@@ -242,19 +254,20 @@ namespace Test_Loopguy
                             float shotAngle = aimAngle + pi;
                             Shot shot = new Shot(shotPosition, gunDirection, shotAngle, 300, 1);
                             LevelManager.AddPlayerProjectile(shot);
-                            //shots.Add(shot);
-                            //Audio.PlaySound(Audio.meepmerp);
                             Audio.lasergun.PlayRandomSound();
-                            ammo--; ;
+
+                            ammo--;
+
+                            shooting = true;
                         }
-                        else if (equippedGun == Gun.Railgun)
+                        else if (equippedGun == Gun.Railgun && ammo > 2)
                         {
                             railgunSprite.ResetAnimation();
 
                             ammo -= 3;
-                        }
 
-                        shooting = true;
+                            shooting = true;
+                        }
                     }
 
                     //SHOOTING
@@ -266,7 +279,12 @@ namespace Test_Loopguy
                             shooting = pistolSprite.PlayOnce((int)primaryOrientation, 5, frameTime);
                         else
                             shooting = railgunSprite.PlayOnce((int)primaryOrientation, 5, frameTime);
+
+                        railgunImpactSprite.Update(gameTime);
+                        timeShot += deltaTime;
                     }
+                    else
+                        timeShot = 0;
                 }
                 else //NOT AIMING GUN (WALKING OR IDLING)
                 {
@@ -291,10 +309,9 @@ namespace Test_Loopguy
                     }
 
                     if (direction != Vector2.Zero && !InputReader.Aim())
+                        gunDirection = Vector2.Zero;
 
-                    gunDirection = Vector2.Zero;
                     Movement(deltaTime);
-                    //Implement orientation stuff in a higher class "Character"
 
                     if (InputReader.Attack() && !attacking && canAttack && comboCounter < maxCombo)
                     {
@@ -383,11 +400,14 @@ namespace Test_Loopguy
                         DrawGunAim(spriteBatch);
 
                         if (equippedGun == Gun.Pistol)
-                        {
                             pistolSprite.DrawRotation(spriteBatch, gunAngle, pistolOrigin);
-                        }
                         else if (equippedGun == Gun.Railgun)
                         {
+                            if (shooting)
+                            {
+                                RailGunBeam(spriteBatch, timeShot, 25, beamAngle, railgunBeamPosition);
+                            }
+
                             railgunSprite.DrawRotation(spriteBatch, gunAngle, railgunOrigin);
                         }
                     }
@@ -405,14 +425,17 @@ namespace Test_Loopguy
                     }
                     else if (InputReader.Aim() || shooting)
                     {
+                        DrawGunAim(spriteBatch);
+
                         if (equippedGun == Gun.Pistol)
-                        {
-                            DrawGunAim(spriteBatch);
                             pistolSprite.DrawRotation(spriteBatch, gunAngle, pistolOrigin);
-                        }
                         else if (equippedGun == Gun.Railgun)
                         {
-                            DrawGunAim(spriteBatch);
+                            if (shooting)
+                            {
+                                RailGunBeam(spriteBatch, timeShot, 25, beamAngle, railgunBeamPosition);
+                            }
+
                             railgunSprite.DrawRotation(spriteBatch, gunAngle, railgunOrigin);
                         }
                     }
@@ -852,7 +875,7 @@ namespace Test_Loopguy
 
             Line newDashLine = new Line(centerPosition, new Vector2(dashLine.intersectionPoint.X, dashLine.intersectionPoint.Y));
 
-            Vector2 dashVector = new Vector2(newDashLine.P2.X - newDashLine.P1.X, newDashLine.P2.Y - newDashLine.P1.Y);
+            Vector2 dashVector = newDashLine.ToVector();
 
             //Vector2 dashGhost1Pos = new Vector2(centerPosition.X + (dashVector.X * 0.25f) - sprite.size.X / 2, centerPosition.Y + dashVector.Y * 0.25f - sprite.size.Y / 2);
             Vector2 dashGhost2Pos = new Vector2(centerPosition.X + (dashVector.X * 0.5f) - sprite.size.X / 2, centerPosition.Y + dashVector.Y * 0.5f - sprite.size.Y / 2);
@@ -890,8 +913,7 @@ namespace Test_Loopguy
             LevelManager.LevelObjectCollision(laserLine, 9);
 
             Line newLaserLine = new Line(centerPosition, laserLine.intersectionPoint);
-            Vector2 laserVector = new Vector2(newLaserLine.P2.X - newLaserLine.P1.X, newLaserLine.P2.Y - newLaserLine.P1.Y);
-            int laserLength = (int)laserVector.Length();
+            int laserLength = (int)newLaserLine.Length();
 
             for (int i = 16; i < laserLength; i++)
             {
@@ -910,16 +932,55 @@ namespace Test_Loopguy
 
             if (!InputReader.MovingLeftStick())
             {
-                angle = (float)Helper.GetAngle(centerPosition, Game1.mousePos, 0);
+                angle = (float)Helper.GetAngle(centerPosition, Game1.mousePos, offset);
             }
             else
             {
-                angle = InputReader.LeftStickAngle(0);
+                angle = InputReader.LeftStickAngle(offset);
             }
 
             AngleGetOrientation(angle);
 
             return angle;
+        }
+
+        public void RailGunBeam(SpriteBatch spriteBatch, float timePlayed, int frameTime, float beamAngle, Vector2 startPosition)
+        {
+            Vector2 beamStartPosition = startPosition;
+
+            if (primaryOrientation == Orientation.Left || primaryOrientation == Orientation.Right)
+                beamStartPosition = new Vector2(startPosition.X, startPosition.Y - 2);
+
+            Vector2 beamDirection = new Vector2((float)Math.Sin(beamAngle), (float)Math.Cos(beamAngle));
+
+            //if it doesnt work check if gundirection is fucky
+            Line beamLine = new Line(beamStartPosition, new Vector2(beamStartPosition.X + 580 * beamDirection.X, beamStartPosition.Y + 580 * beamDirection.Y));
+
+            LevelManager.LevelObjectCollision(beamLine, 9);
+
+            Line newBeamLine = new Line(beamStartPosition, beamLine.intersectionPoint);
+            int beamLength = (int)newBeamLine.Length();
+
+            //Fade out effect, yes it is wacky
+            int alpha = (int)(255 - timePlayed * 1000);
+            if (alpha > 255)
+                alpha = 255;
+
+            Color color = new Color(alpha, alpha, alpha, alpha);
+
+            for (int i = 21; i < beamLength; i += 4)
+            {
+                if (i > timePlayed * 2000) //this fades the beam from back to front, faster the higher the coeficcient
+                {
+                    Vector2 beamPoint = new Vector2(beamStartPosition.X + i * beamDirection.X, beamStartPosition.Y + i * beamDirection.Y);
+                    spriteBatch.Draw(TextureManager.railgunBeam, beamPoint, null, color, -beamAngle, new Vector2(2, 2), 1, SpriteEffects.None, 0);
+                }
+            }
+
+            railgunImpactPosition = new Vector2(beamLine.intersectionPoint.X - 16, beamLine.intersectionPoint.Y - 16);
+            railgunImpactSprite.Position = railgunImpactPosition;
+            railgunImpactSprite.PlayOnce(0, 5, frameTime);
+            railgunImpactSprite.DrawRotation(spriteBatch, beamAngle, new Vector2(16, 32));
         }
 
         public bool DrawDashCloud(SpriteBatch spriteBatch)
