@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System.IO;
 using Test_Loopguy.Content;
 
@@ -18,8 +19,8 @@ namespace Test_Loopguy
 
         Gun equippedGun;
 
-        private int ammo = 40;
-        private int maxAmmo = 40;
+        private int ammo = 9;
+        private int maxAmmo = 9;
 
         private int storedHealthPacks = 0;
         public int StoredHealth
@@ -132,34 +133,20 @@ namespace Test_Loopguy
             equippedGun = Gun.Pistol;
         }
         
-        
 
         public override void Update(GameTime gameTime)
         {
             deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            centerPosition = new Vector2(position.X + sprite.size.X / 2, position.Y + sprite.size.Y / 2);
             hitBox = new Rectangle((int)(position.X + (sprite.size.X * 0.375)), (int)(position.Y + sprite.size.Y / 4), sprite.size.X / 4, sprite.size.Y / 2);
             footprint = new Rectangle((int)position.X + 12, (int)position.Y + 24, 8, 8);
 
-            if(InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.H) || InputReader.ButtonPressed(Microsoft.Xna.Framework.Input.Buttons.Y))
-            {
+            //USING HEALTHPACK
+            if(InputReader.KeyPressed(Keys.H) || InputReader.ButtonPressed(Buttons.Y))
                 UseHealthPack();
-            }
-            
-            centerPosition = new Vector2(position.X + sprite.size.X / 2, position.Y + sprite.size.Y / 2);
 
-            if(timeSinceDash != 0)
-            {
-                dashBar.SetCurrentValue(footprint.Location.ToVector2(), Math.Min((int)(timeSinceDash * 100), 100));
-            }
-            if(canDash)
-            {
-                dashBar.SetCurrentValue(footprint.Location.ToVector2(), 100);
-            }
-            
-            healthBar.UpdateBar(health);
-            ammoBar.SetCurrentValue(new Vector2(2, 38), ammo);
-
+            //SWITCHING GUN
             if (InputReader.SwitchGun())
             {
                 equippedGun += 1;
@@ -167,46 +154,20 @@ namespace Test_Loopguy
                     equippedGun = 0;
             }
 
-            //ATTACK TIMER
-            if (startAttackTimer)
-            {
-                timeSinceAttack += deltaTime;
+            //DASH BAR
+            if (timeSinceDash != 0)
+                dashBar.SetCurrentValue(footprint.Location.ToVector2(), Math.Min((int)(timeSinceDash * 100), 100));
+            if(canDash)
+                dashBar.SetCurrentValue(footprint.Location.ToVector2(), 100);
+            
+            //HEALTH AND AMMO BAR
+            healthBar.UpdateBar(health);
+            ammoBar.SetCurrentValue(new Vector2(2, 38), ammo);
 
-                if (timeSinceAttack >= comboWindow)
-                {
-                    startAttackTimer = false;
-                    canAttack = false;
-                    comboCounter = 0;
-                    timeSinceAttack = 0;
-                }
-            }
-
-            //ATTACK COOLDOWN
-            if (!canAttack)
-            {
-                timeSinceAttack += deltaTime;
-
-                if (timeSinceAttack >= attackCooldown)
-                {
-                    canAttack = true;
-                    timeSinceAttack = 0;
-                }
-            }
-
-            //DASH TIMER
-            if (!canDash)
-            {
-                timeSinceDash += deltaTime;
-                
-                if (timeSinceDash >= timeBetweedDashes)
-                {
-                    canDash = true;
-                    timeSinceDash = 0;
-                    Audio.PlaySound(Audio.ping);
-                }
-            }
-
-            if (checkDash)
+            //This method runs the timers and cooldowns
+            Timers(deltaTime);
+            
+            if (checkDash) //DIRECTING DASH
             {
                 timePressedDash += deltaTime;
 
@@ -238,12 +199,12 @@ namespace Test_Loopguy
                     }
                 }
 
-            }
+            } //ATTACKING
             else if (attacking)
             {
                 PlayMelee(deltaTime);
             }
-            else if (dashing)
+            else if (dashing) //DASHING
             {
                 //dash method is run in Draw because it needs spritebatch, yes it is wack
                 timePressedDash = 0;
@@ -251,16 +212,18 @@ namespace Test_Loopguy
 
                 speed = 150;
             }
-            else
+            else //NOT DASHING OR ATTACKING
             {
                 //this is to prevent moonwalking
                 sprite.flipHorizontally = false;
 
                 maxDashFrames = standardMaxDashFrames;
 
+                //AIMING GUN
                 if (InputReader.Aim() || shooting)
                 {
                     gunAngle = GetAim(0);
+                    AngleGetOrientation(aimAngle);
 
                     SlideyMovement(deltaTime, 2);
                     SlideStop(deltaTime, 200);
@@ -268,7 +231,7 @@ namespace Test_Loopguy
                     cameraPosition = centerPosition + gunDirection * 50;
                     Game1.camera.stabilize = true;
 
-                    //SHOOTING
+                    //PRESSING SHOOT
                     if (InputReader.Shoot() && !shooting && ammo > 0)
                     {
                         if (equippedGun == Gun.Pistol)
@@ -282,22 +245,30 @@ namespace Test_Loopguy
                             //shots.Add(shot);
                             //Audio.PlaySound(Audio.meepmerp);
                             Audio.lasergun.PlayRandomSound();
-                            shooting = true;
                             ammo--; ;
                         }
                         else if (equippedGun == Gun.Railgun)
                         {
                             railgunSprite.ResetAnimation();
+
+                            ammo -= 3;
                         }
-                        
+
+                        shooting = true;
                     }
 
+                    //SHOOTING
                     if (shooting)
                     {
-                        Shoot(25);
+                        int frameTime = 25;
+
+                        if (equippedGun == Gun.Pistol)
+                            shooting = pistolSprite.PlayOnce((int)primaryOrientation, 5, frameTime);
+                        else
+                            shooting = railgunSprite.PlayOnce((int)primaryOrientation, 5, frameTime);
                     }
                 }
-                else
+                else //NOT AIMING GUN (WALKING OR IDLING)
                 {
                     Game1.camera.stabilize = false;
 
@@ -352,6 +323,7 @@ namespace Test_Loopguy
                 }
             }
 
+            //POSITIONS AND SPRITES
             FootstepCalculation();
             sprite.Position = position;
             pistolSprite.Position = position;
@@ -363,56 +335,6 @@ namespace Test_Loopguy
             meleeSprite.Update(gameTime);
             dashCloudSprite.Update(gameTime);
             sprite.Update(gameTime);
-        }
-
-
-        public void EnterRoom(Vector2 position)
-        {
-            roomEntrancePosition = position;
-            this.position = position;
-        }
-
-        private void FootstepCalculation()
-        {
-            if(traveledDistance >= distanceBetweenFootsteps)
-            {
-                traveledDistance = 0;
-                Tile tile = LevelManager.GetTile(footprint.Center.ToVector2());
-                if(tile.footsteps != null)
-                {
-                    tile.footsteps.PlayRandomSound();
-                }             
-            }
-        }
-
-        public void EnteredHazard()
-        {
-            Audio.PlaySound(Audio.splash);
-            position = roomEntrancePosition;
-            TakeDamage(1, DamageType.Hazard);
-            Fadeout.HazardFade();
-        }
-
-        public override void TakeDamage(int damage, DamageType soundType)
-        {
-            if (soundType == DamageType.melee)
-            {
-                Audio.PlaySound(Audio.player_hit);
-            }
-            else if (soundType == DamageType.laserGun)
-            {
-                Audio.PlaySound(Audio.player_hit);
-            }
-            else if (soundType == DamageType.Hazard)
-            {
-                Audio.PlaySound(Audio.player_hit);
-            }
-            else if (soundType == DamageType.Electricity)
-            {
-                Audio.PlaySound(Audio.hitByElectricity);
-            }
-            
-            base.TakeDamage(damage, soundType);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -503,79 +425,6 @@ namespace Test_Loopguy
 
             //healthBar.Draw(spriteBatch);
 
-        }
-
-        public void Reset(Vector2 position)
-        {
-            this.position = position;
-            health = maxHealth;
-            ammo = maxAmmo;
-            keys.Clear();
-            keys.AddRange(ProfileManager.GetKeys());
-        }
-
-        public void UseHealthPack()
-        {
-            if(storedHealthPacks > 0 && health < maxHealth)
-            {
-                storedHealthPacks--;
-                Audio.PlaySound(Audio.healing);
-                health += 1;
-                ParticleManager.NewParticle(ParticleSelection.HealEffect, position + new Vector2(4, 4));
-            }
-            else
-            {
-                Audio.PlaySound(Audio.meepmerp);
-            }
-            
-        }
-
-        public bool HealDamage(int healing)
-        {
-            if (health >= maxHealth)
-            {
-                if(storedHealthPacks < maxStoredHealthPacks)
-                {
-                    storedHealthPacks++;
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-                
-
-            }
-            else
-            {
-                Audio.PlaySound(Audio.healing);
-                health += healing;
-                ParticleManager.NewParticle(ParticleSelection.HealEffect, position + new Vector2(4,4));
-                if (health > maxHealth)
-                {
-                    health = maxHealth;
-                }
-                return true;
-            }
-        }
-
-        public bool AddAmmo(int ammoToAdd)
-        {
-            if(ammo >= maxAmmo)
-            {
-                return false;
-            }
-            else
-            {
-                Audio.PlaySound(Audio.reload);
-                ammo += ammoToAdd;
-                if (ammo > maxAmmo)
-                {
-                    ammo = maxAmmo;
-                }
-                return true;
-            }
-            
         }
 
         public void PlayMelee(float deltaTime)
@@ -1073,13 +922,6 @@ namespace Test_Loopguy
             return angle;
         }
 
-        public void Shoot(int frameTime)
-        {
-            AngleGetOrientation(aimAngle);
-
-            shooting = pistolSprite.PlayOnce((int)primaryOrientation, 5, frameTime);
-        }
-
         public bool DrawDashCloud(SpriteBatch spriteBatch)
         {
             float rotation = (float)Math.Atan2(dashDirection.X, dashDirection.Y);
@@ -1090,5 +932,165 @@ namespace Test_Loopguy
             bool playAnimation = dashCloudSprite.PlayOnce(0, 13, 50);
             return playAnimation;
         }
+
+        public void Timers(float deltaTime)
+        {
+            //ATTACK TIMER
+            if (startAttackTimer)
+            {
+                timeSinceAttack += deltaTime;
+
+                if (timeSinceAttack >= comboWindow)
+                {
+                    startAttackTimer = false;
+                    canAttack = false;
+                    comboCounter = 0;
+                    timeSinceAttack = 0;
+                }
+            }
+
+            //ATTACK COOLDOWN
+            if (!canAttack)
+            {
+                timeSinceAttack += deltaTime;
+
+                if (timeSinceAttack >= attackCooldown)
+                {
+                    canAttack = true;
+                    timeSinceAttack = 0;
+                }
+            }
+
+            //DASH TIMER
+            if (!canDash)
+            {
+                timeSinceDash += deltaTime;
+
+                if (timeSinceDash >= timeBetweedDashes)
+                {
+                    canDash = true;
+                    timeSinceDash = 0;
+                    Audio.PlaySound(Audio.ping);
+                }
+            }
+        }
+
+
+
+        public void Reset(Vector2 position)
+        {
+            this.position = position;
+            health = maxHealth;
+            ammo = maxAmmo;
+            keys.Clear();
+            keys.AddRange(ProfileManager.GetKeys());
+        }
+        public void UseHealthPack()
+        {
+            if (storedHealthPacks > 0 && health < maxHealth)
+            {
+                storedHealthPacks--;
+                Audio.PlaySound(Audio.healing);
+                health += 1;
+                ParticleManager.NewParticle(ParticleSelection.HealEffect, position + new Vector2(4, 4));
+            }
+            else
+            {
+                Audio.PlaySound(Audio.meepmerp);
+            }
+
+        }
+        public bool HealDamage(int healing)
+        {
+            if (health >= maxHealth)
+            {
+                if (storedHealthPacks < maxStoredHealthPacks)
+                {
+                    storedHealthPacks++;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            else
+            {
+                Audio.PlaySound(Audio.healing);
+                health += healing;
+                ParticleManager.NewParticle(ParticleSelection.HealEffect, position + new Vector2(4, 4));
+                if (health > maxHealth)
+                {
+                    health = maxHealth;
+                }
+                return true;
+            }
+        }
+        public bool AddAmmo(int ammoToAdd)
+        {
+            if (ammo >= maxAmmo)
+            {
+                return false;
+            }
+            else
+            {
+                Audio.PlaySound(Audio.reload);
+                ammo += ammoToAdd;
+                if (ammo > maxAmmo)
+                {
+                    ammo = maxAmmo;
+                }
+                return true;
+            }
+
+        }
+        public void EnterRoom(Vector2 position)
+        {
+            roomEntrancePosition = position;
+            this.position = position;
+        }
+        private void FootstepCalculation()
+        {
+            if (traveledDistance >= distanceBetweenFootsteps)
+            {
+                traveledDistance = 0;
+                Tile tile = LevelManager.GetTile(footprint.Center.ToVector2());
+                if (tile.footsteps != null)
+                {
+                    tile.footsteps.PlayRandomSound();
+                }
+            }
+        }
+        public void EnteredHazard()
+        {
+            Audio.PlaySound(Audio.splash);
+            position = roomEntrancePosition;
+            TakeDamage(1, DamageType.Hazard);
+            Fadeout.HazardFade();
+        }
+        public override void TakeDamage(int damage, DamageType soundType)
+        {
+            if (soundType == DamageType.melee)
+            {
+                Audio.PlaySound(Audio.player_hit);
+            }
+            else if (soundType == DamageType.laserGun)
+            {
+                Audio.PlaySound(Audio.player_hit);
+            }
+            else if (soundType == DamageType.Hazard)
+            {
+                Audio.PlaySound(Audio.player_hit);
+            }
+            else if (soundType == DamageType.Electricity)
+            {
+                Audio.PlaySound(Audio.hitByElectricity);
+            }
+
+            base.TakeDamage(damage, soundType);
+        }
+
     }
 }
