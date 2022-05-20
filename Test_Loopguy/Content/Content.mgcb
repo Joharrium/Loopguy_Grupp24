@@ -50,12 +50,6 @@
 /processorParam:Quality=Best
 /build:audio/sound/box_destroy.wav
 
-#begin audio/sound/box_destroy.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:audio/sound/box_destroy.wav
-
 #begin audio/sound/cbar_hit1reduced.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -92,29 +86,11 @@
 /processorParam:Quality=Best
 /build:audio/sound/dash.wav
 
-#begin audio/sound/dash.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:audio/sound/dash.wav
-
 #begin audio/sound/deny.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:audio/sound/deny.wav
-
-#begin audio/sound/deny.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:audio/sound/deny.wav
-
-#begin audio/sound/door_hiss_sound.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:audio/sound/door_hiss_sound.wav
 
 #begin audio/sound/door_hiss_sound.wav
 /importer:WavImporter
@@ -242,29 +218,11 @@
 /processorParam:Quality=Best
 /build:audio/sound/healing.wav
 
-#begin audio/sound/healing.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:audio/sound/healing.wav
-
 #begin audio/sound/keypickup.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:audio/sound/keypickup.wav
-
-#begin audio/sound/keypickup.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:audio/sound/keypickup.wav
-
-#begin audio/sound/meepmerp.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:audio/sound/meepmerp.wav
 
 #begin audio/sound/meepmerp.wav
 /importer:WavImporter
@@ -284,29 +242,11 @@
 /processorParam:Quality=Best
 /build:audio/sound/open.wav
 
-#begin audio/sound/open.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:audio/sound/open.wav
-
 #begin audio/sound/ping.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:audio/sound/ping.wav
-
-#begin audio/sound/ping.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:audio/sound/ping.wav
-
-#begin audio/sound/player_hit.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:audio/sound/player_hit.wav
 
 #begin audio/sound/player_hit.wav
 /importer:WavImporter
@@ -332,29 +272,11 @@
 /processorParam:Quality=Best
 /build:audio/sound/shrub_destroy.wav
 
-#begin audio/sound/shrub_destroy.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:audio/sound/shrub_destroy.wav
-
 #begin audio/sound/splash.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:audio/sound/splash.wav
-
-#begin audio/sound/splash.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:audio/sound/splash.wav
-
-#begin audio/sound/swing.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:audio/sound/swing.wav
 
 #begin audio/sound/swing.wav
 /importer:WavImporter
@@ -1120,6 +1042,54 @@
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/cabinet.png
 
+#begin gfx/objects/assetpack/canteen_chair_left.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/canteen_chair_left.png
+
+#begin gfx/objects/assetpack/canteen_chair_right.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/canteen_chair_right.png
+
+#begin gfx/objects/assetpack/canteen_food_thing.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/canteen_food_thing.png
+
+#begin gfx/objects/assetpack/canteen_table.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/canteen_table.png
+
 #begin gfx/objects/assetpack/cardboard_box_stack_small.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1215,6 +1185,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/desk_office.png
+
+#begin gfx/objects/assetpack/kitchen_counter.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/kitchen_counter.png
 
 #begin gfx/objects/assetpack/machine_heartbeat_thing.png
 /importer:TextureImporter
@@ -1371,6 +1353,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/objects/assetpack/sofa_left.png
+
+#begin gfx/objects/assetpack/sofa_left.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/sofa_left.png
+
+#begin gfx/objects/assetpack/sofa_right.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/assetpack/sofa_right.png
 
 #begin gfx/objects/assetpack/sofa_right.png
 /importer:TextureImporter
