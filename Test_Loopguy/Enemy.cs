@@ -184,70 +184,6 @@ namespace Test_Loopguy
         }
     }
 
-    class MeleeEnemy : Enemy
-    {
-        protected int range;
-        protected int accuracy;
-
-        public MeleeEnemy(Vector2 position) : base(position)
-        {
-            this.position = position;
-            footprint = new Rectangle((int)(position.X + footprintOffset.X), (int)(position.Y + footprintOffset.Y), 32, 16);
-            frameSize = new Point(32, 32);
-            frameSize = new Point(64, 64);
-            xOffset = frameSize.X / 2;
-            yOffset = frameSize.Y;
-            maxSpeed = 40;
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            if (health <= 0)
-            {
-                isNotDying = false; //Change 'false' to sprite.PlayOnce(/*death animation values*/)
-            }
-            base.Update(gameTime);
-            //Movement(deltaTime);
-        }
-
-        protected override void AggroBehavior()
-        {
-            //Vector2 distBetweenPlrAndEnemy = centerPosition - EntityManager.player.centerPosition;
-            //distBetweenPlrAndEnemy.Normalize();
-            //distBetweenPlrAndEnemy *= -1;
-
-            //direction = distBetweenPlrAndEnemy;
-            //speed = maxSpeed;
-        }
-
-        public virtual void AttackBehaviour()
-        {
-            if (attackCooldownRemaining <= 0)
-            {
-                MeleeAttack();
-                Debug.WriteLine("MELEE ATTACK HERe");
-            }
-        }
-
-        public virtual void MeleeAttack()
-        {
-            /// if enemy is close enough to player:
-            /// make melee attack and then check if he is still close enough
-            /// if he is, make another attack
-            /// dont forget to have timer between attack so it dosent destroy player.
-            
-            attackCooldownRemaining = attackCooldown;
-
-            Vector2 direction = centerPosition - EntityManager.player.centerPosition;
-            //randomizes projectile direction somewhat based on accuracy
-            direction.X *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
-            direction.Y *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
-            direction.Normalize();
-            direction *= -1;
-            LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 200, damage));
-        }
-    }
-
     class RangedEnemy : Enemy
     {
         protected int minRange;
@@ -683,14 +619,15 @@ namespace Test_Loopguy
         }
     }
 
-    class TestEnemy : MeleeEnemy
+    class TestEnemy : Enemy
     {
         int frameTime = 100;
-        bool isAttacking, isMoving;
+        bool isAttacking, isMoving = false;
         public TestEnemy(Vector2 position) : base(position)
         {
             this.position = position;
             footprintOffset = new Point(0, 24);
+            sprite = new AnimatedSprite(TextureManager.smallFastEnemySheet, frameSize);
             this.texture = TextureManager.enemyPlaceholder;
             xOffset = 6;
             yOffset = texture.Height;
@@ -743,7 +680,7 @@ namespace Test_Loopguy
                 }
                 if (primaryOrientation == Orientation.Right)
                 {
-                    sprite.Play();
+                    sprite.Play(6, 3, frameTime);
                 }
             }
 
@@ -751,23 +688,29 @@ namespace Test_Loopguy
             {
                 if (primaryOrientation == Orientation.Up)
                 {
-                    sprite.Frame();
+                    sprite.Frame(3, 2);
                 }
                 if (primaryOrientation == Orientation.Down)
                 {
-                    sprite.Frame();
+                    sprite.Frame(3, 2);
                 }
                 if (primaryOrientation == Orientation.Left)
                 {
-                    sprite.Frame();
+                    sprite.Frame(3, 2);
                 }
                 if (primaryOrientation == Orientation.Right)
                 {
-                    sprite.Frame();
+                    sprite.Frame(3, 2);
                 }
             }
 
             base.Movement(deltaTime);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            sprite.Draw(spriteBatch);
+            healthBar.Draw(spriteBatch);
         }
     }   
 }
