@@ -485,7 +485,7 @@ namespace Test_Loopguy
             this.position = position;
             texture = TextureManager.nice_bookshelf;
             variation = Game1.rnd.Next(2);
-            sourceRectangle = new Rectangle(64 * variation, 0, 64, 34);
+            sourceRectangle = new Rectangle(32 * variation, 0, 32, 34);
             footprint = new Rectangle((int)position.X + 0, (int)position.Y + 26, 32, 10);
             height = 24;
             hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
