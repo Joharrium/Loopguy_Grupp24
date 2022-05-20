@@ -10,6 +10,14 @@ namespace Test_Loopguy
 {
     internal class Player : Character
     {
+        enum Gun
+        {
+            Pistol,
+            Railgun
+        }
+
+        Gun equippedGun;
+
         private int ammo = 40;
         private int maxAmmo = 40;
 
@@ -84,6 +92,8 @@ namespace Test_Loopguy
         bool dashCloud;
         bool dashSlide;
 
+        bool hasRailgun;
+
         bool checkDash;
 
         bool flipMelee;
@@ -118,7 +128,8 @@ namespace Test_Loopguy
 
             canAttack = true;
             canDash = false; //if its true you will always dash when loading in from menu lol
-            
+
+            equippedGun = Gun.Pistol;
         }
         
         
@@ -148,6 +159,13 @@ namespace Test_Loopguy
             
             healthBar.UpdateBar(health);
             ammoBar.SetCurrentValue(new Vector2(2, 38), ammo);
+
+            if (InputReader.SwitchGun())
+            {
+                equippedGun += 1;
+                if ((int)equippedGun >= Enum.GetValues(typeof(Gun)).Length)
+                    equippedGun = 0;
+            }
 
             //ATTACK TIMER
             if (startAttackTimer)
@@ -253,17 +271,25 @@ namespace Test_Loopguy
                     //SHOOTING
                     if (InputReader.Shoot() && !shooting && ammo > 0)
                     {
-                        pistolSprite.ResetAnimation();
+                        if (equippedGun == Gun.Pistol)
+                        {
+                            pistolSprite.ResetAnimation();
 
-                        Vector2 shotPosition = new Vector2(centerPosition.X + gunDirection.X * 20 - 4, centerPosition.Y + gunDirection.Y * 20 - 6);
-                        float shotAngle = aimAngle + pi;
-                        Shot shot = new Shot(shotPosition, gunDirection, shotAngle, 300, 1);
-                        LevelManager.AddPlayerProjectile(shot);
-                        //shots.Add(shot);
-                        //Audio.PlaySound(Audio.meepmerp);
-                        Audio.lasergun.PlayRandomSound();
-                        shooting = true;
-                        ammo--; ;
+                            Vector2 shotPosition = new Vector2(centerPosition.X + gunDirection.X * 20 - 4, centerPosition.Y + gunDirection.Y * 20 - 6);
+                            float shotAngle = aimAngle + pi;
+                            Shot shot = new Shot(shotPosition, gunDirection, shotAngle, 300, 1);
+                            LevelManager.AddPlayerProjectile(shot);
+                            //shots.Add(shot);
+                            //Audio.PlaySound(Audio.meepmerp);
+                            Audio.lasergun.PlayRandomSound();
+                            shooting = true;
+                            ammo--; ;
+                        }
+                        else if (equippedGun == Gun.Railgun)
+                        {
+                            railgunSprite.ResetAnimation();
+                        }
+                        
                     }
 
                     if (shooting)
@@ -328,10 +354,12 @@ namespace Test_Loopguy
 
             FootstepCalculation();
             sprite.Position = position;
-            pistolSprite.Position = new Vector2(position.X, position.Y);
+            pistolSprite.Position = position;
+            railgunSprite.Position = new Vector2(position.X, position.Y - 7);
             meleeSprite.Position = new Vector2(position.X - 8, position.Y - 8);
 
             pistolSprite.Update(gameTime);
+            railgunSprite.Update(gameTime);
             meleeSprite.Update(gameTime);
             dashCloudSprite.Update(gameTime);
             sprite.Update(gameTime);
@@ -431,7 +459,15 @@ namespace Test_Loopguy
                     else if (InputReader.Aim() || shooting)
                     {
                         DrawGunAim(spriteBatch);
-                        pistolSprite.DrawRotation(spriteBatch, gunAngle, pistolOrigin);
+
+                        if (equippedGun == Gun.Pistol)
+                        {
+                            pistolSprite.DrawRotation(spriteBatch, gunAngle, pistolOrigin);
+                        }
+                        else if (equippedGun == Gun.Railgun)
+                        {
+                            railgunSprite.DrawRotation(spriteBatch, gunAngle, railgunOrigin);
+                        }
                     }
 
                     sprite.Draw(spriteBatch);
@@ -447,8 +483,16 @@ namespace Test_Loopguy
                     }
                     else if (InputReader.Aim() || shooting)
                     {
-                        DrawGunAim(spriteBatch);
-                        pistolSprite.DrawRotation(spriteBatch, gunAngle, pistolOrigin);
+                        if (equippedGun == Gun.Pistol)
+                        {
+                            DrawGunAim(spriteBatch);
+                            pistolSprite.DrawRotation(spriteBatch, gunAngle, pistolOrigin);
+                        }
+                        else if (equippedGun == Gun.Railgun)
+                        {
+                            DrawGunAim(spriteBatch);
+                            railgunSprite.DrawRotation(spriteBatch, gunAngle, railgunOrigin);
+                        }
                     }
                 }
             }
@@ -977,11 +1021,15 @@ namespace Test_Loopguy
 
         public void DrawGunAim(SpriteBatch spriteBatch)
         {
+            AnimatedSprite gunSprite = pistolSprite;
+
+            if (equippedGun == Gun.Railgun)
+                gunSprite = railgunSprite;
 
             aimAngle = GetAim(0);
 
             if (!shooting)
-                pistolSprite.Frame((int)primaryOrientation - 1, 0);
+                gunSprite.Frame((int)primaryOrientation - 1, 0);
 
             sprite.Frame((int)primaryOrientation - 1, 5);
 
@@ -1032,17 +1080,6 @@ namespace Test_Loopguy
             shooting = pistolSprite.PlayOnce((int)primaryOrientation, 5, frameTime);
         }
 
-        public void AngleGetOrientation(float angle)
-        {
-            if (angle >= pi * 1.75f || aimAngle < pi * 0.25f)
-                primaryOrientation = Orientation.Down;
-            else if (angle < pi * 0.75f && angle >= pi * 0.25f)
-                primaryOrientation = Orientation.Right;
-            else if (angle < pi * 1.25f && angle >= pi * 0.75f)
-                primaryOrientation = Orientation.Up;
-            else if (angle < pi * 1.75f && angle >= pi * 1.25f)
-                primaryOrientation = Orientation.Left;
-        }
         public bool DrawDashCloud(SpriteBatch spriteBatch)
         {
             float rotation = (float)Math.Atan2(dashDirection.X, dashDirection.Y);
