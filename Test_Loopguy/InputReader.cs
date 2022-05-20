@@ -49,6 +49,9 @@ static class InputReader
     }
 	public static bool MovementLeft()
 	{
+		if (keyState.IsKeyDown(Keys.Right) || keyState.IsKeyDown(Keys.D) || padState.IsButtonDown(Buttons.DPadRight))
+			return false;
+
 		if (playerInputEnabled)
 			return keyState.IsKeyDown(Keys.Left) || keyState.IsKeyDown(Keys.A) || padState.IsButtonDown(Buttons.DPadLeft);
 		else
@@ -56,6 +59,9 @@ static class InputReader
 	}
 	public static bool MovementRight()
 	{
+		if (keyState.IsKeyDown(Keys.Left) || keyState.IsKeyDown(Keys.A) || padState.IsButtonDown(Buttons.DPadLeft))
+			return false;
+
 		if (playerInputEnabled)
 			return keyState.IsKeyDown(Keys.Right) || keyState.IsKeyDown(Keys.D) || padState.IsButtonDown(Buttons.DPadRight);
 		else
@@ -63,6 +69,9 @@ static class InputReader
 	}
 	public static bool MovementUp()
 	{
+		if (keyState.IsKeyDown(Keys.Down) || keyState.IsKeyDown(Keys.S) || padState.IsButtonDown(Buttons.DPadDown))
+			return false;
+
 		if (playerInputEnabled)
 			return keyState.IsKeyDown(Keys.Up) || keyState.IsKeyDown(Keys.W) || padState.IsButtonDown(Buttons.DPadUp);
 		else
@@ -70,6 +79,9 @@ static class InputReader
 	}
 	public static bool MovementDown()
 	{
+		if (keyState.IsKeyDown(Keys.Up) || keyState.IsKeyDown(Keys.W) || padState.IsButtonDown(Buttons.DPadUp))
+			return false;
+
 		if (playerInputEnabled)
 			return keyState.IsKeyDown(Keys.Down) || keyState.IsKeyDown(Keys.S) || padState.IsButtonDown(Buttons.DPadDown);
 		else
@@ -142,6 +154,13 @@ static class InputReader
 		else
 			return false;
 	}
+	public static bool SwitchGun()
+    {
+		if (playerInputEnabled)
+			return KeyPressed(Keys.Q) || ButtonPressed(Buttons.LeftShoulder);
+		else
+			return false;
+    }
 
 	public static bool MovingLeftStick()
     {
