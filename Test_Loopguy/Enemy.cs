@@ -34,7 +34,7 @@ namespace Test_Loopguy
         protected Vector2 knockBackDirection;
         protected float attackCooldown;
         protected float attackCooldownRemaining;
-        //doesn't seem to be causing too much performance issues anymore but may be worth keeping around to try and reuse later.
+        //doesn't seem to be causing too much performance issues anymore but may be worth keeping around to try and reuse later. :^)
         protected float timeBetweenAICalls;
         
         public Enemy(Vector2 position) : base(position)
