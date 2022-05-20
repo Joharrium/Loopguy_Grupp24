@@ -132,7 +132,6 @@ namespace Test_Loopguy
 
         public override void Movement(float deltaTime)
         {
-
             CheckMovement(deltaTime);
         }
 
@@ -161,7 +160,6 @@ namespace Test_Loopguy
             //}
         }
 
-
         protected bool InAggroRange()
         {
             if ((EntityManager.player.centerPosition - centerPosition).Length() <= aggroRange) 
@@ -186,47 +184,6 @@ namespace Test_Loopguy
         }
     }
 
-    class MeleeEnemy : Enemy
-    {
-        protected int range;
-
-        public MeleeEnemy(Vector2 position) : base(position)
-        {
-
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            if (health <= 0)
-            {
-                isNotDying = false; //Change 'false' to sprite.PlayOnce(/*death animation values*/)
-            }
-            base.Update(gameTime);
-            //Movement(deltaTime);
-        }
-
-        protected override void AggroBehavior()
-        {
-            Vector2 distBetweenPlrAndEnemy = centerPosition - EntityManager.player.centerPosition;
-            Debug.WriteLine(distBetweenPlrAndEnemy.ToString());
-            distBetweenPlrAndEnemy.Normalize();
-            distBetweenPlrAndEnemy *= -1;
-
-            direction = distBetweenPlrAndEnemy;
-            speed = maxSpeed;
-
-        }
-
-        public virtual void MeleeAttack()
-        {
-            /// Pseudo code:
-            /// if enemy is close enough to player:
-            /// make melee attack and then check if he is still close enough
-            /// if he is, make another attack
-            /// dont forget to have timer between attack so it dosent destroy player.
-        }
-    }
-
     class RangedEnemy : Enemy
     {
         protected int minRange;
@@ -237,10 +194,6 @@ namespace Test_Loopguy
 
         //0 accuracy is fully accurate, 100 will go everywhere
         protected int accuracy;
-
-        //protected projectile 
-        
-        //shit idk
 
         public RangedEnemy(Vector2 position) : base(position)
         {
@@ -507,11 +460,8 @@ namespace Test_Loopguy
             base.TakeDamage(damage, soundType);
         }
 
-
-
         public override void Movement(float deltaTime)
         {
-
             GetOrientation();
 
             if (!isAttacking)
@@ -574,7 +524,6 @@ namespace Test_Loopguy
 
             base.Movement(deltaTime);
         }
-
 
         public override void Update(GameTime gameTime)
         {
@@ -670,19 +619,23 @@ namespace Test_Loopguy
         }
     }
 
-    class TestEnemy : MeleeEnemy
+    class TestEnemy : Enemy
     {
-        
+        int frameTime = 100;
+        bool isAttacking, isMoving = false;
+
         public TestEnemy(Vector2 position) : base(position)
         {
             this.position = position;
             footprintOffset = new Point(0, 24);
+            frameSize = new Point(16, 32);
+            sprite = new AnimatedSprite(TextureManager.smallFastEnemySheet, frameSize);
             this.texture = TextureManager.enemyPlaceholder;
             xOffset = 6;
             yOffset = texture.Height;
-            this.maxHealth = 5;
-            this.maxSpeed = 40;
-            aggroRange = 176;
+            this.maxHealth = 1;
+            this.maxSpeed = 95;
+            aggroRange = 175;
             damage = 1;
             knockBackDistance = 160;
             knockBackDuration = 160;
@@ -692,11 +645,77 @@ namespace Test_Loopguy
 
         public override void Update(GameTime gameTime)
         {
+            sprite.Update(gameTime);
+            sprite.Position = position;
             if (health <= 0)
             {
                 isNotDying = false; //Change 'false' to sprite.PlayOnce(/*death animation values*/)
             }
             base.Update(gameTime);
+        }
+
+        protected override void AggroBehavior()
+        {
+            Vector2 distBetweenPlrAndEnemy = centerPosition - EntityManager.player.centerPosition;
+            distBetweenPlrAndEnemy.Normalize();
+            distBetweenPlrAndEnemy *= -1;
+
+            direction = distBetweenPlrAndEnemy;
+            speed = maxSpeed;
+        }
+
+        public override void Movement(float deltaTime)
+        {
+            GetOrientation();
+
+            if (!isAttacking)
+            {
+                isMoving = true;
+                if (primaryOrientation == Orientation.Up)
+                {
+                    sprite.Play(1,3, frameTime);
+                }
+                if (primaryOrientation == Orientation.Down)
+                {
+                    sprite.Play(3, 3, frameTime);
+                }
+                if (primaryOrientation == Orientation.Left)
+                {
+                    sprite.Play(5, 3, frameTime);
+                }
+                if (primaryOrientation == Orientation.Right)
+                {
+                    sprite.Play(6, 3, frameTime);
+                }
+            }
+
+            if (!isMoving)
+            {
+                if (primaryOrientation == Orientation.Up)
+                {
+                    sprite.Frame(3, 2);
+                }
+                if (primaryOrientation == Orientation.Down)
+                {
+                    sprite.Frame(3, 2);
+                }
+                if (primaryOrientation == Orientation.Left)
+                {
+                    sprite.Frame(3, 2);
+                }
+                if (primaryOrientation == Orientation.Right)
+                {
+                    sprite.Frame(3, 2);
+                }
+            }
+
+            base.Movement(deltaTime);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            sprite.Draw(spriteBatch);
+            healthBar.Draw(spriteBatch);
         }
     }   
 }
