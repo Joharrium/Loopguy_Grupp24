@@ -106,6 +106,18 @@ namespace Test_Loopguy
             }
         }
 
+        public void AngleGetOrientation(float angle)
+        {
+            if (angle >= pi * 1.75f || angle < pi * 0.25f)
+                primaryOrientation = Orientation.Down;
+            else if (angle < pi * 0.75f && angle >= pi * 0.25f)
+                primaryOrientation = Orientation.Right;
+            else if (angle < pi * 1.25f && angle >= pi * 0.75f)
+                primaryOrientation = Orientation.Up;
+            else if (angle < pi * 1.75f && angle >= pi * 1.25f)
+                primaryOrientation = Orientation.Left;
+        }
+
         public void CheckMovement(float deltaTime)
         {
             //calculating future position
