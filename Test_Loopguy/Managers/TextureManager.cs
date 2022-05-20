@@ -190,7 +190,7 @@ namespace Test_Loopguy
             robotEnemySheet = c.Load<Texture2D>("uppdateradRobotEnemySSheetFinal");
             blankbig = c.Load<Texture2D>("gfx/characters/64x64blank");
             blanksmall = c.Load<Texture2D>("gfx/characters/32x32blank");
-            smallFastEnemy = c.Load<Texture2D>()
+            smallFastEnemy = c.Load<Texture2D>(@"weakEnemyUpdated");
         }
         
         private static void LoadParticles(ContentManager c)

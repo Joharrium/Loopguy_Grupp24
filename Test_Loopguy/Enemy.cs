@@ -589,7 +589,6 @@ namespace Test_Loopguy
             base.Movement(deltaTime);
         }
 
-
         public override void Update(GameTime gameTime)
         {
             sprite.Update(gameTime);
@@ -686,6 +685,8 @@ namespace Test_Loopguy
 
     class TestEnemy : MeleeEnemy
     {
+        int frameTime = 100;
+        bool isAttacking, isMoving;
         public TestEnemy(Vector2 position) : base(position)
         {
             this.position = position;
@@ -725,22 +726,47 @@ namespace Test_Loopguy
         public override void Movement(float deltaTime)
         {
             GetOrientation();
-            if (primaryOrientation == Orientation.Up)
-            {
 
-            }
-            if (primaryOrientation == Orientation.Down)
+            if (!isAttacking)
             {
-
+                if (primaryOrientation == Orientation.Up)
+                {
+                    sprite.Play(1,3, frameTime);
+                }
+                if (primaryOrientation == Orientation.Down)
+                {
+                    sprite.Play(3, 3, frameTime);
+                }
+                if (primaryOrientation == Orientation.Left)
+                {
+                    sprite.Play(5, 3, frameTime);
+                }
+                if (primaryOrientation == Orientation.Right)
+                {
+                    sprite.Play();
+                }
             }
-            if (primaryOrientation == Orientation.Left)
+
+            if (!isMoving)
             {
-
+                if (primaryOrientation == Orientation.Up)
+                {
+                    sprite.Frame();
+                }
+                if (primaryOrientation == Orientation.Down)
+                {
+                    sprite.Frame();
+                }
+                if (primaryOrientation == Orientation.Left)
+                {
+                    sprite.Frame();
+                }
+                if (primaryOrientation == Orientation.Right)
+                {
+                    sprite.Frame();
+                }
             }
-            if (primaryOrientation == Orientation.Right)
-            {
 
-            }
             base.Movement(deltaTime);
         }
     }   
