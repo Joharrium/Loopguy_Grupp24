@@ -132,7 +132,6 @@ namespace Test_Loopguy
 
         public override void Movement(float deltaTime)
         {
-
             CheckMovement(deltaTime);
         }
 
@@ -161,7 +160,6 @@ namespace Test_Loopguy
             //}
         }
 
-
         protected bool InAggroRange()
         {
             if ((EntityManager.player.centerPosition - centerPosition).Length() <= aggroRange) 
@@ -189,10 +187,17 @@ namespace Test_Loopguy
     class MeleeEnemy : Enemy
     {
         protected int range;
+        protected int accuracy;
 
         public MeleeEnemy(Vector2 position) : base(position)
         {
-
+            this.position = position;
+            footprint = new Rectangle((int)(position.X + footprintOffset.X), (int)(position.Y + footprintOffset.Y), 32, 16);
+            frameSize = new Point(32, 32);
+            frameSize = new Point(64, 64);
+            xOffset = frameSize.X / 2;
+            yOffset = frameSize.Y;
+            maxSpeed = 40;
         }
 
         public override void Update(GameTime gameTime)
@@ -207,23 +212,39 @@ namespace Test_Loopguy
 
         protected override void AggroBehavior()
         {
-            Vector2 distBetweenPlrAndEnemy = centerPosition - EntityManager.player.centerPosition;
-            Debug.WriteLine(distBetweenPlrAndEnemy.ToString());
-            distBetweenPlrAndEnemy.Normalize();
-            distBetweenPlrAndEnemy *= -1;
+            //Vector2 distBetweenPlrAndEnemy = centerPosition - EntityManager.player.centerPosition;
+            //distBetweenPlrAndEnemy.Normalize();
+            //distBetweenPlrAndEnemy *= -1;
 
-            direction = distBetweenPlrAndEnemy;
-            speed = maxSpeed;
+            //direction = distBetweenPlrAndEnemy;
+            //speed = maxSpeed;
+        }
 
+        public virtual void AttackBehaviour()
+        {
+            if (attackCooldownRemaining <= 0)
+            {
+                MeleeAttack();
+                Debug.WriteLine("MELEE ATTACK HERe");
+            }
         }
 
         public virtual void MeleeAttack()
         {
-            /// Pseudo code:
             /// if enemy is close enough to player:
             /// make melee attack and then check if he is still close enough
             /// if he is, make another attack
             /// dont forget to have timer between attack so it dosent destroy player.
+            
+            attackCooldownRemaining = attackCooldown;
+
+            Vector2 direction = centerPosition - EntityManager.player.centerPosition;
+            //randomizes projectile direction somewhat based on accuracy
+            direction.X *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
+            direction.Y *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
+            direction.Normalize();
+            direction *= -1;
+            LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 200, damage));
         }
     }
 
@@ -237,10 +258,6 @@ namespace Test_Loopguy
 
         //0 accuracy is fully accurate, 100 will go everywhere
         protected int accuracy;
-
-        //protected projectile 
-        
-        //shit idk
 
         public RangedEnemy(Vector2 position) : base(position)
         {
@@ -507,11 +524,8 @@ namespace Test_Loopguy
             base.TakeDamage(damage, soundType);
         }
 
-
-
         public override void Movement(float deltaTime)
         {
-
             GetOrientation();
 
             if (!isAttacking)
@@ -672,7 +686,6 @@ namespace Test_Loopguy
 
     class TestEnemy : MeleeEnemy
     {
-        
         public TestEnemy(Vector2 position) : base(position)
         {
             this.position = position;
@@ -680,9 +693,9 @@ namespace Test_Loopguy
             this.texture = TextureManager.enemyPlaceholder;
             xOffset = 6;
             yOffset = texture.Height;
-            this.maxHealth = 5;
-            this.maxSpeed = 40;
-            aggroRange = 176;
+            this.maxHealth = 1;
+            this.maxSpeed = 95;
+            aggroRange = 175;
             damage = 1;
             knockBackDistance = 160;
             knockBackDuration = 160;
@@ -697,6 +710,38 @@ namespace Test_Loopguy
                 isNotDying = false; //Change 'false' to sprite.PlayOnce(/*death animation values*/)
             }
             base.Update(gameTime);
+        }
+
+        protected override void AggroBehavior()
+        {
+            Vector2 distBetweenPlrAndEnemy = centerPosition - EntityManager.player.centerPosition;
+            distBetweenPlrAndEnemy.Normalize();
+            distBetweenPlrAndEnemy *= -1;
+
+            direction = distBetweenPlrAndEnemy;
+            speed = maxSpeed;
+        }
+
+        public override void Movement(float deltaTime)
+        {
+            GetOrientation();
+            if (primaryOrientation == Orientation.Up)
+            {
+
+            }
+            if (primaryOrientation == Orientation.Down)
+            {
+
+            }
+            if (primaryOrientation == Orientation.Left)
+            {
+
+            }
+            if (primaryOrientation == Orientation.Right)
+            {
+
+            }
+            base.Movement(deltaTime);
         }
     }   
 }
