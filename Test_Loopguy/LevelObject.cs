@@ -533,4 +533,102 @@ namespace Test_Loopguy
             hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
         }
     }
+    public class CanteenFoodThing : LevelObject
+    {
+        public CanteenFoodThing(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.canteen_food_thing;
+            variation = Game1.rnd.Next(3);
+            sourceRectangle = new Rectangle(64 * variation, 0, 64, 24);
+            footprint = new Rectangle((int)position.X + 0, (int)position.Y + 12, 64, 12);
+            height = 8;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class CanteenTable : LevelObject
+    {
+        public CanteenTable(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.canteen_table;
+            variation = Game1.rnd.Next(4);
+            sourceRectangle = new Rectangle(24 * variation, 0, 24, 54);
+            footprint = new Rectangle((int)position.X + 0, (int)position.Y + 8, 24, 46);
+            height = 8;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class KitchenCounter : LevelObject
+    {
+        public KitchenCounter(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.kitchen_counter;
+            variation = Game1.rnd.Next(3);
+            sourceRectangle = new Rectangle(48 * variation, 0, 48, 24);
+            footprint = new Rectangle((int)position.X + 0, (int)position.Y + 14, 48, 10);
+            height = 8;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class CanteenChairLeft : LevelObject
+    {
+        public CanteenChairLeft(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.canteen_chair_left;
+            variation = Game1.rnd.Next(1);
+            sourceRectangle = new Rectangle(14 * variation, 0, 14, 22);
+            footprint = new Rectangle((int)position.X + 0, (int)position.Y + 14, 14, 8);
+            height = 8;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class CanteenChairRight : LevelObject
+    {
+        public CanteenChairRight(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.canteen_chair_right;
+            variation = Game1.rnd.Next(1);
+            sourceRectangle = new Rectangle(14 * variation, 0, 14, 22);
+            footprint = new Rectangle((int)position.X + 0, (int)position.Y + 14, 14, 8);
+            height = 8;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class SofaLeft : LevelObject
+    {
+        public SofaLeft(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.sofa_left;
+            variation = Game1.rnd.Next(1);
+            sourceRectangle = new Rectangle(24 * variation, 0, 24, 42);
+            footprint = new Rectangle((int)position.X + 1, (int)position.Y + 17, 22, 24);
+            height = 14;
+            hitBox = new Rectangle(footprint.X + 13, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class SofaRight : LevelObject
+    {
+        public SofaRight(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.sofa_right;
+            variation = Game1.rnd.Next(1);
+            sourceRectangle = new Rectangle(24 * variation, 0, 24, 42);
+            footprint = new Rectangle((int)position.X + 1, (int)position.Y + 17, 22, 24);
+            height = 14;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width - 13, footprint.Height);
+        }
+    }
+
 }

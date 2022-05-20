@@ -18,7 +18,8 @@ namespace Test_Loopguy
         CardboardStackSmall, Billboard, Cabinet, MonitorWall, ShelfArchiving, ShelfArchivingSmall,
         DeskOffice, Server, ChairOfficeBw, ChairOfficeFw, DeskForward, DeskBackward, PottedPlant,
         BigSink, CrateStack, OperationEquipment, Whiteboard, Locker, Morgue, Sofa, Camera, Sink,
-        NiceBookshelf, ShelfWeird, ShootingRangeBench, CarryingThing
+        NiceBookshelf, ShelfWeird, ShootingRangeBench, CarryingThing, SofaLeft, SofaRight, CanteenTable,
+        CanteenFoodThing, KitchenCounter, CanteenChairLeft, CanteenChairRight
     }
     public enum TileSelection
     {
@@ -254,6 +255,34 @@ namespace Test_Loopguy
                                 LevelManager.ObjectAdd(new NiceBookshelf(Game1.mousePos - new Vector2(8, 16)));
                                 break;
 
+                            case ObjectSelection.SofaLeft:
+                                LevelManager.ObjectAdd(new SofaLeft(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.SofaRight:
+                                LevelManager.ObjectAdd(new SofaRight(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.CanteenChairLeft:
+                                LevelManager.ObjectAdd(new CanteenChairLeft(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.CanteenChairRight:
+                                LevelManager.ObjectAdd(new CanteenChairRight(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.CanteenFoodThing:
+                                LevelManager.ObjectAdd(new CanteenFoodThing(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.CanteenTable:
+                                LevelManager.ObjectAdd(new CanteenTable(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.KitchenCounter:
+                                LevelManager.ObjectAdd(new KitchenCounter(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
                             default:
                                 break;
                         }
@@ -437,6 +466,34 @@ namespace Test_Loopguy
 
                     case ObjectSelection.NiceBookshelf:
                         spriteBatch.Draw(TextureManager.nice_bookshelf, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.SofaLeft:
+                        spriteBatch.Draw(TextureManager.sofa_left, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.SofaRight:
+                        spriteBatch.Draw(TextureManager.sofa_right, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.CanteenChairLeft:
+                        spriteBatch.Draw(TextureManager.canteen_chair_left, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.CanteenChairRight:
+                        spriteBatch.Draw(TextureManager.canteen_chair_right, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.CanteenFoodThing:
+                        spriteBatch.Draw(TextureManager.canteen_food_thing, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.CanteenTable:
+                        spriteBatch.Draw(TextureManager.canteen_table, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.KitchenCounter:
+                        spriteBatch.Draw(TextureManager.kitchen_counter, (Game1.mousePos - new Vector2(8, 16)), Color.White);
                         break;
 
                     default:

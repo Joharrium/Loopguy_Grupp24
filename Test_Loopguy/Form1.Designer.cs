@@ -55,11 +55,6 @@ namespace Test_Loopguy
             this.mapHeight = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.mapWidth = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pictureBox30 = new System.Windows.Forms.PictureBox();
-            this.pictureBox31 = new System.Windows.Forms.PictureBox();
-            this.pictureBox32 = new System.Windows.Forms.PictureBox();
-            this.pictureBox33 = new System.Windows.Forms.PictureBox();
             this.whiteBoardSelect = new System.Windows.Forms.PictureBox();
             this.shelfWeirdSelect = new System.Windows.Forms.PictureBox();
             this.lockerSelect = new System.Windows.Forms.PictureBox();
@@ -130,6 +125,15 @@ namespace Test_Loopguy
             this.rangedTestSelect = new System.Windows.Forms.PictureBox();
             this.meleeTestSelect = new System.Windows.Forms.PictureBox();
             this.countDownBox = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox15 = new System.Windows.Forms.PictureBox();
+            this.kitchenCounterSelect = new System.Windows.Forms.PictureBox();
+            this.canteenTableSelect = new System.Windows.Forms.PictureBox();
+            this.canteenFoodThingSelect = new System.Windows.Forms.PictureBox();
+            this.sofaRightSelect = new System.Windows.Forms.PictureBox();
+            this.sofaLeftSelect = new System.Windows.Forms.PictureBox();
+            this.canteenChairRightSelect = new System.Windows.Forms.PictureBox();
+            this.canteenChairLeftSelect = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
@@ -147,11 +151,6 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.grayBrickSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dirtSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grassSelect)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox31)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox32)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.whiteBoardSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shelfWeirdSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lockerSelect)).BeginInit();
@@ -213,6 +212,15 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.bigRobotSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rangedTestSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.meleeTestSelect)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kitchenCounterSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.canteenTableSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.canteenFoodThingSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sofaRightSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sofaLeftSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.canteenChairRightSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.canteenChairLeftSelect)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -233,11 +241,9 @@ namespace Test_Loopguy
             this.groupBox2.Controls.Add(this.grayBrickSelect);
             this.groupBox2.Controls.Add(this.dirtSelect);
             this.groupBox2.Controls.Add(this.grassSelect);
-            this.groupBox2.Location = new System.Drawing.Point(10, 13);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox2.Location = new System.Drawing.Point(11, 17);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(252, 342);
+            this.groupBox2.Size = new System.Drawing.Size(288, 456);
             this.groupBox2.TabIndex = 30;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tiles";
@@ -245,30 +251,27 @@ namespace Test_Loopguy
             // pictureBox13
             // 
             this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
-            this.pictureBox13.Location = new System.Drawing.Point(189, 178);
-            this.pictureBox13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox13.Location = new System.Drawing.Point(216, 237);
             this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox13.Size = new System.Drawing.Size(64, 64);
             this.pictureBox13.TabIndex = 15;
             this.pictureBox13.TabStop = false;
             // 
             // pictureBox14
             // 
             this.pictureBox14.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox14.Image")));
-            this.pictureBox14.Location = new System.Drawing.Point(128, 178);
-            this.pictureBox14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox14.Location = new System.Drawing.Point(146, 237);
             this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox14.Size = new System.Drawing.Size(64, 64);
             this.pictureBox14.TabIndex = 14;
             this.pictureBox14.TabStop = false;
             // 
             // tileWarningSelect
             // 
             this.tileWarningSelect.Image = ((System.Drawing.Image)(resources.GetObject("tileWarningSelect.Image")));
-            this.tileWarningSelect.Location = new System.Drawing.Point(66, 178);
-            this.tileWarningSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tileWarningSelect.Location = new System.Drawing.Point(75, 237);
             this.tileWarningSelect.Name = "tileWarningSelect";
-            this.tileWarningSelect.Size = new System.Drawing.Size(56, 48);
+            this.tileWarningSelect.Size = new System.Drawing.Size(64, 64);
             this.tileWarningSelect.TabIndex = 13;
             this.tileWarningSelect.TabStop = false;
             this.tileWarningSelect.Click += new System.EventHandler(this.tileWarningSelect_Click);
@@ -276,10 +279,9 @@ namespace Test_Loopguy
             // waterSelect
             // 
             this.waterSelect.Image = ((System.Drawing.Image)(resources.GetObject("waterSelect.Image")));
-            this.waterSelect.Location = new System.Drawing.Point(5, 178);
-            this.waterSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.waterSelect.Location = new System.Drawing.Point(6, 237);
             this.waterSelect.Name = "waterSelect";
-            this.waterSelect.Size = new System.Drawing.Size(56, 48);
+            this.waterSelect.Size = new System.Drawing.Size(64, 64);
             this.waterSelect.TabIndex = 12;
             this.waterSelect.TabStop = false;
             this.waterSelect.Click += new System.EventHandler(this.waterSelect_Click);
@@ -287,10 +289,9 @@ namespace Test_Loopguy
             // wallMetalSelect
             // 
             this.wallMetalSelect.Image = ((System.Drawing.Image)(resources.GetObject("wallMetalSelect.Image")));
-            this.wallMetalSelect.Location = new System.Drawing.Point(189, 124);
-            this.wallMetalSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.wallMetalSelect.Location = new System.Drawing.Point(216, 165);
             this.wallMetalSelect.Name = "wallMetalSelect";
-            this.wallMetalSelect.Size = new System.Drawing.Size(56, 48);
+            this.wallMetalSelect.Size = new System.Drawing.Size(64, 64);
             this.wallMetalSelect.TabIndex = 11;
             this.wallMetalSelect.TabStop = false;
             this.wallMetalSelect.Click += new System.EventHandler(this.wallMetalSelect_Click);
@@ -298,10 +299,9 @@ namespace Test_Loopguy
             // wornWallSelect
             // 
             this.wornWallSelect.Image = ((System.Drawing.Image)(resources.GetObject("wornWallSelect.Image")));
-            this.wornWallSelect.Location = new System.Drawing.Point(128, 124);
-            this.wornWallSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.wornWallSelect.Location = new System.Drawing.Point(146, 165);
             this.wornWallSelect.Name = "wornWallSelect";
-            this.wornWallSelect.Size = new System.Drawing.Size(56, 48);
+            this.wornWallSelect.Size = new System.Drawing.Size(64, 64);
             this.wornWallSelect.TabIndex = 10;
             this.wornWallSelect.TabStop = false;
             this.wornWallSelect.Click += new System.EventHandler(this.wornWallSelect_Click);
@@ -309,10 +309,9 @@ namespace Test_Loopguy
             // metalTileSelect
             // 
             this.metalTileSelect.Image = ((System.Drawing.Image)(resources.GetObject("metalTileSelect.Image")));
-            this.metalTileSelect.Location = new System.Drawing.Point(66, 124);
-            this.metalTileSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.metalTileSelect.Location = new System.Drawing.Point(75, 165);
             this.metalTileSelect.Name = "metalTileSelect";
-            this.metalTileSelect.Size = new System.Drawing.Size(56, 48);
+            this.metalTileSelect.Size = new System.Drawing.Size(64, 64);
             this.metalTileSelect.TabIndex = 9;
             this.metalTileSelect.TabStop = false;
             this.metalTileSelect.Click += new System.EventHandler(this.metalTileSelect_Click);
@@ -320,10 +319,9 @@ namespace Test_Loopguy
             // carpetSelect
             // 
             this.carpetSelect.Image = ((System.Drawing.Image)(resources.GetObject("carpetSelect.Image")));
-            this.carpetSelect.Location = new System.Drawing.Point(5, 124);
-            this.carpetSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.carpetSelect.Location = new System.Drawing.Point(6, 165);
             this.carpetSelect.Name = "carpetSelect";
-            this.carpetSelect.Size = new System.Drawing.Size(56, 48);
+            this.carpetSelect.Size = new System.Drawing.Size(64, 64);
             this.carpetSelect.TabIndex = 8;
             this.carpetSelect.TabStop = false;
             this.carpetSelect.Click += new System.EventHandler(this.carpetSelect_Click);
@@ -331,10 +329,9 @@ namespace Test_Loopguy
             // tileBigDarkSelect
             // 
             this.tileBigDarkSelect.Image = ((System.Drawing.Image)(resources.GetObject("tileBigDarkSelect.Image")));
-            this.tileBigDarkSelect.Location = new System.Drawing.Point(189, 72);
-            this.tileBigDarkSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tileBigDarkSelect.Location = new System.Drawing.Point(216, 96);
             this.tileBigDarkSelect.Name = "tileBigDarkSelect";
-            this.tileBigDarkSelect.Size = new System.Drawing.Size(56, 48);
+            this.tileBigDarkSelect.Size = new System.Drawing.Size(64, 64);
             this.tileBigDarkSelect.TabIndex = 7;
             this.tileBigDarkSelect.TabStop = false;
             this.tileBigDarkSelect.Click += new System.EventHandler(this.tileBigDarkSelect_Click);
@@ -342,10 +339,9 @@ namespace Test_Loopguy
             // tileBigLightSelect
             // 
             this.tileBigLightSelect.Image = ((System.Drawing.Image)(resources.GetObject("tileBigLightSelect.Image")));
-            this.tileBigLightSelect.Location = new System.Drawing.Point(128, 72);
-            this.tileBigLightSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tileBigLightSelect.Location = new System.Drawing.Point(146, 96);
             this.tileBigLightSelect.Name = "tileBigLightSelect";
-            this.tileBigLightSelect.Size = new System.Drawing.Size(56, 48);
+            this.tileBigLightSelect.Size = new System.Drawing.Size(64, 64);
             this.tileBigLightSelect.TabIndex = 6;
             this.tileBigLightSelect.TabStop = false;
             this.tileBigLightSelect.Click += new System.EventHandler(this.tileBigLightSelect_Click);
@@ -353,10 +349,9 @@ namespace Test_Loopguy
             // tilesCheckeredBrownSelect
             // 
             this.tilesCheckeredBrownSelect.Image = ((System.Drawing.Image)(resources.GetObject("tilesCheckeredBrownSelect.Image")));
-            this.tilesCheckeredBrownSelect.Location = new System.Drawing.Point(66, 72);
-            this.tilesCheckeredBrownSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tilesCheckeredBrownSelect.Location = new System.Drawing.Point(75, 96);
             this.tilesCheckeredBrownSelect.Name = "tilesCheckeredBrownSelect";
-            this.tilesCheckeredBrownSelect.Size = new System.Drawing.Size(56, 48);
+            this.tilesCheckeredBrownSelect.Size = new System.Drawing.Size(64, 64);
             this.tilesCheckeredBrownSelect.TabIndex = 5;
             this.tilesCheckeredBrownSelect.TabStop = false;
             this.tilesCheckeredBrownSelect.Click += new System.EventHandler(this.tilesCheckeredBrownSelect_Click);
@@ -364,10 +359,9 @@ namespace Test_Loopguy
             // tilesCheckeredGraySelect
             // 
             this.tilesCheckeredGraySelect.Image = ((System.Drawing.Image)(resources.GetObject("tilesCheckeredGraySelect.Image")));
-            this.tilesCheckeredGraySelect.Location = new System.Drawing.Point(5, 72);
-            this.tilesCheckeredGraySelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tilesCheckeredGraySelect.Location = new System.Drawing.Point(6, 96);
             this.tilesCheckeredGraySelect.Name = "tilesCheckeredGraySelect";
-            this.tilesCheckeredGraySelect.Size = new System.Drawing.Size(56, 48);
+            this.tilesCheckeredGraySelect.Size = new System.Drawing.Size(64, 64);
             this.tilesCheckeredGraySelect.TabIndex = 4;
             this.tilesCheckeredGraySelect.TabStop = false;
             this.tilesCheckeredGraySelect.Click += new System.EventHandler(this.tilesCheckeredGraySelect_Click);
@@ -375,20 +369,18 @@ namespace Test_Loopguy
             // pictureBox37
             // 
             this.pictureBox37.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox37.Image")));
-            this.pictureBox37.Location = new System.Drawing.Point(189, 20);
-            this.pictureBox37.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox37.Location = new System.Drawing.Point(216, 27);
             this.pictureBox37.Name = "pictureBox37";
-            this.pictureBox37.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox37.Size = new System.Drawing.Size(64, 64);
             this.pictureBox37.TabIndex = 3;
             this.pictureBox37.TabStop = false;
             // 
             // grayBrickSelect
             // 
             this.grayBrickSelect.Image = ((System.Drawing.Image)(resources.GetObject("grayBrickSelect.Image")));
-            this.grayBrickSelect.Location = new System.Drawing.Point(128, 20);
-            this.grayBrickSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.grayBrickSelect.Location = new System.Drawing.Point(146, 27);
             this.grayBrickSelect.Name = "grayBrickSelect";
-            this.grayBrickSelect.Size = new System.Drawing.Size(56, 48);
+            this.grayBrickSelect.Size = new System.Drawing.Size(64, 64);
             this.grayBrickSelect.TabIndex = 2;
             this.grayBrickSelect.TabStop = false;
             this.grayBrickSelect.Click += new System.EventHandler(this.grayBrickSelect_Click);
@@ -396,10 +388,9 @@ namespace Test_Loopguy
             // dirtSelect
             // 
             this.dirtSelect.Image = ((System.Drawing.Image)(resources.GetObject("dirtSelect.Image")));
-            this.dirtSelect.Location = new System.Drawing.Point(66, 20);
-            this.dirtSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dirtSelect.Location = new System.Drawing.Point(75, 27);
             this.dirtSelect.Name = "dirtSelect";
-            this.dirtSelect.Size = new System.Drawing.Size(56, 48);
+            this.dirtSelect.Size = new System.Drawing.Size(64, 64);
             this.dirtSelect.TabIndex = 1;
             this.dirtSelect.TabStop = false;
             this.dirtSelect.Click += new System.EventHandler(this.dirtSelect_Click);
@@ -407,10 +398,9 @@ namespace Test_Loopguy
             // grassSelect
             // 
             this.grassSelect.Image = ((System.Drawing.Image)(resources.GetObject("grassSelect.Image")));
-            this.grassSelect.Location = new System.Drawing.Point(5, 20);
-            this.grassSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.grassSelect.Location = new System.Drawing.Point(6, 27);
             this.grassSelect.Name = "grassSelect";
-            this.grassSelect.Size = new System.Drawing.Size(56, 48);
+            this.grassSelect.Size = new System.Drawing.Size(64, 64);
             this.grassSelect.TabIndex = 0;
             this.grassSelect.TabStop = false;
             this.grassSelect.Click += new System.EventHandler(this.grassSelect_Click);
@@ -418,173 +408,73 @@ namespace Test_Loopguy
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(671, 102);
+            this.label4.Location = new System.Drawing.Point(767, 136);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(101, 15);
+            this.label4.Size = new System.Drawing.Size(125, 20);
             this.label4.TabIndex = 29;
             this.label4.Text = "Camera Bounds Y";
             // 
             // cameraY
             // 
-            this.cameraY.Location = new System.Drawing.Point(671, 122);
-            this.cameraY.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cameraY.Location = new System.Drawing.Point(767, 163);
             this.cameraY.Name = "cameraY";
-            this.cameraY.Size = new System.Drawing.Size(110, 23);
+            this.cameraY.Size = new System.Drawing.Size(125, 27);
             this.cameraY.TabIndex = 28;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(536, 102);
+            this.label3.Location = new System.Drawing.Point(613, 136);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 15);
+            this.label3.Size = new System.Drawing.Size(126, 20);
             this.label3.TabIndex = 27;
             this.label3.Text = "Camera Bounds X";
             // 
             // cameraX
             // 
-            this.cameraX.Location = new System.Drawing.Point(536, 122);
-            this.cameraX.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cameraX.Location = new System.Drawing.Point(613, 163);
             this.cameraX.Name = "cameraX";
-            this.cameraX.Size = new System.Drawing.Size(110, 23);
+            this.cameraX.Size = new System.Drawing.Size(125, 27);
             this.cameraX.TabIndex = 26;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(671, 10);
+            this.label2.Location = new System.Drawing.Point(767, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 15);
+            this.label2.Size = new System.Drawing.Size(88, 20);
             this.label2.TabIndex = 25;
             this.label2.Text = "Map Height";
             // 
             // mapHeight
             // 
-            this.mapHeight.Location = new System.Drawing.Point(671, 30);
-            this.mapHeight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.mapHeight.Location = new System.Drawing.Point(767, 40);
             this.mapHeight.Name = "mapHeight";
-            this.mapHeight.Size = new System.Drawing.Size(110, 23);
+            this.mapHeight.Size = new System.Drawing.Size(125, 27);
             this.mapHeight.TabIndex = 24;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(536, 10);
+            this.label1.Location = new System.Drawing.Point(613, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 15);
+            this.label1.Size = new System.Drawing.Size(83, 20);
             this.label1.TabIndex = 23;
             this.label1.Text = "Map Width";
             // 
             // mapWidth
             // 
-            this.mapWidth.Location = new System.Drawing.Point(536, 30);
-            this.mapWidth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.mapWidth.Location = new System.Drawing.Point(613, 40);
             this.mapWidth.Name = "mapWidth";
-            this.mapWidth.Size = new System.Drawing.Size(110, 23);
+            this.mapWidth.Size = new System.Drawing.Size(125, 27);
             this.mapWidth.TabIndex = 22;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.pictureBox30);
-            this.groupBox1.Controls.Add(this.pictureBox31);
-            this.groupBox1.Controls.Add(this.pictureBox32);
-            this.groupBox1.Controls.Add(this.pictureBox33);
-            this.groupBox1.Controls.Add(this.whiteBoardSelect);
-            this.groupBox1.Controls.Add(this.shelfWeirdSelect);
-            this.groupBox1.Controls.Add(this.lockerSelect);
-            this.groupBox1.Controls.Add(this.morgueSelect);
-            this.groupBox1.Controls.Add(this.cameraSelect);
-            this.groupBox1.Controls.Add(this.sofaSelect);
-            this.groupBox1.Controls.Add(this.sinkSelect);
-            this.groupBox1.Controls.Add(this.shootingRangeBenchSelect);
-            this.groupBox1.Controls.Add(this.niceBookshelfSelect);
-            this.groupBox1.Controls.Add(this.carryingThingSelect);
-            this.groupBox1.Controls.Add(this.operationEquipmentSelect);
-            this.groupBox1.Controls.Add(this.crateStackSelect);
-            this.groupBox1.Controls.Add(this.bigSinkSelect);
-            this.groupBox1.Controls.Add(this.pottedPlantSelect);
-            this.groupBox1.Controls.Add(this.deskForwardSelect);
-            this.groupBox1.Controls.Add(this.deskBackwardSelect);
-            this.groupBox1.Controls.Add(this.shelfArchivingSelect);
-            this.groupBox1.Controls.Add(this.serverSelect);
-            this.groupBox1.Controls.Add(this.monitorWallSelect);
-            this.groupBox1.Controls.Add(this.deskOfficeSelect);
-            this.groupBox1.Controls.Add(this.chairOfficeFwSelect);
-            this.groupBox1.Controls.Add(this.chairOfficeBwSelect);
-            this.groupBox1.Controls.Add(this.counterSelect);
-            this.groupBox1.Controls.Add(this.cardboardBoxSmallStackSelect);
-            this.groupBox1.Controls.Add(this.cabinetSelect);
-            this.groupBox1.Controls.Add(this.BillBoardSelect);
-            this.groupBox1.Controls.Add(this.ammoSmallSelect);
-            this.groupBox1.Controls.Add(this.healSmallSelect);
-            this.groupBox1.Controls.Add(this.barrelDestructibleSelect);
-            this.groupBox1.Controls.Add(this.doorSlidingSelect);
-            this.groupBox1.Controls.Add(this.keycardRedSelect);
-            this.groupBox1.Controls.Add(this.doorSelect);
-            this.groupBox1.Controls.Add(this.treeBigSelect);
-            this.groupBox1.Controls.Add(this.shrubBigSelect);
-            this.groupBox1.Controls.Add(this.boxOpenSelect);
-            this.groupBox1.Controls.Add(this.boxSelect);
-            this.groupBox1.Controls.Add(this.treeSmallSelect);
-            this.groupBox1.Controls.Add(this.shrubSmallSelect);
-            this.groupBox1.Controls.Add(this.potSelect);
-            this.groupBox1.Controls.Add(this.barrelSelect);
-            this.groupBox1.Location = new System.Drawing.Point(268, 13);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(252, 606);
-            this.groupBox1.TabIndex = 21;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Objects";
-            // 
-            // pictureBox30
-            // 
-            this.pictureBox30.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox30.Image")));
-            this.pictureBox30.Location = new System.Drawing.Point(189, 549);
-            this.pictureBox30.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox30.Name = "pictureBox30";
-            this.pictureBox30.Size = new System.Drawing.Size(56, 48);
-            this.pictureBox30.TabIndex = 43;
-            this.pictureBox30.TabStop = false;
-            // 
-            // pictureBox31
-            // 
-            this.pictureBox31.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox31.Image")));
-            this.pictureBox31.Location = new System.Drawing.Point(128, 549);
-            this.pictureBox31.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox31.Name = "pictureBox31";
-            this.pictureBox31.Size = new System.Drawing.Size(56, 48);
-            this.pictureBox31.TabIndex = 42;
-            this.pictureBox31.TabStop = false;
-            // 
-            // pictureBox32
-            // 
-            this.pictureBox32.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox32.Image")));
-            this.pictureBox32.Location = new System.Drawing.Point(66, 549);
-            this.pictureBox32.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox32.Name = "pictureBox32";
-            this.pictureBox32.Size = new System.Drawing.Size(56, 48);
-            this.pictureBox32.TabIndex = 41;
-            this.pictureBox32.TabStop = false;
-            // 
-            // pictureBox33
-            // 
-            this.pictureBox33.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox33.Image")));
-            this.pictureBox33.Location = new System.Drawing.Point(5, 549);
-            this.pictureBox33.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox33.Name = "pictureBox33";
-            this.pictureBox33.Size = new System.Drawing.Size(56, 48);
-            this.pictureBox33.TabIndex = 40;
-            this.pictureBox33.TabStop = false;
             // 
             // whiteBoardSelect
             // 
             this.whiteBoardSelect.Image = ((System.Drawing.Image)(resources.GetObject("whiteBoardSelect.Image")));
-            this.whiteBoardSelect.Location = new System.Drawing.Point(189, 497);
-            this.whiteBoardSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.whiteBoardSelect.Location = new System.Drawing.Point(212, 630);
             this.whiteBoardSelect.Name = "whiteBoardSelect";
-            this.whiteBoardSelect.Size = new System.Drawing.Size(56, 48);
+            this.whiteBoardSelect.Size = new System.Drawing.Size(64, 64);
             this.whiteBoardSelect.TabIndex = 39;
             this.whiteBoardSelect.TabStop = false;
             this.whiteBoardSelect.Click += new System.EventHandler(this.whiteBoardSelect_Click);
@@ -592,10 +482,9 @@ namespace Test_Loopguy
             // shelfWeirdSelect
             // 
             this.shelfWeirdSelect.Image = ((System.Drawing.Image)(resources.GetObject("shelfWeirdSelect.Image")));
-            this.shelfWeirdSelect.Location = new System.Drawing.Point(128, 497);
-            this.shelfWeirdSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.shelfWeirdSelect.Location = new System.Drawing.Point(142, 630);
             this.shelfWeirdSelect.Name = "shelfWeirdSelect";
-            this.shelfWeirdSelect.Size = new System.Drawing.Size(56, 48);
+            this.shelfWeirdSelect.Size = new System.Drawing.Size(64, 64);
             this.shelfWeirdSelect.TabIndex = 38;
             this.shelfWeirdSelect.TabStop = false;
             this.shelfWeirdSelect.Click += new System.EventHandler(this.shelfWeirdSelect_Click);
@@ -603,10 +492,9 @@ namespace Test_Loopguy
             // lockerSelect
             // 
             this.lockerSelect.Image = ((System.Drawing.Image)(resources.GetObject("lockerSelect.Image")));
-            this.lockerSelect.Location = new System.Drawing.Point(66, 497);
-            this.lockerSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lockerSelect.Location = new System.Drawing.Point(71, 630);
             this.lockerSelect.Name = "lockerSelect";
-            this.lockerSelect.Size = new System.Drawing.Size(56, 48);
+            this.lockerSelect.Size = new System.Drawing.Size(64, 64);
             this.lockerSelect.TabIndex = 37;
             this.lockerSelect.TabStop = false;
             this.lockerSelect.Click += new System.EventHandler(this.lockerSelect_Click);
@@ -614,10 +502,9 @@ namespace Test_Loopguy
             // morgueSelect
             // 
             this.morgueSelect.Image = ((System.Drawing.Image)(resources.GetObject("morgueSelect.Image")));
-            this.morgueSelect.Location = new System.Drawing.Point(5, 497);
-            this.morgueSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.morgueSelect.Location = new System.Drawing.Point(2, 630);
             this.morgueSelect.Name = "morgueSelect";
-            this.morgueSelect.Size = new System.Drawing.Size(56, 48);
+            this.morgueSelect.Size = new System.Drawing.Size(64, 64);
             this.morgueSelect.TabIndex = 36;
             this.morgueSelect.TabStop = false;
             this.morgueSelect.Click += new System.EventHandler(this.morgueSelect_Click);
@@ -625,10 +512,9 @@ namespace Test_Loopguy
             // cameraSelect
             // 
             this.cameraSelect.Image = ((System.Drawing.Image)(resources.GetObject("cameraSelect.Image")));
-            this.cameraSelect.Location = new System.Drawing.Point(189, 445);
-            this.cameraSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cameraSelect.Location = new System.Drawing.Point(212, 560);
             this.cameraSelect.Name = "cameraSelect";
-            this.cameraSelect.Size = new System.Drawing.Size(56, 48);
+            this.cameraSelect.Size = new System.Drawing.Size(64, 64);
             this.cameraSelect.TabIndex = 35;
             this.cameraSelect.TabStop = false;
             this.cameraSelect.Click += new System.EventHandler(this.cameraSelect_Click);
@@ -636,10 +522,9 @@ namespace Test_Loopguy
             // sofaSelect
             // 
             this.sofaSelect.Image = ((System.Drawing.Image)(resources.GetObject("sofaSelect.Image")));
-            this.sofaSelect.Location = new System.Drawing.Point(128, 445);
-            this.sofaSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.sofaSelect.Location = new System.Drawing.Point(142, 560);
             this.sofaSelect.Name = "sofaSelect";
-            this.sofaSelect.Size = new System.Drawing.Size(56, 48);
+            this.sofaSelect.Size = new System.Drawing.Size(64, 64);
             this.sofaSelect.TabIndex = 34;
             this.sofaSelect.TabStop = false;
             this.sofaSelect.Click += new System.EventHandler(this.sofaSelect_Click);
@@ -647,10 +532,9 @@ namespace Test_Loopguy
             // sinkSelect
             // 
             this.sinkSelect.Image = ((System.Drawing.Image)(resources.GetObject("sinkSelect.Image")));
-            this.sinkSelect.Location = new System.Drawing.Point(66, 445);
-            this.sinkSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.sinkSelect.Location = new System.Drawing.Point(71, 560);
             this.sinkSelect.Name = "sinkSelect";
-            this.sinkSelect.Size = new System.Drawing.Size(56, 48);
+            this.sinkSelect.Size = new System.Drawing.Size(64, 64);
             this.sinkSelect.TabIndex = 33;
             this.sinkSelect.TabStop = false;
             this.sinkSelect.Click += new System.EventHandler(this.sinkSelect_Click);
@@ -658,10 +542,9 @@ namespace Test_Loopguy
             // shootingRangeBenchSelect
             // 
             this.shootingRangeBenchSelect.Image = ((System.Drawing.Image)(resources.GetObject("shootingRangeBenchSelect.Image")));
-            this.shootingRangeBenchSelect.Location = new System.Drawing.Point(5, 445);
-            this.shootingRangeBenchSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.shootingRangeBenchSelect.Location = new System.Drawing.Point(2, 560);
             this.shootingRangeBenchSelect.Name = "shootingRangeBenchSelect";
-            this.shootingRangeBenchSelect.Size = new System.Drawing.Size(56, 48);
+            this.shootingRangeBenchSelect.Size = new System.Drawing.Size(64, 64);
             this.shootingRangeBenchSelect.TabIndex = 32;
             this.shootingRangeBenchSelect.TabStop = false;
             this.shootingRangeBenchSelect.Click += new System.EventHandler(this.shootingRangeBenchSelect_Click);
@@ -669,10 +552,9 @@ namespace Test_Loopguy
             // niceBookshelfSelect
             // 
             this.niceBookshelfSelect.Image = ((System.Drawing.Image)(resources.GetObject("niceBookshelfSelect.Image")));
-            this.niceBookshelfSelect.Location = new System.Drawing.Point(189, 393);
-            this.niceBookshelfSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.niceBookshelfSelect.Location = new System.Drawing.Point(212, 491);
             this.niceBookshelfSelect.Name = "niceBookshelfSelect";
-            this.niceBookshelfSelect.Size = new System.Drawing.Size(56, 48);
+            this.niceBookshelfSelect.Size = new System.Drawing.Size(64, 64);
             this.niceBookshelfSelect.TabIndex = 31;
             this.niceBookshelfSelect.TabStop = false;
             this.niceBookshelfSelect.Click += new System.EventHandler(this.niceBookshelfSelect_Click);
@@ -680,10 +562,9 @@ namespace Test_Loopguy
             // carryingThingSelect
             // 
             this.carryingThingSelect.Image = ((System.Drawing.Image)(resources.GetObject("carryingThingSelect.Image")));
-            this.carryingThingSelect.Location = new System.Drawing.Point(128, 393);
-            this.carryingThingSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.carryingThingSelect.Location = new System.Drawing.Point(142, 491);
             this.carryingThingSelect.Name = "carryingThingSelect";
-            this.carryingThingSelect.Size = new System.Drawing.Size(56, 48);
+            this.carryingThingSelect.Size = new System.Drawing.Size(64, 64);
             this.carryingThingSelect.TabIndex = 30;
             this.carryingThingSelect.TabStop = false;
             this.carryingThingSelect.Click += new System.EventHandler(this.carryingThingSelect_Click);
@@ -691,10 +572,9 @@ namespace Test_Loopguy
             // operationEquipmentSelect
             // 
             this.operationEquipmentSelect.Image = ((System.Drawing.Image)(resources.GetObject("operationEquipmentSelect.Image")));
-            this.operationEquipmentSelect.Location = new System.Drawing.Point(66, 393);
-            this.operationEquipmentSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.operationEquipmentSelect.Location = new System.Drawing.Point(71, 491);
             this.operationEquipmentSelect.Name = "operationEquipmentSelect";
-            this.operationEquipmentSelect.Size = new System.Drawing.Size(56, 48);
+            this.operationEquipmentSelect.Size = new System.Drawing.Size(64, 64);
             this.operationEquipmentSelect.TabIndex = 29;
             this.operationEquipmentSelect.TabStop = false;
             this.operationEquipmentSelect.Click += new System.EventHandler(this.operationEquipmentSelect_Click);
@@ -702,10 +582,9 @@ namespace Test_Loopguy
             // crateStackSelect
             // 
             this.crateStackSelect.Image = ((System.Drawing.Image)(resources.GetObject("crateStackSelect.Image")));
-            this.crateStackSelect.Location = new System.Drawing.Point(5, 393);
-            this.crateStackSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.crateStackSelect.Location = new System.Drawing.Point(2, 491);
             this.crateStackSelect.Name = "crateStackSelect";
-            this.crateStackSelect.Size = new System.Drawing.Size(56, 48);
+            this.crateStackSelect.Size = new System.Drawing.Size(64, 64);
             this.crateStackSelect.TabIndex = 28;
             this.crateStackSelect.TabStop = false;
             this.crateStackSelect.Click += new System.EventHandler(this.crateStackSelect_Click);
@@ -713,10 +592,9 @@ namespace Test_Loopguy
             // bigSinkSelect
             // 
             this.bigSinkSelect.Image = ((System.Drawing.Image)(resources.GetObject("bigSinkSelect.Image")));
-            this.bigSinkSelect.Location = new System.Drawing.Point(189, 339);
-            this.bigSinkSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.bigSinkSelect.Location = new System.Drawing.Point(212, 423);
             this.bigSinkSelect.Name = "bigSinkSelect";
-            this.bigSinkSelect.Size = new System.Drawing.Size(56, 48);
+            this.bigSinkSelect.Size = new System.Drawing.Size(64, 64);
             this.bigSinkSelect.TabIndex = 27;
             this.bigSinkSelect.TabStop = false;
             this.bigSinkSelect.Click += new System.EventHandler(this.bigSinkSelect_Click);
@@ -724,10 +602,9 @@ namespace Test_Loopguy
             // pottedPlantSelect
             // 
             this.pottedPlantSelect.Image = ((System.Drawing.Image)(resources.GetObject("pottedPlantSelect.Image")));
-            this.pottedPlantSelect.Location = new System.Drawing.Point(128, 339);
-            this.pottedPlantSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pottedPlantSelect.Location = new System.Drawing.Point(142, 423);
             this.pottedPlantSelect.Name = "pottedPlantSelect";
-            this.pottedPlantSelect.Size = new System.Drawing.Size(56, 48);
+            this.pottedPlantSelect.Size = new System.Drawing.Size(64, 64);
             this.pottedPlantSelect.TabIndex = 26;
             this.pottedPlantSelect.TabStop = false;
             this.pottedPlantSelect.Click += new System.EventHandler(this.pottedPlantSelect_Click);
@@ -735,10 +612,9 @@ namespace Test_Loopguy
             // deskForwardSelect
             // 
             this.deskForwardSelect.Image = ((System.Drawing.Image)(resources.GetObject("deskForwardSelect.Image")));
-            this.deskForwardSelect.Location = new System.Drawing.Point(66, 339);
-            this.deskForwardSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.deskForwardSelect.Location = new System.Drawing.Point(71, 423);
             this.deskForwardSelect.Name = "deskForwardSelect";
-            this.deskForwardSelect.Size = new System.Drawing.Size(56, 48);
+            this.deskForwardSelect.Size = new System.Drawing.Size(64, 64);
             this.deskForwardSelect.TabIndex = 25;
             this.deskForwardSelect.TabStop = false;
             this.deskForwardSelect.Click += new System.EventHandler(this.deskForwardSelect_Click);
@@ -746,10 +622,9 @@ namespace Test_Loopguy
             // deskBackwardSelect
             // 
             this.deskBackwardSelect.Image = ((System.Drawing.Image)(resources.GetObject("deskBackwardSelect.Image")));
-            this.deskBackwardSelect.Location = new System.Drawing.Point(5, 339);
-            this.deskBackwardSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.deskBackwardSelect.Location = new System.Drawing.Point(2, 423);
             this.deskBackwardSelect.Name = "deskBackwardSelect";
-            this.deskBackwardSelect.Size = new System.Drawing.Size(56, 48);
+            this.deskBackwardSelect.Size = new System.Drawing.Size(64, 64);
             this.deskBackwardSelect.TabIndex = 24;
             this.deskBackwardSelect.TabStop = false;
             this.deskBackwardSelect.Click += new System.EventHandler(this.deskBackwardSelect_Click);
@@ -757,10 +632,9 @@ namespace Test_Loopguy
             // shelfArchivingSelect
             // 
             this.shelfArchivingSelect.Image = ((System.Drawing.Image)(resources.GetObject("shelfArchivingSelect.Image")));
-            this.shelfArchivingSelect.Location = new System.Drawing.Point(189, 284);
-            this.shelfArchivingSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.shelfArchivingSelect.Location = new System.Drawing.Point(212, 350);
             this.shelfArchivingSelect.Name = "shelfArchivingSelect";
-            this.shelfArchivingSelect.Size = new System.Drawing.Size(56, 48);
+            this.shelfArchivingSelect.Size = new System.Drawing.Size(64, 64);
             this.shelfArchivingSelect.TabIndex = 23;
             this.shelfArchivingSelect.TabStop = false;
             this.shelfArchivingSelect.Click += new System.EventHandler(this.shelfArchivingSelect_Click);
@@ -768,10 +642,9 @@ namespace Test_Loopguy
             // serverSelect
             // 
             this.serverSelect.Image = ((System.Drawing.Image)(resources.GetObject("serverSelect.Image")));
-            this.serverSelect.Location = new System.Drawing.Point(128, 284);
-            this.serverSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.serverSelect.Location = new System.Drawing.Point(142, 350);
             this.serverSelect.Name = "serverSelect";
-            this.serverSelect.Size = new System.Drawing.Size(56, 48);
+            this.serverSelect.Size = new System.Drawing.Size(64, 64);
             this.serverSelect.TabIndex = 22;
             this.serverSelect.TabStop = false;
             this.serverSelect.Click += new System.EventHandler(this.serverSelect_Click);
@@ -779,10 +652,9 @@ namespace Test_Loopguy
             // monitorWallSelect
             // 
             this.monitorWallSelect.Image = ((System.Drawing.Image)(resources.GetObject("monitorWallSelect.Image")));
-            this.monitorWallSelect.Location = new System.Drawing.Point(66, 284);
-            this.monitorWallSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.monitorWallSelect.Location = new System.Drawing.Point(71, 350);
             this.monitorWallSelect.Name = "monitorWallSelect";
-            this.monitorWallSelect.Size = new System.Drawing.Size(56, 48);
+            this.monitorWallSelect.Size = new System.Drawing.Size(64, 64);
             this.monitorWallSelect.TabIndex = 21;
             this.monitorWallSelect.TabStop = false;
             this.monitorWallSelect.Click += new System.EventHandler(this.monitorWallSelect_Click);
@@ -790,10 +662,9 @@ namespace Test_Loopguy
             // deskOfficeSelect
             // 
             this.deskOfficeSelect.Image = ((System.Drawing.Image)(resources.GetObject("deskOfficeSelect.Image")));
-            this.deskOfficeSelect.Location = new System.Drawing.Point(5, 284);
-            this.deskOfficeSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.deskOfficeSelect.Location = new System.Drawing.Point(2, 350);
             this.deskOfficeSelect.Name = "deskOfficeSelect";
-            this.deskOfficeSelect.Size = new System.Drawing.Size(56, 48);
+            this.deskOfficeSelect.Size = new System.Drawing.Size(64, 64);
             this.deskOfficeSelect.TabIndex = 20;
             this.deskOfficeSelect.TabStop = false;
             this.deskOfficeSelect.Click += new System.EventHandler(this.deskOfficeSelect_Click);
@@ -801,10 +672,9 @@ namespace Test_Loopguy
             // chairOfficeFwSelect
             // 
             this.chairOfficeFwSelect.Image = ((System.Drawing.Image)(resources.GetObject("chairOfficeFwSelect.Image")));
-            this.chairOfficeFwSelect.Location = new System.Drawing.Point(189, 230);
-            this.chairOfficeFwSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chairOfficeFwSelect.Location = new System.Drawing.Point(212, 280);
             this.chairOfficeFwSelect.Name = "chairOfficeFwSelect";
-            this.chairOfficeFwSelect.Size = new System.Drawing.Size(56, 48);
+            this.chairOfficeFwSelect.Size = new System.Drawing.Size(64, 64);
             this.chairOfficeFwSelect.TabIndex = 19;
             this.chairOfficeFwSelect.TabStop = false;
             this.chairOfficeFwSelect.Click += new System.EventHandler(this.chairOfficeFwSelect_Click);
@@ -812,10 +682,9 @@ namespace Test_Loopguy
             // chairOfficeBwSelect
             // 
             this.chairOfficeBwSelect.Image = ((System.Drawing.Image)(resources.GetObject("chairOfficeBwSelect.Image")));
-            this.chairOfficeBwSelect.Location = new System.Drawing.Point(128, 230);
-            this.chairOfficeBwSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chairOfficeBwSelect.Location = new System.Drawing.Point(142, 280);
             this.chairOfficeBwSelect.Name = "chairOfficeBwSelect";
-            this.chairOfficeBwSelect.Size = new System.Drawing.Size(56, 48);
+            this.chairOfficeBwSelect.Size = new System.Drawing.Size(64, 64);
             this.chairOfficeBwSelect.TabIndex = 18;
             this.chairOfficeBwSelect.TabStop = false;
             this.chairOfficeBwSelect.Click += new System.EventHandler(this.chairOfficeBwSelect_Click);
@@ -823,10 +692,9 @@ namespace Test_Loopguy
             // counterSelect
             // 
             this.counterSelect.Image = ((System.Drawing.Image)(resources.GetObject("counterSelect.Image")));
-            this.counterSelect.Location = new System.Drawing.Point(66, 230);
-            this.counterSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.counterSelect.Location = new System.Drawing.Point(71, 280);
             this.counterSelect.Name = "counterSelect";
-            this.counterSelect.Size = new System.Drawing.Size(56, 48);
+            this.counterSelect.Size = new System.Drawing.Size(64, 64);
             this.counterSelect.TabIndex = 17;
             this.counterSelect.TabStop = false;
             this.counterSelect.Click += new System.EventHandler(this.counterSelect_Click);
@@ -834,10 +702,9 @@ namespace Test_Loopguy
             // cardboardBoxSmallStackSelect
             // 
             this.cardboardBoxSmallStackSelect.Image = ((System.Drawing.Image)(resources.GetObject("cardboardBoxSmallStackSelect.Image")));
-            this.cardboardBoxSmallStackSelect.Location = new System.Drawing.Point(5, 230);
-            this.cardboardBoxSmallStackSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cardboardBoxSmallStackSelect.Location = new System.Drawing.Point(2, 280);
             this.cardboardBoxSmallStackSelect.Name = "cardboardBoxSmallStackSelect";
-            this.cardboardBoxSmallStackSelect.Size = new System.Drawing.Size(56, 48);
+            this.cardboardBoxSmallStackSelect.Size = new System.Drawing.Size(64, 64);
             this.cardboardBoxSmallStackSelect.TabIndex = 16;
             this.cardboardBoxSmallStackSelect.TabStop = false;
             this.cardboardBoxSmallStackSelect.Click += new System.EventHandler(this.cardboardBoxSmallStackSelect_Click);
@@ -845,10 +712,9 @@ namespace Test_Loopguy
             // cabinetSelect
             // 
             this.cabinetSelect.Image = ((System.Drawing.Image)(resources.GetObject("cabinetSelect.Image")));
-            this.cabinetSelect.Location = new System.Drawing.Point(189, 177);
-            this.cabinetSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cabinetSelect.Location = new System.Drawing.Point(212, 209);
             this.cabinetSelect.Name = "cabinetSelect";
-            this.cabinetSelect.Size = new System.Drawing.Size(56, 48);
+            this.cabinetSelect.Size = new System.Drawing.Size(64, 64);
             this.cabinetSelect.TabIndex = 15;
             this.cabinetSelect.TabStop = false;
             this.cabinetSelect.Click += new System.EventHandler(this.cabinetSelect_Click);
@@ -856,10 +722,9 @@ namespace Test_Loopguy
             // BillBoardSelect
             // 
             this.BillBoardSelect.Image = ((System.Drawing.Image)(resources.GetObject("BillBoardSelect.Image")));
-            this.BillBoardSelect.Location = new System.Drawing.Point(128, 177);
-            this.BillBoardSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BillBoardSelect.Location = new System.Drawing.Point(142, 209);
             this.BillBoardSelect.Name = "BillBoardSelect";
-            this.BillBoardSelect.Size = new System.Drawing.Size(56, 48);
+            this.BillBoardSelect.Size = new System.Drawing.Size(64, 64);
             this.BillBoardSelect.TabIndex = 14;
             this.BillBoardSelect.TabStop = false;
             this.BillBoardSelect.Click += new System.EventHandler(this.BillBoardSelect_Click);
@@ -867,10 +732,9 @@ namespace Test_Loopguy
             // ammoSmallSelect
             // 
             this.ammoSmallSelect.Image = ((System.Drawing.Image)(resources.GetObject("ammoSmallSelect.Image")));
-            this.ammoSmallSelect.Location = new System.Drawing.Point(66, 177);
-            this.ammoSmallSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ammoSmallSelect.Location = new System.Drawing.Point(71, 209);
             this.ammoSmallSelect.Name = "ammoSmallSelect";
-            this.ammoSmallSelect.Size = new System.Drawing.Size(56, 48);
+            this.ammoSmallSelect.Size = new System.Drawing.Size(64, 64);
             this.ammoSmallSelect.TabIndex = 13;
             this.ammoSmallSelect.TabStop = false;
             this.ammoSmallSelect.Click += new System.EventHandler(this.ammoSmallSelect_Click);
@@ -878,10 +742,9 @@ namespace Test_Loopguy
             // healSmallSelect
             // 
             this.healSmallSelect.Image = ((System.Drawing.Image)(resources.GetObject("healSmallSelect.Image")));
-            this.healSmallSelect.Location = new System.Drawing.Point(5, 177);
-            this.healSmallSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.healSmallSelect.Location = new System.Drawing.Point(2, 209);
             this.healSmallSelect.Name = "healSmallSelect";
-            this.healSmallSelect.Size = new System.Drawing.Size(56, 48);
+            this.healSmallSelect.Size = new System.Drawing.Size(64, 64);
             this.healSmallSelect.TabIndex = 12;
             this.healSmallSelect.TabStop = false;
             this.healSmallSelect.Click += new System.EventHandler(this.healSmallSelect_Click);
@@ -889,10 +752,9 @@ namespace Test_Loopguy
             // barrelDestructibleSelect
             // 
             this.barrelDestructibleSelect.Image = ((System.Drawing.Image)(resources.GetObject("barrelDestructibleSelect.Image")));
-            this.barrelDestructibleSelect.Location = new System.Drawing.Point(189, 124);
-            this.barrelDestructibleSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.barrelDestructibleSelect.Location = new System.Drawing.Point(212, 141);
             this.barrelDestructibleSelect.Name = "barrelDestructibleSelect";
-            this.barrelDestructibleSelect.Size = new System.Drawing.Size(56, 48);
+            this.barrelDestructibleSelect.Size = new System.Drawing.Size(64, 64);
             this.barrelDestructibleSelect.TabIndex = 11;
             this.barrelDestructibleSelect.TabStop = false;
             this.barrelDestructibleSelect.Click += new System.EventHandler(this.barrelDestructibleSelect_Click);
@@ -900,10 +762,9 @@ namespace Test_Loopguy
             // doorSlidingSelect
             // 
             this.doorSlidingSelect.Image = ((System.Drawing.Image)(resources.GetObject("doorSlidingSelect.Image")));
-            this.doorSlidingSelect.Location = new System.Drawing.Point(128, 124);
-            this.doorSlidingSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.doorSlidingSelect.Location = new System.Drawing.Point(142, 141);
             this.doorSlidingSelect.Name = "doorSlidingSelect";
-            this.doorSlidingSelect.Size = new System.Drawing.Size(56, 48);
+            this.doorSlidingSelect.Size = new System.Drawing.Size(64, 64);
             this.doorSlidingSelect.TabIndex = 10;
             this.doorSlidingSelect.TabStop = false;
             this.doorSlidingSelect.Click += new System.EventHandler(this.doorSlidingSelect_Click);
@@ -911,10 +772,9 @@ namespace Test_Loopguy
             // keycardRedSelect
             // 
             this.keycardRedSelect.Image = ((System.Drawing.Image)(resources.GetObject("keycardRedSelect.Image")));
-            this.keycardRedSelect.Location = new System.Drawing.Point(66, 124);
-            this.keycardRedSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.keycardRedSelect.Location = new System.Drawing.Point(71, 141);
             this.keycardRedSelect.Name = "keycardRedSelect";
-            this.keycardRedSelect.Size = new System.Drawing.Size(56, 48);
+            this.keycardRedSelect.Size = new System.Drawing.Size(64, 64);
             this.keycardRedSelect.TabIndex = 9;
             this.keycardRedSelect.TabStop = false;
             this.keycardRedSelect.Click += new System.EventHandler(this.keycardRedSelect_Click);
@@ -922,10 +782,9 @@ namespace Test_Loopguy
             // doorSelect
             // 
             this.doorSelect.Image = ((System.Drawing.Image)(resources.GetObject("doorSelect.Image")));
-            this.doorSelect.Location = new System.Drawing.Point(5, 124);
-            this.doorSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.doorSelect.Location = new System.Drawing.Point(2, 141);
             this.doorSelect.Name = "doorSelect";
-            this.doorSelect.Size = new System.Drawing.Size(56, 48);
+            this.doorSelect.Size = new System.Drawing.Size(64, 64);
             this.doorSelect.TabIndex = 8;
             this.doorSelect.TabStop = false;
             this.doorSelect.Click += new System.EventHandler(this.doorSelect_Click);
@@ -933,10 +792,9 @@ namespace Test_Loopguy
             // treeBigSelect
             // 
             this.treeBigSelect.Image = ((System.Drawing.Image)(resources.GetObject("treeBigSelect.Image")));
-            this.treeBigSelect.Location = new System.Drawing.Point(189, 72);
-            this.treeBigSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.treeBigSelect.Location = new System.Drawing.Point(212, 72);
             this.treeBigSelect.Name = "treeBigSelect";
-            this.treeBigSelect.Size = new System.Drawing.Size(56, 48);
+            this.treeBigSelect.Size = new System.Drawing.Size(64, 64);
             this.treeBigSelect.TabIndex = 7;
             this.treeBigSelect.TabStop = false;
             this.treeBigSelect.Click += new System.EventHandler(this.treeBigSelect_Click);
@@ -944,10 +802,9 @@ namespace Test_Loopguy
             // shrubBigSelect
             // 
             this.shrubBigSelect.Image = ((System.Drawing.Image)(resources.GetObject("shrubBigSelect.Image")));
-            this.shrubBigSelect.Location = new System.Drawing.Point(128, 72);
-            this.shrubBigSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.shrubBigSelect.Location = new System.Drawing.Point(142, 72);
             this.shrubBigSelect.Name = "shrubBigSelect";
-            this.shrubBigSelect.Size = new System.Drawing.Size(56, 48);
+            this.shrubBigSelect.Size = new System.Drawing.Size(64, 64);
             this.shrubBigSelect.TabIndex = 6;
             this.shrubBigSelect.TabStop = false;
             this.shrubBigSelect.Click += new System.EventHandler(this.shrubBigSelect_Click);
@@ -955,10 +812,9 @@ namespace Test_Loopguy
             // boxOpenSelect
             // 
             this.boxOpenSelect.Image = ((System.Drawing.Image)(resources.GetObject("boxOpenSelect.Image")));
-            this.boxOpenSelect.Location = new System.Drawing.Point(66, 72);
-            this.boxOpenSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.boxOpenSelect.Location = new System.Drawing.Point(71, 72);
             this.boxOpenSelect.Name = "boxOpenSelect";
-            this.boxOpenSelect.Size = new System.Drawing.Size(56, 48);
+            this.boxOpenSelect.Size = new System.Drawing.Size(64, 64);
             this.boxOpenSelect.TabIndex = 5;
             this.boxOpenSelect.TabStop = false;
             this.boxOpenSelect.Click += new System.EventHandler(this.boxOpenSelect_Click);
@@ -966,10 +822,9 @@ namespace Test_Loopguy
             // boxSelect
             // 
             this.boxSelect.Image = ((System.Drawing.Image)(resources.GetObject("boxSelect.Image")));
-            this.boxSelect.Location = new System.Drawing.Point(5, 72);
-            this.boxSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.boxSelect.Location = new System.Drawing.Point(2, 72);
             this.boxSelect.Name = "boxSelect";
-            this.boxSelect.Size = new System.Drawing.Size(56, 48);
+            this.boxSelect.Size = new System.Drawing.Size(64, 64);
             this.boxSelect.TabIndex = 4;
             this.boxSelect.TabStop = false;
             this.boxSelect.Click += new System.EventHandler(this.boxSelect_Click);
@@ -977,10 +832,9 @@ namespace Test_Loopguy
             // treeSmallSelect
             // 
             this.treeSmallSelect.Image = ((System.Drawing.Image)(resources.GetObject("treeSmallSelect.Image")));
-            this.treeSmallSelect.Location = new System.Drawing.Point(189, 20);
-            this.treeSmallSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.treeSmallSelect.Location = new System.Drawing.Point(212, 3);
             this.treeSmallSelect.Name = "treeSmallSelect";
-            this.treeSmallSelect.Size = new System.Drawing.Size(56, 48);
+            this.treeSmallSelect.Size = new System.Drawing.Size(64, 64);
             this.treeSmallSelect.TabIndex = 3;
             this.treeSmallSelect.TabStop = false;
             this.treeSmallSelect.Click += new System.EventHandler(this.treeSmallSelect_Click);
@@ -988,10 +842,9 @@ namespace Test_Loopguy
             // shrubSmallSelect
             // 
             this.shrubSmallSelect.Image = ((System.Drawing.Image)(resources.GetObject("shrubSmallSelect.Image")));
-            this.shrubSmallSelect.Location = new System.Drawing.Point(128, 20);
-            this.shrubSmallSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.shrubSmallSelect.Location = new System.Drawing.Point(142, 3);
             this.shrubSmallSelect.Name = "shrubSmallSelect";
-            this.shrubSmallSelect.Size = new System.Drawing.Size(56, 48);
+            this.shrubSmallSelect.Size = new System.Drawing.Size(64, 64);
             this.shrubSmallSelect.TabIndex = 2;
             this.shrubSmallSelect.TabStop = false;
             this.shrubSmallSelect.Click += new System.EventHandler(this.shrubSmallSelect_Click);
@@ -999,10 +852,9 @@ namespace Test_Loopguy
             // potSelect
             // 
             this.potSelect.Image = ((System.Drawing.Image)(resources.GetObject("potSelect.Image")));
-            this.potSelect.Location = new System.Drawing.Point(66, 20);
-            this.potSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.potSelect.Location = new System.Drawing.Point(71, 3);
             this.potSelect.Name = "potSelect";
-            this.potSelect.Size = new System.Drawing.Size(56, 48);
+            this.potSelect.Size = new System.Drawing.Size(64, 64);
             this.potSelect.TabIndex = 1;
             this.potSelect.TabStop = false;
             this.potSelect.Click += new System.EventHandler(this.potSelect_Click);
@@ -1010,19 +862,19 @@ namespace Test_Loopguy
             // barrelSelect
             // 
             this.barrelSelect.Image = ((System.Drawing.Image)(resources.GetObject("barrelSelect.Image")));
-            this.barrelSelect.Location = new System.Drawing.Point(5, 20);
-            this.barrelSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.barrelSelect.Location = new System.Drawing.Point(2, 3);
             this.barrelSelect.Name = "barrelSelect";
-            this.barrelSelect.Size = new System.Drawing.Size(56, 48);
+            this.barrelSelect.Size = new System.Drawing.Size(64, 64);
             this.barrelSelect.TabIndex = 0;
             this.barrelSelect.TabStop = false;
             this.barrelSelect.Click += new System.EventHandler(this.barrelSelect_Click);
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(671, 216);
+            this.saveButton.Location = new System.Drawing.Point(767, 288);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 22);
+            this.saveButton.Size = new System.Drawing.Size(86, 29);
             this.saveButton.TabIndex = 31;
             this.saveButton.Text = "Save Map";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -1030,26 +882,26 @@ namespace Test_Loopguy
             // 
             // mapIdBox
             // 
-            this.mapIdBox.Location = new System.Drawing.Point(536, 218);
+            this.mapIdBox.Location = new System.Drawing.Point(613, 291);
+            this.mapIdBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mapIdBox.Name = "mapIdBox";
-            this.mapIdBox.Size = new System.Drawing.Size(110, 23);
+            this.mapIdBox.Size = new System.Drawing.Size(125, 27);
             this.mapIdBox.TabIndex = 32;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(536, 196);
+            this.label5.Location = new System.Drawing.Point(613, 261);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 15);
+            this.label5.Size = new System.Drawing.Size(62, 20);
             this.label5.TabIndex = 33;
             this.label5.Text = "Level ID";
             // 
             // saveMapSize
             // 
-            this.saveMapSize.Location = new System.Drawing.Point(595, 62);
-            this.saveMapSize.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.saveMapSize.Location = new System.Drawing.Point(680, 83);
             this.saveMapSize.Name = "saveMapSize";
-            this.saveMapSize.Size = new System.Drawing.Size(131, 22);
+            this.saveMapSize.Size = new System.Drawing.Size(150, 29);
             this.saveMapSize.TabIndex = 34;
             this.saveMapSize.Text = "Set Tilemap Size";
             this.saveMapSize.UseVisualStyleBackColor = true;
@@ -1057,10 +909,9 @@ namespace Test_Loopguy
             // 
             // setCameraSize
             // 
-            this.setCameraSize.Location = new System.Drawing.Point(595, 164);
-            this.setCameraSize.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.setCameraSize.Location = new System.Drawing.Point(680, 219);
             this.setCameraSize.Name = "setCameraSize";
-            this.setCameraSize.Size = new System.Drawing.Size(131, 22);
+            this.setCameraSize.Size = new System.Drawing.Size(150, 29);
             this.setCameraSize.TabIndex = 35;
             this.setCameraSize.Text = "Set Camera Bounds";
             this.setCameraSize.UseVisualStyleBackColor = true;
@@ -1069,24 +920,26 @@ namespace Test_Loopguy
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(536, 250);
+            this.label6.Location = new System.Drawing.Point(613, 333);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(109, 15);
+            this.label6.Size = new System.Drawing.Size(140, 20);
             this.label6.TabIndex = 38;
             this.label6.Text = "Go To Level With ID";
             // 
             // goToLevelWithID
             // 
-            this.goToLevelWithID.Location = new System.Drawing.Point(536, 270);
+            this.goToLevelWithID.Location = new System.Drawing.Point(613, 360);
+            this.goToLevelWithID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.goToLevelWithID.Name = "goToLevelWithID";
-            this.goToLevelWithID.Size = new System.Drawing.Size(110, 23);
+            this.goToLevelWithID.Size = new System.Drawing.Size(125, 27);
             this.goToLevelWithID.TabIndex = 37;
             // 
             // goToLevelButton
             // 
-            this.goToLevelButton.Location = new System.Drawing.Point(671, 268);
+            this.goToLevelButton.Location = new System.Drawing.Point(767, 357);
+            this.goToLevelButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.goToLevelButton.Name = "goToLevelButton";
-            this.goToLevelButton.Size = new System.Drawing.Size(75, 22);
+            this.goToLevelButton.Size = new System.Drawing.Size(86, 29);
             this.goToLevelButton.TabIndex = 36;
             this.goToLevelButton.Text = "Go";
             this.goToLevelButton.UseVisualStyleBackColor = true;
@@ -1114,11 +967,9 @@ namespace Test_Loopguy
             this.groupBox3.Controls.Add(this.bigRobotSelect);
             this.groupBox3.Controls.Add(this.rangedTestSelect);
             this.groupBox3.Controls.Add(this.meleeTestSelect);
-            this.groupBox3.Location = new System.Drawing.Point(10, 487);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox3.Location = new System.Drawing.Point(11, 649);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox3.Size = new System.Drawing.Size(252, 123);
+            this.groupBox3.Size = new System.Drawing.Size(288, 164);
             this.groupBox3.TabIndex = 22;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Enemies";
@@ -1126,180 +977,162 @@ namespace Test_Loopguy
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(189, 230);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(216, 307);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(128, 230);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox2.Location = new System.Drawing.Point(146, 307);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox2.Size = new System.Drawing.Size(64, 64);
             this.pictureBox2.TabIndex = 18;
             this.pictureBox2.TabStop = false;
             // 
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(66, 230);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox3.Location = new System.Drawing.Point(75, 307);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox3.Size = new System.Drawing.Size(64, 64);
             this.pictureBox3.TabIndex = 17;
             this.pictureBox3.TabStop = false;
             // 
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(5, 230);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox4.Location = new System.Drawing.Point(6, 307);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox4.Size = new System.Drawing.Size(64, 64);
             this.pictureBox4.TabIndex = 16;
             this.pictureBox4.TabStop = false;
             // 
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(189, 177);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox5.Location = new System.Drawing.Point(216, 236);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox5.Size = new System.Drawing.Size(64, 64);
             this.pictureBox5.TabIndex = 15;
             this.pictureBox5.TabStop = false;
             // 
             // pictureBox6
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(128, 177);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox6.Location = new System.Drawing.Point(146, 236);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox6.Size = new System.Drawing.Size(64, 64);
             this.pictureBox6.TabIndex = 14;
             this.pictureBox6.TabStop = false;
             // 
             // pictureBox7
             // 
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(66, 177);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox7.Location = new System.Drawing.Point(75, 236);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox7.Size = new System.Drawing.Size(64, 64);
             this.pictureBox7.TabIndex = 13;
             this.pictureBox7.TabStop = false;
             // 
             // pictureBox8
             // 
             this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(5, 177);
-            this.pictureBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox8.Location = new System.Drawing.Point(6, 236);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox8.Size = new System.Drawing.Size(64, 64);
             this.pictureBox8.TabIndex = 12;
             this.pictureBox8.TabStop = false;
             // 
             // pictureBox9
             // 
             this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(189, 124);
-            this.pictureBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox9.Location = new System.Drawing.Point(216, 165);
             this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox9.Size = new System.Drawing.Size(64, 64);
             this.pictureBox9.TabIndex = 11;
             this.pictureBox9.TabStop = false;
             // 
             // pictureBox10
             // 
             this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(128, 124);
-            this.pictureBox10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox10.Location = new System.Drawing.Point(146, 165);
             this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox10.Size = new System.Drawing.Size(64, 64);
             this.pictureBox10.TabIndex = 10;
             this.pictureBox10.TabStop = false;
             // 
             // pictureBox11
             // 
             this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
-            this.pictureBox11.Location = new System.Drawing.Point(66, 124);
-            this.pictureBox11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox11.Location = new System.Drawing.Point(75, 165);
             this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox11.Size = new System.Drawing.Size(64, 64);
             this.pictureBox11.TabIndex = 9;
             this.pictureBox11.TabStop = false;
             // 
             // pictureBox12
             // 
             this.pictureBox12.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox12.Image")));
-            this.pictureBox12.Location = new System.Drawing.Point(5, 124);
-            this.pictureBox12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox12.Location = new System.Drawing.Point(6, 165);
             this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox12.Size = new System.Drawing.Size(64, 64);
             this.pictureBox12.TabIndex = 8;
             this.pictureBox12.TabStop = false;
             // 
             // pictureBox21
             // 
             this.pictureBox21.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox21.Image")));
-            this.pictureBox21.Location = new System.Drawing.Point(189, 72);
-            this.pictureBox21.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox21.Location = new System.Drawing.Point(216, 96);
             this.pictureBox21.Name = "pictureBox21";
-            this.pictureBox21.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox21.Size = new System.Drawing.Size(64, 64);
             this.pictureBox21.TabIndex = 7;
             this.pictureBox21.TabStop = false;
             // 
             // pictureBox22
             // 
             this.pictureBox22.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox22.Image")));
-            this.pictureBox22.Location = new System.Drawing.Point(128, 72);
-            this.pictureBox22.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox22.Location = new System.Drawing.Point(146, 96);
             this.pictureBox22.Name = "pictureBox22";
-            this.pictureBox22.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox22.Size = new System.Drawing.Size(64, 64);
             this.pictureBox22.TabIndex = 6;
             this.pictureBox22.TabStop = false;
             // 
             // pictureBox23
             // 
             this.pictureBox23.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox23.Image")));
-            this.pictureBox23.Location = new System.Drawing.Point(66, 72);
-            this.pictureBox23.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox23.Location = new System.Drawing.Point(75, 96);
             this.pictureBox23.Name = "pictureBox23";
-            this.pictureBox23.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox23.Size = new System.Drawing.Size(64, 64);
             this.pictureBox23.TabIndex = 5;
             this.pictureBox23.TabStop = false;
             // 
             // pictureBox24
             // 
             this.pictureBox24.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox24.Image")));
-            this.pictureBox24.Location = new System.Drawing.Point(5, 72);
-            this.pictureBox24.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox24.Location = new System.Drawing.Point(6, 96);
             this.pictureBox24.Name = "pictureBox24";
-            this.pictureBox24.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox24.Size = new System.Drawing.Size(64, 64);
             this.pictureBox24.TabIndex = 4;
             this.pictureBox24.TabStop = false;
             // 
             // pictureBox25
             // 
             this.pictureBox25.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox25.Image")));
-            this.pictureBox25.Location = new System.Drawing.Point(189, 20);
-            this.pictureBox25.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox25.Location = new System.Drawing.Point(216, 27);
             this.pictureBox25.Name = "pictureBox25";
-            this.pictureBox25.Size = new System.Drawing.Size(56, 48);
+            this.pictureBox25.Size = new System.Drawing.Size(64, 64);
             this.pictureBox25.TabIndex = 3;
             this.pictureBox25.TabStop = false;
             // 
             // bigRobotSelect
             // 
             this.bigRobotSelect.Image = ((System.Drawing.Image)(resources.GetObject("bigRobotSelect.Image")));
-            this.bigRobotSelect.Location = new System.Drawing.Point(128, 20);
-            this.bigRobotSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.bigRobotSelect.Location = new System.Drawing.Point(146, 27);
             this.bigRobotSelect.Name = "bigRobotSelect";
-            this.bigRobotSelect.Size = new System.Drawing.Size(56, 48);
+            this.bigRobotSelect.Size = new System.Drawing.Size(64, 64);
             this.bigRobotSelect.TabIndex = 2;
             this.bigRobotSelect.TabStop = false;
             this.bigRobotSelect.Click += new System.EventHandler(this.bigRobotSelect_Click);
@@ -1307,10 +1140,9 @@ namespace Test_Loopguy
             // rangedTestSelect
             // 
             this.rangedTestSelect.Image = ((System.Drawing.Image)(resources.GetObject("rangedTestSelect.Image")));
-            this.rangedTestSelect.Location = new System.Drawing.Point(66, 20);
-            this.rangedTestSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rangedTestSelect.Location = new System.Drawing.Point(75, 27);
             this.rangedTestSelect.Name = "rangedTestSelect";
-            this.rangedTestSelect.Size = new System.Drawing.Size(56, 48);
+            this.rangedTestSelect.Size = new System.Drawing.Size(64, 64);
             this.rangedTestSelect.TabIndex = 1;
             this.rangedTestSelect.TabStop = false;
             this.rangedTestSelect.Click += new System.EventHandler(this.rangedTestSelect_Click);
@@ -1318,10 +1150,9 @@ namespace Test_Loopguy
             // meleeTestSelect
             // 
             this.meleeTestSelect.Image = ((System.Drawing.Image)(resources.GetObject("meleeTestSelect.Image")));
-            this.meleeTestSelect.Location = new System.Drawing.Point(5, 20);
-            this.meleeTestSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.meleeTestSelect.Location = new System.Drawing.Point(6, 27);
             this.meleeTestSelect.Name = "meleeTestSelect";
-            this.meleeTestSelect.Size = new System.Drawing.Size(56, 48);
+            this.meleeTestSelect.Size = new System.Drawing.Size(64, 64);
             this.meleeTestSelect.TabIndex = 0;
             this.meleeTestSelect.TabStop = false;
             this.meleeTestSelect.Click += new System.EventHandler(this.meleeTestSelect_Click);
@@ -1331,19 +1162,156 @@ namespace Test_Loopguy
             this.countDownBox.AutoSize = true;
             this.countDownBox.Checked = true;
             this.countDownBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.countDownBox.Location = new System.Drawing.Point(536, 316);
+            this.countDownBox.Location = new System.Drawing.Point(613, 421);
+            this.countDownBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.countDownBox.Name = "countDownBox";
-            this.countDownBox.Size = new System.Drawing.Size(95, 19);
+            this.countDownBox.Size = new System.Drawing.Size(117, 24);
             this.countDownBox.TabIndex = 39;
             this.countDownBox.Text = "Pause Timer?";
             this.countDownBox.UseVisualStyleBackColor = true;
             this.countDownBox.CheckedChanged += new System.EventHandler(this.countDownBox_CheckedChanged);
             // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.pictureBox15);
+            this.panel1.Controls.Add(this.kitchenCounterSelect);
+            this.panel1.Controls.Add(this.canteenTableSelect);
+            this.panel1.Controls.Add(this.canteenFoodThingSelect);
+            this.panel1.Controls.Add(this.sofaRightSelect);
+            this.panel1.Controls.Add(this.sofaLeftSelect);
+            this.panel1.Controls.Add(this.canteenChairRightSelect);
+            this.panel1.Controls.Add(this.canteenChairLeftSelect);
+            this.panel1.Controls.Add(this.shrubBigSelect);
+            this.panel1.Controls.Add(this.barrelSelect);
+            this.panel1.Controls.Add(this.potSelect);
+            this.panel1.Controls.Add(this.shrubSmallSelect);
+            this.panel1.Controls.Add(this.whiteBoardSelect);
+            this.panel1.Controls.Add(this.treeSmallSelect);
+            this.panel1.Controls.Add(this.boxSelect);
+            this.panel1.Controls.Add(this.shelfWeirdSelect);
+            this.panel1.Controls.Add(this.boxOpenSelect);
+            this.panel1.Controls.Add(this.treeBigSelect);
+            this.panel1.Controls.Add(this.lockerSelect);
+            this.panel1.Controls.Add(this.doorSelect);
+            this.panel1.Controls.Add(this.keycardRedSelect);
+            this.panel1.Controls.Add(this.morgueSelect);
+            this.panel1.Controls.Add(this.doorSlidingSelect);
+            this.panel1.Controls.Add(this.barrelDestructibleSelect);
+            this.panel1.Controls.Add(this.cameraSelect);
+            this.panel1.Controls.Add(this.chairOfficeFwSelect);
+            this.panel1.Controls.Add(this.healSmallSelect);
+            this.panel1.Controls.Add(this.sofaSelect);
+            this.panel1.Controls.Add(this.ammoSmallSelect);
+            this.panel1.Controls.Add(this.sinkSelect);
+            this.panel1.Controls.Add(this.BillBoardSelect);
+            this.panel1.Controls.Add(this.shootingRangeBenchSelect);
+            this.panel1.Controls.Add(this.bigSinkSelect);
+            this.panel1.Controls.Add(this.cabinetSelect);
+            this.panel1.Controls.Add(this.niceBookshelfSelect);
+            this.panel1.Controls.Add(this.cardboardBoxSmallStackSelect);
+            this.panel1.Controls.Add(this.pottedPlantSelect);
+            this.panel1.Controls.Add(this.carryingThingSelect);
+            this.panel1.Controls.Add(this.counterSelect);
+            this.panel1.Controls.Add(this.chairOfficeBwSelect);
+            this.panel1.Controls.Add(this.operationEquipmentSelect);
+            this.panel1.Controls.Add(this.deskForwardSelect);
+            this.panel1.Controls.Add(this.deskOfficeSelect);
+            this.panel1.Controls.Add(this.crateStackSelect);
+            this.panel1.Controls.Add(this.monitorWallSelect);
+            this.panel1.Controls.Add(this.deskBackwardSelect);
+            this.panel1.Controls.Add(this.serverSelect);
+            this.panel1.Controls.Add(this.shelfArchivingSelect);
+            this.panel1.Location = new System.Drawing.Point(305, 17);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(281, 1035);
+            this.panel1.TabIndex = 40;
+            // 
+            // pictureBox15
+            // 
+            this.pictureBox15.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox15.Image")));
+            this.pictureBox15.Location = new System.Drawing.Point(212, 767);
+            this.pictureBox15.Name = "pictureBox15";
+            this.pictureBox15.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox15.TabIndex = 47;
+            this.pictureBox15.TabStop = false;
+            // 
+            // kitchenCounterSelect
+            // 
+            this.kitchenCounterSelect.Image = ((System.Drawing.Image)(resources.GetObject("kitchenCounterSelect.Image")));
+            this.kitchenCounterSelect.Location = new System.Drawing.Point(142, 767);
+            this.kitchenCounterSelect.Name = "kitchenCounterSelect";
+            this.kitchenCounterSelect.Size = new System.Drawing.Size(64, 64);
+            this.kitchenCounterSelect.TabIndex = 46;
+            this.kitchenCounterSelect.TabStop = false;
+            this.kitchenCounterSelect.Click += new System.EventHandler(this.kitchenCounterSelect_Click);
+            // 
+            // canteenTableSelect
+            // 
+            this.canteenTableSelect.Image = ((System.Drawing.Image)(resources.GetObject("canteenTableSelect.Image")));
+            this.canteenTableSelect.Location = new System.Drawing.Point(71, 767);
+            this.canteenTableSelect.Name = "canteenTableSelect";
+            this.canteenTableSelect.Size = new System.Drawing.Size(64, 64);
+            this.canteenTableSelect.TabIndex = 45;
+            this.canteenTableSelect.TabStop = false;
+            this.canteenTableSelect.Click += new System.EventHandler(this.canteenTableSelect_Click);
+            // 
+            // canteenFoodThingSelect
+            // 
+            this.canteenFoodThingSelect.Image = ((System.Drawing.Image)(resources.GetObject("canteenFoodThingSelect.Image")));
+            this.canteenFoodThingSelect.Location = new System.Drawing.Point(2, 767);
+            this.canteenFoodThingSelect.Name = "canteenFoodThingSelect";
+            this.canteenFoodThingSelect.Size = new System.Drawing.Size(64, 64);
+            this.canteenFoodThingSelect.TabIndex = 44;
+            this.canteenFoodThingSelect.TabStop = false;
+            this.canteenFoodThingSelect.Click += new System.EventHandler(this.canteenFoodThingSelect_Click);
+            // 
+            // sofaRightSelect
+            // 
+            this.sofaRightSelect.Image = ((System.Drawing.Image)(resources.GetObject("sofaRightSelect.Image")));
+            this.sofaRightSelect.Location = new System.Drawing.Point(212, 697);
+            this.sofaRightSelect.Name = "sofaRightSelect";
+            this.sofaRightSelect.Size = new System.Drawing.Size(64, 64);
+            this.sofaRightSelect.TabIndex = 43;
+            this.sofaRightSelect.TabStop = false;
+            this.sofaRightSelect.Click += new System.EventHandler(this.sofaRightSelect_Click);
+            // 
+            // sofaLeftSelect
+            // 
+            this.sofaLeftSelect.Image = ((System.Drawing.Image)(resources.GetObject("sofaLeftSelect.Image")));
+            this.sofaLeftSelect.Location = new System.Drawing.Point(142, 697);
+            this.sofaLeftSelect.Name = "sofaLeftSelect";
+            this.sofaLeftSelect.Size = new System.Drawing.Size(64, 64);
+            this.sofaLeftSelect.TabIndex = 42;
+            this.sofaLeftSelect.TabStop = false;
+            this.sofaLeftSelect.Click += new System.EventHandler(this.sofaLeftSelect_Click);
+            // 
+            // canteenChairRightSelect
+            // 
+            this.canteenChairRightSelect.Image = ((System.Drawing.Image)(resources.GetObject("canteenChairRightSelect.Image")));
+            this.canteenChairRightSelect.Location = new System.Drawing.Point(71, 697);
+            this.canteenChairRightSelect.Name = "canteenChairRightSelect";
+            this.canteenChairRightSelect.Size = new System.Drawing.Size(64, 64);
+            this.canteenChairRightSelect.TabIndex = 41;
+            this.canteenChairRightSelect.TabStop = false;
+            this.canteenChairRightSelect.Click += new System.EventHandler(this.canteenChairRightSelect_Click);
+            // 
+            // canteenChairLeftSelect
+            // 
+            this.canteenChairLeftSelect.Image = ((System.Drawing.Image)(resources.GetObject("canteenChairLeftSelect.Image")));
+            this.canteenChairLeftSelect.Location = new System.Drawing.Point(2, 697);
+            this.canteenChairLeftSelect.Name = "canteenChairLeftSelect";
+            this.canteenChairLeftSelect.Size = new System.Drawing.Size(64, 64);
+            this.canteenChairLeftSelect.TabIndex = 40;
+            this.canteenChairLeftSelect.TabStop = false;
+            this.canteenChairLeftSelect.Click += new System.EventHandler(this.canteenChairLeftSelect_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(810, 633);
+            this.ClientSize = new System.Drawing.Size(926, 1055);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.countDownBox);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label6);
@@ -1363,8 +1331,6 @@ namespace Test_Loopguy
             this.Controls.Add(this.mapHeight);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.mapWidth);
-            this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.groupBox2.ResumeLayout(false);
@@ -1384,11 +1350,6 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.grayBrickSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dirtSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grassSelect)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox31)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox32)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox33)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.whiteBoardSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.shelfWeirdSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lockerSelect)).EndInit();
@@ -1450,6 +1411,15 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.bigRobotSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rangedTestSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.meleeTestSelect)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kitchenCounterSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.canteenTableSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.canteenFoodThingSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sofaRightSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sofaLeftSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.canteenChairRightSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.canteenChairLeftSelect)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1474,7 +1444,6 @@ namespace Test_Loopguy
         private System.Windows.Forms.TextBox mapHeight;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox mapWidth;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox chairOfficeFwSelect;
         private System.Windows.Forms.PictureBox chairOfficeBwSelect;
         private System.Windows.Forms.PictureBox counterSelect;
@@ -1545,10 +1514,6 @@ namespace Test_Loopguy
         private System.Windows.Forms.PictureBox pottedPlantSelect;
         private System.Windows.Forms.PictureBox deskForwardSelect;
         private System.Windows.Forms.PictureBox deskBackwardSelect;
-        private System.Windows.Forms.PictureBox pictureBox30;
-        private System.Windows.Forms.PictureBox pictureBox31;
-        private System.Windows.Forms.PictureBox pictureBox32;
-        private System.Windows.Forms.PictureBox pictureBox33;
         private System.Windows.Forms.PictureBox whiteBoardSelect;
         private System.Windows.Forms.PictureBox shelfWeirdSelect;
         private System.Windows.Forms.PictureBox lockerSelect;
@@ -1557,5 +1522,14 @@ namespace Test_Loopguy
         private System.Windows.Forms.PictureBox sofaSelect;
         private System.Windows.Forms.PictureBox sinkSelect;
         private System.Windows.Forms.PictureBox shootingRangeBenchSelect;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox15;
+        private System.Windows.Forms.PictureBox kitchenCounterSelect;
+        private System.Windows.Forms.PictureBox canteenTableSelect;
+        private System.Windows.Forms.PictureBox canteenFoodThingSelect;
+        private System.Windows.Forms.PictureBox sofaRightSelect;
+        private System.Windows.Forms.PictureBox sofaLeftSelect;
+        private System.Windows.Forms.PictureBox canteenChairRightSelect;
+        private System.Windows.Forms.PictureBox canteenChairLeftSelect;
     }
 }

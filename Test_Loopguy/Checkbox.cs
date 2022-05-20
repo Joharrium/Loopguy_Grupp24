@@ -61,11 +61,18 @@ namespace Test_Loopguy
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            Rectangle drawRectangle = Rectangle;
+            drawRectangle.Location += new Point(36, 3);
+            drawRectangle.Width -= 32;
             if (isHovering)
             {
-                spriteBatch.Draw(TextureManager.UI_selectedMenuBox, Rectangle, Color.White);
-                
+                spriteBatch.Draw(TextureManager.UI_selectedMenuBox, drawRectangle, Color.White);
+                spriteBatch.DrawString(TextureManager.UI_menuFont, text, position + new Vector2(40, 0), Color.Black);
 
+            }
+            else
+            {
+                spriteBatch.DrawString(TextureManager.UI_menuFont, text, position + new Vector2(40, 0), Color.White);
             }
 
             if(state)
@@ -78,7 +85,7 @@ namespace Test_Loopguy
             }
             
             
-            spriteBatch.DrawString(TextureManager.UI_menuFont, text, position + new Vector2(40, 0), Color.White);
+           // spriteBatch.DrawString(TextureManager.UI_menuFont, text, position + new Vector2(40, 0), Color.White);
 
 
 

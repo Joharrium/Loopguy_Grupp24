@@ -16,11 +16,12 @@ namespace Test_Loopguy
             billboard, cabinet, cardboard_box_stack_small, counter, desk_monitors, machine_heartbeat_thing, reception_desk, shelf_archiving,
             shelf_archiving_small, table_computer_medicine, table_operation, monitor_wall, desk_office, chair_office_fw, chair_office_bw, server,
             big_sink, sink, carrying_thing, crate_stack, nice_bookshelf, shooting_range_bench, shooting_range_target, sofa, camera, desk_bw, desk_fw, 
-            morgue, potted_plant, shelf_weird, locker, whiteboard;
+            morgue, potted_plant, shelf_weird, locker, whiteboard, canteen_chair_left, canteen_chair_right, sofa_left, sofa_right, canteen_table, canteen_food_thing,
+            kitchen_counter;
         // ui files
         public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door,
             healthbar_small_outline, healthbar_small_fill_bg, healthbar_small_fill,
-            player_healthbar_outline, player_healthbar_inline, player_healthbar_fill, player_healthbar_fill_bg, player_healthbar_fill_bg_alt,
+            player_healthbar_outline, player_healthbar_outline_alt, player_healthbar_inline, player_healthbar_fill, player_healthbar_fill_bg, player_healthbar_fill_bg_alt,
             ammobar_fill, ammobar_outline, ammobar_fill_bg, menu_bg, slider_container, slider_fill, logo,
             checkbox_true, checkbox_false, control_atlas
             
@@ -128,6 +129,16 @@ namespace Test_Loopguy
             }
 
             {
+                canteen_chair_left = c.Load<Texture2D>("gfx/objects/assetpack/canteen_chair_left");
+                canteen_chair_right = c.Load<Texture2D>("gfx/objects/assetpack/canteen_chair_right");
+                sofa_left = c.Load<Texture2D>("gfx/objects/assetpack/sofa_left");
+                sofa_right = c.Load<Texture2D>("gfx/objects/assetpack/sofa_right");
+                canteen_table = c.Load<Texture2D>("gfx/objects/assetpack/canteen_table");
+                canteen_food_thing = c.Load<Texture2D>("gfx/objects/assetpack/canteen_food_thing");
+                kitchen_counter = c.Load<Texture2D>("gfx/objects/assetpack/kitchen_counter");
+            }
+
+            {
                 big_sink = c.Load<Texture2D>("gfx/objects/assetpack/big_sink");
                 sink = c.Load<Texture2D>("gfx/objects/assetpack/sink");
                 carrying_thing = c.Load<Texture2D>("gfx/objects/assetpack/carrying_thing");
@@ -164,6 +175,7 @@ namespace Test_Loopguy
             healthbar_small_outline = c.Load<Texture2D>("gfx/interface/healthbar_small_outline");
 
             player_healthbar_outline = c.Load<Texture2D>("gfx/interface/player_healthbar_outline");
+            player_healthbar_outline_alt = c.Load<Texture2D>("gfx/interface/player_healthbar_outline_alt");
             player_healthbar_inline = c.Load<Texture2D>("gfx/interface/player_healthbar_inline");
             player_healthbar_fill = c.Load<Texture2D>("gfx/interface/player_healthbar_fill");
             player_healthbar_fill_bg = c.Load<Texture2D>("gfx/interface/player_healthbar_fill_bg");

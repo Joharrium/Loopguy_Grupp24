@@ -31,6 +31,8 @@ namespace Test_Loopguy
         Texture2D blueArc, redPixel;
         public static bool isFullscreen;
 
+        public bool debugMode = true;
+
         RenderTarget2D renderTarget;
 
         public static Vector2 mousePos;
@@ -141,6 +143,10 @@ namespace Test_Loopguy
                 }
                 
             }
+            else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.F2))
+            {
+                debugMode = !debugMode;
+            }
             
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -208,11 +214,16 @@ namespace Test_Loopguy
             
             spriteBatch.Draw(renderTarget, screenRect, Color.White);
             Fadeout.Draw(spriteBatch);
-            spriteBatch.DrawString(smallFont, infoString + "\n" + EntityManager.player.playerInfoString, Vector2.Zero, Color.White);
-            spriteBatch.DrawString(smallFont, "current level = " + LevelManager.GetCurrentId().ToString(), new Vector2(0, 64), Color.White);
-            spriteBatch.DrawString(smallFont, "x clamp = " + camera.xClamped.ToString(), new Vector2(0, 80), Color.White);
-            spriteBatch.DrawString(smallFont, "y clamp = " + camera.yClamped.ToString(), new Vector2(0, 96 ), Color.White);
-            spriteBatch.DrawString(smallFont, (1 / gameTime.ElapsedGameTime.TotalSeconds).ToString(), new Vector2(300, 0), Color.White);
+
+            if(debugMode)
+            {
+                spriteBatch.DrawString(smallFont, infoString + "\n" + EntityManager.player.playerInfoString, Vector2.Zero, Color.White);
+                spriteBatch.DrawString(smallFont, "current level = " + LevelManager.GetCurrentId().ToString(), new Vector2(0, 64), Color.White);
+                spriteBatch.DrawString(smallFont, "x clamp = " + camera.xClamped.ToString(), new Vector2(0, 80), Color.White);
+                spriteBatch.DrawString(smallFont, "y clamp = " + camera.yClamped.ToString(), new Vector2(0, 96), Color.White);
+                spriteBatch.DrawString(smallFont, (1 / gameTime.ElapsedGameTime.TotalSeconds).ToString(), new Vector2(300, 0), Color.White);
+            }
+            
 
             spriteBatch.End();
 

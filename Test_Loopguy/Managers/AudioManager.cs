@@ -155,7 +155,7 @@ namespace Test_Loopguy
             door_hiss_sound = c.Load<SoundEffect>("audio/sound/door_hiss_sound");
             keypickup = c.Load<SoundEffect>("audio/sound/keypickup");
             healing = c.Load<SoundEffect>("audio/sound/healing");
-            player_hit = c.Load<SoundEffect>("audio/sound/player_hit");
+            player_hit = c.Load<SoundEffect>("audio/sound/bonk");
             reload = c.Load<SoundEffect>("audio/sound/reload");
             splash = c.Load<SoundEffect>("audio/sound/splash");
             ping = c.Load<SoundEffect>("audio/sound/ping");

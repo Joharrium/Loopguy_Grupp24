@@ -346,5 +346,40 @@ namespace Test_Loopguy
         {
             LevelEditor.SelectTile(TileSelection.Warning);
         }
+
+        private void kitchenCounterSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.KitchenCounter);
+        }
+
+        private void canteenTableSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.CanteenTable);
+        }
+
+        private void canteenFoodThingSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.CanteenFoodThing);
+        }
+
+        private void sofaRightSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.SofaRight);
+        }
+
+        private void sofaLeftSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.SofaLeft);
+        }
+
+        private void canteenChairRightSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.CanteenChairRight);
+        }
+
+        private void canteenChairLeftSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.CanteenChairLeft);
+        }
     }
 }
