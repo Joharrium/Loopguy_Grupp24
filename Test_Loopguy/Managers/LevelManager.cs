@@ -586,6 +586,7 @@ namespace Test_Loopguy
                 "SofaLeft" => new SofaLeft(pos),
                 "SofaRight" => new SofaRight(pos),
                 "KitchenCounter" => new KitchenCounter(pos),
+                "Bench" => new Bench(pos),
                 _ => null,
             };
         }

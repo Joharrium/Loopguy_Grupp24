@@ -631,4 +631,18 @@ namespace Test_Loopguy
         }
     }
 
+    public class Bench : LevelObject
+    {
+        public Bench(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.bench;
+            variation = Game1.rnd.Next(1);
+            sourceRectangle = new Rectangle(46 * variation, 0, 46, 15);
+            footprint = new Rectangle((int)position.X + 0, (int)position.Y + 4, 46, 1);
+            height = 5;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
 }

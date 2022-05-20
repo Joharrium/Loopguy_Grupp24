@@ -126,7 +126,7 @@ namespace Test_Loopguy
             this.meleeTestSelect = new System.Windows.Forms.PictureBox();
             this.countDownBox = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox15 = new System.Windows.Forms.PictureBox();
+            this.benchSelect = new System.Windows.Forms.PictureBox();
             this.kitchenCounterSelect = new System.Windows.Forms.PictureBox();
             this.canteenTableSelect = new System.Windows.Forms.PictureBox();
             this.canteenFoodThingSelect = new System.Windows.Forms.PictureBox();
@@ -213,7 +213,7 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.rangedTestSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.meleeTestSelect)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.benchSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kitchenCounterSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.canteenTableSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.canteenFoodThingSelect)).BeginInit();
@@ -1174,7 +1174,7 @@ namespace Test_Loopguy
             // panel1
             // 
             this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.pictureBox15);
+            this.panel1.Controls.Add(this.benchSelect);
             this.panel1.Controls.Add(this.kitchenCounterSelect);
             this.panel1.Controls.Add(this.canteenTableSelect);
             this.panel1.Controls.Add(this.canteenFoodThingSelect);
@@ -1227,14 +1227,15 @@ namespace Test_Loopguy
             this.panel1.Size = new System.Drawing.Size(281, 1035);
             this.panel1.TabIndex = 40;
             // 
-            // pictureBox15
+            // benchSelect
             // 
-            this.pictureBox15.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox15.Image")));
-            this.pictureBox15.Location = new System.Drawing.Point(212, 767);
-            this.pictureBox15.Name = "pictureBox15";
-            this.pictureBox15.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox15.TabIndex = 47;
-            this.pictureBox15.TabStop = false;
+            this.benchSelect.Image = ((System.Drawing.Image)(resources.GetObject("benchSelect.Image")));
+            this.benchSelect.Location = new System.Drawing.Point(212, 767);
+            this.benchSelect.Name = "benchSelect";
+            this.benchSelect.Size = new System.Drawing.Size(64, 64);
+            this.benchSelect.TabIndex = 47;
+            this.benchSelect.TabStop = false;
+            this.benchSelect.Click += new System.EventHandler(this.benchSelect_Click);
             // 
             // kitchenCounterSelect
             // 
@@ -1412,7 +1413,7 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.rangedTestSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.meleeTestSelect)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.benchSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kitchenCounterSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.canteenTableSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.canteenFoodThingSelect)).EndInit();
@@ -1523,7 +1524,7 @@ namespace Test_Loopguy
         private System.Windows.Forms.PictureBox sinkSelect;
         private System.Windows.Forms.PictureBox shootingRangeBenchSelect;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox15;
+        private System.Windows.Forms.PictureBox benchSelect;
         private System.Windows.Forms.PictureBox kitchenCounterSelect;
         private System.Windows.Forms.PictureBox canteenTableSelect;
         private System.Windows.Forms.PictureBox canteenFoodThingSelect;

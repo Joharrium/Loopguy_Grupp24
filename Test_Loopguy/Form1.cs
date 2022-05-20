@@ -381,5 +381,10 @@ namespace Test_Loopguy
         {
             LevelEditor.SelectObject(ObjectSelection.CanteenChairLeft);
         }
+
+        private void benchSelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.Bench);
+        }
     }
 }

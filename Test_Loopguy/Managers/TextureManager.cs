@@ -17,7 +17,7 @@ namespace Test_Loopguy
             shelf_archiving_small, table_computer_medicine, table_operation, monitor_wall, desk_office, chair_office_fw, chair_office_bw, server,
             big_sink, sink, carrying_thing, crate_stack, nice_bookshelf, shooting_range_bench, shooting_range_target, sofa, camera, desk_bw, desk_fw, 
             morgue, potted_plant, shelf_weird, locker, whiteboard, canteen_chair_left, canteen_chair_right, sofa_left, sofa_right, canteen_table, canteen_food_thing,
-            kitchen_counter;
+            kitchen_counter, bench;
         // ui files
         public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door,
             healthbar_small_outline, healthbar_small_fill_bg, healthbar_small_fill,
@@ -129,6 +129,7 @@ namespace Test_Loopguy
             }
 
             {
+                bench = c.Load<Texture2D>("gfx/objects/assetpack/bench");
                 canteen_chair_left = c.Load<Texture2D>("gfx/objects/assetpack/canteen_chair_left");
                 canteen_chair_right = c.Load<Texture2D>("gfx/objects/assetpack/canteen_chair_right");
                 sofa_left = c.Load<Texture2D>("gfx/objects/assetpack/sofa_left");
