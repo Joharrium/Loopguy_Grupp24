@@ -635,7 +635,7 @@ namespace Test_Loopguy
             yOffset = texture.Height;
             this.maxHealth = 1;
             this.maxSpeed = 95;
-            aggroRange = 175;
+            aggroRange = 110;
             damage = 1;
             knockBackDistance = 160;
             knockBackDuration = 160;
