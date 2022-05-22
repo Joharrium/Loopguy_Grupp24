@@ -374,7 +374,7 @@ namespace Test_Loopguy
                 }
                 foreach (Player g in objects.OfType<Player>())
                 {
-                    g.drawDepth = g.footprint.Bottom;
+                    g.drawDepth = g.footprint.Bottom; 
                 }
                 foreach (Wall g in objects.OfType<Wall>())
                 {
