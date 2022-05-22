@@ -61,6 +61,10 @@ namespace Test_Loopguy
                 TryLoad(queuedLevel);
                 player.EnterRoom(target);
                 loadStarted = false;
+                if(queuedLevel == 11)
+                {
+                    countTime = true;
+                }
             }
         }
 
@@ -106,16 +110,19 @@ namespace Test_Loopguy
         public static void DrawTimer(SpriteBatch spriteBatch)
         {
 
-            string add = "";
-            if(Math.Truncate(timeLeft%60) < 10)
+            if(!(timeLeft == 600))
             {
-                add = "0";
+                string add = "";
+                if (Math.Truncate(timeLeft % 60) < 10)
+                {
+                    add = "0";
+                }
+                string calculateTimer = (((timeLeft - timeLeft % 60) / 60) + ":" + add + Math.Truncate(timeLeft % 60)).ToString();
+                Vector2 pos = new Vector2(Game1.windowX - 48, 4);
+
+                OutlinedText.DrawOutlinedText(spriteBatch, pos, TextureManager.UI_menuFont, calculateTimer);
+                //spriteBatch.DrawString(TextureManager.UI_menuFont, calculateTimer, pos, Color.White);
             }
-            string calculateTimer = (((timeLeft - timeLeft%60) / 60) + ":" + add + Math.Truncate(timeLeft%60)).ToString();
-            Vector2 pos = new Vector2(Game1.windowX - 48, 4);
-
-            spriteBatch.DrawString(TextureManager.UI_menuFont, calculateTimer, pos, Color.White);
-
         }
         public static void Draw(SpriteBatch spriteBatch)
         {
