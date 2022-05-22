@@ -83,9 +83,15 @@ namespace Test_Loopguy
 
                     spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
                     //DRAW HUD HERE
+                    bool funkster = false;
                     foreach(HintArea h in LevelManager.CurrentLevel.Hints)
                     {
-                        h.Draw(spriteBatch);
+                        
+                        h.Draw(spriteBatch,funkster);
+                        if (h.active)
+                        {
+                            funkster = true;
+                        }
                     }
                     Player.ammoBar.Draw(spriteBatch);
                     Player.healthBar.Draw(spriteBatch);

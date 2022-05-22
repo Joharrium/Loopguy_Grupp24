@@ -1,0 +1,5 @@
+16,128,80,80,to use a stored healthpack,2
+16,64,144,80,tap for a short dash,1
+208,64,96,80,hold for long aimed dash,1
+323,64,80,80,to aim,6
+323,64,80,80,to fire,7

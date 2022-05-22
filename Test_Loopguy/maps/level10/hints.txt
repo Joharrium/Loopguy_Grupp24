@@ -1,0 +1,2 @@
+160,160,96,80,You have ten minutes until the loop resets.,10
+160,160,96,80,Good Luck!,10

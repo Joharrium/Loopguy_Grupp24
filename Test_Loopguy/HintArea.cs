@@ -80,12 +80,23 @@ namespace Test_Loopguy
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, bool multipleDraw)
         {
+            
             if(active || color.A > 0)
             {
                 int offset = (int)TextureManager.smallestFont.MeasureString(text).X;
-                Vector2 drawPoint = new Vector2((Game1.windowX / 2) - (offset / 2), Game1.windowY * 0.8F);
+                Vector2 drawPoint = new Vector2((Game1.windowX / 2) - (offset / 2), Game1.windowY * 0.7F);
+                if (multipleDraw)
+                {
+                    drawPoint = new Vector2((Game1.windowX / 2) - (offset / 2), Game1.windowY * 0.8F);
+                }
+                if(icon == InputIcon.None)
+                {
+                    drawPoint.X -= 22;
+                }
+                
+                
                 spriteBatch.Draw(texture, drawPoint - new Vector2(20, 2), new Rectangle(0, (int)icon * 32, 32, 32), color);
 
                 OutlinedText.DrawOutlinedText(spriteBatch, drawPoint + new Vector2(22, 0), TextureManager.smallestFont, text, bgColor, color);

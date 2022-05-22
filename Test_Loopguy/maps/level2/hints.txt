@@ -1,6 +1,2 @@
-224,144,116,80,to melee attack,0
+224,180,140,80,to melee attack,0
 224,64,96,96,in succession to combo,0
-570,32,128,160,hold for long dash,1
-700,32,42,160,to aim,6
-742,32,42,160,to fire,7
-800,24,128,128,pick up key to unlock doors,10

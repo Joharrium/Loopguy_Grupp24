@@ -1,0 +1,2 @@
+64,128,96,104,hit projectiles to deflect,0
+294,176,80,128,pick up keys to unlock doors permanently,10
