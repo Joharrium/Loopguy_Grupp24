@@ -579,6 +579,7 @@ namespace Test_Loopguy
                 "CameraObject" => new CameraObject(pos),
                 "ShootingRangeBench" => new CameraObject(pos),
                 "Locker" => new Locker(pos),
+                "WhiteBoard" => new WhiteBoard(pos),
                 "CanteenChairLeft" => new CanteenChairLeft(pos),
                 "CanteenChairRight" => new CanteenChairRight(pos),
                 "CanteenFoodThing" => new CanteenFoodThing(pos),

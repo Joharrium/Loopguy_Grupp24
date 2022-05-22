@@ -1,4 +1,3 @@
-MonitorWall,194,6
 Server,176,13
 Server,256,13
 Server,272,13
@@ -19,17 +18,12 @@ ChairOfficeBw,65,38
 OperationEquipment,162,41
 OperationEquipment,258,41
 ChairOfficeFw,385,101
-DeskOffice,96,94
 DeskOffice,303,94
-ShelfArchiving,63,90
 ShelfArchiving,351,90
-Server,143,92
 Server,288,92
 ShelfArchiving,415,90
-Counter,32,99
 CardboardBoxStackSmall,399,111
 ChairOfficeBw,320,114
-ChairOfficeBw,113,114
 ShelfArchiving,415,112
 PottedPlant,289,142
 ShelfArchiving,415,139
@@ -51,3 +45,5 @@ Server,416,205
 Server,400,205
 Server,384,205
 Server,368,205
+DoorSliding,208,16,1
+DoorSliding,208,240,1

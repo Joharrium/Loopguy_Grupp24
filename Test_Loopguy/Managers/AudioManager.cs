@@ -204,6 +204,7 @@ namespace Test_Loopguy
         {
             combatMusicCurrent.Clear();
             idleMusicCurrent.Clear();
+
             foreach(Song s in songs)
             {
                 foreach(string n in names)

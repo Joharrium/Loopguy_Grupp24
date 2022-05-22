@@ -63,7 +63,7 @@ TreeBig,-10,27
 TreeBig,29,27
 ShrubBig,471,62
 TreeSmall,554,48
-SmallAmmoPickup,100,76
+SmallAmmoPickup,100,73
 TreeSmall,133,52
 ShrubSmall,568,68
 ShrubBig,57,69
@@ -77,11 +77,11 @@ TreeBig,743,67
 TreeBig,701,67
 TreeBig,-14,72
 TreeSmall,357,89
-SmallHealthPickup,98,114
+SmallHealthPickup,98,111
 TreeBig,28,77
 TreeBig,723,86
 TreeBig,10,95
-SmallAmmoPickup,98,141
+SmallAmmoPickup,98,138
 TreeBig,742,103
 TreeBig,703,103
 ShrubBig,716,148
