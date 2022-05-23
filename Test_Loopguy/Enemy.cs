@@ -343,6 +343,7 @@ namespace Test_Loopguy
     {       
         bool isAttacking = false;
         bool isMoving;
+        bool dying;
 
         int frameTime = 100;
 
@@ -530,9 +531,14 @@ namespace Test_Loopguy
             sprite.Update(gameTime);
             sprite.Position = position;
             
-            if (health <= 0)
+            if (dying)
             {
                 isNotDying = sprite.PlayOnce(8, 28, 50);
+            }
+            else if (health <= 0)
+            {
+                dying = true;
+                sprite.ResetAnimation();
             }
             else
             {

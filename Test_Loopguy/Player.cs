@@ -139,7 +139,7 @@ namespace Test_Loopguy
             canDash = false; //if its true you will always dash when loading in from menu lol
 
             equippedGun = Gun.Pistol;
-            hasRailgun = false;
+            hasRailgun = true;
         }
         
 
