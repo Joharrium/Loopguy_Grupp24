@@ -619,12 +619,12 @@ namespace Test_Loopguy
         }
     }
 
-    class TestEnemy : Enemy
+    class MeleeEnemyWeak : Enemy
     {
         int frameTime = 100;
         bool isAttacking, isMoving = false;
 
-        public TestEnemy(Vector2 position) : base(position)
+        public MeleeEnemyWeak(Vector2 position) : base(position)
         {
             this.position = position;
             footprintOffset = new Point(0, 24);
@@ -718,4 +718,5 @@ namespace Test_Loopguy
             healthBar.Draw(spriteBatch);
         }
     }   
+
 }
