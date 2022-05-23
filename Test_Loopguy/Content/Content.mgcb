@@ -368,6 +368,18 @@
 /processorParam:TextureFormat=Color
 /build:dashcloud.png
 
+#begin evilloopy.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:evilloopy.png
+
 #begin File.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -825,6 +837,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/interface/menu_bg.png
+
+#begin gfx/interface/menu_bg2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/interface/menu_bg2.png
 
 #begin gfx/interface/menu_items/checkbox_false.png
 /importer:TextureImporter
@@ -2608,6 +2632,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:railgunImpact.png
+
+#begin railgunPickup.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:railgunPickup.png
 
 #begin rangedRobotEnemySpriteSheet.png
 /importer:TextureImporter

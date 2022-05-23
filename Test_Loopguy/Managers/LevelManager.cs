@@ -32,15 +32,8 @@ namespace Test_Loopguy
 
         internal static void Init()
         {
-            if(ProfileManager.HasPlayedTutorial())
-            {
-                LoadLevel(10);
-                EntityManager.player.EnterRoom(new Vector2(208, 24));
-            }
-            else
-            {
-                LoadLevel(6);
-            }
+            LoadLevel(10);
+            EntityManager.player.EnterRoom(new Vector2(208, 24));
                
             EntranceLoad();
         }
@@ -140,11 +133,7 @@ namespace Test_Loopguy
         public static void Reset()
         {
             List<Level> levelsToClear = new List<Level>();
-            Level level1 = LoadLevel(6);
-            if (ProfileManager.HasPlayedTutorial())
-            {
-                level1 = LoadLevel(10);
-            }
+            Level level1 = LoadLevel(10);
             
             currentLevel = level1;
             EntityManager.player.Reset( new Vector2(64, 64));
@@ -229,6 +218,18 @@ namespace Test_Loopguy
             else
             {
                 return true; //currentLevel.LevelObjectCollision(position, height);
+            }
+        }
+
+        public static bool RailgunCollision(Line line)
+        {
+            if (!currentLevel.RailgunCollision(line))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
 
@@ -540,9 +541,9 @@ namespace Test_Loopguy
             return name switch
             {
                 "TestEnemyRanged" => new TestEnemyRanged(pos),
-                "TestEnemy" => new TestEnemy(pos),
+                "MeleeEnemyWeak" => new MeleeEnemyWeak(pos),
                 "RangedRobotEnemy" => new RangedRobotEnemy(pos),
-                _ => new TestEnemy(pos),
+                _ => new MeleeEnemyWeak(pos),
             };
         }
         public static LevelObject ObjectCreator(string name, Vector2 pos)

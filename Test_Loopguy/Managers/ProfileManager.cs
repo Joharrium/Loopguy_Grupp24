@@ -15,6 +15,11 @@ namespace Test_Loopguy
             get { return currentProfile.colorBlind; }
             set { currentProfile.colorBlind = value; }
         }
+
+        public static bool HasRailgun
+        {
+            get { return currentProfile.hasRailgun; }
+        }
         
 
         public static void Init()
@@ -31,9 +36,9 @@ namespace Test_Loopguy
             currentProfile.AddKey(key);
         }
 
-        public static void TutorialFinished()
+        public static void GiveRailgun()
         {
-            currentProfile.TutorialFinished();
+            currentProfile.RailgunPickedUp();
         }
 
         public static List<int> GetKeys()
@@ -53,10 +58,6 @@ namespace Test_Loopguy
             currentProfile.SaveToFile();
         }
 
-        public static bool HasPlayedTutorial()
-        {
-            return currentProfile.PlayedTutorial;
-        }
 
         public static void SaveSettings(int music, int sound, int scale, bool fullscreen)
         {

@@ -6,7 +6,7 @@ namespace Test_Loopguy
     static class TextureManager
     {
         public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, pistolSheet, railgunSheet, testTile, testAlt, box;
-        public static Texture2D meleeFx, shot, robotEnemyShot, blueDot, cursor, dashCloud, railgunBeam, railgunImpactSheet;
+        public static Texture2D meleeFx, shot, robotEnemyShot, blueDot, cursor, dashCloud, railgunBeam, railgunImpactSheet, railgun, androidEnemySheet;
         // terrain files
         public static Texture2D grassBasic, grassAlt, grayBrickWall, dirt, tiles_checkered_gray, tiles_checkered_brown, tiles_big_light, tiles_big_dark,
             carpet_worn, tile_carpet, tile_warning, wall_metal, wall_worn, tile_metal_bright, grass_edge, tile_clinical, water, wall_beige, wall_gray, wall_brick_beige;
@@ -60,6 +60,8 @@ namespace Test_Loopguy
             dashCloud = c.Load<Texture2D>("dashCloud");
             railgunBeam = c.Load<Texture2D>("railgunBeam");
             railgunImpactSheet = c.Load<Texture2D>("railgunImpact");
+            railgun = c.Load<Texture2D>("railgunPickup");
+            androidEnemySheet = c.Load<Texture2D>("evilloopy");
         }
 
         private static void LoadTerrain(ContentManager c)
@@ -213,7 +215,7 @@ namespace Test_Loopguy
             ammobar_fill = c.Load<Texture2D>("gfx/interface/ammobar_fill");
             ammobar_outline = c.Load<Texture2D>("gfx/interface/ammobar_outline");
             ammobar_fill_bg = c.Load<Texture2D>("gfx/interface/ammobar_fill_bg");
-            menu_bg = c.Load<Texture2D>("gfx/interface/menu_bg");
+            menu_bg = c.Load<Texture2D>("gfx/interface/menu_bg2");
             control_atlas = c.Load<Texture2D>("gfx/interface/control_atlas");
 
             slider_container = c.Load<Texture2D>("gfx/interface/menu_items/slider_container");

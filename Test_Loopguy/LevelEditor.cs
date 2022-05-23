@@ -293,14 +293,13 @@ namespace Test_Loopguy
                             default:
                                 break;
                         }
-
                         break;
 
                     case Selection.Enemy:
                         switch (selectedEnemy)
                         {
                             case EnemySelection.MeleeTest:
-                                LevelManager.EnemyAdd(new TestEnemy(Game1.mousePos - new Vector2(8, 8)));
+                                LevelManager.EnemyAdd(new MeleeEnemyWeak(Game1.mousePos - new Vector2(8, 8)));
                                 break;
                             case EnemySelection.RangedTest:
                                 LevelManager.EnemyAdd(new TestEnemyRanged(Game1.mousePos - new Vector2(8, 8)));
