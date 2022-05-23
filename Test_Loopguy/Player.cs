@@ -100,7 +100,7 @@ namespace Test_Loopguy
         bool dashCloud;
         bool dashSlide;
 
-        bool hasRailgun;
+        public bool hasRailgun;
 
         bool checkDash;
 
@@ -139,7 +139,7 @@ namespace Test_Loopguy
             canDash = false; //if its true you will always dash when loading in from menu lol
 
             equippedGun = Gun.Pistol;
-            hasRailgun = false;
+            hasRailgun = ProfileManager.HasRailgun;
         }
         
 
@@ -1057,6 +1057,7 @@ namespace Test_Loopguy
             ammo = maxAmmo;
             keys.Clear();
             keys.AddRange(ProfileManager.GetKeys());
+            hasRailgun = ProfileManager.HasRailgun;
         }
         public void UseHealthPack()
         {

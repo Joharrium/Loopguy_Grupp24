@@ -15,6 +15,11 @@ namespace Test_Loopguy
             get { return currentProfile.colorBlind; }
             set { currentProfile.colorBlind = value; }
         }
+
+        public static bool HasRailgun
+        {
+            get { return currentProfile.hasRailgun; }
+        }
         
 
         public static void Init()
@@ -33,7 +38,7 @@ namespace Test_Loopguy
 
         public static void GiveRailgun()
         {
-            currentProfile.hasRailgun = true;
+            currentProfile.RailgunPickedUp();
         }
 
         public static List<int> GetKeys()

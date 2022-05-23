@@ -192,7 +192,8 @@ namespace Test_Loopguy
         {
             this.position = position;
             this.hitBox = Rectangle.Empty;
-
+            texture = TextureManager.railgun;
+            sourceRectangle = new Rectangle(0, 0, 28, 28);
         }
 
         protected override void Effect()

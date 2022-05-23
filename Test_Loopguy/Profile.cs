@@ -45,6 +45,7 @@ namespace Test_Loopguy
         public void RailgunPickedUp()
         {
             hasRailgun = true;
+            EntityManager.player.hasRailgun = true;
             SaveToFile();
             
         }
