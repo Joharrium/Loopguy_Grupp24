@@ -6,7 +6,6 @@ namespace Test_Loopguy
     static class TextureManager
     {
         public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, pistolSheet, railgunSheet, testTile, testAlt, box;
-=======
         public static Texture2D meleeFx, shot, robotEnemyShot, blueDot, cursor, dashCloud, railgunBeam, railgunImpactSheet, railgun, explosionSheet, androidEnemySheet;
       
         // terrain files

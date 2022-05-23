@@ -368,7 +368,6 @@
 /processorParam:TextureFormat=Color
 /build:dashcloud.png
 
-#begin explosionV2.png
 #begin evilloopy.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -379,11 +378,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-
-
-/build:explosionV2.png
 /build:evilloopy.png
 
+#begin explosionV2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:explosionV2.png
 
 #begin File.spritefont
 /importer:FontDescriptionImporter
