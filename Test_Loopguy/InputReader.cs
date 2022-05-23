@@ -6,40 +6,76 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+public enum ControllerMode
+{
+	Controller, Keyboard
+}
 static class InputReader
 {
 	public static KeyboardState keyState, oldKeyState = Keyboard.GetState();
 	public static MouseState mouseState, oldMouseState = Mouse.GetState();
 	public static GamePadState padState, oldPadState = GamePad.GetState(PlayerIndex.One);
 
+	public static ControllerMode controllerMode = ControllerMode.Controller;
+
 	public static bool editMode;
 	public static bool playerInputEnabled = true;
 
-	public static bool KeyPressed(Keys key) 
+	private static void SetControllerUsed(bool check)
+    {
+		if(check)
+        {
+			controllerMode = ControllerMode.Controller;
+        }
+    }
+
+	private static void SetMouseKeyboardUsed(bool check)
+    {
+		if(check)
+        {
+			controllerMode = ControllerMode.Keyboard;
+        }
+    }
+
+	public static bool KeyPressed(Keys key)
 	{
 		if (playerInputEnabled)
+		{
+			SetMouseKeyboardUsed(keyState.IsKeyDown(key) && oldKeyState.IsKeyUp(key));
 			return keyState.IsKeyDown(key) && oldKeyState.IsKeyUp(key);
+		}
 		else
 			return false;
 	}
 	public static bool ButtonPressed(Buttons button)
 	{
 		if (playerInputEnabled)
+        {
+			SetControllerUsed(padState.IsButtonDown(button) && oldPadState.IsButtonUp(button));
 			return padState.IsButtonDown(button) && oldPadState.IsButtonUp(button);
+		}
+			
 		else
 			return false;
 	}
 	public static bool LeftClick()
 	{
 		if (playerInputEnabled)
+        {
+			SetMouseKeyboardUsed(mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Released);
 			return mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Released;
+		}
+			
 		else
 			return false;
 	}
 	public static bool RightClick()
 	{
 		if (playerInputEnabled)
+		{
+			SetMouseKeyboardUsed(mouseState.RightButton == ButtonState.Pressed && oldMouseState.RightButton == ButtonState.Released);
 			return mouseState.RightButton == ButtonState.Pressed && oldMouseState.RightButton == ButtonState.Released;
+		}
 		else
 			return false;
 	}
@@ -163,9 +199,12 @@ static class InputReader
     }
 
 	public static bool MovingLeftStick()
-    {
+	{
 		if (playerInputEnabled)
+        {
+			SetControllerUsed(padState.ThumbSticks.Left != Vector2.Zero);
 			return padState.ThumbSticks.Left != Vector2.Zero;
+		}
 		else
 			return false;
 	}

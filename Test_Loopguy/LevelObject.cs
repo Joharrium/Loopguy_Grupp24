@@ -645,4 +645,297 @@ namespace Test_Loopguy
         }
     }
 
+    public class BigScreenTele : LevelObject
+    {
+        public BigScreenTele(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.bigScreenTele;
+            variation = Game1.rnd.Next(2);
+            sourceRectangle = new Rectangle(48 * variation, 0, 48, 22);
+            footprint = new Rectangle((int)position.X + 0, 19, 47, 3);
+            height = 8;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class NormalScreenTele : LevelObject
+    {
+        public NormalScreenTele(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.normalScreenTele;
+            variation = Game1.rnd.Next(2);
+            sourceRectangle = new Rectangle(32 * variation, 0, 32, 17);
+            footprint = new Rectangle((int)position.X + 1, 12, 30, 3);
+        }
+    }
+
+    public class CarLeft : LevelObject
+    {
+        public CarLeft(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.carsLeft;
+            variation = Game1.rnd.Next(2);
+            sourceRectangle = new Rectangle(96 * variation, 0, 96, 26);
+            footprint = new Rectangle((int)position.X + 0, 14, 48, 12);
+            height = 8;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class CarRight : LevelObject
+    {
+        public CarRight(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.carsRight;
+            variation = Game1.rnd.Next(2);
+            sourceRectangle = new Rectangle(96 * variation, 0, 96, 26);
+            footprint = new Rectangle((int)position.X + 0, 14, 48, 14);
+            height = 8;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class CopCarLeft : LevelObject
+    {
+        public CopCarLeft(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.copCarLeft;
+            variation = Game1.rnd.Next(1);
+            sourceRectangle = new Rectangle(48 * variation, 9, 48, 24);
+            footprint = new Rectangle((int)position.X + 0, 9, 48, 10);
+            height = 8;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+
+        }
+    }
+
+    public class CopCarRight : LevelObject
+    {
+        public CopCarRight(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.copCarRight;
+            variation = Game1.rnd.Next(1);
+            sourceRectangle = new Rectangle(48 * variation, 9, 48, 24);
+            footprint = new Rectangle((int)position.X + 0, 9, 48, 10);
+            height = 8;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class SmallCarLeft : LevelObject
+    {
+        public SmallCarLeft(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.smallCarLeft;
+            variation = Game1.rnd.Next(1);
+            sourceRectangle = new Rectangle(32 * variation, 0, 32, 24);
+            footprint = new Rectangle((int)position.X + 0, 12, 32, 12);
+            height = 8;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class SmallCarRight : LevelObject
+    {
+        public SmallCarRight(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.smallCarRight;
+            variation = Game1.rnd.Next(1);
+            sourceRectangle = new Rectangle(32 * variation, 0, 32, 24);
+            footprint = new Rectangle((int)position.X + 0, 12, 32, 12);
+            height = 8;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class ChairBack : LevelObject
+    {
+        public ChairBack(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.chairBack;
+            variation = Game1.rnd.Next(2);
+            sourceRectangle = new Rectangle(32 * variation, 0, 32, 17);
+            footprint = new Rectangle((int)position.X + 5, 0, 0, 0);
+            height = 5;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+
+        }
+    }
+
+    public class ChairFront : LevelObject
+    {
+        public ChairFront(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.chairFront;
+            variation = Game1.rnd.Next(2);
+            sourceRectangle = new Rectangle(32 * variation, 0, 32, 17);
+            footprint = new Rectangle((int)position.X + 5, 0, 0, 0);
+            height = 5;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+
+        }
+    }
+
+    public class Chest : LevelObject
+    {
+        public Chest(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.chest;
+            variation = Game1.rnd.Next(4);
+            sourceRectangle = new Rectangle(32 * variation, 0, 32, 17);
+            footprint = new Rectangle((int)position.X + 4, 10, 25, 7);
+            height = 5;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class HumanVialsEmpty : LevelObject
+    {
+        public HumanVialsEmpty(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.humanVialsEmpty;
+            variation = Game1.rnd.Next(1);
+            sourceRectangle = new Rectangle(32 * variation, 0, 32, 42);
+            footprint = new Rectangle((int)position.X + 6, 25, 21, 13);
+            height = 10;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class HumanVialsFilled : LevelObject
+    {
+        public HumanVialsFilled(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.humanVialsFilled;
+            variation = Game1.rnd.Next(4);
+            sourceRectangle = new Rectangle(32 * variation, 0, 32, 42);
+            footprint = new Rectangle((int)position.X + 6, 25, 21, 13);
+            height = 10;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class HumanVialsNoBody : LevelObject
+    {
+        public HumanVialsNoBody(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.humanVialsNoBody;
+            variation = Game1.rnd.Next(4);
+            sourceRectangle = new Rectangle(32 * variation, 0, 32, 42);
+            footprint = new Rectangle((int)position.X + 6, 25, 21, 13);
+            height = 10;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class RadioactiveStain : LevelObject
+    {
+        public RadioactiveStain(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.radioactiveStain;
+            variation = Game1.rnd.Next(2);
+            sourceRectangle = new Rectangle(32 * variation, 0, 64, 11);
+            height = 1;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+
+        }
+    }
+    public class WaterStain : LevelObject
+    {
+        public WaterStain(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.waterStain;
+            variation = Game1.rnd.Next(2);
+            sourceRectangle = new Rectangle(32 * variation, 0, 64, 17);
+            height = 1;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class TrashCan : LevelObject
+    {
+        public TrashCan(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.trashCan;
+            variation = Game1.rnd.Next(2);
+            sourceRectangle = new Rectangle(32 * variation, 0, 32, 13);
+            footprint = new Rectangle((int)position.X + 4, 7, 9, 6);
+            height = 4;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class Workstation : LevelObject
+    {
+        public Workstation(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.workstation;
+            variation = Game1.rnd.Next(2);
+            sourceRectangle = new Rectangle(32 * variation, 0, 32, 17);
+            footprint = new Rectangle((int)position.X + 5, 6, 25, 11);
+            height = 5;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class ComputerFront : LevelObject
+    {
+        public ComputerFront(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.computerFront;
+            variation = Game1.rnd.Next(2);
+            sourceRectangle = new Rectangle(32 * variation, 0, 32, 27);
+            footprint = new Rectangle((int)position.X + 5, 16, 24, 9);
+            height = 8;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+
+        }
+    }
+
+    public class ComputerBack : LevelObject
+    {
+        public ComputerBack(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.computerBack;
+            variation = Game1.rnd.Next(2);
+            sourceRectangle = new Rectangle(32 * variation, 0, 32, 27);
+            footprint = new Rectangle((int)position.X + 5, 16, 24, 9);
+            height = 8;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
+
+    public class BigMonitor : LevelObject
+    {
+        public BigMonitor(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.bigMonitor;
+            variation = Game1.rnd.Next(2);
+            sourceRectangle = new Rectangle(32 * variation, 0, 32, 27);
+            footprint = new Rectangle((int)position.X + 3, 22, 28, 4);
+            height = 10;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+        }
+    }
 }

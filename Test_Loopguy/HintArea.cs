@@ -97,7 +97,7 @@ namespace Test_Loopguy
                 }
                 
                 
-                spriteBatch.Draw(texture, drawPoint - new Vector2(20, 2), new Rectangle(0, (int)icon * 32, 32, 32), color);
+                spriteBatch.Draw(texture, drawPoint - new Vector2(20 * ((int)InputReader.controllerMode + 1), 2), new Rectangle(32 * (int)InputReader.controllerMode, (int)icon * 32, 32 * ((int)InputReader.controllerMode + 1), 32), color);
 
                 OutlinedText.DrawOutlinedText(spriteBatch, drawPoint + new Vector2(22, 0), TextureManager.smallestFont, text, bgColor, color);
             }

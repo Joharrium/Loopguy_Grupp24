@@ -251,6 +251,7 @@ namespace Test_Loopguy
 
             spriteBatch.Begin();
 
+            spriteBatch.Draw(TextureManager.menu_bg, Vector2.Zero, Color.White);
             //Draw buttons
             foreach (var component in gameComponents)
             {

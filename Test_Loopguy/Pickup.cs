@@ -185,4 +185,20 @@ namespace Test_Loopguy
         
         
     }
+
+    public class RailgunPickup : Pickup
+    {
+        public RailgunPickup(Vector2 position) : base(position)
+        {
+            this.position = position;
+            this.hitBox = Rectangle.Empty;
+            texture = TextureManager.railgun;
+            sourceRectangle = new Rectangle(0, 0, 28, 28);
+        }
+
+        protected override void Effect()
+        {
+            ProfileManager.GiveRailgun();
+        }
+    }
 }

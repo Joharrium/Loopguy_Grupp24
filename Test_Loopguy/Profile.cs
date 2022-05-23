@@ -8,13 +8,9 @@ namespace Test_Loopguy
     public class Profile
     {
         private int id;
-        private bool playedTutorial;
+        public bool hasRailgun;
         public bool colorBlind;
         
-        public bool PlayedTutorial
-        {
-            get { return playedTutorial; }
-        }
         public int Id
         {
         get { return id; }
@@ -40,15 +36,16 @@ namespace Test_Loopguy
             string path = String.Format(@"saves\profile{0}\settings.txt", id);
             List<string> toWrite = new List<string>();
 
-            toWrite.Add(playedTutorial.ToString());
+            toWrite.Add(hasRailgun.ToString());
             toWrite.Add(colorBlind.ToString());
 
             File.WriteAllLines(path, toWrite);
         }
 
-        public void TutorialFinished()
+        public void RailgunPickedUp()
         {
-            playedTutorial = true;
+            hasRailgun = true;
+            EntityManager.player.hasRailgun = true;
             SaveToFile();
             
         }
@@ -80,7 +77,7 @@ namespace Test_Loopguy
                     lines.Add(line);
                 }
                 
-                playedTutorial = Boolean.Parse(lines[0]);
+                hasRailgun = Boolean.Parse(lines[0]);
                 colorBlind = Boolean.Parse(lines[1]);
                 
             }

@@ -6,7 +6,9 @@ namespace Test_Loopguy
     static class TextureManager
     {
         public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, pistolSheet, railgunSheet, testTile, testAlt, box;
-        public static Texture2D meleeFx, shot, robotEnemyShot, blueDot, cursor, dashCloud, railgunBeam, railgunImpactSheet, explosionSheet;
+=======
+        public static Texture2D meleeFx, shot, robotEnemyShot, blueDot, cursor, dashCloud, railgunBeam, railgunImpactSheet, railgun, explosionSheet, androidEnemySheet;
+      
         // terrain files
         public static Texture2D grassBasic, grassAlt, grayBrickWall, dirt, tiles_checkered_gray, tiles_checkered_brown, tiles_big_light, tiles_big_dark,
             carpet_worn, tile_carpet, tile_warning, wall_metal, wall_worn, tile_metal_bright, grass_edge, tile_clinical, water, wall_beige, wall_gray, wall_brick_beige;
@@ -17,7 +19,8 @@ namespace Test_Loopguy
             shelf_archiving_small, table_computer_medicine, table_operation, monitor_wall, desk_office, chair_office_fw, chair_office_bw, server,
             big_sink, sink, carrying_thing, crate_stack, nice_bookshelf, shooting_range_bench, shooting_range_target, sofa, camera, desk_bw, desk_fw, 
             morgue, potted_plant, shelf_weird, locker, whiteboard, canteen_chair_left, canteen_chair_right, sofa_left, sofa_right, canteen_table, canteen_food_thing,
-            kitchen_counter, bench;
+            kitchen_counter, bench, bigScreenTele, carsLeft, carsRight, smallCarLeft, smallCarRight, chairBack, chairFront, chest, copCarLeft, copCarRight, humanVialsEmpty, 
+            humanVialsFilled, humanVialsNoBody, normalScreenTele, radioactiveStain, trashCan, waterStain, computerBack, computerFront, bigMonitor, workstation;
         // ui files
         public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door,
             healthbar_small_outline, healthbar_small_fill_bg, healthbar_small_fill,
@@ -60,6 +63,8 @@ namespace Test_Loopguy
             railgunBeam = c.Load<Texture2D>("railgunBeam");
             railgunImpactSheet = c.Load<Texture2D>("railgunImpact");
             explosionSheet = c.Load<Texture2D>("explosionV2");
+            railgun = c.Load<Texture2D>("railgunPickup");
+            androidEnemySheet = c.Load<Texture2D>("evilloopy");
         }
 
         private static void LoadTerrain(ContentManager c)
@@ -108,6 +113,31 @@ namespace Test_Loopguy
             medkit = c.Load<Texture2D>("gfx/objects/medkit");
             console = c.Load<Texture2D>("gfx/objects/console_thing");
             ammo = c.Load<Texture2D>("gfx/objects/ammo");
+
+
+            {
+                bigScreenTele = c.Load<Texture2D>("gfx/objects/bigScreenTele");
+                carsLeft = c.Load<Texture2D>("gfx/objects/carsleftt");
+                carsRight = c.Load<Texture2D>("gfx/objects/carsRight");
+                copCarLeft = c.Load<Texture2D>("gfx/objects/copCarLeft");
+                copCarRight = c.Load<Texture2D>("gfx/objects/copCarRight");
+                chairBack = c.Load<Texture2D>("gfx/objects/chairBack");
+                chairFront = c.Load<Texture2D>("gfx/objects/chairFront");
+                chest = c.Load<Texture2D>("gfx/objects/chest");
+                humanVialsEmpty = c.Load<Texture2D>("gfx/objects/humanVialsEmpty");
+                humanVialsFilled = c.Load<Texture2D>("gfx/objects/humanVialsFilled");
+                humanVialsNoBody = c.Load<Texture2D>("gfx/objects/humanVialsNoBody");
+                normalScreenTele = c.Load<Texture2D>("gfx/objects/normalScreenTele");
+                radioactiveStain = c.Load<Texture2D>("gfx/objects/radioactiveStain");
+                trashCan = c.Load<Texture2D>("gfx/objects/trashCan");
+                waterStain = c.Load<Texture2D>("gfx/objects/waterStain");
+                smallCarLeft = c.Load<Texture2D>("gfx/objects/smallCarLeft");
+                smallCarRight = c.Load<Texture2D>("gfx/objects/smallCarRight");
+                workstation = c.Load<Texture2D>("gfx/objects/workstation");
+                computerBack = c.Load<Texture2D>("gfx/objects/computerBack");
+                computerFront = c.Load<Texture2D>("gfx/objects/computerFront");
+                bigMonitor = c.Load<Texture2D>("gfx/objects/bigMonitor");
+            }
 
             {
                 billboard = c.Load<Texture2D>("gfx/objects/assetpack/billboard");
@@ -184,7 +214,7 @@ namespace Test_Loopguy
             ammobar_fill = c.Load<Texture2D>("gfx/interface/ammobar_fill");
             ammobar_outline = c.Load<Texture2D>("gfx/interface/ammobar_outline");
             ammobar_fill_bg = c.Load<Texture2D>("gfx/interface/ammobar_fill_bg");
-            menu_bg = c.Load<Texture2D>("gfx/interface/menu_bg");
+            menu_bg = c.Load<Texture2D>("gfx/interface/menu_bg2");
             control_atlas = c.Load<Texture2D>("gfx/interface/control_atlas");
 
             slider_container = c.Load<Texture2D>("gfx/interface/menu_items/slider_container");

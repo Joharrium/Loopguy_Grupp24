@@ -93,8 +93,17 @@ namespace Test_Loopguy
                 //var x = (Rectangle.X + (Rectangle.Width / 2)) - (font.MeasureString(Text).X / 2);
                 //var y = (Rectangle.Y + (Rectangle.Width / 2)) - (font.MeasureString(Text).Y / 2);
 
+                if(!isHovering)
+                {
+                    OutlinedText.DrawOutlinedText(spriteBatch, Position, font, Text, Color.Black, TextColor);
+                }
+                else
+                {
+                    spriteBatch.DrawString(font, Text, Position, TextColor);
+                }
+                
 
-                spriteBatch.DrawString(font, Text, Position, TextColor);
+                
 
             }
         }
