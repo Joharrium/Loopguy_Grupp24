@@ -53,10 +53,6 @@ namespace Test_Loopguy
             currentProfile.SaveToFile();
         }
 
-        public static bool HasPlayedTutorial()
-        {
-            return currentProfile.PlayedTutorial;
-        }
 
         public static void SaveSettings(int music, int sound, int scale, bool fullscreen)
         {
