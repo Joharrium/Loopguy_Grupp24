@@ -45,7 +45,7 @@ namespace Test_Loopguy
             //hints.Add(new HintArea(new Rectangle(0, 0, 400, 400), "to dash", InputIcon.A));
             if(id == 9)
             {
-                ProfileManager.TutorialFinished();
+                //ProfileManager.GiveRailgun();
             }
 
         }

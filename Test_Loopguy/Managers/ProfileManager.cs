@@ -31,9 +31,9 @@ namespace Test_Loopguy
             currentProfile.AddKey(key);
         }
 
-        public static void TutorialFinished()
+        public static void GiveRailgun()
         {
-            currentProfile.TutorialFinished();
+            currentProfile.hasRailgun = true;
         }
 
         public static List<int> GetKeys()
