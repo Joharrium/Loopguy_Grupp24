@@ -221,6 +221,18 @@ namespace Test_Loopguy
             }
         }
 
+        public static bool RailgunCollision(Line line)
+        {
+            if (!currentLevel.RailgunCollision(line))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         internal static void QueueAddObject(LevelObject lo)
         {
             objectsToAdd.Add(lo);

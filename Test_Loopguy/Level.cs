@@ -423,9 +423,45 @@ namespace Test_Loopguy
             {
                 return WallCollision(check.Center.ToVector2());
             }
-            
-
         }
+
+        public bool RailgunCollision(Line line)
+        {
+            Line shortestLine = line;
+            bool returnValue = false;
+            foreach (LevelObject lo in levelObjects)
+            {
+                if (lo != null && lo.height > 7)
+                {
+                    if (line.RectangleIntersects(lo.hitBox) && line.LineFromIntersect(lo.hitBox).Length() < shortestLine.Length())
+                    {
+                        shortestLine = line.LineFromIntersect(lo.hitBox);
+                        returnValue = true;
+                    }
+                }
+
+            }
+            foreach (Wall w in walls)
+            {
+                if (line.RectangleIntersects(w.hitBox) && line.LineFromIntersect(w.hitBox).Length() < shortestLine.Length())
+                {
+                    shortestLine = line.LineFromIntersect(w.hitBox);
+                    returnValue = true; 
+                }
+            }
+ 
+            foreach (Enemy e in enemies)
+            {
+                if (line.RectangleIntersects(e.hitBox) && line.LineFromIntersect(e.hitBox).Length() <= shortestLine.Length())
+                {
+                    e.TakeDamage(1, Character.DamageType.railGun);
+                }
+            }
+
+            return returnValue;
+            
+        }
+
         public bool LevelObjectCollision(Line line, int height)
         {
             Line shortestLine = line;
@@ -441,6 +477,7 @@ namespace Test_Loopguy
                 }
 
             }
+
             {
                 return WallCollision(line);
             }

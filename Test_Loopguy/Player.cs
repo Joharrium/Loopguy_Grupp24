@@ -957,7 +957,7 @@ namespace Test_Loopguy
             //if it doesnt work check if gundirection is fucky
             Line beamLine = new Line(beamStartPosition, new Vector2(beamStartPosition.X + 580 * beamDirection.X, beamStartPosition.Y + 580 * beamDirection.Y));
 
-            LevelManager.LevelObjectCollision(beamLine, 9);
+            LevelManager.RailgunCollision(beamLine);
 
             Line newBeamLine = new Line(beamStartPosition, beamLine.intersectionPoint);
             int beamLength = (int)newBeamLine.Length();
