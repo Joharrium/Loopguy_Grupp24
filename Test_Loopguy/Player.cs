@@ -908,23 +908,7 @@ namespace Test_Loopguy
 
             gunDirection = new Vector2((float)Math.Sin(aimAngle), (float)Math.Cos(aimAngle));
 
-            //LINE COLLISION FOR LASER SIGHT OMG
-            Line laserLine = new Line(centerPosition, new Vector2(centerPosition.X + 580 * gunDirection.X, centerPosition.Y + 580 * gunDirection.Y));
-            
-            LevelManager.LevelObjectCollision(laserLine, 9);
-
-            Line newLaserLine = new Line(centerPosition, laserLine.intersectionPoint);
-            int laserLength = (int)newLaserLine.Length();
-
-            for (int i = 16; i < laserLength; i++)
-            {
-                Vector2 aimPoint = new Vector2(centerPosition.X + i * gunDirection.X, centerPosition.Y + i * gunDirection.Y);
-                spriteBatch.Draw(TextureManager.cyanPixel, aimPoint, Helper.RandomTransparency(random, 0, 90));
-            }
-
-            Vector2 dotPos = new Vector2(laserLine.intersectionPoint.X - 1 + (gunDirection.X * 5), laserLine.intersectionPoint.Y - 1 + (gunDirection.Y * 5));
-
-            spriteBatch.Draw(TextureManager.blueDot, dotPos, Color.White);
+            DrawLasersight(spriteBatch, gunDirection, TextureManager.cyanPixel, TextureManager.blueDot, random);
         }
 
         public float GetAim(float offset)

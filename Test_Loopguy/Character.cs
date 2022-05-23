@@ -269,5 +269,27 @@ namespace Test_Loopguy
 
             return false;
         }
+
+        public void DrawLasersight(SpriteBatch spriteBatch, Vector2 direction, Texture2D linePixel, Texture2D lineDot, Random rand)
+        {
+            
+            //LINE COLLISION FOR LASER SIGHT OMG
+            Line laserLine = new Line(centerPosition, new Vector2(centerPosition.X + 580 * direction.X, centerPosition.Y + 580 * direction.Y));
+
+            LevelManager.LevelObjectCollision(laserLine, 9);
+
+            Line newLaserLine = new Line(centerPosition, laserLine.intersectionPoint);
+            int laserLength = (int)newLaserLine.Length();
+
+            for (int i = 16; i < laserLength; i++)
+            {
+                Vector2 aimPoint = new Vector2(centerPosition.X + i * direction.X, centerPosition.Y + i * direction.Y);
+                spriteBatch.Draw(linePixel, aimPoint, Helper.RandomTransparency(rand, 0, 90));
+            }
+
+            Vector2 dotPos = new Vector2(laserLine.intersectionPoint.X - 1 + (direction.X * 5), laserLine.intersectionPoint.Y - 1 + (direction.Y * 5));
+
+            spriteBatch.Draw(lineDot, dotPos, Color.White);
+        }
     }
 }
