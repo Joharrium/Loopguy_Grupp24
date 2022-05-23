@@ -386,5 +386,105 @@ namespace Test_Loopguy
         {
             LevelEditor.SelectObject(ObjectSelection.Bench);
         }
+
+        private void humanVialsFilled_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.HumanVialsFilled);
+        }
+
+        private void humanVialsNoBody_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.HumanVialsNoBody);
+        }
+
+        private void humanVialsEmpty_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.HumanVialsEmpty);
+        }
+
+        private void carsLeft_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.CarsLeft);
+        }
+
+        private void carsRight_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.CarsRight);
+        }
+
+        private void smallCarLeft_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.SmallCarLeft);
+        }
+
+        private void smallCarRight_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.SmallCarRight);
+        }
+
+        private void trashCan_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.TrashCan);
+        }
+
+        private void copCarLeft_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.CopCarLeft);
+        }
+
+        private void copCarRight_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.CopCarRight);
+        }
+
+        private void waterStain_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.WaterStain);
+        }
+
+        private void radioactiveStain_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.RadioactiveStain);
+        }
+
+        private void bigScreenTele_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.BigScreenTele);
+        }
+
+        private void normalScreenTele_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.NormalScreenTele);
+        }
+
+        private void bigMonitor_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.BigMonitor);
+        }
+
+        private void workstation_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.Workstation);
+        }
+
+        private void computerFront_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.ComputerFront);
+        }
+
+        private void computerBack_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.ComputerBack);
+        }
+
+        private void chest_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.Chest);
+        }
+
+        private void chairBack_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.ChairBack);
+        }
     }
 }

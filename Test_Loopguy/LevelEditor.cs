@@ -19,7 +19,10 @@ namespace Test_Loopguy
         DeskOffice, Server, ChairOfficeBw, ChairOfficeFw, DeskForward, DeskBackward, PottedPlant,
         BigSink, CrateStack, OperationEquipment, Whiteboard, Locker, Morgue, Sofa, Camera, Sink,
         NiceBookshelf, ShelfWeird, ShootingRangeBench, CarryingThing, SofaLeft, SofaRight, CanteenTable,
-        CanteenFoodThing, KitchenCounter, CanteenChairLeft, CanteenChairRight, Bench
+        CanteenFoodThing, KitchenCounter, CanteenChairLeft, CanteenChairRight, Bench, BigScreenTele, 
+        CarsLeft, CarsRight, CopCarLeft, CopCarRight, ChairBack, ChairFront, Chest, HumanVialsEmpty, HumanVialsFilled,
+        HumanVialsNoBody, NormalScreenTele, RadioactiveStain,TrashCan, WaterStain, SmallCarLeft, SmallCarRight,
+        BigMonitor, Workstation, ComputerBack, ComputerFront,
     }
     public enum TileSelection
     {
