@@ -34,7 +34,7 @@ namespace Test_Loopguy
             this.levelObjects = levelObjects;
             this.tiles = tiles;
             this.enemies = enemies;
-            this.levelObjects.Add(new RailgunPickup(new Vector2(128, 128)));
+            //this.levelObjects.Add(new RailgunPickup(new Vector2(128, 128)));
             enemyProjectiles = new List<Projectile>();
             playerProjectiles = new List<Projectile>();
             idleSongs.AddRange(LevelManager.SongLoad(id, false));
