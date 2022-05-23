@@ -540,9 +540,9 @@ namespace Test_Loopguy
             return name switch
             {
                 "TestEnemyRanged" => new TestEnemyRanged(pos),
-                "TestEnemy" => new TestEnemy(pos),
+                "MeleeEnemyWeak" => new MeleeEnemyWeak(pos),
                 "RangedRobotEnemy" => new RangedRobotEnemy(pos),
-                _ => new TestEnemy(pos),
+                _ => new MeleeEnemyWeak(pos),
             };
         }
         public static LevelObject ObjectCreator(string name, Vector2 pos)
