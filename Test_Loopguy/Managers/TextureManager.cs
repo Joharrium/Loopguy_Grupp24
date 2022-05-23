@@ -6,7 +6,9 @@ namespace Test_Loopguy
     static class TextureManager
     {
         public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, pistolSheet, railgunSheet, testTile, testAlt, box;
-        public static Texture2D meleeFx, shot, robotEnemyShot, blueDot, cursor, dashCloud, railgunBeam, railgunImpactSheet, railgun, androidEnemySheet;
+=======
+        public static Texture2D meleeFx, shot, robotEnemyShot, blueDot, cursor, dashCloud, railgunBeam, railgunImpactSheet, railgun, explosionSheet, androidEnemySheet;
+      
         // terrain files
         public static Texture2D grassBasic, grassAlt, grayBrickWall, dirt, tiles_checkered_gray, tiles_checkered_brown, tiles_big_light, tiles_big_dark,
             carpet_worn, tile_carpet, tile_warning, wall_metal, wall_worn, tile_metal_bright, grass_edge, tile_clinical, water, wall_beige, wall_gray, wall_brick_beige;
@@ -60,6 +62,7 @@ namespace Test_Loopguy
             dashCloud = c.Load<Texture2D>("dashCloud");
             railgunBeam = c.Load<Texture2D>("railgunBeam");
             railgunImpactSheet = c.Load<Texture2D>("railgunImpact");
+            explosionSheet = c.Load<Texture2D>("explosionV2");
             railgun = c.Load<Texture2D>("railgunPickup");
             androidEnemySheet = c.Load<Texture2D>("evilloopy");
         }
@@ -153,9 +156,6 @@ namespace Test_Loopguy
                 desk_office = c.Load<Texture2D>("gfx/objects/assetpack/desk_office");
                 chair_office_bw = c.Load<Texture2D>("gfx/objects/assetpack/chair_office_backwards");
                 chair_office_fw = c.Load<Texture2D>("gfx/objects/assetpack/chair_office_forward");
-                
-
-
             }
 
             {
@@ -187,7 +187,6 @@ namespace Test_Loopguy
                 locker = c.Load<Texture2D>("gfx/objects/locker");
                 whiteboard = c.Load<Texture2D>("gfx/objects/whiteboard");
             }
-
         }
 
         private static void LoadUI(ContentManager c)
