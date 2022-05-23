@@ -116,7 +116,7 @@ namespace Test_Loopguy
 
             {
                 bigScreenTele = c.Load<Texture2D>("gfx/objects/bigScreenTele");
-                carsLeft = c.Load<Texture2D>("gfx/objects/carsleftt");
+                carsLeft = c.Load<Texture2D>("gfx/objects/carsleft");
                 carsRight = c.Load<Texture2D>("gfx/objects/carsRight");
                 copCarLeft = c.Load<Texture2D>("gfx/objects/copCarLeft");
                 copCarRight = c.Load<Texture2D>("gfx/objects/copCarRight");
