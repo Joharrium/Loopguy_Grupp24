@@ -139,6 +139,7 @@ namespace Test_Loopguy
             canDash = false; //if its true you will always dash when loading in from menu lol
 
             equippedGun = Gun.Pistol;
+            hasRailgun = false;
         }
         
 
@@ -155,7 +156,7 @@ namespace Test_Loopguy
                 UseHealthPack();
 
             //SWITCHING GUN
-            if (InputReader.SwitchGun())
+            if (InputReader.SwitchGun() && hasRailgun)
             {
                 equippedGun += 1;
                 if ((int)equippedGun >= Enum.GetValues(typeof(Gun)).Length)
@@ -968,13 +969,24 @@ namespace Test_Loopguy
 
             Color color = new Color(alpha, alpha, alpha, alpha);
 
+            Rectangle sourceRect = new Rectangle(0, 0, 4, 4);
+
             for (int i = 21; i < beamLength; i += 4)
             {
-                if (i > timePlayed * 2000) //this fades the beam from back to front, faster the higher the coeficcient
-                {
-                    Vector2 beamPoint = new Vector2(beamStartPosition.X + i * beamDirection.X, beamStartPosition.Y + i * beamDirection.Y);
-                    spriteBatch.Draw(TextureManager.railgunBeam, beamPoint, null, color, -beamAngle, new Vector2(2, 2), 1, SpriteEffects.None, 0);
-                }
+                //if (i > timePlayed * 2000) //this fades the beam from back to front, faster the higher the coeficcient
+                //{
+                //    if (timePlayed > 0.1f)
+                //        sourceRect = new Rectangle(1, 0, 2, 4);
+
+                //    Vector2 beamPoint = new Vector2(beamStartPosition.X + i * beamDirection.X, beamStartPosition.Y + i * beamDirection.Y);
+                //    spriteBatch.Draw(TextureManager.railgunBeam, beamPoint, sourceRect, color, -beamAngle, new Vector2(2, 2), 1, SpriteEffects.None, 0);
+                //}
+
+                if (timePlayed > 0.1f)
+                    sourceRect = new Rectangle(1, 0, 2, 4);
+
+                Vector2 beamPoint = new Vector2(beamStartPosition.X + i * beamDirection.X, beamStartPosition.Y + i * beamDirection.Y);
+                spriteBatch.Draw(TextureManager.railgunBeam, beamPoint, sourceRect, color, -beamAngle, new Vector2(2, 2), 1, SpriteEffects.None, 0);
             }
 
             railgunImpactPosition = new Vector2(beamLine.intersectionPoint.X - 16, beamLine.intersectionPoint.Y - 16);
