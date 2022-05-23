@@ -290,7 +290,6 @@ namespace Test_Loopguy
                             default:
                                 break;
                         }
-
                         break;
 
                     case Selection.Enemy:
