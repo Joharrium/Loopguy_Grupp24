@@ -540,7 +540,9 @@ namespace Test_Loopguy
             return name switch
             {
                 "TestEnemyRanged" => new TestEnemyRanged(pos),
+
                 "MeleeEnemyWeak" => new MeleeEnemyWeak(pos),
+
                 "RangedRobotEnemy" => new RangedRobotEnemy(pos),
                 _ => new MeleeEnemyWeak(pos),
             };

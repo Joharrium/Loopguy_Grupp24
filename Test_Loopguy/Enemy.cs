@@ -18,6 +18,9 @@ namespace Test_Loopguy
         protected float idleTime;
         protected int maxSpeed;
 
+        protected int minRange;
+        protected int maxRange;
+
         //Used for healthbar positioning
         protected int xOffset;
         protected int yOffset;
@@ -182,6 +185,11 @@ namespace Test_Loopguy
         {
 
         }
+
+        protected virtual void ExplosionAttack()
+        {
+
+        }
     }
 
     class RangedEnemy : Enemy
@@ -223,7 +231,6 @@ namespace Test_Loopguy
             direction.Normalize();
             direction *= -1;
             
-
             LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 200, damage));
         }
 
@@ -351,7 +358,6 @@ namespace Test_Loopguy
 
         public RangedRobotEnemy(Vector2 position) : base(position)  
         {
-            
             this.position = position;
             footprintOffset = new Point(16, 48);
             footprint = new Rectangle((int)(position.X + footprintOffset.X), (int)(position.Y + footprintOffset.Y), 32, 16);
@@ -586,11 +592,7 @@ namespace Test_Loopguy
                         isAttacking = false;
                     }
                 }
-               
-
-               
             }
-
             base.Update(gameTime);
         }
 
@@ -621,35 +623,47 @@ namespace Test_Loopguy
 
     class MeleeEnemyWeak : Enemy
     {
-        int frameTime = 100;
+        int frameTime = 35;
         bool isAttacking, isMoving = false;
+        AnimatedSprite explosionSprite;
+        Point frameSize2;
+
 
         public MeleeEnemyWeak(Vector2 position) : base(position)
         {
             this.position = position;
             footprintOffset = new Point(0, 24);
             frameSize = new Point(16, 32);
+            frameSize2 = new Point(64, 64);
             sprite = new AnimatedSprite(TextureManager.smallFastEnemySheet, frameSize);
+            explosionSprite = new AnimatedSprite(TextureManager.explosionSheet, frameSize2);
             this.texture = TextureManager.enemyPlaceholder;
             xOffset = 6;
             yOffset = texture.Height;
             this.maxHealth = 1;
             this.maxSpeed = 95;
-            aggroRange = 175;
+            aggroRange = 120;
             damage = 1;
             knockBackDistance = 160;
             knockBackDuration = 160;
             Init();
             aggro = false;
+
+            minRange = 10;
+            maxRange = aggroRange;
         }
 
         public override void Update(GameTime gameTime)
         {
             sprite.Update(gameTime);
             sprite.Position = position;
+            
             if (health <= 0)
             {
-                isNotDying = false; //Change 'false' to sprite.PlayOnce(/*death animation values*/)
+                isAttacking = true;
+                isNotDying = explosionSprite.PlayOnce(0, 16, frameTime);
+                explosionSprite.Position = new Vector2(position.X - 32, position.Y - 32);
+                explosionSprite.Update(gameTime);
             }
             base.Update(gameTime);
         }
@@ -657,17 +671,24 @@ namespace Test_Loopguy
         protected override void AggroBehavior()
         {
             Vector2 distBetweenPlrAndEnemy = centerPosition - EntityManager.player.centerPosition;
-            distBetweenPlrAndEnemy.Normalize();
-            distBetweenPlrAndEnemy *= -1;
 
-            direction = distBetweenPlrAndEnemy;
-            speed = maxSpeed;
+            if (distBetweenPlrAndEnemy.Length() <= minRange)
+            {
+                speed = 0;
+                health = 0;
+            }
+            else if (distBetweenPlrAndEnemy.Length() > minRange)
+            {
+                distBetweenPlrAndEnemy.Normalize();
+                distBetweenPlrAndEnemy *= -1;
+                direction = distBetweenPlrAndEnemy;
+                speed = maxSpeed;
+            }
         }
 
         public override void Movement(float deltaTime)
         {
             GetOrientation();
-
             if (!isAttacking)
             {
                 isMoving = true;
@@ -708,15 +729,17 @@ namespace Test_Loopguy
                     sprite.Frame(3, 2);
                 }
             }
-
             base.Movement(deltaTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            sprite.Draw(spriteBatch);
-            healthBar.Draw(spriteBatch);
+            if (health > 0)
+            {
+                sprite.Draw(spriteBatch);
+                healthBar.Draw(spriteBatch);
+            }
+            explosionSprite.Draw(spriteBatch);
         }
     }   
-
 }
