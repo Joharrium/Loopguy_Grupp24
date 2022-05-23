@@ -385,7 +385,6 @@ namespace Test_Loopguy
                 {
                     g.drawDepth = g.hitBox.Center.Y;
                 }
-                
             }
             
 
@@ -394,7 +393,6 @@ namespace Test_Loopguy
 
             foreach (GameObject g in objects)
             {
-
                 if (g != null)
                 {
                     if(cullingRect.Contains(g.centerPosition))
@@ -402,9 +400,6 @@ namespace Test_Loopguy
                 }
                 
             }
-
-            
-
         }
 
         public bool LevelObjectCollision(Rectangle check, int height)
@@ -428,11 +423,11 @@ namespace Test_Loopguy
         public bool RailgunCollision(Line line)
         {
             Line shortestLine = line;
-            Line what = new Line(line.P1, line.P2);
+            Line originalLine = new Line(line.P1, line.P2);
             bool returnValue = false;
             foreach (LevelObject lo in levelObjects)
             {
-                if (lo != null && lo.height > 7)
+                if (lo != null && lo.height > 7 && !(lo is Destructible))
                 {
                     if (line.RectangleIntersects(lo.hitBox) && line.LineFromIntersect(lo.hitBox).Length() < shortestLine.Length())
                     {
@@ -440,8 +435,8 @@ namespace Test_Loopguy
                         returnValue = true;
                     }
                 }
-
             }
+
             foreach (Wall w in walls)
             {
                 if (line.RectangleIntersects(w.hitBox) && line.LineFromIntersect(w.hitBox).Length() < shortestLine.Length())
@@ -451,14 +446,21 @@ namespace Test_Loopguy
                 }
             }
 
-            
-
             foreach (Enemy e in enemies)
             {
-                Line theFuck = new Line(what.P1, what.P2);
-                if (theFuck.RectangleIntersects(e.hitBox) && theFuck.LineFromIntersect(e.hitBox).Length() <= shortestLine.Length())
+                Line testLine = new Line(originalLine.P1, originalLine.P2);
+                if (testLine.RectangleIntersects(e.hitBox) && testLine.LineFromIntersect(e.hitBox).Length() <= shortestLine.Length())
                 {
                     e.TakeDamage(1, Character.DamageType.railGun);
+                }
+            }
+
+            foreach (Destructible d in destructibles)
+            {
+                Line testLine = new Line(originalLine.P1, originalLine.P2);
+                if (testLine.RectangleIntersects(d.hitBox) && testLine.LineFromIntersect(d.hitBox).Length() <= shortestLine.Length())
+                {
+                    d.Damage(1);
                 }
             }
 
