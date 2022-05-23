@@ -428,6 +428,7 @@ namespace Test_Loopguy
         public bool RailgunCollision(Line line)
         {
             Line shortestLine = line;
+            Line what = new Line(line.P1, line.P2);
             bool returnValue = false;
             foreach (LevelObject lo in levelObjects)
             {
@@ -449,10 +450,13 @@ namespace Test_Loopguy
                     returnValue = true; 
                 }
             }
- 
+
+            
+
             foreach (Enemy e in enemies)
             {
-                if (line.RectangleIntersects(e.hitBox) && line.LineFromIntersect(e.hitBox).Length() <= shortestLine.Length())
+                Line theFuck = new Line(what.P1, what.P2);
+                if (theFuck.RectangleIntersects(e.hitBox) && theFuck.LineFromIntersect(e.hitBox).Length() <= shortestLine.Length())
                 {
                     e.TakeDamage(1, Character.DamageType.railGun);
                 }
