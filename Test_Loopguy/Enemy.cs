@@ -18,6 +18,9 @@ namespace Test_Loopguy
         protected float idleTime;
         protected int maxSpeed;
 
+        protected int minRange;
+        protected int maxRange;
+
         //Used for healthbar positioning
         protected int xOffset;
         protected int yOffset;
@@ -182,6 +185,11 @@ namespace Test_Loopguy
         {
 
         }
+
+        protected virtual void ExplosionAttack()
+        {
+
+        }
     }
 
     class RangedEnemy : Enemy
@@ -223,7 +231,6 @@ namespace Test_Loopguy
             direction.Normalize();
             direction *= -1;
             
-
             LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 200, damage));
         }
 
@@ -351,7 +358,6 @@ namespace Test_Loopguy
 
         public RangedRobotEnemy(Vector2 position) : base(position)  
         {
-            
             this.position = position;
             footprintOffset = new Point(16, 48);
             footprint = new Rectangle((int)(position.X + footprintOffset.X), (int)(position.Y + footprintOffset.Y), 32, 16);
@@ -586,11 +592,7 @@ namespace Test_Loopguy
                         isAttacking = false;
                     }
                 }
-               
-
-               
             }
-
             base.Update(gameTime);
         }
 
@@ -635,12 +637,15 @@ namespace Test_Loopguy
             yOffset = texture.Height;
             this.maxHealth = 1;
             this.maxSpeed = 95;
-            aggroRange = 175;
+            aggroRange = 120;
             damage = 1;
             knockBackDistance = 160;
             knockBackDuration = 160;
             Init();
             aggro = false;
+
+            minRange = 30;
+            maxRange = aggroRange;
         }
 
         public override void Update(GameTime gameTime)
@@ -657,17 +662,26 @@ namespace Test_Loopguy
         protected override void AggroBehavior()
         {
             Vector2 distBetweenPlrAndEnemy = centerPosition - EntityManager.player.centerPosition;
-            distBetweenPlrAndEnemy.Normalize();
-            distBetweenPlrAndEnemy *= -1;
 
-            direction = distBetweenPlrAndEnemy;
-            speed = maxSpeed;
+            if (distBetweenPlrAndEnemy.Length() <= minRange)
+            {
+                Debug.WriteLine("ATTACK NOW BOYO");
+                ExplosionAttack();
+                
+            }
+            else if (distBetweenPlrAndEnemy.Length() > minRange)
+            {
+                distBetweenPlrAndEnemy.Normalize();
+                distBetweenPlrAndEnemy *= -1;
+
+                direction = distBetweenPlrAndEnemy;
+                speed = maxSpeed;
+            }
         }
 
         public override void Movement(float deltaTime)
         {
             GetOrientation();
-
             if (!isAttacking)
             {
                 isMoving = true;
@@ -708,8 +722,17 @@ namespace Test_Loopguy
                     sprite.Frame(3, 2);
                 }
             }
-
             base.Movement(deltaTime);
+        }
+
+        protected override void ExplosionAttack()
+        {
+            speed = 0;
+            /// pseudo code.
+            /// speed = 0.
+            /// explosion animation
+            /// damage in certain area around explosion animation
+            /// we done here boys
         }
 
         public override void Draw(SpriteBatch spriteBatch)
