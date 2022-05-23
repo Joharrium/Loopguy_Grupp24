@@ -623,15 +623,20 @@ namespace Test_Loopguy
 
     class MeleeEnemyWeak : Enemy
     {
-        int frameTime = 100;
+        int frameTime = 35;
         bool isAttacking, isMoving = false;
+        AnimatedSprite explosionSprite;
+        Point frameSize2;
+
 
         public MeleeEnemyWeak(Vector2 position) : base(position)
         {
             this.position = position;
             footprintOffset = new Point(0, 24);
             frameSize = new Point(16, 32);
+            frameSize2 = new Point(64, 64);
             sprite = new AnimatedSprite(TextureManager.smallFastEnemySheet, frameSize);
+            explosionSprite = new AnimatedSprite(TextureManager.explosionSheet, frameSize2);
             this.texture = TextureManager.enemyPlaceholder;
             xOffset = 6;
             yOffset = texture.Height;
@@ -644,7 +649,7 @@ namespace Test_Loopguy
             Init();
             aggro = false;
 
-            minRange = 30;
+            minRange = 10;
             maxRange = aggroRange;
         }
 
@@ -652,9 +657,13 @@ namespace Test_Loopguy
         {
             sprite.Update(gameTime);
             sprite.Position = position;
+            
             if (health <= 0)
             {
-                isNotDying = false; //Change 'false' to sprite.PlayOnce(/*death animation values*/)
+                isAttacking = true;
+                isNotDying = explosionSprite.PlayOnce(0, 16, frameTime);
+                explosionSprite.Position = new Vector2(position.X - 32, position.Y - 32);
+                explosionSprite.Update(gameTime);
             }
             base.Update(gameTime);
         }
@@ -665,15 +674,13 @@ namespace Test_Loopguy
 
             if (distBetweenPlrAndEnemy.Length() <= minRange)
             {
-                Debug.WriteLine("ATTACK NOW BOYO");
-                ExplosionAttack();
-                
+                speed = 0;
+                health = 0;
             }
             else if (distBetweenPlrAndEnemy.Length() > minRange)
             {
                 distBetweenPlrAndEnemy.Normalize();
                 distBetweenPlrAndEnemy *= -1;
-
                 direction = distBetweenPlrAndEnemy;
                 speed = maxSpeed;
             }
@@ -725,21 +732,14 @@ namespace Test_Loopguy
             base.Movement(deltaTime);
         }
 
-        protected override void ExplosionAttack()
-        {
-            speed = 0;
-            /// pseudo code.
-            /// speed = 0.
-            /// explosion animation
-            /// damage in certain area around explosion animation
-            /// we done here boys
-        }
-
         public override void Draw(SpriteBatch spriteBatch)
         {
-            sprite.Draw(spriteBatch);
-            healthBar.Draw(spriteBatch);
+            if (health > 0)
+            {
+                sprite.Draw(spriteBatch);
+                healthBar.Draw(spriteBatch);
+            }
+            explosionSprite.Draw(spriteBatch);
         }
     }   
-
 }
