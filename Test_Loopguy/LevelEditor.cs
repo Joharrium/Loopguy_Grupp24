@@ -290,6 +290,90 @@ namespace Test_Loopguy
                                 LevelManager.ObjectAdd(new Bench(Game1.mousePos - new Vector2(8, 16)));
                                 break;
 
+                            case ObjectSelection.BigScreenTele:
+                                LevelManager.ObjectAdd(new BigScreenTele(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.CarsLeft:
+                                LevelManager.ObjectAdd(new CarLeft(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.CarsRight:
+                                LevelManager.ObjectAdd(new CarRight(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.CopCarLeft:
+                                LevelManager.ObjectAdd(new CarRight(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.CopCarRight:
+                                LevelManager.ObjectAdd(new CopCarRight(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.ChairBack:
+                                LevelManager.ObjectAdd(new ChairBack(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.ChairFront:
+                                LevelManager.ObjectAdd(new ChairFront(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.Chest:
+                                LevelManager.ObjectAdd(new Chest(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.HumanVialsEmpty:
+                                LevelManager.ObjectAdd(new HumanVialsEmpty(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.HumanVialsFilled:
+                                LevelManager.ObjectAdd(new HumanVialsFilled(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.HumanVialsNoBody:
+                                LevelManager.ObjectAdd(new HumanVialsNoBody(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.NormalScreenTele:
+                                LevelManager.ObjectAdd(new NormalScreenTele(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.RadioactiveStain:
+                                LevelManager.ObjectAdd(new RadioactiveStain(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.TrashCan:
+                                LevelManager.ObjectAdd(new TrashCan(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.WaterStain:
+                                LevelManager.ObjectAdd(new WaterStain(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.SmallCarLeft:
+                                LevelManager.ObjectAdd(new SmallCarLeft(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.SmallCarRight:
+                                LevelManager.ObjectAdd(new SmallCarRight(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.Workstation:
+                                LevelManager.ObjectAdd(new Workstation(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.ComputerBack:
+                                LevelManager.ObjectAdd(new ComputerBack(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.ComputerFront:
+                                LevelManager.ObjectAdd(new ComputerFront(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
+                            case ObjectSelection.BigMonitor:
+                                LevelManager.ObjectAdd(new BigMonitor(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
                             default:
                                 break;
                         }
@@ -504,6 +588,90 @@ namespace Test_Loopguy
 
                     case ObjectSelection.Bench:
                         spriteBatch.Draw(TextureManager.bench, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.BigMonitor:
+                        spriteBatch.Draw(TextureManager.bigMonitor, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.CarsLeft:
+                        spriteBatch.Draw(TextureManager.carsLeft, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.CarsRight:
+                        spriteBatch.Draw(TextureManager.carsRight, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.CopCarLeft:
+                        spriteBatch.Draw(TextureManager.copCarLeft, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.CopCarRight:
+                        spriteBatch.Draw(TextureManager.copCarRight, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.ChairBack:
+                        spriteBatch.Draw(TextureManager.chairBack, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.ChairFront:
+                        spriteBatch.Draw(TextureManager.chairFront, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.Chest:
+                        spriteBatch.Draw(TextureManager.chest, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.HumanVialsEmpty:
+                        spriteBatch.Draw(TextureManager.humanVialsEmpty, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.HumanVialsFilled:
+                        spriteBatch.Draw(TextureManager.humanVialsFilled, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.HumanVialsNoBody:
+                        spriteBatch.Draw(TextureManager.humanVialsNoBody, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.NormalScreenTele:
+                        spriteBatch.Draw(TextureManager.normalScreenTele, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.BigScreenTele:
+                        spriteBatch.Draw(TextureManager.bigScreenTele, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.RadioactiveStain:
+                        spriteBatch.Draw(TextureManager.radioactiveStain, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.TrashCan:
+                        spriteBatch.Draw(TextureManager.trashCan, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.WaterStain:
+                        spriteBatch.Draw(TextureManager.waterStain, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.SmallCarLeft:
+                        spriteBatch.Draw(TextureManager.smallCarLeft, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.SmallCarRight:
+                        spriteBatch.Draw(TextureManager.smallCarRight, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.Workstation:
+                        spriteBatch.Draw(TextureManager.workstation, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.ComputerBack:
+                        spriteBatch.Draw(TextureManager.computerBack, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.ComputerFront:
+                        spriteBatch.Draw(TextureManager.computerFront, (Game1.mousePos - new Vector2(8, 16)), Color.White);
                         break;
 
                     default:

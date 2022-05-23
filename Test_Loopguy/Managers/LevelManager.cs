@@ -434,7 +434,6 @@ namespace Test_Loopguy
 
             }
 
-
             return enemies;
         }
 
@@ -596,6 +595,27 @@ namespace Test_Loopguy
                 "SofaRight" => new SofaRight(pos),
                 "KitchenCounter" => new KitchenCounter(pos),
                 "Bench" => new Bench(pos),
+                "BigScreenTele" => new BigScreenTele(pos),
+                "CarsLeft" => new CarLeft(pos),
+                "CarsRight" => new CarRight(pos),
+                "CopCarLeft" => new CopCarLeft(pos),
+                "CopCarRight" => new CopCarRight(pos),
+                "ChairBack" => new ChairBack(pos),
+                "ChairFront" => new ChairFront(pos),
+                "Chest" => new Chest(pos),
+                "HumanVialsEmpty" => new HumanVialsEmpty(pos),
+                "HumanVialsFilled" => new HumanVialsFilled(pos),
+                "HumanVialsNobody" => new HumanVialsNoBody(pos),
+                "NormalScreenTele" => new NormalScreenTele(pos),
+                "RadioactiveStain" => new RadioactiveStain(pos),
+                "TrashCan" => new TrashCan(pos),
+                "WaterStain" => new WaterStain(pos),
+                "SmallCarLeft" => new SmallCarLeft(pos),
+                "SmallCarRight" => new SmallCarRight(pos),
+                "Workstation" => new Workstation(pos),
+                "ComputerBack" => new ComputerBack(pos),
+                "ComputerFront" => new ComputerFront(pos),
+                "BigMonitor" => new BigMonitor(pos),
                 _ => null,
             };
         }

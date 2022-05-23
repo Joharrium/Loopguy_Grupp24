@@ -678,7 +678,7 @@ namespace Test_Loopguy
             this.position = position;
             texture = TextureManager.carsLeft;
             variation = Game1.rnd.Next(2);
-            sourceRectangle = new Rectangle(96 * variation, 0, 96, 26);
+            sourceRectangle = new Rectangle(48 * variation, 0, 48, 26);
             footprint = new Rectangle((int)position.X + 0, 14, 48, 12);
             height = 8;
             hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
@@ -692,7 +692,7 @@ namespace Test_Loopguy
             this.position = position;
             texture = TextureManager.carsRight;
             variation = Game1.rnd.Next(2);
-            sourceRectangle = new Rectangle(96 * variation, 0, 96, 26);
+            sourceRectangle = new Rectangle(48 * variation, 0, 48, 26);
             footprint = new Rectangle((int)position.X + 0, 14, 48, 14);
             height = 8;
             hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
