@@ -187,7 +187,7 @@ namespace Test_Loopguy
             ammobar_fill = c.Load<Texture2D>("gfx/interface/ammobar_fill");
             ammobar_outline = c.Load<Texture2D>("gfx/interface/ammobar_outline");
             ammobar_fill_bg = c.Load<Texture2D>("gfx/interface/ammobar_fill_bg");
-            menu_bg = c.Load<Texture2D>("gfx/interface/menu_bg");
+            menu_bg = c.Load<Texture2D>("gfx/interface/menu_bg2");
             control_atlas = c.Load<Texture2D>("gfx/interface/control_atlas");
 
             slider_container = c.Load<Texture2D>("gfx/interface/menu_items/slider_container");
