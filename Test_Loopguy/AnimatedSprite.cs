@@ -95,10 +95,10 @@ namespace Test_Loopguy
         {
             frame = new Rectangle(currentFrame.X * size.X, currentFrame.Y * size.Y, size.X, size.Y);
 
+            position = Position;
+
             //position.X = (int)Math.Round(Position.X);
             //position.Y = (int)Math.Round(Position.Y);
-
-            position = Position;
 
             spriteBatch.Draw(sheet, position, frame, Color.White, 0, Vector2.Zero, 1, effects, 0);
         }
