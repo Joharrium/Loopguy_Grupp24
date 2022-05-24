@@ -1,0 +1,5 @@
+RangedRobotEnemy,282,65
+MeleeEnemyWeak,505,402
+MeleeEnemyWeak,692,391
+MeleeEnemyWeak,222,274
+MeleeEnemyWeak,157,180
