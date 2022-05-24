@@ -364,7 +364,7 @@ namespace Test_Loopguy
         public override void Draw(SpriteBatch spriteBatch)
         {
             //draw footprint
-            spriteBatch.Draw(TextureManager.black_screen, footprint, Color.White);
+            //spriteBatch.Draw(TextureManager.black_screen, footprint, Color.White);
 
             if (dashCloud)
             {
@@ -450,10 +450,10 @@ namespace Test_Loopguy
             }
 
             //draw hitbox borders
-            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Top), Color.White);
-            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Bottom), Color.White);
+            //spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Top), Color.White);
+            //spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Bottom), Color.White);
 
-            spriteBatch.Draw(TextureManager.redPixel, centerPosition, Color.White);
+            //spriteBatch.Draw(TextureManager.redPixel, centerPosition, Color.White);
 
             //healthBar.Draw(spriteBatch);
 

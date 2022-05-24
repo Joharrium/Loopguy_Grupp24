@@ -506,5 +506,10 @@ namespace Test_Loopguy
         {
             LevelEditor.SelectObject(ObjectSelection.ChairFront);
         }
+
+        private void evilLoopySelect_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectEnemy(EnemySelection.EvilAndroid);
+        }
     }
 }
