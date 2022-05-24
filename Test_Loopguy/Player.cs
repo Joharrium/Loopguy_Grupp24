@@ -103,6 +103,7 @@ namespace Test_Loopguy
         public bool dashing;
         bool dashCloud;
         bool dashSlide;
+        bool railgunCheck;
 
         public bool hasRailgun;
 
@@ -270,6 +271,7 @@ namespace Test_Loopguy
                         else if (equippedGun == Gun.Railgun && ammo > 2)
                         {
                             railgunSprite.ResetAnimation();
+                            railgunCheck = true;
 
                             ammo -= 3;
 
@@ -736,6 +738,12 @@ namespace Test_Loopguy
 
             //if it doesnt work check if gundirection is fucky
             Line beamLine = new Line(beamStartPosition, new Vector2(beamStartPosition.X + 580 * beamDirection.X, beamStartPosition.Y + 580 * beamDirection.Y));
+
+            if (railgunCheck)
+            {
+                railgunCheck = false;
+                LevelManager.RailgunEnemyCollision(beamLine);
+            }
 
             LevelManager.RailgunCollision(beamLine);
 
