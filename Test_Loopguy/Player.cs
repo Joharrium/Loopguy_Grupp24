@@ -586,7 +586,10 @@ namespace Test_Loopguy
 
                 if (speed > 0)
                 {
-                    speed -= deltaTime * 300; // <-- increase time coefficient to make slide stop faster, decrease to slide longer
+                    if (InputReader.MovementInput())
+                        speed -= deltaTime * 300;
+                    else
+                        speed -= deltaTime * 1000; // <-- increase time coefficient to make slide stop faster, decrease to slide longer
                 }
 
                 dashSlideTimer += deltaTime;

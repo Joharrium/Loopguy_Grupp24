@@ -16,12 +16,10 @@ namespace Test_Loopguy
         Vector2 gunDirection;
 
         float aimAngle;
-        float meleeAttackAngle;
 
         float meleeTelegraphTime;
         const float meleeTelegraphTimeMax = 0.5f;
 
-        int frameTime = 50;
         int meleeRange, maxRange;
 
         bool isAttacking, isMoving = false;
@@ -53,7 +51,7 @@ namespace Test_Loopguy
             meleeRange = 40;
             maxRange = 120;
 
-            aggroRange = 175;
+            aggroRange = 250;
             damage = 1;
             knockBackDistance = 160;
             knockBackDuration = 160;
