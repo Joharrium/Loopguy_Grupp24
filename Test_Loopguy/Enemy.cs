@@ -611,10 +611,11 @@ namespace Test_Loopguy
     class MeleeEnemyWeak : Enemy
     {
         int frameTime = 35;
-        bool isAttacking, isMoving = false;
+        bool isAttacking, isMoving, attackDone = false;
         AnimatedSprite explosionSprite;
         Point frameSize2;
         Vector2 distBetweenPlrAndEnemy;
+        int explosionRange = 6;
 
         public MeleeEnemyWeak(Vector2 position) : base(position)
         {
@@ -647,8 +648,23 @@ namespace Test_Loopguy
             
             if (health <= 0)
             {
+                
                 maxSpeed = 0;
-                isAttacking = true;
+                if(!attackDone)
+                {
+                    isAttacking = true;
+                }
+                else
+                {
+                    isAttacking = false;
+                }
+
+                distBetweenPlrAndEnemy = centerPosition - EntityManager.player.centerPosition;
+                if (distBetweenPlrAndEnemy.Length() < explosionRange && isAttacking && !hitDuringCurrentAttack)
+                {
+                    EntityManager.player.TakeDamage(2, DamageType.melee);
+                    attackDone = true;
+                }
                 isNotDying = explosionSprite.PlayOnce(0, 16, frameTime);
                 explosionSprite.Position = new Vector2(position.X - 32, position.Y - 32);
                 explosionSprite.Update(gameTime);
