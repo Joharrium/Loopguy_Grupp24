@@ -171,3 +171,4 @@ BarrelDestructible,86,589
 BarrelDestructible,86,597
 BarrelDestructible,86,616
 KeyPickup,56,480,21,True
+RailgunPickup,96,470

@@ -213,7 +213,7 @@ namespace Test_Loopguy
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             
             spriteBatch.Draw(renderTarget, screenRect, Color.White);
-            Fadeout.Draw(spriteBatch);
+            
 
             if(debugMode)
             {

@@ -139,3 +139,4 @@ ChairOfficeBw,562,405
 ChairOfficeBw,643,406
 PottedPlant,191,401
 CrateStack,708,441
+DoorSliding,592,448,15
