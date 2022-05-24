@@ -99,6 +99,24 @@ namespace Test_Loopguy
                     spriteBatch.DrawString(TextureManager.UI_menuFont, "x " + EntityManager.player.StoredHealth, new Vector2(124, 7), Color.White);
                     
                     LevelManager.DrawTimer(spriteBatch);
+
+                    Fadeout.Draw(spriteBatch);
+
+                    if (LevelManager.GameWon)
+                    {
+                        string win1 = "You have won the game";
+                        string win2 = "defeated evil and saved your home.";
+                        string win3 = "But as you now have learned... ";
+                        string win4 = "the loop never ends...";
+                        float offset1 = TextureManager.smallestFont.MeasureString(win1).X / 2;
+                        float offset2 = TextureManager.smallestFont.MeasureString(win2).X / 2;
+                        float offset3 = TextureManager.smallestFont.MeasureString(win3).X / 2;
+                        float offset4 = TextureManager.smallestFont.MeasureString(win4).X / 2;
+                        OutlinedText.DrawOutlinedText(spriteBatch, new Vector2(240 - offset1, 60), TextureManager.smallestFont, win1);
+                        OutlinedText.DrawOutlinedText(spriteBatch, new Vector2(240 - offset2, 90), TextureManager.smallestFont, win2);
+                        OutlinedText.DrawOutlinedText(spriteBatch, new Vector2(240 - offset3, 120), TextureManager.smallestFont, win3);
+                        OutlinedText.DrawOutlinedText(spriteBatch, new Vector2(240 - offset4, 150), TextureManager.smallestFont, win4);
+                    }
                     spriteBatch.End();
 
                     break;

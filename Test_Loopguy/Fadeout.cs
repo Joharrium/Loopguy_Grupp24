@@ -43,20 +43,27 @@ namespace Test_Loopguy
             texture = TextureManager.white_screen;
             InputReader.playerInputEnabled = false;
             started = true;
-            //if (fadeout.A > 40)
-            //{
-            //    fadeout.A = 255;
-            //}
-            //else
-            //{
-                fadeout.A = 0;
-            //}
+            fadeout.A = 0;
             fadeInSpeed = 8;
             fadeOutSpeed = 1;
             end = false;
             delay = 1200;
             active = true;
 
+        }
+
+        public static void WinFade()
+        {
+            texture = TextureManager.white_screen;
+            InputReader.playerInputEnabled = false;
+            fadeout = new Color(127,255,127,0);
+            started = true;
+            fadeout.A = 0;
+            fadeInSpeed = 8;
+            fadeOutSpeed = 1;
+            end = false;
+            delay = 8000;
+            active = true;
         }
 
         public static void HazardFade()
@@ -132,6 +139,7 @@ namespace Test_Loopguy
                     end = false;
                     active = false;
                     InputReader.playerInputEnabled = true;
+                    fadeout = new Color(0, 0, 0, 0);
                 }
             }
         }

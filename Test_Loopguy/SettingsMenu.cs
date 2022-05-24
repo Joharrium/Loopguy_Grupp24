@@ -56,7 +56,7 @@ namespace Test_Loopguy
 
             fullscreen = new Checkbox(menuSlot5, "Fullscreen", Game1.isFullscreen);
 
-            colorblind = new Checkbox(menuSlot6, "Deuteranopia/Protanopia adjustments", ProfileManager.ColorBlind);
+            colorblind = new Checkbox(menuSlot6, "R/G colorblindness", ProfileManager.ColorBlind);
 
 
             gameComponents = new List<Component>()

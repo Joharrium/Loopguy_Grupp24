@@ -29,6 +29,15 @@ namespace Test_Loopguy
         private static double loopTimer = 400;
         const double LOOPTIMER = 400;
 
+        private static double winTimer = 8000;
+        private static double WINTIMER = 8000;
+
+        private static bool gameWon = false;
+        public static bool GameWon
+        {
+            get { return gameWon; }
+        }
+
         public static List<LevelObject> objectsToAdd = new List<LevelObject>();
 
         private static Player player;
@@ -112,6 +121,16 @@ namespace Test_Loopguy
             {
                 Reset();
             }
+
+            if(gameWon)
+            {
+                winTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+                if(winTimer < 0)
+                {
+                    Reset();
+                    gameWon = false;
+                }
+            }
         }
 
         internal static void StartReset()
@@ -170,6 +189,15 @@ namespace Test_Loopguy
                 g.CheckGate(player);
             }
         }
+
+        public static void Win()
+        {
+            gameWon = true;
+            winTimer = WINTIMER;
+            Fadeout.WinFade();
+        }
+
+        
 
         public static void Reset()
         {
@@ -669,6 +697,7 @@ namespace Test_Loopguy
                 "SmallLocker" => new SmallLocker(pos),
                 "ShootingRangeTarget" => new ShootingRangeTarget(pos),
                 "RailgunPickup" => new RailgunPickup(pos),
+                "WinPickup" => new WinPickup(pos),
                 _ => null,
             };
         }
