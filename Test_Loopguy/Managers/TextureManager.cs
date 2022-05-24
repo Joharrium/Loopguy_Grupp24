@@ -7,7 +7,7 @@ namespace Test_Loopguy
     {
         public static Texture2D notex, playerSheet, target, blueArc, redPixel, cyanPixel, pistolSheet, railgunSheet, testTile, testAlt, box;
         public static Texture2D meleeFx, shot, robotEnemyShot, blueDot, cursor, dashCloud, railgunBeam, railgunImpactSheet, railgun;
-        public static Texture2D androidEnemySheet, evilMeleeFx, evilPistolSheet, evilShot, greenPixel, greenDot;
+        public static Texture2D androidEnemySheet, evilMeleeFx, evilPistolSheet, evilShot, greenPixel, greenDot, slimeo;
         // terrain files
         public static Texture2D grassBasic, grassAlt, grayBrickWall, dirt, tiles_checkered_gray, tiles_checkered_brown, tiles_big_light, tiles_big_dark,
             carpet_worn, tile_carpet, tile_warning, wall_metal, wall_worn, tile_metal_bright, grass_edge, tile_clinical, water, wall_beige, wall_gray, wall_brick_beige;
@@ -70,6 +70,7 @@ namespace Test_Loopguy
             evilShot = c.Load<Texture2D>("evilshot");
             greenPixel = c.Load<Texture2D>("greenpixel");
             greenDot = c.Load<Texture2D>("greendot");
+            slimeo = c.Load<Texture2D>("slimeo");
         }
 
         private static void LoadTerrain(ContentManager c)

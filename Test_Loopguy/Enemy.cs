@@ -285,7 +285,7 @@ namespace Test_Loopguy
         {
             this.position = position;
             footprintOffset = new Point(0, 24);
-            this.texture = TextureManager.enemyPlaceholder;
+            this.texture = TextureManager.slimeo;
             frameSize = new Point(texture.Width, texture.Height);
             xOffset = 6;
             yOffset = texture.Height;
