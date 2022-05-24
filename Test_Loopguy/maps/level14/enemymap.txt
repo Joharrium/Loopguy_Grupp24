@@ -20,3 +20,4 @@ MeleeEnemyWeak,654,704
 MeleeEnemyWeak,685,283
 MeleeEnemyWeak,1232,859
 MeleeEnemyWeak,256,193
+RangedRobotEnemy,32,399

@@ -116,7 +116,7 @@ namespace Test_Loopguy
             door_sliding = c.Load<Texture2D>("gfx/objects/door_sliding");
             door_sliding_open = c.Load<Texture2D>("gfx/objects/door_sliding_open");
             barrelDestroyed = c.Load<Texture2D>("gfx/objects/barrel_destructible");
-            medkit = c.Load<Texture2D>("gfx/objects/healthPackNew");
+            medkit = c.Load<Texture2D>("gfx/objects/healthPackNewest");
             console = c.Load<Texture2D>("gfx/objects/console_thing");
             ammo = c.Load<Texture2D>("gfx/objects/ammo");
 
