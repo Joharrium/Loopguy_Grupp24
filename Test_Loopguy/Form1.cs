@@ -486,5 +486,10 @@ namespace Test_Loopguy
         {
             LevelEditor.SelectObject(ObjectSelection.ChairBack);
         }
+
+        private void smallLocker_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.SmallLocker);
+        }
     }
 }

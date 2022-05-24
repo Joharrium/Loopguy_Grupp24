@@ -22,7 +22,7 @@ namespace Test_Loopguy
         CanteenFoodThing, KitchenCounter, CanteenChairLeft, CanteenChairRight, Bench, BigScreenTele, 
         CarsLeft, CarsRight, CopCarLeft, CopCarRight, ChairBack, ChairFront, Chest, HumanVialsEmpty, HumanVialsFilled,
         HumanVialsNoBody, NormalScreenTele, RadioactiveStain,TrashCan, WaterStain, SmallCarLeft, SmallCarRight,
-        BigMonitor, Workstation, ComputerBack, ComputerFront,
+        BigMonitor, Workstation, ComputerBack, ComputerFront, SmallLocker,
     }
     public enum TileSelection
     {
@@ -374,6 +374,10 @@ namespace Test_Loopguy
                                 LevelManager.ObjectAdd(new BigMonitor(Game1.mousePos - new Vector2(8, 16)));
                                 break;
 
+                            case ObjectSelection.SmallLocker:
+                                LevelManager.ObjectAdd(new SmallLocker(Game1.mousePos - new Vector2(8, 16)));
+                                break;
+
                             default:
                                 break;
                         }
@@ -672,6 +676,10 @@ namespace Test_Loopguy
 
                     case ObjectSelection.ComputerFront:
                         spriteBatch.Draw(TextureManager.computerFront, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.SmallLocker:
+                        spriteBatch.Draw(TextureManager.smallLocker, (Game1.mousePos - new Vector2(8, 16)), Color.White);
                         break;
 
                     default:

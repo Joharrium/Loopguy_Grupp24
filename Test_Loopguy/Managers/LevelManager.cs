@@ -618,6 +618,7 @@ namespace Test_Loopguy
                 "ComputerBack" => new ComputerBack(pos),
                 "ComputerFront" => new ComputerFront(pos),
                 "BigMonitor" => new BigMonitor(pos),
+                "SmallLocker" => new SmallLocker(pos),
                 _ => null,
             };
         }

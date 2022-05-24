@@ -126,6 +126,19 @@ namespace Test_Loopguy
             this.meleeTestSelect = new System.Windows.Forms.PictureBox();
             this.countDownBox = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chairBack = new System.Windows.Forms.PictureBox();
+            this.computerFront = new System.Windows.Forms.PictureBox();
+            this.chairFront = new System.Windows.Forms.PictureBox();
+            this.chest = new System.Windows.Forms.PictureBox();
+            this.computerBack = new System.Windows.Forms.PictureBox();
+            this.bigScreenTele = new System.Windows.Forms.PictureBox();
+            this.workstation = new System.Windows.Forms.PictureBox();
+            this.bigMonitor = new System.Windows.Forms.PictureBox();
+            this.normalScreenTele = new System.Windows.Forms.PictureBox();
+            this.copCarLeft = new System.Windows.Forms.PictureBox();
+            this.radioactiveStain = new System.Windows.Forms.PictureBox();
+            this.waterStain = new System.Windows.Forms.PictureBox();
+            this.copCarRight = new System.Windows.Forms.PictureBox();
             this.carsLeft = new System.Windows.Forms.PictureBox();
             this.smallCarRight = new System.Windows.Forms.PictureBox();
             this.smallCarLeft = new System.Windows.Forms.PictureBox();
@@ -144,19 +157,7 @@ namespace Test_Loopguy
             this.sofaLeftSelect = new System.Windows.Forms.PictureBox();
             this.canteenChairRightSelect = new System.Windows.Forms.PictureBox();
             this.canteenChairLeftSelect = new System.Windows.Forms.PictureBox();
-            this.copCarLeft = new System.Windows.Forms.PictureBox();
-            this.radioactiveStain = new System.Windows.Forms.PictureBox();
-            this.waterStain = new System.Windows.Forms.PictureBox();
-            this.copCarRight = new System.Windows.Forms.PictureBox();
-            this.bigScreenTele = new System.Windows.Forms.PictureBox();
-            this.workstation = new System.Windows.Forms.PictureBox();
-            this.bigMonitor = new System.Windows.Forms.PictureBox();
-            this.normalScreenTele = new System.Windows.Forms.PictureBox();
-            this.computerFront = new System.Windows.Forms.PictureBox();
-            this.chairFront = new System.Windows.Forms.PictureBox();
-            this.chest = new System.Windows.Forms.PictureBox();
-            this.computerBack = new System.Windows.Forms.PictureBox();
-            this.chairBack = new System.Windows.Forms.PictureBox();
+            this.smallLocker = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
@@ -236,6 +237,19 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.rangedTestSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.meleeTestSelect)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chairBack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.computerFront)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chairFront)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chest)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.computerBack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bigScreenTele)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.workstation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bigMonitor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.normalScreenTele)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.copCarLeft)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radioactiveStain)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waterStain)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.copCarRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.carsLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.smallCarRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.smallCarLeft)).BeginInit();
@@ -254,19 +268,7 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.sofaLeftSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.canteenChairRightSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.canteenChairLeftSelect)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.copCarLeft)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radioactiveStain)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.waterStain)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.copCarRight)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bigScreenTele)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.workstation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bigMonitor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.normalScreenTele)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.computerFront)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chairFront)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chest)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.computerBack)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chairBack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smallLocker)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -1312,6 +1314,7 @@ namespace Test_Loopguy
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.smallLocker);
             this.panel1.Controls.Add(this.chairBack);
             this.panel1.Controls.Add(this.computerFront);
             this.panel1.Controls.Add(this.chairFront);
@@ -1388,6 +1391,148 @@ namespace Test_Loopguy
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(597, 1475);
             this.panel1.TabIndex = 40;
+            // 
+            // chairBack
+            // 
+            this.chairBack.Image = ((System.Drawing.Image)(resources.GetObject("chairBack.Image")));
+            this.chairBack.Location = new System.Drawing.Point(299, 1013);
+            this.chairBack.Margin = new System.Windows.Forms.Padding(6);
+            this.chairBack.Name = "chairBack";
+            this.chairBack.Size = new System.Drawing.Size(136, 63);
+            this.chairBack.TabIndex = 70;
+            this.chairBack.TabStop = false;
+            this.chairBack.Click += new System.EventHandler(this.chairBack_Click);
+            // 
+            // computerFront
+            // 
+            this.computerFront.Image = ((System.Drawing.Image)(resources.GetObject("computerFront.Image")));
+            this.computerFront.Location = new System.Drawing.Point(3, 1013);
+            this.computerFront.Margin = new System.Windows.Forms.Padding(6);
+            this.computerFront.Name = "computerFront";
+            this.computerFront.Size = new System.Drawing.Size(136, 63);
+            this.computerFront.TabIndex = 69;
+            this.computerFront.TabStop = false;
+            this.computerFront.Click += new System.EventHandler(this.computerFront_Click);
+            // 
+            // chairFront
+            // 
+            this.chairFront.Image = ((System.Drawing.Image)(resources.GetObject("chairFront.Image")));
+            this.chairFront.Location = new System.Drawing.Point(447, 1013);
+            this.chairFront.Margin = new System.Windows.Forms.Padding(6);
+            this.chairFront.Name = "chairFront";
+            this.chairFront.Size = new System.Drawing.Size(136, 63);
+            this.chairFront.TabIndex = 68;
+            this.chairFront.TabStop = false;
+            // 
+            // chest
+            // 
+            this.chest.Image = ((System.Drawing.Image)(resources.GetObject("chest.Image")));
+            this.chest.Location = new System.Drawing.Point(3, 1238);
+            this.chest.Margin = new System.Windows.Forms.Padding(6);
+            this.chest.Name = "chest";
+            this.chest.Size = new System.Drawing.Size(136, 63);
+            this.chest.TabIndex = 67;
+            this.chest.TabStop = false;
+            this.chest.Click += new System.EventHandler(this.chest_Click);
+            // 
+            // computerBack
+            // 
+            this.computerBack.Image = ((System.Drawing.Image)(resources.GetObject("computerBack.Image")));
+            this.computerBack.Location = new System.Drawing.Point(148, 1013);
+            this.computerBack.Margin = new System.Windows.Forms.Padding(6);
+            this.computerBack.Name = "computerBack";
+            this.computerBack.Size = new System.Drawing.Size(136, 63);
+            this.computerBack.TabIndex = 66;
+            this.computerBack.TabStop = false;
+            this.computerBack.Click += new System.EventHandler(this.computerBack_Click);
+            // 
+            // bigScreenTele
+            // 
+            this.bigScreenTele.Image = ((System.Drawing.Image)(resources.GetObject("bigScreenTele.Image")));
+            this.bigScreenTele.Location = new System.Drawing.Point(3, 938);
+            this.bigScreenTele.Margin = new System.Windows.Forms.Padding(6);
+            this.bigScreenTele.Name = "bigScreenTele";
+            this.bigScreenTele.Size = new System.Drawing.Size(136, 63);
+            this.bigScreenTele.TabIndex = 65;
+            this.bigScreenTele.TabStop = false;
+            this.bigScreenTele.Click += new System.EventHandler(this.bigScreenTele_Click);
+            // 
+            // workstation
+            // 
+            this.workstation.Image = ((System.Drawing.Image)(resources.GetObject("workstation.Image")));
+            this.workstation.Location = new System.Drawing.Point(447, 938);
+            this.workstation.Margin = new System.Windows.Forms.Padding(6);
+            this.workstation.Name = "workstation";
+            this.workstation.Size = new System.Drawing.Size(136, 63);
+            this.workstation.TabIndex = 64;
+            this.workstation.TabStop = false;
+            this.workstation.Click += new System.EventHandler(this.workstation_Click);
+            // 
+            // bigMonitor
+            // 
+            this.bigMonitor.Image = ((System.Drawing.Image)(resources.GetObject("bigMonitor.Image")));
+            this.bigMonitor.Location = new System.Drawing.Point(299, 938);
+            this.bigMonitor.Margin = new System.Windows.Forms.Padding(6);
+            this.bigMonitor.Name = "bigMonitor";
+            this.bigMonitor.Size = new System.Drawing.Size(136, 63);
+            this.bigMonitor.TabIndex = 63;
+            this.bigMonitor.TabStop = false;
+            this.bigMonitor.Click += new System.EventHandler(this.bigMonitor_Click);
+            // 
+            // normalScreenTele
+            // 
+            this.normalScreenTele.Image = ((System.Drawing.Image)(resources.GetObject("normalScreenTele.Image")));
+            this.normalScreenTele.Location = new System.Drawing.Point(148, 938);
+            this.normalScreenTele.Margin = new System.Windows.Forms.Padding(6);
+            this.normalScreenTele.Name = "normalScreenTele";
+            this.normalScreenTele.Size = new System.Drawing.Size(136, 63);
+            this.normalScreenTele.TabIndex = 62;
+            this.normalScreenTele.TabStop = false;
+            this.normalScreenTele.Click += new System.EventHandler(this.normalScreenTele_Click);
+            // 
+            // copCarLeft
+            // 
+            this.copCarLeft.Image = ((System.Drawing.Image)(resources.GetObject("copCarLeft.Image")));
+            this.copCarLeft.Location = new System.Drawing.Point(3, 1163);
+            this.copCarLeft.Margin = new System.Windows.Forms.Padding(6);
+            this.copCarLeft.Name = "copCarLeft";
+            this.copCarLeft.Size = new System.Drawing.Size(136, 63);
+            this.copCarLeft.TabIndex = 61;
+            this.copCarLeft.TabStop = false;
+            this.copCarLeft.Click += new System.EventHandler(this.copCarLeft_Click);
+            // 
+            // radioactiveStain
+            // 
+            this.radioactiveStain.Image = ((System.Drawing.Image)(resources.GetObject("radioactiveStain.Image")));
+            this.radioactiveStain.Location = new System.Drawing.Point(447, 1163);
+            this.radioactiveStain.Margin = new System.Windows.Forms.Padding(6);
+            this.radioactiveStain.Name = "radioactiveStain";
+            this.radioactiveStain.Size = new System.Drawing.Size(136, 63);
+            this.radioactiveStain.TabIndex = 60;
+            this.radioactiveStain.TabStop = false;
+            this.radioactiveStain.Click += new System.EventHandler(this.radioactiveStain_Click);
+            // 
+            // waterStain
+            // 
+            this.waterStain.Image = ((System.Drawing.Image)(resources.GetObject("waterStain.Image")));
+            this.waterStain.Location = new System.Drawing.Point(299, 1163);
+            this.waterStain.Margin = new System.Windows.Forms.Padding(6);
+            this.waterStain.Name = "waterStain";
+            this.waterStain.Size = new System.Drawing.Size(136, 63);
+            this.waterStain.TabIndex = 59;
+            this.waterStain.TabStop = false;
+            this.waterStain.Click += new System.EventHandler(this.waterStain_Click);
+            // 
+            // copCarRight
+            // 
+            this.copCarRight.Image = ((System.Drawing.Image)(resources.GetObject("copCarRight.Image")));
+            this.copCarRight.Location = new System.Drawing.Point(148, 1163);
+            this.copCarRight.Margin = new System.Windows.Forms.Padding(6);
+            this.copCarRight.Name = "copCarRight";
+            this.copCarRight.Size = new System.Drawing.Size(136, 63);
+            this.copCarRight.TabIndex = 58;
+            this.copCarRight.TabStop = false;
+            this.copCarRight.Click += new System.EventHandler(this.copCarRight_Click);
             // 
             // carsLeft
             // 
@@ -1581,147 +1726,16 @@ namespace Test_Loopguy
             this.canteenChairLeftSelect.TabStop = false;
             this.canteenChairLeftSelect.Click += new System.EventHandler(this.canteenChairLeftSelect_Click);
             // 
-            // copCarLeft
+            // smallLocker
             // 
-            this.copCarLeft.Image = ((System.Drawing.Image)(resources.GetObject("copCarLeft.Image")));
-            this.copCarLeft.Location = new System.Drawing.Point(3, 1163);
-            this.copCarLeft.Margin = new System.Windows.Forms.Padding(6);
-            this.copCarLeft.Name = "copCarLeft";
-            this.copCarLeft.Size = new System.Drawing.Size(136, 63);
-            this.copCarLeft.TabIndex = 61;
-            this.copCarLeft.TabStop = false;
-            this.copCarLeft.Click += new System.EventHandler(this.copCarLeft_Click);
-            // 
-            // radioactiveStain
-            // 
-            this.radioactiveStain.Image = ((System.Drawing.Image)(resources.GetObject("radioactiveStain.Image")));
-            this.radioactiveStain.Location = new System.Drawing.Point(447, 1163);
-            this.radioactiveStain.Margin = new System.Windows.Forms.Padding(6);
-            this.radioactiveStain.Name = "radioactiveStain";
-            this.radioactiveStain.Size = new System.Drawing.Size(136, 63);
-            this.radioactiveStain.TabIndex = 60;
-            this.radioactiveStain.TabStop = false;
-            this.radioactiveStain.Click += new System.EventHandler(this.radioactiveStain_Click);
-            // 
-            // waterStain
-            // 
-            this.waterStain.Image = ((System.Drawing.Image)(resources.GetObject("waterStain.Image")));
-            this.waterStain.Location = new System.Drawing.Point(299, 1163);
-            this.waterStain.Margin = new System.Windows.Forms.Padding(6);
-            this.waterStain.Name = "waterStain";
-            this.waterStain.Size = new System.Drawing.Size(136, 63);
-            this.waterStain.TabIndex = 59;
-            this.waterStain.TabStop = false;
-            this.waterStain.Click += new System.EventHandler(this.waterStain_Click);
-            // 
-            // copCarRight
-            // 
-            this.copCarRight.Image = ((System.Drawing.Image)(resources.GetObject("copCarRight.Image")));
-            this.copCarRight.Location = new System.Drawing.Point(148, 1163);
-            this.copCarRight.Margin = new System.Windows.Forms.Padding(6);
-            this.copCarRight.Name = "copCarRight";
-            this.copCarRight.Size = new System.Drawing.Size(136, 63);
-            this.copCarRight.TabIndex = 58;
-            this.copCarRight.TabStop = false;
-            this.copCarRight.Click += new System.EventHandler(this.copCarRight_Click);
-            // 
-            // bigScreenTele
-            // 
-            this.bigScreenTele.Image = ((System.Drawing.Image)(resources.GetObject("bigScreenTele.Image")));
-            this.bigScreenTele.Location = new System.Drawing.Point(3, 938);
-            this.bigScreenTele.Margin = new System.Windows.Forms.Padding(6);
-            this.bigScreenTele.Name = "bigScreenTele";
-            this.bigScreenTele.Size = new System.Drawing.Size(136, 63);
-            this.bigScreenTele.TabIndex = 65;
-            this.bigScreenTele.TabStop = false;
-            this.bigScreenTele.Click += new System.EventHandler(this.bigScreenTele_Click);
-            // 
-            // workstation
-            // 
-            this.workstation.Image = ((System.Drawing.Image)(resources.GetObject("workstation.Image")));
-            this.workstation.Location = new System.Drawing.Point(447, 938);
-            this.workstation.Margin = new System.Windows.Forms.Padding(6);
-            this.workstation.Name = "workstation";
-            this.workstation.Size = new System.Drawing.Size(136, 63);
-            this.workstation.TabIndex = 64;
-            this.workstation.TabStop = false;
-            this.workstation.Click += new System.EventHandler(this.workstation_Click);
-            // 
-            // bigMonitor
-            // 
-            this.bigMonitor.Image = ((System.Drawing.Image)(resources.GetObject("bigMonitor.Image")));
-            this.bigMonitor.Location = new System.Drawing.Point(299, 938);
-            this.bigMonitor.Margin = new System.Windows.Forms.Padding(6);
-            this.bigMonitor.Name = "bigMonitor";
-            this.bigMonitor.Size = new System.Drawing.Size(136, 63);
-            this.bigMonitor.TabIndex = 63;
-            this.bigMonitor.TabStop = false;
-            this.bigMonitor.Click += new System.EventHandler(this.bigMonitor_Click);
-            // 
-            // normalScreenTele
-            // 
-            this.normalScreenTele.Image = ((System.Drawing.Image)(resources.GetObject("normalScreenTele.Image")));
-            this.normalScreenTele.Location = new System.Drawing.Point(148, 938);
-            this.normalScreenTele.Margin = new System.Windows.Forms.Padding(6);
-            this.normalScreenTele.Name = "normalScreenTele";
-            this.normalScreenTele.Size = new System.Drawing.Size(136, 63);
-            this.normalScreenTele.TabIndex = 62;
-            this.normalScreenTele.TabStop = false;
-            this.normalScreenTele.Click += new System.EventHandler(this.normalScreenTele_Click);
-            // 
-            // computerFront
-            // 
-            this.computerFront.Image = ((System.Drawing.Image)(resources.GetObject("computerFront.Image")));
-            this.computerFront.Location = new System.Drawing.Point(3, 1013);
-            this.computerFront.Margin = new System.Windows.Forms.Padding(6);
-            this.computerFront.Name = "computerFront";
-            this.computerFront.Size = new System.Drawing.Size(136, 63);
-            this.computerFront.TabIndex = 69;
-            this.computerFront.TabStop = false;
-            this.computerFront.Click += new System.EventHandler(this.computerFront_Click);
-            // 
-            // chairFront
-            // 
-            this.chairFront.Image = ((System.Drawing.Image)(resources.GetObject("chairFront.Image")));
-            this.chairFront.Location = new System.Drawing.Point(447, 1013);
-            this.chairFront.Margin = new System.Windows.Forms.Padding(6);
-            this.chairFront.Name = "chairFront";
-            this.chairFront.Size = new System.Drawing.Size(136, 63);
-            this.chairFront.TabIndex = 68;
-            this.chairFront.TabStop = false;
-            // 
-            // chest
-            // 
-            this.chest.Image = ((System.Drawing.Image)(resources.GetObject("chest.Image")));
-            this.chest.Location = new System.Drawing.Point(3, 1238);
-            this.chest.Margin = new System.Windows.Forms.Padding(6);
-            this.chest.Name = "chest";
-            this.chest.Size = new System.Drawing.Size(136, 63);
-            this.chest.TabIndex = 67;
-            this.chest.TabStop = false;
-            this.chest.Click += new System.EventHandler(this.chest_Click);
-            // 
-            // computerBack
-            // 
-            this.computerBack.Image = ((System.Drawing.Image)(resources.GetObject("computerBack.Image")));
-            this.computerBack.Location = new System.Drawing.Point(148, 1013);
-            this.computerBack.Margin = new System.Windows.Forms.Padding(6);
-            this.computerBack.Name = "computerBack";
-            this.computerBack.Size = new System.Drawing.Size(136, 63);
-            this.computerBack.TabIndex = 66;
-            this.computerBack.TabStop = false;
-            this.computerBack.Click += new System.EventHandler(this.computerBack_Click);
-            // 
-            // chairBack
-            // 
-            this.chairBack.Image = ((System.Drawing.Image)(resources.GetObject("chairBack.Image")));
-            this.chairBack.Location = new System.Drawing.Point(299, 1013);
-            this.chairBack.Margin = new System.Windows.Forms.Padding(6);
-            this.chairBack.Name = "chairBack";
-            this.chairBack.Size = new System.Drawing.Size(136, 63);
-            this.chairBack.TabIndex = 70;
-            this.chairBack.TabStop = false;
-            this.chairBack.Click += new System.EventHandler(this.chairBack_Click);
+            this.smallLocker.Image = ((System.Drawing.Image)(resources.GetObject("smallLocker.Image")));
+            this.smallLocker.Location = new System.Drawing.Point(148, 1238);
+            this.smallLocker.Margin = new System.Windows.Forms.Padding(6);
+            this.smallLocker.Name = "smallLocker";
+            this.smallLocker.Size = new System.Drawing.Size(136, 63);
+            this.smallLocker.TabIndex = 71;
+            this.smallLocker.TabStop = false;
+            this.smallLocker.Click += new System.EventHandler(this.smallLocker_Click);
             // 
             // Form1
             // 
@@ -1830,6 +1844,19 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.rangedTestSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.meleeTestSelect)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chairBack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.computerFront)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chairFront)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chest)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.computerBack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bigScreenTele)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.workstation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bigMonitor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.normalScreenTele)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.copCarLeft)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radioactiveStain)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waterStain)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.copCarRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.carsLeft)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.smallCarRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.smallCarLeft)).EndInit();
@@ -1848,19 +1875,7 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.sofaLeftSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.canteenChairRightSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.canteenChairLeftSelect)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.copCarLeft)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radioactiveStain)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.waterStain)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.copCarRight)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bigScreenTele)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.workstation)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bigMonitor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.normalScreenTele)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.computerFront)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chairFront)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chest)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.computerBack)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chairBack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smallLocker)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1995,5 +2010,6 @@ namespace Test_Loopguy
         private System.Windows.Forms.PictureBox chest;
         private System.Windows.Forms.PictureBox computerBack;
         private System.Windows.Forms.PictureBox chairBack;
+        private System.Windows.Forms.PictureBox smallLocker;
     }
 }
