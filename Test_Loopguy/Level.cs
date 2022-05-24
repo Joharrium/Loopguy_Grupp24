@@ -446,15 +446,6 @@ namespace Test_Loopguy
                 }
             }
 
-            foreach (Enemy e in enemies)
-            {
-                Line testLine = new Line(originalLine.P1, originalLine.P2);
-                if (testLine.RectangleIntersects(e.hitBox) && testLine.LineFromIntersect(e.hitBox).Length() <= shortestLine.Length())
-                {
-                    e.TakeDamage(1, Character.DamageType.railGun);
-                }
-            }
-
             foreach (Destructible d in destructibles)
             {
                 Line testLine = new Line(originalLine.P1, originalLine.P2);
@@ -465,7 +456,21 @@ namespace Test_Loopguy
             }
 
             return returnValue;
-            
+        }
+
+        public void RailgunEnemyCollision(Line line)
+        {
+            Line shortestLine = line;
+            Line originalLine = new Line(line.P1, line.P2);
+
+            foreach (Enemy e in enemies)
+            {
+                Line testLine = new Line(originalLine.P1, originalLine.P2);
+                if (testLine.RectangleIntersects(e.hitBox) && testLine.LineFromIntersect(e.hitBox).Length() <= shortestLine.Length())
+                {
+                    e.TakeDamage(2, Character.DamageType.railGun);
+                }
+            }
         }
 
         public bool LevelObjectCollision(Line line, int height)

@@ -305,6 +305,11 @@ namespace Test_Loopguy
             }
         }
 
+        public static void RailgunEnemyCollision(Line line)
+        {
+            currentLevel.RailgunEnemyCollision(line);
+        }
+
         internal static void QueueAddObject(LevelObject lo)
         {
             objectsToAdd.Add(lo);
