@@ -447,6 +447,12 @@
 /processorParam:TextureFormat=Compressed
 /build:File.spritefont;smallestFont.spritefont
 
+#begin Gesaffelstein_trans.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Gesaffelstein_trans.mp3
+
 #begin gfx/characters/32x32blank.png
 /importer:TextureImporter
 /processor:TextureProcessor
