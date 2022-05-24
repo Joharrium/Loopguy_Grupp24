@@ -683,7 +683,7 @@ namespace Test_Loopguy
                 "Chest" => new Chest(pos),
                 "HumanVialsEmpty" => new HumanVialsEmpty(pos),
                 "HumanVialsFilled" => new HumanVialsFilled(pos),
-                "HumanVialsNobody" => new HumanVialsNoBody(pos),
+                "HumanVialsNoBody" => new HumanVialsNoBody(pos),
                 "NormalScreenTele" => new NormalScreenTele(pos),
                 "RadioactiveStain" => new RadioactiveStain(pos),
                 "TrashCan" => new TrashCan(pos),
