@@ -630,7 +630,7 @@ namespace Test_Loopguy
                 "ShelfWeird" => new ShelfWeird(pos),
                 "NiceBookshelf" => new NiceBookshelf(pos),
                 "CameraObject" => new CameraObject(pos),
-                "ShootingRangeBench" => new CameraObject(pos),
+                "ShootingRangeBench" => new ShootingRangeBench(pos),
                 "Locker" => new Locker(pos),
                 "WhiteBoard" => new WhiteBoard(pos),
                 "CanteenChairLeft" => new CanteenChairLeft(pos),
