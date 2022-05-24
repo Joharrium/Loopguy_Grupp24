@@ -1,4 +1,4 @@
-RangedRobotEnemy,1288,317
+RangedRobotEnemy,1294,324
 RangedRobotEnemy,358,1135
 RangedRobotEnemy,359,1050
 MeleeEnemyWeak,551,1124
@@ -15,9 +15,8 @@ MeleeEnemyWeak,840,705
 RangedRobotEnemy,330,674
 MeleeEnemyWeak,255,693
 MeleeEnemyWeak,447,698
-RangedRobotEnemy,32,423
 MeleeEnemyWeak,396,328
 MeleeEnemyWeak,654,704
 MeleeEnemyWeak,685,283
-MeleeEnemyWeak,181,193
 MeleeEnemyWeak,1232,859
+MeleeEnemyWeak,256,193
