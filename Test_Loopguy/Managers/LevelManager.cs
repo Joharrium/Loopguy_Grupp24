@@ -620,6 +620,9 @@ namespace Test_Loopguy
                 "MeleeEnemyWeak" => new MeleeEnemyWeak(pos),
 
                 "RangedRobotEnemy" => new RangedRobotEnemy(pos),
+
+                "AndroidEnemy" => new AndroidEnemy(pos),
+
                 _ => new MeleeEnemyWeak(pos),
             };
         }

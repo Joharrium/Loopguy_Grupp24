@@ -91,6 +91,7 @@ namespace Test_Loopguy
                 dying = true;
                 isInMelee = false;
                 sprite.ResetAnimation();
+                LevelManager.QueueAddObject(new KeyPickup(position, 66, true));
             }
             else
             {
