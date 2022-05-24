@@ -66,6 +66,7 @@ namespace Test_Loopguy
             songs.Add(new Song("idle_1", unatco_hq));
             songs.Add(new Song("idle_2", nyc_streets));
             songs.Add(new Song("combat_2", oceanlab_action));
+            songs.Add(new Song("boss_fight_1", gesaffelstein_trans));
 
             foreach (Song s in songs)
             {
@@ -224,7 +225,6 @@ namespace Test_Loopguy
                         {
                             idleMusicCurrent.Add(s);
                         }
-                        
                     }
                 }
             }
@@ -258,7 +258,6 @@ namespace Test_Loopguy
                     PlayMusic();
                 }
             }
-            
         }
 
         public static void PlayMusic()

@@ -1,2 +1,1 @@
-combat_1
-idle_2
+boss_fight_1
