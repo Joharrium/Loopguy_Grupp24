@@ -41,6 +41,12 @@ namespace Test_Loopguy
             currentProfile.RailgunPickedUp();
         }
 
+        public static void ClearProfile()
+        {
+            currentProfile.ClearProfile();
+            LevelManager.Reset();
+        }
+
         public static List<int> GetKeys()
         {
             return currentProfile.GetKeys();

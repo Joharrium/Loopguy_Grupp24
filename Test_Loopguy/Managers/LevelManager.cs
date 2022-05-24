@@ -668,6 +668,7 @@ namespace Test_Loopguy
                 "BigMonitor" => new BigMonitor(pos),
                 "SmallLocker" => new SmallLocker(pos),
                 "ShootingRangeTarget" => new ShootingRangeTarget(pos),
+                "RailgunPickup" => new RailgunPickup(pos),
                 _ => null,
             };
         }

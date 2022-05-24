@@ -52,7 +52,7 @@ namespace Test_Loopguy
             highScoreButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot3)
             {
                 Position = menuSlot3,
-                Text = "High Score",
+                Text = "Delete Profile",
             };
 
             settingsButton = new Button(TextureManager.UI_selectedMenuBox, TextureManager.UI_menuFont, menuSlot4)
@@ -138,7 +138,7 @@ namespace Test_Loopguy
             {
                 if (InputReader.ButtonPressed(Buttons.A) || InputReader.KeyPressed(Keys.Enter))
                 {
-                    highScoreButton.isHovering = false;
+                    ProfileManager.ClearProfile();
                 }
             }
 
@@ -174,7 +174,7 @@ namespace Test_Loopguy
 
         private static void HighScoreButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            ProfileManager.ClearProfile();
         }
 
         private static void SettingsButton_Click(object sender, EventArgs e)
