@@ -667,6 +667,7 @@ namespace Test_Loopguy
                 "ComputerFront" => new ComputerFront(pos),
                 "BigMonitor" => new BigMonitor(pos),
                 "SmallLocker" => new SmallLocker(pos),
+                "ShootingRangeTarget" => new ShootingRangeTarget(pos),
                 _ => null,
             };
         }
