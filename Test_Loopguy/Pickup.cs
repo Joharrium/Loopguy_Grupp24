@@ -149,18 +149,17 @@ namespace Test_Loopguy
         }
 
         public override void Update(GameTime gameTime)
-        {
-            sprite.Update(gameTime);
+        {         
             sprite.Play(0, 8, 50);
+            sprite.Update(gameTime);
             base.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-           
             sprite.Position = position;
             sprite.Draw(spriteBatch);
-            base.Draw(spriteBatch);
+            
         }
 
     }
