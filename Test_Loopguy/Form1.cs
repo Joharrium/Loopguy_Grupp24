@@ -497,7 +497,7 @@ namespace Test_Loopguy
             LevelEditor.SelectObject(ObjectSelection.ShootingRangeTarget);
         }
 
-        private void wallGlass_Click(object sender, EventArgs e)
+        private void glassWall_Click(object sender, EventArgs e)
         {
             LevelEditor.SelectTile(TileSelection.WallGlass);
         }
