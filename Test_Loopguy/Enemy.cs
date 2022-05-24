@@ -628,7 +628,6 @@ namespace Test_Loopguy
         AnimatedSprite explosionSprite;
         Point frameSize2;
 
-
         public MeleeEnemyWeak(Vector2 position) : base(position)
         {
             this.position = position;
