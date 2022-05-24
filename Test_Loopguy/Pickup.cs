@@ -201,4 +201,21 @@ namespace Test_Loopguy
             ProfileManager.GiveRailgun();
         }
     }
+
+    public class WinPickup : Pickup
+    {
+        public WinPickup(Vector2 position) : base(position)
+        {
+            this.position = position;
+            this.hitBox = Rectangle.Empty;
+            texture = TextureManager.ammo;
+            sourceRectangle = new Rectangle(0, 0, 32, 32);
+        }
+
+        protected override void Effect()
+        {
+            LevelManager.Win();
+            base.Effect();
+        }
+    }
 }

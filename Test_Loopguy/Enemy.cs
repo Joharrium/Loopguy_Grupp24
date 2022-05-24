@@ -115,7 +115,7 @@ namespace Test_Loopguy
             }
             else
             {
-                AggroBehavior();
+                AggroBehavior(deltaTime);
             }
 
             if (knockBackRemaining > 0)
@@ -179,7 +179,7 @@ namespace Test_Loopguy
             healthBar.Draw(spriteBatch);
         }
 
-        protected virtual void AggroBehavior()
+        protected virtual void AggroBehavior(float deltaTime)
         {
 
         }
@@ -232,7 +232,7 @@ namespace Test_Loopguy
             LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 200, damage));
         }
 
-        protected override void AggroBehavior()
+        protected override void AggroBehavior(float deltaTime)
         {
             Vector2 thing = centerPosition - EntityManager.player.centerPosition;
             if(!fleeing)
@@ -346,6 +346,8 @@ namespace Test_Loopguy
     {       
         bool isAttacking = false;
         bool isMoving;
+        bool dying;
+
         int frameTime = 100;
         Vector2 attackOrigin;
         Orientation lockedOrientation;
@@ -401,7 +403,7 @@ namespace Test_Loopguy
             }
         }
 
-        protected override void AggroBehavior()
+        protected override void AggroBehavior(float deltaTime)
         {
             Vector2 thing = centerPosition - EntityManager.player.centerPosition;
             if (!fleeing)
@@ -527,9 +529,14 @@ namespace Test_Loopguy
             sprite.Update(gameTime);
             sprite.Position = position;
             
-            if (health <= 0)
+            if (dying)
             {
                 isNotDying = sprite.PlayOnce(8, 28, 50);
+            }
+            else if (health <= 0)
+            {
+                dying = true;
+                sprite.ResetAnimation();
             }
             else
             {
@@ -672,7 +679,7 @@ namespace Test_Loopguy
             base.Update(gameTime);
         }
 
-        protected override void AggroBehavior()
+        protected override void AggroBehavior(float deltaTime)
         {
             distBetweenPlrAndEnemy = centerPosition - EntityManager.player.centerPosition;
 

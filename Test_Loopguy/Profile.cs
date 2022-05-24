@@ -42,6 +42,14 @@ namespace Test_Loopguy
             File.WriteAllLines(path, toWrite);
         }
 
+        public void ClearProfile()
+        {
+            keys.Clear();
+            hasRailgun = false;
+            colorBlind = false;
+            SaveKeys();
+            SaveToFile();
+        }
         public void RailgunPickedUp()
         {
             hasRailgun = true;
