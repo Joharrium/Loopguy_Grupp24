@@ -12,13 +12,14 @@ namespace Test_Loopguy
         static private double delay = 200;
         static private bool started = false;
         static private bool end = false;
-        static private Color fadeout = new Color(255, 255, 255, 0);
+        static private Color fadeout = new Color(0, 0, 0, 0);
         static private Texture2D texture = TextureManager.black_screen;
         static public bool active = false;
         static private byte fadeInSpeed;
         static private byte fadeOutSpeed;
         public static void LevelTransitionFade()
         {
+            texture = TextureManager.black_screen;
             InputReader.playerInputEnabled = false;
             started = true;
             if(fadeout.A > 40)
@@ -37,8 +38,30 @@ namespace Test_Loopguy
             active = true;
         }
 
+        public static void LoopFade()
+        {
+            texture = TextureManager.white_screen;
+            InputReader.playerInputEnabled = false;
+            started = true;
+            //if (fadeout.A > 40)
+            //{
+            //    fadeout.A = 255;
+            //}
+            //else
+            //{
+                fadeout.A = 0;
+            //}
+            fadeInSpeed = 8;
+            fadeOutSpeed = 1;
+            end = false;
+            delay = 1200;
+            active = true;
+
+        }
+
         public static void HazardFade()
         {
+            texture = TextureManager.black_screen;
             InputReader.playerInputEnabled = false;
             started = true;
             if (fadeout.A > 40)
@@ -112,6 +135,8 @@ namespace Test_Loopguy
                 }
             }
         }
+
+        
 
         public static void Draw(SpriteBatch spriteBatch)
         {

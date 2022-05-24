@@ -11,8 +11,8 @@ namespace Test_Loopguy
     static public class LevelManager
     {
         public static bool countTime = false;
-        private static float timeLeft = 600;
-        private static float startingTime = 600;
+        private static float timeLeft = 300;
+        private static float startingTime = 300;
         private static Level currentLevel;
         public static Level CurrentLevel
         {
@@ -24,6 +24,10 @@ namespace Test_Loopguy
         private static double loadTimer = 80;
         public static bool loadStarted = false;
         const double LOADTIMER = 80;
+
+        private static bool loopStarted = false;
+        private static double loopTimer = 400;
+        const double LOOPTIMER = 400;
 
         public static List<LevelObject> objectsToAdd = new List<LevelObject>();
 
@@ -94,10 +98,33 @@ namespace Test_Loopguy
             currentLevel.Update(gameTime, player);
             if(countTime)
             timeLeft -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if(timeLeft < 0)
+            
+            if(loopStarted)
+            {
+                loopTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+            }
+            
+            if(timeLeft < 0 && !loopStarted)
+            {
+                StartReset();
+            }
+            if(loopTimer < 0 && loopStarted)
             {
                 Reset();
             }
+        }
+
+        internal static void StartReset()
+        {
+            Fadeout.LoopFade();
+            loopTimer = LOOPTIMER;
+            if (!loopStarted)
+            {
+                Audio.PlaySound(Audio.nuclearExplosion);
+            }
+            loopStarted = true;
+            
+            
         }
 
         public static void DrawTimer(SpriteBatch spriteBatch)
@@ -113,7 +140,21 @@ namespace Test_Loopguy
                 string calculateTimer = (((timeLeft - timeLeft % 60) / 60) + ":" + add + Math.Truncate(timeLeft % 60)).ToString();
                 Vector2 pos = new Vector2(Game1.windowX - 48, 4);
 
-                OutlinedText.DrawOutlinedText(spriteBatch, pos, TextureManager.UI_menuFont, calculateTimer);
+                Color bgColor = Color.Black;
+                Color fgColor = Color.White;
+                if(timeLeft < 10)
+                {
+                    bgColor = Color.White;
+                    fgColor = Color.Red;
+                }
+
+                if(timeLeft < 4 && timeLeft > 3.95)
+                {
+                    Audio.PlaySound(Audio.countdownAlarm);
+                }
+
+                OutlinedText.DrawOutlinedText(spriteBatch, pos, TextureManager.UI_menuFont, calculateTimer, bgColor, fgColor);
+
                 //spriteBatch.DrawString(TextureManager.UI_menuFont, calculateTimer, pos, Color.White);
             }
         }
@@ -132,6 +173,7 @@ namespace Test_Loopguy
 
         public static void Reset()
         {
+            //Fadeout.LoopFade();
             List<Level> levelsToClear = new List<Level>();
             Level level1 = LoadLevel(10);
             
@@ -148,6 +190,8 @@ namespace Test_Loopguy
                 loadedLevels.Remove(l);
             }
             loadedLevels.Add(level1);
+            loopStarted = false;
+            countTime = false;
 
         }
 
