@@ -69,14 +69,23 @@ namespace Test_Loopguy
     internal class Shot : Projectile
     {
 
-        public Shot(Vector2 position, Vector2 direction, float angle, float speed, int damage) :
+        public Shot(Vector2 position, Vector2 direction, float angle, float speed, int damage, bool evil) :
             base(position, direction, angle, speed, damage)
         {
             this.damage = damage;
 
-            sprite = new AnimatedSprite(TextureManager.shot, new Point(8, 8));
+            if (evil)
+            {
+                sprite = new AnimatedSprite(TextureManager.evilShot, new Point(8, 8));
+                particleType = ParticleSelection.ShotExplosion;
+            }
+            else
+            {
+                sprite = new AnimatedSprite(TextureManager.shot, new Point(8, 8));
+                particleType = ParticleSelection.EvilShotExplosion;
+            }
+            
             sprite.Position = position;   
-            particleType = ParticleSelection.ShotExplosion;
         }
 
         public override void Update(GameTime gameTime)
@@ -91,6 +100,7 @@ namespace Test_Loopguy
             base.Movement(deltaTime);
         }
     }
+
     
     internal class RobotEnemyShot : Projectile
     {

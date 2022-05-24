@@ -193,7 +193,7 @@ static class InputReader
 	public static bool SwitchGun()
     {
 		if (playerInputEnabled)
-			return KeyPressed(Keys.Q) || ButtonPressed(Buttons.LeftShoulder);
+			return KeyPressed(Keys.Q) || ButtonPressed(Buttons.LeftShoulder) || ButtonPressed(Buttons.RightShoulder);
 		else
 			return false;
     }

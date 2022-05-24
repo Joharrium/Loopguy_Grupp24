@@ -54,7 +54,7 @@ namespace Test_Loopguy
 
         }
 
-        public void GetOrientation()
+        public void DirectionGetOrientation()
         {
             float absDirectionX = Math.Abs(direction.X);
             float absDirectionY = Math.Abs(direction.Y);

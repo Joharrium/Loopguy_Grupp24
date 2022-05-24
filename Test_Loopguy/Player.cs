@@ -19,8 +19,8 @@ namespace Test_Loopguy
 
         Gun equippedGun;
 
-        private int ammo = 90;
-        private int maxAmmo = 90;
+        private int ammo = 9;
+        private int maxAmmo = 9;
 
         private int storedHealthPacks = 0;
         public int StoredHealth
@@ -216,7 +216,10 @@ namespace Test_Loopguy
             } //ATTACKING
             else if (attacking)
             {
-                speed = 75;
+                if (InputReader.MovementInput())
+                    speed = 75;
+                else
+                    speed = 30;
                 int rowInt = 6 + (int)primaryOrientation - 1;
                 attacking = PlayEnergySwordMelee(deltaTime, meleeSprite, rowInt, 50, flipMelee);
             }
@@ -260,7 +263,7 @@ namespace Test_Loopguy
 
                             Vector2 shotPosition = new Vector2(centerPosition.X + gunDirection.X * 20 - 4, centerPosition.Y + gunDirection.Y * 20 - 6);
                             float shotAngle = aimAngle + pi;
-                            Shot shot = new Shot(shotPosition, gunDirection, shotAngle, 300, 1);
+                            Shot shot = new Shot(shotPosition, gunDirection, shotAngle, 300, 1, false);
                             LevelManager.AddPlayerProjectile(shot);
                             Audio.lasergun.PlayRandomSound();
 
@@ -579,7 +582,7 @@ namespace Test_Loopguy
                     sprite.Play(3, 12, frameTime);
                 }
 
-                GetOrientation();
+                DirectionGetOrientation();
             }
             else if (dashSlide)
             {

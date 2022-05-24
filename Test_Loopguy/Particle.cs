@@ -69,6 +69,17 @@ namespace Test_Loopguy.Content
         }
     }
 
+    public class EvilShotExplosion : Particle
+    {
+        public EvilShotExplosion(Vector2 position) : base(position)
+        {
+            animation = new AnimatedSprite(TextureManager.evilshot_explosion, new Point(8, 8));
+            animation.size = new Point(8, 8);
+            animation.Position = position;
+            animLength = 3;
+        }
+    }
+
     public class HealEffect : Particle
     {
         public HealEffect(Vector2 position) : base(position)

@@ -20,7 +20,16 @@ namespace Test_Loopguy
         float meleeTelegraphTime;
         const float meleeTelegraphTimeMax = 0.5f;
 
+        float timeSinceRangedAttack;
+        const float timeToRangedAttack = 1;
+
+        float timeSinceShot;
+        const float timeToShot = 0.2f;
+
         int meleeRange, maxRange;
+
+        int shotsFired;
+        const int shotsFiredMax = 2;
 
         bool isAttacking, isMoving = false;
         bool dying;
@@ -93,10 +102,7 @@ namespace Test_Loopguy
             }
             else
             {
-                if (aiming)
-                {
-                    //shoot cooldown
-                }
+
             }
 
 
@@ -142,7 +148,7 @@ namespace Test_Loopguy
             spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Top), Color.White);
             spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Bottom), Color.White);
 
-            spriteBatch.Draw(TextureManager.redPixel, centerPosition, Color.White);
+            spriteBatch.Draw(TextureManager.cyanPixel, centerPosition, Color.White);
         }
 
         protected override void AggroBehavior(float deltaTime)
@@ -162,19 +168,38 @@ namespace Test_Loopguy
             }
             else if (toPlayerDistance < meleeRange)
             {
+                aiming = false;
+                timeSinceRangedAttack = 0;
+                shotsFired = 0;
                 isInMelee = true;
             }
-            else if (toPlayerDistance < maxRange && toPlayerDistance > meleeRange && attackCooldownRemaining <= 0)
+            else if (aiming || toPlayerDistance < maxRange && toPlayerDistance > meleeRange)
             {
-                //direction vector = towards player
-                direction = toPlayerVector;
-                direction.Normalize();
-                direction *= -1;
+                if (aiming)
+                {
+                    RangedAttackBehaviour(deltaTime);
+                }
+                else
+                {
+                    direction = toPlayerVector;
+                    direction.Normalize();
+                    direction *= -1;
 
-                speed = maxSpeed;
+                    speed = maxSpeed;
+
+                    timeSinceRangedAttack += deltaTime;
+                    if (timeSinceRangedAttack >= timeToRangedAttack)
+                    {
+                        timeSinceRangedAttack = 0;
+                        aiming = true;
+                    }
+                }
             }
-            else if (toPlayerDistance > maxRange)
+            else if (toPlayerDistance > maxRange && !aiming)
             {
+                aiming = isAttacking = false;
+                shotsFired = 0;
+
                 //direction vector = towards player
                 direction = toPlayerVector;
                 direction.Normalize();
@@ -216,9 +241,38 @@ namespace Test_Loopguy
             }
         }
 
-        public void RangedAttackBehaviour()
+        public void RangedAttackBehaviour(float deltaTime)
         {
+            speed = 0;
+            isAttacking = true;
 
+            if (shooting)
+            {
+                shooting = gunSprite.PlayOnce((int)primaryOrientation, 5, 25);
+            }
+            else
+            {
+                if (shotsFired >= shotsFiredMax)
+                {
+                    timeSinceShot = timeSinceRangedAttack = 0;
+                    aiming = isAttacking = false;
+                }
+
+                timeSinceShot += deltaTime;
+                if (timeSinceShot >= timeToShot)
+                {
+                    sprite.ResetAnimation();
+                    timeSinceShot = 0;
+                    shotsFired++;
+                    shooting = true;
+
+                    centerPosition = new Vector2(position.X + sprite.size.X / 2, position.Y + sprite.size.Y / 2);
+                    Vector2 shotPosition = new Vector2(centerPosition.X + gunDirection.X * 20 - 4, centerPosition.Y + gunDirection.Y * 20 - 6);
+                    LevelManager.AddEnemyProjectile(new Shot(shotPosition, gunDirection, aimAngle + (float)Math.PI, 300, 1, true));
+
+                    Audio.lasergun.PlayRandomSound();
+                }
+            }
         }
 
 
@@ -227,7 +281,7 @@ namespace Test_Loopguy
             int frameTime = 50; 
 
             if (!isAttacking)
-                GetOrientation();
+                DirectionGetOrientation();
 
             if (!dying)
             {

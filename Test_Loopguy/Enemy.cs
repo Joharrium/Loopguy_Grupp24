@@ -229,7 +229,7 @@ namespace Test_Loopguy
             direction.Normalize();
             direction *= -1;
             
-            LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 200, damage));
+            LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 200, damage, false));
         }
 
         protected override void AggroBehavior(float deltaTime)
@@ -289,7 +289,7 @@ namespace Test_Loopguy
             frameSize = new Point(texture.Width, texture.Height);
             xOffset = 6;
             yOffset = texture.Height;
-            this.maxHealth = 4;
+            this.maxHealth = 3;
             this.maxSpeed = 36;
             minRange = 40;
             maxRange = 280;
@@ -300,8 +300,8 @@ namespace Test_Loopguy
             knockBackDuration = 160;
             Init();
             aggro = false;
-            attackCooldown = 620;
-            attackCooldownRemaining = 320;
+            attackCooldown = 1000;
+            attackCooldownRemaining = 500;
             accuracy = 50;
             
         }
@@ -315,7 +315,7 @@ namespace Test_Loopguy
             direction.Normalize();
             direction *= -1;
 
-            LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 150, damage));
+            LevelManager.AddEnemyProjectile(new Shot(centerPosition, direction, (float)Helper.GetAngle(centerPosition, EntityManager.player.centerPosition, 0 + Math.PI), 150, damage, false));
         }
 
         public override void TakeDamage(int damage, DamageType soundType)
@@ -461,7 +461,7 @@ namespace Test_Loopguy
 
         public override void Movement(float deltaTime)
         {
-            GetOrientation();
+            DirectionGetOrientation();
 
             if (!isAttacking)
             {
@@ -698,7 +698,7 @@ namespace Test_Loopguy
 
         public override void Movement(float deltaTime)
         {
-            GetOrientation();
+            DirectionGetOrientation();
             if (!isAttacking)
             {
                 isMoving = true;

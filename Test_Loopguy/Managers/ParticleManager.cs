@@ -9,7 +9,7 @@ namespace Test_Loopguy.Content
 {
     public enum ParticleSelection
     {
-        SparkSmall, ShotExplosion, HealEffect
+        SparkSmall, ShotExplosion, EvilShotExplosion, HealEffect
     }
     public static class ParticleManager
     {
@@ -54,6 +54,9 @@ namespace Test_Loopguy.Content
                     break;
                 case ParticleSelection.ShotExplosion:
                     particles.Add(new ShotExplosion(position));
+                    break;
+                case ParticleSelection.EvilShotExplosion:
+                    particles.Add(new EvilShotExplosion(position));
                     break;
                 case ParticleSelection.HealEffect:
                     particles.Add(new HealEffect(position));
