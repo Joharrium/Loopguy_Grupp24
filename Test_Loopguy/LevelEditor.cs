@@ -22,7 +22,7 @@ namespace Test_Loopguy
         CanteenFoodThing, KitchenCounter, CanteenChairLeft, CanteenChairRight, Bench, BigScreenTele, 
         CarsLeft, CarsRight, CopCarLeft, CopCarRight, ChairBack, ChairFront, Chest, HumanVialsEmpty, HumanVialsFilled,
         HumanVialsNoBody, NormalScreenTele, RadioactiveStain,TrashCan, WaterStain, SmallCarLeft, SmallCarRight,
-        BigMonitor, Workstation, ComputerBack, ComputerFront, SmallLocker,
+        BigMonitor, Workstation, ComputerBack, ComputerFront, SmallLocker, ShootingRangeTarget,
     }
     public enum TileSelection
     {
@@ -377,6 +377,9 @@ namespace Test_Loopguy
                             case ObjectSelection.SmallLocker:
                                 LevelManager.ObjectAdd(new SmallLocker(Game1.mousePos - new Vector2(8, 16)));
                                 break;
+                            case ObjectSelection.ShootingRangeTarget:
+                                LevelManager.ObjectAdd(new ShootingRangeTarget(Game1.mousePos - new Vector2(8, 16)));
+                                break;
 
                             default:
                                 break;
@@ -680,6 +683,10 @@ namespace Test_Loopguy
 
                     case ObjectSelection.SmallLocker:
                         spriteBatch.Draw(TextureManager.smallLocker, (Game1.mousePos - new Vector2(8, 16)), Color.White);
+                        break;
+
+                    case ObjectSelection.ShootingRangeTarget:
+                        spriteBatch.Draw(TextureManager.shooting_range_target, (Game1.mousePos - new Vector2(8, 16)), Color.White);
                         break;
 
                     default:

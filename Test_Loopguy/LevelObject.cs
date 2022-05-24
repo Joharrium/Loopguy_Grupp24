@@ -951,4 +951,19 @@ namespace Test_Loopguy
             hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
         }
     }
+
+    public class ShootingRangeTarget : LevelObject
+    {
+        public ShootingRangeTarget(Vector2 position) : base(position)
+        {
+            this.position = position;
+            texture = TextureManager.shooting_range_target;
+            variation = Game1.rnd.Next(4);
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 40);
+            footprint = new Rectangle((int)position.X + 0, (int)position.Y + 36, 16, 4);
+            height = 12;
+            hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
+
+        }
+    }
 }
