@@ -144,7 +144,7 @@ namespace Test_Loopguy
             march_of_the_white_knights = c.Load<SoundEffect>("audio/music/march_of_the_white_knights");
             nyc_streets = c.Load<SoundEffect>("audio/music/nyc_streets");
             oceanlab_action = c.Load<SoundEffect>("audio/music/oceanlab_action");
-            gesaffelstein_trans = c.Load<SoundEffect>("");
+            //gesaffelstein_trans = c.Load<SoundEffect>("");
         }
         static void LoadSound(ContentManager c)
         {

@@ -20,7 +20,7 @@ namespace Test_Loopguy
             morgue, potted_plant, shelf_weird, locker, whiteboard, canteen_chair_left, canteen_chair_right, sofa_left, sofa_right, canteen_table, canteen_food_thing,
             kitchen_counter, bench,  bigScreenTele, carsLeft, carsRight, smallCarLeft, smallCarRight, chairBack, chairFront, chest, copCarLeft, copCarRight, humanVialsEmpty,
             humanVialsFilled, humanVialsNoBody, normalScreenTele, radioactiveStain, trashCan, waterStain, computerBack, computerFront, bigMonitor, workstation,
-            smallLocker, explosionSheet, wallGlass;
+            smallLocker, explosionSheet, wallGlass, nuclearBomb;
         // ui files
         public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door,
             healthbar_small_outline, healthbar_small_fill_bg, healthbar_small_fill,
@@ -195,7 +195,7 @@ namespace Test_Loopguy
                 bigMonitor = c.Load<Texture2D>("gfx/objects/bigMonitor");
                 smallLocker = c.Load<Texture2D>("gfx/objects/smallLocker");
             }
-
+            nuclearBomb = c.Load<Texture2D>("gfx/objects/nuclearBomb");
         }
 
         private static void LoadUI(ContentManager c)
