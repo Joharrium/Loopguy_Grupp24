@@ -194,4 +194,5 @@ DoorSliding,544,640,6
 DoorSliding,496,640,6
 KeyPickup,790,114,4,True
 KeyPickup,95,521,5,True
+KeyPickup,95,521,20,True
 KeyPickup,75,633,6,True

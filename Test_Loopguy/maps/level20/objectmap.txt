@@ -93,5 +93,5 @@ SmallAmmoPickup,369,671
 SofaRight,335,650
 SofaLeft,395,650
 HumanVialsEmpty,332,674
-DoorSliding,400,224,3
-DoorSliding,416,432,3
+DoorSliding,400,224,20
+DoorSliding,416,432,20
