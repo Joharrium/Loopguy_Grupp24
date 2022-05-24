@@ -18,13 +18,15 @@ namespace Test_Loopguy
             shelf_archiving_small, table_computer_medicine, table_operation, monitor_wall, desk_office, chair_office_fw, chair_office_bw, server,
             big_sink, sink, carrying_thing, crate_stack, nice_bookshelf, shooting_range_bench, shooting_range_target, sofa, camera, desk_bw, desk_fw, 
             morgue, potted_plant, shelf_weird, locker, whiteboard, canteen_chair_left, canteen_chair_right, sofa_left, sofa_right, canteen_table, canteen_food_thing,
-            kitchen_counter, bench;
+            kitchen_counter, bench,  bigScreenTele, carsLeft, carsRight, smallCarLeft, smallCarRight, chairBack, chairFront, chest, copCarLeft, copCarRight, humanVialsEmpty,
+            humanVialsFilled, humanVialsNoBody, normalScreenTele, radioactiveStain, trashCan, waterStain, computerBack, computerFront, bigMonitor, workstation,
+            smallLocker, explosionSheet, wallGlass;
         // ui files
         public static Texture2D UI_dirt, UI_grass, UI_selectedMenuBox, UI_graybrick, black_screen, UI_door,
             healthbar_small_outline, healthbar_small_fill_bg, healthbar_small_fill,
             player_healthbar_outline, player_healthbar_outline_alt, player_healthbar_inline, player_healthbar_fill, player_healthbar_fill_bg, player_healthbar_fill_bg_alt,
             ammobar_fill, ammobar_outline, ammobar_fill_bg, menu_bg, slider_container, slider_fill, logo,
-            checkbox_true, checkbox_false, control_atlas
+            checkbox_true, checkbox_false, control_atlas, white_screen
             
             ;
         public static SpriteFont UI_menuFont, UI_menuFont2, smallestFont;
@@ -53,6 +55,7 @@ namespace Test_Loopguy
             testTile = c.Load<Texture2D>("testtile");
             testAlt = c.Load<Texture2D>("testtilealt");
             meleeFx = c.Load<Texture2D>("meleefx");
+            explosionSheet = c.Load<Texture2D>("explosionV2");
             shot = c.Load<Texture2D>("shot");
             robotEnemyShot = c.Load<Texture2D>("projektilSpriteSheetRobotEnemyVit");
             blueDot = c.Load<Texture2D>("bluedot");
@@ -71,6 +74,7 @@ namespace Test_Loopguy
 
         private static void LoadTerrain(ContentManager c)
         {
+            wallGlass = c.Load<Texture2D>("gfx/terrain/glassWallSlimmed");
             dirt = c.Load<Texture2D>("gfx/terrain/dirt");
             grassBasic = c.Load<Texture2D>("gfx/terrain/grass_basic");
             grassAlt = c.Load<Texture2D>("gfx/terrain/grass_variation");
@@ -167,6 +171,30 @@ namespace Test_Loopguy
                 locker = c.Load<Texture2D>("gfx/objects/locker");
                 whiteboard = c.Load<Texture2D>("gfx/objects/whiteboard");
             }
+            {
+                bigScreenTele = c.Load<Texture2D>("gfx/objects/bigScreenTele");
+                carsLeft = c.Load<Texture2D>("gfx/objects/carsleft");
+                carsRight = c.Load<Texture2D>("gfx/objects/carsRight");
+                copCarLeft = c.Load<Texture2D>("gfx/objects/copCarLeft");
+                copCarRight = c.Load<Texture2D>("gfx/objects/copCarRight");
+                chairBack = c.Load<Texture2D>("gfx/objects/chairBack");
+                chairFront = c.Load<Texture2D>("gfx/objects/chairFront");
+                chest = c.Load<Texture2D>("gfx/objects/chest");
+                humanVialsEmpty = c.Load<Texture2D>("gfx/objects/humanVialsEmpty");
+                humanVialsFilled = c.Load<Texture2D>("gfx/objects/humanVialsFilled");
+                humanVialsNoBody = c.Load<Texture2D>("gfx/objects/humanVialsNoBody");
+                normalScreenTele = c.Load<Texture2D>("gfx/objects/normalScreenTele");
+                radioactiveStain = c.Load<Texture2D>("gfx/objects/radioactiveStain");
+                trashCan = c.Load<Texture2D>("gfx/objects/trashCan");
+                waterStain = c.Load<Texture2D>("gfx/objects/waterStain");
+                smallCarLeft = c.Load<Texture2D>("gfx/objects/smallCarLeft");
+                smallCarRight = c.Load<Texture2D>("gfx/objects/smallCarRight");
+                workstation = c.Load<Texture2D>("gfx/objects/workstation");
+                computerBack = c.Load<Texture2D>("gfx/objects/computerBack");
+                computerFront = c.Load<Texture2D>("gfx/objects/computerFront");
+                bigMonitor = c.Load<Texture2D>("gfx/objects/bigMonitor");
+                smallLocker = c.Load<Texture2D>("gfx/objects/smallLocker");
+            }
 
         }
 
@@ -180,6 +208,7 @@ namespace Test_Loopguy
             smallestFont = c.Load<SpriteFont>("smallestFont");
             UI_graybrick = c.Load<Texture2D>("gfx/interface/editor_icons/graybrick_small");
             black_screen = c.Load<Texture2D>("gfx/interface/black_screenlol");
+            white_screen = c.Load<Texture2D>("gfx/interface/white_screenlol");
             UI_door = c.Load<Texture2D>("gfx/interface/editor_icons/door_small");
             healthbar_small_fill = c.Load<Texture2D>("gfx/interface/healthbar_small_fill");
             healthbar_small_fill_bg = c.Load<Texture2D>("gfx/interface/healthbar_small_fill_bg");
