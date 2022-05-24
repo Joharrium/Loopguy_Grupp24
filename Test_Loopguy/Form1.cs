@@ -491,5 +491,10 @@ namespace Test_Loopguy
         {
             LevelEditor.SelectObject(ObjectSelection.SmallLocker);
         }
+
+        private void wallGlass_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectTile(TileSelection.WallGlass);
+        }
     }
 }

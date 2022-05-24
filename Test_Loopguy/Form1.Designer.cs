@@ -126,6 +126,7 @@ namespace Test_Loopguy
             this.meleeTestSelect = new System.Windows.Forms.PictureBox();
             this.countDownBox = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.smallLocker = new System.Windows.Forms.PictureBox();
             this.chairBack = new System.Windows.Forms.PictureBox();
             this.computerFront = new System.Windows.Forms.PictureBox();
             this.chairFront = new System.Windows.Forms.PictureBox();
@@ -157,7 +158,7 @@ namespace Test_Loopguy
             this.sofaLeftSelect = new System.Windows.Forms.PictureBox();
             this.canteenChairRightSelect = new System.Windows.Forms.PictureBox();
             this.canteenChairLeftSelect = new System.Windows.Forms.PictureBox();
-            this.smallLocker = new System.Windows.Forms.PictureBox();
+            this.wallGlass = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
@@ -237,6 +238,7 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.rangedTestSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.meleeTestSelect)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.smallLocker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chairBack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.computerFront)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chairFront)).BeginInit();
@@ -268,11 +270,12 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.sofaLeftSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.canteenChairRightSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.canteenChairLeftSelect)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smallLocker)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wallGlass)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.wallGlass);
             this.groupBox2.Controls.Add(this.pictureBox13);
             this.groupBox2.Controls.Add(this.pictureBox14);
             this.groupBox2.Controls.Add(this.tileWarningSelect);
@@ -1392,6 +1395,17 @@ namespace Test_Loopguy
             this.panel1.Size = new System.Drawing.Size(597, 1475);
             this.panel1.TabIndex = 40;
             // 
+            // smallLocker
+            // 
+            this.smallLocker.Image = ((System.Drawing.Image)(resources.GetObject("smallLocker.Image")));
+            this.smallLocker.Location = new System.Drawing.Point(148, 1238);
+            this.smallLocker.Margin = new System.Windows.Forms.Padding(6);
+            this.smallLocker.Name = "smallLocker";
+            this.smallLocker.Size = new System.Drawing.Size(136, 63);
+            this.smallLocker.TabIndex = 71;
+            this.smallLocker.TabStop = false;
+            this.smallLocker.Click += new System.EventHandler(this.smallLocker_Click);
+            // 
             // chairBack
             // 
             this.chairBack.Image = ((System.Drawing.Image)(resources.GetObject("chairBack.Image")));
@@ -1726,16 +1740,16 @@ namespace Test_Loopguy
             this.canteenChairLeftSelect.TabStop = false;
             this.canteenChairLeftSelect.Click += new System.EventHandler(this.canteenChairLeftSelect_Click);
             // 
-            // smallLocker
+            // wallGlass
             // 
-            this.smallLocker.Image = ((System.Drawing.Image)(resources.GetObject("smallLocker.Image")));
-            this.smallLocker.Location = new System.Drawing.Point(148, 1238);
-            this.smallLocker.Margin = new System.Windows.Forms.Padding(6);
-            this.smallLocker.Name = "smallLocker";
-            this.smallLocker.Size = new System.Drawing.Size(136, 63);
-            this.smallLocker.TabIndex = 71;
-            this.smallLocker.TabStop = false;
-            this.smallLocker.Click += new System.EventHandler(this.smallLocker_Click);
+            this.wallGlass.Image = ((System.Drawing.Image)(resources.GetObject("wallGlass.Image")));
+            this.wallGlass.Location = new System.Drawing.Point(12, 629);
+            this.wallGlass.Margin = new System.Windows.Forms.Padding(6);
+            this.wallGlass.Name = "wallGlass";
+            this.wallGlass.Size = new System.Drawing.Size(136, 131);
+            this.wallGlass.TabIndex = 16;
+            this.wallGlass.TabStop = false;
+            this.wallGlass.Click += new System.EventHandler(this.wallGlass_Click);
             // 
             // Form1
             // 
@@ -1844,6 +1858,7 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.rangedTestSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.meleeTestSelect)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.smallLocker)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chairBack)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.computerFront)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chairFront)).EndInit();
@@ -1875,7 +1890,7 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.sofaLeftSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.canteenChairRightSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.canteenChairLeftSelect)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smallLocker)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wallGlass)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2011,5 +2026,6 @@ namespace Test_Loopguy
         private System.Windows.Forms.PictureBox computerBack;
         private System.Windows.Forms.PictureBox chairBack;
         private System.Windows.Forms.PictureBox smallLocker;
+        private System.Windows.Forms.PictureBox wallGlass;
     }
 }
