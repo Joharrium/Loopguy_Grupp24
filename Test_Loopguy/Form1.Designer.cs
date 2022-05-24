@@ -31,6 +31,7 @@ namespace Test_Loopguy
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.glassWall = new System.Windows.Forms.PictureBox();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.pictureBox14 = new System.Windows.Forms.PictureBox();
             this.tileWarningSelect = new System.Windows.Forms.PictureBox();
@@ -159,8 +160,8 @@ namespace Test_Loopguy
             this.sofaLeftSelect = new System.Windows.Forms.PictureBox();
             this.canteenChairRightSelect = new System.Windows.Forms.PictureBox();
             this.canteenChairLeftSelect = new System.Windows.Forms.PictureBox();
-            this.glassWall = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.glassWall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileWarningSelect)).BeginInit();
@@ -272,7 +273,6 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.sofaLeftSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.canteenChairRightSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.canteenChairLeftSelect)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glassWall)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -295,19 +295,30 @@ namespace Test_Loopguy
             this.groupBox2.Controls.Add(this.dirtSelect);
             this.groupBox2.Controls.Add(this.grassSelect);
             this.groupBox2.Location = new System.Drawing.Point(23, 35);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(6);
             this.groupBox2.Size = new System.Drawing.Size(612, 832);
             this.groupBox2.TabIndex = 30;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tiles";
             // 
+            // glassWall
+            // 
+            this.glassWall.Image = ((System.Drawing.Image)(resources.GetObject("glassWall.Image")));
+            this.glassWall.Location = new System.Drawing.Point(13, 629);
+            this.glassWall.Margin = new System.Windows.Forms.Padding(6);
+            this.glassWall.Name = "glassWall";
+            this.glassWall.Size = new System.Drawing.Size(136, 131);
+            this.glassWall.TabIndex = 16;
+            this.glassWall.TabStop = false;
+            this.glassWall.Click += new System.EventHandler(this.glassWall_Click);
+            // 
             // pictureBox13
             // 
             this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
             this.pictureBox13.Location = new System.Drawing.Point(459, 486);
-            this.pictureBox13.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox13.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(136, 131);
             this.pictureBox13.TabIndex = 15;
@@ -317,7 +328,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox14.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox14.Image")));
             this.pictureBox14.Location = new System.Drawing.Point(310, 486);
-            this.pictureBox14.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox14.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox14.Name = "pictureBox14";
             this.pictureBox14.Size = new System.Drawing.Size(136, 131);
             this.pictureBox14.TabIndex = 14;
@@ -327,7 +338,7 @@ namespace Test_Loopguy
             // 
             this.tileWarningSelect.Image = ((System.Drawing.Image)(resources.GetObject("tileWarningSelect.Image")));
             this.tileWarningSelect.Location = new System.Drawing.Point(159, 486);
-            this.tileWarningSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tileWarningSelect.Margin = new System.Windows.Forms.Padding(6);
             this.tileWarningSelect.Name = "tileWarningSelect";
             this.tileWarningSelect.Size = new System.Drawing.Size(136, 131);
             this.tileWarningSelect.TabIndex = 13;
@@ -338,7 +349,7 @@ namespace Test_Loopguy
             // 
             this.waterSelect.Image = ((System.Drawing.Image)(resources.GetObject("waterSelect.Image")));
             this.waterSelect.Location = new System.Drawing.Point(13, 486);
-            this.waterSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.waterSelect.Margin = new System.Windows.Forms.Padding(6);
             this.waterSelect.Name = "waterSelect";
             this.waterSelect.Size = new System.Drawing.Size(136, 131);
             this.waterSelect.TabIndex = 12;
@@ -349,7 +360,7 @@ namespace Test_Loopguy
             // 
             this.wallMetalSelect.Image = ((System.Drawing.Image)(resources.GetObject("wallMetalSelect.Image")));
             this.wallMetalSelect.Location = new System.Drawing.Point(459, 338);
-            this.wallMetalSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.wallMetalSelect.Margin = new System.Windows.Forms.Padding(6);
             this.wallMetalSelect.Name = "wallMetalSelect";
             this.wallMetalSelect.Size = new System.Drawing.Size(136, 131);
             this.wallMetalSelect.TabIndex = 11;
@@ -360,7 +371,7 @@ namespace Test_Loopguy
             // 
             this.wornWallSelect.Image = ((System.Drawing.Image)(resources.GetObject("wornWallSelect.Image")));
             this.wornWallSelect.Location = new System.Drawing.Point(310, 338);
-            this.wornWallSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.wornWallSelect.Margin = new System.Windows.Forms.Padding(6);
             this.wornWallSelect.Name = "wornWallSelect";
             this.wornWallSelect.Size = new System.Drawing.Size(136, 131);
             this.wornWallSelect.TabIndex = 10;
@@ -371,7 +382,7 @@ namespace Test_Loopguy
             // 
             this.metalTileSelect.Image = ((System.Drawing.Image)(resources.GetObject("metalTileSelect.Image")));
             this.metalTileSelect.Location = new System.Drawing.Point(159, 338);
-            this.metalTileSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.metalTileSelect.Margin = new System.Windows.Forms.Padding(6);
             this.metalTileSelect.Name = "metalTileSelect";
             this.metalTileSelect.Size = new System.Drawing.Size(136, 131);
             this.metalTileSelect.TabIndex = 9;
@@ -382,7 +393,7 @@ namespace Test_Loopguy
             // 
             this.carpetSelect.Image = ((System.Drawing.Image)(resources.GetObject("carpetSelect.Image")));
             this.carpetSelect.Location = new System.Drawing.Point(13, 338);
-            this.carpetSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.carpetSelect.Margin = new System.Windows.Forms.Padding(6);
             this.carpetSelect.Name = "carpetSelect";
             this.carpetSelect.Size = new System.Drawing.Size(136, 131);
             this.carpetSelect.TabIndex = 8;
@@ -393,7 +404,7 @@ namespace Test_Loopguy
             // 
             this.tileBigDarkSelect.Image = ((System.Drawing.Image)(resources.GetObject("tileBigDarkSelect.Image")));
             this.tileBigDarkSelect.Location = new System.Drawing.Point(459, 197);
-            this.tileBigDarkSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tileBigDarkSelect.Margin = new System.Windows.Forms.Padding(6);
             this.tileBigDarkSelect.Name = "tileBigDarkSelect";
             this.tileBigDarkSelect.Size = new System.Drawing.Size(136, 131);
             this.tileBigDarkSelect.TabIndex = 7;
@@ -404,7 +415,7 @@ namespace Test_Loopguy
             // 
             this.tileBigLightSelect.Image = ((System.Drawing.Image)(resources.GetObject("tileBigLightSelect.Image")));
             this.tileBigLightSelect.Location = new System.Drawing.Point(310, 197);
-            this.tileBigLightSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tileBigLightSelect.Margin = new System.Windows.Forms.Padding(6);
             this.tileBigLightSelect.Name = "tileBigLightSelect";
             this.tileBigLightSelect.Size = new System.Drawing.Size(136, 131);
             this.tileBigLightSelect.TabIndex = 6;
@@ -415,7 +426,7 @@ namespace Test_Loopguy
             // 
             this.tilesCheckeredBrownSelect.Image = ((System.Drawing.Image)(resources.GetObject("tilesCheckeredBrownSelect.Image")));
             this.tilesCheckeredBrownSelect.Location = new System.Drawing.Point(159, 197);
-            this.tilesCheckeredBrownSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tilesCheckeredBrownSelect.Margin = new System.Windows.Forms.Padding(6);
             this.tilesCheckeredBrownSelect.Name = "tilesCheckeredBrownSelect";
             this.tilesCheckeredBrownSelect.Size = new System.Drawing.Size(136, 131);
             this.tilesCheckeredBrownSelect.TabIndex = 5;
@@ -426,7 +437,7 @@ namespace Test_Loopguy
             // 
             this.tilesCheckeredGraySelect.Image = ((System.Drawing.Image)(resources.GetObject("tilesCheckeredGraySelect.Image")));
             this.tilesCheckeredGraySelect.Location = new System.Drawing.Point(13, 197);
-            this.tilesCheckeredGraySelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tilesCheckeredGraySelect.Margin = new System.Windows.Forms.Padding(6);
             this.tilesCheckeredGraySelect.Name = "tilesCheckeredGraySelect";
             this.tilesCheckeredGraySelect.Size = new System.Drawing.Size(136, 131);
             this.tilesCheckeredGraySelect.TabIndex = 4;
@@ -437,7 +448,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox37.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox37.Image")));
             this.pictureBox37.Location = new System.Drawing.Point(459, 55);
-            this.pictureBox37.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox37.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox37.Name = "pictureBox37";
             this.pictureBox37.Size = new System.Drawing.Size(136, 131);
             this.pictureBox37.TabIndex = 3;
@@ -447,7 +458,7 @@ namespace Test_Loopguy
             // 
             this.grayBrickSelect.Image = ((System.Drawing.Image)(resources.GetObject("grayBrickSelect.Image")));
             this.grayBrickSelect.Location = new System.Drawing.Point(310, 55);
-            this.grayBrickSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.grayBrickSelect.Margin = new System.Windows.Forms.Padding(6);
             this.grayBrickSelect.Name = "grayBrickSelect";
             this.grayBrickSelect.Size = new System.Drawing.Size(136, 131);
             this.grayBrickSelect.TabIndex = 2;
@@ -458,7 +469,7 @@ namespace Test_Loopguy
             // 
             this.dirtSelect.Image = ((System.Drawing.Image)(resources.GetObject("dirtSelect.Image")));
             this.dirtSelect.Location = new System.Drawing.Point(159, 55);
-            this.dirtSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dirtSelect.Margin = new System.Windows.Forms.Padding(6);
             this.dirtSelect.Name = "dirtSelect";
             this.dirtSelect.Size = new System.Drawing.Size(136, 131);
             this.dirtSelect.TabIndex = 1;
@@ -469,7 +480,7 @@ namespace Test_Loopguy
             // 
             this.grassSelect.Image = ((System.Drawing.Image)(resources.GetObject("grassSelect.Image")));
             this.grassSelect.Location = new System.Drawing.Point(13, 55);
-            this.grassSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.grassSelect.Margin = new System.Windows.Forms.Padding(6);
             this.grassSelect.Name = "grassSelect";
             this.grassSelect.Size = new System.Drawing.Size(136, 131);
             this.grassSelect.TabIndex = 0;
@@ -489,7 +500,7 @@ namespace Test_Loopguy
             // cameraY
             // 
             this.cameraY.Location = new System.Drawing.Point(1630, 334);
-            this.cameraY.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.cameraY.Margin = new System.Windows.Forms.Padding(6);
             this.cameraY.Name = "cameraY";
             this.cameraY.Size = new System.Drawing.Size(261, 47);
             this.cameraY.TabIndex = 28;
@@ -507,7 +518,7 @@ namespace Test_Loopguy
             // cameraX
             // 
             this.cameraX.Location = new System.Drawing.Point(1303, 334);
-            this.cameraX.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.cameraX.Margin = new System.Windows.Forms.Padding(6);
             this.cameraX.Name = "cameraX";
             this.cameraX.Size = new System.Drawing.Size(261, 47);
             this.cameraX.TabIndex = 26;
@@ -525,7 +536,7 @@ namespace Test_Loopguy
             // mapHeight
             // 
             this.mapHeight.Location = new System.Drawing.Point(1630, 82);
-            this.mapHeight.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.mapHeight.Margin = new System.Windows.Forms.Padding(6);
             this.mapHeight.Name = "mapHeight";
             this.mapHeight.Size = new System.Drawing.Size(261, 47);
             this.mapHeight.TabIndex = 24;
@@ -543,7 +554,7 @@ namespace Test_Loopguy
             // mapWidth
             // 
             this.mapWidth.Location = new System.Drawing.Point(1303, 82);
-            this.mapWidth.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.mapWidth.Margin = new System.Windows.Forms.Padding(6);
             this.mapWidth.Name = "mapWidth";
             this.mapWidth.Size = new System.Drawing.Size(261, 47);
             this.mapWidth.TabIndex = 22;
@@ -552,7 +563,7 @@ namespace Test_Loopguy
             // 
             this.whiteBoardSelect.Image = ((System.Drawing.Image)(resources.GetObject("whiteBoardSelect.Image")));
             this.whiteBoardSelect.Location = new System.Drawing.Point(450, 662);
-            this.whiteBoardSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.whiteBoardSelect.Margin = new System.Windows.Forms.Padding(6);
             this.whiteBoardSelect.Name = "whiteBoardSelect";
             this.whiteBoardSelect.Size = new System.Drawing.Size(136, 55);
             this.whiteBoardSelect.TabIndex = 39;
@@ -563,7 +574,7 @@ namespace Test_Loopguy
             // 
             this.shelfWeirdSelect.Image = ((System.Drawing.Image)(resources.GetObject("shelfWeirdSelect.Image")));
             this.shelfWeirdSelect.Location = new System.Drawing.Point(304, 662);
-            this.shelfWeirdSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.shelfWeirdSelect.Margin = new System.Windows.Forms.Padding(6);
             this.shelfWeirdSelect.Name = "shelfWeirdSelect";
             this.shelfWeirdSelect.Size = new System.Drawing.Size(136, 55);
             this.shelfWeirdSelect.TabIndex = 38;
@@ -574,7 +585,7 @@ namespace Test_Loopguy
             // 
             this.lockerSelect.Image = ((System.Drawing.Image)(resources.GetObject("lockerSelect.Image")));
             this.lockerSelect.Location = new System.Drawing.Point(153, 662);
-            this.lockerSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.lockerSelect.Margin = new System.Windows.Forms.Padding(6);
             this.lockerSelect.Name = "lockerSelect";
             this.lockerSelect.Size = new System.Drawing.Size(136, 55);
             this.lockerSelect.TabIndex = 37;
@@ -585,7 +596,7 @@ namespace Test_Loopguy
             // 
             this.morgueSelect.Image = ((System.Drawing.Image)(resources.GetObject("morgueSelect.Image")));
             this.morgueSelect.Location = new System.Drawing.Point(6, 662);
-            this.morgueSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.morgueSelect.Margin = new System.Windows.Forms.Padding(6);
             this.morgueSelect.Name = "morgueSelect";
             this.morgueSelect.Size = new System.Drawing.Size(136, 55);
             this.morgueSelect.TabIndex = 36;
@@ -596,7 +607,7 @@ namespace Test_Loopguy
             // 
             this.cameraSelect.Image = ((System.Drawing.Image)(resources.GetObject("cameraSelect.Image")));
             this.cameraSelect.Location = new System.Drawing.Point(450, 588);
-            this.cameraSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.cameraSelect.Margin = new System.Windows.Forms.Padding(6);
             this.cameraSelect.Name = "cameraSelect";
             this.cameraSelect.Size = new System.Drawing.Size(136, 64);
             this.cameraSelect.TabIndex = 35;
@@ -607,7 +618,7 @@ namespace Test_Loopguy
             // 
             this.sofaSelect.Image = ((System.Drawing.Image)(resources.GetObject("sofaSelect.Image")));
             this.sofaSelect.Location = new System.Drawing.Point(302, 588);
-            this.sofaSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.sofaSelect.Margin = new System.Windows.Forms.Padding(6);
             this.sofaSelect.Name = "sofaSelect";
             this.sofaSelect.Size = new System.Drawing.Size(136, 64);
             this.sofaSelect.TabIndex = 34;
@@ -618,7 +629,7 @@ namespace Test_Loopguy
             // 
             this.sinkSelect.Image = ((System.Drawing.Image)(resources.GetObject("sinkSelect.Image")));
             this.sinkSelect.Location = new System.Drawing.Point(151, 588);
-            this.sinkSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.sinkSelect.Margin = new System.Windows.Forms.Padding(6);
             this.sinkSelect.Name = "sinkSelect";
             this.sinkSelect.Size = new System.Drawing.Size(136, 64);
             this.sinkSelect.TabIndex = 33;
@@ -629,7 +640,7 @@ namespace Test_Loopguy
             // 
             this.shootingRangeBenchSelect.Image = ((System.Drawing.Image)(resources.GetObject("shootingRangeBenchSelect.Image")));
             this.shootingRangeBenchSelect.Location = new System.Drawing.Point(4, 588);
-            this.shootingRangeBenchSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.shootingRangeBenchSelect.Margin = new System.Windows.Forms.Padding(6);
             this.shootingRangeBenchSelect.Name = "shootingRangeBenchSelect";
             this.shootingRangeBenchSelect.Size = new System.Drawing.Size(136, 64);
             this.shootingRangeBenchSelect.TabIndex = 32;
@@ -640,7 +651,7 @@ namespace Test_Loopguy
             // 
             this.niceBookshelfSelect.Image = ((System.Drawing.Image)(resources.GetObject("niceBookshelfSelect.Image")));
             this.niceBookshelfSelect.Location = new System.Drawing.Point(450, 523);
-            this.niceBookshelfSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.niceBookshelfSelect.Margin = new System.Windows.Forms.Padding(6);
             this.niceBookshelfSelect.Name = "niceBookshelfSelect";
             this.niceBookshelfSelect.Size = new System.Drawing.Size(136, 53);
             this.niceBookshelfSelect.TabIndex = 31;
@@ -651,7 +662,7 @@ namespace Test_Loopguy
             // 
             this.carryingThingSelect.Image = ((System.Drawing.Image)(resources.GetObject("carryingThingSelect.Image")));
             this.carryingThingSelect.Location = new System.Drawing.Point(302, 523);
-            this.carryingThingSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.carryingThingSelect.Margin = new System.Windows.Forms.Padding(6);
             this.carryingThingSelect.Name = "carryingThingSelect";
             this.carryingThingSelect.Size = new System.Drawing.Size(136, 53);
             this.carryingThingSelect.TabIndex = 30;
@@ -662,7 +673,7 @@ namespace Test_Loopguy
             // 
             this.operationEquipmentSelect.Image = ((System.Drawing.Image)(resources.GetObject("operationEquipmentSelect.Image")));
             this.operationEquipmentSelect.Location = new System.Drawing.Point(151, 523);
-            this.operationEquipmentSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.operationEquipmentSelect.Margin = new System.Windows.Forms.Padding(6);
             this.operationEquipmentSelect.Name = "operationEquipmentSelect";
             this.operationEquipmentSelect.Size = new System.Drawing.Size(136, 53);
             this.operationEquipmentSelect.TabIndex = 29;
@@ -673,7 +684,7 @@ namespace Test_Loopguy
             // 
             this.crateStackSelect.Image = ((System.Drawing.Image)(resources.GetObject("crateStackSelect.Image")));
             this.crateStackSelect.Location = new System.Drawing.Point(4, 523);
-            this.crateStackSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.crateStackSelect.Margin = new System.Windows.Forms.Padding(6);
             this.crateStackSelect.Name = "crateStackSelect";
             this.crateStackSelect.Size = new System.Drawing.Size(136, 53);
             this.crateStackSelect.TabIndex = 28;
@@ -684,7 +695,7 @@ namespace Test_Loopguy
             // 
             this.bigSinkSelect.Image = ((System.Drawing.Image)(resources.GetObject("bigSinkSelect.Image")));
             this.bigSinkSelect.Location = new System.Drawing.Point(450, 455);
-            this.bigSinkSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.bigSinkSelect.Margin = new System.Windows.Forms.Padding(6);
             this.bigSinkSelect.Name = "bigSinkSelect";
             this.bigSinkSelect.Size = new System.Drawing.Size(136, 53);
             this.bigSinkSelect.TabIndex = 27;
@@ -695,7 +706,7 @@ namespace Test_Loopguy
             // 
             this.pottedPlantSelect.Image = ((System.Drawing.Image)(resources.GetObject("pottedPlantSelect.Image")));
             this.pottedPlantSelect.Location = new System.Drawing.Point(302, 455);
-            this.pottedPlantSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pottedPlantSelect.Margin = new System.Windows.Forms.Padding(6);
             this.pottedPlantSelect.Name = "pottedPlantSelect";
             this.pottedPlantSelect.Size = new System.Drawing.Size(136, 53);
             this.pottedPlantSelect.TabIndex = 26;
@@ -706,7 +717,7 @@ namespace Test_Loopguy
             // 
             this.deskForwardSelect.Image = ((System.Drawing.Image)(resources.GetObject("deskForwardSelect.Image")));
             this.deskForwardSelect.Location = new System.Drawing.Point(151, 455);
-            this.deskForwardSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.deskForwardSelect.Margin = new System.Windows.Forms.Padding(6);
             this.deskForwardSelect.Name = "deskForwardSelect";
             this.deskForwardSelect.Size = new System.Drawing.Size(136, 53);
             this.deskForwardSelect.TabIndex = 25;
@@ -717,7 +728,7 @@ namespace Test_Loopguy
             // 
             this.deskBackwardSelect.Image = ((System.Drawing.Image)(resources.GetObject("deskBackwardSelect.Image")));
             this.deskBackwardSelect.Location = new System.Drawing.Point(4, 455);
-            this.deskBackwardSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.deskBackwardSelect.Margin = new System.Windows.Forms.Padding(6);
             this.deskBackwardSelect.Name = "deskBackwardSelect";
             this.deskBackwardSelect.Size = new System.Drawing.Size(136, 53);
             this.deskBackwardSelect.TabIndex = 24;
@@ -728,7 +739,7 @@ namespace Test_Loopguy
             // 
             this.shelfArchivingSelect.Image = ((System.Drawing.Image)(resources.GetObject("shelfArchivingSelect.Image")));
             this.shelfArchivingSelect.Location = new System.Drawing.Point(450, 387);
-            this.shelfArchivingSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.shelfArchivingSelect.Margin = new System.Windows.Forms.Padding(6);
             this.shelfArchivingSelect.Name = "shelfArchivingSelect";
             this.shelfArchivingSelect.Size = new System.Drawing.Size(136, 55);
             this.shelfArchivingSelect.TabIndex = 23;
@@ -739,7 +750,7 @@ namespace Test_Loopguy
             // 
             this.serverSelect.Image = ((System.Drawing.Image)(resources.GetObject("serverSelect.Image")));
             this.serverSelect.Location = new System.Drawing.Point(300, 387);
-            this.serverSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.serverSelect.Margin = new System.Windows.Forms.Padding(6);
             this.serverSelect.Name = "serverSelect";
             this.serverSelect.Size = new System.Drawing.Size(136, 55);
             this.serverSelect.TabIndex = 22;
@@ -750,7 +761,7 @@ namespace Test_Loopguy
             // 
             this.monitorWallSelect.Image = ((System.Drawing.Image)(resources.GetObject("monitorWallSelect.Image")));
             this.monitorWallSelect.Location = new System.Drawing.Point(151, 387);
-            this.monitorWallSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.monitorWallSelect.Margin = new System.Windows.Forms.Padding(6);
             this.monitorWallSelect.Name = "monitorWallSelect";
             this.monitorWallSelect.Size = new System.Drawing.Size(136, 55);
             this.monitorWallSelect.TabIndex = 21;
@@ -761,7 +772,7 @@ namespace Test_Loopguy
             // 
             this.deskOfficeSelect.Image = ((System.Drawing.Image)(resources.GetObject("deskOfficeSelect.Image")));
             this.deskOfficeSelect.Location = new System.Drawing.Point(6, 387);
-            this.deskOfficeSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.deskOfficeSelect.Margin = new System.Windows.Forms.Padding(6);
             this.deskOfficeSelect.Name = "deskOfficeSelect";
             this.deskOfficeSelect.Size = new System.Drawing.Size(136, 55);
             this.deskOfficeSelect.TabIndex = 20;
@@ -772,7 +783,7 @@ namespace Test_Loopguy
             // 
             this.chairOfficeFwSelect.Image = ((System.Drawing.Image)(resources.GetObject("chairOfficeFwSelect.Image")));
             this.chairOfficeFwSelect.Location = new System.Drawing.Point(450, 318);
-            this.chairOfficeFwSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.chairOfficeFwSelect.Margin = new System.Windows.Forms.Padding(6);
             this.chairOfficeFwSelect.Name = "chairOfficeFwSelect";
             this.chairOfficeFwSelect.Size = new System.Drawing.Size(136, 57);
             this.chairOfficeFwSelect.TabIndex = 19;
@@ -783,7 +794,7 @@ namespace Test_Loopguy
             // 
             this.chairOfficeBwSelect.Image = ((System.Drawing.Image)(resources.GetObject("chairOfficeBwSelect.Image")));
             this.chairOfficeBwSelect.Location = new System.Drawing.Point(302, 318);
-            this.chairOfficeBwSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.chairOfficeBwSelect.Margin = new System.Windows.Forms.Padding(6);
             this.chairOfficeBwSelect.Name = "chairOfficeBwSelect";
             this.chairOfficeBwSelect.Size = new System.Drawing.Size(136, 57);
             this.chairOfficeBwSelect.TabIndex = 18;
@@ -794,7 +805,7 @@ namespace Test_Loopguy
             // 
             this.counterSelect.Image = ((System.Drawing.Image)(resources.GetObject("counterSelect.Image")));
             this.counterSelect.Location = new System.Drawing.Point(151, 318);
-            this.counterSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.counterSelect.Margin = new System.Windows.Forms.Padding(6);
             this.counterSelect.Name = "counterSelect";
             this.counterSelect.Size = new System.Drawing.Size(136, 57);
             this.counterSelect.TabIndex = 17;
@@ -805,7 +816,7 @@ namespace Test_Loopguy
             // 
             this.cardboardBoxSmallStackSelect.Image = ((System.Drawing.Image)(resources.GetObject("cardboardBoxSmallStackSelect.Image")));
             this.cardboardBoxSmallStackSelect.Location = new System.Drawing.Point(4, 318);
-            this.cardboardBoxSmallStackSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.cardboardBoxSmallStackSelect.Margin = new System.Windows.Forms.Padding(6);
             this.cardboardBoxSmallStackSelect.Name = "cardboardBoxSmallStackSelect";
             this.cardboardBoxSmallStackSelect.Size = new System.Drawing.Size(136, 57);
             this.cardboardBoxSmallStackSelect.TabIndex = 16;
@@ -816,7 +827,7 @@ namespace Test_Loopguy
             // 
             this.cabinetSelect.Image = ((System.Drawing.Image)(resources.GetObject("cabinetSelect.Image")));
             this.cabinetSelect.Location = new System.Drawing.Point(450, 240);
-            this.cabinetSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.cabinetSelect.Margin = new System.Windows.Forms.Padding(6);
             this.cabinetSelect.Name = "cabinetSelect";
             this.cabinetSelect.Size = new System.Drawing.Size(136, 68);
             this.cabinetSelect.TabIndex = 15;
@@ -827,7 +838,7 @@ namespace Test_Loopguy
             // 
             this.BillBoardSelect.Image = ((System.Drawing.Image)(resources.GetObject("BillBoardSelect.Image")));
             this.BillBoardSelect.Location = new System.Drawing.Point(302, 240);
-            this.BillBoardSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.BillBoardSelect.Margin = new System.Windows.Forms.Padding(6);
             this.BillBoardSelect.Name = "BillBoardSelect";
             this.BillBoardSelect.Size = new System.Drawing.Size(136, 68);
             this.BillBoardSelect.TabIndex = 14;
@@ -838,7 +849,7 @@ namespace Test_Loopguy
             // 
             this.ammoSmallSelect.Image = ((System.Drawing.Image)(resources.GetObject("ammoSmallSelect.Image")));
             this.ammoSmallSelect.Location = new System.Drawing.Point(153, 240);
-            this.ammoSmallSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ammoSmallSelect.Margin = new System.Windows.Forms.Padding(6);
             this.ammoSmallSelect.Name = "ammoSmallSelect";
             this.ammoSmallSelect.Size = new System.Drawing.Size(136, 68);
             this.ammoSmallSelect.TabIndex = 13;
@@ -849,7 +860,7 @@ namespace Test_Loopguy
             // 
             this.healSmallSelect.Image = ((System.Drawing.Image)(resources.GetObject("healSmallSelect.Image")));
             this.healSmallSelect.Location = new System.Drawing.Point(6, 244);
-            this.healSmallSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.healSmallSelect.Margin = new System.Windows.Forms.Padding(6);
             this.healSmallSelect.Name = "healSmallSelect";
             this.healSmallSelect.Size = new System.Drawing.Size(136, 62);
             this.healSmallSelect.TabIndex = 12;
@@ -860,7 +871,7 @@ namespace Test_Loopguy
             // 
             this.barrelDestructibleSelect.Image = ((System.Drawing.Image)(resources.GetObject("barrelDestructibleSelect.Image")));
             this.barrelDestructibleSelect.Location = new System.Drawing.Point(450, 168);
-            this.barrelDestructibleSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.barrelDestructibleSelect.Margin = new System.Windows.Forms.Padding(6);
             this.barrelDestructibleSelect.Name = "barrelDestructibleSelect";
             this.barrelDestructibleSelect.Size = new System.Drawing.Size(136, 59);
             this.barrelDestructibleSelect.TabIndex = 11;
@@ -871,7 +882,7 @@ namespace Test_Loopguy
             // 
             this.doorSlidingSelect.Image = ((System.Drawing.Image)(resources.GetObject("doorSlidingSelect.Image")));
             this.doorSlidingSelect.Location = new System.Drawing.Point(302, 168);
-            this.doorSlidingSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.doorSlidingSelect.Margin = new System.Windows.Forms.Padding(6);
             this.doorSlidingSelect.Name = "doorSlidingSelect";
             this.doorSlidingSelect.Size = new System.Drawing.Size(136, 59);
             this.doorSlidingSelect.TabIndex = 10;
@@ -882,7 +893,7 @@ namespace Test_Loopguy
             // 
             this.keycardRedSelect.Image = ((System.Drawing.Image)(resources.GetObject("keycardRedSelect.Image")));
             this.keycardRedSelect.Location = new System.Drawing.Point(153, 168);
-            this.keycardRedSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.keycardRedSelect.Margin = new System.Windows.Forms.Padding(6);
             this.keycardRedSelect.Name = "keycardRedSelect";
             this.keycardRedSelect.Size = new System.Drawing.Size(136, 59);
             this.keycardRedSelect.TabIndex = 9;
@@ -893,7 +904,7 @@ namespace Test_Loopguy
             // 
             this.doorSelect.Image = ((System.Drawing.Image)(resources.GetObject("doorSelect.Image")));
             this.doorSelect.Location = new System.Drawing.Point(6, 154);
-            this.doorSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.doorSelect.Margin = new System.Windows.Forms.Padding(6);
             this.doorSelect.Name = "doorSelect";
             this.doorSelect.Size = new System.Drawing.Size(136, 74);
             this.doorSelect.TabIndex = 8;
@@ -904,7 +915,7 @@ namespace Test_Loopguy
             // 
             this.treeBigSelect.Image = ((System.Drawing.Image)(resources.GetObject("treeBigSelect.Image")));
             this.treeBigSelect.Location = new System.Drawing.Point(450, 86);
-            this.treeBigSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.treeBigSelect.Margin = new System.Windows.Forms.Padding(6);
             this.treeBigSelect.Name = "treeBigSelect";
             this.treeBigSelect.Size = new System.Drawing.Size(136, 70);
             this.treeBigSelect.TabIndex = 7;
@@ -915,7 +926,7 @@ namespace Test_Loopguy
             // 
             this.shrubBigSelect.Image = ((System.Drawing.Image)(resources.GetObject("shrubBigSelect.Image")));
             this.shrubBigSelect.Location = new System.Drawing.Point(302, 86);
-            this.shrubBigSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.shrubBigSelect.Margin = new System.Windows.Forms.Padding(6);
             this.shrubBigSelect.Name = "shrubBigSelect";
             this.shrubBigSelect.Size = new System.Drawing.Size(136, 70);
             this.shrubBigSelect.TabIndex = 6;
@@ -926,7 +937,7 @@ namespace Test_Loopguy
             // 
             this.boxOpenSelect.Image = ((System.Drawing.Image)(resources.GetObject("boxOpenSelect.Image")));
             this.boxOpenSelect.Location = new System.Drawing.Point(153, 86);
-            this.boxOpenSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.boxOpenSelect.Margin = new System.Windows.Forms.Padding(6);
             this.boxOpenSelect.Name = "boxOpenSelect";
             this.boxOpenSelect.Size = new System.Drawing.Size(136, 70);
             this.boxOpenSelect.TabIndex = 5;
@@ -937,7 +948,7 @@ namespace Test_Loopguy
             // 
             this.boxSelect.Image = ((System.Drawing.Image)(resources.GetObject("boxSelect.Image")));
             this.boxSelect.Location = new System.Drawing.Point(6, 86);
-            this.boxSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.boxSelect.Margin = new System.Windows.Forms.Padding(6);
             this.boxSelect.Name = "boxSelect";
             this.boxSelect.Size = new System.Drawing.Size(136, 70);
             this.boxSelect.TabIndex = 4;
@@ -948,7 +959,7 @@ namespace Test_Loopguy
             // 
             this.treeSmallSelect.Image = ((System.Drawing.Image)(resources.GetObject("treeSmallSelect.Image")));
             this.treeSmallSelect.Location = new System.Drawing.Point(450, 6);
-            this.treeSmallSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.treeSmallSelect.Margin = new System.Windows.Forms.Padding(6);
             this.treeSmallSelect.Name = "treeSmallSelect";
             this.treeSmallSelect.Size = new System.Drawing.Size(136, 68);
             this.treeSmallSelect.TabIndex = 3;
@@ -959,7 +970,7 @@ namespace Test_Loopguy
             // 
             this.shrubSmallSelect.Image = ((System.Drawing.Image)(resources.GetObject("shrubSmallSelect.Image")));
             this.shrubSmallSelect.Location = new System.Drawing.Point(302, 6);
-            this.shrubSmallSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.shrubSmallSelect.Margin = new System.Windows.Forms.Padding(6);
             this.shrubSmallSelect.Name = "shrubSmallSelect";
             this.shrubSmallSelect.Size = new System.Drawing.Size(136, 68);
             this.shrubSmallSelect.TabIndex = 2;
@@ -970,7 +981,7 @@ namespace Test_Loopguy
             // 
             this.potSelect.Image = ((System.Drawing.Image)(resources.GetObject("potSelect.Image")));
             this.potSelect.Location = new System.Drawing.Point(151, 6);
-            this.potSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.potSelect.Margin = new System.Windows.Forms.Padding(6);
             this.potSelect.Name = "potSelect";
             this.potSelect.Size = new System.Drawing.Size(136, 68);
             this.potSelect.TabIndex = 1;
@@ -981,7 +992,7 @@ namespace Test_Loopguy
             // 
             this.barrelSelect.Image = ((System.Drawing.Image)(resources.GetObject("barrelSelect.Image")));
             this.barrelSelect.Location = new System.Drawing.Point(4, 6);
-            this.barrelSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.barrelSelect.Margin = new System.Windows.Forms.Padding(6);
             this.barrelSelect.Name = "barrelSelect";
             this.barrelSelect.Size = new System.Drawing.Size(136, 68);
             this.barrelSelect.TabIndex = 0;
@@ -1020,7 +1031,7 @@ namespace Test_Loopguy
             // saveMapSize
             // 
             this.saveMapSize.Location = new System.Drawing.Point(1445, 170);
-            this.saveMapSize.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.saveMapSize.Margin = new System.Windows.Forms.Padding(6);
             this.saveMapSize.Name = "saveMapSize";
             this.saveMapSize.Size = new System.Drawing.Size(319, 59);
             this.saveMapSize.TabIndex = 34;
@@ -1031,7 +1042,7 @@ namespace Test_Loopguy
             // setCameraSize
             // 
             this.setCameraSize.Location = new System.Drawing.Point(1445, 449);
-            this.setCameraSize.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.setCameraSize.Margin = new System.Windows.Forms.Padding(6);
             this.setCameraSize.Name = "setCameraSize";
             this.setCameraSize.Size = new System.Drawing.Size(319, 59);
             this.setCameraSize.TabIndex = 35;
@@ -1091,9 +1102,9 @@ namespace Test_Loopguy
             this.groupBox3.Controls.Add(this.rangedTestSelect);
             this.groupBox3.Controls.Add(this.meleeTestSelect);
             this.groupBox3.Location = new System.Drawing.Point(26, 879);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(6);
             this.groupBox3.Size = new System.Drawing.Size(612, 336);
             this.groupBox3.TabIndex = 22;
             this.groupBox3.TabStop = false;
@@ -1103,7 +1114,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(459, 629);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(136, 131);
             this.pictureBox1.TabIndex = 19;
@@ -1113,7 +1124,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(310, 629);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(136, 131);
             this.pictureBox2.TabIndex = 18;
@@ -1123,7 +1134,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(159, 629);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(136, 131);
             this.pictureBox3.TabIndex = 17;
@@ -1133,7 +1144,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
             this.pictureBox4.Location = new System.Drawing.Point(13, 629);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(136, 131);
             this.pictureBox4.TabIndex = 16;
@@ -1143,7 +1154,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
             this.pictureBox5.Location = new System.Drawing.Point(459, 484);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(136, 131);
             this.pictureBox5.TabIndex = 15;
@@ -1153,7 +1164,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
             this.pictureBox6.Location = new System.Drawing.Point(310, 484);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(136, 131);
             this.pictureBox6.TabIndex = 14;
@@ -1163,7 +1174,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
             this.pictureBox7.Location = new System.Drawing.Point(159, 484);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(136, 131);
             this.pictureBox7.TabIndex = 13;
@@ -1173,7 +1184,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
             this.pictureBox8.Location = new System.Drawing.Point(13, 484);
-            this.pictureBox8.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox8.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(136, 131);
             this.pictureBox8.TabIndex = 12;
@@ -1183,7 +1194,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
             this.pictureBox9.Location = new System.Drawing.Point(459, 338);
-            this.pictureBox9.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox9.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(136, 131);
             this.pictureBox9.TabIndex = 11;
@@ -1193,7 +1204,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
             this.pictureBox10.Location = new System.Drawing.Point(310, 338);
-            this.pictureBox10.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox10.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(136, 131);
             this.pictureBox10.TabIndex = 10;
@@ -1203,7 +1214,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
             this.pictureBox11.Location = new System.Drawing.Point(159, 338);
-            this.pictureBox11.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox11.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(136, 131);
             this.pictureBox11.TabIndex = 9;
@@ -1213,7 +1224,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox12.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox12.Image")));
             this.pictureBox12.Location = new System.Drawing.Point(13, 338);
-            this.pictureBox12.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox12.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(136, 131);
             this.pictureBox12.TabIndex = 8;
@@ -1223,7 +1234,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox21.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox21.Image")));
             this.pictureBox21.Location = new System.Drawing.Point(459, 197);
-            this.pictureBox21.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox21.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox21.Name = "pictureBox21";
             this.pictureBox21.Size = new System.Drawing.Size(136, 131);
             this.pictureBox21.TabIndex = 7;
@@ -1233,7 +1244,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox22.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox22.Image")));
             this.pictureBox22.Location = new System.Drawing.Point(310, 197);
-            this.pictureBox22.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox22.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox22.Name = "pictureBox22";
             this.pictureBox22.Size = new System.Drawing.Size(136, 131);
             this.pictureBox22.TabIndex = 6;
@@ -1243,7 +1254,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox23.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox23.Image")));
             this.pictureBox23.Location = new System.Drawing.Point(159, 197);
-            this.pictureBox23.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox23.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox23.Name = "pictureBox23";
             this.pictureBox23.Size = new System.Drawing.Size(136, 131);
             this.pictureBox23.TabIndex = 5;
@@ -1253,7 +1264,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox24.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox24.Image")));
             this.pictureBox24.Location = new System.Drawing.Point(13, 197);
-            this.pictureBox24.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox24.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox24.Name = "pictureBox24";
             this.pictureBox24.Size = new System.Drawing.Size(136, 131);
             this.pictureBox24.TabIndex = 4;
@@ -1263,7 +1274,7 @@ namespace Test_Loopguy
             // 
             this.pictureBox25.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox25.Image")));
             this.pictureBox25.Location = new System.Drawing.Point(459, 55);
-            this.pictureBox25.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox25.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox25.Name = "pictureBox25";
             this.pictureBox25.Size = new System.Drawing.Size(136, 131);
             this.pictureBox25.TabIndex = 3;
@@ -1273,7 +1284,7 @@ namespace Test_Loopguy
             // 
             this.bigRobotSelect.Image = ((System.Drawing.Image)(resources.GetObject("bigRobotSelect.Image")));
             this.bigRobotSelect.Location = new System.Drawing.Point(310, 55);
-            this.bigRobotSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.bigRobotSelect.Margin = new System.Windows.Forms.Padding(6);
             this.bigRobotSelect.Name = "bigRobotSelect";
             this.bigRobotSelect.Size = new System.Drawing.Size(136, 131);
             this.bigRobotSelect.TabIndex = 2;
@@ -1284,7 +1295,7 @@ namespace Test_Loopguy
             // 
             this.rangedTestSelect.Image = ((System.Drawing.Image)(resources.GetObject("rangedTestSelect.Image")));
             this.rangedTestSelect.Location = new System.Drawing.Point(159, 55);
-            this.rangedTestSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.rangedTestSelect.Margin = new System.Windows.Forms.Padding(6);
             this.rangedTestSelect.Name = "rangedTestSelect";
             this.rangedTestSelect.Size = new System.Drawing.Size(136, 131);
             this.rangedTestSelect.TabIndex = 1;
@@ -1295,7 +1306,7 @@ namespace Test_Loopguy
             // 
             this.meleeTestSelect.Image = ((System.Drawing.Image)(resources.GetObject("meleeTestSelect.Image")));
             this.meleeTestSelect.Location = new System.Drawing.Point(13, 55);
-            this.meleeTestSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.meleeTestSelect.Margin = new System.Windows.Forms.Padding(6);
             this.meleeTestSelect.Name = "meleeTestSelect";
             this.meleeTestSelect.Size = new System.Drawing.Size(136, 131);
             this.meleeTestSelect.TabIndex = 0;
@@ -1393,7 +1404,7 @@ namespace Test_Loopguy
             this.panel1.Controls.Add(this.serverSelect);
             this.panel1.Controls.Add(this.shelfArchivingSelect);
             this.panel1.Location = new System.Drawing.Point(648, 35);
-            this.panel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel1.Margin = new System.Windows.Forms.Padding(6);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(597, 1476);
             this.panel1.TabIndex = 40;
@@ -1402,7 +1413,7 @@ namespace Test_Loopguy
             // 
             this.shootingRangeTargetSelect.Image = ((System.Drawing.Image)(resources.GetObject("shootingRangeTargetSelect.Image")));
             this.shootingRangeTargetSelect.Location = new System.Drawing.Point(300, 1238);
-            this.shootingRangeTargetSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.shootingRangeTargetSelect.Margin = new System.Windows.Forms.Padding(6);
             this.shootingRangeTargetSelect.Name = "shootingRangeTargetSelect";
             this.shootingRangeTargetSelect.Size = new System.Drawing.Size(136, 64);
             this.shootingRangeTargetSelect.TabIndex = 72;
@@ -1413,7 +1424,7 @@ namespace Test_Loopguy
             // 
             this.smallLocker.Image = ((System.Drawing.Image)(resources.GetObject("smallLocker.Image")));
             this.smallLocker.Location = new System.Drawing.Point(149, 1238);
-            this.smallLocker.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.smallLocker.Margin = new System.Windows.Forms.Padding(6);
             this.smallLocker.Name = "smallLocker";
             this.smallLocker.Size = new System.Drawing.Size(136, 64);
             this.smallLocker.TabIndex = 71;
@@ -1424,7 +1435,7 @@ namespace Test_Loopguy
             // 
             this.chairBack.Image = ((System.Drawing.Image)(resources.GetObject("chairBack.Image")));
             this.chairBack.Location = new System.Drawing.Point(300, 1013);
-            this.chairBack.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.chairBack.Margin = new System.Windows.Forms.Padding(6);
             this.chairBack.Name = "chairBack";
             this.chairBack.Size = new System.Drawing.Size(136, 64);
             this.chairBack.TabIndex = 70;
@@ -1435,7 +1446,7 @@ namespace Test_Loopguy
             // 
             this.computerFront.Image = ((System.Drawing.Image)(resources.GetObject("computerFront.Image")));
             this.computerFront.Location = new System.Drawing.Point(2, 1013);
-            this.computerFront.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.computerFront.Margin = new System.Windows.Forms.Padding(6);
             this.computerFront.Name = "computerFront";
             this.computerFront.Size = new System.Drawing.Size(136, 64);
             this.computerFront.TabIndex = 69;
@@ -1446,17 +1457,18 @@ namespace Test_Loopguy
             // 
             this.chairFront.Image = ((System.Drawing.Image)(resources.GetObject("chairFront.Image")));
             this.chairFront.Location = new System.Drawing.Point(446, 1013);
-            this.chairFront.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.chairFront.Margin = new System.Windows.Forms.Padding(6);
             this.chairFront.Name = "chairFront";
             this.chairFront.Size = new System.Drawing.Size(136, 64);
             this.chairFront.TabIndex = 68;
             this.chairFront.TabStop = false;
+            this.chairFront.Click += new System.EventHandler(this.chairFront_Click);
             // 
             // chest
             // 
             this.chest.Image = ((System.Drawing.Image)(resources.GetObject("chest.Image")));
             this.chest.Location = new System.Drawing.Point(2, 1238);
-            this.chest.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.chest.Margin = new System.Windows.Forms.Padding(6);
             this.chest.Name = "chest";
             this.chest.Size = new System.Drawing.Size(136, 64);
             this.chest.TabIndex = 67;
@@ -1467,7 +1479,7 @@ namespace Test_Loopguy
             // 
             this.computerBack.Image = ((System.Drawing.Image)(resources.GetObject("computerBack.Image")));
             this.computerBack.Location = new System.Drawing.Point(149, 1013);
-            this.computerBack.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.computerBack.Margin = new System.Windows.Forms.Padding(6);
             this.computerBack.Name = "computerBack";
             this.computerBack.Size = new System.Drawing.Size(136, 64);
             this.computerBack.TabIndex = 66;
@@ -1478,7 +1490,7 @@ namespace Test_Loopguy
             // 
             this.bigScreenTele.Image = ((System.Drawing.Image)(resources.GetObject("bigScreenTele.Image")));
             this.bigScreenTele.Location = new System.Drawing.Point(2, 939);
-            this.bigScreenTele.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.bigScreenTele.Margin = new System.Windows.Forms.Padding(6);
             this.bigScreenTele.Name = "bigScreenTele";
             this.bigScreenTele.Size = new System.Drawing.Size(136, 64);
             this.bigScreenTele.TabIndex = 65;
@@ -1489,7 +1501,7 @@ namespace Test_Loopguy
             // 
             this.workstation.Image = ((System.Drawing.Image)(resources.GetObject("workstation.Image")));
             this.workstation.Location = new System.Drawing.Point(446, 939);
-            this.workstation.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.workstation.Margin = new System.Windows.Forms.Padding(6);
             this.workstation.Name = "workstation";
             this.workstation.Size = new System.Drawing.Size(136, 64);
             this.workstation.TabIndex = 64;
@@ -1500,7 +1512,7 @@ namespace Test_Loopguy
             // 
             this.bigMonitor.Image = ((System.Drawing.Image)(resources.GetObject("bigMonitor.Image")));
             this.bigMonitor.Location = new System.Drawing.Point(300, 939);
-            this.bigMonitor.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.bigMonitor.Margin = new System.Windows.Forms.Padding(6);
             this.bigMonitor.Name = "bigMonitor";
             this.bigMonitor.Size = new System.Drawing.Size(136, 64);
             this.bigMonitor.TabIndex = 63;
@@ -1511,7 +1523,7 @@ namespace Test_Loopguy
             // 
             this.normalScreenTele.Image = ((System.Drawing.Image)(resources.GetObject("normalScreenTele.Image")));
             this.normalScreenTele.Location = new System.Drawing.Point(149, 939);
-            this.normalScreenTele.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.normalScreenTele.Margin = new System.Windows.Forms.Padding(6);
             this.normalScreenTele.Name = "normalScreenTele";
             this.normalScreenTele.Size = new System.Drawing.Size(136, 64);
             this.normalScreenTele.TabIndex = 62;
@@ -1522,7 +1534,7 @@ namespace Test_Loopguy
             // 
             this.copCarLeft.Image = ((System.Drawing.Image)(resources.GetObject("copCarLeft.Image")));
             this.copCarLeft.Location = new System.Drawing.Point(2, 1162);
-            this.copCarLeft.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.copCarLeft.Margin = new System.Windows.Forms.Padding(6);
             this.copCarLeft.Name = "copCarLeft";
             this.copCarLeft.Size = new System.Drawing.Size(136, 64);
             this.copCarLeft.TabIndex = 61;
@@ -1533,7 +1545,7 @@ namespace Test_Loopguy
             // 
             this.radioactiveStain.Image = ((System.Drawing.Image)(resources.GetObject("radioactiveStain.Image")));
             this.radioactiveStain.Location = new System.Drawing.Point(446, 1162);
-            this.radioactiveStain.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.radioactiveStain.Margin = new System.Windows.Forms.Padding(6);
             this.radioactiveStain.Name = "radioactiveStain";
             this.radioactiveStain.Size = new System.Drawing.Size(136, 64);
             this.radioactiveStain.TabIndex = 60;
@@ -1544,7 +1556,7 @@ namespace Test_Loopguy
             // 
             this.waterStain.Image = ((System.Drawing.Image)(resources.GetObject("waterStain.Image")));
             this.waterStain.Location = new System.Drawing.Point(300, 1162);
-            this.waterStain.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.waterStain.Margin = new System.Windows.Forms.Padding(6);
             this.waterStain.Name = "waterStain";
             this.waterStain.Size = new System.Drawing.Size(136, 64);
             this.waterStain.TabIndex = 59;
@@ -1555,7 +1567,7 @@ namespace Test_Loopguy
             // 
             this.copCarRight.Image = ((System.Drawing.Image)(resources.GetObject("copCarRight.Image")));
             this.copCarRight.Location = new System.Drawing.Point(149, 1162);
-            this.copCarRight.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.copCarRight.Margin = new System.Windows.Forms.Padding(6);
             this.copCarRight.Name = "copCarRight";
             this.copCarRight.Size = new System.Drawing.Size(136, 64);
             this.copCarRight.TabIndex = 58;
@@ -1566,7 +1578,7 @@ namespace Test_Loopguy
             // 
             this.carsLeft.Image = ((System.Drawing.Image)(resources.GetObject("carsLeft.Image")));
             this.carsLeft.Location = new System.Drawing.Point(2, 1089);
-            this.carsLeft.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.carsLeft.Margin = new System.Windows.Forms.Padding(6);
             this.carsLeft.Name = "carsLeft";
             this.carsLeft.Size = new System.Drawing.Size(136, 64);
             this.carsLeft.TabIndex = 57;
@@ -1577,7 +1589,7 @@ namespace Test_Loopguy
             // 
             this.smallCarRight.Image = ((System.Drawing.Image)(resources.GetObject("smallCarRight.Image")));
             this.smallCarRight.Location = new System.Drawing.Point(446, 1089);
-            this.smallCarRight.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.smallCarRight.Margin = new System.Windows.Forms.Padding(6);
             this.smallCarRight.Name = "smallCarRight";
             this.smallCarRight.Size = new System.Drawing.Size(136, 64);
             this.smallCarRight.TabIndex = 56;
@@ -1588,7 +1600,7 @@ namespace Test_Loopguy
             // 
             this.smallCarLeft.Image = ((System.Drawing.Image)(resources.GetObject("smallCarLeft.Image")));
             this.smallCarLeft.Location = new System.Drawing.Point(300, 1089);
-            this.smallCarLeft.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.smallCarLeft.Margin = new System.Windows.Forms.Padding(6);
             this.smallCarLeft.Name = "smallCarLeft";
             this.smallCarLeft.Size = new System.Drawing.Size(136, 64);
             this.smallCarLeft.TabIndex = 55;
@@ -1599,7 +1611,7 @@ namespace Test_Loopguy
             // 
             this.carsRight.Image = ((System.Drawing.Image)(resources.GetObject("carsRight.Image")));
             this.carsRight.Location = new System.Drawing.Point(149, 1089);
-            this.carsRight.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.carsRight.Margin = new System.Windows.Forms.Padding(6);
             this.carsRight.Name = "carsRight";
             this.carsRight.Size = new System.Drawing.Size(136, 64);
             this.carsRight.TabIndex = 54;
@@ -1610,7 +1622,7 @@ namespace Test_Loopguy
             // 
             this.humanVialsFilled.Image = ((System.Drawing.Image)(resources.GetObject("humanVialsFilled.Image")));
             this.humanVialsFilled.Location = new System.Drawing.Point(2, 875);
-            this.humanVialsFilled.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.humanVialsFilled.Margin = new System.Windows.Forms.Padding(6);
             this.humanVialsFilled.Name = "humanVialsFilled";
             this.humanVialsFilled.Size = new System.Drawing.Size(136, 51);
             this.humanVialsFilled.TabIndex = 53;
@@ -1620,7 +1632,7 @@ namespace Test_Loopguy
             // pictureBox18
             // 
             this.pictureBox18.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox18.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox18.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox18.Name = "pictureBox18";
             this.pictureBox18.Size = new System.Drawing.Size(100, 49);
             this.pictureBox18.TabIndex = 0;
@@ -1630,7 +1642,7 @@ namespace Test_Loopguy
             // 
             this.trashCan.Image = ((System.Drawing.Image)(resources.GetObject("trashCan.Image")));
             this.trashCan.Location = new System.Drawing.Point(446, 875);
-            this.trashCan.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.trashCan.Margin = new System.Windows.Forms.Padding(6);
             this.trashCan.Name = "trashCan";
             this.trashCan.Size = new System.Drawing.Size(136, 51);
             this.trashCan.TabIndex = 51;
@@ -1641,7 +1653,7 @@ namespace Test_Loopguy
             // 
             this.humanVialsEmpty.Image = ((System.Drawing.Image)(resources.GetObject("humanVialsEmpty.Image")));
             this.humanVialsEmpty.Location = new System.Drawing.Point(300, 875);
-            this.humanVialsEmpty.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.humanVialsEmpty.Margin = new System.Windows.Forms.Padding(6);
             this.humanVialsEmpty.Name = "humanVialsEmpty";
             this.humanVialsEmpty.Size = new System.Drawing.Size(136, 51);
             this.humanVialsEmpty.TabIndex = 50;
@@ -1652,7 +1664,7 @@ namespace Test_Loopguy
             // 
             this.humanVialsNoBody.Image = ((System.Drawing.Image)(resources.GetObject("humanVialsNoBody.Image")));
             this.humanVialsNoBody.Location = new System.Drawing.Point(149, 875);
-            this.humanVialsNoBody.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.humanVialsNoBody.Margin = new System.Windows.Forms.Padding(6);
             this.humanVialsNoBody.Name = "humanVialsNoBody";
             this.humanVialsNoBody.Size = new System.Drawing.Size(136, 51);
             this.humanVialsNoBody.TabIndex = 49;
@@ -1662,7 +1674,7 @@ namespace Test_Loopguy
             // humanVialsEmptySelect
             // 
             this.humanVialsEmptySelect.Location = new System.Drawing.Point(0, 0);
-            this.humanVialsEmptySelect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.humanVialsEmptySelect.Margin = new System.Windows.Forms.Padding(2);
             this.humanVialsEmptySelect.Name = "humanVialsEmptySelect";
             this.humanVialsEmptySelect.Size = new System.Drawing.Size(100, 49);
             this.humanVialsEmptySelect.TabIndex = 52;
@@ -1672,7 +1684,7 @@ namespace Test_Loopguy
             // 
             this.benchSelect.Image = ((System.Drawing.Image)(resources.GetObject("benchSelect.Image")));
             this.benchSelect.Location = new System.Drawing.Point(446, 797);
-            this.benchSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.benchSelect.Margin = new System.Windows.Forms.Padding(6);
             this.benchSelect.Name = "benchSelect";
             this.benchSelect.Size = new System.Drawing.Size(136, 66);
             this.benchSelect.TabIndex = 47;
@@ -1683,7 +1695,7 @@ namespace Test_Loopguy
             // 
             this.kitchenCounterSelect.Image = ((System.Drawing.Image)(resources.GetObject("kitchenCounterSelect.Image")));
             this.kitchenCounterSelect.Location = new System.Drawing.Point(300, 797);
-            this.kitchenCounterSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.kitchenCounterSelect.Margin = new System.Windows.Forms.Padding(6);
             this.kitchenCounterSelect.Name = "kitchenCounterSelect";
             this.kitchenCounterSelect.Size = new System.Drawing.Size(136, 66);
             this.kitchenCounterSelect.TabIndex = 46;
@@ -1694,7 +1706,7 @@ namespace Test_Loopguy
             // 
             this.canteenTableSelect.Image = ((System.Drawing.Image)(resources.GetObject("canteenTableSelect.Image")));
             this.canteenTableSelect.Location = new System.Drawing.Point(149, 797);
-            this.canteenTableSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.canteenTableSelect.Margin = new System.Windows.Forms.Padding(6);
             this.canteenTableSelect.Name = "canteenTableSelect";
             this.canteenTableSelect.Size = new System.Drawing.Size(136, 66);
             this.canteenTableSelect.TabIndex = 45;
@@ -1705,7 +1717,7 @@ namespace Test_Loopguy
             // 
             this.canteenFoodThingSelect.Image = ((System.Drawing.Image)(resources.GetObject("canteenFoodThingSelect.Image")));
             this.canteenFoodThingSelect.Location = new System.Drawing.Point(0, 797);
-            this.canteenFoodThingSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.canteenFoodThingSelect.Margin = new System.Windows.Forms.Padding(6);
             this.canteenFoodThingSelect.Name = "canteenFoodThingSelect";
             this.canteenFoodThingSelect.Size = new System.Drawing.Size(136, 66);
             this.canteenFoodThingSelect.TabIndex = 44;
@@ -1716,7 +1728,7 @@ namespace Test_Loopguy
             // 
             this.sofaRightSelect.Image = ((System.Drawing.Image)(resources.GetObject("sofaRightSelect.Image")));
             this.sofaRightSelect.Location = new System.Drawing.Point(453, 730);
-            this.sofaRightSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.sofaRightSelect.Margin = new System.Windows.Forms.Padding(6);
             this.sofaRightSelect.Name = "sofaRightSelect";
             this.sofaRightSelect.Size = new System.Drawing.Size(136, 55);
             this.sofaRightSelect.TabIndex = 43;
@@ -1727,7 +1739,7 @@ namespace Test_Loopguy
             // 
             this.sofaLeftSelect.Image = ((System.Drawing.Image)(resources.GetObject("sofaLeftSelect.Image")));
             this.sofaLeftSelect.Location = new System.Drawing.Point(304, 730);
-            this.sofaLeftSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.sofaLeftSelect.Margin = new System.Windows.Forms.Padding(6);
             this.sofaLeftSelect.Name = "sofaLeftSelect";
             this.sofaLeftSelect.Size = new System.Drawing.Size(136, 55);
             this.sofaLeftSelect.TabIndex = 42;
@@ -1738,7 +1750,7 @@ namespace Test_Loopguy
             // 
             this.canteenChairRightSelect.Image = ((System.Drawing.Image)(resources.GetObject("canteenChairRightSelect.Image")));
             this.canteenChairRightSelect.Location = new System.Drawing.Point(153, 730);
-            this.canteenChairRightSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.canteenChairRightSelect.Margin = new System.Windows.Forms.Padding(6);
             this.canteenChairRightSelect.Name = "canteenChairRightSelect";
             this.canteenChairRightSelect.Size = new System.Drawing.Size(136, 55);
             this.canteenChairRightSelect.TabIndex = 41;
@@ -1749,23 +1761,12 @@ namespace Test_Loopguy
             // 
             this.canteenChairLeftSelect.Image = ((System.Drawing.Image)(resources.GetObject("canteenChairLeftSelect.Image")));
             this.canteenChairLeftSelect.Location = new System.Drawing.Point(6, 730);
-            this.canteenChairLeftSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.canteenChairLeftSelect.Margin = new System.Windows.Forms.Padding(6);
             this.canteenChairLeftSelect.Name = "canteenChairLeftSelect";
             this.canteenChairLeftSelect.Size = new System.Drawing.Size(136, 55);
             this.canteenChairLeftSelect.TabIndex = 40;
             this.canteenChairLeftSelect.TabStop = false;
             this.canteenChairLeftSelect.Click += new System.EventHandler(this.canteenChairLeftSelect_Click);
-            // 
-            // glassWall
-            // 
-            this.glassWall.Image = ((System.Drawing.Image)(resources.GetObject("glassWall.Image")));
-            this.glassWall.Location = new System.Drawing.Point(13, 629);
-            this.glassWall.Margin = new System.Windows.Forms.Padding(6);
-            this.glassWall.Name = "glassWall";
-            this.glassWall.Size = new System.Drawing.Size(136, 131);
-            this.glassWall.TabIndex = 16;
-            this.glassWall.TabStop = false;
-            this.glassWall.Click += new System.EventHandler(this.glassWall_Click);
             // 
             // Form1
             // 
@@ -1792,10 +1793,11 @@ namespace Test_Loopguy
             this.Controls.Add(this.mapHeight);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.mapWidth);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Form1";
             this.Text = "Form1";
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.glassWall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileWarningSelect)).EndInit();
@@ -1907,7 +1909,6 @@ namespace Test_Loopguy
             ((System.ComponentModel.ISupportInitialize)(this.sofaLeftSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.canteenChairRightSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.canteenChairLeftSelect)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glassWall)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

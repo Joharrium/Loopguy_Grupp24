@@ -653,7 +653,7 @@ namespace Test_Loopguy
             texture = TextureManager.bigScreenTele;
             variation = Game1.rnd.Next(2);
             sourceRectangle = new Rectangle(48 * variation, 0, 48, 22);
-            footprint = new Rectangle((int)position.X + 0, (int)position.Y + 19, 47, 3);
+            footprint = new Rectangle((int)position.X + 0, (int)position.Y + 34, 0, 0);
             height = 8;
             hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
         }
@@ -667,7 +667,8 @@ namespace Test_Loopguy
             texture = TextureManager.normalScreenTele;
             variation = Game1.rnd.Next(2);
             sourceRectangle = new Rectangle(32 * variation, 0, 32, 17);
-            footprint = new Rectangle((int)position.X + 1, (int)position.Y + 12, 30, 3);
+            height = 8;
+            footprint = new Rectangle((int)position.X + 0, (int)position.Y + 34, 0, 0);
         }
     }
 
@@ -763,8 +764,8 @@ namespace Test_Loopguy
             this.position = position;
             texture = TextureManager.chairBack;
             variation = Game1.rnd.Next(2);
-            sourceRectangle = new Rectangle(32 * variation, 0, 32, 17);
-            footprint = new Rectangle((int)position.X + 5, (int)position.Y + 0, 0, 0);
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 17);
+            footprint = new Rectangle((int)position.X + 5, (int)position.Y + 0, 16, 17);
             height = 5;
             hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
 
@@ -778,8 +779,8 @@ namespace Test_Loopguy
             this.position = position;
             texture = TextureManager.chairFront;
             variation = Game1.rnd.Next(2);
-            sourceRectangle = new Rectangle(32 * variation, 0, 32, 17);
-            footprint = new Rectangle((int)position.X + 5, (int)position.Y + 0, 0, 0);
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 17);
+            footprint = new Rectangle((int)position.X + 5, (int)position.Y + 0, 16, 17);
             height = 5;
             hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);
 
@@ -875,7 +876,7 @@ namespace Test_Loopguy
             this.position = position;
             texture = TextureManager.trashCan;
             variation = Game1.rnd.Next(2);
-            sourceRectangle = new Rectangle(32 * variation, 0, 32, 13);
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 13);
             footprint = new Rectangle((int)position.X + 4, (int)position.Y + 7, 9, 6);
             height = 4;
             hitBox = new Rectangle(footprint.X, footprint.Y - 8, footprint.Width, footprint.Height);

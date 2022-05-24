@@ -501,5 +501,10 @@ namespace Test_Loopguy
         {
             LevelEditor.SelectTile(TileSelection.WallGlass);
         }
+
+        private void chairFront_Click(object sender, EventArgs e)
+        {
+            LevelEditor.SelectObject(ObjectSelection.ChairFront);
+        }
     }
 }
