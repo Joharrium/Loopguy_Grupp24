@@ -32,7 +32,7 @@ namespace Test_Loopguy
 
     public enum EnemySelection
     {
-        MeleeTest, RangedTest, RobotBig
+        MeleeTest, RangedTest, RobotBig, EvilAndroid,
     }
     static public class LevelEditor
     {
@@ -397,6 +397,9 @@ namespace Test_Loopguy
                                 break;
                             case EnemySelection.RobotBig:
                                 LevelManager.EnemyAdd(new RangedRobotEnemy(Game1.mousePos - new Vector2(32, 32)));
+                                break;
+                            case EnemySelection.EvilAndroid: 
+                                LevelManager.EnemyAdd(new AndroidEnemy(Game1.mousePos - new Vector2(32, 32)));
                                 break;
 
                         }
