@@ -38,6 +38,18 @@
 /processorParam:Quality=Best
 /build:audio/music/unatco_hq.ogg
 
+#begin audio/sound/alarm.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/alarm.wav
+
+#begin audio/sound/biggest_explosion.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/sound/biggest_explosion.wav
+
 #begin audio/sound/bonk.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1029,6 +1041,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/interface/player_healthbar_outline_alt.png
+
+#begin gfx/interface/white_screenlol.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/interface/white_screenlol.png
 
 #begin gfx/objects/ammo.png
 /importer:TextureImporter

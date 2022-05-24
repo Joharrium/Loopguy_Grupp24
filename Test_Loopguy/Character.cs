@@ -177,7 +177,7 @@ namespace Test_Loopguy
            
             if (health <= 0)
             {
-                LevelManager.Reset();
+                LevelManager.StartReset();
             }
      
         }

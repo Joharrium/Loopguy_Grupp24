@@ -25,7 +25,7 @@ namespace Test_Loopguy
             healthbar_small_outline, healthbar_small_fill_bg, healthbar_small_fill,
             player_healthbar_outline, player_healthbar_outline_alt, player_healthbar_inline, player_healthbar_fill, player_healthbar_fill_bg, player_healthbar_fill_bg_alt,
             ammobar_fill, ammobar_outline, ammobar_fill_bg, menu_bg, slider_container, slider_fill, logo,
-            checkbox_true, checkbox_false, control_atlas
+            checkbox_true, checkbox_false, control_atlas, white_screen
             
             ;
         public static SpriteFont UI_menuFont, UI_menuFont2, smallestFont;
@@ -198,6 +198,7 @@ namespace Test_Loopguy
             smallestFont = c.Load<SpriteFont>("smallestFont");
             UI_graybrick = c.Load<Texture2D>("gfx/interface/editor_icons/graybrick_small");
             black_screen = c.Load<Texture2D>("gfx/interface/black_screenlol");
+            white_screen = c.Load<Texture2D>("gfx/interface/white_screenlol");
             UI_door = c.Load<Texture2D>("gfx/interface/editor_icons/door_small");
             healthbar_small_fill = c.Load<Texture2D>("gfx/interface/healthbar_small_fill");
             healthbar_small_fill_bg = c.Load<Texture2D>("gfx/interface/healthbar_small_fill_bg");
