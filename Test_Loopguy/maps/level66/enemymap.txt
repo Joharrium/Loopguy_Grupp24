@@ -1,0 +1,11 @@
+AndroidEnemy,554,256
+MeleeEnemyWeak,104,63
+MeleeEnemyWeak,231,63
+MeleeEnemyWeak,359,63
+MeleeEnemyWeak,584,63
+MeleeEnemyWeak,606,458
+MeleeEnemyWeak,360,465
+MeleeEnemyWeak,224,464
+MeleeEnemyWeak,102,467
+RangedRobotEnemy,552,366
+RangedRobotEnemy,509,123
