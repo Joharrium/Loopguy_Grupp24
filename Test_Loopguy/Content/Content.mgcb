@@ -2170,6 +2170,30 @@
 /processorParam:TextureFormat=Color
 /build:gfx/terrain/dirt_corners.png
 
+#begin gfx/terrain/glassWallSlimmed.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/terrain/glassWallSlimmed.png
+
+#begin gfx/terrain/glassWallTest.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/terrain/glassWallTest.png
+
 #begin gfx/terrain/grass_basic.png
 /importer:TextureImporter
 /processor:TextureProcessor

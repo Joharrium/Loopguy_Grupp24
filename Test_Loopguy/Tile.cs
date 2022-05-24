@@ -317,4 +317,18 @@ namespace Test_Loopguy
             sourceRectangle = new Rectangle(16 * variation, 0, 16, 32);
         }
     }
+
+    public class GlassWall : Wall
+    {
+        int variation;
+        public GlassWall(Vector2 position) : base(position)
+        {
+            this.position = position - new Vector2(0, 16);
+            texture = TextureManager.wallGlass;
+            hitBox.Width = 16;
+            hitBox.Height = 19;
+            variation = Game1.rnd.Next(1);
+            sourceRectangle = new Rectangle(16 * variation, 0, 16, 32);
+        }
+    }
 }

@@ -450,6 +450,10 @@ namespace Test_Loopguy
                     {
                         tiles[i, j] = new Carpet(tempPos);
                     }
+                    if (terrainStrings[j][i] == 'm')
+                    {
+                        tiles[i, j] = new GlassWall(tempPos);
+                    }
                 }
             }
 
@@ -772,6 +776,10 @@ namespace Test_Loopguy
                     if (currentLevel.tiles[j, i] is Carpet)
                     {
                         types[j, i] = 'l';
+                    }
+                    if (currentLevel.tiles[j, i] is GlassWall)
+                    {
+                        types[j, i] = 'm'; 
                     }
                 }
             }

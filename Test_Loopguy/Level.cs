@@ -625,8 +625,11 @@ namespace Test_Loopguy
                         break;
                     case TileSelection.Warning:
                         tiles[coordinates.X, coordinates.Y] = new TileWarning(gameLocation);
-
                         break;
+                    case TileSelection.WallGlass:
+                        tiles[coordinates.X, coordinates.Y] = new GlassWall(gameLocation);
+                        break;
+
                 }
             }
             walls.AddRange(tiles.OfType<Wall>());
