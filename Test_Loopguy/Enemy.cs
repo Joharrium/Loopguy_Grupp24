@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
-
 namespace Test_Loopguy
 {
     internal class Enemy : Character
@@ -17,7 +16,6 @@ namespace Test_Loopguy
         protected float idleDir;
         protected float idleTime;
         protected int maxSpeed;
-
         protected int minRange;
         protected int maxRange;
 
@@ -205,7 +203,7 @@ namespace Test_Loopguy
 
         public RangedEnemy(Vector2 position) : base(position)
         {
-
+            // :^)
         }
 
         public override void Update(GameTime gameTime)
@@ -255,7 +253,6 @@ namespace Test_Loopguy
                 else if(thing.Length() < minRange)
                 {
                     thing.Normalize();
-
                     direction = thing;
                     speed = maxSpeed;
                     fleeing = true;
@@ -263,7 +260,6 @@ namespace Test_Loopguy
             }
             else
             {
-                
                 if(thing.Length() > fleeRange)
                 {
                     fleeing = false;
@@ -350,9 +346,7 @@ namespace Test_Loopguy
     {       
         bool isAttacking = false;
         bool isMoving;
-
         int frameTime = 100;
-
         Vector2 attackOrigin;
         Orientation lockedOrientation;
 
@@ -370,7 +364,6 @@ namespace Test_Loopguy
             texture = TextureManager.blankbig;
             
             maxHealth = 5;
-
             minRange = 40;
             maxRange = 120;
             fleeRange = 20; 
@@ -383,7 +376,6 @@ namespace Test_Loopguy
             attackCooldown = 2000;
             attackCooldownRemaining = 2000;
             accuracy = 0;
-            
         }
 
         protected override void Attack()
@@ -394,7 +386,6 @@ namespace Test_Loopguy
             direction.Y *= (float)Game1.rnd.Next(100 - accuracy, 100 + accuracy) / 100;
             direction.Normalize();
             direction *= -1;
-
             LevelManager.AddEnemyProjectile(new RobotEnemyShot(attackOrigin, direction, (float)Helper.GetAngle(attackOrigin, EntityManager.player.centerPosition, 0 + Math.PI), 300, damage));
             Audio.PlaySound(Audio.robotEnemyShot);
         }
@@ -544,12 +535,8 @@ namespace Test_Loopguy
             {
                 if (isAttacking)
                 {
-                    //Audio.PlaySound(Audio.robotEnemyCharge2);
-
                     if (lockedOrientation == Orientation.Up)
                     {
-
-
                         if (!sprite.PlayOnce(1, 20, frameTime))
                         {
                             Attack();
@@ -643,13 +630,15 @@ namespace Test_Loopguy
             this.maxSpeed = 95;
             aggroRange = 120;
             damage = 1;
-            knockBackDistance = 160;
-            knockBackDuration = 160;
+            knockBackDistance = 275;
+            knockBackDuration = 180;
             Init();
             aggro = false;
 
-            minRange = 10;
-            maxRange = aggroRange;
+            
+
+            minRange = 8;
+            maxRange = 15;
         }
 
         public override void Update(GameTime gameTime)
@@ -659,6 +648,13 @@ namespace Test_Loopguy
             
             if (health <= 0)
             {
+                /// pseudo
+                /// have radius for explosion
+                /// if player is inside radius, take damage.
+                /// 
+                
+
+                maxSpeed = 0;
                 isAttacking = true;
                 isNotDying = explosionSprite.PlayOnce(0, 16, frameTime);
                 explosionSprite.Position = new Vector2(position.X - 32, position.Y - 32);
@@ -673,7 +669,6 @@ namespace Test_Loopguy
 
             if (distBetweenPlrAndEnemy.Length() <= minRange)
             {
-                speed = 0;
                 health = 0;
             }
             else if (distBetweenPlrAndEnemy.Length() > minRange)
