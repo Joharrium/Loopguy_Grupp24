@@ -162,7 +162,7 @@ namespace Test_Loopguy
 
             foreach (Pickup p in levelObjects.OfType<Pickup>())
             {
-                p.Update();
+                p.Update(gameTime);
                 if(p.pickedUp)
                 {
                     pickupsToRemove.Add(p);

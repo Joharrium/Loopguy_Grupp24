@@ -118,7 +118,7 @@ namespace Test_Loopguy
             barrelDestroyed = c.Load<Texture2D>("gfx/objects/barrel_destructible");
             medkit = c.Load<Texture2D>("gfx/objects/healthPackNewest");
             console = c.Load<Texture2D>("gfx/objects/console_thing");
-            ammo = c.Load<Texture2D>("gfx/objects/ammo");
+            ammo = c.Load<Texture2D>("gfx/objects/ammoContainer");
 
             {
                 billboard = c.Load<Texture2D>("gfx/objects/assetpack/billboard");
