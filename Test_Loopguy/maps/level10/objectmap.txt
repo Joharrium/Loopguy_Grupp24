@@ -47,4 +47,3 @@ Server,384,205
 Server,368,205
 DoorSliding,208,16,1
 DoorSliding,208,240,1
-WinPickup,208,180

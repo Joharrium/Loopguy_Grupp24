@@ -206,10 +206,10 @@ namespace Test_Loopguy
     {
         public WinPickup(Vector2 position) : base(position)
         {
-            this.position = position;
+            this.position = position - new Vector2(24, 4);
             this.hitBox = Rectangle.Empty;
-            texture = TextureManager.ammo;
-            sourceRectangle = new Rectangle(0, 0, 32, 32);
+            texture = TextureManager.nuclearBomb;
+            sourceRectangle = new Rectangle(0, 0, 72, 34);
         }
 
         protected override void Effect()
