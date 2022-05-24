@@ -614,6 +614,7 @@ namespace Test_Loopguy
         bool isAttacking, isMoving = false;
         AnimatedSprite explosionSprite;
         Point frameSize2;
+        Vector2 distBetweenPlrAndEnemy;
 
         public MeleeEnemyWeak(Vector2 position) : base(position)
         {
@@ -635,9 +636,7 @@ namespace Test_Loopguy
             Init();
             aggro = false;
 
-            
-
-            minRange = 8;
+            minRange = 6;
             maxRange = 15;
         }
 
@@ -648,12 +647,6 @@ namespace Test_Loopguy
             
             if (health <= 0)
             {
-                /// pseudo
-                /// have radius for explosion
-                /// if player is inside radius, take damage.
-                /// 
-                
-
                 maxSpeed = 0;
                 isAttacking = true;
                 isNotDying = explosionSprite.PlayOnce(0, 16, frameTime);
@@ -665,7 +658,7 @@ namespace Test_Loopguy
 
         protected override void AggroBehavior()
         {
-            Vector2 distBetweenPlrAndEnemy = centerPosition - EntityManager.player.centerPosition;
+            distBetweenPlrAndEnemy = centerPosition - EntityManager.player.centerPosition;
 
             if (distBetweenPlrAndEnemy.Length() <= minRange)
             {
