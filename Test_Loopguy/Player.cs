@@ -66,6 +66,9 @@ namespace Test_Loopguy
 
         float deltaTime;
 
+        float timeInvincible;
+        const float maxTimeInvincible = 0.5f;
+
         float timeSinceAttack; //counts seconds since last attack
         const float comboWindow = 0.75f; //window of time to follow up attack
         const float attackCooldown = 0.5f; //time you have to wait to attack again if you miss window
@@ -79,7 +82,7 @@ namespace Test_Loopguy
 
         float timePressedDash; //counts seconds you've held dash button
         const float timeToPrecisionDash = 0.25f; //seconds you have to hold dash button to initiate precision dash (aimed dash)
-        const float timeMaxPrecisionDash = 3; //seconds you can hold the dash button before you automatically dash
+        const float maxTimePrecisionDash = 3; //seconds you can hold the dash button before you automatically dash
 
         float dashSlideTimer; //counts seconds you've slid after dash
         const float maxDashSlideTime = 0.2f; //seconds that you'll slide after a dash, also window for gun drifting
@@ -91,6 +94,7 @@ namespace Test_Loopguy
 
         public string playerInfoString;
 
+        bool invincible;
         public bool attacking;
         bool startAttackTimer;
         bool canAttack;
@@ -148,7 +152,7 @@ namespace Test_Loopguy
             deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             centerPosition = new Vector2(position.X + sprite.size.X / 2, position.Y + sprite.size.Y / 2);
-            hitBox = new Rectangle((int)(position.X + (sprite.size.X * 0.375)), (int)(position.Y + sprite.size.Y / 4), sprite.size.X / 4, sprite.size.Y / 2);
+            hitBox = new Rectangle((int)(position.X + sprite.size.X / 4), (int)(position.Y + sprite.size.Y / 4), sprite.size.X / 2, sprite.size.Y / 2);
             footprint = new Rectangle((int)position.X + 12, (int)position.Y + 24, 8, 8);
 
             //USING HEALTHPACK
@@ -183,7 +187,7 @@ namespace Test_Loopguy
                 //This is for "sliding" to a stop when holding dash button, prevents awkward stop when doing a quick dash and also looks cool
                 SlideStop(deltaTime, 200);
 
-                if (!InputReader.Dash() || timePressedDash > timeMaxPrecisionDash)
+                if (!InputReader.Dash() || timePressedDash > maxTimePrecisionDash)
                 {
                     Audio.PlaySound(Audio.dash);
                     dashPosition = new Vector2(footprint.Center.X - 21, footprint.Center.Y - 12);
@@ -211,7 +215,9 @@ namespace Test_Loopguy
             } //ATTACKING
             else if (attacking)
             {
-                PlayMelee(deltaTime);
+                speed = 75;
+                int rowInt = 6 + (int)primaryOrientation - 1;
+                attacking = PlayEnergySwordMelee(deltaTime, meleeSprite, rowInt, 50, flipMelee);
             }
             else if (dashing) //DASHING
             {
@@ -346,7 +352,7 @@ namespace Test_Loopguy
             sprite.Position = position;
             pistolSprite.Position = position;
             railgunSprite.Position = new Vector2(position.X, position.Y - 7);
-            meleeSprite.Position = new Vector2(position.X - 8, position.Y - 8);
+            meleeSprite.Position = new Vector2(position.X - 9, position.Y - 9);
 
             pistolSprite.Update(gameTime);
             railgunSprite.Update(gameTime);
@@ -372,11 +378,11 @@ namespace Test_Loopguy
                     DrawDashAim(spriteBatch);
 
                 sprite.Frame((int)primaryOrientation - 1, 12);
-                sprite.Draw(spriteBatch);
+                sprite.Draw(spriteBatch, invincible);
             }
             else if (attacking)
             {
-                sprite.Draw(spriteBatch);
+                sprite.Draw(spriteBatch, invincible);
                 meleeSprite.Draw(spriteBatch);
             }
             else
@@ -413,12 +419,12 @@ namespace Test_Loopguy
                         }
                     }
 
-                    sprite.Draw(spriteBatch);
+                    sprite.Draw(spriteBatch, invincible);
                 }
                 else
                 { //if not aiming up, draw gun sprite on top
 
-                    sprite.Draw(spriteBatch);
+                    sprite.Draw(spriteBatch, invincible);
 
                     if (dashing)
                     {
@@ -444,223 +450,13 @@ namespace Test_Loopguy
             }
 
             //draw hitbox borders
-            //spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Top), Color.White);
-            //spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Bottom), Color.White);
+            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Top), Color.White);
+            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Bottom), Color.White);
+
+            spriteBatch.Draw(TextureManager.redPixel, centerPosition, Color.White);
 
             //healthBar.Draw(spriteBatch);
 
-        }
-
-        public void PlayMelee(float deltaTime)
-        {
-            speed = 75;
-
-            int rowIntPlayer = 6 + (int)primaryOrientation - 1; //Melee sprites are 6 rows down on player sprite sheet
-            int rowIntSword = (int)primaryOrientation - 1; //Wow dude??
-            int frameTime = 50;
-
-            if (primaryOrientation == Orientation.Up)
-            {//UP
-                direction.X = 0;
-                direction.Y = -1;
-
-                meleeSprite.flipVertically = false;
-
-                if(flipMelee)
-                    sprite.flipHorizontally = meleeSprite.flipHorizontally = true;
-                else
-                    sprite.flipHorizontally = meleeSprite.flipHorizontally = false;
-
-                if (secondaryOrientation == Orientation.Left)
-                {
-                    sprite.flipHorizontally = false;
-
-                    if (flipMelee)
-                    {
-                        rowIntSword = 7;
-                        rowIntPlayer = 9;
-                        meleeSprite.flipVertically = true;
-                        meleeSprite.flipHorizontally = true;
-                    }
-                    else
-                    {
-                        rowIntSword = 4;
-                        rowIntPlayer = 8;
-                    }
-                    direction.X = -1;
-                }
-                else if (secondaryOrientation == Orientation.Right)
-                {
-                    sprite.flipHorizontally = false;
-
-                    if (flipMelee)
-                    {
-                        rowIntSword = 5;
-                        rowIntPlayer = 11;
-                        meleeSprite.flipVertically = true;
-                        meleeSprite.flipHorizontally = true;
-                    }
-                    else
-                    {
-                        rowIntSword = 6;
-                        rowIntPlayer = 10;
-                    }
-                    direction.X = 1;
-                }
-
-            }
-            else if (primaryOrientation == Orientation.Down)
-            {//DOWN
-                direction.X = 0;
-                direction.Y = 1;
-
-                meleeSprite.flipVertically = false;
-
-                if (flipMelee)
-                    sprite.flipHorizontally = meleeSprite.flipHorizontally = true;
-                else
-                    sprite.flipHorizontally = meleeSprite.flipHorizontally = false;
-
-                if (secondaryOrientation == Orientation.Left)
-                {
-                    sprite.flipHorizontally = false;
-
-                    if (flipMelee)
-                    {
-                        rowIntSword = 6;
-                        rowIntPlayer = 9;
-                        meleeSprite.flipVertically = true;
-                        meleeSprite.flipHorizontally = true;
-                    }
-                    else
-                    {
-                        rowIntSword = 5;
-                        rowIntPlayer = 8;
-                    }
-                    direction.X = -1;
-                }
-                else if (secondaryOrientation == Orientation.Right)
-                {
-                    sprite.flipHorizontally = false;
-
-                    if (flipMelee)
-                    {
-                        rowIntSword = 4;
-                        rowIntPlayer = 11;
-                        meleeSprite.flipVertically = true;
-                        meleeSprite.flipHorizontally = true;
-                    }
-                    else
-                    {
-                        rowIntSword = 7;
-                        rowIntPlayer = 10;
-                    }
-                    direction.X = 1;
-                }
-            }
-            else if (primaryOrientation == Orientation.Left)
-            {//LEFT
-                direction.X = -1;
-                direction.Y = 0;
-
-                meleeSprite.flipHorizontally = false;
-
-                if (flipMelee)
-                {
-                    rowIntPlayer = 9;
-                    meleeSprite.flipVertically = true;
-                }
-                else
-                {
-                    rowIntPlayer = 8;
-                    meleeSprite.flipVertically = false;
-                }
-
-                if (secondaryOrientation == Orientation.Up)
-                {
-                    if (flipMelee)
-                    {
-                        rowIntSword = 7;
-                        meleeSprite.flipVertically = true;
-                        meleeSprite.flipHorizontally = true;
-                    }
-                    else
-                    {
-                        rowIntSword = 4;
-                    }
-                    direction.Y = -1;
-                }
-                else if (secondaryOrientation == Orientation.Down)
-                {
-                    if (flipMelee)
-                    {
-                        rowIntSword = 6;
-                        meleeSprite.flipVertically = true;
-                        meleeSprite.flipHorizontally = true;
-                    }
-                    else
-                    {
-                        rowIntSword = 5;
-                    }
-                    direction.Y = 1;
-                }
-            }
-            else
-            {//RIGHT
-                direction.X = 1;
-                direction.Y = 0;
-
-                meleeSprite.flipHorizontally = false;
-
-                if (flipMelee)
-                {
-                    rowIntPlayer = 11;
-                    meleeSprite.flipVertically = true;
-                }
-                else
-                {
-                    rowIntPlayer = 10;
-                    meleeSprite.flipVertically = false;
-                }
-
-                if (secondaryOrientation == Orientation.Up)
-                {
-                    if (flipMelee)
-                    {
-                        rowIntSword = 5;
-                        meleeSprite.flipVertically = true;
-                        meleeSprite.flipHorizontally = true;
-                    }
-                    else
-                    {
-                        rowIntSword = 6;
-                    }
-                    direction.Y = -1;
-                }
-                else if (secondaryOrientation == Orientation.Down)
-                {
-                    if (flipMelee)
-                    {
-                        rowIntSword = 4;
-                        meleeSprite.flipVertically = true;
-                        meleeSprite.flipHorizontally = true;
-                    }
-                    else
-                    {
-                        rowIntSword = 7;
-                    }
-                    direction.Y = 1;
-                }
-            }
-
-            direction.Normalize();
-
-            CheckMovement(deltaTime);
-
-            sprite.Play(rowIntPlayer, 4, frameTime);
-
-            //The PlayOnce method returns false when the animation is done playing!!!
-            attacking = meleeSprite.PlayOnce(rowIntSword, 4, frameTime);
         }
 
         public void Dash(SpriteBatch spriteBatch)
@@ -992,6 +788,18 @@ namespace Test_Loopguy
 
         public void Timers(float deltaTime)
         {
+            //INVINCIBILTY TIMER
+            if (invincible)
+            {
+                timeInvincible += deltaTime;
+
+                if (timeInvincible >= maxTimeInvincible)
+                {
+                    invincible = false;
+                    timeInvincible = 0;
+                }
+            }
+
             //ATTACK TIMER
             if (startAttackTimer)
             {
@@ -1031,8 +839,6 @@ namespace Test_Loopguy
                 }
             }
         }
-
-
 
         public void Reset(Vector2 position)
         {
@@ -1129,24 +935,30 @@ namespace Test_Loopguy
         }
         public override void TakeDamage(int damage, DamageType soundType)
         {
-            if (soundType == DamageType.melee)
+            if (!invincible && !dashing)
             {
-                Audio.PlaySound(Audio.player_hit);
-            }
-            else if (soundType == DamageType.laserGun)
-            {
-                Audio.PlaySound(Audio.player_hit);
-            }
-            else if (soundType == DamageType.Hazard)
-            {
-                Audio.PlaySound(Audio.player_hit);
-            }
-            else if (soundType == DamageType.Electricity)
-            {
-                Audio.PlaySound(Audio.hitByElectricity);
-            }
+                invincible = true;
 
-            base.TakeDamage(damage, soundType);
+                if (soundType == DamageType.melee)
+                {
+                    Audio.PlaySound(Audio.player_hit);
+                }
+                else if (soundType == DamageType.laserGun)
+                {
+                    Audio.PlaySound(Audio.player_hit);
+                }
+                else if (soundType == DamageType.Hazard)
+                {
+                    Audio.PlaySound(Audio.player_hit);
+                }
+                else if (soundType == DamageType.Electricity)
+                {
+                    Audio.PlaySound(Audio.hitByElectricity);
+                }
+
+                base.TakeDamage(damage, soundType);
+            }
+            
         }
 
     }

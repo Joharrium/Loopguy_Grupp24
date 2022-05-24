@@ -102,6 +102,23 @@ namespace Test_Loopguy
 
             spriteBatch.Draw(sheet, position, frame, Color.White, 0, Vector2.Zero, 1, effects, 0);
         }
+        public void Draw(SpriteBatch spriteBatch, bool grayedOut)
+        {
+            frame = new Rectangle(currentFrame.X * size.X, currentFrame.Y * size.Y, size.X, size.Y);
+
+            position = Position;
+
+            Color color = Color.White;
+            if (grayedOut)
+            {
+                color = new Color(80, 80, 80, 150);
+            }
+
+            //position.X = (int)Math.Round(Position.X);
+            //position.Y = (int)Math.Round(Position.Y);
+
+            spriteBatch.Draw(sheet, position, frame, color, 0, Vector2.Zero, 1, effects, 0);
+        }
         public void DrawRotation(SpriteBatch spriteBatch, float angle)
         {
             frame = new Rectangle(currentFrame.X * size.X, currentFrame.Y * size.Y, size.X, size.Y);

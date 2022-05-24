@@ -28,7 +28,7 @@ namespace Test_Loopguy
             fill_bg = TextureManager.healthbar_small_fill_bg;
             srcRectangle = new Rectangle(1, 0, 9, 4);
             divisorValue = 9;
-            offset = new Vector2(1, 0);
+            //offset = new Vector2(1, 0);
         }
 
         public void SetCurrentValue(Vector2 pos, int value)
