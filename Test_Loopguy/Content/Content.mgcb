@@ -447,6 +447,12 @@
 /processorParam:TextureFormat=Compressed
 /build:File.spritefont;smallestFont.spritefont
 
+#begin Gesaffelstein_trans.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Gesaffelstein_trans.mp3
+
 #begin gfx/characters/32x32blank.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1809,6 +1815,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/objects/fern_destructible.png
+
+#begin gfx/objects/healthPackNew.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/healthPackNew.png
+
+#begin gfx/objects/healthPackNewest.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/objects/healthPackNewest.png
 
 #begin gfx/objects/humanVialsEmpty.png
 /importer:TextureImporter

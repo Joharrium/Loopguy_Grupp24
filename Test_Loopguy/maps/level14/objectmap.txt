@@ -17,7 +17,7 @@ TreeBig,252,-11
 TreeBig,-9,-6
 TreeBig,299,1
 TreeBig,111,8
-SmallHealthPickup,390,34
+SmallHealthPickup,390,46
 TreeBig,-10,9
 TreeBig,-11,27
 WhiteBoard,262,70
@@ -172,7 +172,7 @@ TreeBig,-20,323
 TreeBig,703,325
 TreeBig,760,330
 TreeBig,1427,332
-SmallHealthPickup,1392,361
+SmallHealthPickup,1392,373
 TreeBig,736,339
 TreeBig,691,339
 TreeBig,1017,341
@@ -327,7 +327,7 @@ CardboardBoxStackSmall,833,672
 CardboardBoxStackSmall,845,679
 TreeBig,6,653
 TreeBig,-19,653
-SmallAmmoPickup,48,684
+SmallAmmoPickup,48,696
 CarryingThing,872,672
 ShelfArchiving,676,688
 ShelfArchiving,706,688
@@ -374,8 +374,6 @@ TreeBig,127,751
 TreeBig,57,754
 TreeBig,-12,772
 TreeBig,20,776
-TrashCan,1154,825
-TrashCan,1153,826
 PottedPlant,1088,812
 PottedPlant,1358,814
 Sofa,1107,819
@@ -455,4 +453,6 @@ PottedPlant,273,1186
 TreeBig,1202,1202
 TreeBig,713,1215
 TreeBig,197,1236
-KeyPickup,383,1105,15,True
+KeyPickup,383,1117,15,True
+TrashCan,1154,825
+TrashCan,1153,826

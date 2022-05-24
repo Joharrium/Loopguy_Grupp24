@@ -28,7 +28,7 @@ namespace Test_Loopguy
         }
         //music
 
-        public static SoundEffect sus_low, sus_high, unatco_hq, march_of_the_white_knights, nyc_streets, oceanlab_action;
+        public static SoundEffect sus_low, sus_high, unatco_hq, march_of_the_white_knights, nyc_streets, oceanlab_action, gesaffelstein_trans;
         
         private static Song playingTrack;
         private static List<Song> combatMusicCurrent = new List<Song>();
@@ -144,6 +144,7 @@ namespace Test_Loopguy
             march_of_the_white_knights = c.Load<SoundEffect>("audio/music/march_of_the_white_knights");
             nyc_streets = c.Load<SoundEffect>("audio/music/nyc_streets");
             oceanlab_action = c.Load<SoundEffect>("audio/music/oceanlab_action");
+            gesaffelstein_trans = c.Load<SoundEffect>("");
         }
         static void LoadSound(ContentManager c)
         {
