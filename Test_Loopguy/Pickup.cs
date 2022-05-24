@@ -23,7 +23,7 @@ namespace Test_Loopguy
             pickupBox = new Rectangle((int)position.X - 4, (int)position.Y - 4, 24, 24);
         }
 
-        public void Update()
+        public virtual void Update(GameTime gameTime)
         {
             PickUp();
             Wave();
@@ -137,12 +137,30 @@ namespace Test_Loopguy
 
     public class SmallAmmoPickup : AmmoPickup
     {
+        AnimatedSprite sprite;
+
         public SmallAmmoPickup(Vector2 position) : base(position)
         {
-            ammoAmount = 1;
-            hitBox = Rectangle.Empty;
             texture = TextureManager.ammo;
-            sourceRectangle = new Rectangle(0, 0, 16, 16);
+            sprite = new AnimatedSprite(texture, new Point(24, 24));
+            ammoAmount = 1;
+            hitBox = Rectangle.Empty;         
+            //sourceRectangle = new Rectangle(0, 0, 16, 16);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            sprite.Update(gameTime);
+            sprite.Play(0, 8, 50);
+            base.Update(gameTime);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+           
+            sprite.Position = position;
+            sprite.Draw(spriteBatch);
+            base.Draw(spriteBatch);
         }
 
     }
