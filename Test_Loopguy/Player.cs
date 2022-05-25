@@ -71,7 +71,7 @@ namespace Test_Loopguy
 
         float timeSinceAttack; //counts seconds since last attack
         const float comboWindow = 0.75f; //window of time to follow up attack
-        const float attackCooldown = 0.5f; //time you have to wait to attack again if you miss window
+        const float attackCooldown = 0.25f; //time you have to wait to attack again if you miss window
         const int maxCombo = 3; //number of times you can attack in quick succession before having to wait for attackCooldown
         int comboCounter; //number of times you've attacked in a quick succession
 

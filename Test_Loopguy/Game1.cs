@@ -124,14 +124,14 @@ namespace Test_Loopguy
             else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.F1))
             {
 
-                LevelManager.RefreshEdges();
-                editLevel = !editLevel;
-                InputReader.editMode = editLevel;
-                LevelEditor.editingMode = editLevel;
-                if (editLevel)
-                {
+                //LevelManager.RefreshEdges();
+                //editLevel = !editLevel;
+                //InputReader.editMode = editLevel;
+                //LevelEditor.editingMode = editLevel;
+                //if (editLevel)
+                //{
 
-                }
+                //}
 
             }
             else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.Tab) || InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.Escape) || InputReader.ButtonPressed(Buttons.Start))
