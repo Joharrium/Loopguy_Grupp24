@@ -145,10 +145,10 @@ namespace Test_Loopguy
             }
 
             //draw hitbox borders
-            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Top), Color.White);
-            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Bottom), Color.White);
+            //spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Top), Color.White);
+            //spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Bottom), Color.White);
 
-            spriteBatch.Draw(TextureManager.cyanPixel, centerPosition, Color.White);
+            //spriteBatch.Draw(TextureManager.cyanPixel, centerPosition, Color.White);
         }
 
         protected override void AggroBehavior(float deltaTime)

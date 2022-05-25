@@ -600,8 +600,8 @@ namespace Test_Loopguy
  
             //base.Draw(spriteBatch);
 
-            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Top), Color.White);
-            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Bottom), Color.White);
+            //spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Top), Color.White);
+            //spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Bottom), Color.White);
         }
     }
 
