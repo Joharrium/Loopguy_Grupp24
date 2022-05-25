@@ -446,12 +446,12 @@ namespace Test_Loopguy
 
         public override void TakeDamage(int damage, DamageType soundType)
         {
-            if (soundType == DamageType.melee)
+            if (soundType == DamageType.melee && !hitDuringCurrentAttack)
             {
                 Audio.meleeOnMetal.PlayRandomSound();
                 //Audio.PlaySound(Audio.meleeOnMetal1);
             }
-            else if (soundType == DamageType.laserGun)
+            else if (soundType == DamageType.laserGun && !hitDuringCurrentAttack)
             {
                 Audio.PlaySound(Audio.player_hit);
             }
