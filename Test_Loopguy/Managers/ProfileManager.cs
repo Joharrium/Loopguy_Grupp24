@@ -72,7 +72,7 @@ namespace Test_Loopguy
 
             toWrite.Add(music.ToString());
             toWrite.Add(sound.ToString());
-            toWrite.Add(scale.ToString());
+            toWrite.Add((scale + 1).ToString());
             toWrite.Add(fullscreen.ToString());
 
             File.WriteAllLines(path, toWrite);

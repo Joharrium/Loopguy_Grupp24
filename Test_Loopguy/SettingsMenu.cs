@@ -52,7 +52,7 @@ namespace Test_Loopguy
 
             music = new Slider(menuSlot3, (int)(Audio.MusicVolume * 100), 100, "Music Volume", false);
 
-            screenSize = new Slider(menuSlot4, Game1.WindowScale, 4, "Screen Size", true);
+            screenSize = new Slider(menuSlot4, Game1.WindowScale - 1, 4, "Screen Size", true);
 
             fullscreen = new Checkbox(menuSlot5, "Fullscreen", Game1.isFullscreen);
 
