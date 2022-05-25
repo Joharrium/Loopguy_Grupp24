@@ -370,7 +370,7 @@ namespace Test_Loopguy
             maxRange = 120;
             fleeRange = 20; 
             aggroRange = 192;
-            damage = 3;
+            damage = 2;
             knockBackDistance = 0;
             knockBackDuration = 0;
             Init();
@@ -463,7 +463,7 @@ namespace Test_Loopguy
         {
             DirectionGetOrientation();
 
-            if (!isAttacking)
+            if (!isAttacking && !dying)
             {
                 if (primaryOrientation == Orientation.Up)
                 {
@@ -531,11 +531,13 @@ namespace Test_Loopguy
             
             if (dying)
             {
+                speed = 0;
                 isNotDying = sprite.PlayOnce(8, 28, 50);
             }
             else if (health <= 0)
             {
                 dying = true;
+                isAttacking = false;
                 sprite.ResetAnimation();
             }
             else
@@ -588,6 +590,7 @@ namespace Test_Loopguy
                 }
             }
             base.Update(gameTime);
+            hitBox = new Rectangle((int)position.X + 24, (int)position.Y + 16, sprite.size.X / 4, sprite.size.Y / 2);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -595,23 +598,10 @@ namespace Test_Loopguy
             sprite.Draw(spriteBatch);
             healthBar.Draw(spriteBatch);
  
-            if (isAttacking)
-            {
-                Line enemyLaserLine = new Line(attackOrigin, EntityManager.player.position);
-
-                LevelManager.LevelObjectCollision(enemyLaserLine, 9);
-
-                Line newEnemyLaserLine = new Line(attackOrigin, enemyLaserLine.intersectionPoint);
-                Vector2 laserVector = new Vector2(newEnemyLaserLine.P2.X - newEnemyLaserLine.P1.X, newEnemyLaserLine.P2.Y - newEnemyLaserLine.P1.Y);
-                int laserLength = (int)laserVector.Length();
-
-                Random rnd = new Random();
-                for (int i = 16; i < laserLength; i++)
-                {
-                    spriteBatch.Draw(TextureManager.cyanPixel, EntityManager.player.position, Color.White);
-                }
-            }
             //base.Draw(spriteBatch);
+
+            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Top), Color.White);
+            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Bottom), Color.White);
         }
     }
 

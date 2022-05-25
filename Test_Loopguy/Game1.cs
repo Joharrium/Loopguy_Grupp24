@@ -110,30 +110,31 @@ namespace Test_Loopguy
 
         protected override void Update(GameTime gameTime)
         {
-            frameCounter.Update((float)gameTime.ElapsedGameTime.TotalSeconds) ;
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == Microsoft.Xna.Framework.Input.ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
-            {
-                Exit();
-                Application.Exit();
-            }
-            else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.PageUp) && windowScale <= 5)
+            frameCounter.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == Microsoft.Xna.Framework.Input.ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
+            //{
+            //    Exit();
+            //    Application.Exit();
+            //}
+            
+            if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.PageUp) && windowScale <= 5)
                 ScaleWindow(1);
             else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.PageDown) && windowScale >= 2)
                 ScaleWindow(-1);
             else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.F1))
             {
-                /*
+
                 LevelManager.RefreshEdges();
                 editLevel = !editLevel;
                 InputReader.editMode = editLevel;
                 LevelEditor.editingMode = editLevel;
-                if(editLevel)
+                if (editLevel)
                 {
 
                 }
-                */
+
             }
-            else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.Tab) || InputReader.ButtonPressed(Buttons.Start))
+            else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.Tab) || InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.Escape) || InputReader.ButtonPressed(Buttons.Start))
             {
                 if(StateManager.currentState == StateManager.GameState.InGame)
                 { 
