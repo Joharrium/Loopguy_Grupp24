@@ -11,8 +11,8 @@ namespace Test_Loopguy
     static public class LevelManager
     {
         public static bool countTime = false;
-        private static float timeLeft = 300;
-        private static float startingTime = 300;
+        private static float timeLeft = 600;
+        private static float startingTime = 600;
         private static Level currentLevel;
         public static Level CurrentLevel
         {
@@ -149,7 +149,7 @@ namespace Test_Loopguy
         public static void DrawTimer(SpriteBatch spriteBatch)
         {
 
-            if(!(timeLeft == 600))
+            if(!(timeLeft == startingTime))
             {
                 string add = "";
                 if (Math.Truncate(timeLeft % 60) < 10)

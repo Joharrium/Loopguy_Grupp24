@@ -31,7 +31,7 @@ namespace Test_Loopguy
         Texture2D blueArc, redPixel;
         public static bool isFullscreen;
 
-        public bool debugMode = true;
+        public bool debugMode = false;
 
         RenderTarget2D renderTarget;
 
@@ -122,6 +122,7 @@ namespace Test_Loopguy
                 ScaleWindow(-1);
             else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.F1))
             {
+                /*
                 LevelManager.RefreshEdges();
                 editLevel = !editLevel;
                 InputReader.editMode = editLevel;
@@ -130,6 +131,7 @@ namespace Test_Loopguy
                 {
 
                 }
+                */
             }
             else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.Tab) || InputReader.ButtonPressed(Buttons.Start))
             {
@@ -145,7 +147,7 @@ namespace Test_Loopguy
             }
             else if (InputReader.KeyPressed(Microsoft.Xna.Framework.Input.Keys.F2))
             {
-                debugMode = !debugMode;
+                //debugMode = !debugMode;
             }
             
 

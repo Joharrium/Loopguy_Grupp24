@@ -1,4 +1,4 @@
-RangedRobotEnemy,626,70
+RangedRobotEnemy,622,102
 RangedRobotEnemy,374,369
 MeleeEnemyWeak,273,285
 MeleeEnemyWeak,239,102
