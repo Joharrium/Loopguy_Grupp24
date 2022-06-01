@@ -612,7 +612,8 @@ namespace Test_Loopguy
         public MeleeEnemyWeak(Vector2 position) : base(position)
         {
             this.position = position;
-            footprintOffset = new Point(0, 24);
+            footprint = new Rectangle(0, 0, 16, 16);
+            footprintOffset = new Point(0, 16);
             frameSize = new Point(16, 32);
             frameSize2 = new Point(64, 64);
             sprite = new AnimatedSprite(TextureManager.smallFastEnemySheet, frameSize);
@@ -640,7 +641,6 @@ namespace Test_Loopguy
             
             if (health <= 0)
             {
-                
                 maxSpeed = 0;
                 if(!attackDone)
                 {

@@ -416,7 +416,7 @@ namespace Test_Loopguy
                 
             }
             {
-                return WallCollision(check.Center.ToVector2());
+                return WallCollision(check.Center.ToVector2()) || WallCollision(new Vector2(check.Right, check.Center.Y)) || WallCollision(new Vector2(check.Left, check.Center.Y));
             }
         }
 
