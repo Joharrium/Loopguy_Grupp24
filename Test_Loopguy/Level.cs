@@ -85,52 +85,52 @@ namespace Test_Loopguy
                 }
             }
 
-            foreach (Projectile s in enemyProjectiles)
+            foreach (Projectile p in enemyProjectiles)
             {
-                s.Update(gameTime);
-                //Make projectiles bounce back if hit by player Melee attack
-                if (EntityManager.player.MeleeHit(s) && EntityManager.player.attacking)
-                {
-                    Projectile reflS = s.Clone();
-                    reflS.Bounce((float)Helper.GetAngle(player.centerPosition, reflS.centerPosition, Math.PI));
-                    playerProjectiles.Add(reflS);
+                p.Update(gameTime);                 
 
-                    projectilesToRemove.Add(s);
+                //Make projectiles bounce back if hit by player Melee attack
+                if (EntityManager.player.MeleeHit(p) && EntityManager.player.attacking)
+                {
+                    Projectile reflectedP = p.Clone();
+                    reflectedP.Bounce((float)Helper.GetAngle(player.centerPosition, reflectedP.centerPosition, Math.PI));
+                    playerProjectiles.Add(reflectedP);
+
+                    projectilesToRemove.Add(p);
                 }
 
-                if (s.CheckCollision(player) && !player.dashing)
+                if (p.CheckCollision(player) && !player.dashing)
                 {
+                    player.TakeDamage(p.damage, Character.DamageType.laserGun);
 
-                    player.TakeDamage(s.damage, Character.DamageType.laserGun);
-
-
-                    projectilesToRemove.Add(s);
+                    projectilesToRemove.Add(p);
                 }
                 
-                if (!mapbounds.Contains(s.centerPosition))
+                if (!mapbounds.Contains(p.centerPosition))
                 {
-                    projectilesToRemove.Add(s);
+                    projectilesToRemove.Add(p);
                 }
+
                 foreach (LevelObject lo in levelObjects)
                 {
                     if(lo.height > 8 && !(lo is Destructible))
                     {
-                        if (s.CheckCollision(lo))
+                        if (p.CheckCollision(lo))
                         {
-                            projectilesToRemove.Add(s);
+                            projectilesToRemove.Add(p);
                         }
-                    }
-                    
+                    }                  
                 }
 
                 foreach (Wall w in walls)
                 {
-                    if (s.CheckCollision(w))
+                    if (p.CheckCollision(w))
                     {
-                        projectilesToRemove.Add(s);
+                        projectilesToRemove.Add(p);
                     }
                 }
             }
+
             foreach (Projectile s in playerProjectiles)
             {
                 s.Update(gameTime);
