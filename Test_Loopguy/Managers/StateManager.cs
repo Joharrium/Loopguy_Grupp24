@@ -83,14 +83,14 @@ namespace Test_Loopguy
 
                     spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null);
                     //DRAW HUD HERE
-                    bool funkster = false;
+                    bool displayingTwoHints = false;
                     foreach(HintArea h in LevelManager.CurrentLevel.Hints)
                     {
                         
-                        h.Draw(spriteBatch,funkster);
+                        h.Draw(spriteBatch,displayingTwoHints);
                         if (h.active)
                         {
-                            funkster = true;
+                            displayingTwoHints = true;
                         }
                     }
                     Player.ammoBar.Draw(spriteBatch);
