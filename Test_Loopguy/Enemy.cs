@@ -279,8 +279,6 @@ namespace Test_Loopguy
 
     class TestEnemyRanged : RangedEnemy
     {
-
-
         public TestEnemyRanged(Vector2 position) : base(position)
         {
             this.position = position;
@@ -531,8 +529,8 @@ namespace Test_Loopguy
             
             if (dying)
             {
-                speed = 0;
                 isNotDying = sprite.PlayOnce(8, 28, 50);
+                maxSpeed = 0;
             }
             else if (health <= 0)
             {
@@ -550,7 +548,6 @@ namespace Test_Loopguy
                         {
                             Attack();
                             isAttacking = false;
-
                         }
                     }
                     else if (lockedOrientation == Orientation.Down)
@@ -559,7 +556,6 @@ namespace Test_Loopguy
                         {
                             Attack();
                             isAttacking = false;
-
                         }
 
                     }
@@ -569,7 +565,6 @@ namespace Test_Loopguy
                         {
                             Attack();
                             isAttacking = false;
-
                         }
 
                     }
@@ -577,7 +572,6 @@ namespace Test_Loopguy
                     {
                         if (!sprite.PlayOnce(3, 20, frameTime))
                         {
-
                             Attack();
                             isAttacking = false;
                         }
@@ -590,18 +584,19 @@ namespace Test_Loopguy
                 }
             }
             base.Update(gameTime);
-            hitBox = new Rectangle((int)position.X + 24, (int)position.Y + 16, sprite.size.X / 4, sprite.size.Y / 2);
+
+            hitBox = new Rectangle((int)position.X + 16, (int)position.Y + 12, sprite.size.X - 32, sprite.size.Y - 24);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             sprite.Draw(spriteBatch);
             healthBar.Draw(spriteBatch);
- 
+
             //base.Draw(spriteBatch);
 
-            //spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Top), Color.White);
-            //spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Bottom), Color.White);
+            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Right, hitBox.Top), Color.White);
+            spriteBatch.Draw(TextureManager.redPixel, new Vector2(hitBox.Left, hitBox.Bottom), Color.White);
         }
     }
 

@@ -120,7 +120,6 @@ namespace Test_Loopguy
                             projectilesToRemove.Add(s);
                         }
                     }
-                    
                 }
 
                 foreach (Wall w in walls)
