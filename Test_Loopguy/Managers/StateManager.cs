@@ -39,7 +39,6 @@ namespace Test_Loopguy
                         LevelEditor.Update(gameTime);
 
                     EntityManager.Update(gameTime);
-                    CameraManager.Update(gameTime);
                     Audio.Update();
 
 
