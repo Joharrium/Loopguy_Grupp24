@@ -34,7 +34,6 @@ namespace Test_Loopguy
             this.levelObjects = levelObjects;
             this.tiles = tiles;
             this.enemies = enemies;
-            //this.levelObjects.Add(new RailgunPickup(new Vector2(128, 128)));
             enemyProjectiles = new List<Projectile>();
             playerProjectiles = new List<Projectile>();
             idleSongs.AddRange(LevelManager.SongLoad(id, false));
@@ -43,12 +42,6 @@ namespace Test_Loopguy
             hazards.AddRange(tiles.OfType<Hazard>());
             destructibles.AddRange(levelObjects.OfType<Destructible>());
             hints = LevelManager.HintAreaLoad(id);
-            //hints.Add(new HintArea(new Rectangle(0, 0, 400, 400), "to dash", InputIcon.A));
-            if(id == 9)
-            {
-                //ProfileManager.GiveRailgun();
-            }
-
         }
 
         public void RefreshMap()
@@ -239,38 +232,38 @@ namespace Test_Loopguy
             List<Destructible> destructiblesToRemove = new List<Destructible>();
             List<Projectile> projectilesToRemove = new List<Projectile>();
 
-            foreach (Destructible lo in destructibles)
+            foreach (Destructible d in destructibles)
             {
-                foreach (Projectile s in playerProjectiles)
+                foreach (Projectile p in playerProjectiles)
                 {
-                    if (s.CheckCollision(lo))
+                    if (p.CheckCollision(d))
                     {
-                        lo.Damage(s.damage);
-                        projectilesToRemove.Add(s);
+                        d.Damage(p.damage);
+                        projectilesToRemove.Add(p);
                     }
                 }
-                foreach (Projectile s in enemyProjectiles) 
+                foreach (Projectile p in enemyProjectiles) 
                 {
-                    if (s.CheckCollision(lo))
+                    if (p.CheckCollision(d))
                     {
-                        lo.Damage(s.damage);
-                        projectilesToRemove.Add(s);
+                        d.Damage(p.damage);
+                        projectilesToRemove.Add(p);
                     }
                 }
-                if (lo is Destructible && EntityManager.player.MeleeHit(lo) && EntityManager.player.attacking)
+                if (d is Destructible && EntityManager.player.MeleeHit(d) && EntityManager.player.attacking)
                 {
-                    lo.Damage(1);
-                    lo.hitDuringCurrentAttack = true;
+                    d.Damage(1);
+                    d.hitDuringCurrentAttack = true;
                 }
                 if (!EntityManager.player.attacking)
                 {
-                    lo.hitDuringCurrentAttack = false;
+                    d.hitDuringCurrentAttack = false;
                 }
 
-                lo.Update(gameTime);
-                if (lo.actuallyDestroyed)
+                d.Update(gameTime);
+                if (d.actuallyDestroyed)
                 {
-                    destructiblesToRemove.Add(lo);
+                    destructiblesToRemove.Add(d);
                 }
             }
 
@@ -280,15 +273,15 @@ namespace Test_Loopguy
                 destructibles.Remove(d);
             }
 
-            foreach (Projectile s in projectilesToRemove)
+            foreach (Projectile p in projectilesToRemove)
             {
-                if(playerProjectiles.Contains(s))
+                if(playerProjectiles.Contains(p))
                 {
-                    playerProjectiles.Remove(s);
+                    playerProjectiles.Remove(p);
                 }
-                if(enemyProjectiles.Contains(s))
+                if(enemyProjectiles.Contains(p))
                 {
-                    enemyProjectiles.Remove(s);
+                    enemyProjectiles.Remove(p);
                 }
             }
         }
@@ -301,12 +294,12 @@ namespace Test_Loopguy
             {
                 foreach (Enemy e in enemies)
                 {
-                    foreach(Projectile s in playerProjectiles)
+                    foreach(Projectile p in playerProjectiles)
                     {
-                        if(s.CheckCollision(e))
+                        if(p.CheckCollision(e))
                         {
-                            e.TakeDamage(s.damage, Character.DamageType.laserGun);
-                            projectilesToRemove.Add(s);
+                            e.TakeDamage(p.damage, Character.DamageType.laserGun);
+                            projectilesToRemove.Add(p);
                         }
                     }
                     e.Update(gameTime);
@@ -330,11 +323,11 @@ namespace Test_Loopguy
             {
                 enemies.Remove(e);
             }
-            foreach (Projectile s in projectilesToRemove)
+            foreach (Projectile p in projectilesToRemove)
             {
-                if (playerProjectiles.Contains(s))
+                if (playerProjectiles.Contains(p))
                 {
-                    playerProjectiles.Remove(s);
+                    playerProjectiles.Remove(p);
                 }
             }
         }
@@ -342,6 +335,8 @@ namespace Test_Loopguy
         public void Draw(SpriteBatch spriteBatch)
         {
             Rectangle cullingRect = new Rectangle((int)(EntityManager.player.position.X - 510), (int)(EntityManager.player.position.Y - 300), 1040, 620);
+            
+            //Draws tiles within camera range
             foreach (Tile t in tiles)
             {
                 if(!(t is Wall))
@@ -391,14 +386,14 @@ namespace Test_Loopguy
             List<GameObject> sortedList = objects.OrderBy(o => o.drawDepth).ToList();
             objects = sortedList;
 
+            //Draws objects that are within camera range
             foreach (GameObject g in objects)
             {
                 if (g != null)
                 {
                     if(cullingRect.Contains(g.centerPosition))
                     g.Draw(spriteBatch);
-                }
-                
+                }               
             }
         }
 
@@ -412,8 +407,7 @@ namespace Test_Loopguy
                     {
                         return true;
                     }
-                }
-                
+                }              
             }
             {
                 return WallCollision(check.Center.ToVector2()) || WallCollision(new Vector2(check.Right, check.Center.Y)) || WallCollision(new Vector2(check.Left, check.Center.Y));
@@ -425,6 +419,7 @@ namespace Test_Loopguy
             Line shortestLine = line;
             Line originalLine = new Line(line.P1, line.P2);
             bool returnValue = false;
+
             foreach (LevelObject lo in levelObjects)
             {
                 if (lo != null && lo.height > 7 && !(lo is Destructible))
@@ -454,7 +449,6 @@ namespace Test_Loopguy
                     d.Damage(1);
                 }
             }
-
             return returnValue;
         }
 
@@ -486,9 +480,7 @@ namespace Test_Loopguy
                         return true;
                     }
                 }
-
             }
-
             {
                 return WallCollision(line);
             }
@@ -667,31 +659,5 @@ namespace Test_Loopguy
             
         }
 
-    }
-    public class Entrance
-    {
-        int id;
-        int level1;
-        int level2;
-        Rectangle hitbox;
-        Vector2 target;
-
-        public Entrance(int id, int lvl1, int lvl2, Rectangle gate, Vector2 target)
-        {
-            this.id = id;
-            level1 = lvl1;
-            level2 = lvl2;
-            hitbox = gate;
-            this.target = target;
-        }
-
-        internal void CheckGate(Player player)
-        {
-            if(hitbox.Contains(player.centerPosition) && LevelManager.GetCurrentId() == level1 && LevelManager.loadStarted == false)
-            {                
-                Fadeout.LevelTransitionFade();
-                LevelManager.StartLevelTransition(level2, player, target);               
-            }
-        }
     }
 }
