@@ -61,9 +61,12 @@ namespace Test_Loopguy
             {
                 w.SetConnections();
             }
+
+            //Clear lists to avoid duplicates
             walls.Clear();
             hazards.Clear();
             destructibles.Clear();
+
             walls.AddRange(tiles.OfType<Wall>());
             hazards.AddRange(tiles.OfType<Hazard>());
             destructibles.AddRange(levelObjects.OfType<Destructible>());
@@ -79,7 +82,7 @@ namespace Test_Loopguy
 
             foreach(Tile t in tiles)
             {
-                if(t.updateAble)
+                if(t.updatable)
                 {
                     t.Update(gameTime);
                 }
@@ -168,6 +171,7 @@ namespace Test_Loopguy
                     pickupsToRemove.Add(p);
                 }
             }
+
             foreach (Door d in levelObjects.OfType<Door>())
             {
                 d.Update(gameTime);
@@ -245,7 +249,7 @@ namespace Test_Loopguy
                         projectilesToRemove.Add(s);
                     }
                 }
-                foreach (Projectile s in enemyProjectiles)
+                foreach (Projectile s in enemyProjectiles) 
                 {
                     if (s.CheckCollision(lo))
                     {
@@ -269,7 +273,6 @@ namespace Test_Loopguy
                     destructiblesToRemove.Add(lo);
                 }
             }
-
 
             foreach (Destructible d in destructiblesToRemove)
             {
@@ -353,9 +356,7 @@ namespace Test_Loopguy
             foreach (Tile t in tiles)
             {
                 t.DrawEdges(spriteBatch);
-            }
-
-            
+            } 
 
             List<GameObject> objects = new List<GameObject>();
             objects.AddRange(levelObjects);
@@ -386,8 +387,7 @@ namespace Test_Loopguy
                     g.drawDepth = g.hitBox.Center.Y;
                 }
             }
-            
-
+           
             List<GameObject> sortedList = objects.OrderBy(o => o.drawDepth).ToList();
             objects = sortedList;
 
@@ -675,6 +675,7 @@ namespace Test_Loopguy
         int level2;
         Rectangle hitbox;
         Vector2 target;
+
         public Entrance(int id, int lvl1, int lvl2, Rectangle gate, Vector2 target)
         {
             this.id = id;
@@ -687,11 +688,9 @@ namespace Test_Loopguy
         internal void CheckGate(Player player)
         {
             if(hitbox.Contains(player.centerPosition) && LevelManager.GetCurrentId() == level1 && LevelManager.loadStarted == false)
-            {
-                
+            {                
                 Fadeout.LevelTransitionFade();
-                LevelManager.StartLevelTransition(level2, player, target);
-                
+                LevelManager.StartLevelTransition(level2, player, target);               
             }
         }
     }
