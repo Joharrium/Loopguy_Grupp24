@@ -82,6 +82,10 @@ namespace Test_Loopguy
             points.Add(lo.position + new Vector2(0, lo.hitBox.Height));
             points.Add(lo.position + new Vector2(lo.hitBox.Width, lo.hitBox.Height));
             points.Add(lo.centerPosition);
+            points.Add(lo.centerPosition + new Vector2(lo.hitBox.Width / 2, 0));
+            points.Add(lo.centerPosition - new Vector2(lo.hitBox.Width / 2, 0));
+            points.Add(lo.centerPosition + new Vector2(0, lo.hitBox.Height / 2));
+            points.Add(lo.centerPosition - new Vector2(0, lo.hitBox.Height / 2));
             return points;
         }
 

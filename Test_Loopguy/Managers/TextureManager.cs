@@ -138,9 +138,6 @@ namespace Test_Loopguy
                 desk_office = c.Load<Texture2D>("gfx/objects/assetpack/desk_office");
                 chair_office_bw = c.Load<Texture2D>("gfx/objects/assetpack/chair_office_backwards");
                 chair_office_fw = c.Load<Texture2D>("gfx/objects/assetpack/chair_office_forward");
-                
-
-
             }
 
             {
